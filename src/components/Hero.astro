@@ -1,0 +1,95 @@
+---
+import Tag from "../components/Tag.astro";
+
+type TagProps = {
+  title: string;
+  icon?: () => any;
+};
+
+const techs: TagProps[] = [
+  { title: "Typescript" },
+  { title: "React.js" },
+  { title: "Next.js" },
+  { title: "Vue.js" },
+  { title: "Svelte" },
+  { title: "Node.js" },
+  { title: "Rescript" },
+  { title: "... et plus !" },
+];
+---
+
+<section id="hero">
+  <div class="main">
+    <div class="content">
+      <div class="title">
+        <span>Développeur Freelance</span>
+        <h1>Martin Kinoo</h1>
+      </div>
+      <p>
+        Je transforme vos idées en application intuitives et performantes. Que
+        ce soit pour des projets front-end ou fullstack, je vous accompagne avec
+        expertise et créativité pour donner vie à votre vision.
+      </p>
+      <ul>
+        {
+          techs.map((tech) => (
+            <li>
+              <Tag title={tech.title} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="image"></div>
+  </div>
+</section>
+
+<style>
+  @media screen and (min-width: 1368px) {
+    :root {
+      --hero-font-size: 22px;
+      --hero-span-size: 36px;
+    }
+  }
+  .content {
+    /* display: flex; */
+    /* flex-direction: column; */
+  }
+
+  span {
+    margin: 0;
+    font-size: var(--hero-span-size);
+    font-weight: 100;
+    color: var(--accent-color);
+  }
+
+  h1 {
+    font-size: var(--h1-size);
+    line-height: 90px;
+    margin: 0;
+    font-weight: 200;
+    color: var(--color);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: space-between;
+    max-width: 750px;
+  }
+
+  p {
+    font-size: var(--hero-font-size);
+    font-weight: 100;
+  }
+
+  #hero {
+    margin-top: 92px;
+  }
+</style>

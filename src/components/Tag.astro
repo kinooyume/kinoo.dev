@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div>
+  <slot />
+  <span>{title}</span>
+</div>
+
+<style>
+  div {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background-color: #444451;
+  }
+
+  span {
+    /* font-size: 18px; */
+    font-weight: 200;
+  }
+</style>

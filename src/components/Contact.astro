@@ -1,0 +1,49 @@
+---
+import ContactForm from "./ContactForm.astro";
+---
+
+<section id="contact">
+  <h2>Collaborons ensemble !</h2>
+  <div class="contact-content">
+    <div class="contact-description">
+      <p>
+        Vous recherchez un développeur freelance pour donner vie à votre projet
+        ou pour renforcer votre équipe technique ? Que ce soit pour un
+        développement sur mesure, l'optimisation de vos systèmes existants, ou
+        l'accompagnement technique de votre start-up, je suis à votre
+        disposition.
+      </p>
+      <p>
+        Remplissez le formulaire ci-dessous en précisant les détails de votre
+        projet ou les compétences recherchées. Je vous contacterai rapidement
+        pour discuter de la meilleure manière de travailler ensemble et de
+        transformer vos idées en réalité.
+      </p>
+    </div>
+  </div>
+  <ContactForm />
+</section>
+
+<style>
+
+  @media screen and (min-width: 1368px) {
+    :root {
+      --contact-h2-size: 32px;
+    }
+  }
+
+  h2 {
+    font-size: var(--contact-h2-size);
+    font-weight: 400;
+    color: #f6b17a;
+  }
+
+  .contact-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contact-description {
+    max-width: 466px;
+  }
+</style>

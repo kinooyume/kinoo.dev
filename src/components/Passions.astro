@@ -1,0 +1,29 @@
+---
+import SimpleCards, { type Card } from "./SimpleCards.astro"
+
+const passions : Card[] = [
+  {
+    title: "Clavier",
+    subtitle: "Bip bip bip",
+    content: "Passionné par les claviers ergonomiques, je conçois et assemble mes propres modèles en DIY, allant jusqu'à souder chaque composant. J'apprécie l'art de personnaliser ces outils pour allier confort et performance, transformant chaque frappe en une expérience optimisée.",
+    image: "/images/keyboard.png"
+  },
+  {
+    title: "Dessin",
+    subtitle: "drawwww",
+    content: "Le dessin est pour moi un moyen d'explorer des mondes imaginaires. J'aime créer des univers fantastiques, peuplés de créatures et de paysages uniques. C'est une manière de laisser libre cours à ma créativité, en donnant vie à des idées qui échappent aux contraintes du quotidien.",
+    image: "/images/drawing.png"
+  },
+  {
+    title: "escalade",
+    subtitle: "grimpe grimpe",
+    content: "L'escalade est une passion qui me pousse à me dépasser physiquement et mentalement. Que ce soit en salle ou en pleine nature, j'apprécie le défi de chaque ascension et la concentration qu'elle exige",
+    image: "/images/escalade.png"
+  }
+]
+---
+<section id="passions">
+  <span class="subtitle">Mes</span>
+  <h2>Passions</h2>
+  <SimpleCards cards={passions} />
+</section>

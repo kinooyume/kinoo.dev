@@ -1,0 +1,91 @@
+---
+import github from "../svgs/github.svg?raw";
+import linkedin from "../svgs/linkedin.svg?raw";
+import terminal from "../svgs/terminal.svg?raw";
+---
+
+<div class="header-wrapper">
+  <div class="header">
+    <div class="title">
+      <div class="terminal-wrapper">
+        <Fragment set:html={terminal} />
+      </div>
+      <p>Martin Kinoo</p>
+    </div>
+    <div class="menu">
+      <a
+        href="https://github.com/kiuKisas"
+        rel="noreferrer nofollow noopener"
+        target="_blank"
+      >
+        <Fragment set:html={github} />
+      </a>
+      <a
+        href="https://linkedin.com/in/martin-kinoo"
+        rel="noreferrer nofollow noopener"
+        target="_blank"
+      >
+        <Fragment set:html={linkedin} />
+      </a>
+      <a class="primary" href="#contact">Me contacter</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media screen and (min-width: 1368px) {
+    :root {
+      --header-font-size: 24px;
+    }
+  }
+
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 120px;
+    background-color: var(--background-frosted);
+    mask-image: linear-gradient(
+      rgb(0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.8) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    backdrop-filter: blur(30px);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 24px;
+    max-width: 1440px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .title p {
+    font-size: var(--header-font-size);
+    font-weight: 200;
+  }
+
+  .terminal-wrapper {
+    margin-top: 6px;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>

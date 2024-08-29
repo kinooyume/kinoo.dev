@@ -1,0 +1,33 @@
+---
+import type { Card } from './SimpleCards.astro'
+import SimpleCards from './SimpleCards.astro';
+
+const appetences: Card[] = [
+  {
+    title: "Programmation Fonctionelle",
+    subtitle: "et déclarative",
+    content:
+      "Passionné par la programmation fonctionnelle, j'apprécie sa capacité à rendre le code plus prévisible, modulaire et maintenable. J'aime explorer des concepts comme l'immutabilité et les fonctions pures pour écrire des solutions élégantes et efficaces, qui réduisent les bugs et facilitent les tests. C'est une approche qui me permet d'apporter de la clarté et de la robustesse à chaque projet sur lequel je travaille.",
+    image: "/images/lambda.png",
+  },
+  {
+    title: "UI/UX",
+    subtitle: "Et l'ergonomie",
+    content:
+      "Je suis passionné par l'UI/UX, où je trouve l'équilibre entre esthétique et fonctionnalité. J'aime concevoir des interfaces intuitives qui ne se contentent pas d'être belles, mais qui offrent également une expérience utilisateur fluide et engageante. Mon objectif est de créer des designs qui rendent la navigation naturelle et plaisante, en plaçant toujours l'utilisateur au cœur du processus.",
+    image: "/images/ui_ux.png",
+  },
+  {
+    title: "Gamification",
+    subtitle: "holalala",
+    content:
+      "Fasciné par la gamification, j'aime intégrer des éléments ludiques dans les applications pour rendre l'expérience utilisateur plus interactive et motivante. Que ce soit par des récompenses, des défis ou des feedbacks instantanés, je m'efforce de transformer les tâches ordinaires en expériences engageantes, augmentant ainsi l'engagement et la satisfaction des utilisateurs.",
+    image: "images/gamification.png",
+  },
+];
+---
+<section id="appetences">
+  <span class="subtitle">Mes</span>
+  <h2>Appétences</h2>
+  <SimpleCards cards={appetences} />
+</section>
