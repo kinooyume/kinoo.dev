@@ -1,5 +1,5 @@
 ---
-import ContactForm from "./ContactForm.astro";
+import ContactForm from "./ContactForm.tsx";
 ---
 
 <section id="contact">
@@ -20,12 +20,11 @@ import ContactForm from "./ContactForm.astro";
         transformer vos idées en réalité.
       </p>
     </div>
+    <ContactForm client:only accessToken={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
   </div>
-  <ContactForm />
 </section>
 
 <style>
-
   @media screen and (min-width: 1368px) {
     :root {
       --contact-h2-size: 32px;
@@ -40,10 +39,112 @@ import ContactForm from "./ContactForm.astro";
 
   .contact-content {
     display: flex;
+
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
   .contact-description {
     max-width: 466px;
+  }
+</style>
+
+<style is:global>
+  /* ContactForm, should not be here but have to rush */
+
+  .about-contact {
+    width: 100%;
+    max-width: 630px;
+    border-color: var(--color-surface-alt);
+  }
+  .about-contact h2 {
+    color: var(--text-secondary-color);
+    font-size: 28px;
+    font-weight: 300;
+    margin-top: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .textarea-wrapper {
+    width: 100%;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .input-wrapper p {
+    margin: 6px 0;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+
+  .input-wrapper.invalid input,
+  .input-wrapper.invalid textarea {
+    border-color: red;
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+
+  .contact-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .input-wrapper input {
+    width: 100%;
+    padding: 16px 20px;
+  }
+  .about-contat textarea {
+    padding: 16px 20px;
+  }
+
+  .about-contact .actions {
+    margin-top: 54px;
+    display: flex;
+    gap: 16px;
+  }
+
+  input {
+    font-family: Outfit, system-ui, sans-serif;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+
+    font-size: 16px;
+    transition: all 0.06s ease;
+    background-color: #e0e0e0;
+  }
+
+  input:focus {
+    outline: none;
+    background-color: #f3f2f0;
+    border-color: var(--accent-color);
+  }
+
+  textarea {
+    font-family: Outfit, system-ui, sans-serif;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+
+    background-color: #e0e0e0;
+    font-size: 16px;
+    transition: all 0.06s ease;
+  }
+
+  textarea:focus {
+    outline: none !important;
+    background-color: #f3f2f0;
+    border-color: var(--accent-color);
   }
 </style>

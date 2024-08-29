@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
+    "@astrojs/solid-js": "^4.4.1",
+    "@modular-forms/solid": "^0.22.1",
     "astro": "^4.14.5",
+    "solid-js": "^1.8.22",
+    "solid-toast": "^0.5.0",
     "typescript": "^5.5.4"
   },
   "devDependencies": {
