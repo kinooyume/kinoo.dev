@@ -2,18 +2,24 @@
 import github from "../svgs/github.svg?raw";
 import linkedin from "../svgs/linkedin.svg?raw";
 import terminal from "../svgs/terminal.svg?raw";
+
+import NavBar from "./NavBar.astro";
 ---
 
 <div class="header-wrapper">
   <div class="header">
-    <div class="title">
-      <div class="terminal-wrapper">
-        <Fragment set:html={terminal} />
-      </div>
-      <p>Martin Kinoo</p>
+    <div class="navigation">
+      <a href="#hero" class="title anime">
+        <div class="terminal-wrapper">
+          <Fragment set:html={terminal} />
+        </div>
+        <p>Martin Kinoo</p>
+      </a>
+      <NavBar />
     </div>
     <div class="menu">
       <a
+        class="anime"
         href="https://github.com/kiuKisas"
         rel="noreferrer nofollow noopener"
         target="_blank"
@@ -21,6 +27,7 @@ import terminal from "../svgs/terminal.svg?raw";
         <Fragment set:html={github} />
       </a>
       <a
+        class="anime"
         href="https://linkedin.com/in/martin-kinoo"
         rel="noreferrer nofollow noopener"
         target="_blank"
@@ -33,10 +40,8 @@ import terminal from "../svgs/terminal.svg?raw";
 </div>
 
 <style>
-  @media screen and (min-width: 1368px) {
-    :root {
-      --header-font-size: 24px;
-    }
+  :root {
+    --header-font-size: 24px;
   }
 
   .header-wrapper {
@@ -70,6 +75,10 @@ import terminal from "../svgs/terminal.svg?raw";
     gap: 12px;
   }
 
+  a.title {
+    text-decoration: none;
+  }
+
   .title p {
     font-size: var(--header-font-size);
     font-weight: 200;
@@ -87,5 +96,35 @@ import terminal from "../svgs/terminal.svg?raw";
 
   p {
     margin: 0;
+  }
+
+  .navigation {
+    display: flex;
+    gap: 36px;
+  }
+
+  @media screen and (max-width: 1368px) {
+    :root {
+      --header-font-size: 22px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    :root {
+      --header-font-size: 18px;
+    }
+
+    .header-wrapper {
+      height: 80px;
+    }
+    .header {
+      margin: 0 12px;
+    }
+    a {
+      transform: none !important;
+    }
+
+    .primary {
+      display: none;
+    }
   }
 </style>

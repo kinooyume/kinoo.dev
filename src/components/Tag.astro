@@ -1,27 +1,45 @@
 ---
 interface Props {
   title: string;
+  icon?: string;
 }
 
-const { title } = Astro.props;
+const { title, icon } = Astro.props;
 ---
 
-<div>
-  <slot />
+<div class="tag">
+  {icon && <Fragment set:html={icon} />}
   <span>{title}</span>
 </div>
 
+<style is:global>
+.tag svg {
+  width: 16px;
+  height: 16px;
+}
+</style>
 <style>
+:root {
+  --span-tag-size: 16px;
+}
+  @media screen and (max-width: 1368px) {
+  :root {
+  --span-tag-size: 16px;
+
+  }
+}
   div {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    gap: 8px;
+    padding: 8px 18px;
     border-radius: 12px;
     background-color: #444451;
   }
 
   span {
-    /* font-size: 18px; */
+    font-size: var(--span-tag-size);
     font-weight: 200;
   }
+
 </style>

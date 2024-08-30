@@ -1,19 +1,28 @@
 ---
 import Tag from "../components/Tag.astro";
+import React from "../svgs/react.svg?raw";
+import Vue from "../svgs/vue.svg?raw";
+import Svelte from "../svgs/svelte.svg?raw";
+import Next from "../svgs/next.svg?raw";
+import Rescript from "../svgs/rescript.svg?raw";
+import Node from "../svgs/node.svg?raw";
+import Ts from "../svgs/ts.svg?raw";
+import Go from "../svgs/go.svg?raw";
 
 type TagProps = {
   title: string;
-  icon?: () => any;
+  icon?: string;
 };
 
 const techs: TagProps[] = [
-  { title: "Typescript" },
-  { title: "React.js" },
-  { title: "Next.js" },
-  { title: "Vue.js" },
-  { title: "Svelte" },
-  { title: "Node.js" },
-  { title: "Rescript" },
+  { title: "Typescript", icon: Ts },
+  { title: "React.js", icon: React },
+  { title: "Next.js", icon: Next },
+  { title: "Vue.js", icon: Vue },
+  { title: "Svelte", icon: Svelte },
+  { title: "Rescript", icon: Rescript },
+  { title: "Node.js", icon: Node },
+  { title: "Golang", icon: Go },
   { title: "... et plus !" },
 ];
 ---
@@ -22,7 +31,7 @@ const techs: TagProps[] = [
   <div class="main">
     <div class="content">
       <div class="title">
-        <span>Développeur Freelance</span>
+        <span>Développeur Web Freelance</span>
         <h1>Martin Kinoo</h1>
       </div>
       <p>
@@ -34,28 +43,30 @@ const techs: TagProps[] = [
         {
           techs.map((tech) => (
             <li>
-              <Tag title={tech.title} />
+              <Tag title={tech.title} icon={tech.icon} />
             </li>
           ))
         }
       </ul>
     </div>
-    <div class="image"></div>
+    <img class="image" src="images/profil2.png" alt="martin kinoo" />
   </div>
 </section>
 
 <style>
-  @media screen and (min-width: 1368px) {
-    :root {
-      --hero-font-size: 22px;
-      --hero-span-size: 36px;
-    }
+  :root {
+    --hero-font-size: 20px;
+    --hero-span-size: 36px;
   }
   .content {
     /* display: flex; */
     /* flex-direction: column; */
   }
 
+  .main {
+    display: flex;
+    justify-content: space-between;
+  }
   span {
     margin: 0;
     font-size: var(--hero-span-size);
@@ -86,10 +97,46 @@ const techs: TagProps[] = [
 
   p {
     font-size: var(--hero-font-size);
-    font-weight: 100;
+    font-weight: 200;
   }
 
   #hero {
     margin-top: 92px;
   }
+
+  img {
+    margin: auto 0;
+  }
+
+  @media screen and (max-width: 1368px) {
+    :root {
+      --hero-font-size: 18px;
+      --hero-span-size: 34px;
+    }
+  }
+  @media screen and (max-width: 1145px) {
+    img {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    :root {
+      --hero-span-size: 28px;
+    }
+    h1 {
+      line-height: 1;
+    }
+
+    #hero {
+      margin-top: 0;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    :root {
+      --hero-span-size: 24px;
+    }
+  }
+
 </style>

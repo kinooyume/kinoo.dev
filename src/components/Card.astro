@@ -1,10 +1,13 @@
 <div class="card">
-  <div class="content"><div class="title">
-    <slot name="title" />
-  </div>
-    <slot /></div>
-  <div class="marge">
-    <slot name="marge" />
+  <div class="content">
+    <div class="title">
+      <slot name="title" />
+      <div class="marge">
+        <slot name="marge" />
+      </div>
+    </div>
+    <div></div>
+    <div class="text"><slot /></div>
   </div>
 </div>
 
@@ -12,22 +15,37 @@
   .card {
     display: flex;
     justify-content: space-between;
-    padding: 56px;
+    padding: 48px;
   }
 
   .title {
-
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
   }
 
   .content {
+    width: 100%;
+  }
+  .text {
+    padding-right: 126px;
   }
 
-  .title,
-  .content {
-    max-width: 450px;
+  .title
+   {
     margin-bottom: 52px;
-  }n
+  }
   .marge {
-    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .text {
+      padding: 0;
+    }
+    .card {
+      padding: 36px 24px;
+    }
+    .title {
+    }
   }
 </style>

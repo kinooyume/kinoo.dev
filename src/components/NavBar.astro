@@ -1,0 +1,64 @@
+<ul class="navbar">
+  <li><a class="anime" href="#experiences">Expériences</a></li>
+  <li><a class="anime" href="#appetences">Appétences</a></li>
+  <li><a class="anime" href="#formations">Formations</a></li>
+  <li><a class="anime" href="#passions">Passions</a></li>
+</ul>
+
+<script>
+  // add class "current" for the first anchor on scroll and resize event
+  //
+  window.onload = () => {
+    let anchors = document.querySelectorAll(".navbar a");
+
+    // [].map((anchor) => {
+    //   return [ anchor, anchor.getAttribute("href")]
+    // })
+
+    function handleAnchor() {
+      anchors.forEach((anchor) => {
+        const target = document.querySelector(anchor.getAttribute("href"));
+        const rect = target.getBoundingClientRect();
+        const offset = window.innerHeight / 2;
+
+        if (rect.top <= offset && rect.bottom >= offset) {
+          anchor.classList.add("current");
+        } else {
+          anchor.classList.remove("current");
+        }
+      });
+    }
+    window.addEventListener("scroll", handleAnchor);
+    window.addEventListener("resize", handleAnchor);
+    handleAnchor();
+  };
+</script>
+
+<style>
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  a {
+    display: block;
+    padding: 16px 0;
+    font-size: 18px;
+    font-weight: 200;
+    color: var(--color);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: all 0.3s ease-in-out;
+  }
+
+  a.current {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 950px) {
+    ul {
+      display: none;
+    }
+  }
+</style>

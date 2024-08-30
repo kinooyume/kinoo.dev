@@ -31,11 +31,8 @@ const { cards } = Astro.props;
 </div>
 
 <style>
-
-  @media screen and (min-width: 1368px) {
-    :root {
-      --simple-cards-font-size: 18px;
-    }
+  :root {
+    --simple-cards-font-size: 18px;
   }
   .simple-cards {
     display: flex;
@@ -70,4 +67,26 @@ const { cards } = Astro.props;
     margin-top: 36px;
   }
 
+  @media screen and (max-width: 1368px) {
+    .card {
+      max-width: 45%;
+    }
+  }
+  @media screen and (max-width: 960px) {
+    .simple-cards {
+      gap: 48px;
+    }
+    .card {
+      max-width: unset;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    :root {
+      --simple-cards-font-size: 16px;
+    }
+    img, .head-text {
+      height: 48px;
+    }
+  }
 </style>

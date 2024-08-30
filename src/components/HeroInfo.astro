@@ -27,23 +27,23 @@
 </section>
 
 <style>
-  @media screen and (min-width: 1368px) {
-    :root {
-      --heroinfo-font-size: 20px;
-      --heroinfo-h2-size: 32px;
-    }
+  :root {
+    --heroinfo-font-size: 18px;
+    --heroinfo-h2-size: 28px;
   }
+
   section {
     border: 1px solid #2d2e3b;
     border-radius: 30px;
     display: flex;
-    padding: 48px 72px;
     justify-content: space-between;
     gap: 48px;
+    flex-wrap: wrap;
+    padding: 48px 72px;
   }
 
   section div {
-    width: 350px;
+    max-width: 350px;
   }
 
   h2 {
@@ -57,5 +57,27 @@
     font-weight: 200;
     color: #8f8f97;
     font-size: var(--heroinfo-font-size);
+  }
+
+  @media screen and (max-width: 1368px) {
+    :root {
+      --heroinfo-font-size: 18px;
+      --heroinfo-h2-size: 28px;
+    }
+    section div {
+      max-width: 46%;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    :root {
+      --heroinfo-font-size: 18px;
+      --heroinfo-h2-size: 28px;
+    }
+    section {
+      padding: 48px 24px;
+    }
+    section div {
+      max-width: unset;
+    }
   }
 </style>
