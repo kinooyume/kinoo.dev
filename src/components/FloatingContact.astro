@@ -1,0 +1,50 @@
+---
+import message from "../svgs/message.svg?raw";
+---
+
+<a class="primary floating" href="#contact">
+  <div class="icon-wrapper">
+    <Fragment set:html={message} />
+  </div>
+</a>
+<script>
+  import { anchorDetection } from "../anchorDetection";
+
+  window.onload = () =>
+    anchorDetection({
+      query: ".floating",
+      onVisible: (el) => el.classList.add("current"),
+      onHidden: (el) => el.classList.remove("current"),
+    });
+</script>
+
+<style>
+  a {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    a {
+      position: sticky;
+      bottom: 36px;
+      right: 12px;
+      margin-left: auto;
+      width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease-in-out;
+    }
+    .icon-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 36px;
+      height: 36px;
+    }
+    a.current {
+      pointer-events: none;
+      opacity: 0;
+    }
+  }
+</style>

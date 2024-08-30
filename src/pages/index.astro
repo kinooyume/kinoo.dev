@@ -7,6 +7,7 @@ import Appetences from "../components/Appetences.astro";
 import Contact from "../components/Contact.astro";
 import Formations from "../components/Formations.astro";
 import Passions from "../components/Passions.astro";
+import FloatingContact from "../components/FloatingContact.astro";
 ---
 
 <Layout title="Martin Kinoo · Développeur freelance">
@@ -18,7 +19,10 @@ import Passions from "../components/Passions.astro";
     <Formations />
     <Passions />
     <Contact />
+    <div class="footer">
+    </div>
     <span>© 2024 Martin Kinoo</span>
+    <FloatingContact />
   </main>
 </Layout>
 
@@ -36,8 +40,7 @@ import Passions from "../components/Passions.astro";
 
   @media screen and (max-width: 900px) {
     main {
-
-    padding: 1rem 16px;
+      padding: 1rem 16px;
     }
   }
 </style>

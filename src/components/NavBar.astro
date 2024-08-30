@@ -6,32 +6,13 @@
 </ul>
 
 <script>
-  // add class "current" for the first anchor on scroll and resize event
-  //
-  window.onload = () => {
-    let anchors = document.querySelectorAll(".navbar a");
+  import { anchorDetection } from "../anchorDetection";
 
-    // [].map((anchor) => {
-    //   return [ anchor, anchor.getAttribute("href")]
-    // })
-
-    function handleAnchor() {
-      anchors.forEach((anchor) => {
-        const target = document.querySelector(anchor.getAttribute("href"));
-        const rect = target.getBoundingClientRect();
-        const offset = window.innerHeight / 2;
-
-        if (rect.top <= offset && rect.bottom >= offset) {
-          anchor.classList.add("current");
-        } else {
-          anchor.classList.remove("current");
-        }
-      });
-    }
-    window.addEventListener("scroll", handleAnchor);
-    window.addEventListener("resize", handleAnchor);
-    handleAnchor();
-  };
+  window.onload = () => anchorDetection({
+    query: ".navbar a",
+    onVisible: (el) => el.classList.add("current"),
+    onHidden: (el) => el.classList.remove("current")
+  });
 </script>
 
 <style>

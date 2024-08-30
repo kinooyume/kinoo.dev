@@ -170,7 +170,7 @@ const ContactForm = (props: Props) => {
             class="primary"
             type="submit"
           >
-            Me contacter
+            Envoyer
           </button>
         </div>
       </Form>

@@ -9,17 +9,19 @@ import Card from "./Card.astro";
     <div class="opo">
       <Card>
         <div class="title" slot="title">
-          <h3>
-            Lead Développeur fullstack
+          <div class="title-container">
+            <h3>Lead Développeur fullstack</h3>
             <span class="tiny-block">CDI</span>
-          </h3>
+          </div>
           <p>
             <a
               href="https://oeilpouroeilcreations.fr"
               rel="noreferrer nofollow noopener"
               target="_blank">Oeil pour Oeil</a
             >
-            <span>Lille</span><span>2019-2022 (3 ans et 6 mois)</span>
+            <span class="dotted">Lille</span><span
+              >2019-2022 (3 ans et 6 mois)</span
+            >
           </p>
         </div>
         <p>
@@ -43,16 +45,16 @@ import Card from "./Card.astro";
     </div><div class="ordoclic">
       <Card>
         <div class="title" slot="title">
-          <h3>
-            Lead Développeur
+          <div class="title-container">
+            <h3>Lead Développeur</h3>
             <span class="tiny-block">Freelance</span>
-          </h3>
+          </div>
           <p>
             <a
               href="https://ordoclic.fr"
               rel="noreferrer nofollow noopener"
               target="_blank">Ordoclic</a
-            ><span>Lille</span><span>2017-2018 (8 mois)</span>
+            ><span class="dotted">Lille</span><span>2017-2018 (8 mois)</span>
           </p>
         </div>
         <p>
@@ -65,16 +67,16 @@ import Card from "./Card.astro";
     </div><div class="cautioneo">
       <Card>
         <div class="title" slot="title">
-          <h3>
-            Développeur RubyOnRails
+          <div class="title-container">
+            <h3>Développeur RubyOnRails</h3>
             <span class="tiny-block">Freelance</span>
-          </h3>
+          </div>
           <p>
             <a
               href="https://cautioneo.com"
               rel="noreferrer nofollow noopener"
               target="_blank">Cautioneo</a
-            ><span>Lille</span>
+            ><span class="dotted">Lille</span>
             <span>2018 (2 mois)</span>
           </p>
         </div>
@@ -114,7 +116,7 @@ import Card from "./Card.astro";
   /*   grid-area: 2 / 2 / 3 / 3; */
   /* } */
 
-  h3 {
+  .title-container {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -125,7 +127,7 @@ import Card from "./Card.astro";
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 54px;
+    gap: 6px;
   }
 
   .title p {
@@ -134,18 +136,19 @@ import Card from "./Card.astro";
 
   .title span,
   .title a {
+    display: inline-block;
     font-size: var(--experience-font-size);
     font-weight: 400;
     color: rgba(143, 143, 151, 0.7);
   }
 
-  .title a + span:before,
-  .title span + span:before {
+  .title .dotted:after,
+  .title .dotted:before {
     content: "·";
     padding: 0 6px;
   }
 
-  .title h3 span {
+  .title-container span {
     font-size: var(--experience-span-size);
     border-radius: 6px;
     padding: 5px 6px;
@@ -162,10 +165,33 @@ import Card from "./Card.astro";
     }
   }
 
-  @media screen and (max-width: 1368px) {
+  @media screen and (max-width: 900px) {
     :root {
       --experience-font-size: 16px;
       --experience-span-size: 12px;
+    }
+
+    .title h3 {
+      line-height: 1.2;
+    }
+
+    .title {
+      gap: 2px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    :root {
+      --experience-font-size: 14px;
+      --experience-span-size: 12px;
+    }
+    .title-container span {
+      padding: 0 6px;
+    }
+  }
+  @media screen and (max-width: 460px) {
+    img {
+      display: none;
     }
   }
 </style>

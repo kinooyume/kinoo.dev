@@ -9,8 +9,18 @@ import Card from "./Card.astro";
     <div class="epitech">
       <Card
         ><div class="title" slot="title">
-          <h3>Master Epitech</h3>
-          <span>Epitech</span>
+          <div class="title-container">
+            <h3>Master Epitech</h3>
+          </div>
+          <p>
+            <a
+              href="https://epitech.eu"
+              rel="noreferrer nofollow noopener"
+              target="_blank">Epitech</a
+            >
+            <span class="dotted">Lille</span>
+            <span>2013-2018</span>
+          </p>
         </div>
         <img slot="marge" src="images/epitech.png" alt="epitech" />
         <p>
@@ -25,8 +35,16 @@ import Card from "./Card.astro";
     <div class="manipal">
       <Card
         ><div class="title" slot="title">
-          <h3>Student Exchange</h3>
-          <span>Manipal</span>
+          <div class="title-container"><h3>Student Exchange</h3></div>
+          <p>
+            <a
+              href="https://www.manipal.edu/mit"
+              rel="noreferrer nofollow noopener"
+              target="_blank">Manipal MIT</a
+            >
+            <span class="dotted">Manipal (India)</span>
+            <span>2017</span>
+          </p>
         </div>
 
         <img slot="marge" src="images/manipal.png" alt="manipal" />
@@ -39,8 +57,18 @@ import Card from "./Card.astro";
     <div class="derniercri">
       <Card
         ><div class="title" slot="title">
-          <h3>Développeur RubyOnRails<span>Stage</span></h3>
-          <span>DernierCri</span>
+          <div class="title-container">
+            <h3>Développeur RubyOnRails</h3><span>Stage</span>
+          </div>
+          <p>
+            <a
+              href="https://derniercri.fr"
+              rel="noreferrer nofollow noopener"
+              target="_blank">DernierCri</a
+            >
+            <span class="dotted">Lille</span>
+            <span>2016 (4 mois)</span>
+          </p>
         </div>
         <img slot="marge" src="images/derniercri.png" alt="derniercri" />
         <p>Blablabla</p>
@@ -51,8 +79,18 @@ import Card from "./Card.astro";
     <div class="eurotunel">
       <Card
         ><div class="title" slot="title">
-          <h3>Stagiaire développeur Angular<span>Stage</span></h3>
-          <span>Eurotunel</span>
+          <div class="title-container">
+            <h3>Développeur Angular</h3><span>Alternance</span>
+          </div>
+          <p>
+            <a
+              href="https://www.leshuttle.com/"
+              rel="noreferrer nofollow noopener"
+              target="_blank">Eurotunnel</a
+            >
+            <span class="dotted">Calais</span>
+            <span>2015/2016 (6 mois)</span>
+          </p>
         </div>
         <img slot="marge" src="images/eurotunnel.png" alt="eurotunnel" />
         <p>Blablabla</p>
@@ -63,10 +101,11 @@ import Card from "./Card.astro";
 </section>
 
 <style>
-    :root {
-      --formation-font-size: 16px;
-      --formation-h3-size: 14px;
-    }
+  :root {
+    --formation-font-size: 16px;
+    --formation-h3-size: 14px;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -95,16 +134,16 @@ import Card from "./Card.astro";
     grid-area: 2/1/2/2;
   }
 
-  h3 {
+  .title-container {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 12px;
   }
   .title {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 54px;
+    gap: 6px;
   }
 
   .title p {
@@ -113,19 +152,20 @@ import Card from "./Card.astro";
 
   .title span,
   .title a {
+    display: inline-block;
     font-size: var(--formation-font-size);
     font-weight: 400;
     color: rgba(143, 143, 151, 0.7);
   }
 
-  .title a + span:before,
-  .title span + span:before {
+  .title .dotted:after,
+  .title .dotted:before {
     content: "·";
     padding: 0 6px;
   }
 
-  .title h3 span {
-    font-size: var(--formation-h3-size);
+  .title-container span {
+    font-size: var(--formation-span-size);
     border-radius: 6px;
     padding: 5px 6px;
     /* color: var(--color); */
@@ -135,9 +175,36 @@ import Card from "./Card.astro";
   }
 
   @media screen and (max-width: 1200px) {
-      .grid {
-        display: flex;
-        flex-direction: column;
-      }
+    .grid {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* also for formations */
+  @media screen and (max-width: 900px) {
+    :root {
+      --formation-font-size: 16px;
+      --formation-span-size: 12px;
+    }
+
+    .title {
+      gap: 2px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    :root {
+      --formation-font-size: 14px;
+      --formation-span-size: 12px;
+    }
+    .title-container span {
+      padding: 0 6px;
+    }
+  }
+  @media screen and (max-width: 460px) {
+    img {
+      display: none;
+    }
   }
 </style>
