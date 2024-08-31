@@ -8,14 +8,18 @@ import message from "../svgs/message.svg?raw";
   </div>
 </a>
 <script>
-  import { anchorDetection } from "../anchorDetection";
+  import { anchorDetection, setupAnchorDetection } from "../anchorDetection";
 
-  window.onload = () =>
-    anchorDetection({
+  function floatingAnchor() {
+    const floatingDetection = anchorDetection({
       query: ".floating",
       onVisible: (el) => el.classList.add("current"),
       onHidden: (el) => el.classList.remove("current"),
     });
+    setupAnchorDetection({ name: "floating", fn: floatingDetection });
+  }
+
+  window.addEventListener("load", floatingAnchor);
 </script>
 
 <style>

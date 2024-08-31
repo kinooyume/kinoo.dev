@@ -54,8 +54,22 @@ import ContactForm from "./ContactForm.tsx";
       --contact-h2-size: 28px;
     }
     .contact-description {
-
       max-width: unset;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    h2 {
+      margin-bottom: 36px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    :root {
+      --contact-h2-size: 22px;
+    }
+    h2 {
+      margin-bottom: 24px;
     }
   }
 </style>
@@ -158,5 +172,4 @@ import ContactForm from "./ContactForm.tsx";
     background-color: #f3f2f0;
     border-color: var(--accent-color);
   }
-
 </style>

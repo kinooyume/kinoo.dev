@@ -103,7 +103,7 @@ import Card from "./Card.astro";
 <style>
   :root {
     --formation-font-size: 16px;
-    --formation-h3-size: 14px;
+    --formation-span-size: 14px;
   }
 
   .grid {
@@ -143,7 +143,6 @@ import Card from "./Card.astro";
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 6px;
   }
 
   .title p {
@@ -164,10 +163,13 @@ import Card from "./Card.astro";
     padding: 0 6px;
   }
 
+  .title-container h3 {
+    padding-bottom: 3px;
+  }
   .title-container span {
     font-size: var(--formation-span-size);
     border-radius: 6px;
-    padding: 5px 6px;
+    padding: 3px 6px;
     /* color: var(--color); */
     /* background-color: rgba(143, 143, 151, 0.7); */
     color: black;

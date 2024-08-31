@@ -96,7 +96,6 @@ const ContactForm = (props: Props) => {
   return (
     <div class="about-contact">
       <Toaster
-        position="bottom-right"
         gutter={8}
         toastOptions={{
           duration: 7000,

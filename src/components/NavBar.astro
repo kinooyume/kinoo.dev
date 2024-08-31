@@ -6,13 +6,18 @@
 </ul>
 
 <script>
-  import { anchorDetection } from "../anchorDetection";
+  import { anchorDetection, setupAnchorDetection } from "../anchorDetection";
 
-  window.onload = () => anchorDetection({
-    query: ".navbar a",
-    onVisible: (el) => el.classList.add("current"),
-    onHidden: (el) => el.classList.remove("current")
-  });
+  function navbarAnchor() {
+    const sectionDetection = anchorDetection({
+      query: ".navbar a",
+      onVisible: (el) => el.classList.add("current"),
+      onHidden: (el) => el.classList.remove("current"),
+    });
+    setupAnchorDetection({ name: "navbar", fn: sectionDetection });
+  }
+
+  window.addEventListener("load", navbarAnchor);
 </script>
 
 <style>
@@ -34,6 +39,7 @@
   }
 
   a.current {
+    backgrond-color: var(--color);
     opacity: 1;
   }
 

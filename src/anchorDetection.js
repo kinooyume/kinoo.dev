@@ -1,7 +1,7 @@
 export function anchorDetection({ query, onVisible, onHidden }) {
   let anchors = document.querySelectorAll(query);
 
-  function handleAnchor() {
+  return () => {
     anchors.forEach((anchor) => {
       const target = document.querySelector(anchor.getAttribute("href"));
       const rect = target.getBoundingClientRect();
@@ -13,8 +13,12 @@ export function anchorDetection({ query, onVisible, onHidden }) {
         onHidden(anchor);
       }
     });
-  }
-  window.addEventListener("scroll", handleAnchor);
-  window.addEventListener("resize", handleAnchor);
-  handleAnchor();
+  };
+}
+
+export function setupAnchorDetection({ name, fn }) {
+  Object.defineProperty(fn, "name", { value: name });
+  window.addEventListener("scroll", fn);
+  window.addEventListener("resize", fn);
+  fn();
 }
