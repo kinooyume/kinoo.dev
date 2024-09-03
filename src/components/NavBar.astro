@@ -11,8 +11,8 @@
   function navbarAnchor() {
     const sectionDetection = anchorDetection({
       query: ".navbar a",
-      onVisible: (el) => el.classList.add("current"),
-      onHidden: (el) => el.classList.remove("current"),
+      onVisible: (el : HTMLElement) => el.classList.add("current"),
+      onHidden: (el : HTMLElement) => el.classList.remove("current"),
     });
     setupAnchorDetection({ name: "navbar", fn: sectionDetection });
   }

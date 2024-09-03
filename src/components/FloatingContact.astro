@@ -13,8 +13,8 @@ import message from "../svgs/message.svg?raw";
   function floatingAnchor() {
     const floatingDetection = anchorDetection({
       query: ".floating",
-      onVisible: (el) => el.classList.add("current"),
-      onHidden: (el) => el.classList.remove("current"),
+      onVisible: (el : HTMLElement) => el.classList.add("current"),
+      onHidden: (el : HTMLElement) => el.classList.remove("current"),
     });
     setupAnchorDetection({ name: "floating", fn: floatingDetection });
   }
