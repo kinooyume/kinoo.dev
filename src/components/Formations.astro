@@ -1,12 +1,15 @@
 ---
 import Card from "./Card.astro";
+
+const tailwindCard =
+  "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
 ---
 
 <section id="formations">
   <span class="subtitle">Mes</span>
   <h2>Formations</h2>
   <div class="grid">
-    <div class="epitech">
+    <div class=`epitech ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
           <div class="title-container">
@@ -32,7 +35,7 @@ import Card from "./Card.astro";
         </p>
       </Card>
     </div>
-    <div class="manipal">
+    <div class=`manipal ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
           <div class="title-container"><h3>Student Exchange</h3></div>
@@ -54,7 +57,7 @@ import Card from "./Card.astro";
         <p>1 année à l’etranger, etc..</p>
       </Card>
     </div>
-    <div class="derniercri">
+    <div class=`derniercri ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
           <div class="title-container">
@@ -76,7 +79,7 @@ import Card from "./Card.astro";
         <p>Blablabla</p>
       </Card>
     </div>
-    <div class="eurotunel">
+    <div class=`eurotunel ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
           <div class="title-container">
@@ -114,8 +117,11 @@ import Card from "./Card.astro";
     grid-row-gap: 26px;
   }
 
-  .grid div {
+  .grid > div {
     background-color: var(--card-background-color);
+    border: 1px solid #313d50 !important;
+    
+    box-sizing: border-box;
     border-radius: 32px;
   }
 

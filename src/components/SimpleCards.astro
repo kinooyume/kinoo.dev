@@ -1,7 +1,9 @@
 ---
+import Spotlight from "./Spotlight.astro";
+
 export interface Card {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   content: string;
   image: string;
 }
@@ -13,18 +15,24 @@ interface Props {
 const { cards } = Astro.props;
 ---
 
-<div class="simple-cards">
+<div
+  class="simple-cards max-w-sm mx-auto grid gap-6 lg:grid-cols-3 items-start lg:max-w-none group"
+>
   {
     cards.map((card) => (
       <div class="card">
-        <div class="head">
-          <img src={card.image} alt={card.title} />
-          <div class="head-text">
-            <h3>{card.title}</h3>
-            <span class="head-subtitle">{card.subtitle}</span>
+        <Spotlight>
+          <div slot="image" class="head">
+            <img src={card.image} alt={card.title} />
+            <div class="head-text">
+              <h3>{card.title}</h3>
+              <span class="head-subtitle">{card.subtitle}</span>
+            </div>
           </div>
-        </div>
-        <p class="content">{card.content}</p>
+          <div class="card" slot="content">
+            <p class="content">{card.content}</p>
+          </div>
+        </Spotlight>
       </div>
     ))
   }
@@ -35,19 +43,20 @@ const { cards } = Astro.props;
     --simple-cards-font-size: 18px;
   }
   .simple-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     gap: 36px;
-    width: 100%;
   }
 
   .card {
-    max-width: 400px;
+    max-width: 500px;
+  }
+  img {
+    height: 51px;
+    width: 51px;
   }
 
   .head {
     display: flex;
+    padding: 28px;
     gap: 16px;
   }
 
@@ -55,7 +64,8 @@ const { cards } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 64px;
+    height: 51px;
+    width: 100%;
   }
 
   .head-subtitle {
@@ -64,20 +74,17 @@ const { cards } = Astro.props;
   }
 
   .content {
-    margin-top: 36px;
+    padding: 28px;
   }
 
   @media screen and (max-width: 1368px) {
     .card {
-      max-width: 45%;
     }
   }
   @media screen and (max-width: 960px) {
     .simple-cards {
-      gap: 48px;
     }
     .card {
-      max-width: unset;
     }
   }
 
@@ -85,7 +92,8 @@ const { cards } = Astro.props;
     :root {
       --simple-cards-font-size: 16px;
     }
-    img, .head-text {
+    img,
+    .head-text {
       height: 48px;
     }
   }

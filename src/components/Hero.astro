@@ -34,11 +34,25 @@ const techs: TagProps[] = [
         <span>Développeur Web Freelance</span>
         <h1>Martin Kinoo</h1>
       </div>
-      <p>
-        Je transforme vos idées en application intuitives et performantes. Que
-        ce soit pour des projets front-end ou fullstack, je vous accompagne avec
-        expertise et créativité pour donner vie à votre vision.
-      </p>
+      <div class="description">
+        <p>Hello ! 👋</p>
+        <br />
+        <p>
+          Vous cherchez un développeur web pour votre prochain projet ? Je suis
+          là !
+        </p>
+        <p>
+          Spécialisé en <b>front-end</b> et <b>fullstack</b>, je suis toujours à la recherche de nouvelles technologies à explorer et à les mettre en œuvre dans des
+          projets concrets.
+        </p>
+        <p>
+          Et quand je ne suis pas en train de coder, vous me trouverez
+          probablement en train de tester un nouveau clavier ergonomique ⌨️ ou a
+          dessiner 🎨.
+        </p>
+        <br />
+        <p>Envie d'en savoir plus ? C'est par ici ! 👇</p>
+      </div>
       <ul>
         {
           techs.map((tech) => (
@@ -82,6 +96,9 @@ const techs: TagProps[] = [
     color: var(--color);
   }
 
+  .description p + p {
+    margin-top: 8px;
+  }
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -90,7 +107,7 @@ const techs: TagProps[] = [
   .content {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 64px;
     justify-content: space-between;
     max-width: 750px;
   }
@@ -101,7 +118,7 @@ const techs: TagProps[] = [
   }
 
   #hero {
-    margin-top: 92px;
+    margin-top: 32px;
   }
 
   img {
@@ -123,13 +140,17 @@ const techs: TagProps[] = [
   @media screen and (max-width: 600px) {
     :root {
       --hero-span-size: 28px;
+      --hero-font-size: 16px;
     }
     h1 {
       line-height: 1;
     }
 
     #hero {
-      margin-top: 0;
+      margin-top: 32px;
+    }
+    .content {
+      gap: 64px;
     }
   }
 
@@ -138,5 +159,4 @@ const techs: TagProps[] = [
       --hero-span-size: 24px;
     }
   }
-
 </style>

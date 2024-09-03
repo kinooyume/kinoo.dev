@@ -24,10 +24,23 @@ const { title } = Astro.props;
   <body>
     <Header />
     <slot />
+    <script>
+      import Spotlight from "../spotlight.js";
+
+      const spotlights = document.querySelectorAll(".simple-cards");
+      spotlights.forEach((spotlight) => {
+        new Spotlight(spotlight);
+      });
+    </script>
   </body>
 </html>
 
 <style is:global>
+  @property --border-angle {
+    inherits: false;
+    initial-value: 0deg;
+    syntax: "<angle>";
+  }
   :root {
     --background-color: #181927;
     --background-frosted: rgba(24, 25, 39, 0.05);
@@ -35,6 +48,7 @@ const { title } = Astro.props;
     --light-color: #f6f5f7;
     --extra-light-color: #f6f5f7;
 
+    --border-angle: 360deg;
     --accent-color: #f8ba88;
     --accent-brigth: #f6b17a;
 
@@ -158,6 +172,10 @@ const { title } = Astro.props;
     font-weight: 200;
     line-height: 1.4;
     color: var(--light-color);
+  }
+
+  b {
+    font-weight: 600;
   }
 
   ul {
