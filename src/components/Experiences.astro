@@ -27,22 +27,41 @@ const tailwindCard =
             >
           </p>
         </div>
-        <p>
+        <p slot="description">
           Responsable du développement du catalogue des formations gamifiées et
           formations sur-mesure, de l'infrastructure et du parcours client. En
           collaboration étroite avec l'ux designer, le marketing ainsi que les
           clients.
         </p>
-        <p>
-          Responsable du développement du catalogue des formations gamifiées et
-          formations sur-mesure, de l'infrastructure et du parcours client. En
-          collaboration étroite avec l'ux designer, le marketing ainsi que les
-          clients.
-        </p>
-        <p>
-          Responsable du développement du catalogue des formations gamifiées et
-          formations sur-mesure, de l'infrastructure et du parcours client.
-        </p>
+
+        <ul>
+          <li>
+            Développement d'~pplication en <b>ReactJs</b>, <b>VueJs</b> et <b
+              >Svelte</b
+            >, responsive.
+          </li>
+          <li>
+            Package <b>SCORM</b> pour le suivi des formations ou depuis un SaaS interne.
+          </li>
+          <li>
+            Déploiement en CI/CD, test avec <b>Jest</b> et <b>Cypress</b>,
+            monitoring avec <b>Sentry</b>.
+          </li>
+          <li>
+            Architecture Backend <b>SOA</b>, services internes en <b>Go</b> et services
+            externes (headlessCMS, CRM, ...).
+          </li>
+          <li>Api principalement en <b>REST</b> et <b>GraphQL</b> pour le headlessCMS.</li>
+          <li>
+            Site vitrine optimisé pour le référencement <b>SEO</b>, écrit en <b>Svelte</b>,
+            SSG avec <b>ElderJs</b>.Mainteneur d'ElderJs.
+          </li>
+          <li>
+            Prototype d’un framework de génération de formation (SSG), écrit en
+            Rescript, architecture hexagonale, data-driven et framework
+            agnostic.
+          </li>
+        </ul>
         <img slot="marge" src="images/opo.png" alt="opo" />
       </Card>
     </div><div class=`ordoclic ${tailwindCard}`>
@@ -60,11 +79,16 @@ const tailwindCard =
             ><span class="dotted">Lille</span><span>2017-2018 (8 mois)</span>
           </p>
         </div>
-        <p>
-          Responsable du développement de l'imprimante virtuelle côté practicien
-          et de la signature electronique des ordonnances médicales. Application
-          Electron, signature numérique avec le protocol Pkcs11.
+        <p slot="description">
+          Responsable du développement d’une imprimante virtuelle chez les
+          professionnelles de santé afin de faciliter le passage aux ordonnances
+          numériques.
         </p>
+        <ul>
+          <li>Application electron.js se comportant comme une imprimante</li>
+          <li>Chiffrement d’ordonnance avec le protocole pkcs11</li>
+          <li>Envois de document à travers une API</li>
+        </ul>
         <img slot="marge" src="images/ordoclic.png" alt="ordoclic" />
       </Card>
     </div><div class=`cautioneo ${tailwindCard} `>
@@ -83,7 +107,11 @@ const tailwindCard =
             <span>2018 (2 mois)</span>
           </p>
         </div>
-        <p>Développement du Saas en RubyOnRails.</p>
+        <p slot="description">Développement du Saas en RubyOnRails.</p>
+        <ul>
+          <li>Développement du parcours locataire</li>
+          <li>Développement d’un CRM custom</li>
+        </ul>
         <img slot="marge" src="images/cautioneo.png" alt="cautioneo" />
       </Card>
     </div>
@@ -107,7 +135,7 @@ const tailwindCard =
   .grid > div {
     background-color: var(--card-background-color);
     border: 1px solid #313d50 !important;
-    
+
     box-sizing: border-box;
     border-radius: 32px;
   }
@@ -166,6 +194,11 @@ const tailwindCard =
     /* background-color: rgba(143, 143, 151, 0.7); */
     color: black;
     background-color: var(--accent-color);
+  }
+
+  ul {
+    list-style: initial;
+    margin-left: 24px;
   }
 
   @media screen and (max-width: 1200px) {

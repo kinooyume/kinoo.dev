@@ -34,6 +34,11 @@ import NavBar from "./NavBar.astro";
       >
         <Fragment set:html={linkedin} />
       </a>
+      <a class="cv icon anime"
+        href="MartinKinooCV.pdf"
+        rel="noreferrer nofollow noopener"
+        target="_blank"
+      > CV </a>
       <a class="primary" href="#contact">
         <span>Me contacter</span>
       </a>
@@ -43,6 +48,19 @@ import NavBar from "./NavBar.astro";
   <style>
     :root {
       --header-font-size: 24px;
+    }
+
+    .cv {
+      background-color: rgba(246, 245, 247, 0.64);
+      color: var(--background-color);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      height: 22px;
+      width: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .header-wrapper {
@@ -128,8 +146,7 @@ import NavBar from "./NavBar.astro";
       }
 
       .menu {
-        /* gap: 16px; */
-        gap: 0;
+        gap: 26px;
       }
 
       a {
@@ -140,8 +157,6 @@ import NavBar from "./NavBar.astro";
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 12px;
-        width: 48px;
       }
 
       .primary {

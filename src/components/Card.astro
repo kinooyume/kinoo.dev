@@ -9,7 +9,8 @@
       </div>
     </div>
     <div></div>
-    <div class="text"><slot /></div>
+    <div class="text"><slot name="description" /></div>
+    <slot />
   </div>
 </div>
 
@@ -30,7 +31,8 @@
     width: 100%;
   }
   .text {
-    padding-right: 126px;
+    /* padding-right: 126px; */
+    margin-bottom: 32px;
   }
 
   .title-wrapper {

@@ -51,10 +51,12 @@ const tailwindCard =
         </div>
 
         <img slot="marge" src="images/manipal.png" alt="manipal" />
-        <p>1 année à l’etranger, etc..</p>
-        <p>1 année à l’etranger, etc..</p>
-        <p>1 année à l’etranger, etc..</p>
-        <p>1 année à l’etranger, etc..</p>
+        <p slot="description">
+          Année académique passée à Manipal, Inde, où j'ai pu améliorer
+          considérablement mon niveau d'anglais grâce à un environnement
+          multiculturel et des échanges quotidiens avec des étudiants du monde
+          entier.
+        </p>
       </Card>
     </div>
     <div class=`derniercri ${tailwindCard}`>
@@ -74,9 +76,13 @@ const tailwindCard =
           </p>
         </div>
         <img slot="marge" src="images/derniercri.png" alt="derniercri" />
-        <p>Blablabla</p>
-        <p>Blablabla</p>
-        <p>Blablabla</p>
+        <ul>
+          <li>
+            Service en Ruby de conversion de fichier markdown en html/pdf/epub
+            basé sur Pandoc.
+          </li>
+          <li>Développement backend en Ruby On Rails.</li>
+        </ul>
       </Card>
     </div>
     <div class=`eurotunel ${tailwindCard}`>
@@ -96,8 +102,12 @@ const tailwindCard =
           </p>
         </div>
         <img slot="marge" src="images/eurotunnel.png" alt="eurotunnel" />
-        <p>Blablabla</p>
-        <p>Blablabla</p>
+        <p slot="description">
+          Dans le cadre de la construction d'une documentation plus avancée
+          décrivant les "bonnes pratiques" au seins du développement à
+          Eurotunnel, j'ai réalisé une documentation complète par l'exemple sur
+          l'ergonomie et le design.
+        </p>
       </Card>
     </div>
   </div>
@@ -112,7 +122,7 @@ const tailwindCard =
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, minmax(0, auto));
     grid-column-gap: 26px;
     grid-row-gap: 26px;
   }
@@ -120,11 +130,15 @@ const tailwindCard =
   .grid > div {
     background-color: var(--card-background-color);
     border: 1px solid #313d50 !important;
-    
+
     box-sizing: border-box;
     border-radius: 32px;
   }
 
+  ul {
+    list-style: initial;
+    margin-left: 24px;
+  }
   .epitech {
     grid-area: 1 / 2 / 2 / 2;
   }

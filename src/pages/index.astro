@@ -17,16 +17,25 @@ import FloatingContact from "../components/FloatingContact.astro";
     <Experiences />
     <Appetences />
     <Formations />
-    <Passions />
+    <!-- <Passions /> -->
     <Contact />
-    <div class="footer">
-    </div>
-    <span>© 2024 Martin Kinoo</span>
+    <div class="footer"></div>
+    <span class="footer"
+    >© 2024 · Design et Code par <b>Martin Kinoo</b> · Réalisé avec <a href="https://figma.com">Figma</a>, <a
+        href="https://astro.build">Astro</a
+      > et <a href="https://tailwindcss.com/">tailwindcss</a>.
+    </span>
     <FloatingContact />
   </main>
 </Layout>
 
 <style>
+  .footer {
+    color: grey;
+  }
+  .footer a {
+    text-decoration: underline;
+  }
   main {
     margin: auto;
     padding: 1rem 32px;
