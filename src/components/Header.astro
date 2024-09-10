@@ -9,12 +9,14 @@ import NavBar from "./NavBar.astro";
 <div class="header-wrapper">
   <div class="header">
     <div class="navigation">
-      <a href="#hero" class="title anime">
-        <div class="terminal-wrapper">
-          <Fragment set:html={terminal} />
-        </div>
-        <p>Martin Kinoo</p>
-      </a>
+      <div class="title-wrapper">
+        <a href="#hero" class="title anime">
+          <div class="terminal-wrapper">
+            <Fragment set:html={terminal} />
+          </div>
+          <p>Martin Kinoo</p>
+        </a>
+      </div>
       <NavBar />
     </div>
     <div class="menu">
@@ -34,11 +36,14 @@ import NavBar from "./NavBar.astro";
       >
         <Fragment set:html={linkedin} />
       </a>
-      <a class="cv icon anime"
+      <a
+        class="cv icon anime"
         href="MartinKinooCV.pdf"
         rel="noreferrer nofollow noopener"
         target="_blank"
-      > CV </a>
+      >
+        CV
+      </a>
       <a class="primary" href="#contact">
         <span>Me contacter</span>
       </a>
@@ -96,10 +101,14 @@ import NavBar from "./NavBar.astro";
       gap: 12px;
     }
 
+    .title-wrapper {
+      display: flex;
+      opacity: 0;
+    }
+
     .title p {
       margin-bottom: 2px;
     }
-
     a.title {
       text-decoration: none;
     }
@@ -116,6 +125,7 @@ import NavBar from "./NavBar.astro";
     .menu {
       display: flex;
       align-items: center;
+      opacity: 0;
       gap: 24px;
     }
 

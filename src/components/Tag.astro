@@ -7,7 +7,7 @@ interface Props {
 const { title, icon } = Astro.props;
 ---
 
-<div class="tag">
+<div class="tag hero-tag">
   {icon && <Fragment set:html={icon} />}
   <span>{title}</span>
 </div>
@@ -40,5 +40,8 @@ const { title, icon } = Astro.props;
   span {
     font-size: var(--span-tag-size);
     font-weight: 200;
+  }
+  .tag {
+    opacity: 0;
   }
 </style>

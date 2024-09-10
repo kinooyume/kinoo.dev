@@ -1,5 +1,6 @@
 ---
 import Tag from "../components/Tag.astro";
+import HeroSubtitle from "./HeroSubtitle.astro";
 import React from "../svgs/react.svg?raw";
 import Vue from "../svgs/vue.svg?raw";
 import Svelte from "../svgs/svelte.svg?raw";
@@ -31,17 +32,19 @@ const techs: TagProps[] = [
   { title: "Rescript", icon: Rescript },
   { title: "Node.js", icon: Node },
   { title: "Golang", icon: Go },
-  {title: "CI/CD"},
+  { title: "CI/CD" },
   { title: "... et plus !" },
 ];
 ---
+
+<script src="./heroAnime.ts"></script>
 
 <section id="hero">
   <div class="main">
     <div class="content">
       <div class="title">
-        <span>Développeur Front-end/Fullstack</span>
-        <h1>Martin Kinoo</h1>
+        <HeroSubtitle subtitle="Développeur Front-end/Fullstack" />
+        <h1><span>Martin</span> <span>Kinoo</span></h1>
       </div>
       <div class="description">
         <p>Hello ! 👋</p>
@@ -74,7 +77,7 @@ const techs: TagProps[] = [
         }
       </ul>
     </div>
-    <img class="image" src="images/profil2.png" alt="martin kinoo" />
+    <img class="image hero-image" src="images/profil2.png" alt="martin kinoo" />
   </div>
 </section>
 
@@ -92,12 +95,6 @@ const techs: TagProps[] = [
     display: flex;
     justify-content: space-between;
   }
-  span {
-    margin: 0;
-    font-size: var(--hero-span-size);
-    font-weight: 100;
-    color: var(--accent-color);
-  }
 
   h1 {
     font-size: var(--h1-size);
@@ -107,6 +104,13 @@ const techs: TagProps[] = [
     color: var(--color);
   }
 
+  h1 span {
+    opacity: 0;
+    display: inline-block;
+  }
+  .description p {
+    opacity: 0;
+  }
   .description p + p {
     margin-top: 8px;
   }
@@ -134,6 +138,7 @@ const techs: TagProps[] = [
 
   img {
     margin: auto 0;
+    opacity: 0;
   }
 
   @media screen and (max-width: 1368px) {

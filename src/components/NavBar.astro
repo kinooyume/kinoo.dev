@@ -1,8 +1,8 @@
 <ul class="navbar">
-  <li><a class="anime" href="#experiences">Expériences</a></li>
-  <li><a class="anime" href="#realisations">Réalisations</a></li>
-  <li><a class="anime" href="#appetences">Appétences</a></li>
-  <li><a class="anime" href="#formations">Formations</a></li>
+  <li><a class="anime nav" href="#experiences">Expériences</a></li>
+  <li><a class="anime nav" href="#realisations">Réalisations</a></li>
+  <li><a class="anime nav" href="#appetences">Appétences</a></li>
+  <li><a class="anime nav" href="#formations">Formations</a></li>
 </ul>
 
 <script>
@@ -11,8 +11,8 @@
   function navbarAnchor() {
     const sectionDetection = anchorDetection({
       query: ".navbar a",
-      onVisible: (el : HTMLElement) => el.classList.add("current"),
-      onHidden: (el : HTMLElement) => el.classList.remove("current"),
+      onVisible: (el: HTMLElement) => el.classList.add("current"),
+      onHidden: (el: HTMLElement) => el.classList.remove("current"),
     });
     setupAnchorDetection({ name: "navbar", fn: sectionDetection });
   }
@@ -27,6 +27,9 @@
     gap: 24px;
   }
 
+  li {
+    opacity: 0;
+  }
   a {
     display: block;
     padding: 16px 0;

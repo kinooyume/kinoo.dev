@@ -20,6 +20,9 @@ importers:
       '@modular-forms/solid':
         specifier: ^0.22.1
         version: 0.22.1(solid-js@1.8.22)(typescript@5.5.4)
+      '@types/animejs':
+        specifier: ^3.1.12
+        version: 3.1.12
       animejs:
         specifier: ^3.2.2
         version: 3.2.2
@@ -737,6 +740,9 @@ packages:
 
   '@shikijs/core@1.14.1':
     resolution: {integrity: sha512-KyHIIpKNaT20FtFPFjCQB5WVSTpLR/n+jQXhWHWVUMm9MaOaG9BGOG0MSyt7yA4+Lm+4c9rTc03tt3nYzeYSfw==}
+
+  '@types/animejs@3.1.12':
+    resolution: {integrity: sha512-fpdH+ZtlO0kqjTOqRaBdsEmvpRNOayI8k4EVkEtitL5l6wducDOXk0rgQgfZqWf/ZX9DzXrHf257S5i9xTcISQ==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -3269,6 +3275,8 @@ snapshots:
   '@shikijs/core@1.14.1':
     dependencies:
       '@types/hast': 3.0.4
+
+  '@types/animejs@3.1.12': {}
 
   '@types/babel__core@7.20.5':
     dependencies:

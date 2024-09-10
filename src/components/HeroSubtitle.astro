@@ -1,0 +1,36 @@
+---
+type Props = {
+  subtitle: string;
+};
+
+const { subtitle } = Astro.props;
+const subElement = subtitle.replace(/\S/g, "<span class='letter'>$&</span>");
+---
+
+<p class="subtitle">
+  <span class="text-wrapper">
+    <Fragment set:html={subElement} />
+  </span>
+</p>
+
+<style is:global>
+  .letter {
+    display: inline-block;
+  }
+</style>
+<style>
+  .subtitle {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    font-size: var(--hero-span-size);
+    font-weight: 100;
+    color: var(--accent-color);
+  }
+  .subtitle .text-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+</style>
