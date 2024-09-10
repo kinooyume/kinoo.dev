@@ -1,0 +1,41 @@
+---
+import externalLink from "../svgs/external-link.svg?raw";
+
+type Props = {
+  href: string;
+  text: string;
+};
+
+const { href, text } = Astro.props;
+---
+
+<a href={href} rel="noreferrer nofollow noopener" target="_blank">
+  {text}
+  <Fragment set:html={externalLink} />
+</a>
+
+<style>
+  :root {
+    --span-tag-size: 16px;
+  }
+  @media screen and (max-width: 1368px) {
+    :root {
+      --span-tag-size: 16px;
+    }
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--span-tag-size);
+    stroke: var(--light-color);
+    color: var(--light-color);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    opacity: 1;
+  }
+</style>

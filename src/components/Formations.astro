@@ -1,5 +1,6 @@
 ---
 import Card from "./Card.astro";
+import H3Tagged from "./H3Tagged.astro";
 
 const tailwindCard =
   "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
@@ -12,9 +13,7 @@ const tailwindCard =
     <div class=`epitech ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
-          <div class="title-container">
-            <h3>Master Epitech</h3>
-          </div>
+          <H3Tagged title="Master Epitech" tag="Bac+5" />
           <p>
             <a
               href="https://epitech.eu"
@@ -38,7 +37,7 @@ const tailwindCard =
     <div class=`manipal ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
-          <div class="title-container"><h3>Student Exchange</h3></div>
+          <H3Tagged title="Student Exchange" tag="1 an" />
           <p>
             <a
               href="https://www.manipal.edu/mit"
@@ -62,9 +61,7 @@ const tailwindCard =
     <div class=`derniercri ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
-          <div class="title-container">
-            <h3>Développeur RubyOnRails</h3><span>Stage</span>
-          </div>
+          <H3Tagged title="Développeur RubyOnRails" tag="Stage" />
           <p>
             <a
               href="https://derniercri.fr"
@@ -88,9 +85,7 @@ const tailwindCard =
     <div class=`eurotunel ${tailwindCard}`>
       <Card
         ><div class="title" slot="title">
-          <div class="title-container">
-            <h3>Développeur Angular</h3><span>Alternance</span>
-          </div>
+          <H3Tagged title="Développeur Angular" tag="Alternance" />
           <p>
             <a
               href="https://www.leshuttle.com/"
@@ -116,7 +111,6 @@ const tailwindCard =
 <style>
   :root {
     --formation-font-size: 16px;
-    --formation-span-size: 14px;
   }
 
   .grid {
@@ -133,6 +127,10 @@ const tailwindCard =
 
     box-sizing: border-box;
     border-radius: 32px;
+  }
+
+  a {
+    text-decoration: underline;
   }
 
   ul {
@@ -154,11 +152,6 @@ const tailwindCard =
     grid-area: 2/1/2/2;
   }
 
-  .title-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
   .title {
     display: flex;
     flex-direction: column;
@@ -183,19 +176,6 @@ const tailwindCard =
     padding: 0 6px;
   }
 
-  .title-container h3 {
-    padding-bottom: 3px;
-  }
-  .title-container span {
-    font-size: var(--formation-span-size);
-    border-radius: 6px;
-    padding: 3px 6px;
-    /* color: var(--color); */
-    /* background-color: rgba(143, 143, 151, 0.7); */
-    color: black;
-    background-color: var(--accent-color);
-  }
-
   @media screen and (max-width: 1200px) {
     .grid {
       display: flex;
@@ -207,7 +187,6 @@ const tailwindCard =
   @media screen and (max-width: 900px) {
     :root {
       --formation-font-size: 16px;
-      --formation-span-size: 12px;
     }
 
     .title {
@@ -218,10 +197,6 @@ const tailwindCard =
   @media screen and (max-width: 600px) {
     :root {
       --formation-font-size: 14px;
-      --formation-span-size: 12px;
-    }
-    .title-container span {
-      padding: 0 6px;
     }
   }
   @media screen and (max-width: 460px) {

@@ -1,0 +1,82 @@
+---
+import H3Tagged from "./H3Tagged.astro";
+import RealisationCard from "./RealisationCard.astro";
+import TagLink from "./TagLink.astro";
+import ekeynoxIcon from "../svgs/ekeynox.svg?raw";
+
+const tailwindCard =
+  "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
+---
+
+<section id="realisations">
+  <span class="subtitle">Mes</span>
+  <h2>Réalisations</h2>
+  <div class="grid">
+    <div class={`card ${tailwindCard}`}>
+      <RealisationCard
+        id="ekeynox"
+        pictures={["ekeynox/01.webp", "ekeynox/02.webp", "ekeynox/05.webp"]}
+      >
+        <div slot="title" class="title-wrapper">
+          <div class="title-container">
+            <H3Tagged title="Ekeynox" tag="Projet perso" />
+            <TagLink href="https://ekeynox.xyz" text="Visiter le site" />
+          </div>
+          <div class="title-logo">
+            <Fragment set:html={ekeynoxIcon} />
+          </div>
+        </div>
+        <div slot="description">
+          <p>
+            Ekeynox est un jeu de dactylographie, afin d'apprendre à taper
+            rapidement aux clavier.
+          </p>
+          <br />
+          <p>
+            La répetition est la clef, vous proposes 2 modes de jeu: course de
+            mot et contre la montre. Pour vous améliorer, le jeu propose
+            d'affronter votre fantome de la partie précedente. En fin de partie,
+            vous accès aux statistiques.
+          </p>
+        </div>
+      </RealisationCard>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid > div {
+    background-color: var(--card-background-color);
+    border: 1px solid #313d50 !important;
+
+    box-sizing: border-box;
+    border-radius: 32px;
+  }
+
+  .title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f2233;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 8px;
+    height: 51px;
+    width: 51px;
+  }
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+</style>

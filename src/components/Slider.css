@@ -1,0 +1,106 @@
+.blaze-track,
+.blaze-track img {
+  border-radius: 16px;
+}
+
+.blaze-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  fill: var(--light-color);
+}
+
+.blaze-next:hover, .blaze-prev:hover {
+  fill: var(--accent-color);
+}
+.blaze-prev {
+  transform: rotate(180deg);
+}
+
+.blaze-container button:hover,
+.blaze-container li:before:hover {
+  background-color: blue !important;
+  fill: blue;
+}
+
+@keyframes activeDot {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  25% {
+    transform: scaleY(0.75);
+  }
+}
+@keyframes inactiveDot {
+  0%,
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+  25% {
+    transform: scaleX(0.85) scaleY(1.25);
+  }
+}
+
+.pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.pagination-wrapper .pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+.pagination-wrapper .pagination ul {
+  display: flex;
+  padding: 0;
+  gap: 0.1rem;
+  list-style: none;
+}
+.pagination-wrapper .pagination ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+  transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.pagination-wrapper .pagination ul li::before {
+  content: "";
+  display: block;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 0.25rem;
+  background: #fff;
+  transform-origin: 50% 50%;
+  transition:
+    width 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.2s ease-out,
+    opacity 0.2s ease-out;
+  opacity: 0.2;
+}
+
+
+.pagination-wrapper .pagination ul li:hover::before {
+  background: var(--accent-color);
+}
+
+.pagination-wrapper .pagination ul li.active {
+  width: 2rem;
+}
+.pagination-wrapper .pagination ul li.active::before {
+  width: 1.25rem;
+  animation: activeDot 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 1;
+}
+.pagination-wrapper .pagination ul li:not(.active)::before {
+  animation: inactiveDot 0.6s ease backwards;
+}
+.pagination-wrapper .pagination ul li:not(.active):hover::before {
+  opacity: 0.75;
+}
