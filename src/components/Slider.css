@@ -3,6 +3,15 @@
   border-radius: 16px;
 }
 
+@media screen and (max-width: 900px) {
+  blaze-track,
+.blaze-track img {
+  border-radius: 8px;
+}
+
+
+}
+
 .blaze-navigation {
   display: flex;
   justify-content: center;

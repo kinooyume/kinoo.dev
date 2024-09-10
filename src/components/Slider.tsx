@@ -1,10 +1,4 @@
-import {
-  createSignal,
-  For,
-  onCleanup,
-  onMount,
-  type Accessor,
-} from "solid-js";
+import { createSignal, For, onCleanup, onMount, type Accessor } from "solid-js";
 import BlazeSlider from "blaze-slider";
 import "blaze-slider/dist/blaze.css";
 import "./Slider.css";
@@ -63,7 +57,6 @@ const Slider = (props: SliderProps) => {
 
     setSlider(slider);
     unsubscribe = slider.onSlide((pageIndex, fIndex, lIndex) => {
-      console.log(pageIndex, fIndex, lIndex)
       if (currentIndex() !== pageIndex) setCurrentIndex(pageIndex);
     });
   });

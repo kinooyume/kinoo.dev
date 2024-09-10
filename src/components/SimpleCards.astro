@@ -16,7 +16,7 @@ const { cards } = Astro.props;
 ---
 
 <div
-  class="simple-cards max-w-sm mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none group"
+  class="simple-cards mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none group"
 >
   {
     cards.map((card) => (
@@ -80,19 +80,18 @@ const { cards } = Astro.props;
 
   @media screen and (max-width: 1368px) {
     .card {
+      max-width: unset;
     }
   }
-  @media screen and (max-width: 960px) {
-    .simple-cards {
-    }
-    .card {
-    }
+
+  @media screen and (max-width: 1100px) {
   }
 
   @media screen and (max-width: 900px) {
     :root {
       --simple-cards-font-size: 16px;
     }
+
     img,
     .head-text {
       height: 48px;
