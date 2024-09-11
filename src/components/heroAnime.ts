@@ -6,6 +6,22 @@ document.addEventListener("DOMContentLoaded", function () {
     opacity: 1,
   });
 
+  type Durations = {
+    title: number;
+    subtitle: number;
+    description: number;
+    header: number;
+    picture: number;
+  };
+
+  const durations: Durations = {
+    title: 600,
+    subtitle: 750,
+    description: 1000,
+    header: 800,
+    picture: 800,
+  };
+
   const subtitle = anime
     .timeline({ autoplay: false })
     .add({
@@ -63,5 +79,13 @@ document.addEventListener("DOMContentLoaded", function () {
   init.finished.then(() => {
     subtitle.play();
   });
-  init.play();
+
+  if (window.scrollY) {
+    header.seek(header.duration);
+    subtitle.seek(subtitle.duration);
+    description.seek(description.duration);
+    picture.seek(picture.duration);
+  } else {
+    init.play();
+  }
 });
