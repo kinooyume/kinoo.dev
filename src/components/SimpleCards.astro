@@ -23,7 +23,7 @@ const { cards } = Astro.props;
       <div class="card">
         <Spotlight>
           <div slot="image" class="head">
-            <img src={card.image} alt={card.title} />
+            <img loading="lazy" src={card.image} alt={card.title} />
             <div class="head-text">
               <h3>{card.title}</h3>
               <span class="head-subtitle">{card.subtitle}</span>
