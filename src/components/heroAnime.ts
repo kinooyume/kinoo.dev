@@ -9,17 +9,17 @@ document.addEventListener("DOMContentLoaded", function () {
   type Durations = {
     title: number;
     subtitle: number;
-    description: number;
-    header: number;
-    picture: number;
+    // description: number;
+    // header: number;
+    // picture: number;
   };
 
   const durations: Durations = {
     title: 600,
     subtitle: 750,
-    description: 1000,
-    header: 800,
-    picture: 800,
+    // description: 1000,
+    // header: 800,
+    // picture: 800,
   };
 
   const subtitle = anime
@@ -81,8 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (window.scrollY) {
+    init.seek(init.duration);
     header.seek(header.duration);
-    subtitle.seek(subtitle.duration);
+    subtitle.seek(durations.subtitle + durations.title); 
     description.seek(description.duration);
     picture.seek(picture.duration);
   } else {
