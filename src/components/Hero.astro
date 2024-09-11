@@ -38,11 +38,13 @@ const techs: TagProps[] = [
 ---
 
 <script src="./heroAnime.ts"></script>
-
+<!-- <script src="./parallax.js"></script> -->
+<!-- <script src="./particles.js"></script> -->
 <section id="hero">
   <div class="main">
     <div class="content">
       <div class="title">
+        <!-- <canvas id="particle-canvas"></canvas> -->
         <HeroSubtitle subtitle="Développeur Front-end/Fullstack" />
         <h1><span>Martin</span> <span>Kinoo</span></h1>
       </div>
@@ -78,7 +80,7 @@ const techs: TagProps[] = [
         }
       </ul>
     </div>
-    <img class="image hero-image" src="images/profil2.png" alt="martin kinoo" />
+    <img class="image hero-image" src="images/profil.jpg" alt="martin kinoo" />
   </div>
 </section>
 
@@ -87,7 +89,18 @@ const techs: TagProps[] = [
     --hero-font-size: 20px;
     --hero-span-size: 36px;
   }
-  .content {
+
+  .title {
+  }
+  /* #particle-canvas { */
+  /*   position: absolute; */
+  /*   left: 0; */
+  /*   opacity: 0.2; */
+  /*   width: 100%; */
+  /*   height: 100vh; */
+  /*   vertical-align: middle; */
+  /* } */
+  .content, .hero-image {
     /* display: flex; */
     /* flex-direction: column; */
   }
@@ -95,6 +108,10 @@ const techs: TagProps[] = [
   .main {
     display: flex;
     justify-content: space-between;
+    /* transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)); */
+    /* transform-style: preserve-3d; */
+    /* transition: transform 1.5s cubic-bezier(0.05, 0.5, 0, 1); */
+    /* will-change: transform; */
   }
 
   h1 {
