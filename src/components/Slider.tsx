@@ -42,7 +42,6 @@ const Slider = (props: SliderProps) => {
   const moveTo = (idx: number) => {
     const s = slider();
     if (!s) return;
-    setCurrentIndex(idx);
     const currentIndex = s.stateIndex;
     const diff = Math.abs(currentIndex - idx);
     if (currentIndex < idx) {
@@ -57,7 +56,7 @@ const Slider = (props: SliderProps) => {
 
     setSlider(slider);
     unsubscribe = slider.onSlide((pageIndex, fIndex, lIndex) => {
-      if (currentIndex() !== pageIndex) setCurrentIndex(pageIndex);
+      setCurrentIndex(pageIndex);
     });
   });
 
