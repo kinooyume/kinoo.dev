@@ -1,6 +1,6 @@
 import { createSignal, For, onCleanup, onMount, type Accessor } from "solid-js";
-import BlazeSlider from "blaze-slider";
-import "blaze-slider/dist/blaze.css";
+import BlazeSlider from "blaze-slider/blaze-slider/src/index.ts";
+import "blaze-slider/blaze-slider/src/blaze.css";
 import "./Slider.css";
 
 type PaginationProps = {

@@ -33,8 +33,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1(@types/node@20.14.12)(rollup@4.21.1)(typescript@5.5.4)
       blaze-slider:
-        specifier: ^1.9.3
-        version: 1.9.3
+        specifier: kiuKisas/blaze-slider#fix/onSlide_next
+        version: blaze-slider-js@https://codeload.github.com/kiuKisas/blaze-slider/tar.gz/9429df3b65d5302ecce6fe3b5fdb6619e35267f4
       solid-js:
         specifier: ^1.8.22
         version: 1.8.22
@@ -919,8 +919,9 @@ packages:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
-  blaze-slider@1.9.3:
-    resolution: {integrity: sha512-u8i4AhbjICF6gpyKeMEg65kupT2JoN+E7yOJjOt3ocUtS+r4SKYU79DPNSBV2Zb61fix4ChIxfPyyRUSmLao5g==}
+  blaze-slider-js@https://codeload.github.com/kiuKisas/blaze-slider/tar.gz/9429df3b65d5302ecce6fe3b5fdb6619e35267f4:
+    resolution: {tarball: https://codeload.github.com/kiuKisas/blaze-slider/tar.gz/9429df3b65d5302ecce6fe3b5fdb6619e35267f4}
+    version: 0.0.1
 
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
@@ -3664,7 +3665,7 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
-  blaze-slider@1.9.3: {}
+  blaze-slider-js@https://codeload.github.com/kiuKisas/blaze-slider/tar.gz/9429df3b65d5302ecce6fe3b5fdb6619e35267f4: {}
 
   boolbase@1.0.0: {}
 
