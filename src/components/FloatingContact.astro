@@ -13,8 +13,8 @@ import message from "../svgs/message.svg?raw";
   function floatingAnchor() {
     const floatingDetection = anchorDetection({
       query: ".floating",
-      onVisible: (el : HTMLElement) => el.classList.add("current"),
-      onHidden: (el : HTMLElement) => el.classList.remove("current"),
+      onVisible: (el: HTMLElement) => el.classList.add("current"),
+      onHidden: (el: HTMLElement) => el.classList.remove("current"),
     });
     setupAnchorDetection({ name: "floating", fn: floatingDetection });
   }
@@ -25,6 +25,15 @@ import message from "../svgs/message.svg?raw";
 <style>
   a {
     display: none;
+  }
+
+  .floating:hover {
+    transform: translateY(-4px);
+  }
+
+  .floating:active {
+    transform: translateY(5px);
+    transition: 200ms;
   }
 
   @media screen and (max-width: 600px) {

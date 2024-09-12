@@ -5,11 +5,9 @@
 
 @media screen and (max-width: 900px) {
   blaze-track,
-.blaze-track img {
-  border-radius: 8px;
-}
-
-
+  .blaze-track img {
+    border-radius: 8px;
+  }
 }
 
 .blaze-navigation {
@@ -20,17 +18,19 @@
   fill: var(--light-color);
 }
 
-.blaze-next:hover, .blaze-prev:hover {
-  fill: var(--accent-color);
-}
-.blaze-prev {
-  transform: rotate(180deg);
+@media (hover: hover) {
+  .blaze-next:hover,
+  .blaze-prev:hover {
+    fill: var(--accent-color);
+  }
+
+  .pagination-wrapper .pagination ul li:hover::before {
+    background: var(--accent-color);
+  }
 }
 
-.blaze-container button:hover,
-.blaze-container li:before:hover {
-  background-color: blue !important;
-  fill: blue;
+.blaze-prev {
+  transform: rotate(180deg);
 }
 
 @keyframes activeDot {
@@ -92,11 +92,6 @@
     transform 0.2s ease-out,
     opacity 0.2s ease-out;
   opacity: 0.2;
-}
-
-
-.pagination-wrapper .pagination ul li:hover::before {
-  background: var(--accent-color);
 }
 
 .pagination-wrapper .pagination ul li.active {

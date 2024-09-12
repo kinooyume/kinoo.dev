@@ -221,26 +221,31 @@ const { title } = Astro.props;
   a.anime {
     transition: all 0.3s ease;
   }
-  button.primary:hover,
-  a.primary:hover,
-  a.anime:hover,
-  .link-wrapper.anime:hover,
-  button.secondary:hover {
-    transform: translateY(-4px);
-  }
-
-  button.primary:active,
-  a.primary:active,
-  a.anime:active,
-  button.secondary:active {
-    transform: translateY(5px);
-    transition: 200ms;
-  }
-  a svg path, a.cv {
+  a svg path,
+  a.cv {
     opacity: 0.8;
   }
-  a:hover svg path, a:hover.cv {
-    opacity: 1;
+
+  @media (hover: hover) {
+    button.primary:hover,
+    a.primary:hover,
+    a.anime:hover,
+    .link-wrapper.anime:hover,
+    button.secondary:hover {
+      transform: translateY(-4px);
+    }
+
+    button.primary:active,
+    a.primary:active,
+    a.anime:active,
+    button.secondary:active {
+      transform: translateY(5px);
+      transition: 200ms;
+    }
+    a:hover svg path,
+    a:hover.cv {
+      opacity: 1;
+    }
   }
 
   section {
