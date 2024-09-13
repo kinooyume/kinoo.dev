@@ -13,6 +13,8 @@ class Spotlight {
     };
     this.initContainer = this.initContainer.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
+
+    containerElement.addEventListener("mouseover", this.mouseOver);
     this.init();
   }
 
@@ -36,8 +38,10 @@ class Spotlight {
           -(card.getBoundingClientRect().left - rect.left) + this.mouse.x;
         const cardY =
           -(card.getBoundingClientRect().top - rect.top) + this.mouse.y;
-        card.style.setProperty("--mouse-x", `${cardX}px`);
-        card.style.setProperty("--mouse-y", `${cardY}px`);
+        requestAnimationFrame(() => {
+          card.style.setProperty("--mouse-x", `${cardX}px`);
+          card.style.setProperty("--mouse-y", `${cardY}px`);
+        });
       });
     }
   }
