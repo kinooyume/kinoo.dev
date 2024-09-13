@@ -14,7 +14,9 @@ class Spotlight {
     this.initContainer = this.initContainer.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
 
-    containerElement.addEventListener("mouseover", this.mouseOver);
+    containerElement.addEventListener("mouseover", (e) => {
+      this.onMouseMove(e);
+    });
     this.init();
   }
 
