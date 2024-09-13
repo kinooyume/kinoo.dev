@@ -30,14 +30,10 @@ class Spotlight {
     const inside = x < w && x > 0 && y < h && y > 0;
     if (inside) {
       this.cards.forEach((card) => {
-        const cardX =
-          -(card.getBoundingClientRect().left - rect.left) + x;
-        const cardY =
-          -(card.getBoundingClientRect().top - rect.top) + y;
-        requestAnimationFrame(() => {
-          card.style.setProperty("--mouse-x", `${cardX}px`);
-          card.style.setProperty("--mouse-y", `${cardY}px`);
-        });
+        const cardX = -(card.getBoundingClientRect().left - rect.left) + x;
+        const cardY = -(card.getBoundingClientRect().top - rect.top) + y;
+        card.style.setProperty("--mouse-x", `${cardX}px`);
+        card.style.setProperty("--mouse-y", `${cardY}px`);
       });
     }
   }
