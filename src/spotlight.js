@@ -3,10 +3,6 @@ class Spotlight {
   constructor(containerElement) {
     this.container = containerElement;
     this.cards = Array.from(this.container.children);
-    this.mouse = {
-      x: 0,
-      y: 0,
-    };
     this.containerSize = {
       w: 0,
       h: 0,
@@ -33,13 +29,11 @@ class Spotlight {
     const y = clientY - rect.top;
     const inside = x < w && x > 0 && y < h && y > 0;
     if (inside) {
-      this.mouse.x = x;
-      this.mouse.y = y;
       this.cards.forEach((card) => {
         const cardX =
-          -(card.getBoundingClientRect().left - rect.left) + this.mouse.x;
+          -(card.getBoundingClientRect().left - rect.left) + x;
         const cardY =
-          -(card.getBoundingClientRect().top - rect.top) + this.mouse.y;
+          -(card.getBoundingClientRect().top - rect.top) + y;
         requestAnimationFrame(() => {
           card.style.setProperty("--mouse-x", `${cardX}px`);
           card.style.setProperty("--mouse-y", `${cardY}px`);
