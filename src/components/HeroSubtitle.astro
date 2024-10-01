@@ -7,11 +7,11 @@ const { subtitle } = Astro.props;
 const subElement = subtitle.replace(/\S/g, "<span class='letter'>$&</span>");
 ---
 
-<p class="subtitle">
+<span class="subtitle">
   <span class="text-wrapper">
     <Fragment set:html={subElement} />
   </span>
-</p>
+</span>
 
 <style is:global>
   .letter {
@@ -24,6 +24,7 @@ const subElement = subtitle.replace(/\S/g, "<span class='letter'>$&</span>");
     margin: 0;
     padding: 0;
     opacity: 0;
+    line-height: 38px;
     font-size: var(--hero-span-size);
     font-weight: 100;
     color: var(--accent-color);

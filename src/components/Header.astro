@@ -6,7 +6,7 @@ import terminal from "../svgs/terminal.svg?raw";
 import NavBar from "./NavBar.astro";
 ---
 
-<header class="header-wrapper">
+<header>
   <div class="header">
     <nav>
       <div class="title-wrapper">
@@ -44,9 +44,7 @@ import NavBar from "./NavBar.astro";
       >
         CV
       </a>
-      <a class="primary" href="#contact">
-        <span>Me contacter</span>
-      </a>
+      <a class="primary" href="#contact"> Me contacter </a>
     </div>
   </div>
 
@@ -148,7 +146,7 @@ import NavBar from "./NavBar.astro";
         --header-font-size: 18px;
       }
 
-      .header-wrapper {
+      header {
         height: 80px;
       }
       .header {
