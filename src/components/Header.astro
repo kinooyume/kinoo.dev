@@ -8,7 +8,7 @@ import NavBar from "./NavBar.astro";
 
 <header class="header-wrapper">
   <div class="header">
-    <div class="navigation">
+    <nav>
       <div class="title-wrapper">
         <a href="#hero" class="title anime">
           <div class="terminal-wrapper">
@@ -18,7 +18,7 @@ import NavBar from "./NavBar.astro";
         </a>
       </div>
       <NavBar />
-    </div>
+    </nav>
     <div class="menu">
       <a
         class="icon anime"
@@ -48,7 +48,7 @@ import NavBar from "./NavBar.astro";
         <span>Me contacter</span>
       </a>
     </div>
-  </header>
+  </div>
 
   <style>
     :root {
@@ -133,7 +133,7 @@ import NavBar from "./NavBar.astro";
       margin: 0;
     }
 
-    .navigation {
+    nav {
       display: flex;
       gap: 36px;
     }
