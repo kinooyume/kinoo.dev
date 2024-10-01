@@ -15,26 +15,29 @@ import FloatingContact from "../components/FloatingContact.astro";
     <Hero />
     <HeroInfo />
     <Experiences />
-<Realisations />
+    <Realisations />
     <Appetences />
     <Formations />
     <!-- <Passions /> -->
     <Contact />
-    <div class="footer"></div>
-    <span class="footer"
-    >© 2024 · Design et Code par <b>Martin Kinoo</b> · Réalisé avec <a href="https://figma.com">Figma</a>, <a
-        href="https://astro.build">Astro</a
-      > et <a href="https://tailwindcss.com/">tailwindcss</a>.
-    </span>
-    <FloatingContact />
+    <footer>
+      <p 
+        >© 2024 · Design et Code par <b>Martin Kinoo</b> · Réalisé avec <a
+          href="https://figma.com">Figma</a
+        >, <a href="https://astro.build">Astro</a> et <a
+          href="https://tailwindcss.com/">tailwindcss</a
+        >.
+      </p>
+    </footer>
+      <FloatingContact />
   </main>
 </Layout>
 
 <style>
-  .footer {
-    color: grey;
+  footer {
+    opacity: 0.8;
   }
-  .footer a {
+  footer a {
     text-decoration: underline;
   }
   main {
@@ -43,7 +46,8 @@ import FloatingContact from "../components/FloatingContact.astro";
     max-width: 1368px;
     line-height: 1.6;
   }
-  span {
+  footer p {
+    font-size: 15px;
     display: block;
     margin: 36px 0;
   }
