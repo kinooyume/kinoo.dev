@@ -69,6 +69,7 @@ const ContactForm = (props: Props) => {
 
   const [toastId, setToastId] = createSignal<string>();
 
+  // TODO: make a memo
   createEffect(
     on(formState, () => {
       switch (formState()) {
@@ -112,8 +113,9 @@ const ContactForm = (props: Props) => {
                 class="input-wrapper"
                 classList={{ invalid: field.error.length > 0 }}
               >
-                <p>{"Nom"}</p>
+                <label for="name">{"Nom"}</label>
                 <input
+                  id="name"
                   disabled={formState() === FormState.sending}
                   {...props}
                   type="txt"
@@ -135,8 +137,9 @@ const ContactForm = (props: Props) => {
                 class="input-wrapper"
                 classList={{ invalid: field.error.length > 0 }}
               >
-                <p>{"Email"}</p>
+                <label for="email">{"Email"}</label>
                 <input
+                  id="email"
                   disabled={formState() === FormState.sending}
                   {...props}
                   type="email"
@@ -152,8 +155,9 @@ const ContactForm = (props: Props) => {
                 class="input-wrapper textarea-wrapper"
                 classList={{ invalid: field.error.length > 0 }}
               >
-                <p>{"Message"}</p>
+                <label for="message">{"Message"}</label>
                 <textarea
+                  id="message"
                   disabled={formState() === FormState.sending}
                   {...props}
                   placeholder="message"

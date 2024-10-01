@@ -15,15 +15,18 @@ interface Props {
 const { cards } = Astro.props;
 ---
 
-<div
-  class="simple-cards mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none group"
->
+<div class="simple-cards mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none group">
   {
     cards.map((card) => (
       <div class="card">
         <Spotlight>
           <div slot="image" class="head">
-            <img loading="lazy" src={card.image} alt={card.title} />
+            <img
+              loading="lazy"
+              alt={`${card.title}-img`}
+              src={card.image}
+              alt={card.title}
+            />
             <div class="head-text">
               <h3>{card.title}</h3>
               <span class="head-subtitle">{card.subtitle}</span>
@@ -83,7 +86,6 @@ const { cards } = Astro.props;
       max-width: unset;
     }
   }
-
 
   @media screen and (max-width: 900px) {
     :root {
