@@ -6,7 +6,7 @@ import terminal from "../svgs/terminal.svg?raw";
 import NavBar from "./NavBar.astro";
 ---
 
-<div class="header-wrapper">
+<header class="header-wrapper">
   <div class="header">
     <div class="navigation">
       <div class="title-wrapper">
@@ -14,7 +14,7 @@ import NavBar from "./NavBar.astro";
           <div class="terminal-wrapper">
             <Fragment set:html={terminal} />
           </div>
-          <p>Martin Kinoo</p>
+          Martin Kinoo
         </a>
       </div>
       <NavBar />
@@ -48,7 +48,7 @@ import NavBar from "./NavBar.astro";
         <span>Me contacter</span>
       </a>
     </div>
-  </div>
+  </header>
 
   <style>
     :root {
@@ -113,7 +113,7 @@ import NavBar from "./NavBar.astro";
       text-decoration: none;
     }
 
-    .title p {
+    a.title {
       font-size: var(--header-font-size);
       font-weight: 200;
     }
@@ -179,4 +179,4 @@ import NavBar from "./NavBar.astro";
       }
     }
   </style>
-</div>
+</header>
