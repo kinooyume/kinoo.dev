@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .add({
       targets: ".text-wrapper .letter",
-      translateY: ["1.2em", 0],
+      translateY: ["1.3em", 0],
       translateZ: 0,
       duration: 750,
       delay: (el, i) => {
