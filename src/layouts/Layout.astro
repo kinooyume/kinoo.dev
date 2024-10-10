@@ -20,14 +20,38 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://kinoo.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Martin Kinoo · Développeur freelance" />
+    <meta
+      property="og:description"
+      content="Développeur front-end et fullstack"
+    />
+    <meta property="og:image" content="/og.jpg" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="kinoo.dev" />
+    <meta property="twitter:url" content="https://kinoo.dev" />
+    <meta name="twitter:title" content="Martin Kinoo · Développeur freelance" />
+    <meta
+      name="twitter:description"
+      content="Développeur front-end et fullstack"
+    />
+    <meta name="twitter:image" content="/og.jpg" />
+
     <title>{title}</title>
   </head>
   <body>
     <Header />
     <slot />
     <script>
-    // @ts-ignore-next-line
-    import Spotlight from "../spotlight";
+      // @ts-ignore-next-line
+      import Spotlight from "../spotlight";
 
       const spotlights = document.querySelectorAll(".simple-cards");
       spotlights.forEach((spotlight) => {
