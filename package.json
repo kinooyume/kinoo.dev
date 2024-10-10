@@ -27,6 +27,7 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
+    "@astrojs/sitemap": "^3.2.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1"
   }
