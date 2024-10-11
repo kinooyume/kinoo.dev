@@ -9,40 +9,7 @@ type Props = {
 const { id, pictures } = Astro.props;
 ---
 
-<script>
-  // https://github.com/withastro/astro/issues/6642#issuecomment-1597454593
-
-  // Navigation effects
-  // https://codepen.io/jsvensson/pen/LYgRemW
-  // import BlazeSlider from "blaze-slider";
-  // declare global {
-  //   interface Window {
-  //     BlazeSlider: typeof BlazeSlider;
-  //   }
-  // }
-  // window.BlazeSlider = BlazeSlider;
-</script>
-
-<script is:inline define:vars={{ id }}>
-// // TODO: probably go for solid component
-//   document.addEventListener("DOMContentLoaded", () => {
-//     const element = document.querySelector(`#${id}-slider`);
-//     const slider = new window.BlazeSlider(element);
-//     // when you want to unsubscribe - call the returned `unsubscribe` function
-//     const unsubscribe = slider.onSlide(
-//       (pageIndex, firstVisibleSlideIndex, lastVisibleSlideIndex) => {
-//         // index of the current page ( pagination index )
-//         console.log(pageIndex);
-//
-//         // first and last visible slide index
-//         console.log(firstVisibleSlideIndex, lastVisibleSlideIndex);
-//       },
-//     );
-//
-//   });
-</script>
-
-<div class="card">
+<div class="card gradient-border-card">
   <div class="title">
     <slot name="title" />
   </div>
@@ -54,6 +21,7 @@ const { id, pictures } = Astro.props;
 <Fragment set:html={arrow} />
     </Slider>
   </div>
+    <div class="shimmer"></div>
 </div>
 
 <style>
@@ -64,6 +32,7 @@ const { id, pictures } = Astro.props;
     grid-template-rows: repeat(2, minmax(0, auto));
     grid-column-gap: 64px;
     grid-row-gap: 0px;
+    --duration: 16s;
   }
 
   .title {

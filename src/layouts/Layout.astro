@@ -25,10 +25,7 @@ const { title } = Astro.props;
     <meta property="og:url" content="https://kinoo.dev" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Martin Kinoo · Développeur freelance" />
-    <meta
-      property="og:description"
-      content="Développeur front-end"
-    />
+    <meta property="og:description" content="Développeur front-end" />
     <meta property="og:image" content="/og.jpg" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:width" content="1200" />
@@ -38,10 +35,7 @@ const { title } = Astro.props;
     <meta property="twitter:domain" content="kinoo.dev" />
     <meta property="twitter:url" content="https://kinoo.dev" />
     <meta name="twitter:title" content="Martin Kinoo · Développeur freelance" />
-    <meta
-      name="twitter:description"
-      content="Développeur front-end"
-    />
+    <meta name="twitter:description" content="Développeur front-end" />
     <meta name="twitter:image" content="/og.jpg" />
 
     <title>{title}</title>
@@ -94,6 +88,68 @@ const { title } = Astro.props;
     --section-margin: 142px;
   }
 
+  .gradient-border-card {
+    position: relative;
+    padding: 40px;
+    flex: 1 1;
+    transition:
+      background 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+    box-shadow:
+      0 0 0 1px transparent,
+      0 2px 4px transparent,
+      0 12px 24px transparent;
+    cursor: pointer;
+    broder-radius: 32px;
+    height: 100%;
+    z-index: 1;
+    .shimmer {
+      background: linear-gradient(
+        112deg,
+        transparent 30%,
+
+        rgba(248, 186, 136, 0.1) 40%,
+        rgba(248, 186, 136, 0.3) 50%,
+        rgba(248, 186, 136, 0.1) 60%,
+        transparent 80%
+      );
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      border-radius: 32px;
+      background-size: 200% auto;
+      opacity: 0;
+      background-position: 150%;
+    }
+  }
+  .gradient-border-card:hover .shimmer {
+    animation: shimmer var(--duration) cubic-bezier(0.8, 0, 0.05, 1);
+  }
+
+  @keyframes shimmer {
+    0% {
+      opacity: 0;
+      background-position: -50%;
+    }
+
+    5% {
+      opacity: 0.7;
+    }
+
+    10% {
+      opacity: 0;
+      background-position: 150%;
+    }
+
+    15% {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
   @font-face {
     font-family: "Outfit";
     src: url("/fonts/Outfit/Outfit-ExtraLight.ttf");

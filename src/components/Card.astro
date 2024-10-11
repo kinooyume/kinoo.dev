@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card gradient-border-card">
   <div class="content">
     <div class="title-wrapper">
       <div class="title">
@@ -11,6 +11,7 @@
     <div></div>
     <div class="text"><slot name="description" /></div>
     <slot />
+    <div class="shimmer"></div>
   </div>
 </div>
 
@@ -19,6 +20,7 @@
     display: flex;
     justify-content: space-between;
     padding: 48px;
+    --duration: 12s;
   }
 
   .title-wrapper {
@@ -38,7 +40,6 @@
   .title-wrapper {
     margin-bottom: 24px;
   }
-
   @media screen and (max-width: 900px) {
     .text {
       padding: 0;
