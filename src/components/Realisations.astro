@@ -3,6 +3,7 @@ import H3Tagged from "./H3Tagged.astro";
 import RealisationCard from "./RealisationCard.astro";
 import TagLink from "./TagLink.astro";
 import ekeynoxIcon from "../svgs/ekeynox.svg?raw";
+import Tag from "./Tag.astro";
 
 const tailwindCard =
   "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
@@ -14,8 +15,53 @@ const tailwindCard =
   <div class="grid">
     <div class={`card ${tailwindCard}`}>
       <RealisationCard
+        id="arteflix"
+        reverse={true}
+        pictures={["arteflix/01.webp", "arteflix/02.webp", "arteflix/03.webp"]}
+      >
+        <div slot="title" class="title-wrapper">
+          <div class="title-container">
+            <H3Tagged title="Arteflix" tag="Projet perso" />
+            <TagLink href="https://arteflix.kinoo.dev" text="Visiter le site" />
+          </div>
+          <div class="title-logo">
+            <img alt="arteflix" src="/images/arteflix/logo.webp" />
+          </div>
+        </div>
+        <div slot="description">
+          <p>
+            Arteflix est un site web permetant d'accéder au catalogue d'<b
+              >ARTE</b
+            > en reprenant le system design de <b>Netflix</b>.
+          </p>
+          <br />
+          <p>
+            Le site web respecte l'url du site arte.tv, il suffit donc de changer l'url pour accéder au meme contenu.
+          </p>
+          <br />
+          <br />
+          <div class="row">
+            <Tag title="React" />
+            <Tag title="Next.js" />
+            <Tag title="Rescript" />
+            <Tag title="Storybook" />
+          </div>
+        </div>
+      </RealisationCard>
+    </div>
+    <div class={`card ${tailwindCard}`}>
+      <RealisationCard
         id="ekeynox"
-        pictures={["ekeynox/01.webp", "ekeynox/02.webp","ekeynox/03.webp", "ekeynox/04.webp", "ekeynox/05.webp", "ekeynox/06.webp", "ekeynox/07.webp", "ekeynox/08.webp"]}
+        pictures={[
+          "ekeynox/01.webp",
+          "ekeynox/02.webp",
+          "ekeynox/03.webp",
+          "ekeynox/04.webp",
+          "ekeynox/05.webp",
+          "ekeynox/06.webp",
+          "ekeynox/07.webp",
+          "ekeynox/08.webp",
+        ]}
       >
         <div slot="title" class="title-wrapper">
           <div class="title-container">
@@ -38,12 +84,19 @@ const tailwindCard =
               >des mots aléatoires</b
             >, des <b>citations</b> ou un <b>texte personnalisé</b>.
           </p>
+          <br />
           <p>
             À la fin d'une partie, le joueur peut consulter ses <b>
               statistiques</b
             > et
             <b>rejouer</b> en mode fantôme contre son score précédent.
           </p>
+          <br />
+          <div class="row">
+            <Tag title="SolidJS" />
+            <Tag title="SolidStart" />
+            <Tag title="Figma" />
+          </div>
         </div>
       </RealisationCard>
     </div>
@@ -51,10 +104,19 @@ const tailwindCard =
 </section>
 
 <style>
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .grid {
+    grid-row-gap: 26px;
+    grid-column-gap: 26px;
+  }
   .grid > div {
     background-color: var(--card-background-color);
     border: 1px solid #313d50 !important;
-
     box-sizing: border-box;
     border-radius: 32px;
   }
