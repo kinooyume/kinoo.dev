@@ -2,17 +2,15 @@
 import Tag from "../components/Tag.astro";
 import HeroSubtitle from "./HeroSubtitle.astro";
 import React from "../svgs/react.svg?raw";
-import Vue from "../svgs/vue.svg?raw";
 import Svelte from "../svgs/svelte.svg?raw";
-import Next from "../svgs/next.svg?raw";
 import Rescript from "../svgs/rescript.svg?raw";
-import Node from "../svgs/node.svg?raw";
 import Ts from "../svgs/ts.svg?raw";
 import Go from "../svgs/go.svg?raw";
 
 type TagProps = {
   title: string;
   icon?: string;
+  highlight?: boolean;
 };
 
 // Stars
@@ -25,15 +23,11 @@ type TagProps = {
 // https://tobiasahlin.com/moving-letters/?utm_source=bypeople
 const techs: TagProps[] = [
   { title: "Typescript", icon: Ts },
-  { title: "React.js", icon: React },
-  { title: "Next.js", icon: Next },
-  { title: "Vue.js", icon: Vue },
-  { title: "Svelte", icon: Svelte },
+  { title: "React.js", icon: React, highlight: true },
+  { title: "Svelte", icon: Svelte, highlight: true },
   { title: "Rescript", icon: Rescript },
-  { title: "Node.js", icon: Node },
   { title: "Golang", icon: Go },
-  { title: "CI/CD" },
-  { title: "... et plus !" },
+  { title: "Votre stack ?" },
 ];
 ---
 
@@ -43,42 +37,65 @@ const techs: TagProps[] = [
     <div class="content">
       <div class="title">
         <!-- <canvas id="particle-canvas"></canvas> -->
-        <HeroSubtitle subtitle="Développeur Front-end Freelance" />
+        <HeroSubtitle subtitle="Développeur Frontend Freelance" />
         <h1><span>Martin</span> <span>Kinoo</span></h1>
       </div>
       <div class="description">
-        <p>Hello ! 👋</p>
-        <br />
         <p>
-          Vous cherchez un développeur web pour votre prochain projet ? Je suis
-          là !
-        </p>
-        <p>
-          Avec plus de 4 ans d’expérience professionnelle en développement <b
-            >front-end</b
-          > et <b>fullstack</b>, je suis toujours à la recherche de nouvelles
-          technologies à explorer et à les mettre en œuvre dans des projets
-          concrets.
-        </p>
-        <p>
-          Et quand je ne suis pas en train de coder, vous me trouverez
-          probablement en train de tester un nouveau clavier ergonomique ⌨️ ou a
-          dessiner 🎨.
+          <strong
+            >Transformons ensemble vos défis techniques en solutions web
+            concrètes. 💡</strong
+          >
         </p>
         <br />
-        <p>Envie d'en savoir plus ? C'est par ici ! 👇</p>
+        <p>
+          Passionné par la <strong
+            >conception et la construction d'applications web robustes et
+            évolutives</strong
+          >, j'adopte des pratiques de développement efficaces pour des
+          expériences utilisateur optimales. Mon parcours m'a permis de
+          maîtriser les <strong>architectures logicières modernes</strong> et d'intégrer
+          des logiques métier exigeants
+        </p>
+        <br />
+        <p>
+          Toujours en veille sur les <strong>stacks récentes</strong>
+          mes projets personnels sont un terrain d'exploration et d'approfondissement
+          constant, garantissant des solutions à la pointe. Autonome, rigoureux et
+          communiquant, je m'engage à livrer des applicatifs de haute qualité, bien
+          documentés, optimisés pour la performance et la maintenabilité. ✅
+        </p>
+        <br />
+        <p>
+          <strong
+            >Prêt à transformer vos idées en succès numérique ? 🚀 <a
+              href="#contact"
+              >Contactez-moi dès aujourd'hui pour discuter de votre projet !</a
+            > 💬</strong
+          >
+        </p>
       </div>
       <ul>
         {
           techs.map((tech) => (
             <li>
-          <Tag title={tech.title} hero={true} icon={tech.icon} />
+              <Tag
+                title={tech.title}
+                hero={true}
+                icon={tech.icon}
+                highlight={tech.highlight}
+              />
             </li>
           ))
         }
       </ul>
     </div>
-    <img loading="lazy" class="image hero-image" src="images/profil.jpg" alt="martin kinoo" />
+    <img
+      loading="lazy"
+      class="image hero-image"
+      src="images/profil.png"
+      alt="martin kinoo"
+    />
   </div>
 </section>
 
@@ -98,7 +115,8 @@ const techs: TagProps[] = [
   /*   height: 100vh; */
   /*   vertical-align: middle; */
   /* } */
-  .content, .hero-image {
+  .content,
+  .hero-image {
     /* display: flex; */
     /* flex-direction: column; */
   }
@@ -148,10 +166,19 @@ const techs: TagProps[] = [
     font-weight: 200;
   }
 
+  a {
+    color: var(--color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
   #hero {
     margin-top: 32px;
   }
 
+  strong {
+    font-weight: 600;
+  }
   img {
     margin: auto 0;
     opacity: 0;

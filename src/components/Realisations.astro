@@ -9,11 +9,11 @@ const tailwindCard =
   "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
 ---
 
-<section id="realisations">
+<section id="realisations" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Réalisations</h2>
   <div class="grid">
-    <div class={`card ${tailwindCard}`}>
+    <div class={`card ${tailwindCard}`} data-animate-card>
       <RealisationCard
         id="arteflix"
         reverse={true}
@@ -36,7 +36,8 @@ const tailwindCard =
           </p>
           <br />
           <p>
-            Le site web respecte l'url du site arte.tv, il suffit donc de changer l'url pour accéder au même contenu.
+            Le site web respecte l'url du site arte.tv, il suffit donc de
+            changer l'url pour accéder au même contenu.
           </p>
           <br />
           <br />
@@ -49,7 +50,7 @@ const tailwindCard =
         </div>
       </RealisationCard>
     </div>
-    <div class={`card ${tailwindCard}`}>
+    <div class={`card ${tailwindCard}`} data-animate-card>
       <RealisationCard
         id="ekeynox"
         pictures={[
@@ -104,6 +105,10 @@ const tailwindCard =
 </section>
 
 <style>
+  #realisations {
+    --accent-color: #66c384;
+    --secondary-accent-color: #d1edcf;
+  }
   .row {
     display: flex;
     flex-direction: row;

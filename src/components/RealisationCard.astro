@@ -11,18 +11,18 @@ const { id, reverse, pictures } = Astro.props;
 ---
 
 <div class=`card gradient-border-card ${reverse ? "reverse" : ""}`>
-  <div class="title">
+  <div class="title" data-animate-elem>
     <slot name="title" />
   </div>
-  <div class="desription">
+  <div class="desription" data-animate-elem>
     <slot name="description" />
   </div>
-  <div class="gallery">
+  <div class="gallery" data-animate-elem>
     <Slider client:load pictures={pictures}>
       <Fragment set:html={arrow} />
     </Slider>
   </div>
-  <div class="shimmer"></div>
+  <!-- <div class="shimmer"></div> -->
 </div>
 
 <style>

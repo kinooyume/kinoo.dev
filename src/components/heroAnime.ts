@@ -1,6 +1,21 @@
 import anime from "animejs/lib/anime.es.js";
 
+// Déclaration TypeScript pour la variable globale
+declare global {
+  interface Window {
+    heroAnimationCompleted: boolean;
+  }
+}
+
+window.heroAnimationCompleted = false;
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Appliquer les styles pour centrer le Hero et cacher le reste
+  
+  document.body.classList.add('hero-animation');
+  
+  // Désactiver le scroll au début
+  document.body.style.overflow = "hidden";
   const init = anime.timeline({ autoplay: false }).add({
     targets: [".subtitle"],
     opacity: 1,
@@ -76,6 +91,25 @@ document.addEventListener("DOMContentLoaded", function () {
     picture.play();
   });
 
+  // Quand toutes les animations sont terminées
+  picture.finished.then(() => {
+    // Supprimer les styles d'animation Hero
+    document.body.classList.remove('hero-animation');
+    
+    // Réafficher le header
+    const header = document.querySelector('header');
+    if (header) {
+      (header as HTMLElement).style.display = '';
+    }
+    
+    // Réactiver le scroll
+    document.body.style.overflow = "auto";
+    // Marquer l'animation Hero comme terminée
+    window.heroAnimationCompleted = true;
+    // Déclencher l'initialisation des observers
+    window.dispatchEvent(new CustomEvent("heroAnimationComplete"));
+  });
+
   init.finished.then(() => {
     subtitle.play();
   });
@@ -83,10 +117,20 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.scrollY) {
     init.seek(init.duration);
     header.seek(header.duration);
-    subtitle.seek(durations.subtitle + durations.title); 
+    subtitle.seek(durations.subtitle + durations.title);
     description.seek(description.duration);
     picture.seek(picture.duration);
+    // Si on a déjà scrollé, supprimer immédiatement les styles d'animation
+    document.body.classList.remove('hero-animation');
+    const headerEl = document.querySelector('header');
+    if (headerEl) {
+      (headerEl as HTMLElement).style.display = '';
+    }
+    // Si on a déjà scrollé, réactiver immédiatement
+    document.body.style.overflow = "auto";
+    window.heroAnimationCompleted = true;
   } else {
     init.play();
   }
+
 });

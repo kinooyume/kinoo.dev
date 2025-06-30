@@ -1,52 +1,54 @@
 <div class="card gradient-border-card">
   <div class="content">
-    <div class="title-wrapper">
-      <div class="title">
+    <div class="title-wrapper" data-animate-elem>
+      <div class="title" data-animate-elem>
         <slot name="title" />
       </div>
-      <div class="marge">
+      <div class="marge" data-animate-elem>
         <slot name="marge" />
       </div>
     </div>
     <div></div>
-    <div class="text"><slot name="description" /></div>
-    <slot />
-    <div class="shimmer"></div>
+    <div data-animate-elem>
+      <div class="text"><slot name="description" /></div>
+      <slot />
+      <!-- <div class="shimmer" data-animate-elem></div> -->
+    </div>
   </div>
-</div>
 
-<style>
-  .card {
-    display: flex;
-    justify-content: space-between;
-    padding: 48px;
-    cursor: auto;
-    --duration: 12s;
-  }
-
-  .title-wrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 18px;
-  }
-
-  .content {
-    width: 100%;
-  }
-  .text {
-    /* padding-right: 126px; */
-    margin-bottom: 32px;
-  }
-
-  .title-wrapper {
-    margin-bottom: 24px;
-  }
-  @media screen and (max-width: 900px) {
-    .text {
-      padding: 0;
-    }
+  <style>
     .card {
-      padding: 36px 24px;
+      display: flex;
+      justify-content: space-between;
+      padding: 48px;
+      cursor: auto;
+      --duration: 12s;
     }
-  }
-</style>
+
+    .title-wrapper {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .content {
+      width: 100%;
+    }
+    .text {
+      /* padding-right: 126px; */
+      margin-bottom: 32px;
+    }
+
+    .title-wrapper {
+      margin-bottom: 24px;
+    }
+    @media screen and (max-width: 900px) {
+      .text {
+        padding: 0;
+      }
+      .card {
+        padding: 36px 24px;
+      }
+    }
+  </style>
+</div>

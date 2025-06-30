@@ -15,11 +15,61 @@ const tailwindCard =
   "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
 ---
 
-<section id="experiences">
+<section id="experiences" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Expériences</h2>
   <div class="grid">
-    <div class={`opo ${tailwindCard}`}>
+    <div class=`verty ${tailwindCard}` data-animate-card>
+      <Card>
+        <div class="title" slot="title">
+          <H3Tagged title="Développeur backend" tag="Freelance" />
+          <p>
+            <a
+              href="https://verty.eu/"
+              rel="noreferrer nofollow noopener"
+              target="_blank">Verty</a
+            >
+            <span class="dotted">Remote</span><span>2025 (2mois)</span>
+          </p>
+        </div>
+        <p slot="description">
+          Conception et développement d’une synchronisation entre Shopify et un
+          site de vente externe via les APIs. Services en <string>Go</string> hébergés
+          sur Scaleway, avec une architecture fiable et maintenable.
+        </p>
+
+        <img loading="lazy" slot="marge" src="images/verty.webp" alt="verty" />
+      </Card>
+    </div>
+    <div class=`impacthorizon ${tailwindCard}` data-animate-card>
+      <Card>
+        <div class="title" slot="title">
+          <H3Tagged title="Développeur frontend" tag="Freelance" />
+          <p>
+            <a
+              href="https://impacthorizongroup.com/"
+              rel="noreferrer nofollow noopener"
+              target="_blank">Impact Horizon</a
+            >
+            <span class="dotted">Remote</span><span>2025 (2mois)</span>
+          </p>
+        </div>
+        <p slot="description">
+          Développement d’un système <strong>React</strong> de génération de sites
+          <strong>data-driven</strong>, structuré pour les LLM. Architecture
+          modulaire avec composants réutilisables (UI, logique, intégrations
+          externes).
+        </p>
+
+        <img
+          loading="lazy"
+          slot="marge"
+          src="images/impacthorizon.webp"
+          alt="verty"
+        />
+      </Card>
+    </div>
+    <div class={`opo ${tailwindCard}`} data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Lead Développeur fullstack" tag="CDI" />
@@ -67,14 +117,18 @@ const tailwindCard =
             >, SSG avec <b>ElderJs</b>.Mainteneur d'ElderJs.
           </li>
           <li>
-            Framework de génération de formation (SSG), écrit en
-            Rescript, architecture hexagonale, data-driven et framework
-            agnostic.
+            Framework de génération de formation (SSG), écrit en Rescript,
+            architecture hexagonale, data-driven et framework agnostic.
           </li>
         </ul>
-        <img loading="lazy" slot="marge" src="images/opo.png" alt="opo" />
+        <img
+          loading="lazy"
+          slot="marge"
+          src="images/opo.png"
+          alt="impacthorizon"
+        />
       </Card>
-    </div><div class=`ordoclic ${tailwindCard}`>
+    </div><div class=`ordoclic ${tailwindCard}` data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Lead Développeur" tag="Freelance" />
@@ -96,9 +150,14 @@ const tailwindCard =
           <li>Chiffrement d’ordonnance avec le protocole pkcs11</li>
           <li>Envois de document à travers une API</li>
         </ul>
-        <img loading="lazy" slot="marge" src="images/ordoclic.png" alt="ordoclic" />
+        <img
+          loading="lazy"
+          slot="marge"
+          src="images/ordoclic.png"
+          alt="ordoclic"
+        />
       </Card>
-    </div><div class=`cautioneo ${tailwindCard} `>
+    </div><div class=`cautioneo ${tailwindCard} ` data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Développeur RubyOnRails" tag="Freelance" />
@@ -116,7 +175,12 @@ const tailwindCard =
           <li>Développement du parcours locataire</li>
           <li>Développement d’un CRM custom</li>
         </ul>
-        <img loading="lazy" slot="marge" src="images/cautioneo.png" alt="cautioneo" />
+        <img
+          loading="lazy"
+          slot="marge"
+          src="images/cautioneo.png"
+          alt="cautioneo"
+        />
       </Card>
     </div>
   </div>
@@ -127,10 +191,15 @@ const tailwindCard =
     --experience-font-size: 16px;
   }
 
+  #experiences {
+    --accent-color: #f68dab;
+    --secondary-accent-color: #f8c8d9;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, minmax(0, auto));
+    grid-template-rows: repeat(3, minmax(0, auto));
     grid-column-gap: 26px;
     grid-row-gap: 26px;
   }
@@ -143,8 +212,23 @@ const tailwindCard =
     border-radius: 32px;
   }
 
+  img {
+    width: 51px;
+    height: 51px;
+  }
+
+  .verty {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .impacthorizon {
+    /* grid-area: 1 / 2 / 3 / 3; */
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
   .opo {
-    grid-area: 1 / 1 / 3 / 2;
+    /* grid-area: 1 / 1 / 3 / 2; */
+    grid-area: 1 / 2 / 3 / 3;
   }
 
   a {
