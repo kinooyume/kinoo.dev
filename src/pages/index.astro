@@ -16,7 +16,7 @@ import FloatingContact from "../components/FloatingContact.astro";
 
     const nav = performance.getEntriesByType("navigation")[0];
     if (
-      (nav && nav.type === "back_forward" && window.scrollY !== 0) ||
+      (nav && window.scrollY !== 0) ||
       (performance.navigation &&
         performance.navigation.type === 2 &&
         window.scrollY !== 0)
