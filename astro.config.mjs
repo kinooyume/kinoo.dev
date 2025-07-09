@@ -9,5 +9,5 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://kinoo.dev",
-  integrations: [sitemap(), solidJs(), tailwind()]
+  integrations: [solidJs(), tailwind(), sitemap()]
 });

@@ -1,5 +1,5 @@
 export function anchorDetection({ query, onVisible, onHidden }) {
-  let anchors = document.querySelectorAll(query);
+  const anchors = document.querySelectorAll(query);
 
   return () => {
     anchors.forEach((anchor) => {

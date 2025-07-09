@@ -8,6 +8,6 @@ type Props = {
   setSlideEvent: (slideEvent: slideEvent) => void;
 };
 
-const SlidePagination = (props: Props) => {
-  return <div class="pagination-wrapper"></div>;
+export const SlidePagination = (_props: Props) => {
+  return <div class="pagination-wrapper" />;
 };

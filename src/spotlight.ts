@@ -1,35 +1,34 @@
-type OnFps = (fps: number) => void;
 
-const calcFps = (onFps: OnFps) => {
-  let frames = 0;
-  let lastTime: number;
-
-  return () => {
-    frames++;
-    const time = performance.now();
-    if (!lastTime) {
-      lastTime = time;
-    }
-
-    if (time > lastTime + 1000) {
-      let fps = Math.round((frames * 1000) / (time - lastTime));
-      lastTime = time;
-      frames = 0;
-      onFps(fps);
-    }
-  };
-};
-
-// Example
-const printFPS = (fps: number) => console.info("FPS: ", fps);
-
-const test = (s: string) => console.log(s);
-
-const z = calcFps(printFPS);
-const b = (e: string) => {
-  test(e);
-  z();
-};
+// NOTE: Deboucne stuff. to move
+//
+// type OnFps = (fps: number) => void;
+// const calcFps = (onFps: OnFps) => {
+//   let frames = 0;
+//   let lastTime: number;
+//
+//   return () => {
+//     frames++;
+//     const time = performance.now();
+//     if (!lastTime) {
+//       lastTime = time;
+//     }
+//
+//     if (time > lastTime + 1000) {
+//       const fps = Math.round((frames * 1000) / (time - lastTime));
+//       lastTime = time;
+//       frames = 0;
+//       onFps(fps);
+//     }
+//   };
+// };
+//
+// // Example
+//
+// const _z = calcFps(_printFPS);
+// const _b = (e: string) => {
+//   _test(e);
+//   _z();
+// };
 
 // identity function that debounce an event listener based on FPS
 function fpsDebounceEventListener(listener: EventListener): EventListener {
@@ -48,7 +47,7 @@ function fpsDebounceEventListener(listener: EventListener): EventListener {
 
 // window.addEventListener("mousemove", myDebouncedEventHandler);
 
-const spotlight = (container: HTMLElement): (() => void) => {
+const _spotlight = (container: HTMLElement): (() => void) => {
   const cards = Array.from(container.children as HTMLCollectionOf<HTMLElement>);
   let containerSize: [w: number, h: number];
 
