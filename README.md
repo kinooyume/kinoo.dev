@@ -57,6 +57,8 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 ### Development Tools
 - **[ESLint](https://eslint.org)** - Code linting with TypeScript & accessibility rules
 - **[Prettier](https://prettier.io)** - Code formatting
+- **[Commitlint](https://commitlint.js.org)** - Conventional commit message validation
+- **[Husky](https://typicode.github.io/husky)** - Git hooks (pre-commit lint, commit-msg validation)
 
 ---
 
@@ -135,6 +137,7 @@ feature/* ──► develop ──► main
    - Open PRs targeting `develop`
 
 2. **PR to `develop`** (CI)
+   - Validates commit messages against [Conventional Commits](https://www.conventionalcommits.org)
    - Runs ESLint
    - Builds the project
    - Must pass before merging
@@ -143,6 +146,23 @@ feature/* ──► develop ──► main
    - No tests (already validated on `develop`)
    - Creates a GitHub release with auto-generated changelog
    - Deploys to Netlify
+
+### Git Hooks
+
+Husky runs the following hooks locally:
+
+| Hook | Action |
+|------|--------|
+| `pre-commit` | Runs ESLint |
+| `commit-msg` | Validates commit message via commitlint |
+
+Commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org) format:
+
+```
+type(scope): description
+```
+
+Examples: `feat(ui): add dark mode`, `fix: resolve nav overflow`, `chore(ci): add commitlint`
 
 ### Required Secrets
 
