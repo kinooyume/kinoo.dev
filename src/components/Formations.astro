@@ -1,16 +1,13 @@
 ---
 import Card from "./Card.astro";
 import H3Tagged from "./H3Tagged.astro";
-
-const tailwindCard =
-  "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
 ---
 
 <section id="formations" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Formations</h2>
   <div class="grid">
-    <div class=`epitech ${tailwindCard}` data-animate-card>
+    <div class="epitech formation-card" data-animate-card>
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Master Epitech" tag="Bac+5" />
@@ -39,7 +36,7 @@ const tailwindCard =
         </p>
       </Card>
     </div>
-    <div class=`manipal ${tailwindCard}` data-animate-card>
+    <div class="manipal formation-card" data-animate-card>
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Student Exchange" tag="1 an" />
@@ -68,7 +65,7 @@ const tailwindCard =
         </p>
       </Card>
     </div>
-    <div class=`derniercri ${tailwindCard}` data-animate-card>
+    <div class="derniercri formation-card" data-animate-card>
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Dév. RubyOnRails" tag="Stage" />
@@ -97,7 +94,7 @@ const tailwindCard =
         </ul>
       </Card>
     </div>
-    <div class=`eurotunel ${tailwindCard}` data-animate-card>
+    <div class="eurotunel formation-card" data-animate-card>
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Dév. Angular" tag="Alternance" />
@@ -152,6 +149,18 @@ const tailwindCard =
 
     box-sizing: border-box;
     border-radius: 32px;
+  }
+
+  .formation-card {
+    background: linear-gradient(45deg, #172033, #1e293b 50%, #172033) padding-box,
+      conic-gradient(
+          from var(--border-angle),
+          rgba(71, 85, 105, 0.48) 80%,
+          rgba(71, 85, 105, 0.48) 86%,
+          rgba(71, 85, 105, 0.48) 90%,
+          rgba(71, 85, 105, 0.48) 94%,
+          rgba(71, 85, 105, 0.48)
+        );
   }
 
   a {

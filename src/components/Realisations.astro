@@ -4,16 +4,13 @@ import RealisationCard from "./RealisationCard.astro";
 import TagLink from "./TagLink.astro";
 import ekeynoxIcon from "../svgs/ekeynox.svg?raw";
 import Tag from "./Tag.astro";
-
-const tailwindCard =
-  "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
 ---
 
 <section id="realisations" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Réalisations</h2>
   <div class="grid">
-    <div class={`card ${tailwindCard}`} data-animate-card>
+    <div class="card realisation-card" data-animate-card>
       <RealisationCard
         id="arteflix"
         reverse={true}
@@ -50,7 +47,7 @@ const tailwindCard =
         </div>
       </RealisationCard>
     </div>
-    <div class={`card ${tailwindCard}`} data-animate-card>
+    <div class="card realisation-card" data-animate-card>
       <RealisationCard
         id="ekeynox"
         pictures={[
@@ -116,6 +113,7 @@ const tailwindCard =
     gap: 8px;
   }
   .grid {
+    display: grid;
     grid-row-gap: 26px;
     grid-column-gap: 26px;
   }
@@ -124,6 +122,18 @@ const tailwindCard =
     border: 1px solid #313d50 !important;
     box-sizing: border-box;
     border-radius: 32px;
+  }
+
+  .realisation-card {
+    background: linear-gradient(45deg, #172033, #1e293b 50%, #172033) padding-box,
+      conic-gradient(
+          from var(--border-angle),
+          rgba(71, 85, 105, 0.48) 80%,
+          rgba(71, 85, 105, 0.48) 86%,
+          rgba(71, 85, 105, 0.48) 90%,
+          rgba(71, 85, 105, 0.48) 94%,
+          rgba(71, 85, 105, 0.48)
+        );
   }
 
   .title-wrapper {
