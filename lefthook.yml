@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: eslint
+      glob: "*.{js,ts,tsx,astro}"
+      run: bunx eslint --max-warnings 0 {staged_files}
+
+commit-msg:
+  jobs:
+    - name: conventional-commit
+      run: cog verify --file {1}
