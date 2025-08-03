@@ -62,19 +62,55 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-- **Bun** (latest version recommended)
-
-### Installation
-
 ```bash
-# Clone the repository
 git clone https://github.com/yourusername/kinoo.dev.git
 cd kinoo.dev
+```
 
-# Install dependencies
+### With Nix (recommended)
+
+The project includes a `flake.nix` that provides all system-level dependencies (Bun, Cocogitto, Git) in a reproducible shell.
+
+#### Install Nix
+
+If you don't have Nix installed, use the [Determinate Nix Installer](https://github.com/DeterminateSystems/nix-installer):
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+This enables flakes and the nix command by default.
+
+> **Note:** If you installed Nix via the [official installer](https://nixos.org/download/) instead, you need to enable experimental features manually:
+>
+> ```bash
+> mkdir -p ~/.config/nix
+> echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+> ```
+
+#### Enter the dev shell
+
+```bash
+nix develop
+```
+
+This drops you into a shell with `bun`, `cog`, and `git` available, and automatically runs `bun install` and `lefthook install`.
+
+> **Tip:** If you use [direnv](https://direnv.net/), the included `.envrc` activates the shell automatically when you `cd` into the project.
+
+### Without Nix
+
+Install the following manually:
+
+- **[Bun](https://bun.sh)** (latest version)
+- **[Cocogitto](https://docs.cocogitto.io/)** (`cargo install cocogitto` or via your package manager)
+- **Git**
+
+Then install dependencies and git hooks:
+
+```bash
 bun install
+bunx lefthook install
 ```
 
 ### Development
