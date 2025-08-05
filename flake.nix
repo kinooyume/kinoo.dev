@@ -24,12 +24,12 @@
             packages = [
               pkgs.bun
               pkgs.cocogitto
+              pkgs.direnv
               pkgs.git
             ];
 
             shellHook = ''
               bun install
-              lefthook install
             '';
           };
         }
