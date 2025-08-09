@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kinoo.dev/sitemap-index.xml
