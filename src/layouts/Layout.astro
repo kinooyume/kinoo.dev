@@ -3,42 +3,72 @@ import Header from "../components/Header.astro";
 
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const {
+  title,
+  description = "Développeur front-end freelance basé à Paris. Spécialisé en TypeScript, React et Svelte. Création de sites web performants et accessibles.",
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Martin Kinoo",
+  url: "https://kinoo.dev",
+  description,
+  image: "https://kinoo.dev/og.jpg",
+  areaServed: {
+    "@type": "City",
+    name: "Paris",
+  },
+  knowsAbout: [
+    "TypeScript",
+    "React",
+    "Svelte",
+    "Astro",
+    "SolidJS",
+    "Front-end Development",
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Développeur front-end" />
-
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#181927" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
-    <meta property="og:logo" content="/favicon.svg" />
-
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://kinoo.dev" />
+    <!-- Open Graph -->
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Martin Kinoo · Développeur freelance" />
-    <meta property="og:description" content="Développeur front-end" />
-    <meta property="og:image" content="/og.jpg" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://kinoo.dev/og.jpg" />
     <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Martin Kinoo" />
 
-    <!-- Twitter Meta Tags -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="kinoo.dev" />
-    <meta property="twitter:url" content="https://kinoo.dev" />
-    <meta name="twitter:title" content="Martin Kinoo · Développeur freelance" />
-    <meta name="twitter:description" content="Développeur front-end" />
-    <meta name="twitter:image" content="/og.jpg" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://kinoo.dev/og.jpg" />
 
     <title>{title}</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <Header />
