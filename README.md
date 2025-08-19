@@ -276,7 +276,7 @@ kinoo.dev/
 
 ## 📝 License
 
-© 2024-2026 Martin Kinoo. All rights reserved.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
