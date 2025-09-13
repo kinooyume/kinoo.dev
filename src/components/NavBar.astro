@@ -5,18 +5,24 @@
 </ul>
 
 <script>
-  import { anchorDetection, setupAnchorDetection } from "@/anchorDetection";
+  import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
+  import {
+    createViewDetection,
+    anchorsQueryToViewDetectionElement,
+  } from "@/lib/dom/viewDetection";
 
-  function navbarAnchor() {
-    const sectionDetection = anchorDetection({
-      query: ".navbar a",
-      onVisible: (el: HTMLElement) => el.classList.add("current"),
-      onHidden: (el: HTMLElement) => el.classList.remove("current"),
+  function highlightNavOnSectionVisible() {
+    const targets = anchorsQueryToViewDetectionElement(".navbar a", {
+      onInside: (el) => el.classList.add("current"),
+      onOutside: (el) => el.classList.remove("current"),
     });
-    setupAnchorDetection({ name: "navbar", fn: sectionDetection });
+
+    const checkVisibility = createViewDetection(targets);
+
+    onScrollAndResize(checkVisibility);
   }
 
-  window.addEventListener("load", navbarAnchor);
+  window.addEventListener("load", highlightNavOnSectionVisible);
 </script>
 
 <style>

@@ -2,24 +2,30 @@
 import message from "@/svgs/message.svg?raw";
 ---
 
-<a class="primary floating" href="#contact">
+<a id="floating-contact" class="primary" href="#contact">
   <div class="icon-wrapper">
     <Fragment set:html={message} />
   </div>
 </a>
 <script>
-  import { anchorDetection, setupAnchorDetection } from "@/anchorDetection";
+  import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
+  import {
+    createViewDetection,
+    anchorsQueryToViewDetectionElement,
+  } from "@/lib/dom/viewDetection";
 
-  function floatingAnchor() {
-    const floatingDetection = anchorDetection({
-      query: ".floating",
-      onVisible: (el: HTMLElement) => el.classList.add("current"),
-      onHidden: (el: HTMLElement) => el.classList.remove("current"),
+  function hideContactWhenSectionVisible() {
+    const targets = anchorsQueryToViewDetectionElement("#floating-contact", {
+      onInside: (el) => el.classList.add("current"),
+      onOutside: (el) => el.classList.remove("current"),
     });
-    setupAnchorDetection({ name: "floating", fn: floatingDetection });
+
+    const checkVisibility = createViewDetection(targets);
+
+    onScrollAndResize(checkVisibility);
   }
 
-  window.addEventListener("load", floatingAnchor);
+  window.addEventListener("load", hideContactWhenSectionVisible);
 </script>
 
 <style>
@@ -27,11 +33,11 @@ import message from "@/svgs/message.svg?raw";
     display: none;
   }
 
-  .floating:hover {
+  .floating-contact:hover {
     transform: translateY(-4px);
   }
 
-  .floating:active {
+  .floating-contact:active {
     transform: translateY(5px);
     transition: 200ms;
   }
