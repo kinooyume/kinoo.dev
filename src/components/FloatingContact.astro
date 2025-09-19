@@ -20,7 +20,10 @@ import message from "@/svgs/message.svg?raw";
       onOutside: (el) => el.classList.remove("current"),
     });
 
-    const checkVisibility = createViewDetection(targets);
+    const checkVisibility = createViewDetection(targets, {
+      setOffset: (height) => height,
+      setBounds: (offset) => [offset, 0],
+    });
 
     onScrollAndResize(checkVisibility);
   }
