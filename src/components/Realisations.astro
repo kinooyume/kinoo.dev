@@ -1,6 +1,8 @@
 ---
 import H3Tagged from "./H3Tagged.astro";
-import RealisationCard from "./RealisationCard.astro";
+import Card from "./Card.astro";
+import Slider from "./Slider.tsx";
+import arrow from "@/svgs/arrow.svg?raw";
 import TagLink from "./TagLink.astro";
 import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
 import Tag from "./Tag.astro";
@@ -12,11 +14,7 @@ import Spotlight from "./Spotlight.astro";
   <h2>Réalisations</h2>
   <div class="grid" id="realisations-grid" data-spotlight>
     <Spotlight color="#66c384">
-      <RealisationCard
-        id="arteflix"
-        reverse={true}
-        pictures={["arteflix/01.webp", "arteflix/02.webp", "arteflix/03.webp"]}
-      >
+      <Card reverse={true}>
         <div slot="title" class="title-wrapper">
           <div class="title-container">
             <H3Tagged title="Arteflix" tag="Projet perso" />
@@ -46,22 +44,13 @@ import Spotlight from "./Spotlight.astro";
             <Tag title="Storybook" />
           </div>
         </div>
-      </RealisationCard>
+        <Slider slot="gallery" client:load pictures={["arteflix/01.webp", "arteflix/02.webp", "arteflix/03.webp"]}>
+          <Fragment set:html={arrow} />
+        </Slider>
+      </Card>
     </Spotlight>
     <Spotlight color="#66c384">
-      <RealisationCard
-        id="ekeynox"
-        pictures={[
-          "ekeynox/01.webp",
-          "ekeynox/02.webp",
-          "ekeynox/03.webp",
-          "ekeynox/04.webp",
-          "ekeynox/05.webp",
-          "ekeynox/06.webp",
-          "ekeynox/07.webp",
-          "ekeynox/08.webp",
-        ]}
-      >
+      <Card>
         <div slot="title" class="title-wrapper">
           <div class="title-container">
             <H3Tagged title="Ekeynox" tag="Projet perso" />
@@ -97,7 +86,23 @@ import Spotlight from "./Spotlight.astro";
             <Tag title="Figma" />
           </div>
         </div>
-      </RealisationCard>
+        <Slider
+          slot="gallery"
+          client:load
+          pictures={[
+            "ekeynox/01.webp",
+            "ekeynox/02.webp",
+            "ekeynox/03.webp",
+            "ekeynox/04.webp",
+            "ekeynox/05.webp",
+            "ekeynox/06.webp",
+            "ekeynox/07.webp",
+            "ekeynox/08.webp",
+          ]}
+        >
+          <Fragment set:html={arrow} />
+        </Slider>
+      </Card>
     </Spotlight>
   </div>
 </section>
