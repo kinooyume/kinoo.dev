@@ -1,6 +1,7 @@
 ---
 import Card from "./Card.astro";
-import H3Tagged from "./H3Tagged.astro";
+import CardContent from "./CardContent.astro";
+import CardTitle from "./CardTitle.astro";
 import Spotlight from "./Spotlight.astro";
 ---
 
@@ -9,118 +10,114 @@ import Spotlight from "./Spotlight.astro";
   <h2>Formations</h2>
   <div class="grid" id="formations-grid" data-spotlight>
     <Spotlight color="#9c85d3" class="epitech">
-      <Card
-        ><div class="title" slot="title">
-          <H3Tagged title="Master Epitech" tag="Bac+5" />
+      <Card>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Master Epitech"
+            tag="Bac+5"
+            href="https://epitech.eu"
+            label="Epitech"
+            location="Lille"
+            date="2013-2018"
+          />
+          <img
+            loading="lazy"
+            slot="marge"
+            src="images/epitech.png"
+            alt="epitech"
+          />
           <p>
-            <a
-              href="https://epitech.eu"
-              rel="noreferrer nofollow noopener"
-              target="_blank">Epitech</a
-            >
-            <span class="dotted">Lille</span>
-            <span>2013-2018</span>
+            À travers des projets concrets et une approche par la pratique, j'ai
+            acquis une solide maîtrise des langages de programmation. Epitech
+            m'a également permis de développer une forte capacité d'autonomie,
+            de résolution de problèmes et d'innovation, des compétences
+            essentielles pour évoluer dans le domaine du développement web et
+            logiciel.
           </p>
-        </div>
-        <img
-          loading="lazy"
-          slot="marge"
-          src="images/epitech.png"
-          alt="epitech"
-        />
-        <p>
-          À travers des projets concrets et une approche par la pratique, j'ai
-          acquis une solide maîtrise des langages de programmation. Epitech m'a
-          également permis de développer une forte capacité d'autonomie, de
-          résolution de problèmes et d'innovation, des compétences essentielles
-          pour évoluer dans le domaine du développement web et logiciel.
-        </p>
+        </CardContent>
       </Card>
     </Spotlight>
     <Spotlight color="#9c85d3" class="manipal">
-      <Card
-        ><div class="title" slot="title">
-          <H3Tagged title="Student Exchange" tag="1 an" />
-          <p>
-            <a
-              href="https://www.manipal.edu/mit"
-              rel="noreferrer nofollow noopener"
-              target="_blank">Manipal MIT</a
-            >
-            <span class="dotted">Manipal (India)</span>
-            <span>2017</span>
+      <Card>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Student Exchange"
+            tag="1 an"
+            href="https://www.manipal.edu/mit"
+            label="Manipal MIT"
+            location="Manipal (India)"
+            date="2017"
+          />
+          <img
+            loading="lazy"
+            slot="marge"
+            src="images/manipal.png"
+            alt="manipal-logo"
+          />
+          <p slot="description">
+            Année académique passée à Manipal, Inde, où j'ai pu améliorer
+            considérablement mon niveau d'anglais grâce à un environnement
+            multiculturel et des échanges quotidiens avec des étudiants du monde
+            entier.
           </p>
-        </div>
-
-        <img
-          loading="lazy"
-          slot="marge"
-          src="images/manipal.png"
-          alt="manipal-logo"
-        />
-        <p slot="description">
-          Année académique passée à Manipal, Inde, où j'ai pu améliorer
-          considérablement mon niveau d'anglais grâce à un environnement
-          multiculturel et des échanges quotidiens avec des étudiants du monde
-          entier.
-        </p>
+        </CardContent>
       </Card>
     </Spotlight>
     <Spotlight color="#9c85d3" class="derniercri">
-      <Card
-        ><div class="title" slot="title">
-          <H3Tagged title="Dév. RubyOnRails" tag="Stage" />
-          <p>
-            <a
-              href="https://derniercri.fr"
-              rel="noreferrer nofollow noopener"
-              target="_blank">DernierCri</a
-            >
-            <span class="dotted">Lille</span>
-            <span>2016 (4 mois)</span>
-          </p>
-        </div>
-        <img
-          loading="lazy"
-          slot="marge"
-          src="images/derniercri.png"
-          alt="derniercri"
-        />
-        <ul>
-          <li>
-            Service en Ruby de conversion de fichier markdown en html/pdf/epub
-            basé sur Pandoc.
-          </li>
-          <li>Développement backend en Ruby On Rails.</li>
-        </ul>
+      <Card>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Dév. RubyOnRails"
+            tag="Stage"
+            href="https://derniercri.fr"
+            label="DernierCri"
+            location="Lille"
+            date="2016 (4 mois)"
+          />
+          <img
+            loading="lazy"
+            slot="marge"
+            src="images/derniercri.png"
+            alt="derniercri"
+          />
+          <ul>
+            <li>
+              Service en Ruby de conversion de fichier markdown en html/pdf/epub
+              basé sur Pandoc.
+            </li>
+            <li>Développement backend en Ruby On Rails.</li>
+          </ul>
+        </CardContent>
       </Card>
     </Spotlight>
     <Spotlight color="#9c85d3" class="eurotunel">
-      <Card
-        ><div class="title" slot="title">
-          <H3Tagged title="Dév. Angular" tag="Alternance" />
-          <p>
-            <a
-              href="https://www.leshuttle.com/"
-              rel="noreferrer nofollow noopener"
-              target="_blank">Eurotunnel</a
-            >
-            <span class="dotted">Calais</span>
-            <span>2015/2016 (6 mois)</span>
+      <Card>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Dév. Angular"
+            tag="Alternance"
+            href="https://www.leshuttle.com/"
+            label="Eurotunnel"
+            location="Calais"
+            date="2015/2016 (6 mois)"
+          />
+          <img
+            loading="lazy"
+            slot="marge"
+            src="images/eurotunnel.png"
+            alt="eurotunnel"
+          />
+          <p slot="description">
+            Dans le cadre de la construction d'une documentation plus avancée
+            décrivant les "bonnes pratiques" au seins du développement à
+            Eurotunnel, j'ai réalisé une documentation complète par l'exemple
+            sur l'ergonomie et le design.
           </p>
-        </div>
-        <img
-          loading="lazy"
-          slot="marge"
-          src="images/eurotunnel.png"
-          alt="eurotunnel"
-        />
-        <p slot="description">
-          Dans le cadre de la construction d'une documentation plus avancée
-          décrivant les "bonnes pratiques" au seins du développement à
-          Eurotunnel, j'ai réalisé une documentation complète par l'exemple sur
-          l'ergonomie et le design.
-        </p>
+        </CardContent>
       </Card>
     </Spotlight>
   </div>
@@ -136,13 +133,10 @@ import Spotlight from "./Spotlight.astro";
 </script>
 
 <style>
-  :root {
-    --formation-font-size: 16px;
-  }
-
   #formations {
     --accent-color: #9c85d3;
     --secondary-accent-color: #c9bce6;
+    --card-title-font-size: 16px;
   }
 
   .grid {
@@ -153,41 +147,22 @@ import Spotlight from "./Spotlight.astro";
     grid-row-gap: 26px;
   }
 
-
-  a {
-    text-decoration: underline;
-  }
-
   ul {
     list-style: initial;
     margin-left: 24px;
   }
-  .grid > :global(.epitech) { grid-area: 1 / 1 / 2 / 4; }
-  .grid > :global(.manipal) { grid-area: 2 / 1 / 3 / 2; }
-  .grid > :global(.derniercri) { grid-area: 2 / 2 / 3 / 3; }
-  .grid > :global(.eurotunel) { grid-area: 2 / 3 / 3 / 4; }
-  .title {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
 
-  .title p {
-    margin: 0;
+  .grid > :global(.epitech) {
+    grid-area: 1 / 1 / 2 / 4;
   }
-
-  .title span,
-  .title a {
-    display: inline-block;
-    font-size: var(--formation-font-size);
-    font-weight: 400;
-    color: rgba(143, 143, 151, 0.7);
+  .grid > :global(.manipal) {
+    grid-area: 2 / 1 / 3 / 2;
   }
-
-  .title .dotted:after,
-  .title .dotted:before {
-    content: "·";
-    padding: 0 6px;
+  .grid > :global(.derniercri) {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  .grid > :global(.eurotunel) {
+    grid-area: 2 / 3 / 3 / 4;
   }
 
   @media screen and (max-width: 1200px) {
@@ -197,20 +172,9 @@ import Spotlight from "./Spotlight.astro";
     }
   }
 
-  /* also for formations */
-  @media screen and (max-width: 900px) {
-    :root {
-      --formation-font-size: 16px;
-    }
-
-    .title {
-      gap: 2px;
-    }
-  }
-
   @media screen and (max-width: 600px) {
-    :root {
-      --formation-font-size: 14px;
+    #formations {
+      --card-title-font-size: 14px;
     }
   }
   @media screen and (max-width: 460px) {

@@ -1,0 +1,41 @@
+<div class="card-content">
+  <div class="title-wrapper" data-animate-elem>
+    <div class="title" data-animate-elem>
+      <slot name="title" />
+    </div>
+    <div class="marge" data-animate-elem>
+      <slot name="marge" />
+    </div>
+  </div>
+  <div></div>
+  <div data-animate-elem>
+    <div class="text">
+      <slot name="description" />
+    </div>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .card-content {
+    width: 100%;
+    --duration: 12s;
+  }
+
+  .title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .text {
+    margin-bottom: 32px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .text {
+      padding: 0;
+    }
+  }
+</style>
