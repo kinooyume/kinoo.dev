@@ -1,4 +1,4 @@
-import { rafDebounce } from "./rafDebounce";
+import { mouseTracker } from "./mouseTracker";
 
 /**
  * Initialises a spotlight hover effect on a container.
@@ -6,9 +6,6 @@ import { rafDebounce } from "./rafDebounce";
  * Tracks mouse movement over the container and updates `--mouse-x` /
  * `--mouse-y` CSS custom properties on every child matching
  * `[data-spotlight-card]`, enabling a per-card radial-gradient highlight.
- *
- * The listener is throttled to one update per animation frame via
- * {@link rafDebounce}.
  *
  * @param container - The parent element that receives the `mousemove` listener.
  * @returns A cleanup function that removes the listener.
@@ -18,14 +15,8 @@ export function spotlight(container: HTMLElement): () => void {
     container.querySelectorAll<HTMLElement>("[data-spotlight-card]"),
   );
 
-  let lastClientX = 0;
-  let lastClientY = 0;
-
-  function update() {
+  return mouseTracker(container, (x, y) => {
     const rect = container.getBoundingClientRect();
-    const x = lastClientX - rect.left;
-    const y = lastClientY - rect.top;
-
     cards.forEach((card) => {
       const cardRect = card.getBoundingClientRect();
       const cardX = x - (cardRect.left - rect.left);
@@ -33,22 +24,5 @@ export function spotlight(container: HTMLElement): () => void {
       card.style.setProperty("--mouse-x", `${cardX}px`);
       card.style.setProperty("--mouse-y", `${cardY}px`);
     });
-  }
-
-  const onMouseMove = rafDebounce((e: Event) => {
-    const { clientX, clientY } = e as MouseEvent;
-    lastClientX = clientX;
-    lastClientY = clientY;
-    update();
   });
-
-  const onScroll = rafDebounce(() => update());
-
-  container.addEventListener("mousemove", onMouseMove);
-  window.addEventListener("scroll", onScroll);
-
-  return () => {
-    container.removeEventListener("mousemove", onMouseMove);
-    window.removeEventListener("scroll", onScroll);
-  };
 }
