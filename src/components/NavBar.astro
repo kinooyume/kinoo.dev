@@ -25,12 +25,7 @@
     createViewDetection,
     anchorsQueryToViewDetectionElement,
   } from "@/lib/dom/viewDetection";
-
-  declare global {
-    interface Window {
-      heroAnimationCompleted: boolean;
-    }
-  }
+  import { onHeroAnimationComplete } from "@/lib/dom/onHeroAnimationComplete";
 
   function initNavbar() {
     const navbar = document.querySelector(".navbar") as HTMLElement;
@@ -102,11 +97,7 @@
       onScrollAndResize(checkVisibility, "navbarDetection");
     }
 
-    if (window.heroAnimationCompleted) {
-      enable();
-    } else {
-      window.addEventListener("heroAnimationComplete", enable, { once: true });
-    }
+    onHeroAnimationComplete(enable);
   }
 
   window.addEventListener("load", initNavbar);
