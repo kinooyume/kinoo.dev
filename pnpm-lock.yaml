@@ -41,9 +41,6 @@ importers:
       solid-toast:
         specifier: ^0.5.0
         version: 0.5.0(solid-js@1.8.22)
-      staticrypt:
-        specifier: ^3.5.0
-        version: 3.5.0
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.10
@@ -1167,10 +1164,6 @@ packages:
   dot-case@3.0.4:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
 
-  dotenv@16.4.5:
-    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
-    engines: {node: '>=12'}
-
   dset@3.1.3:
     resolution: {integrity: sha512-20TuZZHCEZ2O71q9/+8BwKwZ0QtD9D8ObhrihJPr+vLLYlSuAU3/zL4cSlgbfeoGHTjCSJBa7NGcrF9/Bx/WJQ==}
     engines: {node: '>=4'}
@@ -2246,11 +2239,6 @@ packages:
 
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
-
-  staticrypt@3.5.0:
-    resolution: {integrity: sha512-gkBFf0Tm/Ooe293/4HgWzJ+KluHr34PKiTTuws79oOPFIUi15S3yUT06NDGKgSWpjW3rWLsKk1lha6i+8+U79g==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
 
   stdin-discarder@0.2.2:
     resolution: {integrity: sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==}
@@ -3917,8 +3905,6 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.7.0
 
-  dotenv@16.4.5: {}
-
   dset@3.1.3: {}
 
   eastasianwidth@0.2.0: {}
@@ -5233,11 +5219,6 @@ snapshots:
   space-separated-tokens@2.0.2: {}
 
   sprintf-js@1.0.3: {}
-
-  staticrypt@3.5.0:
-    dependencies:
-      dotenv: 16.4.5
-      yargs: 17.7.2
 
   stdin-discarder@0.2.2: {}
 
