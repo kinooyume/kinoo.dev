@@ -19,7 +19,10 @@ const SliderPagination = (props: PaginationProps) => {
               <li
                 classList={{ active: index() === props.index() }}
                 onClick={() => props.moveTo(index())}
-              ></li>
+                onKeyPress={(e) => e.key === 'Enter' && props.moveTo(index())}
+                role="button"
+                tabIndex={0}
+               />
             )}
           </For>
         </ul>
@@ -34,7 +37,7 @@ type SliderProps = {
 };
 
 const Slider = (props: SliderProps) => {
-  let sliderEl: HTMLDivElement;
+  let sliderEl!: HTMLDivElement;
   let unsubscribe: () => void;
   const [currentIndex, setCurrentIndex] = createSignal(0);
   const [slider, setSlider] = createSignal<BlazeSlider>();
@@ -55,7 +58,7 @@ const Slider = (props: SliderProps) => {
     const slider = new BlazeSlider(sliderEl);
 
     setSlider(slider);
-    unsubscribe = slider.onSlide((pageIndex, fIndex, lIndex) => {
+    unsubscribe = slider.onSlide((pageIndex, _fIndex, _lIndex) => {
       setCurrentIndex(pageIndex);
     });
   });
@@ -67,7 +70,7 @@ const Slider = (props: SliderProps) => {
   });
 
   return (
-    <div ref={sliderEl!}>
+    <div ref={sliderEl as HTMLDivElement}>
       <div class="blaze-container">
         <div class="blaze-track-container">
           <div class="blaze-track">

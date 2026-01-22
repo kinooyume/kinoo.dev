@@ -1,38 +1,4 @@
 // Cards spotlight
-//
-
-const calcFps = (onFps) => {
-  let frames = 0;
-  let lastTime;
-
-  return () => {
-    frames++;
-    const time = performance.now();
-    if (!lastTime) {
-      lastTime = time;
-    }
-
-    if (time > lastTime + 1000) {
-      const fps = Math.round((frames * 1000) / (time - lastTime));
-      lastTime = time;
-      frames = 0;
-      onFps(fps);
-    }
-  };
-};
-
-// Example
-const printFPS = (fps) => console.warn("FPS: ", fps);
-
-const rafEventHandler = (handler) => {
-  let timeout;
-  const rafHandler = (e) => {
-    if (timeout) cancelAnimationFrame(timeout);
-    timeout = requestAnimationFrame(() => handler(e));
-  };
-  return rafHandler;
-};
-
 class Spotlight {
   constructor(containerElement) {
     this.container = containerElement;
@@ -43,19 +9,9 @@ class Spotlight {
     };
     this.initContainer = this.initContainer.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
-    this.lastTimeout = 0;
-    this.frames = 0;
-
-    const b = calcFps(printFPS);
-    const test = (e) => {
-      this.onMouseMove(e);
-      b();
-    };
-
-    this.rafHandler = rafEventHandler(test);
 
     containerElement.addEventListener("mouseover", (e) => {
-      this.rafHandler(e);
+      this.onMouseMove(e);
     });
     this.init();
   }
@@ -72,7 +28,6 @@ class Spotlight {
     const x = clientX - rect.left;
     const y = clientY - rect.top;
     const inside = x < w && x > 0 && y < h && y > 0;
-
     if (inside) {
       this.cards.forEach((card) => {
         const cardX = -(card.getBoundingClientRect().left - rect.left) + x;
@@ -86,8 +41,8 @@ class Spotlight {
   init() {
     this.initContainer();
     window.addEventListener("resize", this.initContainer);
-    window.addEventListener("mousemove", this.rafHandler);
+    window.addEventListener("mousemove", this.onMouseMove);
   }
 }
 
-module.exports = Spotlight;
+export default Spotlight;

@@ -28,12 +28,12 @@ type Props = {
 const ContactForm = (props: Props) => {
   const [formState, setFormState] = createSignal<FormState>(FormState.unsend);
   const [error, setError] = createSignal<string | null>(null);
-  const [loginForm, { Form, Field, FieldArray }] =
+  const [_loginForm, { Form, Field }] =
     createForm<ContactFormType>();
 
   const submitHandler: SubmitHandler<ContactFormType> = async (
     values,
-    event,
+    _event,
   ) => {
     const form = {
       ...values,
@@ -56,13 +56,16 @@ const ContactForm = (props: Props) => {
         setFormState(FormState.sended);
       } else {
         // Custom message for failed HTTP codes
-        if (response.status === 404) throw new Error("404, Not found");
-        if (response.status === 500)
+        if (response.status === 404) {
+          throw new Error("404, Not found");
+        }
+        if (response.status === 500) {
           throw new Error("500, internal server error");
+        }
         throw new Error(response.status.toString());
       }
     } catch (error) {
-      setError("Error: " + error);
+      setError(`Error: ${error}`);
       setFormState(FormState.error);
     }
   };
