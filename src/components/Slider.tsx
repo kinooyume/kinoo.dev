@@ -19,6 +19,9 @@ const SliderPagination = (props: PaginationProps) => {
               <li
                 classList={{ active: index() === props.index() }}
                 onClick={() => props.moveTo(index())}
+                onKeyPress={(e) => e.key === 'Enter' && props.moveTo(index())}
+                role="button"
+                tabIndex={0}
                />
             )}
           </For>
@@ -67,7 +70,7 @@ const Slider = (props: SliderProps) => {
   });
 
   return (
-    <div ref={sliderEl!}>
+    <div ref={sliderEl as HTMLDivElement}>
       <div class="blaze-container">
         <div class="blaze-track-container">
           <div class="blaze-track">

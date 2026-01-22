@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: [0, 1],
       duration: 600,
       scale: [0.8, 1],
-      delay: (el, i) => {
+      delay: (_el, i) => {
         return 70 * i;
       },
     })
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       translateY: ["1.3em", 0],
       translateZ: 0,
       duration: 750,
-      delay: (el, i) => {
+      delay: (_el, i) => {
         return 30 * i;
       },
     });
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     translateY: [50, 0],
     opacity: [0, 1],
     duration: 1000,
-    delay: (el, i) => {
+    delay: (_el, i) => {
       return 30 * i;
     },
   });
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     translateY: ["-1.2em", 0],
     opacity: [0, 1],
     duration: 800,
-    delay: (el, i) => {
+    delay: (_el, i) => {
       return 30 * i;
     },
   });
