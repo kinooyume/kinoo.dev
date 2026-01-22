@@ -37,7 +37,7 @@ type SliderProps = {
 };
 
 const Slider = (props: SliderProps) => {
-  let sliderEl: HTMLDivElement;
+  let sliderEl!: HTMLDivElement;
   let unsubscribe: () => void;
   const [currentIndex, setCurrentIndex] = createSignal(0);
   const [slider, setSlider] = createSignal<BlazeSlider>();

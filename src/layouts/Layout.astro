@@ -20,7 +20,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:logo" content="/favicon.svg" />
-        
+
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://kinoo.dev" />
     <meta property="og:type" content="website" />
@@ -44,13 +44,12 @@ const { title } = Astro.props;
     <Header />
     <slot />
     <script>
-      // @ts-expect-error - Spotlight module has no types
-      import Spotlight from "../spotlight";
-
-      const spotlights = document.querySelectorAll(".simple-cards");
-      spotlights.forEach((spotlight) => {
-        new Spotlight(spotlight);
-      });
+      //   import Spotlight from "../spotlight";
+      //
+      //   const spotlights = document.querySelectorAll(".simple-cards");
+      //   spotlights.forEach((spotlight) => {
+      //     new Spotlight(spotlight);
+      //   });
     </script>
   </body>
 </html>
@@ -70,7 +69,7 @@ const { title } = Astro.props;
 
     --border-angle: 360deg;
     --accent-color: #f8ba88;
-    --secondary-accent-color: #C9A88D;
+    --secondary-accent-color: #c9a88d;
     --accent-brigth: #f6b17a;
 
     --card-first-background-color: #2d2d3b;
