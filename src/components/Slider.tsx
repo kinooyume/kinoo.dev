@@ -19,7 +19,7 @@ const SliderPagination = (props: PaginationProps) => {
               <li
                 classList={{ active: index() === props.index() }}
                 onClick={() => props.moveTo(index())}
-              ></li>
+               />
             )}
           </For>
         </ul>
@@ -55,7 +55,7 @@ const Slider = (props: SliderProps) => {
     const slider = new BlazeSlider(sliderEl);
 
     setSlider(slider);
-    unsubscribe = slider.onSlide((pageIndex, fIndex, lIndex) => {
+    unsubscribe = slider.onSlide((pageIndex, _fIndex, _lIndex) => {
       setCurrentIndex(pageIndex);
     });
   });

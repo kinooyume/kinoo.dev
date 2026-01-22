@@ -13,7 +13,7 @@ const calcFps = (onFps) => {
     }
 
     if (time > lastTime + 1000) {
-      let fps = Math.round((frames * 1000) / (time - lastTime));
+      const fps = Math.round((frames * 1000) / (time - lastTime));
       lastTime = time;
       frames = 0;
       onFps(fps);
@@ -22,7 +22,7 @@ const calcFps = (onFps) => {
 };
 
 // Example
-const printFPS = (fps) => console.info("FPS: ", fps);
+const printFPS = (fps) => console.warn("FPS: ", fps);
 
 const rafEventHandler = (handler) => {
   let timeout;

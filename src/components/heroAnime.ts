@@ -9,7 +9,7 @@ declare global {
 
 window.heroAnimationCompleted = false;
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   // Appliquer les styles pour centrer le Hero et cacher le reste
   
   document.body.classList.add('hero-animation');

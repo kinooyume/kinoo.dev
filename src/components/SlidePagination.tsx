@@ -9,5 +9,5 @@ type Props = {
 };
 
 const SlidePagination = (props: Props) => {
-  return <div class="pagination-wrapper"></div>;
+  return <div class="pagination-wrapper" />;
 };

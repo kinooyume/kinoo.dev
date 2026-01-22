@@ -12,7 +12,7 @@ const calcFps = (onFps: OnFps) => {
     }
 
     if (time > lastTime + 1000) {
-      let fps = Math.round((frames * 1000) / (time - lastTime));
+      const fps = Math.round((frames * 1000) / (time - lastTime));
       lastTime = time;
       frames = 0;
       onFps(fps);

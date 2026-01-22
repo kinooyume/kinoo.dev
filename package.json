@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
@@ -26,7 +28,15 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.2.0",
+    "@eslint/js": "^9.39.2",
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "@typescript-eslint/parser": "^8.53.1",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-solid": "^0.14.5",
     "prettier": "^3.3.3",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript-eslint": "^8.53.1"
   }
 }
