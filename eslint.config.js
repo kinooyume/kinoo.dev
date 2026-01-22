@@ -96,6 +96,13 @@ export default [
     ...solid,
   },
   {
+    // Allow triple-slash references in Astro env.d.ts
+    files: ["src/env.d.ts"],
+    rules: {
+      "@typescript-eslint/triple-slash-reference": "off",
+    },
+  },
+  {
     // Ignore patterns
     ignores: [
       "dist/**",
