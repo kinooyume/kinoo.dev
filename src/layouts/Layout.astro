@@ -6,8 +6,6 @@ interface Props {
 }
 
 const { title } = Astro.props;
-// Cool modern effetcs
-// https://codepen.io/dtab428/pen/GRPVQXR
 ---
 
 <!doctype html>
@@ -46,7 +44,7 @@ const { title } = Astro.props;
     <Header />
     <slot />
     <script>
-      // @ts-ignore-next-line
+      // @ts-expect-error - Spotlight module has no types
       import Spotlight from "../spotlight";
 
       const spotlights = document.querySelectorAll(".simple-cards");
