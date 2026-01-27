@@ -1,60 +1,213 @@
-<ul class="navbar">
-  <li><a class="anime nav" href="#experiences">Expériences</a></li>
-  <li><a class="anime nav" href="#realisations">Réalisations</a></li>
-  <li><a class="anime nav" href="#formations">Formations</a></li>
-</ul>
+<nav class="navbar">
+  <ul>
+    <li>
+      <a class="anime nav" href="#experiences" data-color="#f68dab"
+        >Expériences</a
+      >
+    </li>
+    <li>
+      <a class="anime nav" href="#realisations" data-color="#66c384"
+        >Réalisations</a
+      >
+    </li>
+    <li>
+      <a class="anime nav" href="#formations" data-color="#9c85d3">Formations</a
+      >
+    </li>
+  </ul>
+  <div class="indicator"></div>
+</nav>
 
 <script>
+  import anime from "animejs";
   import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
   import {
     createViewDetection,
     anchorsQueryToViewDetectionElement,
   } from "@/lib/dom/viewDetection";
 
-  function highlightNavOnSectionVisible() {
-    const targets = anchorsQueryToViewDetectionElement(".navbar a", {
-      onInside: (el) => el.classList.add("current"),
-      onOutside: (el) => el.classList.remove("current"),
+  declare global {
+    interface Window {
+      heroAnimationCompleted: boolean;
+    }
+  }
+
+  function initNavbar() {
+    const navbar = document.querySelector(".navbar") as HTMLElement;
+    const indicator = document.querySelector(
+      ".navbar .indicator",
+    ) as HTMLElement;
+    const links = document.querySelectorAll(
+      ".navbar a",
+    ) as NodeListOf<HTMLElement>;
+    const ul = navbar.querySelector("ul") as HTMLElement;
+
+    let isHovering = false;
+    let isEnabled = false;
+    let hoverTimeout: number | null = null;
+
+    function setIndicatorColor(color: string) {
+      indicator.style.setProperty("--indicator-color", color);
+    }
+
+    function updateIndicator(target: HTMLElement | null, immediate = false) {
+      if (!isEnabled) return;
+
+      if (!target) {
+        anime({
+          targets: indicator,
+          opacity: 0,
+          duration: immediate ? 0 : 200,
+          easing: "easeOutQuad",
+        });
+        return;
+      }
+
+      const rect = target.getBoundingClientRect();
+      const navRect = navbar.getBoundingClientRect();
+      const color = target.dataset.color || "#f8ba88";
+
+      setIndicatorColor(color);
+
+      anime({
+        targets: indicator,
+        left: rect.left - navRect.left,
+        width: rect.width,
+        opacity: 1,
+        duration: immediate ? 0 : 300,
+        easing: "easeOutCubic",
+      });
+    }
+
+    function getActiveLink(): HTMLElement | null {
+      return navbar.querySelector("a.current");
+    }
+
+    // Hover handling on individual links
+    links.forEach((link) => {
+      link.addEventListener("mouseenter", () => {
+        if (!isEnabled) return;
+        if (hoverTimeout) {
+          clearTimeout(hoverTimeout);
+          hoverTimeout = null;
+        }
+        isHovering = true;
+        updateIndicator(link);
+      });
     });
 
-    const checkVisibility = createViewDetection(targets, {
+    // Use the ul container for mouseleave to have bigger detection area
+    ul.addEventListener("mouseleave", () => {
+      if (!isEnabled) return;
+      isHovering = false;
+      hoverTimeout = window.setTimeout(() => {
+        if (!isHovering) {
+          updateIndicator(getActiveLink());
+        }
+      }, 150);
+    });
+
+    // Anchor-based scroll detection via viewDetection
+    let activeLink: HTMLElement | null = null;
+
+    const targets = anchorsQueryToViewDetectionElement(".navbar a", {
+      onInside: (anchor) => anchor.classList.add("current"),
+      onOutside: (anchor) => anchor.classList.remove("current"),
+    });
+
+    const detect = createViewDetection(targets, {
       setBounds: (offset) => [offset + 100, offset - 100],
     });
 
-    onScrollAndResize(checkVisibility);
+    function checkVisibility() {
+      detect();
+      const newActive = getActiveLink();
+      if (newActive !== activeLink) {
+        activeLink = newActive;
+        if (!isHovering) updateIndicator(activeLink);
+      }
+    }
+
+    // Enable after hero animation completes
+    function enable() {
+      isEnabled = true;
+      navbar.classList.add("enabled");
+      onScrollAndResize(checkVisibility, "navbarDetection");
+    }
+
+    if (window.heroAnimationCompleted) {
+      enable();
+    } else {
+      window.addEventListener("heroAnimationComplete", enable, { once: true });
+    }
   }
 
-  window.addEventListener("load", highlightNavOnSectionVisible);
+  window.addEventListener("load", initNavbar);
 </script>
 
 <style>
+  .navbar {
+    position: relative;
+    pointer-events: none;
+  }
+
+  .navbar.enabled {
+    pointer-events: auto;
+  }
+
   ul {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 8px;
+    padding: 8px;
+    margin: -8px;
   }
 
   li {
     opacity: 0;
   }
+
   a {
     display: block;
-    padding: 16px 0;
+    padding: 16px 12px;
     font-size: 18px;
     font-weight: 200;
     color: var(--color);
     text-decoration: none;
     opacity: 0.6;
-    transition: all 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
   }
 
+  a:hover,
   a.current {
-    backgrond-color: var(--color);
     opacity: 1;
   }
 
+  a[data-color="#f68dab"].current {
+    color: #f68dab;
+  }
+  a[data-color="#66c384"].current {
+    color: #66c384;
+  }
+  a[data-color="#9c85d3"].current {
+    color: #9c85d3;
+  }
+
+  .indicator {
+    --indicator-color: #f8ba88;
+    position: absolute;
+    bottom: 8px;
+    height: 2px;
+    background: var(--indicator-color);
+    border-radius: 1px;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 0 6px
+      color-mix(in srgb, var(--indicator-color) 50%, transparent);
+  }
+
   @media screen and (max-width: 980px) {
-    ul {
+    .navbar {
       display: none;
     }
   }
