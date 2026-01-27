@@ -234,6 +234,47 @@ const { title } = Astro.props;
     padding: 0;
   }
 
+  /* Base styles (replacing Tailwind preflight) */
+  *,
+  ::before,
+  ::after {
+    border-width: 0;
+    border-style: solid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  img,
+  svg {
+    display: block;
+  }
+
+  button {
+    background-color: transparent;
+    background-image: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
   body.hero-animation main > *:not(#hero) {
     display: none;
   }
