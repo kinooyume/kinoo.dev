@@ -206,19 +206,11 @@
     position: absolute;
     bottom: 8px;
     height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--indicator-color),
-      var(--indicator-color),
-      transparent
-    );
-    border-radius: 2px;
+    background: var(--indicator-color);
+    border-radius: 1px;
     opacity: 0;
     pointer-events: none;
-    box-shadow:
-      0 0 8px var(--indicator-color),
-      0 0 16px var(--indicator-color);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--indicator-color) 50%, transparent);
   }
 
   @media screen and (max-width: 980px) {
