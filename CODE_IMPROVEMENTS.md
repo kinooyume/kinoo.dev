@@ -132,8 +132,7 @@ src/components/heroAnime.ts:76:13 - 'el' parameter unused
 
 #### CSS Custom Properties:
 - Many CSS variables defined in `:root` in `Layout.astro`
-- Could be moved to separate CSS file or Tailwind config
-- Mixing Tailwind with custom CSS extensively
+- Could be moved to separate CSS file
 
 ---
 
@@ -260,4 +259,4 @@ npm run build
 ---
 
 **Generated**: 2024-01-22  
-**Codebase**: kinoo.dev portfolio site (Astro + SolidJS + TailwindCSS)
+**Codebase**: kinoo.dev portfolio site (Astro + SolidJS)

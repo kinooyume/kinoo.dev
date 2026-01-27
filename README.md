@@ -10,7 +10,6 @@
 [![Astro](https://img.shields.io/badge/Astro-4.16-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![SolidJS](https://img.shields.io/badge/SolidJS-1.8-2C4F7C?style=for-the-badge&logo=solid&logoColor=white)](https://www.solidjs.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Bun](https://img.shields.io/badge/Bun-1.x-000000?style=for-the-badge&logo=bun&logoColor=white)](https://bun.sh)
 
 [🌐 Live Website](https://kinoo.dev) · [📧 Contact](https://kinoo.dev#contact)
@@ -29,7 +28,7 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 
 - ⚡ **Lightning-fast** static site generation with Astro
 - 🎭 **Smooth animations** using Anime.js
-- 🎨 **Modern UI** with TailwindCSS
+- 🎨 **Modern UI** with custom CSS
 - 📱 **Fully responsive** design
 - ♿ **Accessible** with proper ARIA labels and keyboard navigation
 - 🔍 **SEO optimized** with sitemap generation
@@ -45,7 +44,6 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 - **[TypeScript](https://www.typescriptlang.org)** - Type-safe JavaScript
 
 ### UI & Styling
-- **[TailwindCSS](https://tailwindcss.com)** - Utility-first CSS framework
 - **[SolidJS](https://www.solidjs.com)** - Reactive UI components
 - **[Anime.js](https://animejs.com)** - Animation library
 
@@ -197,7 +195,6 @@ kinoo.dev/
 │   ├── svgs/             # SVG icons
 │   └── env.d.ts
 ├── astro.config.mjs      # Astro configuration
-├── tailwind.config.mjs   # TailwindCSS configuration
 ├── eslint.config.js      # ESLint configuration
 └── package.json
 ```
@@ -228,4 +225,4 @@ kinoo.dev/
 
 Interested in working together? Reach out through the [contact form](https://kinoo.dev#contact) or connect with me on your preferred platform.
 
-**Built with ❤️ using [Astro](https://astro.build), [TailwindCSS](https://tailwindcss.com), and [SolidJS](https://www.solidjs.com)**
+**Built with ❤️ using [Astro](https://astro.build) and [SolidJS](https://www.solidjs.com)**
