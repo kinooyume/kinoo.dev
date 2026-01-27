@@ -1,34 +1,20 @@
 ---
 // https://cruip.com/how-to-create-a-spotlight-card-hover-effect-with-tailwind-css/
-
-const tailwindCard =
-  "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
 ---
 
-<!-- Card 1 -->
-<div
-  class="relative h-full bg-slate-800 rounded-3xl p-px before:absolute before:w-80 before:h-80 before:-left-40 before:-top-40 before:bg-accent-normal before:rounded-full before:opacity-0 before:pointer-events-none before:transition-opacity before:duration-500 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:group-hover:opacity-100 before:z-10 before:blur-[100px] after:absolute after:w-96 after:h-96 after:-left-48 after:-top-48 after:bg-accent-normal after:rounded-full after:opacity-0 after:pointer-events-none after:transition-opacity after:duration-500 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:hover:opacity-10 after:z-30 after:blur-[100px] overflow-hidden"
->
-  <div
-    class=`card relative h-full ${tailwindCard} p-6 pb-8 rounded-[inherit] z-20 overflow-hidden`
-  >
+<div class="spotlight-wrapper">
+  <div class="card">
     <!-- Radial gradient -->
-    <div
-      class="absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 pointer-events-none -z-10 w-1/2 aspect-square"
-      aria-hidden="true"
-    >
-      <div
-        class="absolute inset-0 translate-z-0 bg-slate-800 rounded-full blur-[80px]"
-      >
-      </div>
+    <div class="radial-gradient" aria-hidden="true">
+      <div class="radial-blur"></div>
     </div>
-    <div class="flex flex-col h-full items-start">
+    <div class="card-content">
       <!-- Image -->
-      <div class="relative inline-flex">
+      <div class="image-wrapper">
         <slot name="image" />
       </div>
       <!-- Text -->
-      <div class="grow mb-5">
+      <div class="text-wrapper">
         <slot name="content" />
       </div>
     </div>
@@ -36,6 +22,108 @@ const tailwindCard =
 </div>
 
 <style>
+  .spotlight-wrapper {
+    position: relative;
+    height: 100%;
+    background-color: #1e293b;
+    border-radius: 1.5rem;
+    padding: 1px;
+    overflow: hidden;
+  }
+
+  .spotlight-wrapper::before,
+  .spotlight-wrapper::after {
+    content: "";
+    position: absolute;
+    background-color: #f8ba88;
+    border-radius: 9999px;
+    opacity: 0;
+    pointer-events-none;
+    transition: opacity 500ms;
+    transform: translateX(var(--mouse-x)) translateY(var(--mouse-y));
+  }
+
+  .spotlight-wrapper::before {
+    width: 20rem;
+    height: 20rem;
+    left: -10rem;
+    top: -10rem;
+    z-index: 10;
+    filter: blur(100px);
+  }
+
+  .spotlight-wrapper::after {
+    width: 24rem;
+    height: 24rem;
+    left: -12rem;
+    top: -12rem;
+    z-index: 30;
+    filter: blur(100px);
+  }
+
+  :global(.group):hover .spotlight-wrapper::before {
+    opacity: 1;
+  }
+
+  .spotlight-wrapper:hover::after {
+    opacity: 0.1;
+  }
+
+  .card {
+    position: relative;
+    height: 100%;
+    background: linear-gradient(45deg, #172033, #1e293b 50%, #172033) padding-box,
+      conic-gradient(
+          from var(--border-angle),
+          rgba(71, 85, 105, 0.48) 80%,
+          rgba(71, 85, 105, 0.48) 86%,
+          rgba(71, 85, 105, 0.48) 90%,
+          rgba(71, 85, 105, 0.48) 94%,
+          rgba(71, 85, 105, 0.48)
+        );
+    padding: 1.5rem;
+    padding-bottom: 2rem;
+    border-radius: inherit;
+    z-index: 20;
+    overflow: hidden;
+  }
+
+  .radial-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateY(50%) translateX(-50%);
+    pointer-events-none;
+    z-index: -10;
+    width: 50%;
+    aspect-ratio: 1;
+  }
+
+  .radial-blur {
+    position: absolute;
+    inset: 0;
+    background-color: #1e293b;
+    border-radius: 9999px;
+    filter: blur(80px);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+  }
+
+  .image-wrapper {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .text-wrapper {
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
   @media screen and (max-width: 900px) {
     .card {
       padding: 0;

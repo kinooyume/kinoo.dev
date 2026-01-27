@@ -10,16 +10,13 @@ import H3Tagged from "./H3Tagged.astro";
 //
 // multiline button
 //https://keenanpayne.com/css-multi-line-buttons/
-//
-const tailwindCard =
-  "[background:linear-gradient(45deg,#172033,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.slate.600/.48)_86%,_theme(colors.slate.600/.48)_90%,_theme(colors.slate.600/.48)_94%,_theme(colors.slate.600/.48))]";
 ---
 
 <section id="experiences" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Expériences</h2>
   <div class="grid">
-    <div class=`verty ${tailwindCard}` data-animate-card>
+    <div class="verty experience-card" data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Développeur backend" tag="Freelance" />
@@ -41,7 +38,7 @@ const tailwindCard =
         <img loading="lazy" slot="marge" src="images/verty.webp" alt="verty" />
       </Card>
     </div>
-    <div class=`impacthorizon ${tailwindCard}` data-animate-card>
+    <div class="impacthorizon experience-card" data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Développeur frontend" tag="Freelance" />
@@ -69,7 +66,7 @@ const tailwindCard =
         />
       </Card>
     </div>
-    <div class={`opo ${tailwindCard}`} data-animate-card>
+    <div class="opo experience-card" data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Lead Développeur fullstack" tag="CDI" />
@@ -128,7 +125,7 @@ const tailwindCard =
           alt="impacthorizon"
         />
       </Card>
-    </div><div class=`ordoclic ${tailwindCard}` data-animate-card>
+    </div><div class="ordoclic experience-card" data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Lead Développeur" tag="Freelance" />
@@ -157,7 +154,7 @@ const tailwindCard =
           alt="ordoclic"
         />
       </Card>
-    </div><div class=`cautioneo ${tailwindCard} ` data-animate-card>
+    </div><div class="cautioneo experience-card" data-animate-card>
       <Card>
         <div class="title" slot="title">
           <H3Tagged title="Développeur RubyOnRails" tag="Freelance" />
@@ -210,6 +207,18 @@ const tailwindCard =
 
     box-sizing: border-box;
     border-radius: 32px;
+  }
+
+  .experience-card {
+    background: linear-gradient(45deg, #172033, #1e293b 50%, #172033) padding-box,
+      conic-gradient(
+          from var(--border-angle),
+          rgba(71, 85, 105, 0.48) 80%,
+          rgba(71, 85, 105, 0.48) 86%,
+          rgba(71, 85, 105, 0.48) 90%,
+          rgba(71, 85, 105, 0.48) 94%,
+          rgba(71, 85, 105, 0.48)
+        );
   }
 
   img {

@@ -15,7 +15,7 @@ interface Props {
 const { cards } = Astro.props;
 ---
 
-<div class="simple-cards mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none group">
+<div class="simple-cards group">
   {
     cards.map((card) => (
       <div class="card">
@@ -46,7 +46,17 @@ const { cards } = Astro.props;
     --simple-cards-font-size: 18px;
   }
   .simple-cards {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
     gap: 36px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .simple-cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: none;
+    }
   }
 
   .card {
