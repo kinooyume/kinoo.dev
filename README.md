@@ -116,6 +116,49 @@ The build output will be in the `dist/` directory, ready to deploy to any static
 
 ---
 
+## 🔄 CI/CD Workflow
+
+This project uses a two-branch workflow with automated releases and deployments.
+
+### Branch Strategy
+
+```
+feature/* ──► develop ──► main
+                │           │
+             CI tests    Release + Deploy
+```
+
+### Workflow Steps
+
+1. **Feature Development**
+   - Create feature branches from `develop`
+   - Open PRs targeting `develop`
+
+2. **PR to `develop`** (CI)
+   - Runs ESLint
+   - Builds the project
+   - Must pass before merging
+
+3. **PR to `main`** (Release & Deploy)
+   - No tests (already validated on `develop`)
+   - Creates a GitHub release with auto-generated changelog
+   - Deploys to Netlify
+
+### Required Secrets
+
+Configure these in GitHub repository settings (Settings → Secrets → Actions):
+
+| Secret | Description |
+|--------|-------------|
+| `NETLIFY_AUTH_TOKEN` | Netlify personal access token |
+| `NETLIFY_SITE_ID` | Netlify site ID |
+
+### Versioning
+
+Update the version in `package.json` before merging to `main` to create a new release tag.
+
+---
+
 ## 📂 Project Structure
 
 ```text
