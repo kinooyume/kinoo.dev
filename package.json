@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . --max-warnings 0",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
@@ -28,6 +29,8 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "3.1.6",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
     "@eslint/js": "^9.39.2",
     "@typescript-eslint/eslint-plugin": "^8.53.1",
     "@typescript-eslint/parser": "^8.53.1",
@@ -35,6 +38,7 @@
     "eslint-plugin-astro": "^1.5.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-solid": "^0.14.5",
+    "husky": "^9.1.7",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "typescript-eslint": "^8.53.1"
