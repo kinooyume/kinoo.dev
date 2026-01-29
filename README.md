@@ -55,8 +55,8 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 ### Development Tools
 - **[ESLint](https://eslint.org)** - Code linting with TypeScript & accessibility rules
 - **[Prettier](https://prettier.io)** - Code formatting
-- **[Commitlint](https://commitlint.js.org)** - Conventional commit message validation
-- **[Husky](https://typicode.github.io/husky)** - Git hooks (pre-commit lint, commit-msg validation)
+- **[Cocogitto](https://docs.cocogitto.io/)** - Conventional commit validation
+- **[Lefthook](https://github.com/evilmartians/lefthook)** - Git hooks manager
 
 ---
 
@@ -147,12 +147,12 @@ feature/* ──► develop ──► main
 
 ### Git Hooks
 
-Husky runs the following hooks locally:
+Lefthook runs the following hooks locally:
 
 | Hook | Action |
 |------|--------|
-| `pre-commit` | Runs ESLint |
-| `commit-msg` | Validates commit message via commitlint |
+| `pre-commit` | Runs ESLint on staged files |
+| `commit-msg` | Validates commit message via cocogitto |
 
 Commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org) format:
 
