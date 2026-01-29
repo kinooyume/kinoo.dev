@@ -4,13 +4,14 @@ import RealisationCard from "./RealisationCard.astro";
 import TagLink from "./TagLink.astro";
 import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
 import Tag from "./Tag.astro";
+import Spotlight from "./Spotlight.astro";
 ---
 
 <section id="realisations" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Réalisations</h2>
-  <div class="grid">
-    <div class="card realisation-card" data-animate-card>
+  <div class="grid" id="realisations-grid" data-spotlight>
+    <Spotlight color="#66c384">
       <RealisationCard
         id="arteflix"
         reverse={true}
@@ -46,8 +47,8 @@ import Tag from "./Tag.astro";
           </div>
         </div>
       </RealisationCard>
-    </div>
-    <div class="card realisation-card" data-animate-card>
+    </Spotlight>
+    <Spotlight color="#66c384">
       <RealisationCard
         id="ekeynox"
         pictures={[
@@ -97,9 +98,18 @@ import Tag from "./Tag.astro";
           </div>
         </div>
       </RealisationCard>
-    </div>
+    </Spotlight>
   </div>
 </section>
+
+<script>
+  import { spotlight } from "@/spotlight";
+
+  const container = document.getElementById("realisations-grid");
+  if (container) {
+    spotlight(container);
+  }
+</script>
 
 <style>
   #realisations {
@@ -117,25 +127,6 @@ import Tag from "./Tag.astro";
     grid-row-gap: 26px;
     grid-column-gap: 26px;
   }
-  .grid > div {
-    background-color: var(--card-background-color);
-    border: 1px solid #313d50 !important;
-    box-sizing: border-box;
-    border-radius: 32px;
-  }
-
-  .realisation-card {
-    background: linear-gradient(45deg, #172033, #1e293b 50%, #172033) padding-box,
-      conic-gradient(
-          from var(--border-angle),
-          rgba(71, 85, 105, 0.48) 80%,
-          rgba(71, 85, 105, 0.48) 86%,
-          rgba(71, 85, 105, 0.48) 90%,
-          rgba(71, 85, 105, 0.48) 94%,
-          rgba(71, 85, 105, 0.48)
-        );
-  }
-
   .title-wrapper {
     display: flex;
     justify-content: space-between;
