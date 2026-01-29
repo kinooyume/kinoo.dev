@@ -53,6 +53,8 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 - **[Solid Toast](https://github.com/ardeora/solid-toast)** - Toast notifications
 
 ### Development Tools
+- **[Nix Flakes](https://nixos.wiki/wiki/Flakes)** - Reproducible dev environment
+- **[direnv](https://direnv.net/)** - Auto-activate dev shell on `cd`
 - **[ESLint](https://eslint.org)** - Code linting with TypeScript & accessibility rules
 - **[Prettier](https://prettier.io)** - Code formatting
 - **[Cocogitto](https://docs.cocogitto.io/)** - Conventional commit validation
@@ -67,7 +69,8 @@ git clone https://github.com/yourusername/kinoo.dev.git
 cd kinoo.dev
 ```
 
-### With Nix (recommended)
+<details>
+<summary><strong>With Nix (recommended)</strong></summary>
 
 The project includes a `flake.nix` that provides all system-level dependencies (Bun, Cocogitto, Git) in a reproducible shell.
 
@@ -110,7 +113,10 @@ Then allow the `.envrc`:
 direnv allow
 ```
 
-### Without Nix
+</details>
+
+<details>
+<summary><strong>Without Nix</strong></summary>
 
 Install the following manually:
 
@@ -124,6 +130,8 @@ Then install dependencies and git hooks:
 bun install
 bunx lefthook install
 ```
+
+</details>
 
 ### Development
 
@@ -168,13 +176,14 @@ The build output will be in the `dist/` directory, ready to deploy to any static
 
 This project uses a two-branch workflow with automated releases and deployments.
 
-### Branch Strategy
-
 ```
 feature/* ──► develop ──► main
                 │           │
              CI tests    Release + Deploy
 ```
+
+<details>
+<summary><strong>Workflow details</strong></summary>
 
 ### Workflow Steps
 
@@ -222,6 +231,8 @@ Configure these in GitHub repository settings (Settings → Secrets → Actions)
 ### Versioning
 
 Update the version in `package.json` before merging to `main` to create a new release tag.
+
+</details>
 
 ---
 
