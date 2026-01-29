@@ -1,4 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import vertyImage from "@/assets/images/verty.webp";
+import impacthorizonImage from "@/assets/images/impacthorizon.webp";
+import opoImage from "@/assets/images/opo.png";
+import ordoclicImage from "@/assets/images/ordoclic.png";
+import cautioneoImage from "@/assets/images/cautioneo.png";
 import Card from "./Card.astro";
 import H3Tagged from "./H3Tagged.astro";
 import Spotlight from "./Spotlight.astro";
@@ -27,7 +33,7 @@ import Spotlight from "./Spotlight.astro";
             sur Scaleway, avec une architecture fiable et maintenable.
           </p>
 
-          <img loading="lazy" slot="marge" src="images/verty.webp" alt="verty" />
+          <Image loading="lazy" slot="marge" src={vertyImage} alt="verty" />
         </Card>
     </Spotlight>
     <Spotlight color="#f68dab" class="impacthorizon">
@@ -50,10 +56,10 @@ import Spotlight from "./Spotlight.astro";
             externes).
           </p>
 
-          <img
+          <Image
             loading="lazy"
             slot="marge"
-            src="images/impacthorizon.webp"
+            src={impacthorizonImage}
             alt="impacthorizon"
           />
         </Card>
@@ -110,10 +116,10 @@ import Spotlight from "./Spotlight.astro";
               architecture hexagonale, data-driven et framework agnostic.
             </li>
           </ul>
-          <img
+          <Image
             loading="lazy"
             slot="marge"
-            src="images/opo.png"
+            src={opoImage}
             alt="oeilpouroeil"
           />
         </Card>
@@ -139,10 +145,10 @@ import Spotlight from "./Spotlight.astro";
             <li>Chiffrement d'ordonnance avec le protocole pkcs11</li>
             <li>Envois de document à travers une API</li>
           </ul>
-          <img
+          <Image
             loading="lazy"
             slot="marge"
-            src="images/ordoclic.png"
+            src={ordoclicImage}
             alt="ordoclic"
           />
         </Card>
@@ -164,10 +170,10 @@ import Spotlight from "./Spotlight.astro";
             <li>Développement du parcours locataire</li>
             <li>Développement d'un CRM custom</li>
           </ul>
-          <img
+          <Image
             loading="lazy"
             slot="marge"
-            src="images/cautioneo.png"
+            src={cautioneoImage}
             alt="cautioneo"
           />
         </Card>

@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import profilImage from "@/assets/images/profil.png";
 import Tag from "@/components/Tag.astro";
 import HeroSubtitle from "./HeroSubtitle.astro";
 import React from "@/svgs/react.svg?raw";
@@ -90,10 +92,10 @@ const techs: TagProps[] = [
         }
       </ul>
     </div>
-    <img
-      loading="lazy"
+    <Image
+      loading="eager"
       class="image hero-image"
-      src="images/profil.png"
+      src={profilImage}
       alt="martin kinoo"
     />
   </div>

@@ -20,6 +20,8 @@
     "animejs": "^3.2.2",
     "astro": "^4.16.19",
     "astro-compress": "^2.3.1",
+    "astro-robots-txt": "^1.0.0",
+    "astro-seo": "^1.1.0",
     "blaze-slider": "kiuKisas/blaze-slider#fix/onSlide_next",
     "solid-js": "^1.8.22",
     "solid-toast": "^0.5.0",

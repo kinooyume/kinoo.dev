@@ -1,4 +1,9 @@
 ---
+import { Image } from "astro:assets";
+import epitechImage from "@/assets/images/epitech.png";
+import manipalImage from "@/assets/images/manipal.png";
+import derniercriImage from "@/assets/images/derniercri.png";
+import eurotunnelImage from "@/assets/images/eurotunnel.png";
 import Card from "./Card.astro";
 import H3Tagged from "./H3Tagged.astro";
 import Spotlight from "./Spotlight.astro";
@@ -22,10 +27,10 @@ import Spotlight from "./Spotlight.astro";
             <span>2013-2018</span>
           </p>
         </div>
-        <img
+        <Image
           loading="lazy"
           slot="marge"
-          src="images/epitech.png"
+          src={epitechImage}
           alt="epitech"
         />
         <p>
@@ -52,10 +57,10 @@ import Spotlight from "./Spotlight.astro";
           </p>
         </div>
 
-        <img
+        <Image
           loading="lazy"
           slot="marge"
-          src="images/manipal.png"
+          src={manipalImage}
           alt="manipal-logo"
         />
         <p slot="description">
@@ -80,10 +85,10 @@ import Spotlight from "./Spotlight.astro";
             <span>2016 (4 mois)</span>
           </p>
         </div>
-        <img
+        <Image
           loading="lazy"
           slot="marge"
-          src="images/derniercri.png"
+          src={derniercriImage}
           alt="derniercri"
         />
         <ul>
@@ -109,10 +114,10 @@ import Spotlight from "./Spotlight.astro";
             <span>2015/2016 (6 mois)</span>
           </p>
         </div>
-        <img
+        <Image
           loading="lazy"
           slot="marge"
-          src="images/eurotunnel.png"
+          src={eurotunnelImage}
           alt="eurotunnel"
         />
         <p slot="description">
