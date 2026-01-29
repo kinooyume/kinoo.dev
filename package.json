@@ -1,7 +1,7 @@
 {
   "name": "kinoo.dev",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,12 +10,11 @@
     "astro": "astro",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/solid-js": "^4.4.1",
-    "@astrojs/tailwind": "^5.1.0",
     "@modular-forms/solid": "^0.22.1",
     "@types/animejs": "^3.1.12",
     "animejs": "^3.2.2",
@@ -24,13 +23,10 @@
     "blaze-slider": "kiuKisas/blaze-slider#fix/onSlide_next",
     "solid-js": "^1.8.22",
     "solid-toast": "^0.5.0",
-    "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4"
   },
   "devDependencies": {
     "@astrojs/sitemap": "3.1.6",
-    "@commitlint/cli": "^20.3.1",
-    "@commitlint/config-conventional": "^20.3.1",
     "@eslint/js": "^9.39.2",
     "@typescript-eslint/eslint-plugin": "^8.53.1",
     "@typescript-eslint/parser": "^8.53.1",
@@ -38,7 +34,7 @@
     "eslint-plugin-astro": "^1.5.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-solid": "^0.14.5",
-    "husky": "^9.1.7",
+    "lefthook": "^2.0.16",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "typescript-eslint": "^8.53.1"
