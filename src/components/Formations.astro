@@ -1,13 +1,14 @@
 ---
 import Card from "./Card.astro";
 import H3Tagged from "./H3Tagged.astro";
+import Spotlight from "./Spotlight.astro";
 ---
 
 <section id="formations" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Formations</h2>
-  <div class="grid">
-    <div class="epitech formation-card" data-animate-card>
+  <div class="grid" id="formations-grid" data-spotlight>
+    <Spotlight color="#9c85d3" class="epitech">
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Master Epitech" tag="Bac+5" />
@@ -35,8 +36,8 @@ import H3Tagged from "./H3Tagged.astro";
           pour évoluer dans le domaine du développement web et logiciel.
         </p>
       </Card>
-    </div>
-    <div class="manipal formation-card" data-animate-card>
+    </Spotlight>
+    <Spotlight color="#9c85d3" class="manipal">
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Student Exchange" tag="1 an" />
@@ -64,8 +65,8 @@ import H3Tagged from "./H3Tagged.astro";
           entier.
         </p>
       </Card>
-    </div>
-    <div class="derniercri formation-card" data-animate-card>
+    </Spotlight>
+    <Spotlight color="#9c85d3" class="derniercri">
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Dév. RubyOnRails" tag="Stage" />
@@ -93,8 +94,8 @@ import H3Tagged from "./H3Tagged.astro";
           <li>Développement backend en Ruby On Rails.</li>
         </ul>
       </Card>
-    </div>
-    <div class="eurotunel formation-card" data-animate-card>
+    </Spotlight>
+    <Spotlight color="#9c85d3" class="eurotunel">
       <Card
         ><div class="title" slot="title">
           <H3Tagged title="Dév. Angular" tag="Alternance" />
@@ -121,9 +122,18 @@ import H3Tagged from "./H3Tagged.astro";
           l'ergonomie et le design.
         </p>
       </Card>
-    </div>
+    </Spotlight>
   </div>
 </section>
+
+<script>
+  import { spotlight } from "@/spotlight";
+
+  const container = document.getElementById("formations-grid");
+  if (container) {
+    spotlight(container);
+  }
+</script>
 
 <style>
   :root {
@@ -143,25 +153,6 @@ import H3Tagged from "./H3Tagged.astro";
     grid-row-gap: 26px;
   }
 
-  .grid > div {
-    background-color: var(--card-background-color);
-    border: 1px solid #313d50 !important;
-
-    box-sizing: border-box;
-    border-radius: 32px;
-  }
-
-  .formation-card {
-    background: linear-gradient(45deg, #172033, #1e293b 50%, #172033) padding-box,
-      conic-gradient(
-          from var(--border-angle),
-          rgba(71, 85, 105, 0.48) 80%,
-          rgba(71, 85, 105, 0.48) 86%,
-          rgba(71, 85, 105, 0.48) 90%,
-          rgba(71, 85, 105, 0.48) 94%,
-          rgba(71, 85, 105, 0.48)
-        );
-  }
 
   a {
     text-decoration: underline;
@@ -171,10 +162,10 @@ import H3Tagged from "./H3Tagged.astro";
     list-style: initial;
     margin-left: 24px;
   }
-.epitech { grid-area: 1 / 1 / 2 / 4; }
-.manipal { grid-area: 2 / 1 / 3 / 2; }
-.derniercri { grid-area: 2 / 2 / 3 / 3; }
-.eurotunel { grid-area: 2 / 3 / 3 / 4; } 
+  .grid > :global(.epitech) { grid-area: 1 / 1 / 2 / 4; }
+  .grid > :global(.manipal) { grid-area: 2 / 1 / 3 / 2; }
+  .grid > :global(.derniercri) { grid-area: 2 / 2 / 3 / 3; }
+  .grid > :global(.eurotunel) { grid-area: 2 / 3 / 3 / 4; }
   .title {
     display: flex;
     flex-direction: column;
