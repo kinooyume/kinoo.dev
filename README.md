@@ -94,9 +94,21 @@ This enables flakes and the nix command by default.
 nix develop
 ```
 
-This drops you into a shell with `bun`, `cog`, and `git` available, and automatically runs `bun install` and `lefthook install`.
+This drops you into a shell with `bun`, `cog`, and `git` available, and automatically runs `bun install`.
 
-> **Tip:** If you use [direnv](https://direnv.net/), the included `.envrc` activates the shell automatically when you `cd` into the project.
+#### Auto-activate with direnv (optional)
+
+The project includes an `.envrc` so [direnv](https://direnv.net/) can activate the dev shell automatically when you `cd` into the project. Hook it into your shell:
+
+- **fish**: `echo 'direnv hook fish | source' >> ~/.config/fish/config.fish`
+- **bash**: `echo 'eval "$(direnv hook bash)"' >> ~/.bashrc`
+- **zsh**: `echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc`
+
+Then allow the `.envrc`:
+
+```bash
+direnv allow
+```
 
 ### Without Nix
 
