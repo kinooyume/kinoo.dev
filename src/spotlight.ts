@@ -1,88 +1,36 @@
-
-// NOTE: Deboucne stuff. to move
-//
-// type OnFps = (fps: number) => void;
-// const calcFps = (onFps: OnFps) => {
-//   let frames = 0;
-//   let lastTime: number;
-//
-//   return () => {
-//     frames++;
-//     const time = performance.now();
-//     if (!lastTime) {
-//       lastTime = time;
-//     }
-//
-//     if (time > lastTime + 1000) {
-//       const fps = Math.round((frames * 1000) / (time - lastTime));
-//       lastTime = time;
-//       frames = 0;
-//       onFps(fps);
-//     }
-//   };
-// };
-//
-// // Example
-//
-// const _z = calcFps(_printFPS);
-// const _b = (e: string) => {
-//   _test(e);
-//   _z();
-// };
-
-// identity function that debounce an event listener based on FPS
-function fpsDebounceEventListener(listener: EventListener): EventListener {
-  let rafId: number;
-
-  // raf wrapper
-  const rafListener = (e: Event) => {
+export function rafDebounce(listener: EventListener): EventListener {
+  let rafId = 0;
+  return (e: Event) => {
     if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(() => listener(e));
   };
-
-  return rafListener;
 }
 
-// const myDebouncedEventHandler = fpsDebounceEventListener(myEventHandler);
+export function spotlight(container: HTMLElement): () => void {
+  const cards = Array.from(
+    container.querySelectorAll<HTMLElement>("[data-spotlight-card]"),
+  );
 
-// window.addEventListener("mousemove", myDebouncedEventHandler);
-
-const _spotlight = (container: HTMLElement): (() => void) => {
-  const cards = Array.from(container.children as HTMLCollectionOf<HTMLElement>);
-  let containerSize: [w: number, h: number];
-
-  const updateContainerSize = () => {
-    containerSize = [container.offsetWidth, container.offsetHeight];
-  };
-
-  updateContainerSize();
-
-  const onMouseMove = (e: Event) => {
-    const [w, h] = containerSize;
+  function onMouseMove(e: Event) {
     const { clientX, clientY } = e as MouseEvent;
     const rect = container.getBoundingClientRect();
     const x = clientX - rect.left;
     const y = clientY - rect.top;
-    const isInside = x < w && x > 0 && y < h && y > 0;
 
-    if (!isInside) return;
-    cards.forEach((card) => {
-      const cardX = -(card.getBoundingClientRect().left - rect.left) + x;
-      const cardY = -(card.getBoundingClientRect().top - rect.top) + y;
-      card.style.setProperty("--mouse-x", `${cardX}px`);
-      card.style.setProperty("--mouse-y", `${cardY}px`);
-    });
-  };
+    for (let i = 0; i < cards.length; i++) {
+      const cardRect = cards[i].getBoundingClientRect();
+      const cardX = x - (cardRect.left - rect.left);
+      const cardY = y - (cardRect.top - rect.top);
+      cards[i].style.setProperty("--mouse-x", `${cardX  }px`);
+      cards[i].style.setProperty("--mouse-y", `${cardY  }px`);
+    }
+  }
 
-  const onMouseMoveRaf = fpsDebounceEventListener(onMouseMove);
+  const onMouseMoveRaf = rafDebounce(onMouseMove);
 
-  window.addEventListener("resize", updateContainerSize);
-  window.addEventListener("mouseover", onMouseMoveRaf);
-  window.addEventListener("mousemove", onMouseMoveRaf);
+  container.addEventListener("mousemove", onMouseMoveRaf);
 
   return () => {
-    window.removeEventListener("mouseover", onMouseMoveRaf);
-    window.removeEventListener("mousemove", onMouseMoveRaf);
-    window.removeEventListener("resize", updateContainerSize);
+    container.removeEventListener("mousemove", onMouseMoveRaf);
   };
-};
+}
