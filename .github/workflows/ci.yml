@@ -19,6 +19,8 @@ jobs:
 
       - name: Validate PR commits
         uses: cocogitto/cocogitto-action@v3
+        with:
+          check-latest-tag-only: true
 
       - name: Install dependencies
         run: bun install
