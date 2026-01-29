@@ -1,0 +1,14 @@
+from_latest_tag = true
+tag_prefix = "v"
+branch_whitelist = ["main"]
+
+[changelog]
+path = "CHANGELOG.md"
+authors = []
+
+[bump_hooks]
+pre_bump_hooks = []
+post_bump_hooks = [
+    """jq '.version = "{{version}}"' package.json > tmp.json && mv tmp.json package.json""",
+    "git add package.json",
+]
