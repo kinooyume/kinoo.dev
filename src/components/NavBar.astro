@@ -17,7 +17,9 @@
       onOutside: (el) => el.classList.remove("current"),
     });
 
-    const checkVisibility = createViewDetection(targets);
+    const checkVisibility = createViewDetection(targets, {
+      setBounds: (offset) => [offset + 100, offset - 100],
+    });
 
     onScrollAndResize(checkVisibility);
   }
