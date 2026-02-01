@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.6.1 - 2026-02-01
+#### Bug Fixes
+- **(gyroTracker)** remove drift (not great solution) (#26) - (323e71c) - Martin Kinoo
+- **(gyroTracker)** drift to ensure base keep stable - (8e8da4e) - Martin Kinoo
+- **(gyroTracker)** calibrate the reading center point - (65534ae) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.6.0 - (f7500ed) - github-actions[bot]
+
+- - -
+
 ## v0.6.0 - 2026-02-01
 #### Bug Fixes
 - **(Card)** fix long card not appearing in time - (526736d) - Martin Kinoo
