@@ -3,10 +3,9 @@
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "astro dev --bun",
+    "build": "astro build --bun",
+    "preview": "astro preview --bun",
     "astro:check": "astro check",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
