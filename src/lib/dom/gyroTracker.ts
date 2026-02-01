@@ -48,14 +48,24 @@ export const gyroTracker = (
   if (!("DeviceOrientationEvent" in window)) return () => {};
 
   let listening = false;
+  let baseBeta: number | null = null;
+  let baseGamma: number | null = null;
+
+  const RANGE = 30; // degrees of tilt from center to edge
 
   const handler = rafDebounce(((e: Event) => {
     const { beta, gamma } = e as DeviceOrientationEvent;
     if (beta === null || gamma === null) return;
 
+    // Calibrate: first reading becomes the center point
+    if (baseBeta === null || baseGamma === null) {
+      baseBeta = beta;
+      baseGamma = gamma;
+    }
+
     const rect = container.getBoundingClientRect();
-    const x = map(gamma, -45, 45, 0, rect.width);
-    const y = map(beta, 0, 90, 0, rect.height);
+    const x = map(gamma - baseGamma, -RANGE, RANGE, 0, rect.width);
+    const y = map(beta - baseBeta, -RANGE, RANGE, 0, rect.height);
     onUpdate(x, y);
   }) as EventListener);
 
