@@ -1,13 +1,25 @@
 import { mouseTracker } from "./mouseTracker";
+import { gyroTracker } from "./gyroTracker";
+
+const isMobile = () => window.matchMedia("(hover: none)").matches;
+
+let forceGyro = false;
+
+/** Forces all spotlight instances to use the gyro tracker (dev only). */
+export function setForceGyro(value: boolean) {
+  forceGyro = value;
+}
 
 /**
  * Initialises a spotlight hover effect on a container.
  *
- * Tracks mouse movement over the container and updates `--mouse-x` /
- * `--mouse-y` CSS custom properties on every child matching
- * `[data-spotlight-card]`, enabling a per-card radial-gradient highlight.
+ * On desktop, tracks mouse movement. On mobile, uses the device
+ * gyroscope to derive spotlight position from tilt angles.
  *
- * @param container - The parent element that receives the `mousemove` listener.
+ * Both paths update `--mouse-x` / `--mouse-y` CSS custom properties
+ * on every child matching `[data-spotlight-card]`.
+ *
+ * @param container - The parent element that receives the listener.
  * @returns A cleanup function that removes the listener.
  */
 export function spotlight(container: HTMLElement): () => void {
@@ -15,7 +27,9 @@ export function spotlight(container: HTMLElement): () => void {
     container.querySelectorAll<HTMLElement>("[data-spotlight-card]"),
   );
 
-  return mouseTracker(container, (x, y) => {
+  const track = forceGyro || isMobile() ? gyroTracker : mouseTracker;
+
+  return track(container, (x, y) => {
     const rect = container.getBoundingClientRect();
     cards.forEach((card) => {
       const cardRect = card.getBoundingClientRect();
