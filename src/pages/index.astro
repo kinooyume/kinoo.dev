@@ -10,16 +10,16 @@ import FloatingContact from "@/components/FloatingContact.astro";
 
 <Layout title="Martin Kinoo · Développeur Front-end freelance">
   <script>
-    import { revealSections } from "@/lib/dom/revealSection";
-    import { revealCards } from "@/lib/dom/revealCard";
-    import { onHeroAnimationComplete } from "@/lib/dom/onHeroAnimationComplete";
+    import { revealSections } from "@/lib/animations/revealSection";
+    import { revealCards } from "@/lib/animations/revealCard";
+    import { onHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
 
     // Reset scroll on back-forward navigation
     if (window.scrollY !== 0) {
       const nav = performance.getEntriesByType("navigation")[0];
       const isBfCache =
-        performance.navigation && performance.navigation.type === 2;
-      if (nav || isBfCache) {
+        nav && (nav as PerformanceNavigationTiming).type === "back_forward";
+      if (isBfCache) {
         window.scrollTo({ top: 0, behavior: "auto" });
       }
     }
