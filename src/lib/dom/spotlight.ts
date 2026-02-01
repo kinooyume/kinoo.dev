@@ -27,7 +27,8 @@ export function spotlight(container: HTMLElement): () => void {
     container.querySelectorAll<HTMLElement>("[data-spotlight-card]"),
   );
 
-  const track = forceGyro || isMobile() ? gyroTracker : mouseTracker;
+  // TODO: re-enable gyroTracker for mobile when calibration is refined
+  const track = forceGyro ? gyroTracker : mouseTracker;
 
   return track(container, (x, y) => {
     const rect = container.getBoundingClientRect();
