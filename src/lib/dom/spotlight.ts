@@ -18,11 +18,13 @@ export function spotlight(container: HTMLElement): () => void {
     container.querySelectorAll<HTMLElement>("[data-spotlight-card]"),
   );
 
-  function onMouseMove(e: Event) {
-    const { clientX, clientY } = e as MouseEvent;
+  let lastClientX = 0;
+  let lastClientY = 0;
+
+  function update() {
     const rect = container.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
+    const x = lastClientX - rect.left;
+    const y = lastClientY - rect.top;
 
     cards.forEach((card) => {
       const cardRect = card.getBoundingClientRect();
@@ -33,11 +35,20 @@ export function spotlight(container: HTMLElement): () => void {
     });
   }
 
-  const onMouseMoveRaf = rafDebounce(onMouseMove);
+  const onMouseMove = rafDebounce((e: Event) => {
+    const { clientX, clientY } = e as MouseEvent;
+    lastClientX = clientX;
+    lastClientY = clientY;
+    update();
+  });
 
-  container.addEventListener("mousemove", onMouseMoveRaf);
+  const onScroll = rafDebounce(() => update());
+
+  container.addEventListener("mousemove", onMouseMove);
+  window.addEventListener("scroll", onScroll);
 
   return () => {
-    container.removeEventListener("mousemove", onMouseMoveRaf);
+    container.removeEventListener("mousemove", onMouseMove);
+    window.removeEventListener("scroll", onScroll);
   };
 }
