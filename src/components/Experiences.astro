@@ -1,6 +1,7 @@
 ---
 import Card from "./Card.astro";
-import H3Tagged from "./H3Tagged.astro";
+import CardContent from "./CardContent.astro";
+import CardTitle from "./CardTitle.astro";
 import Spotlight from "./Spotlight.astro";
 ---
 
@@ -10,69 +11,64 @@ import Spotlight from "./Spotlight.astro";
   <div class="grid" id="experiences-grid" data-spotlight>
     <Spotlight color="#f68dab" class="verty">
       <Card>
-          <div class="title" slot="title">
-            <H3Tagged title="Développeur backend" tag="Freelance" />
-            <p>
-              <a
-                href="https://verty.eu/"
-                rel="noreferrer nofollow noopener"
-                target="_blank">Verty</a
-              >
-              <span class="dotted">Remote</span><span>2025 (2mois)</span>
-            </p>
-          </div>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Développeur backend"
+            tag="Freelance"
+            href="https://verty.eu/"
+            label="Verty"
+            location="Remote"
+            date="2025 (3 mois)"
+          />
           <p slot="description">
             Conception et développement d'une synchronisation entre Shopify et un
             site de vente externe via les APIs. Services en <string>Go</string> hébergés
             sur Scaleway, avec une architecture fiable et maintenable.
           </p>
-
           <img loading="lazy" slot="marge" src="images/verty.webp" alt="verty" />
-        </Card>
+        </CardContent>
+      </Card>
     </Spotlight>
     <Spotlight color="#f68dab" class="impacthorizon">
       <Card>
-          <div class="title" slot="title">
-            <H3Tagged title="Développeur frontend" tag="Freelance" />
-            <p>
-              <a
-                href="https://impacthorizongroup.com/"
-                rel="noreferrer nofollow noopener"
-                target="_blank">Impact Horizon</a
-              >
-              <span class="dotted">Remote</span><span>2025 (2mois)</span>
-            </p>
-          </div>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Développeur frontend"
+            tag="Freelance"
+            href="https://impacthorizongroup.com/"
+            label="Impact Horizon"
+            location="Remote"
+            date="2025 (6 mois)"
+          />
           <p slot="description">
             Développement d'un système <strong>React</strong> de génération de sites
             <strong>data-driven</strong>, structuré pour les LLM. Architecture
             modulaire avec composants réutilisables (UI, logique, intégrations
             externes).
           </p>
-
           <img
             loading="lazy"
             slot="marge"
             src="images/impacthorizon.webp"
             alt="impacthorizon"
           />
-        </Card>
+        </CardContent>
+      </Card>
     </Spotlight>
     <Spotlight color="#f68dab" class="opo">
       <Card>
-          <div class="title" slot="title">
-            <H3Tagged title="Lead Développeur fullstack" tag="CDI" />
-            <p>
-              <a
-                href="https://oeilpouroeilcreations.fr"
-                rel="noreferrer nofollow noopener"
-                target="_blank">Oeil pour Oeil</a
-              >
-              <span class="dotted">Lille</span><span
-                >2019-2022 (3 ans et 6 mois)</span
-              >
-            </p>
-          </div>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Lead Développeur fullstack"
+            tag="CDI"
+            href="https://oeilpouroeilcreations.fr"
+            label="Oeil pour Oeil"
+            location="Lille"
+            date="2019-2022 (3 ans et 6 mois)"
+          />
           <p slot="description">
             Responsable du développement du catalogue des formations gamifiées et
             formations sur-mesure, de l'infrastructure et du parcours client. En
@@ -116,19 +112,20 @@ import Spotlight from "./Spotlight.astro";
             src="images/opo.png"
             alt="oeilpouroeil"
           />
-        </Card>
+        </CardContent>
+      </Card>
     </Spotlight><Spotlight color="#f68dab" class="ordoclic">
       <Card>
-          <div class="title" slot="title">
-            <H3Tagged title="Lead Développeur" tag="Freelance" />
-            <p>
-              <a
-                href="https://ordoclic.fr"
-                rel="noreferrer nofollow noopener"
-                target="_blank">Ordoclic</a
-              ><span class="dotted">Lille</span><span>2017-2018 (8 mois)</span>
-            </p>
-          </div>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Lead Développeur"
+            tag="Freelance"
+            href="https://ordoclic.fr"
+            label="Ordoclic"
+            location="Lille"
+            date="2017-2018 (8 mois)"
+          />
           <p slot="description">
             Responsable du développement d'une imprimante virtuelle chez les
             professionnelles de santé afin de faciliter le passage aux ordonnances
@@ -145,20 +142,20 @@ import Spotlight from "./Spotlight.astro";
             src="images/ordoclic.png"
             alt="ordoclic"
           />
-        </Card>
+        </CardContent>
+      </Card>
     </Spotlight><Spotlight color="#f68dab" class="cautioneo">
       <Card>
-          <div class="title" slot="title">
-            <H3Tagged title="Développeur RubyOnRails" tag="Freelance" />
-            <p>
-              <a
-                href="https://cautioneo.com"
-                rel="noreferrer nofollow noopener"
-                target="_blank">Cautioneo</a
-              ><span class="dotted">Lille</span>
-              <span>2018 (2 mois)</span>
-            </p>
-          </div>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Développeur RubyOnRails"
+            tag="Freelance"
+            href="https://cautioneo.com"
+            label="Cautioneo"
+            location="Lille"
+            date="2018 (2 mois)"
+          />
           <p slot="description">Développement du Saas en RubyOnRails.</p>
           <ul>
             <li>Développement du parcours locataire</li>
@@ -170,7 +167,8 @@ import Spotlight from "./Spotlight.astro";
             src="images/cautioneo.png"
             alt="cautioneo"
           />
-        </Card>
+        </CardContent>
+      </Card>
     </Spotlight>
   </div>
 </section>
@@ -185,13 +183,10 @@ import Spotlight from "./Spotlight.astro";
 </script>
 
 <style>
-  :root {
-    --experience-font-size: 16px;
-  }
-
   #experiences {
     --accent-color: #f68dab;
     --secondary-accent-color: #f8c8d9;
+    --card-title-font-size: 16px;
   }
 
   .grid {
@@ -219,34 +214,6 @@ import Spotlight from "./Spotlight.astro";
     grid-area: 1 / 2 / 3 / 3;
   }
 
-  a {
-    text-decoration: underline;
-  }
-
-  .title {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .title p {
-    margin: 0;
-  }
-
-  .title span,
-  .title a {
-    display: inline-block;
-    font-size: var(--experience-font-size);
-    font-weight: 400;
-    color: rgba(143, 143, 151, 0.7);
-  }
-
-  .title .dotted:after,
-  .title .dotted:before {
-    content: "·";
-    padding: 0 6px;
-  }
-
   ul {
     list-style: initial;
     margin-left: 24px;
@@ -259,19 +226,9 @@ import Spotlight from "./Spotlight.astro";
     }
   }
 
-  @media screen and (max-width: 900px) {
-    :root {
-      --experience-font-size: 16px;
-    }
-
-    .title {
-      gap: 2px;
-    }
-  }
-
   @media screen and (max-width: 600px) {
-    :root {
-      --experience-font-size: 14px;
+    #experiences {
+      --card-title-font-size: 14px;
     }
   }
   @media screen and (max-width: 460px) {
