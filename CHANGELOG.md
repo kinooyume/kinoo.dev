@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.6.2 - 2026-02-01
+#### Bug Fixes
+- **(gyroTracker)** disabled until we found a better solution (#27) - (4c6f958) - Martin Kinoo
+- **(gyroTracker)** remove drift (not great solution) (#26) - (323e71c) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.6.1 - (050dd9e) - github-actions[bot]
+
+- - -
+
 ## v0.6.1 - 2026-02-01
 #### Bug Fixes
 - **(gyroTracker)** remove drift (not great solution) (#26) - (323e71c) - Martin Kinoo
