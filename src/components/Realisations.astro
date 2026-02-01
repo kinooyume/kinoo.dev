@@ -1,6 +1,7 @@
 ---
 import H3Tagged from "./H3Tagged.astro";
 import Card from "./Card.astro";
+import CardSplit from "./CardSplit.astro";
 import Slider from "./Slider.tsx";
 import arrow from "@/svgs/arrow.svg?raw";
 import TagLink from "./TagLink.astro";
@@ -14,94 +15,112 @@ import Spotlight from "./Spotlight.astro";
   <h2>Réalisations</h2>
   <div class="grid" id="realisations-grid" data-spotlight>
     <Spotlight color="#66c384">
-      <Card reverse={true}>
-        <div slot="title" class="title-wrapper">
-          <div class="title-container">
-            <H3Tagged title="Arteflix" tag="Projet perso" />
-            <TagLink href="https://arteflix.kinoo.dev" text="Visiter le site" />
+      <Card>
+        <CardSplit reverse>
+          <div slot="title" class="title-wrapper">
+            <div class="title-container">
+              <H3Tagged title="Arteflix" tag="Projet perso" />
+              <TagLink
+                href="https://arteflix.kinoo.dev"
+                text="Visiter le site"
+              />
+            </div>
+            <div class="title-logo">
+              <img alt="arteflix" src="/images/arteflix/logo.webp" />
+            </div>
           </div>
-          <div class="title-logo">
-            <img alt="arteflix" src="/images/arteflix/logo.webp" />
+          <div slot="description">
+            <p>
+              Arteflix est un site web permetant d'accéder au catalogue d'<b
+                >ARTE</b
+              > en reprenant le system design de <b>Netflix</b>.
+            </p>
+            <br />
+            <p>
+              Le site web respecte l'url du site arte.tv, il suffit donc de
+              changer l'url pour accéder au même contenu.
+            </p>
+            <br />
+            <br />
+            <div class="row">
+              <Tag title="React" />
+              <Tag title="Next.js" />
+              <Tag title="Rescript" />
+              <Tag title="Storybook" />
+            </div>
           </div>
-        </div>
-        <div slot="description">
-          <p>
-            Arteflix est un site web permetant d'accéder au catalogue d'<b
-              >ARTE</b
-            > en reprenant le system design de <b>Netflix</b>.
-          </p>
-          <br />
-          <p>
-            Le site web respecte l'url du site arte.tv, il suffit donc de
-            changer l'url pour accéder au même contenu.
-          </p>
-          <br />
-          <br />
-          <div class="row">
-            <Tag title="React" />
-            <Tag title="Next.js" />
-            <Tag title="Rescript" />
-            <Tag title="Storybook" />
-          </div>
-        </div>
-        <Slider slot="gallery" client:load pictures={["arteflix/01.webp", "arteflix/02.webp", "arteflix/03.webp"]}>
-          <Fragment set:html={arrow} />
-        </Slider>
+          <Slider
+            slot="aside"
+            client:load
+            pictures={[
+              "arteflix/01.webp",
+              "arteflix/02.webp",
+              "arteflix/03.webp",
+            ]}
+          >
+            <Fragment set:html={arrow} />
+          </Slider>
+        </CardSplit>
       </Card>
     </Spotlight>
     <Spotlight color="#66c384">
       <Card>
-        <div slot="title" class="title-wrapper">
-          <div class="title-container">
-            <H3Tagged title="Ekeynox" tag="Projet perso" />
-            <TagLink href="https://ekeynox.kinoo.dev" text="Visiter le site" />
+        <CardSplit>
+          <div slot="title" class="title-wrapper">
+            <div class="title-container">
+              <H3Tagged title="Ekeynox" tag="Projet perso" />
+              <TagLink
+                href="https://ekeynox.kinoo.dev"
+                text="Visiter le site"
+              />
+            </div>
+            <div class="title-logo">
+              <Fragment set:html={ekeynoxIcon} />
+            </div>
           </div>
-          <div class="title-logo">
-            <Fragment set:html={ekeynoxIcon} />
+          <div slot="description">
+            <p>
+              Ekeynox est un jeu de <b>dactylographie</b>, permettant de
+              s'entrainer à taper au clavier, plus rapidement et sans fautes.
+            </p>
+            <br />
+            <p>
+              Le jeu propose 2 modes de jeu, un mode <b>course de mot</b> et un mode
+              <b>contre la montre</b> et différent type de contenu, à savoir <b
+                >des mots aléatoires</b
+              >, des <b>citations</b> ou un <b>texte personnalisé</b>.
+            </p>
+            <br />
+            <p>
+              À la fin d'une partie, le joueur peut consulter ses <b>
+                statistiques</b
+              > et
+              <b>rejouer</b> en mode fantôme contre son score précédent.
+            </p>
+            <br />
+            <div class="row">
+              <Tag title="SolidJS" />
+              <Tag title="SolidStart" />
+              <Tag title="Figma" />
+            </div>
           </div>
-        </div>
-        <div slot="description">
-          <p>
-            Ekeynox est un jeu de <b>dactylographie</b>, permettant de
-            s'entrainer à taper au clavier, plus rapidement et sans fautes.
-          </p>
-          <br />
-          <p>
-            Le jeu propose 2 modes de jeu, un mode <b>course de mot</b> et un mode
-            <b>contre la montre</b> et différent type de contenu, à savoir <b
-              >des mots aléatoires</b
-            >, des <b>citations</b> ou un <b>texte personnalisé</b>.
-          </p>
-          <br />
-          <p>
-            À la fin d'une partie, le joueur peut consulter ses <b>
-              statistiques</b
-            > et
-            <b>rejouer</b> en mode fantôme contre son score précédent.
-          </p>
-          <br />
-          <div class="row">
-            <Tag title="SolidJS" />
-            <Tag title="SolidStart" />
-            <Tag title="Figma" />
-          </div>
-        </div>
-        <Slider
-          slot="gallery"
-          client:load
-          pictures={[
-            "ekeynox/01.webp",
-            "ekeynox/02.webp",
-            "ekeynox/03.webp",
-            "ekeynox/04.webp",
-            "ekeynox/05.webp",
-            "ekeynox/06.webp",
-            "ekeynox/07.webp",
-            "ekeynox/08.webp",
-          ]}
-        >
-          <Fragment set:html={arrow} />
-        </Slider>
+          <Slider
+            slot="aside"
+            client:load
+            pictures={[
+              "ekeynox/01.webp",
+              "ekeynox/02.webp",
+              "ekeynox/03.webp",
+              "ekeynox/04.webp",
+              "ekeynox/05.webp",
+              "ekeynox/06.webp",
+              "ekeynox/07.webp",
+              "ekeynox/08.webp",
+            ]}
+          >
+            <Fragment set:html={arrow} />
+          </Slider>
+        </CardSplit>
       </Card>
     </Spotlight>
   </div>
