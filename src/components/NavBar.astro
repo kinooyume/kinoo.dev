@@ -35,10 +35,16 @@
     let isHovering = false;
     let activeLink: HTMLElement | null = null;
     let hoverTimeout: number | null = null;
+    let currentAnim: anime.AnimeInstance | null = null;
 
     function moveIndicator(target: HTMLElement | null) {
+      if (currentAnim) {
+        currentAnim.pause();
+        currentAnim = null;
+      }
+
       if (!target) {
-        anime({ targets: indicator, opacity: 0, duration: 200, easing: "easeOutQuad" });
+        currentAnim = anime({ targets: indicator, opacity: 0, duration: 200, easing: "easeOutQuad" });
         return;
       }
 
@@ -46,7 +52,7 @@
       const navRect = navbar.getBoundingClientRect();
 
       indicator.style.setProperty("--indicator-color", target.dataset.color || "#f8ba88");
-      anime({
+      currentAnim = anime({
         targets: indicator,
         left: rect.left - navRect.left,
         width: rect.width,
