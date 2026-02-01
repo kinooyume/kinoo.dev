@@ -52,6 +52,7 @@ export const gyroTracker = (
   let baseGamma: number | null = null;
 
   const RANGE = 30; // degrees of tilt from center to edge
+  const DRIFT = 0.05; // how fast the base drifts toward current angle (0–1)
 
   const handler = rafDebounce(((e: Event) => {
     const { beta, gamma } = e as DeviceOrientationEvent;
@@ -63,9 +64,22 @@ export const gyroTracker = (
       baseGamma = gamma;
     }
 
+    // Slowly drift the base toward the current angle so the spotlight
+    // always comes back toward center if the user changes posture
+    baseBeta += (beta - baseBeta) * DRIFT;
+    baseGamma += (gamma - baseGamma) * DRIFT;
+
     const rect = container.getBoundingClientRect();
-    const x = map(gamma - baseGamma, -RANGE, RANGE, 0, rect.width);
-    const y = map(beta - baseBeta, -RANGE, RANGE, 0, rect.height);
+    const x = clamp(
+      map(gamma - baseGamma, -RANGE, RANGE, 0, rect.width),
+      0,
+      rect.width,
+    );
+    const y = clamp(
+      map(beta - baseBeta, -RANGE, RANGE, 0, rect.height),
+      0,
+      rect.height,
+    );
     onUpdate(x, y);
   }) as EventListener);
 
