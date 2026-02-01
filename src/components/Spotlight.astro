@@ -64,6 +64,16 @@ const { color, class: className } = Astro.props;
     opacity: 0.1;
   }
 
+  @media (hover: none) {
+    .spotlight-card::before {
+      opacity: 0.6;
+    }
+
+    .spotlight-card::after {
+      opacity: 0.06;
+    }
+  }
+
   .spotlight-inner {
     position: relative;
     z-index: 3;
