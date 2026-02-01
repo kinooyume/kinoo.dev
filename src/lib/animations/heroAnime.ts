@@ -1,5 +1,5 @@
 import anime from "animejs/lib/anime.es.js";
-import { emitHeroAnimationComplete } from "@/lib/dom/onHeroAnimationComplete";
+import { emitHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("hero-animation");
