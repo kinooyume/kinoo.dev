@@ -1,8 +1,13 @@
 import anime from "animejs/lib/anime.es.js";
 
+const MOBILE_BREAKPOINT = 900;
+
 const observerOptions: IntersectionObserverInit = {
   threshold: 0.1,
-  rootMargin: "0px 0px -100px 0px",
+  rootMargin:
+    window.innerWidth < MOBILE_BREAKPOINT
+      ? "0px 0px 50px 0px"
+      : "0px 0px -100px 0px",
 };
 
 /**
