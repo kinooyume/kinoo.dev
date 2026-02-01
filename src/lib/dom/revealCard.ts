@@ -1,11 +1,39 @@
 import anime from "animejs/lib/anime.es.js";
 
+const MOBILE_BREAKPOINT = 900;
+const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
+
 const observerOptions: IntersectionObserverInit = {
   threshold: 0.1,
   rootMargin: "0px 0px -100px 0px",
 };
 
 function animateCard(card: Element) {
+  if (isMobile()) {
+    const elems = card.querySelectorAll("[data-animate-elem]");
+    anime
+      .timeline()
+      .add({
+        targets: card,
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 500,
+        easing: "easeOutCubic",
+      })
+      .add(
+        {
+          targets: elems,
+          opacity: [0, 1],
+          translateY: [10, 0],
+          duration: 400,
+          delay: anime.stagger(80),
+          easing: "easeOutCubic",
+        },
+        "-=200",
+      );
+    return;
+  }
+
   const elems = card.querySelectorAll("[data-animate-elem]");
   anime
     .timeline()
@@ -45,10 +73,13 @@ export function revealCards(): () => void {
     });
   }, observerOptions);
 
+  const mobile = isMobile();
   const cards = document.querySelectorAll("[data-animate-card]");
   cards.forEach((card) => {
     (card as HTMLElement).style.opacity = "0";
-    (card as HTMLElement).style.transform = "translateY(50px) scale(0.8)";
+    if (!mobile) {
+      (card as HTMLElement).style.transform = "translateY(50px) scale(0.8)";
+    }
     observer.observe(card);
   });
 
