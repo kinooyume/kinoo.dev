@@ -1,0 +1,60 @@
+---
+import H3Tagged from "./H3Tagged.astro";
+
+type Props = {
+  title: string;
+  tag: string;
+  href: string;
+  label: string;
+  location: string;
+  date: string;
+};
+
+const { title, tag, href, label, location, date } = Astro.props;
+---
+
+<div class="card-title">
+  <H3Tagged title={title} tag={tag} />
+  <p>
+    <a href={href} rel="noreferrer nofollow noopener" target="_blank">{label}</a
+    >
+    <span class="dotted">{location}</span>
+    <span>{date}</span>
+  </p>
+</div>
+
+<style>
+  .card-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-title p {
+    margin: 0;
+  }
+
+  .card-title span,
+  .card-title a {
+    display: inline-block;
+    font-size: var(--card-title-font-size, 16px);
+    font-weight: 400;
+    color: rgba(143, 143, 151, 0.7);
+  }
+
+  .card-title .dotted:after,
+  .card-title .dotted:before {
+    content: "·";
+    padding: 0 6px;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 900px) {
+    .card-title {
+      gap: 2px;
+    }
+  }
+</style>
