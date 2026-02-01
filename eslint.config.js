@@ -64,7 +64,7 @@ export default [
 
       // Code quality
       "no-empty": ["error", { allowEmptyCatch: true }],
-      "no-empty-function": "warn",
+      "no-empty-function": "off",
       "no-lonely-if": "warn",
       "no-else-return": "warn",
       "prefer-template": "warn",
