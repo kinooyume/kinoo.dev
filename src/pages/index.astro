@@ -12,6 +12,7 @@ import FloatingContact from "@/components/FloatingContact.astro";
   <script>
     import { revealSections } from "@/lib/dom/revealSection";
     import { revealCards } from "@/lib/dom/revealCard";
+    import { onHeroAnimationComplete } from "@/lib/dom/onHeroAnimationComplete";
 
     // Reset scroll on back-forward navigation
     if (window.scrollY !== 0) {
@@ -23,15 +24,9 @@ import FloatingContact from "@/components/FloatingContact.astro";
       }
     }
 
-    function initRevealAnimations() {
-      if (!window.heroAnimationCompleted) return;
+    onHeroAnimationComplete(() => {
       revealSections();
       revealCards();
-    }
-
-    window.addEventListener("heroAnimationComplete", initRevealAnimations);
-    document.addEventListener("DOMContentLoaded", () => {
-      setTimeout(initRevealAnimations, 100);
     });
   </script>
   <main>
