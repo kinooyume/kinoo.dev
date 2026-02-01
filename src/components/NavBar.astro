@@ -34,82 +34,50 @@
 
   function initNavbar() {
     const navbar = document.querySelector(".navbar") as HTMLElement;
-    const indicator = document.querySelector(
-      ".navbar .indicator",
-    ) as HTMLElement;
-    const links = document.querySelectorAll(
-      ".navbar a",
-    ) as NodeListOf<HTMLElement>;
+    const indicator = navbar.querySelector(".indicator") as HTMLElement;
     const ul = navbar.querySelector("ul") as HTMLElement;
 
     let isHovering = false;
-    let isEnabled = false;
+    let activeLink: HTMLElement | null = null;
     let hoverTimeout: number | null = null;
 
-    function setIndicatorColor(color: string) {
-      indicator.style.setProperty("--indicator-color", color);
-    }
-
-    function updateIndicator(target: HTMLElement | null, immediate = false) {
-      if (!isEnabled) return;
-
+    function moveIndicator(target: HTMLElement | null) {
       if (!target) {
-        anime({
-          targets: indicator,
-          opacity: 0,
-          duration: immediate ? 0 : 200,
-          easing: "easeOutQuad",
-        });
+        anime({ targets: indicator, opacity: 0, duration: 200, easing: "easeOutQuad" });
         return;
       }
 
       const rect = target.getBoundingClientRect();
       const navRect = navbar.getBoundingClientRect();
-      const color = target.dataset.color || "#f8ba88";
 
-      setIndicatorColor(color);
-
+      indicator.style.setProperty("--indicator-color", target.dataset.color || "#f8ba88");
       anime({
         targets: indicator,
         left: rect.left - navRect.left,
         width: rect.width,
         opacity: 1,
-        duration: immediate ? 0 : 300,
+        duration: 300,
         easing: "easeOutCubic",
       });
     }
 
-    function getActiveLink(): HTMLElement | null {
-      return navbar.querySelector("a.current");
-    }
-
-    // Hover handling on individual links
-    links.forEach((link) => {
+    // Hover: show indicator on hovered link, return to active after 150ms
+    ul.querySelectorAll("a").forEach((link) => {
       link.addEventListener("mouseenter", () => {
-        if (!isEnabled) return;
-        if (hoverTimeout) {
-          clearTimeout(hoverTimeout);
-          hoverTimeout = null;
-        }
+        if (hoverTimeout) clearTimeout(hoverTimeout);
         isHovering = true;
-        updateIndicator(link);
+        moveIndicator(link as HTMLElement);
       });
     });
 
-    // Use the ul container for mouseleave to have bigger detection area
     ul.addEventListener("mouseleave", () => {
-      if (!isEnabled) return;
       isHovering = false;
       hoverTimeout = window.setTimeout(() => {
-        if (!isHovering) {
-          updateIndicator(getActiveLink());
-        }
+        if (!isHovering) moveIndicator(activeLink);
       }, 150);
     });
 
-    // Anchor-based scroll detection via viewDetection
-    let activeLink: HTMLElement | null = null;
-
+    // Scroll detection via viewDetection
     const targets = anchorsQueryToViewDetectionElement(".navbar a", {
       onInside: (anchor) => anchor.classList.add("current"),
       onOutside: (anchor) => anchor.classList.remove("current"),
@@ -121,16 +89,15 @@
 
     function checkVisibility() {
       detect();
-      const newActive = getActiveLink();
+      const newActive = navbar.querySelector("a.current") as HTMLElement | null;
       if (newActive !== activeLink) {
         activeLink = newActive;
-        if (!isHovering) updateIndicator(activeLink);
+        if (!isHovering) moveIndicator(activeLink);
       }
     }
 
-    // Enable after hero animation completes
+    // Enable after hero animation
     function enable() {
-      isEnabled = true;
       navbar.classList.add("enabled");
       onScrollAndResize(checkVisibility, "navbarDetection");
     }
