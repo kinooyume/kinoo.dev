@@ -1,13 +1,5 @@
 import anime from "animejs/lib/anime.es.js";
-
-// Déclaration TypeScript pour la variable globale
-declare global {
-  interface Window {
-    heroAnimationCompleted: boolean;
-  }
-}
-
-window.heroAnimationCompleted = false;
+import { emitHeroAnimationComplete } from "@/lib/dom/onHeroAnimationComplete";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Appliquer les styles pour centrer le Hero et cacher le reste
@@ -104,10 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Réactiver le scroll
     document.body.style.overflow = "auto";
-    // Marquer l'animation Hero comme terminée
-    window.heroAnimationCompleted = true;
-    // Déclencher l'initialisation des observers
-    window.dispatchEvent(new CustomEvent("heroAnimationComplete"));
+    emitHeroAnimationComplete();
   });
 
   init.finished.then(() => {
@@ -128,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // Si on a déjà scrollé, réactiver immédiatement
     document.body.style.overflow = "auto";
-    window.heroAnimationCompleted = true;
+    emitHeroAnimationComplete();
   } else {
     init.play();
   }
