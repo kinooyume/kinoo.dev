@@ -93,69 +93,54 @@ import FloatingContact from "@/components/FloatingContact.astro";
 
     // CARDS
 
-    const observer = new IntersectionObserver((entries) => {
+    function animateCard(card: Element) {
+      const divs = card.querySelectorAll("[data-animate-elem]");
+      anime
+        .timeline()
+        .add({
+          targets: card,
+          opacity: [0, 1],
+          translateY: [50, 0],
+          scale: [0.8, 1],
+          duration: 600,
+          delay: (_el: Element, i: number) => i * 200,
+        })
+        .add({
+          targets: divs,
+          opacity: [0, 1],
+          translateX: [-20, 0],
+          duration: 800,
+          delay: anime.stagger(200),
+        });
+    }
+
+    const cardObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const card = entry.target;
-
-          // Animation stylée pour les cartes
-
-          // anime({
-          //   targets: Array.from(card.children),
-          //   opacity: [0, 1],
-          //   translateY: [30, 0],
-          //   duration: 500,
-          //   easing: "easeOutCubic",
-          //   delay: anime.stagger(120),
-          // });
-
-          const divs = card.querySelectorAll("[data-animate-elem]");
-          anime
-            .timeline()
-            .add({
-              targets: card,
-              opacity: [0, 1],
-              translateY: [50, 0],
-              scale: [0.8, 1],
-              duration: 600,
-              delay: (_el, i) => i * 200,
-            })
-            // .add({
-            //   targets: card.querySelectorAll(".title"),
-            //   opacity: [0, 1],
-            //   translateX: [-20, 0],
-            //   duration: 600,
-            //   easing: "easeOutQuad",
-            //   delay: anime.stagger(100), // Animation en cascade
-            // })
-            .add({
-              targets: divs,
-              opacity: [0, 1],
-              translateX: [-20, 0],
-              duration: 800,
-              delay: anime.stagger(200), // Animation en cascade
-            });
-          // .add({
-          //   targets: card.querySelectorAll(".text"),
-          //   opacity: [0, 1],
-          //   translateX: [-20, 0],
-          //   duration: 600,
-          //   easing: "easeOutQuad",
-          //   delay: anime.stagger(100), // Animation en cascade
-          // });
-
-          observer.unobserve(card); // Arrêter d'observer une fois animée
+          animateCard(entry.target);
+          cardObserver.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Observer les cartes
     function initCardAnimations() {
-      const cardsToAnimate = document.querySelectorAll("[data-animate-card]");
-      cardsToAnimate.forEach((card) => {
-        (card as HTMLElement).style.opacity = "0"; // État initial
+      const cards = document.querySelectorAll("[data-animate-card]");
+      cards.forEach((card) => {
+        (card as HTMLElement).style.opacity = "0";
         (card as HTMLElement).style.transform = "translateY(50px) scale(0.8)";
-        observer.observe(card);
+        cardObserver.observe(card);
+      });
+
+      // Cards already in viewport may not meet the 10% threshold yet
+      // (e.g. tall cards spanning multiple grid rows), trigger them directly
+      requestAnimationFrame(() => {
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            cardObserver.unobserve(card);
+            animateCard(card);
+          }
+        });
       });
     }
 
