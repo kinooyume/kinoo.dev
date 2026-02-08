@@ -156,6 +156,9 @@ const sidebarSections = [
         An atomic design system for kinoo.dev. Built from foundational tokens up
         through atoms, molecules, and organisms.
       </p>
+      <p class="wip-notice">
+        Work in progress. Ce design system a pour but d'être réutilisé dans d'autres projets.
+      </p>
 
       <!-- FOUNDATIONS -->
       <div class="category-header">
@@ -261,8 +264,19 @@ const sidebarSections = [
 
   .intro {
     color: var(--color);
-    margin-bottom: 64px;
+    margin-bottom: 16px;
     max-width: 600px;
+  }
+
+  .wip-notice {
+    color: var(--accent-bright);
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 64px;
+    padding: 12px 16px;
+    background-color: rgba(246, 177, 122, 0.1);
+    border-left: 3px solid var(--accent-bright);
+    border-radius: 4px;
   }
 
   .ds-main section {
@@ -627,30 +641,6 @@ const sidebarSections = [
     opacity: 0.7;
   }
 
-  /* Spotlight demo */
-  #spotlight-demo {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-
-  .demo-card {
-    padding: 24px;
-    min-height: 150px;
-  }
-
-  .demo-card h4 {
-    font-size: 16px;
-    margin: 0 0 8px 0;
-    color: var(--light-color);
-  }
-
-  .demo-card p {
-    font-size: 14px;
-    margin: 0;
-    color: var(--color);
-    opacity: 0.8;
-  }
 
   /* Footer */
   .ds-main footer {
@@ -699,10 +689,6 @@ const sidebarSections = [
 
     .sample-h1 {
       font-size: 48px;
-    }
-
-    #spotlight-demo {
-      grid-template-columns: 1fr;
     }
 
     .category-title {
