@@ -83,7 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
     globalThis.removeEventListener("touchmove", onUserScroll);
   }
 
-  if (globalThis.scrollY) {
+  // Skip animation if page is scrolled or URL has a hash (coming from anchor link)
+  if (globalThis.scrollY || window.location.hash) {
     cancelled = true;
     finishAll();
   } else {
