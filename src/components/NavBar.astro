@@ -97,13 +97,21 @@
       }
     }
 
-    // Enable after hero animation
+    // Enable navbar functionality
     function enable() {
       navbar.classList.add("enabled");
       onScrollAndResize(checkVisibility, "navbarDetection");
     }
 
-    onHeroAnimationComplete(enable);
+    // Check if this page has a hero section
+    const hasHero = !!document.getElementById("hero");
+    if (hasHero) {
+      // Wait for hero animation to complete
+      onHeroAnimationComplete(enable);
+    } else {
+      // No hero, enable immediately
+      enable();
+    }
   }
 
   window.addEventListener("load", initNavbar);
@@ -125,10 +133,6 @@
     gap: 8px;
     padding: 8px;
     margin: -8px;
-  }
-
-  li {
-    opacity: 0;
   }
 
   a {
