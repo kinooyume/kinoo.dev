@@ -87,21 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (globalThis.scrollY || window.location.hash) {
     cancelled = true;
     finishAll();
-    // Scroll to anchor after page is fully loaded
-    if (window.location.hash) {
-      const scrollToAnchor = () => {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-          target.scrollIntoView();
-        }
-      };
-      // Wait for full page load to ensure correct scroll position
-      if (document.readyState === "complete") {
-        scrollToAnchor();
-      } else {
-        window.addEventListener("load", scrollToAnchor);
-      }
-    }
   } else {
     globalThis.addEventListener("wheel", onUserScroll, {
       once: true,
