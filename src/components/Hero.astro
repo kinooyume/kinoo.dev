@@ -1,6 +1,7 @@
 ---
 import Tag from "@/components/Tag.astro";
 import HeroSubtitle from "./HeroSubtitle.astro";
+import AstroIcon from "@/svgs/astro.svg?raw";
 import React from "@/svgs/react.svg?raw";
 import Svelte from "@/svgs/svelte.svg?raw";
 import Rescript from "@/svgs/rescript.svg?raw";
@@ -15,6 +16,7 @@ type TagProps = {
 
 const techs: TagProps[] = [
   { title: "Typescript", icon: Ts },
+  { title: "Astro", icon: AstroIcon, highlight: true },
   { title: "React.js", icon: React, highlight: true },
   { title: "Svelte", icon: Svelte, highlight: true },
   { title: "Rescript", icon: Rescript },
