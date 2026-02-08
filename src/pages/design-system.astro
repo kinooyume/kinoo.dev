@@ -70,7 +70,18 @@ const sidebarSections = [
       anchorsQueryToViewDetectionElement,
     } from "@/lib/dom/viewDetection";
 
+    // Disable browser scroll restoration
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    // Scroll to top on initial load (no hash)
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     let currentSection: string | null = null;
+    let initialLoad = true;
     const manuallyOpened = new Set<string>();
 
     // Handle manual toggle
@@ -113,7 +124,10 @@ const sidebarSections = [
         const href = anchor.getAttribute("href");
         if (href && currentSection !== href) {
           currentSection = href;
-          history.replaceState(null, "", href);
+          // Skip replaceState on initial page load to avoid scroll issues
+          if (!initialLoad) {
+            history.replaceState(null, "", href);
+          }
 
           const listItem = anchor.closest("li");
           const details =
@@ -147,6 +161,11 @@ const sidebarSections = [
     });
 
     onScrollAndResize(detect, "designSystemDetection");
+
+    // Mark initial load as complete after first scroll event
+    window.addEventListener("scroll", () => {
+      initialLoad = false;
+    }, { once: true });
   </script>
 
   <div class="ds-container">
