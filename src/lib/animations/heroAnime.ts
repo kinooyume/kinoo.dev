@@ -87,13 +87,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (globalThis.scrollY || window.location.hash) {
     cancelled = true;
     finishAll();
-    // Scroll to anchor after animations are finished
+    // Scroll to anchor after page is fully loaded
     if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        requestAnimationFrame(() => {
+      const scrollToAnchor = () => {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
           target.scrollIntoView();
-        });
+        }
+      };
+      // Wait for full page load to ensure correct scroll position
+      if (document.readyState === "complete") {
+        scrollToAnchor();
+      } else {
+        window.addEventListener("load", scrollToAnchor);
       }
     }
   } else {
