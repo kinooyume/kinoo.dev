@@ -87,6 +87,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (globalThis.scrollY || window.location.hash) {
     cancelled = true;
     finishAll();
+
+    // When coming from anchor link, scroll to target after elements are visible
+    if (window.location.hash) {
+      requestAnimationFrame(() => {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "instant" });
+        }
+      });
+    }
   } else {
     globalThis.addEventListener("wheel", onUserScroll, {
       once: true,
