@@ -12,28 +12,7 @@ import message from "@/svgs/message.svg?raw";
   <p>Mobile-only sticky contact button that appears at the bottom of the screen. Auto-hides when the contact section is visible.</p>
 
   <div class="component-block">
-    <h3>Live Preview (Mobile Simulation)</h3>
-    <div class="preview floating-preview">
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <iframe
-            src="/#contact"
-            title="FloatingContact Preview"
-            class="phone-iframe"
-          ></iframe>
-          <div class="phone-overlay">
-            <p class="overlay-text">Scroll up to see FloatingContact button</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="note" style="margin-top: 12px;">
-      Live iframe showing the actual component. Only visible on screens &lt;600px.
-    </p>
-  </div>
-
-  <div class="component-block">
-    <h3>Component Preview</h3>
+    <h3>Preview</h3>
     <div class="preview states-preview">
       <div class="state-demo">
         <span class="state-label">Default State</span>
@@ -141,53 +120,6 @@ import message from "@/svgs/message.svg?raw";
 </section>
 
 <style>
-  .floating-preview {
-    justify-content: center;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    min-height: 400px;
-    padding: 24px;
-  }
-  .phone-frame {
-    width: 280px;
-    height: 500px;
-    background-color: #111;
-    border-radius: 36px;
-    padding: 12px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  }
-  .phone-screen {
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-color);
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-  }
-  .phone-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    transform: scale(0.6);
-    transform-origin: top left;
-    width: 166.67%;
-    height: 166.67%;
-  }
-  .phone-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 16px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
-    pointer-events: none;
-  }
-  .overlay-text {
-    font-size: 11px;
-    color: white;
-    opacity: 0.7;
-    text-align: center;
-    margin: 0;
-  }
   .states-preview {
     gap: 48px;
   }
