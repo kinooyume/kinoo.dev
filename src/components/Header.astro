@@ -178,3 +178,13 @@ import NavBar from "./NavBar.astro";
     }
   </style>
 </header>
+
+<script>
+  import { showHeaderImmediate } from "@/lib/animations/headerAnime";
+
+  // Show header immediately on pages without hero
+  const hasHero = !!document.getElementById("hero");
+  if (!hasHero) {
+    showHeaderImmediate();
+  }
+</script>
