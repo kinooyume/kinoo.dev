@@ -1,0 +1,91 @@
+---
+/**
+ * Spotlight Component Documentation
+ * Design System - Molecule
+ */
+import Spotlight from "./Spotlight.astro";
+---
+
+<section id="spotlight">
+  <h2>Spotlight</h2>
+  <p class="atomic-label">Molecule</p>
+  <p>Interactive spotlight effect that follows mouse movement on desktop. Creates a glowing halo that tracks the cursor.</p>
+
+  <div class="component-block">
+    <h3>Demo</h3>
+    <div id="spotlight-demo" data-spotlight>
+      <Spotlight color="var(--accent-bright)">
+        <div class="demo-card">
+          <h4>Card 1</h4>
+          <p>Hover over the container to see the spotlight effect</p>
+        </div>
+      </Spotlight>
+      <Spotlight color="var(--green)">
+        <div class="demo-card">
+          <h4>Card 2</h4>
+          <p>Each card tracks the cursor independently</p>
+        </div>
+      </Spotlight>
+      <Spotlight color="var(--pink)">
+        <div class="demo-card">
+          <h4>Card 3</h4>
+          <p>Color is customizable via the color prop</p>
+        </div>
+      </Spotlight>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Usage</h3>
+    <div class="props">
+      <code>&lt;Spotlight color="var(--accent-bright)"&gt;...&lt;/Spotlight&gt;</code>
+    </div>
+    <p class="note" style="margin-top: 16px;">
+      Wrap content with the Spotlight component. Add <code>data-spotlight</code> attribute to the parent container and initialize with <code>spotlight()</code> function.
+    </p>
+  </div>
+
+  <div class="component-block">
+    <h3>Props</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>color</code></td>
+          <td>string</td>
+          <td>required</td>
+          <td>CSS color for the spotlight glow effect</td>
+        </tr>
+        <tr>
+          <td><code>class</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>Additional CSS class for the wrapper</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>Implementation</h3>
+    <p class="note">
+      The parent container needs <code>data-spotlight</code> attribute and must be initialized with <code>spotlight(container)</code> from <code>@/lib/dom/spotlight</code>. The function tracks mouse movement and updates <code>--mouse-x</code> and <code>--mouse-y</code> CSS properties.
+    </p>
+  </div>
+</section>
+
+<script>
+  import { spotlight } from "@/lib/dom/spotlight";
+
+  const container = document.querySelector<HTMLElement>("#spotlight-demo");
+  if (container) {
+    spotlight(container);
+  }
+</script>
