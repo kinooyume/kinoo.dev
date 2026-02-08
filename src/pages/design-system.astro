@@ -1,13 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import type { NavItem } from "@/components/NavBar.astro";
-
-const navItems: NavItem[] = [
-  { label: "Foundations", href: "#colors", color: "#f8ba88" },
-  { label: "Atoms", href: "#tag", color: "#66c384" },
-  { label: "Molecules", href: "#card", color: "#f68dab" },
-  { label: "Organisms", href: "#sidebar", color: "#9c85d3" },
-];
 
 // Foundations
 import ColorsDs from "@/styles/colors.ds.astro";
@@ -69,7 +61,6 @@ const sidebarSections = [
 <Layout
   title="Design System · kinoo.dev"
   description="Components library for kinoo.dev"
-  navItems={navItems}
 >
   <meta slot="head" name="robots" content="noindex, nofollow" />
   <script>

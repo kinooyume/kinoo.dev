@@ -77,7 +77,12 @@ export const anchorsQueryToViewDetectionElement = (
     const href = anchor.getAttribute("href");
     if (!href) return acc;
 
-    const target = document.querySelector(href);
+    // Extract hash from href (handles both "#section" and "/#section" formats)
+    const hashIndex = href.indexOf("#");
+    if (hashIndex === -1) return acc;
+    const hash = href.slice(hashIndex);
+
+    const target = document.querySelector(hash);
     if (!target) return acc;
 
     return [
