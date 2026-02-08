@@ -13,14 +13,6 @@ type TagProps = {
   highlight?: boolean;
 };
 
-// Stars
-// https://codepen.io/bob6664569/pen/rOzmve
-//
-// Cut effect
-// https://codepen.io/dtab428/pen/GmoMYG
-//
-// Moving letters
-// https://tobiasahlin.com/moving-letters/?utm_source=bypeople
 const techs: TagProps[] = [
   { title: "Typescript", icon: Ts },
   { title: "React.js", icon: React, highlight: true },
@@ -36,7 +28,6 @@ const techs: TagProps[] = [
   <div class="main">
     <div class="content">
       <div class="title">
-        <!-- <canvas id="particle-canvas"></canvas> -->
         <HeroSubtitle subtitle="Développeur Frontend Freelance" />
         <h1><span>Martin</span> <span>Kinoo</span></h1>
       </div>
@@ -105,29 +96,9 @@ const techs: TagProps[] = [
     --hero-span-size: 36px;
   }
 
-  .title {
-  }
-  /* #particle-canvas { */
-  /*   position: absolute; */
-  /*   left: 0; */
-  /*   opacity: 0.2; */
-  /*   width: 100%; */
-  /*   height: 100vh; */
-  /*   vertical-align: middle; */
-  /* } */
-  .content,
-  .hero-image {
-    /* display: flex; */
-    /* flex-direction: column; */
-  }
-
   .main {
     display: flex;
     justify-content: space-between;
-    /* transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)); */
-    /* transform-style: preserve-3d; */
-    /* transition: transform 1.5s cubic-bezier(0.05, 0.5, 0, 1); */
-    /* will-change: transform; */
   }
 
   h1 {

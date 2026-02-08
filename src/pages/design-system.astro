@@ -1,0 +1,1550 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Tag from "@/components/Tag.astro";
+import TagLink from "@/components/TagLink.astro";
+import Card from "@/components/Card.astro";
+import Sidebar, { type SidebarItem } from "@/components/Sidebar.astro";
+import Spotlight from "@/components/Spotlight.astro";
+
+import terminal from "@/svgs/terminal.svg?raw";
+
+const foundationItems: SidebarItem[] = [
+  { label: "Colors", href: "#colors" },
+  { label: "Typography", href: "#typography" },
+  { label: "Spacing", href: "#spacing" },
+];
+
+const atomItems: SidebarItem[] = [
+  { label: "Tag", href: "#tag" },
+  { label: "TagLink", href: "#taglink" },
+  { label: "Button", href: "#button" },
+];
+
+const moleculeItems: SidebarItem[] = [
+  { label: "Card", href: "#card" },
+  { label: "Spotlight", href: "#spotlight" },
+];
+
+const organismItems: SidebarItem[] = [{ label: "Sidebar", href: "#sidebar" }];
+
+const sidebarSections = [
+  { title: "Foundations", items: foundationItems },
+  { title: "Atoms", items: atomItems },
+  { title: "Molecules", items: moleculeItems },
+  { title: "Organisms", items: organismItems },
+];
+---
+
+<Layout
+  title="Design System · kinoo.dev"
+  description="Components library for kinoo.dev"
+>
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+  <script>
+    import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
+    import {
+      createViewDetection,
+      anchorsQueryToViewDetectionElement,
+    } from "@/lib/dom/viewDetection";
+    import { spotlight } from "@/lib/dom/spotlight";
+
+    let currentSection: string | null = null;
+
+    // Track which sections are manually opened
+    const manuallyOpened = new Set<string>();
+
+    // Handle manual toggle
+    document
+      .querySelectorAll<HTMLDetailsElement>(".sidebar-section")
+      .forEach((details) => {
+        details.addEventListener("toggle", () => {
+          const section = details.getAttribute("data-section");
+          if (section) {
+            if (details.open) {
+              manuallyOpened.add(section);
+            } else {
+              manuallyOpened.delete(section);
+            }
+          }
+        });
+      });
+
+    // Click: smooth scroll + replaceState
+    document
+      .querySelectorAll<HTMLAnchorElement>(".sidebar-wrapper a")
+      .forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          const href = anchor.getAttribute("href");
+          if (href?.startsWith("#")) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth" });
+              history.replaceState(null, "", href);
+            }
+          }
+        });
+      });
+
+    // View detection for sidebar
+    const targets = anchorsQueryToViewDetectionElement(".sidebar-wrapper a", {
+      onInside: (anchor) => {
+        anchor.classList.add("active");
+        const href = anchor.getAttribute("href");
+        if (href && currentSection !== href) {
+          currentSection = href;
+          history.replaceState(null, "", href);
+
+          // Auto-open the section containing this anchor (only if not manually controlled)
+          const listItem = anchor.closest("li");
+          const details =
+            listItem?.closest<HTMLDetailsElement>(".sidebar-section");
+          const section = details?.getAttribute("data-section");
+
+          if (details && section && !manuallyOpened.has(section)) {
+            details.open = true;
+          }
+        }
+      },
+      onOutside: (anchor) => {
+        anchor.classList.remove("active");
+
+        // Auto-close section when no links are active (only if not manually opened)
+        const listItem = anchor.closest("li");
+        const details =
+          listItem?.closest<HTMLDetailsElement>(".sidebar-section");
+        const section = details?.getAttribute("data-section");
+
+        if (details && section && !manuallyOpened.has(section)) {
+          // Check if any link in this section is still active
+          const hasActiveLink = details.querySelector("a.active");
+          if (!hasActiveLink) {
+            details.open = false;
+          }
+        }
+      },
+    });
+
+    const detect = createViewDetection(targets, {
+      setBounds: (offset) => [offset + 100, offset - 100],
+    });
+
+    onScrollAndResize(detect, "designSystemDetection");
+
+    // Initialize spotlight effect
+    const spotlightContainer =
+      document.querySelector<HTMLElement>("#spotlight-demo");
+    if (spotlightContainer) {
+      spotlight(spotlightContainer);
+    }
+  </script>
+  <div class="ds-container">
+    <main class="ds-main">
+      <h1>Design System</h1>
+      <p class="intro">
+        An atomic design system for kinoo.dev. Built from foundational tokens up
+        through atoms, molecules, and organisms.
+      </p>
+
+      <!-- FOUNDATIONS -->
+      <div class="category-header">
+        <h2 class="category-title">Foundations</h2>
+        <p class="category-description">
+          Design tokens and base styles that form the building blocks of the
+          system.
+        </p>
+      </div>
+
+      <!-- Colors Section -->
+      <section id="colors">
+        <h2>Colors</h2>
+        <p>Color palette and CSS variables used throughout the website.</p>
+
+        <div class="component-block">
+          <h3>Background Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: var(--background-color);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--background-color</code>
+                <span>#181927</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: rgba(24, 25, 39, 0.8);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--background-frosted</code>
+                <span>rgba(24, 25, 39, 0.05)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Text Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: var(--color);"></div>
+              <div class="color-info">
+                <code>--color</code>
+                <span>#e0e0e0</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: var(--light-color);">
+              </div>
+              <div class="color-info">
+                <code>--light-color</code>
+                <span>#f6f5f7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Accent Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: var(--accent-color);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--accent-color</code>
+                <span>#f8ba88</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: var(--secondary-accent-color);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--secondary-accent-color</code>
+                <span>#c9a88d</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: var(--accent-bright);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--accent-bright</code>
+                <span>#f6b17a</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Section Theme Colors</h3>
+          <p class="note">
+            Each section uses a themed color palette. These override <code
+              >--accent-color</code
+            > and <code>--secondary-accent-color</code> at the section level.
+          </p>
+
+          <h4>Realisations Section (Green)</h4>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #66c384;"></div>
+              <div class="color-info">
+                <code>--green (accent)</code>
+                <span>#66c384</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #80d49a;"></div>
+              <div class="color-info">
+                <code>--green-light (secondary)</code>
+                <span>#80d49a</span>
+              </div>
+            </div>
+          </div>
+
+          <h4>Experiences Section (Pink)</h4>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #f68dab;"></div>
+              <div class="color-info">
+                <code>--pink (accent)</code>
+                <span>#f68dab</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #f8c8d9;"></div>
+              <div class="color-info">
+                <code>--pink-lightest (secondary)</code>
+                <span>#f8c8d9</span>
+              </div>
+            </div>
+          </div>
+
+          <h4>Formations Section (Purple)</h4>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #9c85d3;"></div>
+              <div class="color-info">
+                <code>--purple (accent)</code>
+                <span>#9c85d3</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #c9bce6;"></div>
+              <div class="color-info">
+                <code>--purple-lightest (secondary)</code>
+                <span>#c9bce6</span>
+              </div>
+            </div>
+          </div>
+
+          <h4>Green Variants</h4>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #9ae5b1;"></div>
+              <div class="color-info">
+                <code>--green-lightest</code>
+                <span>#9ae5b1</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #80d49a;"></div>
+              <div class="color-info">
+                <code>--green-light</code>
+                <span>#80d49a</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #66c384;"></div>
+              <div class="color-info">
+                <code>--green</code>
+                <span>#66c384</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #5ab376;"></div>
+              <div class="color-info">
+                <code>--green-dark</code>
+                <span>#5ab376</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #4a9c63;"></div>
+              <div class="color-info">
+                <code>--green-darker</code>
+                <span>#4a9c63</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #3d8552;"></div>
+              <div class="color-info">
+                <code>--green-darkest</code>
+                <span>#3d8552</span>
+              </div>
+            </div>
+          </div>
+
+          <h4>Pink Variants</h4>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #f8c8d9;"></div>
+              <div class="color-info">
+                <code>--pink-lightest</code>
+                <span>#f8c8d9</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #f8a4c0;"></div>
+              <div class="color-info">
+                <code>--pink-light</code>
+                <span>#f8a4c0</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #f68dab;"></div>
+              <div class="color-info">
+                <code>--pink</code>
+                <span>#f68dab</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #f47799;"></div>
+              <div class="color-info">
+                <code>--pink-dark</code>
+                <span>#f47799</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #f26088;"></div>
+              <div class="color-info">
+                <code>--pink-darker</code>
+                <span>#f26088</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #d55478;"></div>
+              <div class="color-info">
+                <code>--pink-darkest</code>
+                <span>#d55478</span>
+              </div>
+            </div>
+          </div>
+
+          <h4>Purple Variants</h4>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #c9bce6;"></div>
+              <div class="color-info">
+                <code>--purple-lightest</code>
+                <span>#c9bce6</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #b09ee0;"></div>
+              <div class="color-info">
+                <code>--purple-light</code>
+                <span>#b09ee0</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #9c85d3;"></div>
+              <div class="color-info">
+                <code>--purple</code>
+                <span>#9c85d3</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #8870c7;"></div>
+              <div class="color-info">
+                <code>--purple-dark</code>
+                <span>#8870c7</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #745bba;"></div>
+              <div class="color-info">
+                <code>--purple-darker</code>
+                <span>#745bba</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch" style="background-color: #6048a0;"></div>
+              <div class="color-info">
+                <code>--purple-darkest</code>
+                <span>#6048a0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Card Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: var(--card-first-background-color);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--card-first-background-color</code>
+                <span>#2d2d3b</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: var(--card-alt-background-color);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--card-alt-background-color</code>
+                <span>#1c2638</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div
+                class="swatch"
+                style="background-color: var(--card-hover-background);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--card-hover-background</code>
+                <span>#313d50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Border Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div
+                class="swatch swatch-border"
+                style="background-color: rgba(255, 255, 255, 0.1);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--border-color</code>
+                <span>rgba(255, 255, 255, 0.1)</span>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div
+                class="swatch swatch-border"
+                style="background-color: rgba(255, 255, 255, 0.2);"
+              >
+              </div>
+              <div class="color-info">
+                <code>--border-hover-color</code>
+                <span>rgba(255, 255, 255, 0.2)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Usage</h3>
+          <p class="note">
+            Import variables from <code>@/styles/variables.css</code> or use CSS custom
+            properties directly in your styles.
+          </p>
+        </div>
+      </section>
+
+      <!-- Typography Section -->
+      <section id="typography">
+        <h2>Typography</h2>
+        <p>Font sizes and heading styles used throughout the website.</p>
+
+        <div class="component-block">
+          <h3>Headings</h3>
+          <div class="typography-preview">
+            <div class="type-sample">
+              <span class="type-label">h1 <code>--h1-size</code></span>
+              <h1 class="sample-h1">Heading 1</h1>
+            </div>
+            <div class="type-sample">
+              <span class="type-label">h2 <code>--h2-size</code></span>
+              <h2 class="sample-h2">Heading 2</h2>
+            </div>
+            <div class="type-sample">
+              <span class="type-label">h3 <code>--h3-size</code></span>
+              <h3 class="sample-h3">Heading 3</h3>
+            </div>
+            <div class="type-sample">
+              <span class="type-label"
+                >subtitle <code>--subtitle-size</code></span
+              >
+              <p class="subtitle">Subtitle text</p>
+            </div>
+            <div class="type-sample">
+              <span class="type-label">p <code>--font-size</code></span>
+              <p>Body text paragraph</p>
+            </div>
+            <div class="type-sample">
+              <span class="type-label"
+                >button <code>--button-font-size</code></span
+              >
+              <span class="sample-button">Button text</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Size Variables</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Default</th>
+                <th>1368px</th>
+                <th>900px</th>
+                <th>600px</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--h1-size</code></td>
+                <td>96px</td>
+                <td>92px</td>
+                <td>86px</td>
+                <td>64px</td>
+              </tr>
+              <tr>
+                <td><code>--h2-size</code></td>
+                <td>38px</td>
+                <td>48px</td>
+                <td>44px</td>
+                <td>36px</td>
+              </tr>
+              <tr>
+                <td><code>--h3-size</code></td>
+                <td>24px</td>
+                <td>24px</td>
+                <td>20px</td>
+                <td>18px</td>
+              </tr>
+              <tr>
+                <td><code>--subtitle-size</code></td>
+                <td>22px</td>
+                <td>24px</td>
+                <td>20px</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><code>--font-size</code></td>
+                <td>18px</td>
+                <td>18px</td>
+                <td>16px</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><code>--button-font-size</code></td>
+                <td>15px</td>
+                <td>15px</td>
+                <td>15px</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="component-block">
+          <h3>Font Family</h3>
+          <p class="note">
+            The website uses <code>Outfit</code> as the primary font family with weights
+            from 100 to 800.
+          </p>
+        </div>
+      </section>
+
+      <!-- Spacing Section -->
+      <section id="spacing">
+        <h2>Spacing</h2>
+        <p>Consistent spacing scale used throughout the application.</p>
+
+        <div class="component-block">
+          <h3>Scale</h3>
+          <div class="spacing-grid">
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 4px; height: 4px;"></div>
+              <code>4px</code>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 8px; height: 8px;"></div>
+              <code>8px</code>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 12px; height: 12px;"></div>
+              <code>12px</code>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 16px; height: 16px;"></div>
+              <code>16px</code>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 24px; height: 24px;"></div>
+              <code>24px</code>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 32px; height: 32px;"></div>
+              <code>32px</code>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 48px; height: 48px;"></div>
+              <code>48px</code>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-box" style="width: 64px; height: 64px;"></div>
+              <code>64px</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATOMS -->
+      <div class="category-header">
+        <h2 class="category-title">Atoms</h2>
+        <p class="category-description">
+          Basic building blocks that can't be broken down further without losing
+          functionality.
+        </p>
+      </div>
+
+      <!-- Tag Component -->
+      <section id="tag">
+        <h2>Tag</h2>
+        <p class="atomic-label">Atom</p>
+        <p>Tags are used to display labels, skills, or categories.</p>
+
+        <div class="component-block">
+          <h3>Default</h3>
+          <div class="preview">
+            <Tag title="TypeScript" />
+          </div>
+          <div class="props">
+            <code>title="TypeScript"</code>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>With Icon</h3>
+          <div class="preview">
+            <Tag title="Terminal" icon={terminal} />
+          </div>
+          <div class="props">
+            <code>title="Terminal" icon=&#123;terminalSvg&#125;</code>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Highlighted</h3>
+          <div class="preview">
+            <Tag title="Featured" highlight />
+          </div>
+          <div class="props">
+            <code>title="Featured" highlight</code>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>title</code></td>
+                <td>string</td>
+                <td>required</td>
+                <td>The text content of the tag</td>
+              </tr>
+              <tr>
+                <td><code>icon</code></td>
+                <td>string</td>
+                <td>-</td>
+                <td>SVG icon as raw string</td>
+              </tr>
+              <tr>
+                <td><code>highlight</code></td>
+                <td>boolean</td>
+                <td>false</td>
+                <td>Adds accent border</td>
+              </tr>
+              <tr>
+                <td><code>hero</code></td>
+                <td>boolean</td>
+                <td>false</td>
+                <td>Hero animation variant</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TagLink Component -->
+      <section id="taglink">
+        <h2>TagLink</h2>
+        <p class="atomic-label">Atom</p>
+        <p>External links with an icon indicator, opens in a new tab.</p>
+
+        <div class="component-block">
+          <h3>Default</h3>
+          <div class="preview">
+            <TagLink href="https://github.com" text="View on GitHub" />
+          </div>
+          <div class="props">
+            <code>href="https://github.com" text="View on GitHub"</code>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>href</code></td>
+                <td>string</td>
+                <td>required</td>
+                <td>URL to link to</td>
+              </tr>
+              <tr>
+                <td><code>text</code></td>
+                <td>string</td>
+                <td>required</td>
+                <td>Link text</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Button Component -->
+      <section id="button">
+        <h2>Button</h2>
+        <p class="atomic-label">Atom</p>
+        <p>Interactive buttons with primary and secondary variants.</p>
+
+        <div class="component-block">
+          <h3>Primary</h3>
+          <div class="preview">
+            <button class="primary">Primary Button</button>
+          </div>
+          <div class="props">
+            <code>&lt;button class="primary"&gt;...&lt;/button&gt;</code>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Link as Button</h3>
+          <div class="preview">
+            <a href="#button" class="primary">Link Button</a>
+          </div>
+          <div class="props">
+            <code>&lt;a href="#" class="primary"&gt;...&lt;/a&gt;</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- MOLECULES -->
+      <div class="category-header">
+        <h2 class="category-title">Molecules</h2>
+        <p class="category-description">
+          Groups of atoms combined to form relatively simple components.
+        </p>
+      </div>
+
+      <!-- Card Component -->
+      <section id="card">
+        <h2>Card</h2>
+        <p class="atomic-label">Molecule</p>
+        <p>Cards are container components with gradient border effect.</p>
+
+        <div class="component-block">
+          <h3>Default</h3>
+          <div class="preview preview-card">
+            <Card>
+              <p>
+                Card content goes here. Cards use slots for flexible content.
+              </p>
+            </Card>
+          </div>
+          <div class="props">
+            <code>&lt;Card&gt;...content...&lt;/Card&gt;</code>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>slot</code></td>
+                <td>any</td>
+                <td>-</td>
+                <td>Content to render inside the card</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Spotlight Effect -->
+      <section id="spotlight">
+        <h2>Spotlight</h2>
+        <p class="atomic-label">Molecule</p>
+        <p>
+          Interactive spotlight effect that follows mouse movement on desktop.
+          Creates a glowing halo that tracks the cursor.
+        </p>
+
+        <div class="component-block">
+          <h3>Demo</h3>
+          <div id="spotlight-demo" data-spotlight>
+            <Spotlight color="var(--accent-bright)">
+              <div class="demo-card">
+                <h4>Card 1</h4>
+                <p>Hover over the container to see the spotlight effect</p>
+              </div>
+            </Spotlight>
+            <Spotlight color="var(--green)">
+              <div class="demo-card">
+                <h4>Card 2</h4>
+                <p>Each card tracks the cursor independently</p>
+              </div>
+            </Spotlight>
+            <Spotlight color="var(--pink)">
+              <div class="demo-card">
+                <h4>Card 3</h4>
+                <p>Color is customizable via the color prop</p>
+              </div>
+            </Spotlight>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Usage</h3>
+          <div class="props">
+            <code
+              >&lt;Spotlight
+              color="var(--accent-bright)"&gt;...&lt;/Spotlight&gt;</code
+            >
+          </div>
+          <p class="note" style="margin-top: 16px;">
+            Wrap content with the Spotlight component. Add <code
+              >data-spotlight</code
+            > attribute to the parent container and initialize with <code
+              >spotlight()</code
+            > function.
+          </p>
+        </div>
+
+        <div class="component-block">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>color</code></td>
+                <td>string</td>
+                <td>required</td>
+                <td>CSS color for the spotlight glow effect</td>
+              </tr>
+              <tr>
+                <td><code>class</code></td>
+                <td>string</td>
+                <td>-</td>
+                <td>Additional CSS class for the wrapper</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="component-block">
+          <h3>Implementation</h3>
+          <p class="note">
+            The parent container needs <code>data-spotlight</code> attribute and must
+            be initialized with
+            <code>spotlight(container)</code> from <code
+              >@/lib/dom/spotlight</code
+            >. The function tracks mouse movement and updates <code
+              >--mouse-x</code
+            > and <code>--mouse-y</code> CSS properties.
+          </p>
+        </div>
+      </section>
+
+      <!-- ORGANISMS -->
+      <div class="category-header">
+        <h2 class="category-title">Organisms</h2>
+        <p class="category-description">
+          Complex components composed of groups of molecules and atoms.
+        </p>
+      </div>
+
+      <!-- Sidebar Component -->
+      <section id="sidebar">
+        <h2>Sidebar</h2>
+        <p class="atomic-label">Organism</p>
+        <p>
+          Navigation sidebar with sticky positioning and active state support.
+        </p>
+
+        <div class="component-block">
+          <h3>Example</h3>
+          <div class="preview preview-sidebar">
+            <Sidebar
+              title="Navigation"
+              items={[
+                { label: "Home", href: "#home" },
+                { label: "About", href: "#about" },
+                { label: "Contact", href: "#contact" },
+              ]}
+            />
+          </div>
+          <div class="props">
+            <code>title="Navigation" items=&#123;[...]&#125;</code>
+          </div>
+        </div>
+
+        <div class="component-block">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>title</code></td>
+                <td>string</td>
+                <td>required</td>
+                <td>Section title displayed above links</td>
+              </tr>
+              <tr>
+                <td><code>items</code></td>
+                <td>SidebarItem[]</td>
+                <td>required</td>
+                <td>Array of &#123; label, href &#125; objects</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="component-block">
+          <h3>Active State</h3>
+          <p class="note">
+            Add <code>.active</code> class to links via JavaScript for scroll-based
+            highlighting. Use with <code>viewDetection</code> utility for automatic
+            detection.
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        <p>kinoo.dev · Design System</p>
+      </footer>
+    </main>
+
+    <div class="sidebar-wrapper">
+      {
+        sidebarSections.map((section) => (
+          <details
+            class="sidebar-section"
+            data-section={section.title.toLowerCase()}
+          >
+            <summary>{section.title}</summary>
+            <ul>
+              {section.items.map((item) => (
+                <li>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .ds-container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    max-width: 1368px;
+    margin: 0 auto;
+    padding: 0 32px;
+    gap: 48px;
+    justify-content: space-between;
+  }
+
+  .ds-main {
+    flex: 1;
+    padding: 24px 0 64px 0;
+    max-width: 900px;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .intro {
+    color: var(--color);
+    margin-bottom: 64px;
+    max-width: 600px;
+  }
+
+  section {
+    margin: 0 0 80px 0;
+    padding-top: 24px;
+  }
+
+  section h2 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+    margin-bottom: 12px;
+  }
+
+  .atomic-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: rgba(246, 177, 122, 0.15);
+    border: 1px solid var(--accent-color);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .category-header {
+    margin: 80px 0 48px 0;
+    padding-top: 24px;
+    border-top: 2px solid var(--accent-color);
+  }
+
+  .category-header:first-of-type {
+    margin-top: 64px;
+  }
+
+  .category-title {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--accent-bright);
+  }
+
+  .category-description {
+    color: var(--color);
+    opacity: 0.8;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .component-block {
+    margin-bottom: 40px;
+  }
+
+  .component-block h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--light-color);
+  }
+
+  .component-block h4 {
+    font-size: 15px;
+    margin: 24px 0 12px 0;
+    color: var(--accent-color);
+    font-weight: 500;
+  }
+
+  .preview {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .preview-card {
+    display: block;
+  }
+
+  .preview-sidebar {
+    display: block;
+  }
+
+  .preview-sidebar :global(.sidebar) {
+    position: static;
+    width: 100%;
+    padding: 0;
+  }
+
+  .preview :global(.tag) {
+    opacity: 1;
+  }
+
+  .props {
+    margin-top: 12px;
+  }
+
+  .props code {
+    background-color: #1c2638;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: inline-block;
+  }
+
+  .note {
+    color: var(--color);
+    opacity: 0.7;
+    font-size: 15px;
+  }
+
+  .note code {
+    background-color: #1c2638;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  .props-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+
+  .props-table th,
+  .props-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .props-table th {
+    font-weight: 500;
+    color: var(--accent-color);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .props-table td {
+    font-weight: 200;
+    color: var(--light-color);
+  }
+
+  .props-table code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--accent-bright);
+  }
+
+  .sidebar-wrapper {
+    position: sticky;
+    top: 126px;
+    max-height: calc(100vh - 126px - 24px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0;
+    flex-shrink: 0;
+    width: 220px;
+  }
+
+  .sidebar-section {
+    border-radius: 8px;
+  }
+
+  .sidebar-section summary {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    cursor: pointer;
+    padding: 12px 16px;
+    user-select: none;
+    list-style: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .sidebar-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sidebar-section summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 10px;
+    transition: transform 0.2s ease;
+  }
+
+  .sidebar-section[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-section summary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .sidebar-section ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0 8px 16px;
+    margin: 0;
+    list-style: none;
+  }
+
+  .sidebar-section a {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--light-color);
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .sidebar-section a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color);
+  }
+
+  .sidebar-section a.active {
+    background-color: rgba(248, 186, 136, 0.12);
+    color: var(--accent-color);
+  }
+
+  /* Typography */
+  .typography-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .type-sample {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .type-sample:last-child {
+    border-bottom: none;
+  }
+
+  .type-label {
+    font-size: 13px;
+    color: var(--color);
+    opacity: 0.6;
+  }
+
+  .type-label code {
+    background-color: #1c2638;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+
+  .sample-h1 {
+    font-size: var(--h1-size);
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .sample-h2 {
+    margin: 0;
+  }
+
+  .sample-h3 {
+    margin: 0;
+  }
+
+  .sample-button {
+    font-size: var(--button-font-size);
+    font-weight: 500;
+    color: black;
+    background-color: var(--accent-bright);
+    padding: 12px 24px;
+    border-radius: 12px;
+    display: inline-block;
+  }
+
+  /* Color swatches */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .swatch {
+    height: 80px;
+    width: 100%;
+  }
+
+  .swatch-border {
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+  }
+
+  .color-info {
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .color-info code {
+    font-size: 13px;
+    color: var(--accent-bright);
+  }
+
+  .color-info span {
+    font-size: 12px;
+    color: var(--color);
+    opacity: 0.7;
+    font-family: monospace;
+  }
+
+  @media screen and (max-width: 900px) {
+    .ds-container {
+      flex-direction: column;
+      padding: 0 16px;
+      gap: 0;
+    }
+
+    .ds-main {
+      padding: 24px 0;
+    }
+
+    .sidebar-wrapper {
+      position: static;
+      width: 100%;
+      max-height: none;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      order: -1;
+    }
+
+    .sidebar-section ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-left: 16px;
+    }
+
+    .color-grid {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    .sample-h1 {
+      font-size: 48px;
+    }
+  }
+
+  footer {
+    min-height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 32px;
+    opacity: 0.5;
+  }
+
+  footer p {
+    font-size: 14px;
+  }
+
+  /* Spotlight Demo */
+  #spotlight-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .demo-card {
+    padding: 24px;
+    min-height: 150px;
+  }
+
+  .demo-card h4 {
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    color: var(--light-color);
+  }
+
+  .demo-card p {
+    font-size: 14px;
+    margin: 0;
+    color: var(--color);
+    opacity: 0.8;
+  }
+
+  /* Spacing Demo */
+  .spacing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-end;
+  }
+
+  .spacing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .spacing-box {
+    background-color: var(--accent-bright);
+    border-radius: 4px;
+  }
+
+  .spacing-item code {
+    font-size: 12px;
+    color: var(--color);
+    opacity: 0.7;
+  }
+
+  @media screen and (max-width: 900px) {
+    #spotlight-demo {
+      grid-template-columns: 1fr;
+    }
+
+    .category-title {
+      font-size: 28px;
+    }
+  }
+</style>
