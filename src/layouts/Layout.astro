@@ -101,26 +101,4 @@ const jsonLd = {
     z-index: 1;
   }
 
-  .gradient-border-card .shimmer {
-    background: linear-gradient(
-      112deg,
-      transparent 30%,
-      rgba(248, 186, 136, 0.1) 40%,
-      rgba(248, 186, 136, 0.3) 50%,
-      rgba(248, 186, 136, 0.1) 60%,
-      transparent 80%
-    );
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    z-index: 20;
-    border-radius: 32px;
-    background-size: 200% auto;
-    opacity: 0;
-    background-position: 150%;
-  }
-
-  .gradient-border-card:hover .shimmer {
-    animation: shimmer var(--duration) cubic-bezier(0.8, 0, 0.05, 1);
-  }
 </style>

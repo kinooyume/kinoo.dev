@@ -11,7 +11,7 @@ import Tag from "./Tag.astro";
 <section id="card">
   <h2>Card</h2>
   <p class="atomic-label">Molecule</p>
-  <p>Cards are container components with gradient border effect and shimmer animation on hover.</p>
+  <p>Cards are container components with gradient border effect.</p>
 
   <div class="component-block">
     <h3>Basic Card</h3>
@@ -41,19 +41,6 @@ import Tag from "./Tag.astro";
           </div>
         </div>
       </Card>
-    </div>
-  </div>
-
-  <div class="component-block">
-    <h3>Shimmer Effect</h3>
-    <p class="note">
-      Hover over cards to see the shimmer animation. Duration controlled by <code>--duration</code> CSS variable.
-    </p>
-    <div class="preview preview-card">
-      <div class="shimmer-demo gradient-border-card">
-        <div class="shimmer"></div>
-        <p>Hover me to see shimmer</p>
-      </div>
     </div>
   </div>
 
@@ -264,15 +251,6 @@ import Tag from "./Tag.astro";
   }
   .card-content-demo .tags :global(.tag) {
     opacity: 1;
-  }
-  .shimmer-demo {
-    padding: 48px;
-    text-align: center;
-    position: relative;
-  }
-  .shimmer-demo p {
-    position: relative;
-    z-index: 1;
   }
   .card-split-demo {
     display: grid;
