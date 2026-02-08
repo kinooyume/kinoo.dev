@@ -3,7 +3,13 @@ import github from "@/svgs/github.svg?raw";
 import linkedin from "@/svgs/linkedin.svg?raw";
 import terminal from "@/svgs/terminal.svg?raw";
 
-import NavBar from "./NavBar.astro";
+import NavBar, { type NavItem } from "./NavBar.astro";
+
+interface Props {
+  navItems?: NavItem[];
+}
+
+const { navItems } = Astro.props;
 ---
 
 <header>
@@ -17,7 +23,7 @@ import NavBar from "./NavBar.astro";
           Martin Kinoo
         </a>
       </div>
-      <NavBar />
+      <NavBar items={navItems} />
     </nav>
     <div class="menu">
       <a

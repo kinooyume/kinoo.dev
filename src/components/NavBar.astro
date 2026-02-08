@@ -1,19 +1,32 @@
+---
+export interface NavItem {
+  label: string;
+  href: string;
+  color: string;
+}
+
+interface Props {
+  items?: NavItem[];
+}
+
+const defaultItems: NavItem[] = [
+  { label: "Expériences", href: "#experiences", color: "#f68dab" },
+  { label: "Réalisations", href: "#realisations", color: "#66c384" },
+  { label: "Formations", href: "#formations", color: "#9c85d3" },
+];
+
+const { items = defaultItems } = Astro.props;
+---
+
 <nav class="navbar">
   <ul>
-    <li>
-      <a class="anime nav" href="#experiences" data-color="#f68dab"
-        >Expériences</a
-      >
-    </li>
-    <li>
-      <a class="anime nav" href="#realisations" data-color="#66c384"
-        >Réalisations</a
-      >
-    </li>
-    <li>
-      <a class="anime nav" href="#formations" data-color="#9c85d3">Formations</a
-      >
-    </li>
+    {items.map((item) => (
+      <li>
+        <a class="anime nav" href={item.href} data-color={item.color}>
+          {item.label}
+        </a>
+      </li>
+    ))}
   </ul>
   <div class="indicator"></div>
 </nav>

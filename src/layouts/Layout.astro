@@ -1,5 +1,6 @@
 ---
 import Header from "@/components/Header.astro";
+import type { NavItem } from "@/components/NavBar.astro";
 import "@/styles/variables.css";
 import "@/styles/global.css";
 import "@/styles/animations.css";
@@ -7,6 +8,7 @@ import "@/styles/animations.css";
 interface Props {
   title: string;
   description?: string;
+  navItems?: NavItem[];
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -14,6 +16,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
   description = "Développeur front-end freelance basé à Paris. Spécialisé en TypeScript, React et Svelte. Création de sites web performants et accessibles.",
+  navItems,
 } = Astro.props;
 
 const jsonLd = {
@@ -77,7 +80,7 @@ const jsonLd = {
     <slot name="head" />
   </head>
   <body>
-    <Header />
+    <Header navItems={navItems} />
     <slot />
   </body>
 </html>
