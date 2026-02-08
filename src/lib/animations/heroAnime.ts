@@ -87,6 +87,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (globalThis.scrollY || window.location.hash) {
     cancelled = true;
     finishAll();
+    // Scroll to anchor after animations are finished
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        requestAnimationFrame(() => {
+          target.scrollIntoView();
+        });
+      }
+    }
   } else {
     globalThis.addEventListener("wheel", onUserScroll, {
       once: true,
