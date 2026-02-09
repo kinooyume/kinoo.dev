@@ -1,0 +1,80 @@
+---
+/**
+ * HeaderLink - Individual header navigation link
+ * Design System - Atom
+ * Supports icon (with slot) and badge (with text) variants
+ */
+interface Props {
+  href: string;
+  label: string;
+  variant?: "icon" | "badge";
+  external?: boolean;
+}
+
+const { href, label, variant = "icon", external = false } = Astro.props;
+
+const externalProps = external
+  ? { target: "_blank", rel: "noreferrer nofollow noopener" }
+  : {};
+---
+
+<a
+  class:list={["header-link", `header-link--${variant}`, "anime"]}
+  href={href}
+  aria-label={label}
+  {...externalProps}
+>
+  {variant === "badge" ? label : <slot />}
+</a>
+
+<style>
+  .header-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+
+  .header-link:hover {
+    opacity: 1;
+  }
+
+  /* Icon variant */
+  .header-link--icon :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .header-link--icon :global(svg path) {
+    fill: var(--light-color);
+    transition: fill 0.3s ease;
+  }
+
+  .header-link--icon:hover :global(svg path) {
+    fill: var(--accent-color);
+  }
+
+  /* Badge variant */
+  .header-link--badge {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    height: 22px;
+    padding: 0 6px;
+    color: var(--light-color);
+  }
+
+  .header-link--badge:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+
+  @media screen and (max-width: 600px) {
+    .header-link {
+      transform: none !important;
+    }
+  }
+</style>

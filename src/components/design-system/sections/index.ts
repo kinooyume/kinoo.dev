@@ -65,6 +65,8 @@ export const sidebarSections: SidebarSection[] = [
     title: "Header",
     items: [
       { label: "Header", href: "#header" },
+      { label: "HeaderMenu", href: "#headermenu" },
+      { label: "HeaderLink", href: "#headerlink" },
       { label: "NavBar", href: "#navbar" },
     ],
   },
