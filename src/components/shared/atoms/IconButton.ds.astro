@@ -1,0 +1,76 @@
+---
+/**
+ * IconButton Documentation
+ * Design System - Atom
+ */
+import IconButton from "./IconButton.astro";
+import BurgerIcon from "./BurgerIcon.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+
+import message from "@/svgs/message.svg?raw";
+---
+
+<section id="iconbutton">
+  <h2>IconButton</h2>
+  <p class="atomic-label">Atom</p>
+  <p>A reusable button designed for icon content with consistent sizing and hover effects.</p>
+
+  <DSBlock title="Default">
+    <DSPreview>
+      <IconButton label="Message">
+        <Fragment set:html={message} />
+      </IconButton>
+      <IconButton label="Menu">
+        <BurgerIcon />
+      </IconButton>
+    </DSPreview>
+    <DSCode inline>&lt;IconButton label="Menu"&gt;&lt;BurgerIcon /&gt;&lt;/IconButton&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="With Open State">
+    <DSPreview>
+      <IconButton label="Menu" class="open">
+        <BurgerIcon />
+      </IconButton>
+    </DSPreview>
+    <DSNote>Add <code>.open</code> class to trigger BurgerIcon animation.</DSNote>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "label" }, "string", "required", "Accessible aria-label for the button"],
+        [{ code: "id" }, "string", "-", "Optional ID for JavaScript targeting"],
+        [{ code: "variant" }, '"default" | "floating"', '"default"', "Floating adds fixed position and shadow"],
+        [{ code: "class" }, "string", "-", "Additional CSS classes"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Variants">
+    <DSPropsTable
+      headers={["Variant", "Description"]}
+      rows={[
+        [{ code: "default" }, "Standard button without positioning"],
+        [{ code: "floating" }, "Fixed position with z-index and box-shadow"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<style>
+  section :global(.icon-button svg) {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+  }
+
+  section :global(.icon-button svg path) {
+    fill: var(--accent-color);
+  }
+</style>

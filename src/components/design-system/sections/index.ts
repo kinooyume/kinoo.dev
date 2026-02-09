@@ -31,6 +31,8 @@ export const sidebarSections: SidebarSection[] = [
           { label: "Tag", href: "#tag" },
           { label: "TagLink", href: "#taglink" },
           { label: "Button", href: "#button" },
+          { label: "IconButton", href: "#iconbutton" },
+          { label: "BurgerIcon", href: "#burgericon" },
           { label: "H3Tagged", href: "#h3tagged" },
         ],
       },

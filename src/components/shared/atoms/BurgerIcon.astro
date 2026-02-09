@@ -1,0 +1,50 @@
+---
+/**
+ * BurgerIcon - Animated hamburger menu icon
+ * Design System - Atom
+ * Transforms to X when parent has .open class
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span class:list={["burger-icon", className]}>
+  <span class="burger-line"></span>
+  <span class="burger-line"></span>
+  <span class="burger-line"></span>
+</span>
+
+<style>
+  .burger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .burger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: var(--accent-color);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+
+  /* Animate to X when parent button has .open class */
+  :global(.open) .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  :global(.open) .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  :global(.open) .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+</style>
