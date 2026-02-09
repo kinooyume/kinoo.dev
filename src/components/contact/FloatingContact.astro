@@ -1,12 +1,18 @@
 ---
+import IconButton from "@/components/shared/atoms/IconButton.astro";
 import message from "@/svgs/message.svg?raw";
 ---
 
-<a id="floating-contact" class="primary" href="#contact">
-  <div class="icon-wrapper">
-    <Fragment set:html={message} />
-  </div>
-</a>
+<IconButton
+  id="floating-contact"
+  href="#contact"
+  label="Me contacter"
+  size="small"
+  class="floating-contact"
+>
+  <Fragment set:html={message} />
+</IconButton>
+
 <script>
   import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
   import {
@@ -31,41 +37,47 @@ import message from "@/svgs/message.svg?raw";
   window.addEventListener("load", hideContactWhenSectionVisible);
 </script>
 
-<style>
-  a {
+<style is:global>
+  .floating-contact.icon-button {
     display: none;
   }
 
-  .floating-contact:hover {
-    transform: translateY(-4px);
-  }
-
-  .floating-contact:active {
-    transform: translateY(5px);
-    transition: 200ms;
-  }
-
   @media screen and (max-width: 600px) {
-    a {
+    .floating-contact.icon-button {
       position: sticky;
       z-index: 300;
       bottom: 36px;
       right: 12px;
       margin-left: auto;
-      width: 36px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease-in-out;
-    }
-    .icon-wrapper {
-      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 36px;
-      height: 36px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: var(--card-alt-background-color);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-    a.current {
+
+    .floating-contact.icon-button:hover {
+      background-color: var(--card-hover-background);
+      border-color: var(--border-hover-color);
+    }
+
+    .floating-contact svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .floating-contact svg path {
+      fill: var(--accent-color);
+    }
+
+    .floating-contact.current {
       pointer-events: none;
       opacity: 0;
     }

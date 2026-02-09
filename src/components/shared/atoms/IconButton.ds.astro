@@ -17,9 +17,9 @@ import message from "@/svgs/message.svg?raw";
 <section id="iconbutton">
   <h2>IconButton</h2>
   <p class="atomic-label">Atom</p>
-  <p>A reusable button designed for icon content with consistent sizing and hover effects.</p>
+  <p>A reusable button or link designed for icon content with consistent sizing and hover effects.</p>
 
-  <DSBlock title="Default">
+  <DSBlock title="Default Color">
     <DSPreview>
       <IconButton label="Message">
         <Fragment set:html={message} />
@@ -29,6 +29,25 @@ import message from "@/svgs/message.svg?raw";
       </IconButton>
     </DSPreview>
     <DSCode inline>&lt;IconButton label="Menu"&gt;&lt;BurgerIcon /&gt;&lt;/IconButton&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Primary Color">
+    <DSPreview>
+      <IconButton label="Contact" color="primary" class="primary-demo">
+        <Fragment set:html={message} />
+      </IconButton>
+    </DSPreview>
+    <DSCode inline>&lt;IconButton label="Contact" color="primary"&gt;...&lt;/IconButton&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="As Link">
+    <DSPreview>
+      <IconButton label="Contact" href="#iconbutton" color="primary" class="primary-demo">
+        <Fragment set:html={message} />
+      </IconButton>
+    </DSPreview>
+    <DSCode inline>&lt;IconButton label="Contact" href="#contact" color="primary"&gt;...&lt;/IconButton&gt;</DSCode>
+    <DSNote>When <code>href</code> is provided, renders as <code>&lt;a&gt;</code> instead of <code>&lt;button&gt;</code>.</DSNote>
   </DSBlock>
 
   <DSBlock title="With Open State">
@@ -44,9 +63,11 @@ import message from "@/svgs/message.svg?raw";
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "label" }, "string", "required", "Accessible aria-label for the button"],
+        [{ code: "label" }, "string", "required", "Accessible aria-label"],
         [{ code: "id" }, "string", "-", "Optional ID for JavaScript targeting"],
+        [{ code: "href" }, "string", "-", "If provided, renders as <a> instead of <button>"],
         [{ code: "variant" }, '"default" | "floating"', '"default"', "Floating adds fixed position and shadow"],
+        [{ code: "color" }, '"default" | "primary"', '"default"', "Color scheme"],
         [{ code: "class" }, "string", "-", "Additional CSS classes"],
       ]}
     />
@@ -61,6 +82,16 @@ import message from "@/svgs/message.svg?raw";
       ]}
     />
   </DSBlock>
+
+  <DSBlock title="Colors">
+    <DSPropsTable
+      headers={["Color", "Description"]}
+      rows={[
+        [{ code: "default" }, "Card background with border"],
+        [{ code: "primary" }, "Accent bright background"],
+      ]}
+    />
+  </DSBlock>
 </section>
 
 <style>
@@ -72,5 +103,9 @@ import message from "@/svgs/message.svg?raw";
 
   section :global(.icon-button svg path) {
     fill: var(--accent-color);
+  }
+
+  section :global(.icon-button--primary svg path) {
+    fill: var(--background-color);
   }
 </style>

@@ -1,27 +1,60 @@
 ---
 /**
- * IconButton - Reusable icon button
+ * IconButton - Reusable icon button or link
  * Design System - Atom
+ * Renders as <a> when href is provided, otherwise <button>
  */
 interface Props {
   id?: string;
   label: string;
   class?: string;
+  href?: string;
   variant?: "default" | "floating";
+  color?: "default" | "primary";
+  size?: "default" | "small";
 }
 
-const { id, label, class: className, variant = "default" } = Astro.props;
+const {
+  id,
+  label,
+  class: className,
+  href,
+  variant = "default",
+  color = "default",
+  size = "default",
+} = Astro.props;
+
+const classes = [
+  "icon-button",
+  `icon-button--${variant}`,
+  `icon-button--${color}`,
+  size !== "default" && `icon-button--${size}`,
+  className,
+];
 ---
 
-<button
-  id={id}
-  class:list={["icon-button", `icon-button--${variant}`, className]}
-  aria-label={label}
->
-  <slot />
-</button>
+{
+  href ? (
+    <a
+      id={id}
+      href={href}
+      class:list={classes}
+      aria-label={label}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      id={id}
+      class:list={classes}
+      aria-label={label}
+    >
+      <slot />
+    </button>
+  )
+}
 
-<style>
+<style is:global>
   .icon-button {
     display: flex;
     flex-direction: column;
@@ -35,6 +68,7 @@ const { id, label, class: className, variant = "default" } = Astro.props;
     border: 1px solid var(--border-color);
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
   }
 
   .icon-button:hover {
@@ -42,6 +76,30 @@ const { id, label, class: className, variant = "default" } = Astro.props;
     border-color: var(--border-hover-color);
   }
 
+  /* Size variants */
+  .icon-button--small {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  /* Color variants */
+  .icon-button.icon-button--primary {
+    background-color: var(--accent-bright);
+    border-color: var(--accent-bright);
+  }
+
+  .icon-button.icon-button--primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-4px);
+  }
+
+  .icon-button--primary:active {
+    transform: translateY(2px);
+  }
+
+  /* Position variants */
   .icon-button--floating {
     position: fixed;
     z-index: 1001;
