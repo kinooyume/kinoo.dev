@@ -16,41 +16,36 @@ import DSNote from "@/components/design-system/DSNote.astro";
   <p class="atomic-label">Atom</p>
   <p>Interactive buttons with primary and secondary variants.</p>
 
-  <DSBlock title="Primary Button">
+  <DSBlock title="Primary">
     <DSPreview>
       <button class="primary">Primary Button</button>
+      <a href="#button" class="primary">Primary Link</a>
     </DSPreview>
     <DSCode inline>&lt;button class="primary"&gt;...&lt;/button&gt;</DSCode>
   </DSBlock>
 
-  <DSBlock title="Link as Button">
+  <DSBlock title="Secondary">
     <DSPreview>
-      <a href="#button" class="primary">Link Button</a>
+      <button class="secondary">Secondary Button</button>
+      <a href="#button" class="secondary">Secondary Link</a>
     </DSPreview>
-    <DSCode inline>&lt;a href="#" class="primary"&gt;...&lt;/a&gt;</DSCode>
-  </DSBlock>
-
-  <DSBlock title="Animated Link">
-    <DSPreview>
-      <a href="#button" class="anime">Animated Link</a>
-    </DSPreview>
-    <DSCode inline>&lt;a href="#" class="anime"&gt;...&lt;/a&gt;</DSCode>
+    <DSCode inline>&lt;button class="secondary"&gt;...&lt;/button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="CSS Classes">
     <DSPropsTable
       headers={["Class", "Description"]}
       rows={[
-        [{ code: ".primary" }, "Orange background, black text, rounded corners"],
-        [{ code: ".anime" }, "Adds hover lift animation"],
-        [{ code: ".secondary" }, "Secondary button style"],
+        [{ code: ".primary" }, "Accent background, dark text"],
+        [{ code: ".secondary" }, "Card background, light text, border"],
+        [{ code: ".anime" }, "Adds hover lift animation to links"],
       ]}
     />
   </DSBlock>
 
   <DSBlock title="Interactions">
     <DSNote>
-      Buttons with <code>.primary</code> or <code>.anime</code> classes have hover states that lift the element by 4px and active states that push down 5px.
+      Both variants have hover states that lift by 4px. Secondary also changes background and border color on hover.
     </DSNote>
   </DSBlock>
 </section>
