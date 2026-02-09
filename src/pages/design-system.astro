@@ -11,6 +11,7 @@ import TagDs from "@/components/Tag.ds.astro";
 import TagLinkDs from "@/components/TagLink.ds.astro";
 import ButtonDs from "@/components/Button.ds.astro";
 import H3TaggedDs from "@/components/H3Tagged.ds.astro";
+import HeroSubtitleDs from "@/components/HeroSubtitle.ds.astro";
 
 // Molecules
 import CardDs from "@/components/Card.ds.astro";
@@ -21,6 +22,10 @@ import NavBarDs from "@/components/NavBar.ds.astro";
 import SidebarDs from "@/components/Sidebar.ds.astro";
 import HeaderDs from "@/components/Header.ds.astro";
 import FloatingContactDs from "@/components/FloatingContact.ds.astro";
+import ContactDs from "@/components/Contact.ds.astro";
+
+// Templates
+import CompositionsDs from "@/components/Compositions.ds.astro";
 
 // Sidebar configuration
 type SidebarItem = { label: string; href: string };
@@ -36,6 +41,7 @@ const atomItems: SidebarItem[] = [
   { label: "TagLink", href: "#taglink" },
   { label: "Button", href: "#button" },
   { label: "H3Tagged", href: "#h3tagged" },
+  { label: "HeroSubtitle", href: "#herosubtitle" },
 ];
 
 const moleculeItems: SidebarItem[] = [
@@ -48,6 +54,11 @@ const organismItems: SidebarItem[] = [
   { label: "Sidebar", href: "#sidebar" },
   { label: "Header", href: "#header" },
   { label: "FloatingContact", href: "#floatingcontact" },
+  { label: "Contact", href: "#contact-doc" },
+];
+
+const templateItems: SidebarItem[] = [
+  { label: "Compositions", href: "#compositions" },
 ];
 
 const sidebarSections = [
@@ -55,6 +66,7 @@ const sidebarSections = [
   { title: "Atoms", items: atomItems },
   { title: "Molecules", items: moleculeItems },
   { title: "Organisms", items: organismItems },
+  { title: "Templates", items: templateItems },
 ];
 ---
 
@@ -195,6 +207,7 @@ const sidebarSections = [
       <TagLinkDs />
       <ButtonDs />
       <H3TaggedDs />
+      <HeroSubtitleDs />
 
       <!-- MOLECULES -->
       <div class="category-header">
@@ -219,6 +232,17 @@ const sidebarSections = [
       <SidebarDs />
       <HeaderDs />
       <FloatingContactDs />
+      <ContactDs />
+
+      <!-- TEMPLATES -->
+      <div class="category-header">
+        <h2 class="category-title">Templates</h2>
+        <p class="category-description">
+          Common patterns showing how components combine in real usage.
+        </p>
+      </div>
+
+      <CompositionsDs />
 
       <footer>
         <p>kinoo.dev · Design System</p>
