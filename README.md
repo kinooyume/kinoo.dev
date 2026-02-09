@@ -12,7 +12,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Bun](https://img.shields.io/badge/Bun-1.x-000000?style=for-the-badge&logo=bun&logoColor=white)](https://bun.sh)
 
-[🌐 Live Website](https://kinoo.dev) · [📧 Contact](https://kinoo.dev#contact)
+[🌐 Live Website](https://kinoo.dev) · [🎨 Design System](https://kinoo.dev/design-system) · [📧 Contact](https://kinoo.dev#contact)
 
 </div>
 
@@ -28,7 +28,7 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 
 - ⚡ **Lightning-fast** static site generation with Astro
 - 🎭 **Smooth animations** using Anime.js
-- 🎨 **Modern UI** with custom CSS
+- 🎨 **Design System** with documented components
 - 📱 **Fully responsive** design
 - ♿ **Accessible** with proper ARIA labels and keyboard navigation
 - 🔍 **SEO optimized** with sitemap generation
@@ -59,6 +59,23 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 - **[Prettier](https://prettier.io)** - Code formatting
 - **[Cocogitto](https://docs.cocogitto.io/)** - Conventional commit validation
 - **[Lefthook](https://github.com/evilmartians/lefthook)** - Git hooks manager
+
+---
+
+## 🎨 Design System
+
+A modular design system built with atomic design principles. Components are organized into:
+
+- **Foundations** - Colors, typography, spacing tokens
+- **Atoms** - Tag, TagLink, Button, H3Tagged
+- **Molecules** - Card, Spotlight, NavBar
+- **Organisms** - Sidebar, Header, FloatingContact
+
+Each component is documented with usage examples, props tables, and live previews.
+
+**[View the Design System →](https://kinoo.dev/design-system)**
+
+> *Work in progress - designed to be reusable across projects.*
 
 ---
 
@@ -245,12 +262,20 @@ kinoo.dev/
 │   ├── components/       # Reusable Astro & SolidJS components
 │   │   ├── Card.astro
 │   │   ├── Hero.astro
-│   │   ├── Slider.tsx   # SolidJS components
-│   │   └── Contact.astro
+│   │   ├── Slider.tsx    # SolidJS components
+│   │   ├── *.ds.astro    # Design system documentation
+│   │   └── ...
 │   ├── layouts/          # Page layouts
 │   │   └── Layout.astro
+│   ├── lib/              # Utilities and animations
+│   │   ├── animations/
+│   │   └── dom/
 │   ├── pages/            # File-based routing
-│   │   └── index.astro
+│   │   ├── index.astro
+│   │   └── design-system.astro
+│   ├── styles/           # CSS and design tokens
+│   │   ├── *.ds.astro    # Design system documentation
+│   │   └── ...
 │   ├── svgs/             # SVG icons
 │   └── env.d.ts
 ├── astro.config.mjs      # Astro configuration
