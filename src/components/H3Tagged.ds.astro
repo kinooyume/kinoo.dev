@@ -1,0 +1,58 @@
+---
+/**
+ * H3Tagged Component Documentation
+ * Design System - Atom
+ */
+import H3Tagged from "./H3Tagged.astro";
+---
+
+<section id="h3tagged">
+  <h2>H3Tagged</h2>
+  <p class="atomic-label">Atom</p>
+  <p>Heading with an inline tag badge, used for card titles with categorization.</p>
+
+  <div class="component-block">
+    <h3>Default</h3>
+    <div class="preview">
+      <H3Tagged title="Project Title" tag="React" />
+    </div>
+    <div class="props">
+      <code>title="Project Title" tag="React"</code>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Props</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>title</code></td>
+          <td>string</td>
+          <td>required</td>
+          <td>The heading text</td>
+        </tr>
+        <tr>
+          <td><code>tag</code></td>
+          <td>string</td>
+          <td>required</td>
+          <td>The tag/badge text</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>Usage</h3>
+    <p class="note">
+      Typically used within <code>CardTitle</code> to display job titles or project names with their category/type.
+    </p>
+  </div>
+</section>

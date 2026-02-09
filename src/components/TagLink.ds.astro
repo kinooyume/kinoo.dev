@@ -1,0 +1,51 @@
+---
+/**
+ * TagLink Component Documentation
+ * Design System - Atom
+ */
+import TagLink from "./TagLink.astro";
+---
+
+<section id="taglink">
+  <h2>TagLink</h2>
+  <p class="atomic-label">Atom</p>
+  <p>External links with an icon indicator, opens in a new tab.</p>
+
+  <div class="component-block">
+    <h3>Default</h3>
+    <div class="preview">
+      <TagLink href="https://github.com" text="View on GitHub" />
+    </div>
+    <div class="props">
+      <code>href="https://github.com" text="View on GitHub"</code>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Props</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>href</code></td>
+          <td>string</td>
+          <td>required</td>
+          <td>URL to link to</td>
+        </tr>
+        <tr>
+          <td><code>text</code></td>
+          <td>string</td>
+          <td>required</td>
+          <td>Link text</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

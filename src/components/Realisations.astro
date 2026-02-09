@@ -20,10 +20,16 @@ import Spotlight from "./Spotlight.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="Arteflix" tag="Projet perso" />
-              <TagLink
-                href="https://arteflix.kinoo.dev"
-                text="Visiter le site"
-              />
+              <div class="links-row">
+                <TagLink
+                  href="https://arteflix.kinoo.dev"
+                  text="Visiter le site"
+                />
+                <TagLink
+                  href="https://github.com/kinooyume/arteflix"
+                  text="Voir le code"
+                />
+              </div>
             </div>
             <div class="title-logo">
               <img alt="arteflix" src="/images/arteflix/logo.webp" />
@@ -123,6 +129,65 @@ import Spotlight from "./Spotlight.astro";
         </CardSplit>
       </Card>
     </Spotlight>
+    <Spotlight color="#66c384">
+      <Card>
+        <CardSplit reverse>
+          <div slot="title" class="title-wrapper">
+            <div class="title-container">
+              <H3Tagged title="kinoo.dev" tag="Portfolio" />
+              <div class="links-row">
+                <TagLink
+                  href="/design-system"
+                  text="Design System"
+                />
+                <TagLink
+                  href="https://github.com/kinooyume/kinoo.dev"
+                  text="Voir le code"
+                />
+              </div>
+            </div>
+            <div class="title-logo">
+              <img alt="kinoo.dev" src="/favicon.svg" />
+            </div>
+          </div>
+          <div slot="description">
+            <p>
+              Site portfolio personnel conçu avec <b>Astro</b> et <b>SolidJS</b>,
+              optimisé pour la performance et l'accessibilité.
+            </p>
+            <br />
+            <p>
+              Animations fluides avec <b>Anime.js</b> et système de design
+              modulaire avec composants <b>Design System</b>.
+            </p>
+            <br />
+            <p>
+              Architecture <b>Islands</b> pour un chargement optimal, 
+              formulaire de contact avec validation, et CI/CD automatisé 
+              avec <b>conventional commits</b> et déploiement sur <b>Netlify</b>.
+            </p>
+            <br />
+            <div class="row">
+              <Tag title="Astro" />
+              <Tag title="SolidJS" />
+              <Tag title="TypeScript" />
+              <Tag title="Anime.js" />
+            </div>
+          </div>
+          <Slider
+            slot="aside"
+            client:load
+            pictures={[
+              "kinoo.dev/01.png",
+              "kinoo.dev/02.png",
+              "kinoo.dev/03.png",
+            ]}
+          >
+            <Fragment set:html={arrow} />
+          </Slider>
+        </CardSplit>
+      </Card>
+    </Spotlight>
   </div>
 </section>
 
@@ -138,7 +203,7 @@ import Spotlight from "./Spotlight.astro";
 <style>
   #realisations {
     --accent-color: #66c384;
-    --secondary-accent-color: #d1edcf;
+    --secondary-accent-color: #80d49a;
   }
   .row {
     display: flex;
@@ -175,6 +240,13 @@ import Spotlight from "./Spotlight.astro";
     justify-content: space-between;
     gap: 4px;
     align-items: flex-start;
+  }
+
+  .links-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   @media screen and (max-width: 320px) {

@@ -1,7 +1,7 @@
 import { mouseTracker } from "./mouseTracker";
 import { gyroTracker } from "./gyroTracker";
 
-const isMobile = () => window.matchMedia("(hover: none)").matches;
+const _isMobile = () => window.matchMedia("(hover: none)").matches;
 
 let forceGyro = false;
 

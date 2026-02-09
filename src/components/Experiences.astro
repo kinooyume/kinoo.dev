@@ -3,13 +3,55 @@ import Card from "./Card.astro";
 import CardContent from "./CardContent.astro";
 import CardTitle from "./CardTitle.astro";
 import Spotlight from "./Spotlight.astro";
+import Tag from "./Tag.astro";
 ---
 
 <section id="experiences" data-animate-section>
   <span class="subtitle">Mes</span>
   <h2>Expériences</h2>
   <div class="grid" id="experiences-grid" data-spotlight>
-    <Spotlight color="#f68dab" class="verty">
+    <Spotlight color="var(--pink)" class="adeo">
+      <Card>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Développeur Frontend"
+            tag="Freelance"
+            href="https://www.adeo.com/"
+            label="Adeo"
+            location="Lille"
+            date="depuis septembre 2025"
+          />
+          <p slot="description">
+            Développement d'applications de data discovery et gouvernance au sein de
+            l'écosystème <strong>DataHub</strong> pour la plateforme data. 
+          </p>
+          <ul>
+            <li>
+              Application <strong>Svelte</strong> dans une architecture <strong>micro-frontend</strong> (Kobi)
+              avec backend <strong>NestJS</strong> (Vault, Datadog).
+            </li>
+            <li>
+              Application <strong>Vue 3</strong> : migration progressive vers
+              <strong>Composition API</strong> et <strong>Pinia</strong>, maintenance et développement.
+            </li>
+            <li>Développement du Design System interne.</li>
+          </ul>
+          <img
+            loading="lazy"
+            slot="marge"
+            src="/images/adeo.png"
+            alt="adeo"
+          />
+          <div class="row">
+            <Tag title="Svelte" />
+            <Tag title="Vue 3" />
+            <Tag title="TypeScript" />
+          </div>
+        </CardContent>
+      </Card>
+    </Spotlight>
+    <Spotlight color="var(--pink)" class="verty">
       <Card>
         <CardContent>
           <CardTitle
@@ -19,18 +61,30 @@ import Spotlight from "./Spotlight.astro";
             href="https://verty.eu/"
             label="Verty"
             location="Remote"
-            date="2025 (3 mois)"
+            date="2025 (4 mois)"
           />
           <p slot="description">
-            Conception et développement d'une synchronisation entre Shopify et un
-            site de vente externe via les APIs. Services en <string>Go</string> hébergés
-            sur Scaleway, avec une architecture fiable et maintenable.
+            Conception et développement d'une synchronisation entre Shopify et
+            un site de vente externe via les APIs. Services en <strong
+              >Go</strong
+            > hébergés sur Scaleway, avec une architecture fiable et maintenable.
+            Monitoring avec <strong>Grafana</strong>.
           </p>
-          <img loading="lazy" slot="marge" src="images/verty.webp" alt="verty" />
+          <img
+            loading="lazy"
+            slot="marge"
+            src="images/verty.webp"
+            alt="verty"
+          />
+          <div class="row">
+            <Tag title="Go" />
+            <Tag title="Shopify API" />
+            <Tag title="Grafana" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight>
-    <Spotlight color="#f68dab" class="impacthorizon">
+    <Spotlight color="var(--pink)" class="impacthorizon">
       <Card>
         <CardContent>
           <CardTitle
@@ -54,10 +108,14 @@ import Spotlight from "./Spotlight.astro";
             src="images/impacthorizon.webp"
             alt="impacthorizon"
           />
+          <div class="row">
+            <Tag title="React" />
+            <Tag title="TypeScript" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight>
-    <Spotlight color="#f68dab" class="opo">
+    <Spotlight color="var(--pink)" class="opo">
       <Card>
         <CardContent>
           <CardTitle
@@ -70,10 +128,10 @@ import Spotlight from "./Spotlight.astro";
             date="2019-2022 (3 ans et 6 mois)"
           />
           <p slot="description">
-            Responsable du développement du catalogue des formations gamifiées et
-            formations sur-mesure, de l'infrastructure et du parcours client. En
-            collaboration étroite avec l'UX designer, le marketing ainsi que les
-            clients.
+            Responsable du développement du catalogue des formations gamifiées
+            et formations sur-mesure, de l'infrastructure et du parcours client.
+            En collaboration étroite avec l'UX designer, le marketing ainsi que
+            les clients.
           </p>
 
           <ul>
@@ -83,7 +141,8 @@ import Spotlight from "./Spotlight.astro";
               >, responsive.
             </li>
             <li>
-              Package <b>SCORM</b> pour le suivi des formations ou depuis un SaaS interne.
+              Package <b>SCORM</b> pour le suivi des formations ou depuis un SaaS
+              interne.
             </li>
             <li>
               Déploiement en CI/CD, test avec <b>Jest</b> et <b>Cypress</b>,
@@ -112,9 +171,18 @@ import Spotlight from "./Spotlight.astro";
             src="images/opo.png"
             alt="oeilpouroeil"
           />
+          <div class="row">
+            <Tag title="React" />
+            <Tag title="Vue" />
+            <Tag title="Svelte" />
+            <Tag title="TypeScript" />
+            <Tag title="Go" />
+            <Tag title="GraphQL" />
+            <Tag title="Rescript" />
+          </div>
         </CardContent>
       </Card>
-    </Spotlight><Spotlight color="#f68dab" class="ordoclic">
+    </Spotlight><Spotlight color="var(--pink)" class="ordoclic">
       <Card>
         <CardContent>
           <CardTitle
@@ -128,8 +196,8 @@ import Spotlight from "./Spotlight.astro";
           />
           <p slot="description">
             Responsable du développement d'une imprimante virtuelle chez les
-            professionnelles de santé afin de faciliter le passage aux ordonnances
-            numériques.
+            professionnelles de santé afin de faciliter le passage aux
+            ordonnances numériques.
           </p>
           <ul>
             <li>Application electron.js se comportant comme une imprimante</li>
@@ -142,9 +210,13 @@ import Spotlight from "./Spotlight.astro";
             src="images/ordoclic.png"
             alt="ordoclic"
           />
+          <div class="row">
+            <Tag title="Electron.js" />
+            <Tag title="Node.js" />
+          </div>
         </CardContent>
       </Card>
-    </Spotlight><Spotlight color="#f68dab" class="cautioneo">
+    </Spotlight><Spotlight color="var(--pink)" class="cautioneo">
       <Card>
         <CardContent>
           <CardTitle
@@ -167,6 +239,9 @@ import Spotlight from "./Spotlight.astro";
             src="images/cautioneo.png"
             alt="cautioneo"
           />
+          <div class="row">
+            <Tag title="Ruby on Rails" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight>
@@ -192,7 +267,7 @@ import Spotlight from "./Spotlight.astro";
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, minmax(0, auto));
+    grid-template-rows: repeat(4, minmax(0, auto));
     grid-column-gap: 26px;
     grid-row-gap: 26px;
   }
@@ -202,21 +277,33 @@ import Spotlight from "./Spotlight.astro";
     height: 51px;
   }
 
-  .grid > :global(.verty) {
-    grid-area: 1 / 1 / 2 / 2;
+  .grid > :global(.adeo) {
+    grid-area: 1 / 1 / 2 / 3;
   }
 
-  .grid > :global(.impacthorizon) {
+  .grid > :global(.verty) {
     grid-area: 2 / 1 / 3 / 2;
   }
 
+  .grid > :global(.impacthorizon) {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+
   .grid > :global(.opo) {
-    grid-area: 1 / 2 / 3 / 3;
+    grid-area: 2 / 2 / 4 / 3;
   }
 
   ul {
     list-style: initial;
     margin-left: 24px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
   }
 
   @media screen and (max-width: 1200px) {
