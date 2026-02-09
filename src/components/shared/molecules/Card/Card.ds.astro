@@ -5,13 +5,14 @@
  * Includes: Card, CardContent, CardTitle, CardSplit
  */
 import Card from "./Card.astro";
-import Tag from "./Tag.astro";
+import Tag from "@/components/shared/atoms/Tag.astro";
 ---
 
+<!-- CARD -->
 <section id="card">
   <h2>Card</h2>
   <p class="atomic-label">Molecule</p>
-  <p>Cards are container components with gradient border effect.</p>
+  <p>Base container component with gradient border effect. Parent of the Card compound system.</p>
 
   <div class="component-block">
     <h3>Basic Card</h3>
@@ -80,7 +81,21 @@ import Tag from "./Tag.astro";
   </div>
 
   <div class="component-block">
-    <h3>CardContent</h3>
+    <h3>Animation Attributes</h3>
+    <p class="note">
+      Add <code>data-animate-elem</code> to elements for reveal animations. Used with <code>revealCards</code> utility for staggered fade-in effects.
+    </p>
+  </div>
+</section>
+
+<!-- CARD CONTENT -->
+<section id="card-content">
+  <h2>CardContent</h2>
+  <p class="atomic-label">Molecule</p>
+  <p>Layout wrapper with named slots for structured card content. Used inside Card.</p>
+
+  <div class="component-block">
+    <h3>Slots</h3>
     <div class="structure-diagram">
       <div class="structure-row">
         <code>slot="title"</code>
@@ -102,79 +117,21 @@ import Tag from "./Tag.astro";
   </div>
 
   <div class="component-block">
-    <h3>CardSplit Layout</h3>
-    <div class="preview preview-card">
-      <div class="card-split-demo">
-        <div class="split-title">
-          <div class="placeholder-box">Title Slot</div>
-        </div>
-        <div class="split-description">
-          <div class="placeholder-box tall">Description Slot</div>
-        </div>
-        <div class="split-aside">
-          <div class="placeholder-box full">Aside Slot</div>
-        </div>
-      </div>
-    </div>
-    <div class="props" style="margin-top: 12px;">
-      <code>&lt;CardSplit reverse&gt; to flip layout</code>
+    <h3>Usage</h3>
+    <div class="props">
+      <code>&lt;Card&gt;&lt;CardContent&gt;...&lt;/CardContent&gt;&lt;/Card&gt;</code>
     </div>
   </div>
+</section>
+
+<!-- CARD TITLE -->
+<section id="card-title">
+  <h2>CardTitle</h2>
+  <p class="atomic-label">Molecule</p>
+  <p>Title block for cards with company/project metadata. Uses H3Tagged internally.</p>
 
   <div class="component-block">
-    <h3>CardSplit Props</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>reverse</code></td>
-          <td>boolean</td>
-          <td>false</td>
-          <td>Flips the layout (aside on left)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="component-block">
-    <h3>CardSplit Slots</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Slot</th>
-          <th>Grid Area</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>title</code></td>
-          <td>Top-left</td>
-          <td>Card header with H3Tagged</td>
-        </tr>
-        <tr>
-          <td><code>description</code></td>
-          <td>Bottom-left</td>
-          <td>Main content area</td>
-        </tr>
-        <tr>
-          <td><code>aside</code></td>
-          <td>Right column (spans 2 rows)</td>
-          <td>Image or supplementary content</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="component-block">
-    <h3>CardTitle Props</h3>
+    <h3>Props</h3>
     <table class="props-table">
       <thead>
         <tr>
@@ -219,10 +176,89 @@ import Tag from "./Tag.astro";
   </div>
 
   <div class="component-block">
-    <h3>Animation Attributes</h3>
-    <p class="note">
-      Add <code>data-animate-elem</code> to elements for reveal animations. Used with <code>revealCards</code> utility for staggered fade-in effects.
-    </p>
+    <h3>Usage</h3>
+    <div class="props">
+      <code>&lt;CardTitle slot="title" title="Developer" tag="Freelance" ... /&gt;</code>
+    </div>
+  </div>
+</section>
+
+<!-- CARD SPLIT -->
+<section id="card-split">
+  <h2>CardSplit</h2>
+  <p class="atomic-label">Molecule</p>
+  <p>Two-column grid layout for cards with title, description, and aside areas.</p>
+
+  <div class="component-block">
+    <h3>Layout Preview</h3>
+    <div class="preview preview-card">
+      <div class="card-split-demo">
+        <div class="split-title">
+          <div class="placeholder-box">Title Slot</div>
+        </div>
+        <div class="split-description">
+          <div class="placeholder-box tall">Description Slot</div>
+        </div>
+        <div class="split-aside">
+          <div class="placeholder-box full">Aside Slot</div>
+        </div>
+      </div>
+    </div>
+    <div class="props" style="margin-top: 12px;">
+      <code>&lt;CardSplit reverse&gt; to flip layout</code>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Props</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>reverse</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Flips the layout (aside on left)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>Slots</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Grid Area</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>title</code></td>
+          <td>Top-left</td>
+          <td>Card header with H3Tagged</td>
+        </tr>
+        <tr>
+          <td><code>description</code></td>
+          <td>Bottom-left</td>
+          <td>Main content area</td>
+        </tr>
+        <tr>
+          <td><code>aside</code></td>
+          <td>Right column (spans 2 rows)</td>
+          <td>Image or supplementary content</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
