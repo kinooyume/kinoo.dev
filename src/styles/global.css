@@ -166,8 +166,8 @@ b {
 
 /* ===== Buttons & Links ===== */
 a.primary,
+a.secondary,
 button {
-  border: none;
   display: inline-block;
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -189,6 +189,28 @@ a.primary {
   display: flex;
   align-items: center;
   text-decoration: none;
+}
+
+a.secondary,
+button.secondary {
+  font-size: var(--button-font-size);
+  font-weight: 500;
+  color: var(--light-color);
+  background-color: var(--card-alt-background-color);
+  border: 1px solid var(--border-color);
+  text-transform: capitalize;
+}
+
+a.secondary {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+a.secondary:hover,
+button.secondary:hover {
+  background-color: var(--card-hover-background);
+  border-color: var(--border-hover-color);
 }
 
 a.anime {
