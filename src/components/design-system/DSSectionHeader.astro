@@ -1,0 +1,60 @@
+---
+/**
+ * DSSectionHeader - Section header with framework icon
+ * Displays component name, atomic level, and framework indicator
+ */
+import type { Framework } from "./sections/index";
+import astroIcon from "@/svgs/astro.svg?raw";
+import solidIcon from "@/svgs/solid.svg?raw";
+
+interface Props {
+  title: string;
+  atomic: "Atom" | "Molecule" | "Organism" | "Template";
+  framework?: Framework;
+}
+
+const { title, atomic, framework = "astro" } = Astro.props;
+
+const frameworkIcons: Record<Framework, string> = {
+  astro: astroIcon,
+  solid: solidIcon,
+};
+---
+
+<div class="section-header">
+  <div class="title-row">
+    <h2>{title}</h2>
+    <span class="framework-icon" set:html={frameworkIcons[framework]} />
+  </div>
+  <p class="atomic-label">{atomic}</p>
+</div>
+
+<style>
+  .section-header {
+    margin-bottom: 16px;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .title-row h2 {
+    margin-bottom: 0;
+  }
+
+  .framework-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .framework-icon :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+
+  .atomic-label {
+    margin-top: 8px;
+  }
+</style>

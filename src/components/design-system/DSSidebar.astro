@@ -7,7 +7,15 @@ import {
   sidebarSections,
   isGroup,
   type SidebarLeaf,
+  type Framework,
 } from "./sections/index";
+import astroIcon from "@/svgs/astro.svg?raw";
+import solidIcon from "@/svgs/solid.svg?raw";
+
+const frameworkIcons: Record<Framework, string> = {
+  astro: astroIcon,
+  solid: solidIcon,
+};
 ---
 
 <div class="sidebar-wrapper">
@@ -34,6 +42,9 @@ import {
                               {child.children.map((leaf) => (
                                 <li>
                                   <a href={(leaf as SidebarLeaf).href}>
+                                    {(leaf as SidebarLeaf).framework && (
+                                      <span class="framework-icon" set:html={frameworkIcons[(leaf as SidebarLeaf).framework!]} />
+                                    )}
                                     {leaf.label}
                                   </a>
                                 </li>
@@ -43,7 +54,12 @@ import {
                         </li>
                       ) : (
                         <li>
-                          <a href={child.href}>{child.label}</a>
+                          <a href={child.href}>
+                            {child.framework && (
+                              <span class="framework-icon" set:html={frameworkIcons[child.framework]} />
+                            )}
+                            {child.label}
+                          </a>
                         </li>
                       )
                     )}
@@ -52,7 +68,12 @@ import {
               </li>
             ) : (
               <li>
-                <a href={item.href}>{item.label}</a>
+                <a href={item.href}>
+                  {item.framework && (
+                    <span class="framework-icon" set:html={frameworkIcons[item.framework]} />
+                  )}
+                  {item.label}
+                </a>
               </li>
             )
           )}
@@ -127,7 +148,9 @@ import {
   }
 
   .sidebar-section a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     padding: 10px 16px;
     border-radius: 8px;
     font-size: 15px;
@@ -135,6 +158,17 @@ import {
     color: var(--light-color);
     transition: all 0.2s ease;
     text-decoration: none;
+  }
+
+  .framework-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .framework-icon :global(svg) {
+    width: 14px;
+    height: 14px;
   }
 
   .sidebar-section a:hover {
