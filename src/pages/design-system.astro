@@ -1,0 +1,731 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+// Foundations
+import ColorsDs from "@/styles/colors.ds.astro";
+import TypographyDs from "@/styles/typography.ds.astro";
+import SpacingDs from "@/styles/spacing.ds.astro";
+
+// Atoms
+import TagDs from "@/components/Tag.ds.astro";
+import TagLinkDs from "@/components/TagLink.ds.astro";
+import ButtonDs from "@/components/Button.ds.astro";
+import H3TaggedDs from "@/components/H3Tagged.ds.astro";
+import HeroSubtitleDs from "@/components/HeroSubtitle.ds.astro";
+
+// Molecules
+import CardDs from "@/components/Card.ds.astro";
+import SpotlightDs from "@/components/Spotlight.ds.astro";
+import NavBarDs from "@/components/NavBar.ds.astro";
+
+// Organisms
+import SidebarDs from "@/components/Sidebar.ds.astro";
+import HeaderDs from "@/components/Header.ds.astro";
+import FloatingContactDs from "@/components/FloatingContact.ds.astro";
+import ContactDs from "@/components/Contact.ds.astro";
+
+// Templates
+import CompositionsDs from "@/components/Compositions.ds.astro";
+
+// Sidebar configuration
+type SidebarItem = { label: string; href: string };
+
+const foundationItems: SidebarItem[] = [
+  { label: "Colors", href: "#colors" },
+  { label: "Typography", href: "#typography" },
+  { label: "Spacing", href: "#spacing" },
+];
+
+const atomItems: SidebarItem[] = [
+  { label: "Tag", href: "#tag" },
+  { label: "TagLink", href: "#taglink" },
+  { label: "Button", href: "#button" },
+  { label: "H3Tagged", href: "#h3tagged" },
+  { label: "HeroSubtitle", href: "#herosubtitle" },
+];
+
+const moleculeItems: SidebarItem[] = [
+  { label: "Card", href: "#card" },
+  { label: "Spotlight", href: "#spotlight" },
+  { label: "NavBar", href: "#navbar" },
+];
+
+const organismItems: SidebarItem[] = [
+  { label: "Sidebar", href: "#sidebar" },
+  { label: "Header", href: "#header" },
+  { label: "FloatingContact", href: "#floatingcontact" },
+  { label: "Contact", href: "#contact-doc" },
+];
+
+const templateItems: SidebarItem[] = [
+  { label: "Compositions", href: "#compositions" },
+];
+
+const sidebarSections = [
+  { title: "Foundations", items: foundationItems },
+  { title: "Atoms", items: atomItems },
+  { title: "Molecules", items: moleculeItems },
+  { title: "Organisms", items: organismItems },
+  { title: "Templates", items: templateItems },
+];
+---
+
+<Layout
+  title="Design System · kinoo.dev"
+  description="Components library for kinoo.dev"
+>
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+  <script>
+    import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
+    import {
+      createViewDetection,
+      anchorsQueryToViewDetectionElement,
+    } from "@/lib/dom/viewDetection";
+
+    let currentSection: string | null = null;
+    let initialLoad = true;
+    const manuallyOpened = new Set<string>();
+
+    // Handle manual toggle
+    document
+      .querySelectorAll<HTMLDetailsElement>(".sidebar-section")
+      .forEach((details) => {
+        details.addEventListener("toggle", () => {
+          const section = details.getAttribute("data-section");
+          if (section) {
+            if (details.open) {
+              manuallyOpened.add(section);
+            } else {
+              manuallyOpened.delete(section);
+            }
+          }
+        });
+      });
+
+    // Click: smooth scroll + replaceState
+    document
+      .querySelectorAll<HTMLAnchorElement>(".sidebar-wrapper a")
+      .forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          const href = anchor.getAttribute("href");
+          if (href?.startsWith("#")) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth" });
+              history.replaceState(null, "", href);
+            }
+          }
+        });
+      });
+
+    // View detection for sidebar
+    const targets = anchorsQueryToViewDetectionElement(".sidebar-wrapper a", {
+      onInside: (anchor) => {
+        anchor.classList.add("active");
+        const href = anchor.getAttribute("href");
+        if (href && currentSection !== href) {
+          currentSection = href;
+          // Skip replaceState on initial page load to avoid scroll issues
+          if (!initialLoad) {
+            history.replaceState(null, "", href);
+          }
+
+          const listItem = anchor.closest("li");
+          const details =
+            listItem?.closest<HTMLDetailsElement>(".sidebar-section");
+          const section = details?.getAttribute("data-section");
+
+          if (details && section && !manuallyOpened.has(section)) {
+            details.open = true;
+          }
+        }
+      },
+      onOutside: (anchor) => {
+        anchor.classList.remove("active");
+
+        const listItem = anchor.closest("li");
+        const details =
+          listItem?.closest<HTMLDetailsElement>(".sidebar-section");
+        const section = details?.getAttribute("data-section");
+
+        if (details && section && !manuallyOpened.has(section)) {
+          const hasActiveLink = details.querySelector("a.active");
+          if (!hasActiveLink) {
+            details.open = false;
+          }
+        }
+      },
+    });
+
+    const detect = createViewDetection(targets, {
+      setBounds: (offset) => [offset + 100, offset - 100],
+    });
+
+    onScrollAndResize(detect, "designSystemDetection");
+
+    // Mark initial load as complete after first scroll event
+    window.addEventListener("scroll", () => {
+      initialLoad = false;
+    }, { once: true });
+  </script>
+
+  <div class="ds-container">
+    <main class="ds-main">
+      <h1>Design System</h1>
+      <p class="intro">
+        An atomic design system for kinoo.dev. Built from foundational tokens up
+        through atoms, molecules, and organisms.
+      </p>
+      <p class="wip-notice">
+        Work in progress.
+      </p>
+
+      <!-- FOUNDATIONS -->
+      <div class="category-header">
+        <h2 class="category-title">Foundations</h2>
+        <p class="category-description">
+          Design tokens and base styles that form the building blocks of the
+          system.
+        </p>
+      </div>
+
+      <ColorsDs />
+      <TypographyDs />
+      <SpacingDs />
+
+      <!-- ATOMS -->
+      <div class="category-header">
+        <h2 class="category-title">Atoms</h2>
+        <p class="category-description">
+          Basic building blocks that can't be broken down further without losing
+          functionality.
+        </p>
+      </div>
+
+      <TagDs />
+      <TagLinkDs />
+      <ButtonDs />
+      <H3TaggedDs />
+      <HeroSubtitleDs />
+
+      <!-- MOLECULES -->
+      <div class="category-header">
+        <h2 class="category-title">Molecules</h2>
+        <p class="category-description">
+          Groups of atoms combined to form relatively simple components.
+        </p>
+      </div>
+
+      <CardDs />
+      <SpotlightDs />
+      <NavBarDs />
+
+      <!-- ORGANISMS -->
+      <div class="category-header">
+        <h2 class="category-title">Organisms</h2>
+        <p class="category-description">
+          Complex components composed of groups of molecules and atoms.
+        </p>
+      </div>
+
+      <SidebarDs />
+      <HeaderDs />
+      <FloatingContactDs />
+      <ContactDs />
+
+      <!-- TEMPLATES -->
+      <div class="category-header">
+        <h2 class="category-title">Templates</h2>
+        <p class="category-description">
+          Common patterns showing how components combine in real usage.
+        </p>
+      </div>
+
+      <CompositionsDs />
+
+      <footer>
+        <p>kinoo.dev · Design System</p>
+      </footer>
+    </main>
+
+    <div class="sidebar-wrapper">
+      {
+        sidebarSections.map((section) => (
+          <details
+            class="sidebar-section"
+            data-section={section.title.toLowerCase()}
+          >
+            <summary>{section.title}</summary>
+            <ul>
+              {section.items.map((item) => (
+                <li>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  /* Design System specific styles */
+  .ds-container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    max-width: 1368px;
+    margin: 0 auto;
+    padding: 0 32px;
+    gap: 48px;
+    justify-content: space-between;
+  }
+
+  .ds-main {
+    flex: 1;
+    padding: 24px 0 64px 0;
+    max-width: 900px;
+  }
+
+  .ds-main h1 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .intro {
+    color: var(--color);
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .wip-notice {
+    color: var(--accent-bright);
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 64px;
+    padding: 12px 16px;
+    background-color: rgba(246, 177, 122, 0.1);
+    border-left: 3px solid var(--accent-bright);
+    border-radius: 4px;
+  }
+
+  .ds-main section {
+    margin: 0 0 80px 0;
+    padding-top: 24px;
+  }
+
+  .ds-main section h2 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+    margin-bottom: 12px;
+  }
+
+  .atomic-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: rgba(246, 177, 122, 0.15);
+    border: 1px solid var(--accent-color);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .category-header {
+    margin: 80px 0 48px 0;
+    padding-top: 24px;
+    border-top: 2px solid var(--accent-color);
+  }
+
+  .category-header:first-of-type {
+    margin-top: 64px;
+  }
+
+  .category-title {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--accent-bright);
+  }
+
+  .category-description {
+    color: var(--color);
+    opacity: 0.8;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .component-block {
+    margin-bottom: 40px;
+  }
+
+  .component-block h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--light-color);
+  }
+
+  .component-block h4 {
+    font-size: 15px;
+    margin: 24px 0 12px 0;
+    color: var(--accent-color);
+    font-weight: 500;
+  }
+
+  .preview {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .preview-card {
+    display: block;
+  }
+
+  .preview-sidebar {
+    display: block;
+  }
+
+  .preview-sidebar .sidebar {
+    position: static;
+    width: 100%;
+    padding: 0;
+  }
+
+  .preview .tag {
+    opacity: 1;
+  }
+
+  .props {
+    margin-top: 12px;
+  }
+
+  .props code {
+    background-color: #1c2638;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: inline-block;
+  }
+
+  .note {
+    color: var(--color);
+    opacity: 0.7;
+    font-size: 15px;
+  }
+
+  .note code {
+    background-color: #1c2638;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  .props-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+
+  .props-table th,
+  .props-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .props-table th {
+    font-weight: 500;
+    color: var(--accent-color);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .props-table td {
+    font-weight: 200;
+    color: var(--light-color);
+  }
+
+  .props-table code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--accent-bright);
+  }
+
+  /* Sidebar */
+  .sidebar-wrapper {
+    position: sticky;
+    top: 126px;
+    max-height: calc(100vh - 126px - 24px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0;
+    flex-shrink: 0;
+    width: 220px;
+  }
+
+  .sidebar-section {
+    border-radius: 8px;
+  }
+
+  .sidebar-section summary {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    cursor: pointer;
+    padding: 12px 16px;
+    user-select: none;
+    list-style: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .sidebar-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sidebar-section summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 10px;
+    transition: transform 0.2s ease;
+  }
+
+  .sidebar-section[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-section summary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .sidebar-section ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0 8px 16px;
+    margin: 0;
+    list-style: none;
+  }
+
+  .sidebar-section a {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--light-color);
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .sidebar-section a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color);
+  }
+
+  .sidebar-section a.active {
+    background-color: rgba(248, 186, 136, 0.12);
+    color: var(--accent-color);
+  }
+
+  /* Typography samples */
+  .typography-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .type-sample {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .type-sample:last-child {
+    border-bottom: none;
+  }
+
+  .type-label {
+    font-size: 13px;
+    color: var(--color);
+    opacity: 0.6;
+  }
+
+  .type-label code {
+    background-color: #1c2638;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+
+  .sample-h1 {
+    font-size: var(--h1-size);
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .sample-h2 {
+    margin: 0;
+  }
+
+  .sample-h3 {
+    margin: 0;
+  }
+
+  .sample-button {
+    font-size: var(--button-font-size);
+    font-weight: 500;
+    color: black;
+    background-color: var(--accent-bright);
+    padding: 12px 24px;
+    border-radius: 12px;
+    display: inline-block;
+  }
+
+  /* Color swatches */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .swatch {
+    height: 80px;
+    width: 100%;
+  }
+
+  .swatch-border {
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+  }
+
+  .color-info {
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .color-info code {
+    font-size: 13px;
+    color: var(--accent-bright);
+  }
+
+  .color-info span {
+    font-size: 12px;
+    color: var(--color);
+    opacity: 0.7;
+    font-family: monospace;
+  }
+
+  /* Spacing demo */
+  .spacing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-end;
+  }
+
+  .spacing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .spacing-box {
+    background-color: var(--accent-bright);
+    border-radius: 4px;
+  }
+
+  .spacing-item code {
+    font-size: 12px;
+    color: var(--color);
+    opacity: 0.7;
+  }
+
+
+  /* Footer */
+  .ds-main footer {
+    min-height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 32px;
+    opacity: 0.5;
+  }
+
+  .ds-main footer p {
+    font-size: 14px;
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 900px) {
+    .ds-container {
+      flex-direction: column;
+      padding: 0 16px;
+      gap: 0;
+    }
+
+    .ds-main {
+      padding: 24px 0;
+    }
+
+    .sidebar-wrapper {
+      position: static;
+      width: 100%;
+      max-height: none;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      order: -1;
+    }
+
+    .sidebar-section ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-left: 16px;
+    }
+
+    .color-grid {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    .sample-h1 {
+      font-size: 48px;
+    }
+
+    .category-title {
+      font-size: 28px;
+    }
+  }
+</style>

@@ -1,0 +1,106 @@
+/**
+ * Design System - CSS Variables
+ * All colors and design tokens used across kinoo.dev
+ */
+
+:root {
+  /* ===== Background Colors ===== */
+  --background-color: #181927;
+  --background-frosted: rgba(24, 25, 39, 0.05);
+
+  /* ===== Text Colors ===== */
+  --color: #e0e0e0;
+  --light-color: #f6f5f7;
+  --extra-light-color: #f6f5f7;
+
+  /* ===== Accent Colors ===== */
+  --accent-color: #f8ba88;
+  --secondary-accent-color: #c9a88d;
+  --accent-bright: #f6b17a;
+
+  /* ===== Section Theme Colors ===== */
+  --green: #66c384;
+  --green-light: #80d49a;
+  --green-dark: #5ab376;
+  --green-darker: #4a9c63;
+  --green-darkest: #3d8552;
+  --green-lightest: #9ae5b1;
+
+  --pink: #f68dab;
+  --pink-light: #f8a4c0;
+  --pink-dark: #f47799;
+  --pink-darker: #f26088;
+  --pink-darkest: #d55478;
+  --pink-lightest: #f8c8d9;
+
+  --purple: #9c85d3;
+  --purple-light: #b09ee0;
+  --purple-dark: #8870c7;
+  --purple-darker: #745bba;
+  --purple-darkest: #6048a0;
+  --purple-lightest: #c9bce6;
+
+  /* ===== Card Colors ===== */
+  --card-first-background-color: #2d2d3b;
+  --card-alt-background-color: #1c2638;
+  --card-background-color: var(--card-alt-background-color);
+  --card-hover-background: #313d50;
+
+  /* ===== Border Colors ===== */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-hover-color: rgba(255, 255, 255, 0.2);
+
+  /* ===== Typography Sizes ===== */
+  --h1-size: 96px;
+  --h2-size: 38px;
+  --h3-size: 24px;
+  --subtitle-size: 22px;
+  --font-size: 18px;
+  --button-font-size: 15px;
+
+  /* ===== Spacing ===== */
+  --section-margin: 142px;
+
+  /* ===== Animation ===== */
+  --border-angle: 360deg;
+}
+
+/* ===== Responsive Typography ===== */
+@media screen and (max-width: 1368px) {
+  :root {
+    --h1-size: 92px;
+    --h2-size: 48px;
+    --h3-size: 24px;
+    --subtitle-size: 24px;
+    --font-size: 18px;
+    --button-font-size: 15px;
+    --section-margin: 192px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  :root {
+    --h1-size: 86px;
+    --h2-size: 44px;
+    --h3-size: 20px;
+    --subtitle-size: 20px;
+    --font-size: 16px;
+    --button-font-size: 15px;
+    --section-margin: 148px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --h1-size: 64px;
+    --h2-size: 36px;
+    --h3-size: 18px;
+    --section-margin: 94px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  :root {
+    --h1-size: 48px;
+  }
+}
