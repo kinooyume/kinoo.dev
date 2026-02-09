@@ -18,7 +18,10 @@ import CardDs from "@/components/shared/molecules/Card/Card.ds.astro";
 import SpotlightDs from "@/components/shared/molecules/Spotlight.ds.astro";
 import NavBarDs from "@/components/header/NavBar.ds.astro";
 
-// Organisms
+// Shared Organisms
+import SectionPatternDs from "@/components/shared/organisms/Section.ds.astro";
+
+// Feature Organisms
 import SidebarDs from "@/components/sidebar/Sidebar.ds.astro";
 import HeaderDs from "@/components/header/Header.ds.astro";
 import FloatingContactDs from "@/components/contact/FloatingContact.ds.astro";
@@ -69,6 +72,12 @@ const sidebarSections: SidebarSection[] = [
             ],
           },
           { label: "Spotlight", href: "#spotlight" },
+        ],
+      },
+      {
+        label: "Organisms",
+        children: [
+          { label: "Section Pattern", href: "#section-pattern" },
         ],
       },
     ],
@@ -249,6 +258,16 @@ const sidebarSections: SidebarSection[] = [
 
       <CardDs />
       <SpotlightDs />
+
+      <!-- SHARED / ORGANISMS -->
+      <div class="category-header">
+        <h2 class="category-title">Shared / Organisms</h2>
+        <p class="category-description">
+          Complex patterns shared across multiple features.
+        </p>
+      </div>
+
+      <SectionPatternDs />
 
       <!-- HERO -->
       <div class="category-header">
