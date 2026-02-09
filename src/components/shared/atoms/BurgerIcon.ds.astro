@@ -10,11 +10,11 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="burgericon">
-  <h2>BurgerIcon</h2>
-  <p class="atomic-label">Atom</p>
+  <DSSectionHeader title="BurgerIcon" atomic="Atom" framework="astro" />
   <p>Animated hamburger menu icon that transforms to an X when the parent has <code>.open</code> class.</p>
 
   <DSBlock title="States">

@@ -15,6 +15,7 @@ import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
 import DSStructure from "@/components/design-system/DSStructure.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 const themingCode = `#experiences {
   --accent-color: #f68dab;
@@ -30,8 +31,7 @@ if (container) spotlight(container);`;
 
 <!-- SECTION PATTERN -->
 <section id="section-pattern">
-  <h2>Section Pattern</h2>
-  <p class="atomic-label">Organism</p>
+  <DSSectionHeader title="Section Pattern" atomic="Organism" framework="astro" />
   <p>Shared layout pattern used by Experiences, Realisations, and Formations sections. Combines section header, themed grid, and card-based content.</p>
 
   <DSBlock title="Pattern Overview">

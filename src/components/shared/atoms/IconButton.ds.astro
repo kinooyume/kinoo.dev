@@ -10,13 +10,13 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 import message from "@/svgs/message.svg?raw";
 ---
 
 <section id="iconbutton">
-  <h2>IconButton</h2>
-  <p class="atomic-label">Atom</p>
+  <DSSectionHeader title="IconButton" atomic="Atom" framework="astro" />
   <p>A reusable button or link designed for icon content with consistent sizing and hover effects.</p>
 
   <DSBlock title="Default Color">
