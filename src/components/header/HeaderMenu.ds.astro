@@ -1,0 +1,71 @@
+---
+/**
+ * HeaderMenu Documentation
+ * Design System - Molecule
+ */
+import HeaderMenu from "./HeaderMenu.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSStructure from "@/components/design-system/DSStructure.astro";
+---
+
+<section id="headermenu">
+  <h2>HeaderMenu</h2>
+  <p class="atomic-label">Molecule</p>
+  <p>Container for header navigation links including social icons, badges, and CTA button.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div class="demo-wrapper">
+        <HeaderMenu />
+      </div>
+    </DSPreview>
+    <DSNote>The menu appears with opacity animation on page load.</DSNote>
+  </DSBlock>
+
+  <DSBlock title="Contents">
+    <DSPropsTable
+      headers={["Link", "Type", "Destination"]}
+      rows={[
+        ["GitHub", "icon", "External - GitHub profile"],
+        ["LinkedIn", "icon", "External - LinkedIn profile"],
+        ["CV", "badge", "External - PDF download"],
+        ["DS", "badge", "Internal - Design System"],
+        ["Me contacter", "button", "Internal - Contact section"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Structure">
+    <DSStructure
+      rows={[
+        { code: ".header-menu", description: "Flex container with gap" },
+        { code: "HeaderLink (icon)", description: "GitHub icon link", indent: 1 },
+        { code: "HeaderLink (icon)", description: "LinkedIn icon link", indent: 1 },
+        { code: "HeaderLink (badge)", description: "CV badge link", indent: 1 },
+        { code: "HeaderLink (badge)", description: "DS badge link", indent: 1 },
+        { code: "a.primary", description: "Contact CTA button", indent: 1 },
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Responsive">
+    <DSNote>
+      On mobile (&lt;600px), the "Me contacter" button is hidden and gap is reduced to 20px.
+    </DSNote>
+  </DSBlock>
+</section>
+
+<style>
+  .demo-wrapper {
+    background-color: var(--background-color);
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .demo-wrapper :global(.header-menu) {
+    opacity: 1;
+  }
+</style>

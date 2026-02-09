@@ -1,0 +1,70 @@
+---
+/**
+ * HeaderLink Documentation
+ * Design System - Atom
+ */
+import HeaderLink from "./HeaderLink.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+
+import github from "@/svgs/github.svg?raw";
+import linkedin from "@/svgs/linkedin.svg?raw";
+---
+
+<section id="headerlink">
+  <h2>HeaderLink</h2>
+  <p class="atomic-label">Atom</p>
+  <p>Individual header navigation link with icon and badge variants.</p>
+
+  <DSBlock title="Icon Variant">
+    <DSPreview>
+      <HeaderLink href="#headerlink" label="GitHub">
+        <Fragment set:html={github} />
+      </HeaderLink>
+      <HeaderLink href="#headerlink" label="LinkedIn">
+        <Fragment set:html={linkedin} />
+      </HeaderLink>
+    </DSPreview>
+    <DSCode inline>&lt;HeaderLink href="..." label="GitHub"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/HeaderLink&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Badge Variant">
+    <DSPreview>
+      <HeaderLink href="#headerlink" label="CV" variant="badge" />
+      <HeaderLink href="#headerlink" label="DS" variant="badge" />
+    </DSPreview>
+    <DSCode inline>&lt;HeaderLink href="..." label="CV" variant="badge" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="External Links">
+    <DSPreview>
+      <HeaderLink href="https://github.com" label="GitHub" external>
+        <Fragment set:html={github} />
+      </HeaderLink>
+    </DSPreview>
+    <DSNote>
+      The <code>external</code> prop adds <code>target="_blank"</code> and <code>rel="noreferrer nofollow noopener"</code>.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "href" }, "string", "required", "Link destination"],
+        [{ code: "label" }, "string", "required", "Accessible label (also displayed for badge variant)"],
+        [{ code: "variant" }, '"icon" | "badge"', '"icon"', "Visual style"],
+        [{ code: "external" }, "boolean", "false", "Opens in new tab with security attributes"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Hover States">
+    <DSNote>
+      Both variants transition to accent color on hover. Icon SVG paths and badge border/text all use the same accent color for consistency.
+    </DSNote>
+  </DSBlock>
+</section>
