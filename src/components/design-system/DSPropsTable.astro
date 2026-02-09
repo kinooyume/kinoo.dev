@@ -1,0 +1,72 @@
+---
+/**
+ * DSPropsTable - Design System Props Table
+ * Consistent table for documenting component props
+ */
+interface Props {
+  headers: string[];
+  rows: (string | { code: string })[][];
+}
+
+const { headers, rows } = Astro.props;
+---
+
+<table class="ds-props-table">
+  <thead>
+    <tr>
+      {headers.map((header) => <th>{header}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    {
+      rows.map((row) => (
+        <tr>
+          {row.map((cell) => (
+            <td>
+              {typeof cell === "object" && "code" in cell ? (
+                <code>{cell.code}</code>
+              ) : (
+                cell
+              )}
+            </td>
+          ))}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  .ds-props-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+
+  .ds-props-table th,
+  .ds-props-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .ds-props-table th {
+    font-weight: 500;
+    color: var(--accent-color);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ds-props-table td {
+    font-weight: 200;
+    color: var(--light-color);
+  }
+
+  .ds-props-table code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--accent-bright);
+  }
+</style>

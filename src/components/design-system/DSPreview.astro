@@ -1,0 +1,43 @@
+---
+/**
+ * DSPreview - Design System Preview Container
+ * Visual preview area for component demonstrations
+ */
+interface Props {
+  variant?: "default" | "card" | "sidebar";
+  class?: string;
+}
+
+const { variant = "default", class: className } = Astro.props;
+
+const variantClass = variant !== "default" ? `ds-preview--${variant}` : "";
+---
+
+<div class:list={["ds-preview", variantClass, className]}>
+  <slot />
+</div>
+
+<style>
+  .ds-preview {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ds-preview--card {
+    display: block;
+  }
+
+  .ds-preview--sidebar {
+    display: block;
+  }
+
+  .ds-preview :global(.tag) {
+    opacity: 1;
+  }
+</style>
