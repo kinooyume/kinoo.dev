@@ -1,0 +1,107 @@
+---
+/**
+ * HeaderMenu - Header navigation links
+ * Design System - Molecule
+ */
+import github from "@/svgs/github.svg?raw";
+import linkedin from "@/svgs/linkedin.svg?raw";
+---
+
+<div class="header-menu">
+  <a
+    class="header-link anime"
+    href="https://github.com/KinooYume"
+    rel="noreferrer nofollow noopener"
+    target="_blank"
+    aria-label="GitHub"
+  >
+    <Fragment set:html={github} />
+  </a>
+  <a
+    class="header-link anime"
+    href="https://linkedin.com/in/martin-kinoo"
+    rel="noreferrer nofollow noopener"
+    target="_blank"
+    aria-label="LinkedIn"
+  >
+    <Fragment set:html={linkedin} />
+  </a>
+  <a
+    class="header-link header-link--badge anime"
+    href="MartinKinooCV.pdf"
+    rel="noreferrer nofollow noopener"
+    target="_blank"
+  >
+    CV
+  </a>
+  <a class="header-link header-link--badge anime" href="/design-system">
+    DS
+  </a>
+  <a class="primary" href="/#contact">Me contacter</a>
+</div>
+
+<style>
+  .header-menu {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    gap: 24px;
+  }
+
+  .header-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+
+  .header-link:hover {
+    opacity: 1;
+  }
+
+  .header-link :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .header-link :global(svg path) {
+    fill: var(--light-color);
+    transition: fill 0.3s ease;
+  }
+
+  .header-link:hover :global(svg path) {
+    fill: var(--accent-color);
+  }
+
+  /* Badge style for text links (CV, DS) */
+  .header-link--badge {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    height: 22px;
+    width: 26px;
+    color: var(--light-color);
+  }
+
+  .header-link--badge:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+
+  @media screen and (max-width: 600px) {
+    .header-menu {
+      gap: 20px;
+    }
+
+    .header-link {
+      transform: none !important;
+    }
+
+    .primary {
+      display: none;
+    }
+  }
+</style>

@@ -12,7 +12,7 @@ export function animateHeader(options: HeaderAnimationOptions = {}): anime.Anime
   const { delay = 0 } = options;
 
   const timeline = anime.timeline({ autoplay: false }).add({
-    targets: [".header .title-wrapper", ".navbar li", ".header .menu"],
+    targets: [".header .title-wrapper", ".navbar li", ".header-menu"],
     translateY: ["-1.2em", 0],
     opacity: [0, 1],
     duration: 800,
@@ -29,7 +29,7 @@ export function animateHeader(options: HeaderAnimationOptions = {}): anime.Anime
  */
 export function showHeaderImmediate(): void {
   const elements = document.querySelectorAll<HTMLElement>(
-    ".header .title-wrapper, .navbar li, .header .menu"
+    ".header .title-wrapper, .navbar li, .header-menu"
   );
 
   elements.forEach((el) => {
