@@ -64,14 +64,47 @@ This is my personal portfolio and freelance website, showcasing my work as a **F
 
 ## 🎨 Design System
 
-A modular design system built with atomic design principles. Components are organized into:
+A **contextual atomic design system** combining feature-based organization with shared reusable components.
 
-- **Foundations** - Colors, typography, spacing tokens
-- **Atoms** - Tag, TagLink, Button, H3Tagged
-- **Molecules** - Card, Spotlight, NavBar
-- **Organisms** - Sidebar, Header, FloatingContact
+### Architecture
 
-Each component is documented with usage examples, props tables, and live previews.
+```
+src/components/
+├── shared/                    # Reusable across 2+ features
+│   ├── atoms/                 # Tag, TagLink, H3Tagged, Button
+│   ├── molecules/
+│   │   ├── Card/              # Card compound system
+│   │   │   ├── Card.astro
+│   │   │   ├── CardContent.astro
+│   │   │   ├── CardTitle.astro
+│   │   │   └── CardSplit.astro
+│   │   └── Spotlight.astro
+│   └── organisms/
+│       └── Section.ds.astro   # Shared section pattern
+│
+├── hero/                      # Hero-specific components
+├── header/                    # Header + NavBar
+├── realisations/              # Projects section + Slider
+├── experiences/               # Work experience section
+├── formations/                # Education section
+├── contact/                   # Contact form + FloatingContact
+└── sidebar/                   # Design system navigation
+```
+
+### Design Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Feature-first** | Components grouped by domain, not atomic level |
+| **Shared when shared** | Move to `shared/` only when used by 2+ features |
+| **Compound nesting** | Related components live together (e.g., Card/) |
+| **Section pattern** | Experiences, Realisations, Formations share a common layout |
+
+### Foundations
+
+- **Colors** - Section themes (pink, green, purple), accent colors
+- **Typography** - Outfit font family, responsive sizing
+- **Spacing** - 4px base scale (4, 8, 12, 16, 24, 32, 48, 64)
 
 **[View the Design System →](https://kinoo.dev/design-system)**
 
@@ -257,29 +290,38 @@ Update the version in `package.json` before merging to `main` to create a new re
 
 ```text
 kinoo.dev/
-├── public/               # Static assets (images, fonts, etc.)
+├── public/                    # Static assets (images, fonts, etc.)
 ├── src/
-│   ├── components/       # Reusable Astro & SolidJS components
-│   │   ├── Card.astro
-│   │   ├── Hero.astro
-│   │   ├── Slider.tsx    # SolidJS components
-│   │   ├── *.ds.astro    # Design system documentation
-│   │   └── ...
-│   ├── layouts/          # Page layouts
+│   ├── components/            # Contextual atomic design
+│   │   ├── shared/            # Reusable components
+│   │   │   ├── atoms/         # Tag, TagLink, H3Tagged, Button
+│   │   │   ├── molecules/     # Card/, Spotlight
+│   │   │   └── organisms/     # Section pattern
+│   │   ├── hero/              # Hero, HeroSubtitle, HeroInfo
+│   │   ├── header/            # Header, NavBar
+│   │   ├── realisations/      # Realisations, Slider
+│   │   ├── experiences/       # Experiences
+│   │   ├── formations/        # Formations
+│   │   ├── contact/           # Contact, ContactForm, FloatingContact
+│   │   ├── sidebar/           # Sidebar
+│   │   └── Compositions.ds.astro
+│   ├── layouts/               # Page layouts
 │   │   └── Layout.astro
-│   ├── lib/              # Utilities and animations
-│   │   ├── animations/
-│   │   └── dom/
-│   ├── pages/            # File-based routing
+│   ├── lib/                   # Utilities and animations
+│   │   ├── animations/        # heroAnime, headerAnime, revealCard
+│   │   └── dom/               # spotlight, viewDetection, mouseTracker
+│   ├── pages/                 # File-based routing
 │   │   ├── index.astro
-│   │   └── design-system.astro
-│   ├── styles/           # CSS and design tokens
-│   │   ├── *.ds.astro    # Design system documentation
-│   │   └── ...
-│   ├── svgs/             # SVG icons
+│   │   ├── design-system.astro
+│   │   └── articles/
+│   ├── styles/                # CSS and design tokens
+│   │   ├── variables.css      # Design tokens
+│   │   ├── global.css         # Base styles
+│   │   └── *.ds.astro         # Foundation docs
+│   ├── svgs/                  # SVG icons
 │   └── env.d.ts
-├── astro.config.mjs      # Astro configuration
-├── eslint.config.js      # ESLint configuration
+├── astro.config.mjs           # Astro configuration
+├── eslint.config.js           # ESLint configuration
 └── package.json
 ```
 
