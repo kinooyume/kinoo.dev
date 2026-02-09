@@ -56,10 +56,17 @@ import linkedin from "@/svgs/linkedin.svg?raw";
       rows={[
         [{ code: "href" }, "string", "required", "Link destination"],
         [{ code: "label" }, "string", "required", "Accessible label (also displayed for badge variant)"],
+        [{ code: "tooltip" }, "string", "label", "Custom tooltip text (defaults to label)"],
         [{ code: "variant" }, '"icon" | "badge"', '"icon"', "Visual style"],
         [{ code: "external" }, "boolean", "false", "Opens in new tab with security attributes"],
       ]}
     />
+  </DSBlock>
+
+  <DSBlock title="Tooltip">
+    <DSNote>
+      Icon variant displays a tooltip above on hover. Badge variant has no tooltip since it already shows text.
+    </DSNote>
   </DSBlock>
 
   <DSBlock title="Hover States">

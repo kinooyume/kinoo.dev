@@ -7,11 +7,13 @@
 interface Props {
   href: string;
   label: string;
+  tooltip?: string;
   variant?: "icon" | "badge";
   external?: boolean;
 }
 
-const { href, label, variant = "icon", external = false } = Astro.props;
+const { href, label, tooltip, variant = "icon", external = false } = Astro.props;
+const tooltipText = tooltip || label;
 
 const externalProps = external
   ? { target: "_blank", rel: "noreferrer nofollow noopener" }
@@ -25,10 +27,12 @@ const externalProps = external
   {...externalProps}
 >
   {variant === "badge" ? label : <slot />}
+  {variant === "icon" && <span class="tooltip">{tooltipText}</span>}
 </a>
 
 <style>
   .header-link {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,6 +42,30 @@ const externalProps = external
 
   .header-link:hover {
     opacity: 1;
+  }
+
+  /* Tooltip */
+  .tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--light-color);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+
+  .header-link:hover .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-8px);
   }
 
   /* Icon variant */
