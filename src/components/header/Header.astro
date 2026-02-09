@@ -44,6 +44,9 @@ import NavBar from "./NavBar.astro";
       >
         CV
       </a>
+      <a class="ds icon anime" href="/design-system">
+        DS
+      </a>
       <a class="primary" href="/#contact"> Me contacter </a>
     </div>
   </div>
@@ -53,9 +56,8 @@ import NavBar from "./NavBar.astro";
       --header-font-size: 24px;
     }
 
-    .cv {
-      background-color: rgba(246, 245, 247, 0.64);
-      color: var(--background-color);
+    .cv,
+    .ds {
       border-radius: 6px;
       font-size: 12px;
       font-weight: 800;
@@ -64,6 +66,16 @@ import NavBar from "./NavBar.astro";
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .cv {
+      background-color: rgba(246, 245, 247, 0.64);
+      color: var(--background-color);
+    }
+
+    .ds {
+      background-color: var(--accent-bright);
+      color: var(--background-color);
     }
 
     header {
