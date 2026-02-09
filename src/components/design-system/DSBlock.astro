@@ -1,0 +1,35 @@
+---
+/**
+ * DSBlock - Design System Documentation Block
+ * Wrapper for component documentation sections with consistent spacing
+ */
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<div class="ds-block">
+  <h3>{title}</h3>
+  {subtitle && <p class="ds-block-subtitle">{subtitle}</p>}
+  <slot />
+</div>
+
+<style>
+  .ds-block {
+    margin-top: 32px;
+  }
+
+  .ds-block h3 {
+    margin: 0 0 16px 0;
+  }
+
+  .ds-block-subtitle {
+    margin: -8px 0 16px 0;
+    font-size: 14px;
+    color: var(--color);
+    opacity: 0.7;
+  }
+</style>

@@ -1,0 +1,81 @@
+---
+/**
+ * DSStructure - Design System Structure Diagram
+ * Visualizes component hierarchy and nesting
+ */
+interface StructureItem {
+  code: string;
+  desc: string;
+  indent?: number;
+}
+
+interface Props {
+  items: StructureItem[];
+}
+
+const { items } = Astro.props;
+
+const getIndentClass = (indent: number | undefined) => {
+  if (!indent) return "";
+  return `ds-structure-row--indent-${indent}`;
+};
+---
+
+<div class="ds-structure">
+  {
+    items.map((item) => (
+      <div class:list={["ds-structure-row", getIndentClass(item.indent)]}>
+        <code>{item.code}</code>
+        <span class="ds-structure-desc">{item.desc}</span>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .ds-structure {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+
+  .ds-structure-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ds-structure-row code {
+    background-color: #1c2638;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--accent-bright);
+    min-width: 140px;
+  }
+
+  .ds-structure-desc {
+    font-size: 14px;
+    color: var(--color);
+    opacity: 0.7;
+  }
+
+  .ds-structure-row--indent-1 {
+    padding-left: 24px;
+  }
+
+  .ds-structure-row--indent-2 {
+    padding-left: 48px;
+  }
+
+  .ds-structure-row--indent-3 {
+    padding-left: 72px;
+  }
+
+  .ds-structure-row--indent-4 {
+    padding-left: 96px;
+  }
+</style>

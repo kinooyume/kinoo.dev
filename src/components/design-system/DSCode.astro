@@ -1,0 +1,52 @@
+---
+/**
+ * DSCode - Design System Code Block
+ * Consistent code display for usage examples
+ */
+interface Props {
+  inline?: boolean;
+}
+
+const { inline = false } = Astro.props;
+---
+
+{
+  inline ? (
+    <code class="ds-code--inline">
+      <slot />
+    </code>
+  ) : (
+    <div class="ds-code">
+      <pre><code><slot /></code></pre>
+    </div>
+  )
+}
+
+<style>
+  .ds-code {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+
+  .ds-code pre {
+    margin: 0;
+  }
+
+  .ds-code code {
+    font-size: 13px;
+    color: var(--light-color);
+    line-height: 1.5;
+  }
+
+  .ds-code--inline {
+    background-color: #1c2638;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 12px;
+  }
+</style>
