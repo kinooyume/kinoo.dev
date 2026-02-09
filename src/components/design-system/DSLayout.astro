@@ -26,8 +26,51 @@ const { title = "Design System", description } = Astro.props;
     </footer>
   </main>
 
+  <!-- Mobile burger button -->
+  <button class="ds-burger" id="ds-burger" aria-label="Toggle navigation menu">
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+  </button>
+
+  <!-- Backdrop -->
+  <div class="ds-backdrop" id="ds-backdrop"></div>
+
   <DSSidebar />
 </div>
+
+<script>
+  const burger = document.getElementById("ds-burger");
+  const backdrop = document.getElementById("ds-backdrop");
+  const sidebar = document.querySelector(".sidebar-wrapper");
+
+  function toggleMenu() {
+    const isOpen = sidebar?.classList.toggle("open");
+    burger?.classList.toggle("open", isOpen);
+    backdrop?.classList.toggle("open", isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  }
+
+  function closeMenu() {
+    sidebar?.classList.remove("open");
+    burger?.classList.remove("open");
+    backdrop?.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  burger?.addEventListener("click", toggleMenu);
+  backdrop?.addEventListener("click", closeMenu);
+
+  // Close menu on link click
+  sidebar?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Close on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+</script>
 
 <style is:global>
   .ds-container {
@@ -92,6 +135,71 @@ const { title = "Design System", description } = Astro.props;
     font-size: 14px;
   }
 
+  /* Burger button */
+  .ds-burger {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1001;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: var(--card-alt-background-color);
+    border: 1px solid var(--border-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .ds-burger:hover {
+    background-color: var(--card-hover-background);
+    border-color: var(--border-hover-color);
+  }
+
+  .burger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: var(--accent-color);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .ds-burger.open .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .ds-burger.open .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .ds-burger.open .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Backdrop */
+  .ds-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .ds-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   /* Responsive */
   @media screen and (max-width: 900px) {
     .ds-container {
@@ -102,6 +210,14 @@ const { title = "Design System", description } = Astro.props;
 
     .ds-main {
       padding: 24px 0;
+    }
+
+    .ds-burger {
+      display: flex;
+    }
+
+    .ds-backdrop {
+      display: block;
     }
   }
 </style>
