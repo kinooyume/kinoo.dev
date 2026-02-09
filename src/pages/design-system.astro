@@ -7,66 +7,98 @@ import TypographyDs from "@/styles/typography.ds.astro";
 import SpacingDs from "@/styles/spacing.ds.astro";
 
 // Atoms
-import TagDs from "@/components/Tag.ds.astro";
-import TagLinkDs from "@/components/TagLink.ds.astro";
-import ButtonDs from "@/components/Button.ds.astro";
-import H3TaggedDs from "@/components/H3Tagged.ds.astro";
-import HeroSubtitleDs from "@/components/HeroSubtitle.ds.astro";
+import TagDs from "@/components/shared/atoms/Tag.ds.astro";
+import TagLinkDs from "@/components/shared/atoms/TagLink.ds.astro";
+import ButtonDs from "@/components/shared/atoms/Button.ds.astro";
+import H3TaggedDs from "@/components/shared/atoms/H3Tagged.ds.astro";
+import HeroSubtitleDs from "@/components/hero/HeroSubtitle.ds.astro";
 
 // Molecules
-import CardDs from "@/components/Card.ds.astro";
-import SpotlightDs from "@/components/Spotlight.ds.astro";
-import NavBarDs from "@/components/NavBar.ds.astro";
+import CardDs from "@/components/shared/molecules/Card/Card.ds.astro";
+import SpotlightDs from "@/components/shared/molecules/Spotlight.ds.astro";
+import NavBarDs from "@/components/header/NavBar.ds.astro";
 
 // Organisms
-import SidebarDs from "@/components/Sidebar.ds.astro";
-import HeaderDs from "@/components/Header.ds.astro";
-import FloatingContactDs from "@/components/FloatingContact.ds.astro";
-import ContactDs from "@/components/Contact.ds.astro";
+import SidebarDs from "@/components/sidebar/Sidebar.ds.astro";
+import HeaderDs from "@/components/header/Header.ds.astro";
+import FloatingContactDs from "@/components/contact/FloatingContact.ds.astro";
+import ContactDs from "@/components/contact/Contact.ds.astro";
 
 // Templates
 import CompositionsDs from "@/components/Compositions.ds.astro";
 
-// Sidebar configuration
-type SidebarItem = { label: string; href: string };
+// Sidebar configuration with nested support
+type SidebarLeaf = { label: string; href: string };
+type SidebarGroup = { label: string; children: SidebarNode[] };
+type SidebarNode = SidebarLeaf | SidebarGroup;
+type SidebarSection = { title: string; items: SidebarNode[] };
 
-const foundationItems: SidebarItem[] = [
-  { label: "Colors", href: "#colors" },
-  { label: "Typography", href: "#typography" },
-  { label: "Spacing", href: "#spacing" },
-];
+const isGroup = (node: SidebarNode): node is SidebarGroup => "children" in node;
 
-const atomItems: SidebarItem[] = [
-  { label: "Tag", href: "#tag" },
-  { label: "TagLink", href: "#taglink" },
-  { label: "Button", href: "#button" },
-  { label: "H3Tagged", href: "#h3tagged" },
-  { label: "HeroSubtitle", href: "#herosubtitle" },
-];
-
-const moleculeItems: SidebarItem[] = [
-  { label: "Card", href: "#card" },
-  { label: "Spotlight", href: "#spotlight" },
-  { label: "NavBar", href: "#navbar" },
-];
-
-const organismItems: SidebarItem[] = [
-  { label: "Sidebar", href: "#sidebar" },
-  { label: "Header", href: "#header" },
-  { label: "FloatingContact", href: "#floatingcontact" },
-  { label: "Contact", href: "#contact-doc" },
-];
-
-const templateItems: SidebarItem[] = [
-  { label: "Compositions", href: "#compositions" },
-];
-
-const sidebarSections = [
-  { title: "Foundations", items: foundationItems },
-  { title: "Atoms", items: atomItems },
-  { title: "Molecules", items: moleculeItems },
-  { title: "Organisms", items: organismItems },
-  { title: "Templates", items: templateItems },
+const sidebarSections: SidebarSection[] = [
+  {
+    title: "Foundations",
+    items: [
+      { label: "Colors", href: "#colors" },
+      { label: "Typography", href: "#typography" },
+      { label: "Spacing", href: "#spacing" },
+    ],
+  },
+  {
+    title: "Shared",
+    items: [
+      {
+        label: "Atoms",
+        children: [
+          { label: "Tag", href: "#tag" },
+          { label: "TagLink", href: "#taglink" },
+          { label: "Button", href: "#button" },
+          { label: "H3Tagged", href: "#h3tagged" },
+        ],
+      },
+      {
+        label: "Molecules",
+        children: [
+          {
+            label: "Card",
+            children: [
+              { label: "Card", href: "#card" },
+              { label: "CardContent", href: "#card-content" },
+              { label: "CardTitle", href: "#card-title" },
+              { label: "CardSplit", href: "#card-split" },
+            ],
+          },
+          { label: "Spotlight", href: "#spotlight" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Hero",
+    items: [{ label: "HeroSubtitle", href: "#herosubtitle" }],
+  },
+  {
+    title: "Header",
+    items: [
+      { label: "Header", href: "#header" },
+      { label: "NavBar", href: "#navbar" },
+    ],
+  },
+  {
+    title: "Contact",
+    items: [
+      { label: "Contact", href: "#contact-doc" },
+      { label: "FloatingContact", href: "#floatingcontact" },
+    ],
+  },
+  {
+    title: "Sidebar",
+    items: [{ label: "Sidebar", href: "#sidebar" }],
+  },
+  {
+    title: "Templates",
+    items: [{ label: "Compositions", href: "#compositions" }],
+  },
 ];
 ---
 
@@ -174,8 +206,8 @@ const sidebarSections = [
     <main class="ds-main">
       <h1>Design System</h1>
       <p class="intro">
-        An atomic design system for kinoo.dev. Built from foundational tokens up
-        through atoms, molecules, and organisms.
+        A contextual atomic design system for kinoo.dev. Shared components live
+        in a common library, while feature-specific components stay with their context.
       </p>
       <p class="wip-notice">
         Work in progress.
@@ -194,12 +226,11 @@ const sidebarSections = [
       <TypographyDs />
       <SpacingDs />
 
-      <!-- ATOMS -->
+      <!-- SHARED / ATOMS -->
       <div class="category-header">
-        <h2 class="category-title">Atoms</h2>
+        <h2 class="category-title">Shared / Atoms</h2>
         <p class="category-description">
-          Basic building blocks that can't be broken down further without losing
-          functionality.
+          Reusable atomic components shared across multiple features.
         </p>
       </div>
 
@@ -207,32 +238,59 @@ const sidebarSections = [
       <TagLinkDs />
       <ButtonDs />
       <H3TaggedDs />
-      <HeroSubtitleDs />
 
-      <!-- MOLECULES -->
+      <!-- SHARED / MOLECULES -->
       <div class="category-header">
-        <h2 class="category-title">Molecules</h2>
+        <h2 class="category-title">Shared / Molecules</h2>
         <p class="category-description">
-          Groups of atoms combined to form relatively simple components.
+          Reusable compound components shared across multiple features.
         </p>
       </div>
 
       <CardDs />
       <SpotlightDs />
+
+      <!-- HERO -->
+      <div class="category-header">
+        <h2 class="category-title">Hero</h2>
+        <p class="category-description">
+          Components specific to the hero section.
+        </p>
+      </div>
+
+      <HeroSubtitleDs />
+
+      <!-- HEADER -->
+      <div class="category-header">
+        <h2 class="category-title">Header</h2>
+        <p class="category-description">
+          Site header and navigation components.
+        </p>
+      </div>
+
+      <HeaderDs />
       <NavBarDs />
 
-      <!-- ORGANISMS -->
+      <!-- CONTACT -->
       <div class="category-header">
-        <h2 class="category-title">Organisms</h2>
+        <h2 class="category-title">Contact</h2>
         <p class="category-description">
-          Complex components composed of groups of molecules and atoms.
+          Contact section and related components.
+        </p>
+      </div>
+
+      <ContactDs />
+      <FloatingContactDs />
+
+      <!-- SIDEBAR -->
+      <div class="category-header">
+        <h2 class="category-title">Sidebar</h2>
+        <p class="category-description">
+          Design system navigation component.
         </p>
       </div>
 
       <SidebarDs />
-      <HeaderDs />
-      <FloatingContactDs />
-      <ContactDs />
 
       <!-- TEMPLATES -->
       <div class="category-header">
@@ -258,11 +316,41 @@ const sidebarSections = [
           >
             <summary>{section.title}</summary>
             <ul>
-              {section.items.map((item) => (
-                <li>
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              ))}
+              {section.items.map((item) =>
+                isGroup(item) ? (
+                  <li class="nested-group">
+                    <details class="sidebar-nested">
+                      <summary>{item.label}</summary>
+                      <ul>
+                        {item.children.map((child) =>
+                          isGroup(child) ? (
+                            <li class="nested-group">
+                              <details class="sidebar-nested depth-2">
+                                <summary>{child.label}</summary>
+                                <ul>
+                                  {child.children.map((leaf) => (
+                                    <li>
+                                      <a href={(leaf as SidebarLeaf).href}>{leaf.label}</a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </details>
+                            </li>
+                          ) : (
+                            <li>
+                              <a href={child.href}>{child.label}</a>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </details>
+                  </li>
+                ) : (
+                  <li>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                )
+              )}
             </ul>
           </details>
         ))
@@ -544,6 +632,73 @@ const sidebarSections = [
   .sidebar-section a.active {
     background-color: rgba(248, 186, 136, 0.12);
     color: var(--accent-color);
+  }
+
+  /* Nested sidebar groups */
+  .sidebar-nested {
+    margin: 0;
+  }
+
+  .sidebar-nested summary {
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--light-color);
+    cursor: pointer;
+    padding: 8px 12px;
+    user-select: none;
+    list-style: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .sidebar-nested summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sidebar-nested summary::before {
+    content: "›";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 14px;
+    transition: transform 0.2s ease;
+    opacity: 0.5;
+  }
+
+  .sidebar-nested[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-nested summary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color);
+  }
+
+  .sidebar-nested ul {
+    padding: 4px 0 4px 12px;
+    gap: 2px;
+  }
+
+  .sidebar-nested.depth-2 summary {
+    font-size: 12px;
+    padding: 6px 10px;
+    color: var(--color);
+    opacity: 0.8;
+  }
+
+  .sidebar-nested.depth-2 ul {
+    padding-left: 10px;
+  }
+
+  .sidebar-nested.depth-2 a {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .nested-group {
+    margin: 0;
   }
 
   /* Typography samples */
