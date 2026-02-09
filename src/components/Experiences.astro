@@ -3,6 +3,7 @@ import Card from "./Card.astro";
 import CardContent from "./CardContent.astro";
 import CardTitle from "./CardTitle.astro";
 import Spotlight from "./Spotlight.astro";
+import Tag from "./Tag.astro";
 ---
 
 <section id="experiences" data-animate-section>
@@ -42,6 +43,11 @@ import Spotlight from "./Spotlight.astro";
             src="/images/adeo.png"
             alt="adeo"
           />
+          <div class="row">
+            <Tag title="Svelte" />
+            <Tag title="Vue 3" />
+            <Tag title="TypeScript" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight>
@@ -70,6 +76,11 @@ import Spotlight from "./Spotlight.astro";
             src="images/verty.webp"
             alt="verty"
           />
+          <div class="row">
+            <Tag title="Go" />
+            <Tag title="Shopify API" />
+            <Tag title="Grafana" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight>
@@ -97,6 +108,10 @@ import Spotlight from "./Spotlight.astro";
             src="images/impacthorizon.webp"
             alt="impacthorizon"
           />
+          <div class="row">
+            <Tag title="React" />
+            <Tag title="TypeScript" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight>
@@ -156,6 +171,15 @@ import Spotlight from "./Spotlight.astro";
             src="images/opo.png"
             alt="oeilpouroeil"
           />
+          <div class="row">
+            <Tag title="React" />
+            <Tag title="Vue" />
+            <Tag title="Svelte" />
+            <Tag title="TypeScript" />
+            <Tag title="Go" />
+            <Tag title="GraphQL" />
+            <Tag title="Rescript" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight><Spotlight color="var(--pink)" class="ordoclic">
@@ -186,6 +210,10 @@ import Spotlight from "./Spotlight.astro";
             src="images/ordoclic.png"
             alt="ordoclic"
           />
+          <div class="row">
+            <Tag title="Electron.js" />
+            <Tag title="Node.js" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight><Spotlight color="var(--pink)" class="cautioneo">
@@ -211,6 +239,9 @@ import Spotlight from "./Spotlight.astro";
             src="images/cautioneo.png"
             alt="cautioneo"
           />
+          <div class="row">
+            <Tag title="Ruby on Rails" />
+          </div>
         </CardContent>
       </Card>
     </Spotlight>
@@ -265,6 +296,14 @@ import Spotlight from "./Spotlight.astro";
   ul {
     list-style: initial;
     margin-left: 24px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
   }
 
   @media screen and (max-width: 1200px) {
