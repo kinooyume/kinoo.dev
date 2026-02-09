@@ -1,0 +1,167 @@
+---
+/**
+ * FloatingContact Component Documentation
+ * Design System - Organism
+ */
+import message from "@/svgs/message.svg?raw";
+---
+
+<section id="floatingcontact">
+  <h2>FloatingContact</h2>
+  <p class="atomic-label">Organism</p>
+  <p>Mobile-only sticky contact button that appears at the bottom of the screen. Auto-hides when the contact section is visible.</p>
+
+  <div class="component-block">
+    <h3>Preview</h3>
+    <div class="preview states-preview">
+      <div class="state-demo">
+        <span class="state-label">Default State</span>
+        <a class="floating-contact-demo primary" href="#floatingcontact">
+          <div class="icon-wrapper">
+            <Fragment set:html={message} />
+          </div>
+        </a>
+      </div>
+      <div class="state-demo">
+        <span class="state-label">Hover State</span>
+        <a class="floating-contact-demo primary hover-state" href="#floatingcontact">
+          <div class="icon-wrapper">
+            <Fragment set:html={message} />
+          </div>
+        </a>
+      </div>
+      <div class="state-demo">
+        <span class="state-label">Hidden (.current)</span>
+        <a class="floating-contact-demo primary hidden-state" href="#floatingcontact">
+          <div class="icon-wrapper">
+            <Fragment set:html={message} />
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Behavior</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>State</th>
+          <th>CSS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Desktop (&gt;600px)</td>
+          <td>Hidden</td>
+          <td><code>display: none</code></td>
+        </tr>
+        <tr>
+          <td>Mobile, #contact not visible</td>
+          <td>Visible</td>
+          <td>Default styles</td>
+        </tr>
+        <tr>
+          <td>Mobile, #contact in viewport</td>
+          <td>Hidden</td>
+          <td><code>.current</code> class added</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>Positioning</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>position</code></td>
+          <td>sticky</td>
+        </tr>
+        <tr>
+          <td><code>bottom</code></td>
+          <td>36px</td>
+        </tr>
+        <tr>
+          <td><code>z-index</code></td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td><code>width</code></td>
+          <td>36px</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>View Detection Integration</h3>
+    <p class="note">
+      Uses <code>viewDetection</code> utility from <code>@/lib/dom/viewDetection</code> to detect when <code>#contact</code> section enters the viewport. The <code>.current</code> class is toggled to fade out the button.
+    </p>
+  </div>
+
+  <div class="component-block">
+    <h3>Usage</h3>
+    <div class="props">
+      <code>&lt;FloatingContact /&gt;</code>
+    </div>
+    <p class="note" style="margin-top: 12px;">
+      No props required. Component is self-contained with its own scroll detection logic.
+    </p>
+  </div>
+</section>
+
+<style>
+  .states-preview {
+    gap: 48px;
+  }
+  .state-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .state-label {
+    font-size: 13px;
+    color: var(--color);
+    opacity: 0.6;
+  }
+  .floating-contact-demo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .floating-contact-demo .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .floating-contact-demo .icon-wrapper :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+  .floating-contact-demo .icon-wrapper :global(svg path) {
+    fill: black;
+  }
+  .hover-state {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(246, 177, 122, 0.3);
+  }
+  .hidden-state {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+/**
+ * HeroSubtitle Component Documentation
+ * Design System - Atom
+ */
+---
+
+<section id="herosubtitle">
+  <h2>HeroSubtitle</h2>
+  <p class="atomic-label">Atom</p>
+  <p>Animated subtitle that wraps each character in a span for letter-by-letter animation effects.</p>
+
+  <div class="component-block">
+    <h3>Preview</h3>
+    <div class="preview hero-subtitle-preview">
+      <span class="subtitle-demo">
+        <span class="text-wrapper">
+          <span class="letter">D</span><span class="letter">é</span><span class="letter">v</span><span class="letter">e</span><span class="letter">l</span><span class="letter">o</span><span class="letter">p</span><span class="letter">p</span><span class="letter">e</span><span class="letter">u</span><span class="letter">r</span><span class="letter"> </span><span class="letter">F</span><span class="letter">r</span><span class="letter">o</span><span class="letter">n</span><span class="letter">t</span><span class="letter">e</span><span class="letter">n</span><span class="letter">d</span>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Props</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>subtitle</code></td>
+          <td>string</td>
+          <td>Text to display (each character wrapped in a span)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>Animation</h3>
+    <p class="note">
+      Each character is wrapped in a <code>&lt;span class="letter"&gt;</code> element. The <code>heroAnime.ts</code> animation applies a staggered <code>translateY</code> effect to reveal letters sequentially.
+    </p>
+  </div>
+
+  <div class="component-block">
+    <h3>Usage</h3>
+    <div class="props">
+      <code>&lt;HeroSubtitle subtitle="Développeur Frontend Freelance" /&gt;</code>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Styling</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>font-size</code></td>
+          <td>var(--hero-span-size)</td>
+        </tr>
+        <tr>
+          <td><code>font-weight</code></td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td><code>color</code></td>
+          <td>var(--accent-color)</td>
+        </tr>
+        <tr>
+          <td><code>line-height</code></td>
+          <td>38px</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .hero-subtitle-preview {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .subtitle-demo {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 38px;
+    font-size: 36px;
+    font-weight: 100;
+    color: var(--accent-color);
+  }
+  .subtitle-demo .text-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  .subtitle-demo .letter {
+    display: inline-block;
+  }
+</style>

@@ -1,0 +1,236 @@
+/**
+ * Global Styles - Base styles and reset
+ * Imported by Layout.astro
+ */
+
+/* ===== Font Definitions ===== */
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-ExtraLight.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-Light.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-Thin.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-Regular.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-ExtraBold.ttf");
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* ===== Reset & Base ===== */
+html {
+  box-sizing: border-box;
+  font-family: Outfit, system-ui, sans-serif;
+  background: var(--background-color);
+  color: var(--color);
+  scroll-behavior: smooth;
+  scroll-padding-top: 126px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+::before,
+::after {
+  border-width: 0;
+  border-style: solid;
+}
+
+/* ===== Base Element Styles ===== */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+svg {
+  display: block;
+}
+
+button {
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ===== Typography ===== */
+h2 {
+  font-weight: 300;
+  line-height: 1;
+  font-size: var(--h2-size);
+  margin: 0;
+  margin-bottom: 64px;
+}
+
+h3 {
+  font-size: var(--h3-size);
+  font-weight: 400;
+  color: var(--secondary-accent-color);
+  margin: 0;
+  line-height: 1;
+}
+
+.subtitle {
+  color: var(--accent-color);
+  font-weight: 200;
+  font-size: var(--subtitle-size);
+  margin: 0;
+}
+
+p,
+label {
+  font-size: var(--font-size);
+  font-weight: 200;
+  line-height: 1.4;
+  color: var(--light-color);
+}
+
+b {
+  font-weight: 600;
+}
+
+/* ===== Buttons & Links ===== */
+a.primary,
+button {
+  border: none;
+  display: inline-block;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  height: 48px;
+  padding: 0 24px;
+  cursor: pointer;
+}
+
+a.primary,
+button.primary {
+  font-size: var(--button-font-size);
+  font-weight: 500;
+  color: black;
+  background-color: var(--accent-bright);
+  text-transform: capitalize;
+}
+
+a.primary {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+a.anime {
+  transition: all 0.3s ease;
+}
+
+a svg path,
+a.cv {
+  opacity: 0.8;
+}
+
+@media (hover: hover) {
+  button.primary:hover,
+  a.primary:hover,
+  a.anime:hover,
+  .link-wrapper.anime:hover,
+  button.secondary:hover {
+    transform: translateY(-4px);
+  }
+
+  button.primary:active,
+  a.primary:active,
+  a.anime:active,
+  button.secondary:active {
+    transform: translateY(5px);
+    transition: 200ms;
+  }
+
+  a:hover svg path,
+  a:hover.cv {
+    opacity: 1;
+  }
+}
+
+/* ===== Sections ===== */
+section {
+  margin: var(--section-margin) 0;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 600px) {
+  html {
+    scroll-padding-top: 92px;
+  }
+}

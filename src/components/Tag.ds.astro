@@ -1,0 +1,84 @@
+---
+/**
+ * Tag Component Documentation
+ * Design System - Atom
+ */
+import Tag from "./Tag.astro";
+import terminal from "@/svgs/terminal.svg?raw";
+---
+
+<section id="tag">
+  <h2>Tag</h2>
+  <p class="atomic-label">Atom</p>
+  <p>Tags are used to display labels, skills, or categories.</p>
+
+  <div class="component-block">
+    <h3>Default</h3>
+    <div class="preview">
+      <Tag title="TypeScript" />
+    </div>
+    <div class="props">
+      <code>title="TypeScript"</code>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>With Icon</h3>
+    <div class="preview">
+      <Tag title="Terminal" icon={terminal} />
+    </div>
+    <div class="props">
+      <code>title="Terminal" icon=&#123;terminalSvg&#125;</code>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Highlighted</h3>
+    <div class="preview">
+      <Tag title="Featured" highlight />
+    </div>
+    <div class="props">
+      <code>title="Featured" highlight</code>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Props</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>title</code></td>
+          <td>string</td>
+          <td>required</td>
+          <td>The text content of the tag</td>
+        </tr>
+        <tr>
+          <td><code>icon</code></td>
+          <td>string</td>
+          <td>-</td>
+          <td>SVG icon as raw string</td>
+        </tr>
+        <tr>
+          <td><code>highlight</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Adds accent border</td>
+        </tr>
+        <tr>
+          <td><code>hero</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Hero animation variant</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

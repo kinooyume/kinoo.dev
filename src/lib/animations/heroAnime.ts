@@ -1,5 +1,6 @@
 import anime from "animejs/lib/anime.es.js";
 import { emitHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
+import { animateHeader } from "@/lib/animations/headerAnime";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("hero-animation");
@@ -34,14 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     delay: (_el, i) => 30 * i,
   });
 
-  const header = anime.timeline({ autoplay: false }).add({
-    targets: [".header .title-wrapper", ".navbar li", ".header .menu"],
-    translateY: ["-1.2em", 0],
-    opacity: [0, 1],
-    duration: 800,
-    delay: (_el, i) => 30 * i,
-  });
-
   const picture = anime.timeline({ autoplay: false }).add({
     targets: [".hero-image"],
     opacity: [0, 1],
@@ -49,17 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
     duration: 800,
   });
 
-  const allTimelines = [init, subtitle, description, header, picture];
+  let headerAnimation: anime.AnimeInstance | null = null;
 
-  // Seek all animations to their end state
-  function finishAll() {
+  const allTimelines = [init, subtitle, description, picture];
+
+  const finishAll = () => {
     allTimelines.forEach((tl) => tl.seek(tl.duration));
-  }
+    if (headerAnimation) {
+      headerAnimation.seek(headerAnimation.duration);
+    }
+  };
 
   // Normal sequence: init → subtitle → description + header + picture
   subtitle.finished.then(() => {
     description.play();
-    header.play();
+    headerAnimation = animateHeader();
     picture.play();
   });
 
@@ -70,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("hero-animation");
     const headerEl = document.querySelector("header");
     if (headerEl) {
-      (headerEl as HTMLElement).style.display = "";
+      headerEl.style.display = "";
     }
     emitHeroAnimationComplete(cancelled ? "cancelled" : "completed");
   });
@@ -79,24 +76,33 @@ document.addEventListener("DOMContentLoaded", () => {
     subtitle.play();
   });
 
-  // If user scrolls during the animation, fast-forward everything
-  function onUserScroll() {
+  const onUserScroll = () => {
     cancelled = true;
     finishAll();
-    window.removeEventListener("wheel", onUserScroll);
-    window.removeEventListener("touchmove", onUserScroll);
+    globalThis.removeEventListener("wheel", onUserScroll);
+    globalThis.removeEventListener("touchmove", onUserScroll);
   }
 
-  if (window.scrollY) {
-    // Already scrolled (e.g. back-forward navigation) — skip entirely
+  // Skip animation if page is scrolled or URL has a hash (coming from anchor link)
+  if (globalThis.scrollY || window.location.hash) {
     cancelled = true;
     finishAll();
+
+    // When coming from anchor link, scroll to target after elements are visible
+    if (window.location.hash) {
+      requestAnimationFrame(() => {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "instant" });
+        }
+      });
+    }
   } else {
-    window.addEventListener("wheel", onUserScroll, {
+    globalThis.addEventListener("wheel", onUserScroll, {
       once: true,
       passive: true,
     });
-    window.addEventListener("touchmove", onUserScroll, {
+    globalThis.addEventListener("touchmove", onUserScroll, {
       once: true,
       passive: true,
     });

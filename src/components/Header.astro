@@ -10,7 +10,7 @@ import NavBar from "./NavBar.astro";
   <div class="header">
     <nav>
       <div class="title-wrapper">
-        <a href="#hero" class="title anime">
+        <a href="/" class="title anime">
           <div class="terminal-wrapper">
             <Fragment set:html={terminal} />
           </div>
@@ -44,7 +44,7 @@ import NavBar from "./NavBar.astro";
       >
         CV
       </a>
-      <a class="primary" href="#contact"> Me contacter </a>
+      <a class="primary" href="/#contact"> Me contacter </a>
     </div>
   </div>
 
@@ -178,3 +178,13 @@ import NavBar from "./NavBar.astro";
     }
   </style>
 </header>
+
+<script>
+  import { showHeaderImmediate } from "@/lib/animations/headerAnime";
+
+  // Show header immediately on pages without hero
+  const hasHero = !!document.getElementById("hero");
+  if (!hasHero) {
+    showHeaderImmediate();
+  }
+</script>

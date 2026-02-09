@@ -47,6 +47,22 @@ import FloatingContact from "@/components/FloatingContact.astro";
 </Layout>
 
 <style>
+  /* Hero animation: hide header elements initially (CSS loads before JS) */
+  :global(.header .title-wrapper),
+  :global(.menu),
+  :global(.navbar li) {
+    opacity: 0;
+  }
+
+  :global(.navbar) {
+    pointer-events: none;
+  }
+
+  /* Hide non-hero content during animation */
+  :global(body.hero-animation main > *:not(#hero)) {
+    display: none;
+  }
+
   [data-animate-card] > * {
     opacity: 0;
     transform: translateY(30px);

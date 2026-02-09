@@ -1,0 +1,411 @@
+---
+/**
+ * Header Component Documentation
+ * Design System - Organism
+ */
+import terminal from "@/svgs/terminal.svg?raw";
+import github from "@/svgs/github.svg?raw";
+import linkedin from "@/svgs/linkedin.svg?raw";
+---
+
+<section id="header">
+  <h2>Header</h2>
+  <p class="atomic-label">Organism</p>
+  <p>Sticky site header with navigation, social links, and contact button. Features frosted glass effect with gradient mask.</p>
+
+  <div class="component-block">
+    <h3>Preview</h3>
+    <div class="preview header-preview">
+      <div class="header-demo">
+        <nav>
+          <div class="title-wrapper">
+            <a href="#header" class="title">
+              <div class="terminal-wrapper">
+                <Fragment set:html={terminal} />
+              </div>
+              Martin Kinoo
+            </a>
+          </div>
+          <div class="navbar-demo-inline">
+            <a href="#" data-color="#f68dab" class="active">Expériences</a>
+            <a href="#" data-color="#66c384">Réalisations</a>
+            <a href="#" data-color="#9c85d3">Formations</a>
+            <div class="indicator-demo"></div>
+          </div>
+        </nav>
+        <div class="menu">
+          <a class="icon" href="#">
+            <Fragment set:html={github} />
+          </a>
+          <a class="icon" href="#">
+            <Fragment set:html={linkedin} />
+          </a>
+          <a class="cv">CV</a>
+          <a class="primary" href="#">Me contacter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Structure</h3>
+    <div class="structure-diagram">
+      <div class="structure-row">
+        <code>header</code>
+        <span class="structure-desc">Sticky container with frosted glass</span>
+      </div>
+      <div class="structure-row indent">
+        <code>.header</code>
+        <span class="structure-desc">Flex container (space-between)</span>
+      </div>
+      <div class="structure-row indent-2">
+        <code>nav</code>
+        <span class="structure-desc">Left side: logo + navigation</span>
+      </div>
+      <div class="structure-row indent-3">
+        <code>.title-wrapper</code>
+        <span class="structure-desc">Logo and site name</span>
+      </div>
+      <div class="structure-row indent-3">
+        <code>NavBar</code>
+        <span class="structure-desc">Section navigation (see NavBar docs)</span>
+      </div>
+      <div class="structure-row indent-2">
+        <code>.menu</code>
+        <span class="structure-desc">Right side: social + contact</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Menu Items</h3>
+    <div class="preview menu-items-preview">
+      <a class="icon-item" href="#">
+        <Fragment set:html={github} />
+        <span>GitHub</span>
+      </a>
+      <a class="icon-item" href="#">
+        <Fragment set:html={linkedin} />
+        <span>LinkedIn</span>
+      </a>
+      <a class="cv-demo">CV</a>
+      <a class="primary" href="#">Me contacter</a>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Frosted Glass Effect</h3>
+    <div class="preview glass-demo">
+      <div class="glass-sample">
+        <code>backdrop-filter: blur(30px)</code>
+        <span class="glass-note">+ gradient mask for fade-out</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="component-block">
+    <h3>Animation Integration</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Page Type</th>
+          <th>Behavior</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>With Hero</td>
+          <td>Animate in after hero</td>
+          <td><code>animateHeader()</code></td>
+        </tr>
+        <tr>
+          <td>Without Hero</td>
+          <td>Visible immediately</td>
+          <td>CSS default</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>Responsive</h3>
+    <table class="props-table">
+      <thead>
+        <tr>
+          <th>Breakpoint</th>
+          <th>Height</th>
+          <th>Changes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Default</td>
+          <td>120px</td>
+          <td>Full layout</td>
+        </tr>
+        <tr>
+          <td>&lt;980px</td>
+          <td>120px</td>
+          <td>NavBar hidden</td>
+        </tr>
+        <tr>
+          <td>&lt;600px</td>
+          <td>80px</td>
+          <td>Contact button hidden</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="component-block">
+    <h3>Usage</h3>
+    <div class="props">
+      <code>&lt;Header /&gt;</code>
+    </div>
+    <p class="note" style="margin-top: 12px;">
+      Included in Layout.astro. No props required.
+    </p>
+  </div>
+</section>
+
+<script>
+  // Interactive navbar demo
+  const navbarDemo = document.querySelector('.navbar-demo-inline');
+  if (navbarDemo) {
+    const links = navbarDemo.querySelectorAll('a');
+    const indicator = navbarDemo.querySelector('.indicator-demo') as HTMLElement;
+
+    function updateIndicator(link: Element) {
+      const rect = link.getBoundingClientRect();
+      const parentRect = navbarDemo.getBoundingClientRect();
+      indicator.style.left = `${rect.left - parentRect.left}px`;
+      indicator.style.width = `${rect.width}px`;
+      indicator.style.backgroundColor = (link as HTMLElement).dataset.color || 'var(--accent-color)';
+    }
+
+    // Initialize indicator on first active link
+    const activeLink = navbarDemo.querySelector('a.active');
+    if (activeLink) {
+      updateIndicator(activeLink);
+    }
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => updateIndicator(link));
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        updateIndicator(link);
+      });
+    });
+
+    navbarDemo.addEventListener('mouseleave', () => {
+      const active = navbarDemo.querySelector('a.active');
+      if (active) updateIndicator(active);
+    });
+  }
+</script>
+
+<style>
+  .header-preview {
+    display: block;
+    padding: 0;
+    overflow: hidden;
+  }
+  .header-demo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background-color: var(--background-frosted);
+    backdrop-filter: blur(10px);
+  }
+  .header-demo nav {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+  .header-demo .title-wrapper {
+    display: flex;
+  }
+  .header-demo .title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 200;
+    text-decoration: none;
+    color: var(--color);
+    transition: opacity 0.2s;
+  }
+  .header-demo .title:hover {
+    opacity: 0.8;
+  }
+  .header-demo .terminal-wrapper {
+    margin-top: 4px;
+  }
+  .header-demo .terminal-wrapper :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+  .navbar-demo-inline {
+    display: flex;
+    gap: 8px;
+    position: relative;
+    padding: 8px;
+  }
+  .navbar-demo-inline a {
+    padding: 12px 16px;
+    font-size: 18px;
+    font-weight: 200;
+    color: var(--color);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .navbar-demo-inline a:hover,
+  .navbar-demo-inline a.active {
+    opacity: 1;
+  }
+  .indicator-demo {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    background-color: var(--accent-color);
+  }
+  .header-demo .menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .header-demo .icon {
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .header-demo .icon:hover {
+    opacity: 1;
+  }
+  .header-demo .icon :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+  .header-demo .cv {
+    background-color: rgba(246, 245, 247, 0.64);
+    color: var(--background-color);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    height: 22px;
+    width: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .header-demo .cv:hover {
+    opacity: 0.8;
+  }
+  .header-demo .primary {
+    background-color: var(--accent-bright);
+    color: black;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .header-demo .primary:hover {
+    transform: translateY(-2px);
+  }
+  .menu-items-preview {
+    gap: 24px;
+  }
+  .icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .icon-item:hover {
+    opacity: 1;
+  }
+  .icon-item :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+  .icon-item span {
+    font-size: 12px;
+    color: var(--color);
+  }
+  .cv-demo {
+    background-color: rgba(246, 245, 247, 0.64);
+    color: var(--background-color);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  .structure-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  .structure-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .structure-row code {
+    background-color: #1c2638;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--accent-bright);
+    min-width: 120px;
+  }
+  .structure-desc {
+    font-size: 14px;
+    color: var(--color);
+    opacity: 0.7;
+  }
+  .indent { padding-left: 20px; }
+  .indent-2 { padding-left: 40px; }
+  .indent-3 { padding-left: 60px; }
+  .glass-demo {
+    background: linear-gradient(135deg, #2a3a5a 0%, #1a2540 50%, #2a3a5a 100%);
+  }
+  .glass-sample {
+    background-color: rgba(24, 25, 39, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 24px 32px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .glass-sample code {
+    font-size: 14px;
+    color: var(--accent-bright);
+  }
+  .glass-note {
+    font-size: 12px;
+    color: var(--color);
+    opacity: 0.6;
+  }
+</style>

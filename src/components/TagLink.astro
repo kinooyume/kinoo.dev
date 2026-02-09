@@ -7,12 +7,19 @@ type Props = {
 };
 
 const { href, text } = Astro.props;
+const isExternal = href.startsWith("http");
 ---
 
-<a href={href} rel="noreferrer nofollow noopener" target="_blank">
-  {text}
-  <Fragment set:html={externalLink} />
-</a>
+{isExternal ? (
+  <a href={href} rel="noreferrer nofollow noopener" target="_blank">
+    {text}
+    <Fragment set:html={externalLink} />
+  </a>
+) : (
+  <a href={href}>
+    {text}
+  </a>
+)}
 
 <style>
   :root {
