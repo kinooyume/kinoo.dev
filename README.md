@@ -12,6 +12,50 @@ Personal portfolio & freelance website.
 
 ---
 
+## Getting Started
+
+```bash
+git clone https://github.com/yourusername/kinoo.dev.git
+cd kinoo.dev
+```
+
+### With Nix (recommended)
+
+```bash
+nix develop
+```
+
+Gives you bun, cog, git. Auto-runs `bun install`.
+
+For auto-activate, use direnv:
+```bash
+direnv allow
+```
+
+### Without Nix
+
+Install Bun and Cocogitto manually, then:
+
+```bash
+bun install
+bunx lefthook install
+```
+
+---
+
+## Commands
+
+| Command | Action |
+|---------|--------|
+| `bun run dev` | Dev server at localhost:4321 |
+| `bun run build` | Production build to `dist/` |
+| `bun run preview` | Preview build |
+| `bun run lint` | ESLint |
+| `bun run lint:fix` | Fix lint issues |
+| `bunx astro check` | Type check |
+
+---
+
 ## About
 
 My portfolio site, built with Astro + SolidJS. Static generation, animations with Anime.js, and a design system for component documentation.
@@ -69,60 +113,16 @@ src/components/
 
 ---
 
-## Getting Started
+## Project Structure
 
-```bash
-git clone https://github.com/yourusername/kinoo.dev.git
-cd kinoo.dev
 ```
-
-### With Nix (recommended)
-
-```bash
-nix develop
-```
-
-Gives you bun, cog, git. Auto-runs `bun install`.
-
-For auto-activate, use direnv:
-```bash
-direnv allow
-```
-
-### Without Nix
-
-Install Bun and Cocogitto manually, then:
-
-```bash
-bun install
-bunx lefthook install
-```
-
-### Dev server
-
-```bash
-bun run dev
-```
-
-Runs at http://localhost:4321
-
----
-
-## Build
-
-```bash
-bun run build    # outputs to dist/
-bun run preview  # preview locally
-```
-
----
-
-## Linting
-
-```bash
-bun run lint
-bun run lint:fix
-bunx astro check
+src/
+├── components/        # Contextual atomic design
+├── layouts/
+├── lib/               # Utils, animations, dom helpers
+├── pages/
+├── styles/            # CSS + design tokens
+└── svgs/
 ```
 
 ---
@@ -146,32 +146,6 @@ fix: nav overflow
 Lefthook runs ESLint on pre-commit and validates commit messages.
 
 **Secrets needed**: `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`
-
----
-
-## Project Structure
-
-```
-src/
-├── components/        # Contextual atomic design
-├── layouts/
-├── lib/               # Utils, animations, dom helpers
-├── pages/
-├── styles/            # CSS + design tokens
-└── svgs/
-```
-
----
-
-## Commands
-
-| Command | Action |
-|---------|--------|
-| `bun run dev` | Dev server |
-| `bun run build` | Production build |
-| `bun run preview` | Preview build |
-| `bun run lint` | ESLint |
-| `bun run lint:fix` | Fix lint issues |
 
 ---
 
