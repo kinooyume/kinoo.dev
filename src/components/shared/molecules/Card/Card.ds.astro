@@ -6,6 +6,12 @@
  */
 import Card from "./Card.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSStructure from "@/components/design-system/DSStructure.astro";
 ---
 
 <!-- CARD -->
@@ -14,21 +20,17 @@ import Tag from "@/components/shared/atoms/Tag.astro";
   <p class="atomic-label">Molecule</p>
   <p>Base container component with gradient border effect. Parent of the Card compound system.</p>
 
-  <div class="component-block">
-    <h3>Basic Card</h3>
-    <div class="preview preview-card">
+  <DSBlock title="Basic Card">
+    <DSPreview class="preview-card">
       <Card>
         <p>Card content goes here. Cards use slots for flexible content.</p>
       </Card>
-    </div>
-    <div class="props">
-      <code>&lt;Card&gt;...content...&lt;/Card&gt;</code>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode inline>&lt;Card&gt;...content...&lt;/Card&gt;</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Card with Content</h3>
-    <div class="preview preview-card">
+  <DSBlock title="Card with Content">
+    <DSPreview class="preview-card">
       <Card>
         <div class="card-content-demo">
           <div class="title-row">
@@ -42,50 +44,26 @@ import Tag from "@/components/shared/atoms/Tag.astro";
           </div>
         </div>
       </Card>
-    </div>
-  </div>
+    </DSPreview>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Card Family Overview</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Component</th>
-          <th>Purpose</th>
-          <th>Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>Card</code></td>
-          <td>Base container</td>
-          <td>Wrapper with gradient border</td>
-        </tr>
-        <tr>
-          <td><code>CardContent</code></td>
-          <td>Layout helper</td>
-          <td>Structured content with slots</td>
-        </tr>
-        <tr>
-          <td><code>CardTitle</code></td>
-          <td>Title block</td>
-          <td>Job/project title with metadata</td>
-        </tr>
-        <tr>
-          <td><code>CardSplit</code></td>
-          <td>Two-column layout</td>
-          <td>Title + description + aside</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Card Family Overview">
+    <DSPropsTable
+      headers={["Component", "Purpose", "Usage"]}
+      rows={[
+        [{ code: "Card" }, "Base container", "Wrapper with gradient border"],
+        [{ code: "CardContent" }, "Layout helper", "Structured content with slots"],
+        [{ code: "CardTitle" }, "Title block", "Job/project title with metadata"],
+        [{ code: "CardSplit" }, "Two-column layout", "Title + description + aside"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Animation Attributes</h3>
-    <p class="note">
+  <DSBlock title="Animation Attributes">
+    <DSNote>
       Add <code>data-animate-elem</code> to elements for reveal animations. Used with <code>revealCards</code> utility for staggered fade-in effects.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 </section>
 
 <!-- CARD CONTENT -->
@@ -94,34 +72,20 @@ import Tag from "@/components/shared/atoms/Tag.astro";
   <p class="atomic-label">Molecule</p>
   <p>Layout wrapper with named slots for structured card content. Used inside Card.</p>
 
-  <div class="component-block">
-    <h3>Slots</h3>
-    <div class="structure-diagram">
-      <div class="structure-row">
-        <code>slot="title"</code>
-        <span class="structure-desc">Header/title area</span>
-      </div>
-      <div class="structure-row">
-        <code>slot="marge"</code>
-        <span class="structure-desc">Right-aligned content next to title</span>
-      </div>
-      <div class="structure-row">
-        <code>slot="description"</code>
-        <span class="structure-desc">Main body text</span>
-      </div>
-      <div class="structure-row">
-        <code>default slot</code>
-        <span class="structure-desc">Additional content (tags, links)</span>
-      </div>
-    </div>
-  </div>
+  <DSBlock title="Slots">
+    <DSStructure
+      rows={[
+        { code: "slot=\"title\"", description: "Header/title area" },
+        { code: "slot=\"marge\"", description: "Right-aligned content next to title" },
+        { code: "slot=\"description\"", description: "Main body text" },
+        { code: "default slot", description: "Additional content (tags, links)" },
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Usage</h3>
-    <div class="props">
-      <code>&lt;Card&gt;&lt;CardContent&gt;...&lt;/CardContent&gt;&lt;/Card&gt;</code>
-    </div>
-  </div>
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;Card&gt;&lt;CardContent&gt;...&lt;/CardContent&gt;&lt;/Card&gt;</DSCode>
+  </DSBlock>
 </section>
 
 <!-- CARD TITLE -->
@@ -130,57 +94,23 @@ import Tag from "@/components/shared/atoms/Tag.astro";
   <p class="atomic-label">Molecule</p>
   <p>Title block for cards with company/project metadata. Uses H3Tagged internally.</p>
 
-  <div class="component-block">
-    <h3>Props</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>title</code></td>
-          <td>string</td>
-          <td>Main title (uses H3Tagged)</td>
-        </tr>
-        <tr>
-          <td><code>tag</code></td>
-          <td>string</td>
-          <td>Category badge</td>
-        </tr>
-        <tr>
-          <td><code>href</code></td>
-          <td>string</td>
-          <td>Company/project URL</td>
-        </tr>
-        <tr>
-          <td><code>label</code></td>
-          <td>string</td>
-          <td>Link text</td>
-        </tr>
-        <tr>
-          <td><code>location</code></td>
-          <td>string</td>
-          <td>Location (with dot separators)</td>
-        </tr>
-        <tr>
-          <td><code>date</code></td>
-          <td>string</td>
-          <td>Date range</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        [{ code: "title" }, "string", "Main title (uses H3Tagged)"],
+        [{ code: "tag" }, "string", "Category badge"],
+        [{ code: "href" }, "string", "Company/project URL"],
+        [{ code: "label" }, "string", "Link text"],
+        [{ code: "location" }, "string", "Location (with dot separators)"],
+        [{ code: "date" }, "string", "Date range"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Usage</h3>
-    <div class="props">
-      <code>&lt;CardTitle slot="title" title="Developer" tag="Freelance" ... /&gt;</code>
-    </div>
-  </div>
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;CardTitle slot="title" title="Developer" tag="Freelance" ... /&gt;</DSCode>
+  </DSBlock>
 </section>
 
 <!-- CARD SPLIT -->
@@ -189,9 +119,8 @@ import Tag from "@/components/shared/atoms/Tag.astro";
   <p class="atomic-label">Molecule</p>
   <p>Two-column grid layout for cards with title, description, and aside areas.</p>
 
-  <div class="component-block">
-    <h3>Layout Preview</h3>
-    <div class="preview preview-card">
+  <DSBlock title="Layout Preview">
+    <DSPreview class="preview-card">
       <div class="card-split-demo">
         <div class="split-title">
           <div class="placeholder-box">Title Slot</div>
@@ -203,63 +132,29 @@ import Tag from "@/components/shared/atoms/Tag.astro";
           <div class="placeholder-box full">Aside Slot</div>
         </div>
       </div>
-    </div>
-    <div class="props" style="margin-top: 12px;">
-      <code>&lt;CardSplit reverse&gt; to flip layout</code>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode inline>&lt;CardSplit reverse&gt; to flip layout</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Props</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>reverse</code></td>
-          <td>boolean</td>
-          <td>false</td>
-          <td>Flips the layout (aside on left)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "reverse" }, "boolean", "false", "Flips the layout (aside on left)"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Slots</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Slot</th>
-          <th>Grid Area</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>title</code></td>
-          <td>Top-left</td>
-          <td>Card header with H3Tagged</td>
-        </tr>
-        <tr>
-          <td><code>description</code></td>
-          <td>Bottom-left</td>
-          <td>Main content area</td>
-        </tr>
-        <tr>
-          <td><code>aside</code></td>
-          <td>Right column (spans 2 rows)</td>
-          <td>Image or supplementary content</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Slots">
+    <DSPropsTable
+      headers={["Slot", "Grid Area", "Description"]}
+      rows={[
+        [{ code: "title" }, "Top-left", "Card header with H3Tagged"],
+        [{ code: "description" }, "Bottom-left", "Main content area"],
+        [{ code: "aside" }, "Right column (spans 2 rows)", "Image or supplementary content"],
+      ]}
+    />
+  </DSBlock>
 </section>
 
 <style>
@@ -324,31 +219,5 @@ import Tag from "@/components/shared/atoms/Tag.astro";
   .placeholder-box.full {
     height: 100%;
     min-height: 176px;
-  }
-  .structure-diagram {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 16px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-  }
-  .structure-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .structure-row code {
-    background-color: #1c2638;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 13px;
-    color: var(--accent-bright);
-    min-width: 140px;
-  }
-  .structure-desc {
-    font-size: 14px;
-    color: var(--color);
-    opacity: 0.7;
   }
 </style>

@@ -4,6 +4,10 @@
  * Design System - Atom
  */
 import TagLink from "./TagLink.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 ---
 
 <section id="taglink">
@@ -11,41 +15,20 @@ import TagLink from "./TagLink.astro";
   <p class="atomic-label">Atom</p>
   <p>External links with an icon indicator, opens in a new tab.</p>
 
-  <div class="component-block">
-    <h3>Default</h3>
-    <div class="preview">
+  <DSBlock title="Default">
+    <DSPreview>
       <TagLink href="https://github.com" text="View on GitHub" />
-    </div>
-    <div class="props">
-      <code>href="https://github.com" text="View on GitHub"</code>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode inline>href="https://github.com" text="View on GitHub"</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Props</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>href</code></td>
-          <td>string</td>
-          <td>required</td>
-          <td>URL to link to</td>
-        </tr>
-        <tr>
-          <td><code>text</code></td>
-          <td>string</td>
-          <td>required</td>
-          <td>Link text</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "href" }, "string", "required", "URL to link to"],
+        [{ code: "text" }, "string", "required", "Link text"],
+      ]}
+    />
+  </DSBlock>
 </section>

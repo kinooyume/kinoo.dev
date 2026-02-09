@@ -3,6 +3,11 @@
  * NavBar Component Documentation
  * Design System - Molecule
  */
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSStructure from "@/components/design-system/DSStructure.astro";
 ---
 
 <section id="navbar">
@@ -10,10 +15,9 @@
   <p class="atomic-label">Molecule</p>
   <p>Horizontal navigation bar with scroll-based active indicator and color-coded links for each section.</p>
 
-  <div class="component-block">
-    <h3>Interactive Demo</h3>
-    <p class="note" style="margin-bottom: 16px;">Click or hover on links to see the indicator animation.</p>
-    <div class="preview">
+  <DSBlock title="Interactive Demo">
+    <DSNote>Click or hover on links to see the indicator animation.</DSNote>
+    <DSPreview>
       <nav class="navbar-interactive" id="navbar-demo">
         <ul>
           <li><a href="#" data-color="#f68dab" class="nav active">Expériences</a></li>
@@ -22,12 +26,11 @@
         </ul>
         <div class="indicator"></div>
       </nav>
-    </div>
-  </div>
+    </DSPreview>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Link Colors</h3>
-    <div class="preview color-demo">
+  <DSBlock title="Link Colors">
+    <DSPreview class="color-demo">
       <div class="color-link">
         <a href="#" class="nav-sample" style="--nav-color: #f68dab;">Expériences</a>
         <div class="color-indicator" style="background-color: #f68dab;"></div>
@@ -43,11 +46,10 @@
         <div class="color-indicator" style="background-color: #9c85d3;"></div>
         <code>#9c85d3</code>
       </div>
-    </div>
-  </div>
+    </DSPreview>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Features</h3>
+  <DSBlock title="Features">
     <ul class="feature-list">
       <li>Animated indicator follows active/hovered link</li>
       <li>Indicator color matches section theme via <code>data-color</code></li>
@@ -55,90 +57,46 @@
       <li>Smooth 300ms transitions</li>
       <li>Hidden on mobile (&lt;980px)</li>
     </ul>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>HTML Structure</h3>
-    <div class="structure-diagram">
-      <div class="structure-row">
-        <code>nav.navbar</code>
-        <span class="structure-desc">Container with relative positioning</span>
-      </div>
-      <div class="structure-row indent">
-        <code>ul</code>
-        <span class="structure-desc">Flex container for links</span>
-      </div>
-      <div class="structure-row indent-2">
-        <code>li &gt; a.nav</code>
-        <span class="structure-desc">Navigation links with data-color</span>
-      </div>
-      <div class="structure-row indent">
-        <code>.indicator</code>
-        <span class="structure-desc">Animated underline element</span>
-      </div>
-    </div>
-  </div>
+  <DSBlock title="HTML Structure">
+    <DSStructure
+      rows={[
+        { code: "nav.navbar", description: "Container with relative positioning" },
+        { code: "ul", description: "Flex container for links", indent: 1 },
+        { code: "li > a.nav", description: "Navigation links with data-color", indent: 2 },
+        { code: ".indicator", description: "Animated underline element", indent: 1 },
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Data Attributes</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Attribute</th>
-          <th>Element</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>data-color</code></td>
-          <td>a.nav</td>
-          <td>Hex color for indicator when active/hovered</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Data Attributes">
+    <DSPropsTable
+      headers={["Attribute", "Element", "Description"]}
+      rows={[
+        [{ code: "data-color" }, "a.nav", "Hex color for indicator when active/hovered"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>CSS Classes</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>.navbar</code></td>
-          <td>Main container</td>
-        </tr>
-        <tr>
-          <td><code>.nav</code></td>
-          <td>Navigation link</td>
-        </tr>
-        <tr>
-          <td><code>.active</code></td>
-          <td>Current section (set by scroll detection)</td>
-        </tr>
-        <tr>
-          <td><code>.enabled</code></td>
-          <td>Added after hero animation completes</td>
-        </tr>
-        <tr>
-          <td><code>.indicator</code></td>
-          <td>Moving underline element</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="CSS Classes">
+    <DSPropsTable
+      headers={["Class", "Description"]}
+      rows={[
+        [{ code: ".navbar" }, "Main container"],
+        [{ code: ".nav" }, "Navigation link"],
+        [{ code: ".active" }, "Current section (set by scroll detection)"],
+        [{ code: ".enabled" }, "Added after hero animation completes"],
+        [{ code: ".indicator" }, "Moving underline element"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>JavaScript Integration</h3>
-    <p class="note">
+  <DSBlock title="JavaScript Integration">
+    <DSNote>
       Uses <code>viewDetection</code> for scroll tracking. Waits for <code>onHeroAnimationComplete</code> before enabling interactions on pages with hero.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 </section>
 
 <script>
@@ -219,7 +177,7 @@
     transition: all 0.3s ease;
     background-color: var(--accent-color);
   }
-  .color-demo {
+  .color-demo :global(.ds-preview) {
     flex-direction: column;
     gap: 16px;
   }
@@ -264,32 +222,4 @@
     border-radius: 4px;
     font-size: 13px;
   }
-  .structure-diagram {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 16px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-  }
-  .structure-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .structure-row code {
-    background-color: #1c2638;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 13px;
-    color: var(--accent-bright);
-    min-width: 120px;
-  }
-  .structure-desc {
-    font-size: 14px;
-    color: var(--color);
-    opacity: 0.7;
-  }
-  .indent { padding-left: 20px; }
-  .indent-2 { padding-left: 40px; }
 </style>

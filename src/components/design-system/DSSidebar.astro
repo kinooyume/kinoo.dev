@@ -1,0 +1,325 @@
+---
+/**
+ * DSSidebar - Design System Navigation Sidebar
+ * Renders the nested sidebar from section configuration
+ */
+import {
+  sidebarSections,
+  isGroup,
+  type SidebarLeaf,
+} from "./sections/index";
+---
+
+<div class="sidebar-wrapper">
+  {
+    sidebarSections.map((section) => (
+      <details class="sidebar-section" data-section={section.title.toLowerCase()}>
+        <summary>{section.title}</summary>
+        <ul>
+          {section.items.map((item) =>
+            isGroup(item) ? (
+              <li class="nested-group">
+                <details class="sidebar-nested">
+                  <summary>{item.label}</summary>
+                  <ul>
+                    {item.children.map((child) =>
+                      isGroup(child) ? (
+                        <li class="nested-group">
+                          <details class="sidebar-nested depth-2">
+                            <summary>{child.label}</summary>
+                            <ul>
+                              {child.children.map((leaf) => (
+                                <li>
+                                  <a href={(leaf as SidebarLeaf).href}>
+                                    {leaf.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </details>
+                        </li>
+                      ) : (
+                        <li>
+                          <a href={child.href}>{child.label}</a>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </details>
+              </li>
+            ) : (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            )
+          )}
+        </ul>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .sidebar-wrapper {
+    position: sticky;
+    top: 126px;
+    max-height: calc(100vh - 126px - 24px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 16px 24px 0;
+    flex-shrink: 0;
+    width: 220px;
+  }
+
+  .sidebar-section {
+    border-radius: 8px;
+  }
+
+  .sidebar-section summary {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    cursor: pointer;
+    padding: 12px 16px;
+    user-select: none;
+    list-style: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .sidebar-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sidebar-section summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 10px;
+    transition: transform 0.2s ease;
+  }
+
+  .sidebar-section[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-section summary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .sidebar-section ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0 8px 16px;
+    margin: 0;
+    list-style: none;
+  }
+
+  .sidebar-section a {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--light-color);
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .sidebar-section a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color);
+  }
+
+  .sidebar-section a:global(.active) {
+    background-color: rgba(248, 186, 136, 0.12);
+    color: var(--accent-color);
+  }
+
+  /* Nested groups */
+  .sidebar-nested {
+    margin: 0;
+  }
+
+  .sidebar-nested summary {
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--light-color);
+    cursor: pointer;
+    padding: 8px 12px;
+    user-select: none;
+    list-style: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .sidebar-nested summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sidebar-nested summary::before {
+    content: "›";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 14px;
+    transition: transform 0.2s ease;
+    opacity: 0.5;
+  }
+
+  .sidebar-nested[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-nested summary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color);
+  }
+
+  .sidebar-nested ul {
+    padding: 4px 0 4px 12px;
+    gap: 2px;
+  }
+
+  .sidebar-nested.depth-2 summary {
+    font-size: 12px;
+    padding: 6px 10px;
+    color: var(--color);
+    opacity: 0.8;
+  }
+
+  .sidebar-nested.depth-2 ul {
+    padding-left: 10px;
+  }
+
+  .sidebar-nested.depth-2 a {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .nested-group {
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 900px) {
+    .sidebar-wrapper {
+      position: static;
+      width: 100%;
+      max-height: none;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      order: -1;
+    }
+
+    .sidebar-section ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-left: 16px;
+    }
+  }
+</style>
+
+<script>
+  import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
+  import {
+    createViewDetection,
+    anchorsQueryToViewDetectionElement,
+  } from "@/lib/dom/viewDetection";
+
+  let currentSection: string | null = null;
+  let initialLoad = true;
+  const manuallyOpened = new Set<string>();
+
+  // Handle manual toggle
+  document
+    .querySelectorAll<HTMLDetailsElement>(".sidebar-section")
+    .forEach((details) => {
+      details.addEventListener("toggle", () => {
+        const section = details.getAttribute("data-section");
+        if (section) {
+          if (details.open) {
+            manuallyOpened.add(section);
+          } else {
+            manuallyOpened.delete(section);
+          }
+        }
+      });
+    });
+
+  // Click: smooth scroll + replaceState
+  document
+    .querySelectorAll<HTMLAnchorElement>(".sidebar-wrapper a")
+    .forEach((anchor) => {
+      anchor.addEventListener("click", (e) => {
+        const href = anchor.getAttribute("href");
+        if (href?.startsWith("#")) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+            history.replaceState(null, "", href);
+          }
+        }
+      });
+    });
+
+  // View detection for sidebar
+  const targets = anchorsQueryToViewDetectionElement(".sidebar-wrapper a", {
+    onInside: (anchor) => {
+      anchor.classList.add("active");
+      const href = anchor.getAttribute("href");
+      if (href && currentSection !== href) {
+        currentSection = href;
+        if (!initialLoad) {
+          history.replaceState(null, "", href);
+        }
+
+        const listItem = anchor.closest("li");
+        const details =
+          listItem?.closest<HTMLDetailsElement>(".sidebar-section");
+        const section = details?.getAttribute("data-section");
+
+        if (details && section && !manuallyOpened.has(section)) {
+          details.open = true;
+        }
+      }
+    },
+    onOutside: (anchor) => {
+      anchor.classList.remove("active");
+
+      const listItem = anchor.closest("li");
+      const details =
+        listItem?.closest<HTMLDetailsElement>(".sidebar-section");
+      const section = details?.getAttribute("data-section");
+
+      if (details && section && !manuallyOpened.has(section)) {
+        const hasActiveLink = details.querySelector("a.active");
+        if (!hasActiveLink) {
+          details.open = false;
+        }
+      }
+    },
+  });
+
+  const detect = createViewDetection(targets, {
+    setBounds: (offset) => [offset + 100, offset - 100],
+  });
+
+  onScrollAndResize(detect, "designSystemDetection");
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      initialLoad = false;
+    },
+    { once: true }
+  );
+</script>

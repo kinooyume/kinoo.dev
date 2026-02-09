@@ -3,14 +3,15 @@
  * Spacing Documentation
  * Design System - Foundations
  */
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 ---
 
 <section id="spacing">
   <h2>Spacing</h2>
   <p>Consistent spacing scale used throughout the application.</p>
 
-  <div class="component-block">
-    <h3>Scale</h3>
+  <DSBlock title="Scale">
     <div class="spacing-grid">
       <div class="spacing-item">
         <div class="spacing-box" style="width: 4px; height: 4px;"></div>
@@ -45,29 +46,45 @@
         <code>64px</code>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Section Margin</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Variable</th>
-          <th>Default</th>
-          <th>1368px</th>
-          <th>900px</th>
-          <th>600px</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>--section-margin</code></td>
-          <td>142px</td>
-          <td>192px</td>
-          <td>148px</td>
-          <td>94px</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Section Margin">
+    <DSPropsTable
+      headers={["Variable", "Default", "1368px", "900px", "600px"]}
+      rows={[
+        [{ code: "--section-margin" }, "142px", "192px", "148px", "94px"],
+      ]}
+    />
+  </DSBlock>
 </section>
+
+<style>
+  .spacing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-end;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .spacing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .spacing-box {
+    background-color: var(--accent-bright);
+    border-radius: 4px;
+  }
+
+  .spacing-item code {
+    font-size: 12px;
+    color: var(--color);
+    opacity: 0.7;
+  }
+</style>

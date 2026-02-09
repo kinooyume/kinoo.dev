@@ -3,14 +3,15 @@
  * Colors Documentation
  * Design System - Foundations
  */
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
 ---
 
 <section id="colors">
   <h2>Colors</h2>
   <p>Color palette and CSS variables used throughout the website.</p>
 
-  <div class="component-block">
-    <h3>Background Colors</h3>
+  <DSBlock title="Background Colors">
     <div class="color-grid">
       <div class="color-swatch">
         <div class="swatch" style="background-color: var(--background-color);"></div>
@@ -27,10 +28,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Text Colors</h3>
+  <DSBlock title="Text Colors">
     <div class="color-grid">
       <div class="color-swatch">
         <div class="swatch" style="background-color: var(--color);"></div>
@@ -47,10 +47,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Accent Colors</h3>
+  <DSBlock title="Accent Colors">
     <div class="color-grid">
       <div class="color-swatch">
         <div class="swatch" style="background-color: var(--accent-color);"></div>
@@ -74,13 +73,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Section Theme Colors</h3>
-    <p class="note">
+  <DSBlock title="Section Theme Colors">
+    <DSNote>
       Each section uses a themed color palette. These override <code>--accent-color</code> and <code>--secondary-accent-color</code> at the section level.
-    </p>
+    </DSNote>
 
     <h4>Green (Realisations)</h4>
     <div class="color-grid">
@@ -165,10 +163,9 @@
         <div class="color-info"><code>--purple-darkest</code><span>#6048a0</span></div>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Card Colors</h3>
+  <DSBlock title="Card Colors">
     <div class="color-grid">
       <div class="color-swatch">
         <div class="swatch" style="background-color: var(--card-first-background-color);"></div>
@@ -183,10 +180,9 @@
         <div class="color-info"><code>--card-hover-background</code><span>#313d50</span></div>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Border Colors</h3>
+  <DSBlock title="Border Colors">
     <div class="color-grid">
       <div class="color-swatch">
         <div class="swatch swatch-border" style="background-color: rgba(255, 255, 255, 0.1);"></div>
@@ -197,12 +193,11 @@
         <div class="color-info"><code>--border-hover-color</code><span>rgba(255, 255, 255, 0.2)</span></div>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Usage</h3>
-    <p class="note">
+  <DSBlock title="Usage">
+    <DSNote>
       Import variables from <code>@/styles/variables.css</code> or use CSS custom properties directly in your styles.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 </section>

@@ -1,0 +1,263 @@
+---
+/**
+ * DS Components Documentation
+ * Design System - Documentation Components
+ * Components used to build the design system documentation itself
+ */
+import DSBlock from "./DSBlock.astro";
+import DSPreview from "./DSPreview.astro";
+import DSCode from "./DSCode.astro";
+import DSPropsTable from "./DSPropsTable.astro";
+import DSNote from "./DSNote.astro";
+import DSStructure from "./DSStructure.astro";
+
+const blockExample = `<DSBlock title="Section Title">
+  <DSPreview>
+    <!-- Component preview -->
+  </DSPreview>
+  <DSCode>code example</DSCode>
+</DSBlock>`;
+
+const previewExample = `<DSPreview>
+  <Button>Click me</Button>
+</DSPreview>
+
+<DSPreview class="custom-class">
+  <!-- Custom styling via class -->
+</DSPreview>`;
+
+const codeExample = `<!-- Inline code -->
+<DSCode inline>&lt;Button /&gt;</DSCode>
+
+<!-- Block code -->
+<DSCode>
+const foo = "bar";
+console.log(foo);
+</DSCode>`;
+
+const propsTableExample = `<DSPropsTable
+  headers={["Prop", "Type", "Default", "Description"]}
+  rows={[
+    [{ code: "title" }, "string", "required", "The title text"],
+    [{ code: "disabled" }, "boolean", "false", "Disables the component"],
+  ]}
+/>`;
+
+const structureExampleCode = `<DSStructure
+  rows={[
+    { code: "<section>", description: "Container" },
+    { code: "<header>", description: "Header area", indent: 1 },
+    { code: "<main>", description: "Main content", indent: 1 },
+  ]}
+/>`;
+---
+
+<!-- DS BLOCK -->
+<section id="ds-block">
+  <h2>DSBlock</h2>
+  <p class="atomic-label">DS Component</p>
+  <p>Section wrapper with title, used to group related content within a component documentation.</p>
+
+  <DSBlock title="Example">
+    <DSPreview>
+      <div class="ds-block-demo">
+        <DSBlock title="Demo Title">
+          <p>Content inside DSBlock</p>
+        </DSBlock>
+      </div>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "title" }, "string", "required", "Section heading (h3)"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{blockExample}</DSCode>
+    <DSNote>
+      DSBlock provides consistent 32px margin-top spacing between sections. Use it to wrap each documentation section.
+    </DSNote>
+  </DSBlock>
+</section>
+
+<!-- DS PREVIEW -->
+<section id="ds-preview">
+  <h2>DSPreview</h2>
+  <p class="atomic-label">DS Component</p>
+  <p>Preview container for component demonstrations with consistent styling.</p>
+
+  <DSBlock title="Example">
+    <DSPreview>
+      <button class="primary">Preview Content</button>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "class" }, "string", "-", "Additional CSS classes"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{previewExample}</DSCode>
+    <DSNote>
+      DSPreview uses 32px padding and 16px gap. Pass custom classes to override flex direction or alignment.
+    </DSNote>
+  </DSBlock>
+</section>
+
+<!-- DS CODE -->
+<section id="ds-code">
+  <h2>DSCode</h2>
+  <p class="atomic-label">DS Component</p>
+  <p>Code display component supporting inline and block formats.</p>
+
+  <DSBlock title="Inline Example">
+    <DSCode inline>&lt;Button variant="primary" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Block Example">
+    <DSCode>{`const greeting = "Hello";
+console.log(greeting);`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "inline" }, "boolean", "false", "Renders as inline code snippet"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{codeExample}</DSCode>
+  </DSBlock>
+</section>
+
+<!-- DS PROPS TABLE -->
+<section id="ds-propstable">
+  <h2>DSPropsTable</h2>
+  <p class="atomic-label">DS Component</p>
+  <p>Table for displaying component props, CSS classes, or any structured data.</p>
+
+  <DSBlock title="Example">
+    <DSPropsTable
+      headers={["Name", "Value"]}
+      rows={[
+        ["Primary", "Orange button"],
+        ["Secondary", "Outline style"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="With Code Cells">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        [{ code: "title" }, "string", "Main heading"],
+        [{ code: "items" }, "array", "List of items"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "headers" }, "string[]", "required", "Table header labels"],
+        [{ code: "rows" }, "Cell[][]", "required", "Array of rows, each row is array of cells"],
+      ]}
+    />
+    <DSNote>
+      Cell can be a string or <code>&#123; code: string &#125;</code> for code formatting.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{propsTableExample}</DSCode>
+  </DSBlock>
+</section>
+
+<!-- DS STRUCTURE -->
+<section id="ds-structure">
+  <h2>DSStructure</h2>
+  <p class="atomic-label">DS Component</p>
+  <p>Hierarchy diagram for displaying component structure or DOM tree.</p>
+
+  <DSBlock title="Example">
+    <DSStructure
+      rows={[
+        { code: "<Card>", description: "Container component" },
+        { code: "<CardTitle>", description: "Title section", indent: 1 },
+        { code: "<CardContent>", description: "Main content", indent: 1 },
+        { code: "<p>", description: "Text paragraph", indent: 2 },
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "rows" }, "StructureRow[]", "required", "Array of structure rows"],
+      ]}
+    />
+    <DSNote>
+      StructureRow: <code>&#123; code: string, description: string, indent?: number &#125;</code>
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{structureExampleCode}</DSCode>
+  </DSBlock>
+</section>
+
+<!-- DS NOTE -->
+<section id="ds-note">
+  <h2>DSNote</h2>
+  <p class="atomic-label">DS Component</p>
+  <p>Annotation text for additional context, tips, or explanations.</p>
+
+  <DSBlock title="Example">
+    <DSNote>
+      This is a note with <code>inline code</code> support. Use it for tips and additional context.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["(slot)", "any", "Content to display as note"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;DSNote&gt;Note text with &lt;code&gt;code&lt;/code&gt;&lt;/DSNote&gt;</DSCode>
+    <DSNote>
+      DSNote has 12px margin-top and 70% opacity. Supports inline <code>&lt;code&gt;</code> tags.
+    </DSNote>
+  </DSBlock>
+</section>
+
+<style>
+  .ds-block-demo {
+    background-color: var(--background-color);
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .ds-block-demo :global(.ds-block) {
+    margin-top: 0;
+  }
+</style>
