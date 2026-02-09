@@ -4,7 +4,8 @@
  */
 
 // Types for sidebar navigation
-export type SidebarLeaf = { label: string; href: string };
+export type Framework = "astro" | "solid";
+export type SidebarLeaf = { label: string; href: string; framework?: Framework };
 export type SidebarGroup = { label: string; children: SidebarNode[] };
 export type SidebarNode = SidebarLeaf | SidebarGroup;
 export type SidebarSection = { title: string; items: SidebarNode[] };
@@ -28,12 +29,12 @@ export const sidebarSections: SidebarSection[] = [
       {
         label: "Atoms",
         children: [
-          { label: "Tag", href: "#tag" },
-          { label: "TagLink", href: "#taglink" },
-          { label: "Button", href: "#button" },
-          { label: "IconButton", href: "#iconbutton" },
-          { label: "BurgerIcon", href: "#burgericon" },
-          { label: "H3Tagged", href: "#h3tagged" },
+          { label: "Tag", href: "#tag", framework: "astro" },
+          { label: "TagLink", href: "#taglink", framework: "astro" },
+          { label: "Button", href: "#button", framework: "astro" },
+          { label: "IconButton", href: "#iconbutton", framework: "astro" },
+          { label: "BurgerIcon", href: "#burgericon", framework: "astro" },
+          { label: "H3Tagged", href: "#h3tagged", framework: "astro" },
         ],
       },
       {
@@ -42,44 +43,45 @@ export const sidebarSections: SidebarSection[] = [
           {
             label: "Card",
             children: [
-              { label: "Card", href: "#card" },
-              { label: "CardContent", href: "#card-content" },
-              { label: "CardTitle", href: "#card-title" },
-              { label: "CardSplit", href: "#card-split" },
+              { label: "Card", href: "#card", framework: "astro" },
+              { label: "CardContent", href: "#card-content", framework: "astro" },
+              { label: "CardTitle", href: "#card-title", framework: "astro" },
+              { label: "CardSplit", href: "#card-split", framework: "astro" },
             ],
           },
-          { label: "Spotlight", href: "#spotlight" },
+          { label: "Spotlight", href: "#spotlight", framework: "astro" },
         ],
       },
       {
         label: "Organisms",
-        children: [{ label: "Section Pattern", href: "#section-pattern" }],
+        children: [{ label: "Section Pattern", href: "#section-pattern", framework: "astro" }],
       },
     ],
   },
   {
     title: "Hero",
-    items: [{ label: "HeroSubtitle", href: "#herosubtitle" }],
+    items: [{ label: "HeroSubtitle", href: "#herosubtitle", framework: "astro" }],
   },
   {
     title: "Header",
     items: [
-      { label: "Header", href: "#header" },
-      { label: "HeaderMenu", href: "#headermenu" },
-      { label: "HeaderLink", href: "#headerlink" },
-      { label: "NavBar", href: "#navbar" },
+      { label: "Header", href: "#header", framework: "astro" },
+      { label: "HeaderMenu", href: "#headermenu", framework: "astro" },
+      { label: "HeaderLink", href: "#headerlink", framework: "astro" },
+      { label: "NavBar", href: "#navbar", framework: "astro" },
     ],
   },
   {
     title: "Contact",
     items: [
-      { label: "Contact", href: "#contact-doc" },
-      { label: "FloatingContact", href: "#floatingcontact" },
+      { label: "Contact", href: "#contact-doc", framework: "astro" },
+      { label: "ContactForm", href: "#contactform", framework: "solid" },
+      { label: "FloatingContact", href: "#floatingcontact", framework: "astro" },
     ],
   },
   {
     title: "Sidebar",
-    items: [{ label: "Sidebar", href: "#sidebar" }],
+    items: [{ label: "Sidebar", href: "#sidebar", framework: "astro" }],
   },
   {
     title: "Templates",
@@ -88,12 +90,12 @@ export const sidebarSections: SidebarSection[] = [
   {
     title: "DS Components",
     items: [
-      { label: "DSBlock", href: "#ds-block" },
-      { label: "DSPreview", href: "#ds-preview" },
-      { label: "DSCode", href: "#ds-code" },
-      { label: "DSPropsTable", href: "#ds-propstable" },
-      { label: "DSStructure", href: "#ds-structure" },
-      { label: "DSNote", href: "#ds-note" },
+      { label: "DSBlock", href: "#ds-block", framework: "astro" },
+      { label: "DSPreview", href: "#ds-preview", framework: "astro" },
+      { label: "DSCode", href: "#ds-code", framework: "astro" },
+      { label: "DSPropsTable", href: "#ds-propstable", framework: "astro" },
+      { label: "DSStructure", href: "#ds-structure", framework: "astro" },
+      { label: "DSNote", href: "#ds-note", framework: "astro" },
     ],
   },
 ];
