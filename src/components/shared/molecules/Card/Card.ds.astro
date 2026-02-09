@@ -12,12 +12,12 @@ import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
 import DSStructure from "@/components/design-system/DSStructure.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <!-- CARD -->
 <section id="card">
-  <h2>Card</h2>
-  <p class="atomic-label">Molecule</p>
+  <DSSectionHeader title="Card" atomic="Molecule" framework="astro" />
   <p>Base container component with gradient border effect. Parent of the Card compound system.</p>
 
   <DSBlock title="Basic Card">
@@ -68,8 +68,7 @@ import DSStructure from "@/components/design-system/DSStructure.astro";
 
 <!-- CARD CONTENT -->
 <section id="card-content">
-  <h2>CardContent</h2>
-  <p class="atomic-label">Molecule</p>
+  <DSSectionHeader title="CardContent" atomic="Molecule" framework="astro" />
   <p>Layout wrapper with named slots for structured card content. Used inside Card.</p>
 
   <DSBlock title="Slots">
@@ -90,8 +89,7 @@ import DSStructure from "@/components/design-system/DSStructure.astro";
 
 <!-- CARD TITLE -->
 <section id="card-title">
-  <h2>CardTitle</h2>
-  <p class="atomic-label">Molecule</p>
+  <DSSectionHeader title="CardTitle" atomic="Molecule" framework="astro" />
   <p>Title block for cards with company/project metadata. Uses H3Tagged internally.</p>
 
   <DSBlock title="Props">
@@ -115,8 +113,7 @@ import DSStructure from "@/components/design-system/DSStructure.astro";
 
 <!-- CARD SPLIT -->
 <section id="card-split">
-  <h2>CardSplit</h2>
-  <p class="atomic-label">Molecule</p>
+  <DSSectionHeader title="CardSplit" atomic="Molecule" framework="astro" />
   <p>Two-column grid layout for cards with title, description, and aside areas.</p>
 
   <DSBlock title="Layout Preview">

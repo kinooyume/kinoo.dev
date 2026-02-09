@@ -10,6 +10,7 @@ import DSCode from "./DSCode.astro";
 import DSPropsTable from "./DSPropsTable.astro";
 import DSNote from "./DSNote.astro";
 import DSStructure from "./DSStructure.astro";
+import DSSectionHeader from "./DSSectionHeader.astro";
 
 const blockExample = `<DSBlock title="Section Title">
   <DSPreview>
@@ -54,8 +55,7 @@ const structureExampleCode = `<DSStructure
 
 <!-- DS BLOCK -->
 <section id="ds-block">
-  <h2>DSBlock</h2>
-  <p class="atomic-label">DS Component</p>
+  <DSSectionHeader title="DSBlock" atomic="Atom" framework="astro" />
   <p>Section wrapper with title, used to group related content within a component documentation.</p>
 
   <DSBlock title="Example">
@@ -87,8 +87,7 @@ const structureExampleCode = `<DSStructure
 
 <!-- DS PREVIEW -->
 <section id="ds-preview">
-  <h2>DSPreview</h2>
-  <p class="atomic-label">DS Component</p>
+  <DSSectionHeader title="DSPreview" atomic="Atom" framework="astro" />
   <p>Preview container for component demonstrations with consistent styling.</p>
 
   <DSBlock title="Example">
@@ -116,8 +115,7 @@ const structureExampleCode = `<DSStructure
 
 <!-- DS CODE -->
 <section id="ds-code">
-  <h2>DSCode</h2>
-  <p class="atomic-label">DS Component</p>
+  <DSSectionHeader title="DSCode" atomic="Atom" framework="astro" />
   <p>Code display component supporting inline and block formats.</p>
 
   <DSBlock title="Inline Example">
@@ -145,8 +143,7 @@ console.log(greeting);`}</DSCode>
 
 <!-- DS PROPS TABLE -->
 <section id="ds-propstable">
-  <h2>DSPropsTable</h2>
-  <p class="atomic-label">DS Component</p>
+  <DSSectionHeader title="DSPropsTable" atomic="Atom" framework="astro" />
   <p>Table for displaying component props, CSS classes, or any structured data.</p>
 
   <DSBlock title="Example">
@@ -189,8 +186,7 @@ console.log(greeting);`}</DSCode>
 
 <!-- DS STRUCTURE -->
 <section id="ds-structure">
-  <h2>DSStructure</h2>
-  <p class="atomic-label">DS Component</p>
+  <DSSectionHeader title="DSStructure" atomic="Atom" framework="astro" />
   <p>Hierarchy diagram for displaying component structure or DOM tree.</p>
 
   <DSBlock title="Example">
@@ -223,8 +219,7 @@ console.log(greeting);`}</DSCode>
 
 <!-- DS NOTE -->
 <section id="ds-note">
-  <h2>DSNote</h2>
-  <p class="atomic-label">DS Component</p>
+  <DSSectionHeader title="DSNote" atomic="Atom" framework="astro" />
   <p>Annotation text for additional context, tips, or explanations.</p>
 
   <DSBlock title="Example">

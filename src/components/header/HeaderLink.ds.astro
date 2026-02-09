@@ -9,14 +9,14 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 import github from "@/svgs/github.svg?raw";
 import linkedin from "@/svgs/linkedin.svg?raw";
 ---
 
 <section id="headerlink">
-  <h2>HeaderLink</h2>
-  <p class="atomic-label">Atom</p>
+  <DSSectionHeader title="HeaderLink" atomic="Atom" framework="astro" />
   <p>Individual header navigation link with icon and badge variants.</p>
 
   <DSBlock title="Icon Variant">
