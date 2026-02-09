@@ -9,13 +9,23 @@ import CardContent from "@/components/shared/molecules/Card/CardContent.astro";
 import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
-
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSStructure from "@/components/design-system/DSStructure.astro";
 
 const themingCode = `#experiences {
   --accent-color: #f68dab;
   --secondary-accent-color: #f8c8d9;
   --card-title-font-size: 16px;
 }`;
+
+const spotlightCode = `import { spotlight } from "@/lib/dom/spotlight";
+
+const container = document.getElementById("experiences-grid");
+if (container) spotlight(container);`;
 ---
 
 <!-- SECTION PATTERN -->
@@ -24,151 +34,70 @@ const themingCode = `#experiences {
   <p class="atomic-label">Organism</p>
   <p>Shared layout pattern used by Experiences, Realisations, and Formations sections. Combines section header, themed grid, and card-based content.</p>
 
-  <div class="component-block">
-    <h3>Pattern Overview</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Section</th>
-          <th>Color Theme</th>
-          <th>Card Type</th>
-          <th>Grid Layout</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>Experiences</code></td>
-          <td><span class="color-dot" style="background: #f68dab;"></span> Pink (#f68dab)</td>
-          <td>CardContent</td>
-          <td>2-column masonry</td>
-        </tr>
-        <tr>
-          <td><code>Realisations</code></td>
-          <td><span class="color-dot" style="background: #66c384;"></span> Green (#66c384)</td>
-          <td>CardSplit</td>
-          <td>3-column</td>
-        </tr>
-        <tr>
-          <td><code>Formations</code></td>
-          <td><span class="color-dot" style="background: #9c85d3;"></span> Purple (#9c85d3)</td>
-          <td>CardContent</td>
-          <td>3-column</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Pattern Overview">
+    <DSPropsTable
+      headers={["Section", "Color Theme", "Card Type", "Grid Layout"]}
+      rows={[
+        [{ code: "Experiences" }, "Pink (#f68dab)", "CardContent", "2-column masonry"],
+        [{ code: "Realisations" }, "Green (#66c384)", "CardSplit", "3-column"],
+        [{ code: "Formations" }, "Purple (#9c85d3)", "CardContent", "3-column"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Section Header</h3>
-    <div class="preview section-header-preview">
+  <DSBlock title="Section Header">
+    <DSPreview class="section-header-preview">
       <div class="section-header-demo">
         <span class="section-subtitle">Mes</span>
         <h2 class="section-h2">Expériences</h2>
       </div>
-    </div>
-    <p class="note" style="margin-top: 12px;">
+    </DSPreview>
+    <DSNote>
       All sections use <code>&lt;span class="subtitle"&gt;</code> + <code>&lt;h2&gt;</code> pattern with section-specific accent colors.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Structure</h3>
-    <div class="structure-diagram">
-      <div class="structure-row">
-        <code>&lt;section&gt;</code>
-        <span class="structure-desc">Container with <code>data-animate-section</code></span>
-      </div>
-      <div class="structure-row indent">
-        <code>&lt;span.subtitle&gt;</code>
-        <span class="structure-desc">Section label (e.g., "Mes")</span>
-      </div>
-      <div class="structure-row indent">
-        <code>&lt;h2&gt;</code>
-        <span class="structure-desc">Section title</span>
-      </div>
-      <div class="structure-row indent">
-        <code>&lt;div.grid&gt;</code>
-        <span class="structure-desc">Grid with <code>data-spotlight</code></span>
-      </div>
-      <div class="structure-row indent-2">
-        <code>&lt;Spotlight&gt;</code>
-        <span class="structure-desc">Hover effect wrapper</span>
-      </div>
-      <div class="structure-row indent-3">
-        <code>&lt;Card&gt;</code>
-        <span class="structure-desc">Card container</span>
-      </div>
-      <div class="structure-row indent-4">
-        <code>&lt;CardContent&gt;</code>
-        <span class="structure-desc">or CardSplit for realisations</span>
-      </div>
-    </div>
-  </div>
+  <DSBlock title="Structure">
+    <DSStructure
+      rows={[
+        { code: "<section>", description: "Container with data-animate-section" },
+        { code: "<span.subtitle>", description: "Section label (e.g., \"Mes\")", indent: 1 },
+        { code: "<h2>", description: "Section title", indent: 1 },
+        { code: "<div.grid>", description: "Grid with data-spotlight", indent: 1 },
+        { code: "<Spotlight>", description: "Hover effect wrapper", indent: 2 },
+        { code: "<Card>", description: "Card container", indent: 3 },
+        { code: "<CardContent>", description: "or CardSplit for realisations", indent: 4 },
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Section Theming</h3>
-    <p class="note" style="margin-bottom: 12px;">
+  <DSBlock title="Section Theming">
+    <DSNote>
       Each section overrides CSS custom properties for its color theme:
-    </p>
-    <div class="code-block">
-      <pre><code>{themingCode}</code></pre>
-    </div>
-    <table class="props-table" style="margin-top: 16px;">
-      <thead>
-        <tr>
-          <th>Variable</th>
-          <th>Purpose</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>--accent-color</code></td>
-          <td>Primary section color (subtitle, links, tags)</td>
-        </tr>
-        <tr>
-          <td><code>--secondary-accent-color</code></td>
-          <td>Lighter variant for hover states</td>
-        </tr>
-        <tr>
-          <td><code>--card-title-font-size</code></td>
-          <td>Title size override</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    </DSNote>
+    <DSCode>{themingCode}</DSCode>
+    <DSPropsTable
+      headers={["Variable", "Purpose"]}
+      rows={[
+        [{ code: "--accent-color" }, "Primary section color (subtitle, links, tags)"],
+        [{ code: "--secondary-accent-color" }, "Lighter variant for hover states"],
+        [{ code: "--card-title-font-size" }, "Title size override"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Data Attributes</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Attribute</th>
-          <th>Element</th>
-          <th>Purpose</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>data-animate-section</code></td>
-          <td>section</td>
-          <td>Triggers section reveal animation</td>
-        </tr>
-        <tr>
-          <td><code>data-spotlight</code></td>
-          <td>.grid</td>
-          <td>Enables spotlight mouse tracking</td>
-        </tr>
-        <tr>
-          <td><code>data-animate-elem</code></td>
-          <td>cards</td>
-          <td>Staggered card reveal</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Data Attributes">
+    <DSPropsTable
+      headers={["Attribute", "Element", "Purpose"]}
+      rows={[
+        [{ code: "data-animate-section" }, "section", "Triggers section reveal animation"],
+        [{ code: "data-spotlight" }, ".grid", "Enables spotlight mouse tracking"],
+        [{ code: "data-animate-elem" }, "cards", "Staggered card reveal"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Grid Layouts</h3>
+  <DSBlock title="Grid Layouts">
     <div class="grid-demos">
       <div class="grid-demo">
         <span class="grid-label">Experiences (2-col masonry)</span>
@@ -197,24 +126,17 @@ const themingCode = `#experiences {
         </div>
       </div>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Spotlight Integration</h3>
-    <p class="note">
+  <DSBlock title="Spotlight Integration">
+    <DSNote>
       Each section initializes the spotlight effect via script:
-    </p>
-    <div class="code-block" style="margin-top: 12px;">
-      <pre><code>{`import { spotlight } from "@/lib/dom/spotlight";
+    </DSNote>
+    <DSCode>{spotlightCode}</DSCode>
+  </DSBlock>
 
-const container = document.getElementById("experiences-grid");
-if (container) spotlight(container);`}</code></pre>
-    </div>
-  </div>
-
-  <div class="component-block">
-    <h3>Demo</h3>
-    <div class="preview preview-card section-demo" id="section-demo" data-spotlight>
+  <DSBlock title="Demo">
+    <DSPreview class="preview-card section-demo" id="section-demo" data-spotlight>
       <Spotlight color="var(--pink)">
         <Card>
           <CardContent>
@@ -242,8 +164,8 @@ if (container) spotlight(container);`}</code></pre>
           </CardContent>
         </Card>
       </Spotlight>
-    </div>
-  </div>
+    </DSPreview>
+  </DSBlock>
 </section>
 
 <script>
@@ -256,16 +178,7 @@ if (container) spotlight(container);`}</code></pre>
 </script>
 
 <style>
-  .color-dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-
-  .section-header-preview {
+  .section-header-preview :global(.ds-preview) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -287,63 +200,6 @@ if (container) spotlight(container);`}</code></pre>
     font-weight: 300;
     color: var(--color);
     margin: 0;
-  }
-
-  .structure-diagram {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 16px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-  }
-
-  .structure-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .structure-row code {
-    background-color: #1c2638;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 13px;
-    color: var(--accent-bright);
-    min-width: 140px;
-  }
-
-  .structure-desc {
-    font-size: 14px;
-    color: var(--color);
-    opacity: 0.7;
-  }
-
-  .structure-desc code {
-    min-width: auto;
-    padding: 2px 6px;
-  }
-
-  .indent { padding-left: 20px; }
-  .indent-2 { padding-left: 40px; }
-  .indent-3 { padding-left: 60px; }
-  .indent-4 { padding-left: 80px; }
-
-  .code-block {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 16px;
-    overflow-x: auto;
-  }
-
-  .code-block pre {
-    margin: 0;
-  }
-
-  .code-block code {
-    font-size: 13px;
-    color: var(--light-color);
-    line-height: 1.5;
   }
 
   .grid-demos {

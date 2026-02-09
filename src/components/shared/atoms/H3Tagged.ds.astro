@@ -4,6 +4,11 @@
  * Design System - Atom
  */
 import H3Tagged from "./H3Tagged.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
 ---
 
 <section id="h3tagged">
@@ -11,48 +16,26 @@ import H3Tagged from "./H3Tagged.astro";
   <p class="atomic-label">Atom</p>
   <p>Heading with an inline tag badge, used for card titles with categorization.</p>
 
-  <div class="component-block">
-    <h3>Default</h3>
-    <div class="preview">
+  <DSBlock title="Default">
+    <DSPreview>
       <H3Tagged title="Project Title" tag="React" />
-    </div>
-    <div class="props">
-      <code>title="Project Title" tag="React"</code>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode inline>title="Project Title" tag="React"</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Props</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>title</code></td>
-          <td>string</td>
-          <td>required</td>
-          <td>The heading text</td>
-        </tr>
-        <tr>
-          <td><code>tag</code></td>
-          <td>string</td>
-          <td>required</td>
-          <td>The tag/badge text</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "title" }, "string", "required", "The heading text"],
+        [{ code: "tag" }, "string", "required", "The tag/badge text"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Usage</h3>
-    <p class="note">
+  <DSBlock title="Usage">
+    <DSNote>
       Typically used within <code>CardTitle</code> to display job titles or project names with their category/type.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 </section>

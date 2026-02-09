@@ -1,0 +1,49 @@
+---
+/**
+ * DSCategoryHeader - Section Category Header
+ * Used to introduce each documentation category
+ */
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div class="category-header">
+  <h2 class="category-title">{title}</h2>
+  <p class="category-description">{description}</p>
+</div>
+
+<style>
+  .category-header {
+    margin: 80px 0 48px 0;
+    padding-top: 24px;
+    border-top: 2px solid var(--accent-color);
+  }
+
+  .category-header:first-of-type {
+    margin-top: 64px;
+  }
+
+  .category-title {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--accent-bright);
+  }
+
+  .category-description {
+    color: var(--color);
+    opacity: 0.8;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 900px) {
+    .category-title {
+      font-size: 28px;
+    }
+  }
+</style>

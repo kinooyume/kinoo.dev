@@ -5,15 +5,15 @@
  */
 interface StructureItem {
   code: string;
-  desc: string;
+  description: string;
   indent?: number;
 }
 
 interface Props {
-  items: StructureItem[];
+  rows: StructureItem[];
 }
 
-const { items } = Astro.props;
+const { rows } = Astro.props;
 
 const getIndentClass = (indent: number | undefined) => {
   if (!indent) return "";
@@ -23,10 +23,10 @@ const getIndentClass = (indent: number | undefined) => {
 
 <div class="ds-structure">
   {
-    items.map((item) => (
+    rows.map((item) => (
       <div class:list={["ds-structure-row", getIndentClass(item.indent)]}>
         <code>{item.code}</code>
-        <span class="ds-structure-desc">{item.desc}</span>
+        <span class="ds-structure-desc">{item.description}</span>
       </div>
     ))
   }

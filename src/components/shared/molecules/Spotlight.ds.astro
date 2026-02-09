@@ -4,6 +4,10 @@
  * Design System - Molecule
  */
 import Spotlight from "./Spotlight.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
 ---
 
 <section id="spotlight">
@@ -11,8 +15,7 @@ import Spotlight from "./Spotlight.astro";
   <p class="atomic-label">Molecule</p>
   <p>Interactive spotlight effect that follows mouse movement on desktop. Creates a glowing halo that tracks the cursor.</p>
 
-  <div class="component-block">
-    <h3>Demo</h3>
+  <DSBlock title="Demo">
     <div id="spotlight-demo" data-spotlight>
       <Spotlight color="var(--accent-bright)">
         <div class="demo-card">
@@ -33,52 +36,30 @@ import Spotlight from "./Spotlight.astro";
         </div>
       </Spotlight>
     </div>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Usage</h3>
-    <div class="props">
-      <code>&lt;Spotlight color="var(--accent-bright)"&gt;...&lt;/Spotlight&gt;</code>
-    </div>
-    <p class="note" style="margin-top: 16px;">
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;Spotlight color="var(--accent-bright)"&gt;...&lt;/Spotlight&gt;</DSCode>
+    <DSNote>
       Wrap content with the Spotlight component. Add <code>data-spotlight</code> attribute to the parent container and initialize with <code>spotlight()</code> function.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Props</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>color</code></td>
-          <td>string</td>
-          <td>required</td>
-          <td>CSS color for the spotlight glow effect</td>
-        </tr>
-        <tr>
-          <td><code>class</code></td>
-          <td>string</td>
-          <td>-</td>
-          <td>Additional CSS class for the wrapper</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "color" }, "string", "required", "CSS color for the spotlight glow effect"],
+        [{ code: "class" }, "string", "-", "Additional CSS class for the wrapper"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Implementation</h3>
-    <p class="note">
+  <DSBlock title="Implementation">
+    <DSNote>
       The parent container needs <code>data-spotlight</code> attribute and must be initialized with <code>spotlight(container)</code> from <code>@/lib/dom/spotlight</code>. The function tracks mouse movement and updates <code>--mouse-x</code> and <code>--mouse-y</code> CSS properties.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 </section>
 
 <script>
@@ -95,6 +76,10 @@ import Spotlight from "./Spotlight.astro";
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 32px;
   }
 
   .demo-card {

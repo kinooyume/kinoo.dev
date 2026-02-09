@@ -9,6 +9,11 @@ import CardContent from "@/components/shared/molecules/Card/CardContent.astro";
 import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
 
 const experienceStructure = `<Spotlight color="var(--pink)">
   <Card>
@@ -51,12 +56,11 @@ const sectionStructure = `<section id="experiences">
   <p class="atomic-label">Templates</p>
   <p>Real-world examples showing how atoms, molecules, and organisms combine to create complete UI patterns.</p>
 
-  <div class="component-block">
-    <h3>Experience Card</h3>
-    <p class="note" style="margin-bottom: 16px;">
+  <DSBlock title="Experience Card">
+    <DSNote>
       The primary card pattern used in the Experiences section. Combines Spotlight, Card, CardContent, and CardTitle.
-    </p>
-    <div class="preview preview-card" id="compositions-spotlight" data-spotlight>
+    </DSNote>
+    <DSPreview class="preview-card" id="compositions-spotlight" data-spotlight>
       <Spotlight color="var(--pink)">
         <Card>
           <CardContent>
@@ -80,105 +84,63 @@ const sectionStructure = `<section id="experiences">
           </CardContent>
         </Card>
       </Spotlight>
-    </div>
-    <div class="component-structure">
-      <h4>Structure</h4>
-      <pre><code>{experienceStructure}</code></pre>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode>{experienceStructure}</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Hero Title Block</h3>
-    <p class="note" style="margin-bottom: 16px;">
+  <DSBlock title="Hero Title Block">
+    <DSNote>
       The hero section title pattern combining HeroSubtitle (animated) with the main h1.
-    </p>
-    <div class="preview hero-preview">
+    </DSNote>
+    <DSPreview class="hero-preview">
       <div class="hero-demo">
         <span class="subtitle-demo">
           <span class="text-wrapper">Développeur Frontend Freelance</span>
         </span>
         <h1 class="hero-h1"><span>Martin</span> <span>Kinoo</span></h1>
       </div>
-    </div>
-    <div class="component-structure">
-      <h4>Structure</h4>
-      <pre><code>{heroStructure}</code></pre>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode>{heroStructure}</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Tech Stack Tags</h3>
-    <p class="note" style="margin-bottom: 16px;">
+  <DSBlock title="Tech Stack Tags">
+    <DSNote>
       A collection of Tag components displaying technology stack. Used in Hero section.
-    </p>
-    <div class="preview">
+    </DSNote>
+    <DSPreview>
       <Tag title="TypeScript" hero={true} highlight={true} />
       <Tag title="React" hero={true} highlight={true} />
       <Tag title="Svelte" hero={true} />
       <Tag title="Go" hero={true} />
-    </div>
-    <div class="component-structure">
-      <h4>Structure</h4>
-      <pre><code>{tagsStructure}</code></pre>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode>{tagsStructure}</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Section Header</h3>
-    <p class="note" style="margin-bottom: 16px;">
+  <DSBlock title="Section Header">
+    <DSNote>
       Standard section header pattern with subtitle and main heading. Used across all main sections.
-    </p>
-    <div class="preview section-header-preview">
+    </DSNote>
+    <DSPreview class="section-header-preview">
       <div class="section-header-demo">
         <span class="section-subtitle">Mes</span>
         <h2 class="section-h2">Expériences</h2>
       </div>
-    </div>
-    <div class="component-structure">
-      <h4>Structure</h4>
-      <pre><code>{sectionStructure}</code></pre>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode>{sectionStructure}</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Component Hierarchy</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Pattern</th>
-          <th>Components Used</th>
-          <th>Location</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Experience Card</td>
-          <td>Spotlight / Card / CardContent / CardTitle</td>
-          <td>Experiences section</td>
-        </tr>
-        <tr>
-          <td>Realisation Card</td>
-          <td>Spotlight / Card / CardSplit / H3Tagged + Slider</td>
-          <td>Realisations section</td>
-        </tr>
-        <tr>
-          <td>Formation Card</td>
-          <td>Card / CardContent / CardTitle</td>
-          <td>Formations section</td>
-        </tr>
-        <tr>
-          <td>Hero Block</td>
-          <td>HeroSubtitle + h1 + Tags list</td>
-          <td>Hero section</td>
-        </tr>
-        <tr>
-          <td>Page Layout</td>
-          <td>Header + main content + FloatingContact</td>
-          <td>All pages</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Component Hierarchy">
+    <DSPropsTable
+      headers={["Pattern", "Components Used", "Location"]}
+      rows={[
+        ["Experience Card", "Spotlight / Card / CardContent / CardTitle", "Experiences section"],
+        ["Realisation Card", "Spotlight / Card / CardSplit / H3Tagged + Slider", "Realisations section"],
+        ["Formation Card", "Card / CardContent / CardTitle", "Formations section"],
+        ["Hero Block", "HeroSubtitle + h1 + Tags list", "Hero section"],
+        ["Page Layout", "Header + main content + FloatingContact", "All pages"],
+      ]}
+    />
+  </DSBlock>
 </section>
 
 <script>
@@ -204,36 +166,16 @@ const sectionStructure = `<section id="experiences">
     color: var(--color);
     opacity: 0.6;
   }
-  .preview ul {
+  :global(.ds-preview) ul {
     list-style: initial;
     margin-left: 24px;
     margin-top: 12px;
   }
-  .preview ul li {
+  :global(.ds-preview) ul li {
     color: var(--light-color);
     font-weight: 200;
   }
-  .component-structure {
-    margin-top: 16px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 16px;
-  }
-  .component-structure h4 {
-    font-size: 14px;
-    color: var(--accent-color);
-    margin: 0 0 12px 0;
-  }
-  .component-structure pre {
-    margin: 0;
-    overflow-x: auto;
-  }
-  .component-structure code {
-    font-size: 13px;
-    color: var(--light-color);
-    line-height: 1.5;
-  }
-  .hero-preview {
+  .hero-preview :global(.ds-preview) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -257,7 +199,7 @@ const sectionStructure = `<section id="experiences">
   .hero-h1 span {
     display: inline-block;
   }
-  .section-header-preview {
+  .section-header-preview :global(.ds-preview) {
     flex-direction: column;
     align-items: flex-start;
   }

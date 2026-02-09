@@ -4,6 +4,11 @@
  * Design System - Organism
  */
 import Sidebar from "./Sidebar.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
 ---
 
 <section id="sidebar">
@@ -11,9 +16,8 @@ import Sidebar from "./Sidebar.astro";
   <p class="atomic-label">Organism</p>
   <p>Navigation sidebar with sticky positioning and active state support. Used for in-page navigation.</p>
 
-  <div class="component-block">
-    <h3>Preview</h3>
-    <div class="preview preview-sidebar">
+  <DSBlock title="Preview">
+    <DSPreview class="preview-sidebar">
       <Sidebar
         title="Navigation"
         items={[
@@ -23,12 +27,11 @@ import Sidebar from "./Sidebar.astro";
           { label: "API Reference", href: "#api" },
         ]}
       />
-    </div>
-  </div>
+    </DSPreview>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>With Active State</h3>
-    <div class="preview preview-sidebar">
+  <DSBlock title="With Active State">
+    <DSPreview class="preview-sidebar">
       <aside class="sidebar-demo">
         <nav>
           <h3>Section</h3>
@@ -39,63 +42,38 @@ import Sidebar from "./Sidebar.astro";
           </ul>
         </nav>
       </aside>
-    </div>
-    <div class="props">
-      <code>Add .active class to links via JavaScript</code>
-    </div>
-  </div>
+    </DSPreview>
+    <DSCode inline>Add .active class to links via JavaScript</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Props</h3>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>title</code></td>
-          <td>string</td>
-          <td>required</td>
-          <td>Section title displayed above links</td>
-        </tr>
-        <tr>
-          <td><code>items</code></td>
-          <td>SidebarItem[]</td>
-          <td>required</td>
-          <td>Array of navigation items</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "title" }, "string", "required", "Section title displayed above links"],
+        [{ code: "items" }, "SidebarItem[]", "required", "Array of navigation items"],
+      ]}
+    />
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>SidebarItem Type</h3>
-    <div class="props">
-      <code>&#123; label: string; href: string &#125;</code>
-    </div>
-  </div>
+  <DSBlock title="SidebarItem Type">
+    <DSCode inline>&#123; label: string; href: string &#125;</DSCode>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Features</h3>
+  <DSBlock title="Features">
     <ul class="feature-list">
       <li>Sticky positioning at <code>top: 126px</code></li>
       <li>Active state highlighting with accent color</li>
       <li>Hover effects with subtle background</li>
       <li>Responsive: horizontal layout on mobile (&lt;900px)</li>
     </ul>
-  </div>
+  </DSBlock>
 
-  <div class="component-block">
-    <h3>Usage with View Detection</h3>
-    <p class="note">
+  <DSBlock title="Usage with View Detection">
+    <DSNote>
       Use <code>viewDetection</code> utility for automatic scroll-based highlighting. The utility adds/removes <code>.active</code> class based on which section is in view.
-    </p>
-  </div>
+    </DSNote>
+  </DSBlock>
 </section>
 
 <style>
