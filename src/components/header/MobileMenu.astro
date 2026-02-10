@@ -1,0 +1,28 @@
+---
+/**
+ * MobileMenuTrigger - Hamburger button for mobile menu
+ * Only the trigger button - drawer is rendered in Layout.astro to avoid backdrop-filter stacking context
+ * Visible only on mobile (≤980px)
+ */
+import IconButton from "@/components/shared/atoms/IconButton.astro";
+import BurgerIcon from "@/components/shared/atoms/BurgerIcon.astro";
+---
+
+<div class="mobile-menu-trigger">
+  <IconButton id="mobile-menu-trigger" label="Toggle navigation menu">
+    <BurgerIcon />
+  </IconButton>
+</div>
+
+<style>
+  .mobile-menu-trigger {
+    display: none;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .mobile-menu-trigger {
+      display: flex;
+    }
+  }
+</style>
