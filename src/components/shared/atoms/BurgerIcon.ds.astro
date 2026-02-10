@@ -3,7 +3,7 @@
  * BurgerIcon Documentation
  * Design System - Atom
  */
-import BurgerIcon from "./BurgerIcon.astro";
+import BurgerIconComponent from "./BurgerIcon.astro";
 import IconButton from "./IconButton.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -22,13 +22,13 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       <div class="state-demo">
         <div class="state-item">
           <IconButton label="Closed menu">
-            <BurgerIcon />
+            <BurgerIconComponent />
           </IconButton>
           <span>Closed</span>
         </div>
         <div class="state-item">
           <IconButton label="Open menu" class="open">
-            <BurgerIcon />
+            <BurgerIconComponent />
           </IconButton>
           <span>Open</span>
         </div>

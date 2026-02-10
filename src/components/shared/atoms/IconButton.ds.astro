@@ -3,7 +3,7 @@
  * IconButton Documentation
  * Design System - Atom
  */
-import IconButton from "./IconButton.astro";
+import IconButtonComponent from "./IconButton.astro";
 import BurgerIcon from "./BurgerIcon.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -20,30 +20,30 @@ import message from "@/svgs/message.svg?raw";
 
   <DSBlock title="Default Color">
     <DSPreview>
-      <IconButton label="Message">
+      <IconButtonComponent label="Message">
         <Fragment set:html={message} />
-      </IconButton>
-      <IconButton label="Menu">
+      </IconButtonComponent>
+      <IconButtonComponent label="Menu">
         <BurgerIcon />
-      </IconButton>
+      </IconButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;IconButton label="Menu"&gt;&lt;BurgerIcon /&gt;&lt;/IconButton&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Primary Color">
     <DSPreview>
-      <IconButton label="Contact" color="primary" class="primary-demo">
+      <IconButtonComponent label="Contact" color="primary" class="primary-demo">
         <Fragment set:html={message} />
-      </IconButton>
+      </IconButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;IconButton label="Contact" color="primary"&gt;...&lt;/IconButton&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="As Link">
     <DSPreview>
-      <IconButton label="Contact" href="#iconbutton" color="primary" class="primary-demo">
+      <IconButtonComponent label="Contact" href="#iconbutton" color="primary" class="primary-demo">
         <Fragment set:html={message} />
-      </IconButton>
+      </IconButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;IconButton label="Contact" href="#contact" color="primary"&gt;...&lt;/IconButton&gt;</DSCode>
     <DSNote>When <code>href</code> is provided, renders as <code>&lt;a&gt;</code> instead of <code>&lt;button&gt;</code>.</DSNote>
@@ -51,9 +51,9 @@ import message from "@/svgs/message.svg?raw";
 
   <DSBlock title="With Open State">
     <DSPreview>
-      <IconButton label="Menu" class="open">
+      <IconButtonComponent label="Menu" class="open">
         <BurgerIcon />
-      </IconButton>
+      </IconButtonComponent>
     </DSPreview>
     <DSNote>Add <code>.open</code> class to trigger BurgerIcon animation.</DSNote>
   </DSBlock>

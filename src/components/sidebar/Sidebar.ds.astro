@@ -3,7 +3,7 @@
  * Sidebar Component Documentation
  * Design System - Organism
  */
-import Sidebar from "./Sidebar.astro";
+import SidebarComponent from "./Sidebar.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
@@ -18,7 +18,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Preview">
     <DSPreview class="preview-sidebar">
-      <Sidebar
+      <SidebarComponent
         title="Navigation"
         items={[
           { label: "Overview", href: "#overview" },
