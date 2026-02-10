@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.9.0 - 2026-02-10
+#### Bug Fixes
+- **(ds)** resolve astro:check type errors - (c214aec) - Martin Kinoo
+#### Features
+- **(card)** improve layout flexibility - (d87d856) - Martin Kinoo
+- **(experiences)** add Verty experience and update layout - (16602be) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.8.0 - (c1f4a1d) - github-actions[bot]
+- update CV - (fdb7eb0) - Martin Kinoo
+
+- - -
+
 ## v0.8.0 - 2026-02-10
 #### Bug Fixes
 - **(Card)** fix long card not appearing in time - (d90c4cd) - Martin Kinoo
