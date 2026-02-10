@@ -3,7 +3,7 @@
  * HeaderLink Documentation
  * Design System - Atom
  */
-import HeaderLink from "./HeaderLink.astro";
+import HeaderLinkComponent from "./HeaderLink.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
@@ -20,29 +20,29 @@ import linkedin from "@/svgs/linkedin.svg?raw";
 
   <DSBlock title="Icon Variant">
     <DSPreview>
-      <HeaderLink href="#headerlink" label="GitHub">
+      <HeaderLinkComponent href="#headerlink" label="GitHub">
         <Fragment set:html={github} />
-      </HeaderLink>
-      <HeaderLink href="#headerlink" label="LinkedIn">
+      </HeaderLinkComponent>
+      <HeaderLinkComponent href="#headerlink" label="LinkedIn">
         <Fragment set:html={linkedin} />
-      </HeaderLink>
+      </HeaderLinkComponent>
     </DSPreview>
     <DSCode inline>&lt;HeaderLink href="..." label="GitHub"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/HeaderLink&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Badge Variant">
     <DSPreview>
-      <HeaderLink href="#headerlink" label="CV" variant="badge" />
-      <HeaderLink href="#headerlink" label="DS" variant="badge" />
+      <HeaderLinkComponent href="#headerlink" label="CV" variant="badge" />
+      <HeaderLinkComponent href="#headerlink" label="DS" variant="badge" />
     </DSPreview>
     <DSCode inline>&lt;HeaderLink href="..." label="CV" variant="badge" /&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="External Links">
     <DSPreview>
-      <HeaderLink href="https://github.com" label="GitHub" external>
+      <HeaderLinkComponent href="https://github.com" label="GitHub" external>
         <Fragment set:html={github} />
-      </HeaderLink>
+      </HeaderLinkComponent>
     </DSPreview>
     <DSNote>
       The <code>external</code> prop adds <code>target="_blank"</code> and <code>rel="noreferrer nofollow noopener"</code>.
