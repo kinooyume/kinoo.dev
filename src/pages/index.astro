@@ -67,9 +67,8 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
     display: none;
   }
 
-  [data-animate-card] > * {
+  :global([data-animate-section]:not(#hero)) {
     opacity: 0;
-    transform: translateY(30px);
   }
   footer {
     opacity: 0.8;
