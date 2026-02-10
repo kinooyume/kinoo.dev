@@ -12,15 +12,21 @@ import {
 import astroIcon from "@/svgs/astro.svg?raw";
 import solidIcon from "@/svgs/solid.svg?raw";
 
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
 const frameworkIcons: Record<Framework, string> = {
   astro: astroIcon,
   solid: solidIcon,
 };
 ---
 
-<div class="sidebar-wrapper">
+<div class:list={["sidebar-wrapper", className]}>
   <div class="sidebar-header">
-    <span class="sidebar-title">Navigation</span>
+    <span class="sidebar-title">Design System</span>
   </div>
   {
     sidebarSections.map((section) => (
@@ -248,68 +254,51 @@ const frameworkIcons: Record<Framework, string> = {
     margin: 0;
   }
 
-  /* Responsive - Mobile drawer */
-  @media screen and (max-width: 900px) {
-    .sidebar-wrapper {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 280px;
-      max-width: 85vw;
-      max-height: 100vh;
-      padding: 24px 16px 80px 16px;
-      background-color: var(--background-color);
-      border-left: 1px solid var(--border-color);
-      z-index: 1000;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      overflow-y: auto;
-      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
-    }
+  /* Mobile drawer styles - when inside MobileDrawer */
+  :global(.mobile-drawer-panel) .sidebar-wrapper {
+    position: static;
+    width: 100%;
+    max-height: none;
+    padding: 0;
+  }
 
-    .sidebar-wrapper.open {
-      transform: translateX(0);
-    }
+  :global(.mobile-drawer-panel) .sidebar-header {
+    display: block;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
 
-    .sidebar-header {
-      display: block;
-      padding-bottom: 16px;
-      margin-bottom: 8px;
-      border-bottom: 1px solid var(--border-color);
-    }
+  :global(.mobile-drawer-panel) .sidebar-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--light-color);
+    opacity: 0.6;
+  }
 
-    .sidebar-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--light-color);
-      opacity: 0.6;
-    }
+  :global(.mobile-drawer-panel) .sidebar-section summary {
+    padding: 10px 12px;
+  }
 
-    .sidebar-section summary {
-      padding: 10px 12px;
-    }
+  :global(.mobile-drawer-panel) .sidebar-section a {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 
-    .sidebar-section a {
-      padding: 8px 12px;
-      font-size: 14px;
-    }
+  :global(.mobile-drawer-panel) .sidebar-nested summary {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 
-    .sidebar-nested summary {
-      padding: 6px 10px;
-      font-size: 12px;
-    }
+  :global(.mobile-drawer-panel) .sidebar-nested.depth-2 summary {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
 
-    .sidebar-nested.depth-2 summary {
-      padding: 5px 8px;
-      font-size: 11px;
-    }
-
-    .sidebar-nested.depth-2 a {
-      padding: 5px 10px;
-      font-size: 12px;
-    }
+  :global(.mobile-drawer-panel) .sidebar-nested.depth-2 a {
+    padding: 5px 10px;
+    font-size: 12px;
   }
 </style>
 

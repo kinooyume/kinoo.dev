@@ -1,0 +1,178 @@
+---
+/**
+ * MobileSidebar - Mobile navigation sidebar content
+ * Contains section links and utility links for the index page
+ */
+import github from "@/svgs/github.svg?raw";
+import linkedin from "@/svgs/linkedin.svg?raw";
+import terminal from "@/svgs/terminal.svg?raw";
+
+const sections = [
+  { label: "Expériences", href: "/#experiences", color: "#f68dab" },
+  { label: "Réalisations", href: "/#realisations", color: "#66c384" },
+  { label: "Formations", href: "/#formations", color: "#9c85d3" },
+  { label: "Contact", href: "/#contact", color: "var(--accent-color)" },
+];
+
+const links = [
+  { label: "GitHub", href: "https://github.com/KinooYume", icon: github, external: true },
+  { label: "LinkedIn", href: "https://linkedin.com/in/martin-kinoo", icon: linkedin, external: true },
+  { label: "CV", href: "/MartinKinooCV.pdf", external: true },
+  { label: "Design System", href: "/design-system" },
+];
+---
+
+<div class="mobile-sidebar">
+  <div class="mobile-sidebar-header">
+    <a href="/" class="mobile-sidebar-logo">
+      <span class="mobile-sidebar-logo-icon" set:html={terminal} />
+      Martin Kinoo
+    </a>
+  </div>
+
+  <nav class="mobile-sidebar-nav">
+    {sections.map((section) => (
+      <a href={section.href} style={`--section-color: ${section.color};`}>
+        <span class="nav-indicator"></span>
+        {section.label}
+      </a>
+    ))}
+  </nav>
+
+  <hr class="mobile-sidebar-divider" />
+
+  <div class="mobile-sidebar-links">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noreferrer nofollow noopener" : undefined}
+      >
+        {link.icon && <span class="link-icon" set:html={link.icon} />}
+        {link.label}
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .mobile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mobile-sidebar-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .mobile-sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 200;
+    color: var(--light-color);
+  }
+
+  .mobile-sidebar-logo-icon {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  .mobile-sidebar-logo-icon :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-sidebar-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--light-color);
+    opacity: 0.6;
+  }
+
+  .mobile-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--light-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-sidebar-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--section-color);
+  }
+
+  .nav-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--section-color);
+    opacity: 0.8;
+  }
+
+  .mobile-sidebar-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 8px 0;
+  }
+
+  .mobile-sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-sidebar-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-sidebar-links a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color);
+  }
+
+  .link-icon {
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+  }
+
+  .link-icon :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+
+  .link-icon :global(svg path) {
+    fill: currentColor;
+  }
+</style>

@@ -41,7 +41,8 @@ const { items = defaultItems } = Astro.props;
   import { onHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
 
   function initNavbar() {
-    const navbar = document.querySelector(".navbar") as HTMLElement;
+    const navbar = document.querySelector(".navbar") as HTMLElement | null;
+    if (!navbar) return;
     const indicator = navbar.querySelector(".indicator") as HTMLElement;
     const ul = navbar.querySelector("ul") as HTMLElement;
 
@@ -75,7 +76,6 @@ const { items = defaultItems } = Astro.props;
       });
     }
 
-    // Hover: show indicator on hovered link, return to active after 150ms
     ul.querySelectorAll("a").forEach((link) => {
       link.addEventListener("mouseenter", () => {
         if (hoverTimeout) clearTimeout(hoverTimeout);
@@ -91,7 +91,6 @@ const { items = defaultItems } = Astro.props;
       }, 150);
     });
 
-    // Scroll detection via viewDetection
     const targets = anchorsQueryToViewDetectionElement(".navbar a", {
       onInside: (anchor) => anchor.classList.add("current"),
       onOutside: (anchor) => anchor.classList.remove("current"),
@@ -110,19 +109,15 @@ const { items = defaultItems } = Astro.props;
       }
     }
 
-    // Enable navbar functionality
     function enable() {
       navbar.classList.add("enabled");
       onScrollAndResize(checkVisibility, "navbarDetection");
     }
 
-    // Check if this page has a hero section
     const hasHero = !!document.getElementById("hero");
     if (hasHero) {
-      // Wait for hero animation to complete
       onHeroAnimationComplete(enable);
     } else {
-      // No hero, enable immediately
       enable();
     }
   }
@@ -187,7 +182,7 @@ const { items = defaultItems } = Astro.props;
       color-mix(in srgb, var(--indicator-color) 50%, transparent);
   }
 
-  @media screen and (max-width: 980px) {
+  @media screen and (max-width: 1100px) {
     .navbar {
       display: none;
     }

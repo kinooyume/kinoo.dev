@@ -2,10 +2,9 @@
 /**
  * DSLayout - Design System Page Layout
  * Wraps DS page content with proper structure and styles
+ * Mobile sidebar is provided via Layout.astro's mobile-sidebar slot
  */
 import DSSidebar from "./DSSidebar.astro";
-import IconButton from "@/components/shared/atoms/IconButton.astro";
-import BurgerIcon from "@/components/shared/atoms/BurgerIcon.astro";
 
 interface Props {
   title?: string;
@@ -28,54 +27,9 @@ const { title = "Design System", description } = Astro.props;
     </footer>
   </main>
 
-  <!-- Mobile burger button -->
-  <IconButton
-    id="ds-burger"
-    label="Toggle navigation menu"
-    variant="floating"
-    class="ds-burger"
-  >
-    <BurgerIcon />
-  </IconButton>
-
-  <!-- Backdrop -->
-  <div class="ds-backdrop" id="ds-backdrop"></div>
-
-  <DSSidebar />
+  <!-- Desktop sidebar (mobile uses Layout's mobile-sidebar slot) -->
+  <DSSidebar class="ds-sidebar-desktop" />
 </div>
-
-<script>
-  const burger = document.getElementById("ds-burger");
-  const backdrop = document.getElementById("ds-backdrop");
-  const sidebar = document.querySelector(".sidebar-wrapper");
-
-  function toggleMenu() {
-    const isOpen = sidebar?.classList.toggle("open");
-    burger?.classList.toggle("open", isOpen);
-    backdrop?.classList.toggle("open", isOpen);
-    document.body.style.overflow = isOpen ? "hidden" : "";
-  }
-
-  function closeMenu() {
-    sidebar?.classList.remove("open");
-    burger?.classList.remove("open");
-    backdrop?.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-
-  burger?.addEventListener("click", toggleMenu);
-  backdrop?.addEventListener("click", closeMenu);
-
-  // Close menu on link click
-  sidebar?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  // Close on escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
-</script>
 
 <style is:global>
   .ds-container {
@@ -92,6 +46,8 @@ const { title = "Design System", description } = Astro.props;
     flex: 1;
     padding: 24px 0 64px 0;
     max-width: 900px;
+    min-width: 0;
+    overflow-x: auto;
   }
 
   .ds-main h1 {
@@ -140,33 +96,13 @@ const { title = "Design System", description } = Astro.props;
     font-size: 14px;
   }
 
-  /* Burger button positioning */
-  .ds-burger {
-    display: none;
-    bottom: 24px;
-    right: 24px;
+  /* Desktop sidebar visibility */
+  .ds-sidebar-desktop {
+    display: block;
   }
 
-  /* Backdrop */
-  .ds-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    z-index: 999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-
-  .ds-backdrop.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Responsive */
-  @media screen and (max-width: 900px) {
+  /* Responsive — matches mobile burger breakpoint (1100px) */
+  @media screen and (max-width: 1100px) {
     .ds-container {
       flex-direction: column;
       padding: 0 16px;
@@ -177,12 +113,8 @@ const { title = "Design System", description } = Astro.props;
       padding: 24px 0;
     }
 
-    .ds-burger {
-      display: flex;
-    }
-
-    .ds-backdrop {
-      display: block;
+    .ds-sidebar-desktop.sidebar-wrapper {
+      display: none;
     }
   }
 </style>

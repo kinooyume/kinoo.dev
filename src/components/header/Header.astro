@@ -1,12 +1,10 @@
 ---
 import terminal from "@/svgs/terminal.svg?raw";
-import NavBar from "./NavBar.astro";
-import HeaderMenu from "./HeaderMenu.astro";
 ---
 
 <header>
   <div class="header">
-    <nav>
+    <div class="header-left">
       <div class="title-wrapper">
         <a href="/" class="title anime">
           <div class="terminal-wrapper">
@@ -15,9 +13,9 @@ import HeaderMenu from "./HeaderMenu.astro";
           Martin Kinoo
         </a>
       </div>
-      <NavBar />
-    </nav>
-    <HeaderMenu />
+      <slot name="nav" />
+    </div>
+    <slot />
   </div>
 
   <style>
@@ -58,8 +56,15 @@ import HeaderMenu from "./HeaderMenu.astro";
       gap: 12px;
     }
 
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .title-wrapper {
       display: flex;
+      align-items: center;
       opacity: 0;
     }
 
@@ -71,11 +76,6 @@ import HeaderMenu from "./HeaderMenu.astro";
 
     .terminal-wrapper {
       margin-top: 6px;
-    }
-
-    nav {
-      display: flex;
-      gap: 36px;
     }
 
     @media screen and (max-width: 1368px) {
@@ -103,7 +103,6 @@ import HeaderMenu from "./HeaderMenu.astro";
 <script>
   import { showHeaderImmediate } from "@/lib/animations/headerAnime";
 
-  // Show header immediately on pages without hero
   const hasHero = !!document.getElementById("hero");
   if (!hasHero) {
     showHeaderImmediate();

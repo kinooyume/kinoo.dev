@@ -1,5 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import NavBar from "@/components/header/NavBar.astro";
+import HeaderMenu from "@/components/header/HeaderMenu.astro";
+import MobileMenu from "@/components/header/MobileMenu.astro";
 import Hero from "@/components/hero/Hero.astro";
 import Experiences from "@/components/experiences/Experiences.astro";
 import Contact from "@/components/contact/Contact.astro";
@@ -9,6 +12,9 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
 ---
 
 <Layout title="Martin Kinoo · Développeur Front-end freelance">
+  <NavBar slot="header-nav" />
+  <HeaderMenu slot="header-menu" />
+  <MobileMenu slot="header-menu" />
   <script>
     import { revealSections } from "@/lib/animations/revealSection";
     import { revealCards } from "@/lib/animations/revealCard";
@@ -47,7 +53,6 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
 </Layout>
 
 <style>
-  /* Hero animation: hide header elements initially (CSS loads before JS) */
   :global(.header .title-wrapper),
   :global(.menu),
   :global(.navbar li) {
@@ -58,7 +63,6 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
     pointer-events: none;
   }
 
-  /* Hide non-hero content during animation */
   :global(body.hero-animation main > *:not(#hero)) {
     display: none;
   }
