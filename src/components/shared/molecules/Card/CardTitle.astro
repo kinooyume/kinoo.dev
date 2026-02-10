@@ -6,8 +6,8 @@ type Props = {
   tag: string;
   href: string;
   label: string;
-  location: string;
-  date: string;
+  location?: string;
+  date?: string;
 };
 
 const { title, tag, href, label, location, date } = Astro.props;
@@ -16,10 +16,9 @@ const { title, tag, href, label, location, date } = Astro.props;
 <div class="card-title">
   <H3Tagged title={title} tag={tag} />
   <p>
-    <a href={href} rel="noreferrer nofollow noopener" target="_blank">{label}</a
-    >
-    <span class="dotted">{location}</span>
-    <span>{date}</span>
+    <a href={href} rel="noreferrer nofollow noopener" target="_blank">{label}</a>
+    {location && <span class="dotted">{location}</span>}
+    {date && <span>{date}</span>}
   </p>
 </div>
 
