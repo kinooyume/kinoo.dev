@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.11.1 - 2026-02-10
+#### Bug Fixes
+- **(card)** scope ul style to card-description only - (58eee35) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.11.0 - (fae0744) - github-actions[bot]
+
+- - -
+
 ## v0.11.0 - 2026-02-10
 #### Bug Fixes
 - **(index)** animation on first load clean - (1a38f7f) - Martin Kinoo
