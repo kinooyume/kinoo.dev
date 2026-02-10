@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   const description = anime.timeline({ autoplay: false }).add({
-    targets: ["#hero .description p", ".hero-tag"],
+    targets: ["#hero .description > *", ".hero-tag"],
     translateY: [50, 0],
     opacity: [0, 1],
     duration: 1000,
@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Normal sequence: init → subtitle → description + header + picture
   subtitle.finished.then(() => {
     description.play();
     headerAnimation = animateHeader();
@@ -62,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cancelled = false;
 
-  // Cleanup when last animation completes (naturally or via finishAll)
   picture.finished.then(() => {
     document.body.classList.remove("hero-animation");
     const headerEl = document.querySelector("header");
@@ -76,36 +74,15 @@ document.addEventListener("DOMContentLoaded", () => {
     subtitle.play();
   });
 
-  const onUserScroll = () => {
-    cancelled = true;
-    finishAll();
-    globalThis.removeEventListener("wheel", onUserScroll);
-    globalThis.removeEventListener("touchmove", onUserScroll);
-  }
+  cancelled = true;
+  finishAll();
 
-  // Skip animation if page is scrolled or URL has a hash (coming from anchor link)
-  if (globalThis.scrollY || window.location.hash) {
-    cancelled = true;
-    finishAll();
-
-    // When coming from anchor link, scroll to target after elements are visible
-    if (window.location.hash) {
-      requestAnimationFrame(() => {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-          target.scrollIntoView({ behavior: "instant" });
-        }
-      });
-    }
-  } else {
-    globalThis.addEventListener("wheel", onUserScroll, {
-      once: true,
-      passive: true,
+  if (window.location.hash) {
+    requestAnimationFrame(() => {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        target.scrollIntoView({ behavior: "instant" });
+      }
     });
-    globalThis.addEventListener("touchmove", onUserScroll, {
-      once: true,
-      passive: true,
-    });
-    init.play();
   }
 });
