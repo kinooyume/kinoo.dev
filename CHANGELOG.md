@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.11.0 - 2026-02-10
+#### Bug Fixes
+- **(index)** animation on first load clean - (1a38f7f) - Martin Kinoo
+#### Features
+- **(card)** add TagRow, CardDescription, LogoBox and align spacing - (fb85910) - Martin Kinoo
+- **(ds)** add documentation for TagRow, LogoBox and CardDescription - (3dd4dac) - Martin Kinoo
+- **(header)** add mobile drawer and refactor header with page-driven slots - (f97f4fe) - Martin Kinoo
+- **(hero)** update hero text and skip animation by default - (735bf32) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.10.0 - (f4fbc63) - github-actions[bot]
+
+- - -
+
 ## v0.10.0 - 2026-02-10
 #### Bug Fixes
 - **(ds)** resolve astro:check type errors - (c214aec) - Martin Kinoo
