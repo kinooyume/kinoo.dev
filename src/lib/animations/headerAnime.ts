@@ -4,10 +4,6 @@ export interface HeaderAnimationOptions {
   delay?: number;
 }
 
-/**
- * Animates the header elements with a slide-in effect.
- * Used when hero animation is present to coordinate timing.
- */
 export function animateHeader(options: HeaderAnimationOptions = {}): anime.AnimeInstance {
   const { delay = 0 } = options;
 
@@ -23,10 +19,6 @@ export function animateHeader(options: HeaderAnimationOptions = {}): anime.Anime
   return timeline;
 }
 
-/**
- * Shows header elements immediately without animation.
- * Used on pages without hero where header should be visible from the start.
- */
 export function showHeaderImmediate(): void {
   const elements = document.querySelectorAll<HTMLElement>(
     ".header .title-wrapper, .navbar li, .header-menu"
