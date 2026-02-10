@@ -8,9 +8,6 @@
     </div>
   </div>
   <div class="body" data-animate-elem>
-    <div class="text">
-      <slot name="description" />
-    </div>
     <slot />
   </div>
 </div>
@@ -31,19 +28,29 @@
     margin-bottom: 24px;
   }
 
+  @media screen and (max-width: 900px) {
+    .title-wrapper {
+      margin-bottom: 18px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .title-wrapper {
+      margin-bottom: 14px;
+    }
+  }
+
+  .title {
+    min-width: 0;
+  }
+
+  .marge {
+    flex-shrink: 0;
+  }
+
   .body {
     flex: 1;
     display: flex;
     flex-direction: column;
-  }
-
-  .text {
-    margin-bottom: 32px;
-  }
-
-  @media screen and (max-width: 900px) {
-    .text {
-      padding: 0;
-    }
   }
 </style>
