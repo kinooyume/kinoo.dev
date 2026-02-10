@@ -2,6 +2,104 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.8.0 - 2026-02-10
+#### Bug Fixes
+- **(Card)** fix long card not appearing in time - (d90c4cd) - Martin Kinoo
+- **(FloatingContact)** hide properly when crossing contact form - (e43ecd4) - Martin Kinoo
+- **(NavBar)** prevent overlapping animation - (414082d) - Martin Kinoo
+- **(NavBar)** Increase bound for visibility detection - (9d257e4) - Martin Kinoo
+- **(Spotlight)** fix mouse follow on scroll - (0005168) - Martin Kinoo
+- **(design-system)** correct CSS selector for NavBar color demo - (87d9c1b) - Martin Kinoo
+- **(gyroTracker)** disabled until we found a better solution (#27) - (eb58d9d) - Martin Kinoo
+- **(gyroTracker)** remove drift (not great solution) (#26) - (a0e4228) - Martin Kinoo
+- **(gyroTracker)** drift to ensure base keep stable - (4652f83) - Martin Kinoo
+- **(gyroTracker)** calibrate the reading center point - (eaa2738) - Martin Kinoo
+- **(index)** _ on unused variable - (0393dd9) - Martin Kinoo
+- **(revealSection)** detect intersection before on mobile - (9e56a77) - Martin Kinoo
+- fix astro check warning - (0d15f3d) - Martin Kinoo
+- update ekeynox url - (a7c9203) - Martin Kinoo
+#### Build system
+- **(astro)** explicitely use bun - (2137d88) - Martin Kinoo
+- **(bump)** v0.2.0 - (a3e3ab4) - Martin Kinoo
+#### Continuous Integration
+- **(astro)** separate check from build cmd (#17) - (e57d432) - Martin Kinoo
+- **(conventional-commit)** add net safety (#11) - (689be7d) - Martin Kinoo
+- **(develop)** enforce quality - (9d8f364) - Martin Kinoo
+- **(eslint)** allow empty function - (72a4c5b) - Martin Kinoo
+- add articles to git ignore - (0a3ac86) - Martin Kinoo
+#### Documentation
+- **(Header)** simplify documentation, remove menu items - (bd5f23f) - Martin Kinoo
+- **(design-system)** remove obvious descriptions - (97b6ced) - Martin Kinoo
+- **(design-system)** add Section pattern and update architecture - (c73fddf) - Martin Kinoo
+- **(readme)** simplify readme - (5e23419) - Martin Kinoo
+- **(readme)** update to reflect ci change (#13) - (4f2176e) - Martin Kinoo
+- **(readme)** update readme to reflex CI/CD Workflow - (967e0e1) - Martin Kinoo
+- move commands section earlier - (5ee8aef) - Martin Kinoo
+- simplify README - (f7317e9) - Martin Kinoo
+- add license - (585f9f2) - Martin Kinoo
+- update README (#9) - (cbaff43) - Martin Kinoo
+- fix typo in CV - (9b89058) - Martin Kinoo
+- update CV with updated ekeynox url - (f807a75) - Martin Kinoo
+#### Features
+- **(HeaderLink)** add tooltip on hover for icon variant - (954af27) - Martin Kinoo
+- **(IconButton)** add href and color props - (ea5919a) - Martin Kinoo
+- **(Spotlight)** mobile: add gyroscope support or default to top-left corner position) - (bef6209) - Martin Kinoo
+- **(Spotlight)** brightrer effect - (02b7c88) - Martin Kinoo
+- **(atoms)** add IconButton and BurgerIcon components - (377852b) - Martin Kinoo
+- **(button)** add secondary variant, update Me contacter - (a4ee648) - Martin Kinoo
+- **(ci)** add cocogitto for auto bump, changelog and deploy - (ca443f1) - Martin Kinoo
+- **(design-system)** add framework icons (Astro/Solid) to sidebar and titles - (5d73b4d) - Martin Kinoo
+- **(design-system)** add responsive burger menu for mobile navigation - (a942a4f) - Martin Kinoo
+- **(design-system)** add reusable DS documentation components - (8e186f4) - Martin Kinoo
+- **(header)** extract HeaderLink atom with documentation - (5c89546) - Martin Kinoo
+- **(header)** add design system link - (bf06336) - Martin Kinoo
+- **(navbar)** add colorfull underline effect - (81556b7) - Martin Kinoo
+- **(onHeroAnimationComplete)** add status completed/cancelled - (6da6464) - Martin Kinoo
+- **(revealCard)** add lighter animation for mobile - (f39b34c) - Martin Kinoo
+- **(seo)** improve meta tags - (12a155b) - Martin Kinoo
+- bring back spotlight (#16) - (c3429be) - Martin Kinoo
+#### Miscellaneous Chores
+- **(ci)** handle develop branch, and generate release + changelog - (e79a97c) - Martin Kinoo
+- **(ci)** switch to bun, add eslint and github action on PR - (d41b748) - Martin Kinoo
+- **(lint-and-commit)** replace husky & lint-staged for lefthook, commitlint by cocogitto - (e628a95) - Martin Kinoo
+- **(nix)** remove redondant lint, and update docs - (3125cb7) - Martin Kinoo
+- **(nix)** add nix flake as reproductible system-level deps - (a9beac3) - Martin Kinoo
+- **(version)** v0.7.0 - (73b636a) - github-actions[bot]
+- **(version)** v0.6.3 - (b13f325) - github-actions[bot]
+- **(version)** v0.6.2 - (6a339c4) - github-actions[bot]
+- **(version)** v0.6.1 - (5cf51f3) - github-actions[bot]
+- **(version)** v0.6.0 - (d4a2f54) - github-actions[bot]
+- **(version)** v0.5.0 - (12132d2) - github-actions[bot]
+- **(version)** v0.4.0 - (b50e472) - github-actions[bot]
+- design system (#28) - (5356202) - Martin Kinoo
+- add missing robots.txt - (2abb9ad) - Martin Kinoo
+- use lint-stage for linting - (b86c5c5) - Martin Kinoo
+- add prettier configuration - (e46619e) - Martin Kinoo
+- remove staticrypt - (b2494c4) - Martin Kinoo
+#### Refactoring
+- **(Card)** more atomic approach - (e42a8e5) - Martin Kinoo
+- **(Card)** merge realisation card into card - (89b45fe) - Martin Kinoo
+- **(NavBar)** simplify code - (c9d720b) - Martin Kinoo
+- **(Spotlight)** move mouse tracking to its own file - (f4b6b85) - Martin Kinoo
+- **(animation)** add event-based animation timing for heroAnimationComplete (#21) - (d47925e) - Martin Kinoo
+- **(animations)** move all animations files to their own folder lib/animations - (b6685ce) - Martin Kinoo
+- **(button)** unify primary/secondary button styles - (ff874f2) - Martin Kinoo
+- **(component)** implement new viewDetection - (04d3e57) - Martin Kinoo
+- **(components)** reorganize to contextual atomic design - (f01524e) - Martin Kinoo
+- **(design-system)** update all .ds.astro to use DSSectionHeader - (c618dc0) - Martin Kinoo
+- **(design-system)** modular architecture with scoped CSS - (bfd5780) - Martin Kinoo
+- **(header)** extract HeaderMenu component with consistent styling - (a97265e) - Martin Kinoo
+- **(reveal)** add revealCrd/Section to lib from index - (81cbc5e) - Martin Kinoo
+- **(spotlight)** move spotlight code to lib/dom - (220a204) - Martin Kinoo
+- **(tailwind)** remove dep, pure css - (cd0cdc0) - Martin Kinoo
+- **(viewDetection)** split viewDetection in their own concern, in lib/dom - (223d6d3) - Martin Kinoo
+- reóve unused components - (3d40ea4) - Martin Kinoo
+- use @/ path aliases for all imports - (010a649) - Martin Kinoo
+#### Style
+- **(design-system)** add right padding to sidebar - (341b19d) - Martin Kinoo
+
+- - -
+
 ## v0.7.0 - 2026-02-10
 #### Bug Fixes
 - **(Card)** fix long card not appearing in time - (ce9bac3) - Martin Kinoo
