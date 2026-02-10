@@ -1,5 +1,7 @@
 ---
 import Header from "@/components/header/Header.astro";
+import MobileDrawer from "@/components/shared/organisms/MobileDrawer.astro";
+import MobileSidebar from "@/components/header/MobileSidebar.astro";
 import "@/styles/variables.css";
 import "@/styles/global.css";
 import "@/styles/animations.css";
@@ -73,17 +75,36 @@ const jsonLd = {
     <!-- Structured Data -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Page-specific head content -->
     <slot name="head" />
   </head>
   <body>
-    <Header />
+    <Header>
+      <slot name="header-nav" slot="nav" />
+      <slot name="header-menu" />
+    </Header>
     <slot />
+
+    <div class="mobile-menu-drawer">
+      <MobileDrawer id="mobile-menu" triggerId="mobile-menu-trigger">
+        <slot name="mobile-sidebar">
+          <MobileSidebar />
+        </slot>
+      </MobileDrawer>
+    </div>
   </body>
 </html>
 
 <style is:global>
-  /* ===== Gradient Border Card ===== */
+  .mobile-menu-drawer {
+    display: none;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .mobile-menu-drawer {
+      display: block;
+    }
+  }
+
   .gradient-border-card {
     position: relative;
     padding: 40px;

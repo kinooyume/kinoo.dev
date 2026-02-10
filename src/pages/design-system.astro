@@ -1,6 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import DSLayout from "@/components/design-system/DSLayout.astro";
+import DSSidebar from "@/components/design-system/DSSidebar.astro";
+import HeaderLink from "@/components/header/HeaderLink.astro";
+import MobileMenu from "@/components/header/MobileMenu.astro";
 
 // Sections
 import FoundationsSection from "@/components/design-system/sections/FoundationsSection.astro";
@@ -20,6 +23,9 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
   description="Components library for kinoo.dev"
 >
   <meta slot="head" name="robots" content="noindex, nofollow" />
+  <HeaderLink slot="header-nav" href="/" label="Portfolio" variant="badge" />
+  <MobileMenu slot="header-menu" />
+  <DSSidebar slot="mobile-sidebar" />
 
   <DSLayout
     title="Design System"
