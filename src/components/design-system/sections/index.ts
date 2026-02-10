@@ -35,6 +35,8 @@ export const sidebarSections: SidebarSection[] = [
           { label: "IconButton", href: "#iconbutton", framework: "astro" },
           { label: "BurgerIcon", href: "#burgericon", framework: "astro" },
           { label: "H3Tagged", href: "#h3tagged", framework: "astro" },
+          { label: "LogoBox", href: "#logobox", framework: "astro" },
+          { label: "TagRow", href: "#tagrow", framework: "astro" },
         ],
       },
       {
@@ -47,6 +49,7 @@ export const sidebarSections: SidebarSection[] = [
               { label: "CardContent", href: "#card-content", framework: "astro" },
               { label: "CardTitle", href: "#card-title", framework: "astro" },
               { label: "CardSplit", href: "#card-split", framework: "astro" },
+              { label: "CardDescription", href: "#card-description", framework: "astro" },
             ],
           },
           { label: "Spotlight", href: "#spotlight", framework: "astro" },
