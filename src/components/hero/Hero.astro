@@ -34,38 +34,15 @@ const techs: TagProps[] = [
         <h1><span>Martin</span> <span>Kinoo</span></h1>
       </div>
       <div class="description">
-        <p>
-          <strong
-            >Transformons ensemble vos défis techniques en solutions web
-            concrètes. 💡</strong
-          >
+        <h2 class="punchline">
+          Du frontend bien pensé, tout simplement.
+        </h2>
+        <p class="catchphrase">
+          Applications web claires, modulaires et évolutives, sans complexité inutile.
         </p>
-        <br />
         <p>
-          Passionné par la <strong
-            >conception et la construction d'applications web robustes et
-            évolutives</strong
-          >, j'adopte des pratiques de développement efficaces pour des
-          expériences utilisateur optimales. Mon parcours m'a permis de
-          maîtriser les <strong>architectures logicières modernes</strong> et d'intégrer
-          des logiques métier exigeants
-        </p>
-        <br />
-        <p>
-          Toujours en veille sur les <strong>stacks récentes</strong>
-          mes projets personnels sont un terrain d'exploration et d'approfondissement
-          constant, garantissant des solutions à la pointe. Autonome, rigoureux et
-          communiquant, je m'engage à livrer des applicatifs de haute qualité, bien
-          documentés, optimisés pour la performance et la maintenabilité. ✅
-        </p>
-        <br />
-        <p>
-          <strong
-            >Prêt à transformer vos idées en succès numérique ? 🚀 <a
-              href="#contact"
-              >Contactez-moi dès aujourd'hui pour discuter de votre projet !</a
-            > 💬</strong
-          >
+          Je simplifie les choix techniques et je sécurise l'architecture pour que les projets avancent de façon prévisible.
+          Force de proposition, je m'intègre facilement aux équipes et aide à prendre les bonnes décisions au bon moment.
         </p>
       </div>
       <ul>
@@ -115,11 +92,26 @@ const techs: TagProps[] = [
     opacity: 0;
     display: inline-block;
   }
-  .description p {
+  .description > * {
     opacity: 0;
   }
-  .description p + p {
-    margin-top: 8px;
+
+  .punchline {
+    font-size: 32px;
+    font-weight: 200;
+    line-height: 1.2;
+    color: var(--color);
+    margin: 0;
+  }
+
+  .catchphrase {
+    color: var(--accent-color);
+    font-weight: 200;
+    font-size: calc(var(--hero-font-size) + 2px);
+  }
+
+  .catchphrase {
+    margin-bottom: 16px;
   }
   ul {
     display: flex;
@@ -129,7 +121,7 @@ const techs: TagProps[] = [
   .content {
     display: flex;
     flex-direction: column;
-    gap: 64px;
+    gap: 58px;
     justify-content: space-between;
     max-width: 750px;
   }
@@ -162,6 +154,9 @@ const techs: TagProps[] = [
       --hero-font-size: 18px;
       --hero-span-size: 34px;
     }
+    .punchline {
+      font-size: 28px;
+    }
   }
   @media screen and (max-width: 1145px) {
     img {
@@ -177,12 +172,14 @@ const techs: TagProps[] = [
     h1 {
       line-height: 1;
     }
-
+    .punchline {
+      font-size: 22px;
+    }
     #hero {
       margin-top: 32px;
     }
     .content {
-      gap: 64px;
+      gap: 28px;
     }
   }
 
