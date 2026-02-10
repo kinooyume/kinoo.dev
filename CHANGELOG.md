@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.10.0 - 2026-02-10
+#### Bug Fixes
+- **(ds)** resolve astro:check type errors - (c214aec) - Martin Kinoo
+#### Features
+- **(card)** add TagRow, CardDescription, LogoBox and align spacing - (fb85910) - Martin Kinoo
+- **(card)** improve layout flexibility - (d87d856) - Martin Kinoo
+- **(ds)** add documentation for TagRow, LogoBox and CardDescription - (3dd4dac) - Martin Kinoo
+- **(experiences)** add Verty experience and update layout - (16602be) - Martin Kinoo
+- **(header)** add mobile drawer and refactor header with page-driven slots - (f97f4fe) - Martin Kinoo
+- **(hero)** update hero text and skip animation by default - (735bf32) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.9.0 - (355015c) - github-actions[bot]
+- update CV - (fdb7eb0) - Martin Kinoo
+
+- - -
+
 ## v0.9.0 - 2026-02-10
 #### Bug Fixes
 - **(ds)** resolve astro:check type errors - (c214aec) - Martin Kinoo
