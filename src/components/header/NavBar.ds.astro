@@ -103,13 +103,14 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   // Interactive navbar demo
   const navbar = document.getElementById('navbar-demo');
   if (navbar) {
-    const links = navbar.querySelectorAll('a');
-    const indicator = navbar.querySelector('.indicator') as HTMLElement;
-    let activeLink: Element | null = navbar.querySelector('a.active');
+    const navbarEl = navbar;
+    const links = navbarEl.querySelectorAll('a');
+    const indicator = navbarEl.querySelector('.indicator') as HTMLElement;
+    let activeLink: Element | null = navbarEl.querySelector('a.active');
 
     function updateIndicator(link: Element) {
       const rect = link.getBoundingClientRect();
-      const parentRect = navbar.getBoundingClientRect();
+      const parentRect = navbarEl.getBoundingClientRect();
       indicator.style.left = `${rect.left - parentRect.left}px`;
       indicator.style.width = `${rect.width}px`;
       indicator.style.backgroundColor = (link as HTMLElement).dataset.color || 'var(--accent-color)';

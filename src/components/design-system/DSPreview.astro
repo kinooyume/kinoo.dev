@@ -6,14 +6,15 @@
 interface Props {
   variant?: "default" | "card" | "sidebar";
   class?: string;
+  id?: string;
 }
 
-const { variant = "default", class: className } = Astro.props;
+const { variant = "default", class: className, id } = Astro.props;
 
 const variantClass = variant !== "default" ? `ds-preview--${variant}` : "";
 ---
 
-<div class:list={["ds-preview", variantClass, className]}>
+<div class:list={["ds-preview", variantClass, className]} id={id}>
   <slot />
 </div>
 

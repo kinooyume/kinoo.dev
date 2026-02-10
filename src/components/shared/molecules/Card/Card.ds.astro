@@ -4,7 +4,7 @@
  * Design System - Molecule
  * Includes: Card, CardContent, CardTitle, CardSplit
  */
-import Card from "./Card.astro";
+import CardComponent from "./Card.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -22,16 +22,16 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Basic Card">
     <DSPreview class="preview-card">
-      <Card>
+      <CardComponent>
         <p>Card content goes here. Cards use slots for flexible content.</p>
-      </Card>
+      </CardComponent>
     </DSPreview>
     <DSCode inline>&lt;Card&gt;...content...&lt;/Card&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Card with Content">
     <DSPreview class="preview-card">
-      <Card>
+      <CardComponent>
         <div class="card-content-demo">
           <div class="title-row">
             <h3>Project Title</h3>
@@ -43,7 +43,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
             <Tag title="Next.js" />
           </div>
         </div>
-      </Card>
+      </CardComponent>
     </DSPreview>
   </DSBlock>
 

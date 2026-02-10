@@ -3,7 +3,7 @@
  * Spotlight Component Documentation
  * Design System - Molecule
  */
-import Spotlight from "./Spotlight.astro";
+import SpotlightComponent from "./Spotlight.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
@@ -17,24 +17,24 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Demo">
     <div id="spotlight-demo" data-spotlight>
-      <Spotlight color="var(--accent-bright)">
+      <SpotlightComponent color="var(--accent-bright)">
         <div class="demo-card">
           <h4>Card 1</h4>
           <p>Hover over the container to see the spotlight effect</p>
         </div>
-      </Spotlight>
-      <Spotlight color="var(--green)">
+      </SpotlightComponent>
+      <SpotlightComponent color="var(--green)">
         <div class="demo-card">
           <h4>Card 2</h4>
           <p>Each card tracks the cursor independently</p>
         </div>
-      </Spotlight>
-      <Spotlight color="var(--pink)">
+      </SpotlightComponent>
+      <SpotlightComponent color="var(--pink)">
         <div class="demo-card">
           <h4>Card 3</h4>
           <p>Color is customizable via the color prop</p>
         </div>
-      </Spotlight>
+      </SpotlightComponent>
     </div>
   </DSBlock>
 
