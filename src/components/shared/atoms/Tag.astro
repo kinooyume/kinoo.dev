@@ -55,4 +55,13 @@ const { hero, title, icon, highlight } = Astro.props;
   .tag.show {
     opacity: 1;
   }
+
+  @media screen and (max-width: 900px) {
+    div {
+      padding: 6px 12px;
+    }
+    span {
+      font-size: 13px;
+    }
+  }
 </style>

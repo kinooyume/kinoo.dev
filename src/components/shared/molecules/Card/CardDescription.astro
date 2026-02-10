@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["card-description", className]}>
+  <slot />
+</div>
+
+<style>
+  .card-description {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 12px;
+  }
+
+  .card-description > :global(br) {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    .card-description {
+      gap: 10px;
+    }
+  }
+</style>

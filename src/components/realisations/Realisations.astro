@@ -7,7 +7,10 @@ import arrow from "@/svgs/arrow.svg?raw";
 import TagLink from "@/components/shared/atoms/TagLink.astro";
 import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
 import Tag from "@/components/shared/atoms/Tag.astro";
+import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
+import LogoBox from "@/components/shared/atoms/LogoBox.astro";
+import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
 ---
 
 <section id="realisations" data-animate-section>
@@ -25,11 +28,11 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
                 text="Visiter le site"
               />
             </div>
-            <div class="title-logo">
+            <LogoBox>
               <Fragment set:html={ekeynoxIcon} />
-            </div>
+            </LogoBox>
           </div>
-          <div slot="description" class="description-content">
+          <CardDescription slot="description">
             <p>
               Ekeynox est un jeu de <b>dactylographie</b>, permettant de
               s'entrainer à taper au clavier, plus rapidement et sans fautes.
@@ -49,12 +52,12 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
               <b>rejouer</b> en mode fantôme contre son score précédent.
             </p>
             <br />
-            <div class="row">
+            <TagRow>
               <Tag title="SolidJS" />
               <Tag title="SolidStart" />
               <Tag title="Figma" />
-            </div>
-          </div>
+            </TagRow>
+          </CardDescription>
           <Slider
             slot="aside"
             client:load
@@ -91,11 +94,11 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
                 />
               </div>
             </div>
-            <div class="title-logo">
+            <LogoBox>
               <img alt="arteflix" src="/images/arteflix/logo.webp" />
-            </div>
+            </LogoBox>
           </div>
-          <div slot="description" class="description-content">
+          <CardDescription slot="description">
             <p>
               Arteflix est un site web permetant d'accéder au catalogue d'<b
                 >ARTE</b
@@ -108,13 +111,13 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
             </p>
             <br />
             <br />
-            <div class="row">
+            <TagRow>
               <Tag title="React" />
               <Tag title="Next.js" />
               <Tag title="Rescript" />
               <Tag title="Storybook" />
-            </div>
-          </div>
+            </TagRow>
+          </CardDescription>
           <Slider
             slot="aside"
             client:load
@@ -140,11 +143,11 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
                 text="Voir le code"
               />
             </div>
-            <div class="title-logo">
+            <LogoBox>
               <img alt="sunnydash" src="/images/sunnydash/logo.webp" />
-            </div>
+            </LogoBox>
           </div>
-          <div slot="description" class="description-content">
+          <CardDescription slot="description">
             <p>
               Dashboard météo en <b>Svelte 5</b>, exemple d'<b>architecture hexagonale</b>
               appliquée au frontend.
@@ -156,12 +159,12 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
               avec <b>Playwright</b>.
             </p>
             <br />
-            <div class="row">
+            <TagRow>
               <Tag title="Svelte 5" />
               <Tag title="SvelteKit" />
               <Tag title="TypeScript" />
-            </div>
-          </div>
+            </TagRow>
+          </CardDescription>
           <Slider
             slot="aside"
             client:load
@@ -192,11 +195,11 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
                 />
               </div>
             </div>
-            <div class="title-logo">
+            <LogoBox>
               <img alt="kinoo.dev" src="/favicon.svg" />
-            </div>
+            </LogoBox>
           </div>
-          <div slot="description" class="description-content">
+          <CardDescription slot="description">
             <p>
               Site portfolio personnel conçu avec <b>Astro</b> et <b>SolidJS</b>,
               optimisé pour la performance et l'accessibilité.
@@ -213,13 +216,13 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
               avec <b>conventional commits</b> et déploiement sur <b>Netlify</b>.
             </p>
             <br />
-            <div class="row">
+            <TagRow>
               <Tag title="Astro" />
               <Tag title="SolidJS" />
               <Tag title="TypeScript" />
               <Tag title="Anime.js" />
-            </div>
-          </div>
+            </TagRow>
+          </CardDescription>
           <Slider
             slot="aside"
             client:load
@@ -239,32 +242,14 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 
 <script>
   import { spotlight } from "@/lib/dom/spotlight";
-
   const container = document.getElementById("realisations-grid");
-  if (container) {
-    spotlight(container);
-  }
+  if (container) spotlight(container);
 </script>
 
 <style>
   #realisations {
     --accent-color: #66c384;
     --secondary-accent-color: #80d49a;
-  }
-
-  .description-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: auto;
-    padding-top: 32px;
   }
 
   .grid {
@@ -297,17 +282,6 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
     align-items: center;
   }
 
-  .title-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1f2233;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
-    padding: 8px;
-    height: 51px;
-    width: 51px;
-  }
 
   .title-container {
     display: flex;
@@ -331,9 +305,4 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
     }
   }
 
-  @media screen and (max-width: 320px) {
-    .title-logo {
-      display: none;
-    }
-  }
 </style>

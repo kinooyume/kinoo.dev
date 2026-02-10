@@ -1,0 +1,34 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["tag-row", className]}>
+  <slot />
+</div>
+
+<style>
+  .tag-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 36px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .tag-row {
+      padding-top: 24px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .tag-row {
+      padding-top: 18px;
+    }
+  }
+</style>
