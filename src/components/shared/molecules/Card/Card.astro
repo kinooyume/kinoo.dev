@@ -5,11 +5,23 @@
     padding: 48px;
     cursor: auto;
     height: 100%;
+    --card-title-font-size: 16px;
+  }
+
+  .card :global(ul) {
+    list-style: initial;
+    margin-left: 24px;
   }
 
   @media screen and (max-width: 900px) {
     .card {
-      padding: 36px 24px;
+      padding: 24px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .card {
+      --card-title-font-size: 14px;
     }
   }
 </style>

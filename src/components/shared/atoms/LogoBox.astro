@@ -1,0 +1,55 @@
+---
+/**
+ * LogoBox - Bordered container for logos/icons
+ * Used in card headers to display company/project logos
+ */
+interface Props {
+  fullsize?: boolean;
+  class?: string;
+}
+
+const { fullsize = false, class: className } = Astro.props;
+---
+
+<div class:list={["logo-box", { fullsize }, className]}>
+  <slot />
+</div>
+
+<style>
+  .logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f2233;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 8px;
+    height: 51px;
+    width: 51px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .logo-box :global(img),
+  .logo-box :global(svg) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .logo-box.fullsize {
+    padding: 0;
+  }
+
+  .logo-box.fullsize :global(img) {
+    border-radius: 7px;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 900px) {
+    .logo-box {
+      height: 40px;
+      width: 40px;
+    }
+  }
+</style>

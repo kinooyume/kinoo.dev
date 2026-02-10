@@ -3,6 +3,8 @@ import Card from "@/components/shared/molecules/Card/Card.astro";
 import CardContent from "@/components/shared/molecules/Card/CardContent.astro";
 import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
+import LogoBox from "@/components/shared/atoms/LogoBox.astro";
+import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
 ---
 
 <section id="formations" data-animate-section>
@@ -21,20 +23,19 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
             location="Lille"
             date="2013-2018"
           />
-          <img
-            loading="lazy"
-            slot="marge"
-            src="images/epitech.png"
-            alt="epitech"
-          />
-          <p>
-            À travers des projets concrets et une approche par la pratique, j'ai
-            acquis une solide maîtrise des langages de programmation. Epitech
-            m'a également permis de développer une forte capacité d'autonomie,
-            de résolution de problèmes et d'innovation, des compétences
-            essentielles pour évoluer dans le domaine du développement web et
-            logiciel.
-          </p>
+          <LogoBox slot="marge" fullsize>
+            <img loading="lazy" src="images/epitech.png" alt="epitech" />
+          </LogoBox>
+          <CardDescription>
+            <p>
+              À travers des projets concrets et une approche par la pratique, j'ai
+              acquis une solide maîtrise des langages de programmation. Epitech
+              m'a également permis de développer une forte capacité d'autonomie,
+              de résolution de problèmes et d'innovation, des compétences
+              essentielles pour évoluer dans le domaine du développement web et
+              logiciel.
+            </p>
+          </CardDescription>
         </CardContent>
       </Card>
     </Spotlight>
@@ -50,18 +51,17 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
             location="Manipal (India)"
             date="2017"
           />
-          <img
-            loading="lazy"
-            slot="marge"
-            src="images/manipal.png"
-            alt="manipal-logo"
-          />
-          <p slot="description">
-            Année académique passée à Manipal, Inde, où j'ai pu améliorer
-            considérablement mon niveau d'anglais grâce à un environnement
-            multiculturel et des échanges quotidiens avec des étudiants du monde
-            entier.
-          </p>
+          <LogoBox slot="marge" fullsize>
+            <img loading="lazy" src="images/manipal.png" alt="manipal-logo" />
+          </LogoBox>
+          <CardDescription>
+            <p>
+              Année académique passée à Manipal, Inde, où j'ai pu améliorer
+              considérablement mon niveau d'anglais grâce à un environnement
+              multiculturel et des échanges quotidiens avec des étudiants du monde
+              entier.
+            </p>
+          </CardDescription>
         </CardContent>
       </Card>
     </Spotlight>
@@ -77,19 +77,18 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
             location="Lille"
             date="2016 (4 mois)"
           />
-          <img
-            loading="lazy"
-            slot="marge"
-            src="images/derniercri.png"
-            alt="derniercri"
-          />
-          <ul>
-            <li>
-              Service en Ruby de conversion de fichier markdown en html/pdf/epub
-              basé sur Pandoc.
-            </li>
-            <li>Développement backend en Ruby On Rails.</li>
-          </ul>
+          <LogoBox slot="marge" fullsize>
+            <img loading="lazy" src="images/derniercri.png" alt="derniercri" />
+          </LogoBox>
+          <CardDescription>
+            <ul>
+              <li>
+                Service en Ruby de conversion de fichier markdown en html/pdf/epub
+                basé sur Pandoc.
+              </li>
+              <li>Développement backend en Ruby On Rails.</li>
+            </ul>
+          </CardDescription>
         </CardContent>
       </Card>
     </Spotlight>
@@ -105,18 +104,17 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
             location="Calais"
             date="2015/2016 (6 mois)"
           />
-          <img
-            loading="lazy"
-            slot="marge"
-            src="images/eurotunnel.png"
-            alt="eurotunnel"
-          />
-          <p slot="description">
-            Dans le cadre de la construction d'une documentation plus avancée
-            décrivant les "bonnes pratiques" au seins du développement à
-            Eurotunnel, j'ai réalisé une documentation complète par l'exemple
-            sur l'ergonomie et le design.
-          </p>
+          <LogoBox slot="marge" fullsize>
+            <img loading="lazy" src="images/eurotunnel.png" alt="eurotunnel" />
+          </LogoBox>
+          <CardDescription>
+            <p>
+              Dans le cadre de la construction d'une documentation plus avancée
+              décrivant les "bonnes pratiques" au seins du développement à
+              Eurotunnel, j'ai réalisé une documentation complète par l'exemple
+              sur l'ergonomie et le design.
+            </p>
+          </CardDescription>
         </CardContent>
       </Card>
     </Spotlight>
@@ -125,18 +123,14 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 
 <script>
   import { spotlight } from "@/lib/dom/spotlight";
-
   const container = document.getElementById("formations-grid");
-  if (container) {
-    spotlight(container);
-  }
+  if (container) spotlight(container);
 </script>
 
 <style>
   #formations {
     --accent-color: #9c85d3;
     --secondary-accent-color: #c9bce6;
-    --card-title-font-size: 16px;
   }
 
   .grid {
@@ -145,11 +139,6 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
     grid-template-rows: repeat(2, minmax(0, auto));
     grid-column-gap: 26px;
     grid-row-gap: 26px;
-  }
-
-  ul {
-    list-style: initial;
-    margin-left: 24px;
   }
 
   .grid > :global(.epitech) {
@@ -172,14 +161,4 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
     }
   }
 
-  @media screen and (max-width: 600px) {
-    #formations {
-      --card-title-font-size: 14px;
-    }
-  }
-  @media screen and (max-width: 460px) {
-    img {
-      display: none;
-    }
-  }
 </style>
