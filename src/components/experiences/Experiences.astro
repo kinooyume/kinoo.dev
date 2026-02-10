@@ -51,39 +51,6 @@ import Tag from "@/components/shared/atoms/Tag.astro";
         </CardContent>
       </Card>
     </Spotlight>
-    <Spotlight color="var(--pink)" class="verty">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Développeur backend"
-            tag="Freelance"
-            href="https://verty.eu/"
-            label="Verty"
-            location="Remote"
-            date="2025 (4 mois)"
-          />
-          <p slot="description">
-            Conception et développement d'une synchronisation entre Shopify et
-            un site de vente externe via les APIs. Services en <strong
-              >Go</strong
-            > hébergés sur Scaleway, avec une architecture fiable et maintenable.
-            Monitoring avec <strong>Grafana</strong>.
-          </p>
-          <img
-            loading="lazy"
-            slot="marge"
-            src="images/verty.webp"
-            alt="verty"
-          />
-          <div class="row">
-            <Tag title="Go" />
-            <Tag title="Shopify API" />
-            <Tag title="Grafana" />
-          </div>
-        </CardContent>
-      </Card>
-    </Spotlight>
     <Spotlight color="var(--pink)" class="impacthorizon">
       <Card>
         <CardContent>
@@ -111,6 +78,39 @@ import Tag from "@/components/shared/atoms/Tag.astro";
           <div class="row">
             <Tag title="React" />
             <Tag title="TypeScript" />
+          </div>
+        </CardContent>
+      </Card>
+    </Spotlight>
+    <Spotlight color="var(--pink)" class="verty">
+      <Card>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Développeur backend"
+            tag="Forfait"
+            href="https://verty.eu/"
+            label="Verty"
+            location="Remote"
+            date="2025 (4 mois)"
+          />
+          <p slot="description">
+            Conception et développement d'une synchronisation entre Shopify et
+            un site de vente externe via les APIs. Services en <strong
+              >Go</strong
+            > hébergés sur Scaleway, avec une architecture fiable et maintenable.
+            Monitoring avec <strong>Grafana</strong>.
+          </p>
+          <img
+            loading="lazy"
+            slot="marge"
+            src="images/verty.webp"
+            alt="verty"
+          />
+          <div class="row">
+            <Tag title="Go" />
+            <Tag title="Shopify API" />
+            <Tag title="Grafana" />
           </div>
         </CardContent>
       </Card>
@@ -216,34 +216,6 @@ import Tag from "@/components/shared/atoms/Tag.astro";
           </div>
         </CardContent>
       </Card>
-    </Spotlight><Spotlight color="var(--pink)" class="cautioneo">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Développeur RubyOnRails"
-            tag="Freelance"
-            href="https://cautioneo.com"
-            label="Cautioneo"
-            location="Lille"
-            date="2018 (2 mois)"
-          />
-          <p slot="description">Développement du Saas en RubyOnRails.</p>
-          <ul>
-            <li>Développement du parcours locataire</li>
-            <li>Développement d'un CRM custom</li>
-          </ul>
-          <img
-            loading="lazy"
-            slot="marge"
-            src="images/cautioneo.png"
-            alt="cautioneo"
-          />
-          <div class="row">
-            <Tag title="Ruby on Rails" />
-          </div>
-        </CardContent>
-      </Card>
     </Spotlight>
   </div>
 </section>
@@ -281,16 +253,20 @@ import Tag from "@/components/shared/atoms/Tag.astro";
     grid-area: 1 / 1 / 2 / 3;
   }
 
+  .grid > :global(.opo) {
+    grid-area: 2 / 1 / 4 / 2;
+  }
+
   .grid > :global(.verty) {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 2 / 2 / 3 / 3;
   }
 
   .grid > :global(.impacthorizon) {
-    grid-area: 3 / 1 / 4 / 2;
+    grid-area: 3 / 2 / 4 / 3;
   }
 
-  .grid > :global(.opo) {
-    grid-area: 2 / 2 / 4 / 3;
+  .grid > :global(.ordoclic) {
+    grid-area: 4 / 1 / 5 / 3;
   }
 
   ul {
@@ -303,7 +279,8 @@ import Tag from "@/components/shared/atoms/Tag.astro";
     flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: auto;
+    padding-top: 16px;
   }
 
   @media screen and (max-width: 1200px) {

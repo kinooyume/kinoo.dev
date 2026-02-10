@@ -14,62 +14,7 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
   <span class="subtitle">Mes</span>
   <h2>Réalisations</h2>
   <div class="grid" id="realisations-grid" data-spotlight>
-    <Spotlight color="#66c384">
-      <Card>
-        <CardSplit reverse>
-          <div slot="title" class="title-wrapper">
-            <div class="title-container">
-              <H3Tagged title="Arteflix" tag="Projet perso" />
-              <div class="links-row">
-                <TagLink
-                  href="https://arteflix.kinoo.dev"
-                  text="Visiter le site"
-                />
-                <TagLink
-                  href="https://github.com/kinooyume/arteflix"
-                  text="Voir le code"
-                />
-              </div>
-            </div>
-            <div class="title-logo">
-              <img alt="arteflix" src="/images/arteflix/logo.webp" />
-            </div>
-          </div>
-          <div slot="description">
-            <p>
-              Arteflix est un site web permetant d'accéder au catalogue d'<b
-                >ARTE</b
-              > en reprenant le system design de <b>Netflix</b>.
-            </p>
-            <br />
-            <p>
-              Le site web respecte l'url du site arte.tv, il suffit donc de
-              changer l'url pour accéder au même contenu.
-            </p>
-            <br />
-            <br />
-            <div class="row">
-              <Tag title="React" />
-              <Tag title="Next.js" />
-              <Tag title="Rescript" />
-              <Tag title="Storybook" />
-            </div>
-          </div>
-          <Slider
-            slot="aside"
-            client:load
-            pictures={[
-              "arteflix/01.webp",
-              "arteflix/02.webp",
-              "arteflix/03.webp",
-            ]}
-          >
-            <Fragment set:html={arrow} />
-          </Slider>
-        </CardSplit>
-      </Card>
-    </Spotlight>
-    <Spotlight color="#66c384">
+    <Spotlight color="#66c384" class="ekeynox">
       <Card>
         <CardSplit>
           <div slot="title" class="title-wrapper">
@@ -84,7 +29,7 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
               <Fragment set:html={ekeynoxIcon} />
             </div>
           </div>
-          <div slot="description">
+          <div slot="description" class="description-content">
             <p>
               Ekeynox est un jeu de <b>dactylographie</b>, permettant de
               s'entrainer à taper au clavier, plus rapidement et sans fautes.
@@ -129,7 +74,108 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
         </CardSplit>
       </Card>
     </Spotlight>
-    <Spotlight color="#66c384">
+    <Spotlight color="#66c384" class="arteflix">
+      <Card>
+        <CardSplit vertical>
+          <div slot="title" class="title-wrapper">
+            <div class="title-container">
+              <H3Tagged title="Arteflix" tag="Projet perso" />
+              <div class="links-row">
+                <TagLink
+                  href="https://arteflix.kinoo.dev"
+                  text="Visiter le site"
+                />
+                <TagLink
+                  href="https://github.com/kinooyume/arteflix"
+                  text="Voir le code"
+                />
+              </div>
+            </div>
+            <div class="title-logo">
+              <img alt="arteflix" src="/images/arteflix/logo.webp" />
+            </div>
+          </div>
+          <div slot="description" class="description-content">
+            <p>
+              Arteflix est un site web permetant d'accéder au catalogue d'<b
+                >ARTE</b
+              > en reprenant le system design de <b>Netflix</b>.
+            </p>
+            <br />
+            <p>
+              Le site web respecte l'url du site arte.tv, il suffit donc de
+              changer l'url pour accéder au même contenu.
+            </p>
+            <br />
+            <br />
+            <div class="row">
+              <Tag title="React" />
+              <Tag title="Next.js" />
+              <Tag title="Rescript" />
+              <Tag title="Storybook" />
+            </div>
+          </div>
+          <Slider
+            slot="aside"
+            client:load
+            pictures={[
+              "arteflix/01.webp",
+              "arteflix/02.webp",
+              "arteflix/03.webp",
+            ]}
+          >
+            <Fragment set:html={arrow} />
+          </Slider>
+        </CardSplit>
+      </Card>
+    </Spotlight>
+    <Spotlight color="#66c384" class="sunnydash">
+      <Card>
+        <CardSplit vertical>
+          <div slot="title" class="title-wrapper">
+            <div class="title-container">
+              <H3Tagged title="SunnyDash" tag="Projet perso" />
+              <TagLink
+                href="https://github.com/kinooyume/sunnydash"
+                text="Voir le code"
+              />
+            </div>
+            <div class="title-logo">
+              <img alt="sunnydash" src="/images/sunnydash/logo.webp" />
+            </div>
+          </div>
+          <div slot="description" class="description-content">
+            <p>
+              Dashboard météo en <b>Svelte 5</b>, exemple d'<b>architecture hexagonale</b>
+              appliquée au frontend.
+            </p>
+            <br />
+            <p>
+              Les APIs météo sont interchangeables via <b>ports & adapters</b>
+              (OpenMeteo et mock). Tests unitaires avec <b>Vitest</b> et E2E
+              avec <b>Playwright</b>.
+            </p>
+            <br />
+            <div class="row">
+              <Tag title="Svelte 5" />
+              <Tag title="SvelteKit" />
+              <Tag title="TypeScript" />
+            </div>
+          </div>
+          <Slider
+            slot="aside"
+            client:load
+            pictures={[
+              "sunnydash/01.webp",
+              "sunnydash/02.webp",
+            ]}
+          >
+            <Fragment set:html={arrow} />
+          </Slider>
+        </CardSplit>
+      </Card>
+    </Spotlight>
+    <Spotlight color="#66c384" class="kinoodev">
       <Card>
         <CardSplit reverse>
           <div slot="title" class="title-wrapper">
@@ -150,7 +196,7 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
               <img alt="kinoo.dev" src="/favicon.svg" />
             </div>
           </div>
-          <div slot="description">
+          <div slot="description" class="description-content">
             <p>
               Site portfolio personnel conçu avec <b>Astro</b> et <b>SolidJS</b>,
               optimisé pour la performance et l'accessibilité.
@@ -162,8 +208,8 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
             </p>
             <br />
             <p>
-              Architecture <b>Islands</b> pour un chargement optimal, 
-              formulaire de contact avec validation, et CI/CD automatisé 
+              Architecture <b>Islands</b> pour un chargement optimal,
+              formulaire de contact avec validation, et CI/CD automatisé
               avec <b>conventional commits</b> et déploiement sur <b>Netlify</b>.
             </p>
             <br />
@@ -178,9 +224,9 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
             slot="aside"
             client:load
             pictures={[
-              "kinoo.dev/01.png",
-              "kinoo.dev/02.png",
-              "kinoo.dev/03.png",
+              "kinoo.dev/01.webp",
+              "kinoo.dev/02.webp",
+              "kinoo.dev/03.webp",
             ]}
           >
             <Fragment set:html={arrow} />
@@ -205,17 +251,46 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
     --accent-color: #66c384;
     --secondary-accent-color: #80d49a;
   }
+
+  .description-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
   .row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
+    margin-top: auto;
+    padding-top: 32px;
   }
+
   .grid {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
     grid-row-gap: 26px;
     grid-column-gap: 26px;
   }
+
+  .grid > :global(.ekeynox) {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+
+  .grid > :global(.arteflix) {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .grid > :global(.sunnydash) {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+
+  .grid > :global(.kinoodev) {
+    grid-area: 3 / 1 / 4 / 3;
+  }
+
   .title-wrapper {
     display: flex;
     justify-content: space-between;
@@ -247,6 +322,13 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
     flex-direction: row;
     gap: 8px;
     flex-wrap: wrap;
+  }
+
+  @media screen and (max-width: 900px) {
+    .grid {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   @media screen and (max-width: 320px) {
