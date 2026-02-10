@@ -1,0 +1,41 @@
+---
+import LogoBox from "./LogoBox.astro";
+import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="logobox">
+  <DSSectionHeader title="LogoBox" atomic="Atom" framework="astro" />
+
+  <DSBlock title="Default (centered)">
+    <DSPreview>
+      <LogoBox>
+        <Fragment set:html={ekeynoxIcon} />
+      </LogoBox>
+    </DSPreview>
+    <DSCode inline>&lt;LogoBox&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Fullsize">
+    <DSPreview>
+      <LogoBox fullsize>
+        <img src="/images/adeo.png" alt="adeo" />
+      </LogoBox>
+    </DSPreview>
+    <DSCode inline>&lt;LogoBox fullsize&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "fullsize" }, "boolean", "false", "No padding, image covers the box"],
+        [{ code: "class" }, "string", "-", "Additional CSS classes"],
+      ]}
+    />
+  </DSBlock>
+</section>

@@ -1,9 +1,5 @@
 ---
-/**
- * Card Component Documentation
- * Design System - Molecule
- * Includes: Card, CardContent, CardTitle, CardSplit
- */
+/** Card compound system: Card, CardContent, CardTitle, CardSplit, CardDescription */
 import CardComponent from "./Card.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
@@ -18,7 +14,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 <!-- CARD -->
 <section id="card">
   <DSSectionHeader title="Card" atomic="Molecule" framework="astro" />
-  <p>Base container component with gradient border effect. Parent of the Card compound system.</p>
+  <p>Base container with gradient border.</p>
 
   <DSBlock title="Basic Card">
     <DSPreview class="preview-card">
@@ -37,7 +33,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
             <h3>Project Title</h3>
             <Tag title="React" />
           </div>
-          <p class="description">This is a description of the project. Cards support complex layouts with titles, tags, and descriptions.</p>
+          <p class="description">Description du projet avec des tags et un titre.</p>
           <div class="tags">
             <Tag title="TypeScript" />
             <Tag title="Next.js" />
@@ -52,16 +48,17 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       headers={["Component", "Purpose", "Usage"]}
       rows={[
         [{ code: "Card" }, "Base container", "Wrapper with gradient border"],
-        [{ code: "CardContent" }, "Layout helper", "Structured content with slots"],
+        [{ code: "CardContent" }, "Layout helper", "Title + logo + body (experiences, formations)"],
         [{ code: "CardTitle" }, "Title block", "Job/project title with metadata"],
-        [{ code: "CardSplit" }, "Two-column layout", "Title + description + aside"],
+        [{ code: "CardSplit" }, "Grid layout", "Title + description + aside (realisations)"],
+        [{ code: "CardDescription" }, "Text wrapper", "Paragraph gap, hides <br>, flex:1"],
       ]}
     />
   </DSBlock>
 
   <DSBlock title="Animation Attributes">
     <DSNote>
-      Add <code>data-animate-elem</code> to elements for reveal animations. Used with <code>revealCards</code> utility for staggered fade-in effects.
+      <code>data-animate-elem</code> on elements for reveal animations via <code>revealCards</code>.
     </DSNote>
   </DSBlock>
 </section>
@@ -69,21 +66,29 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 <!-- CARD CONTENT -->
 <section id="card-content">
   <DSSectionHeader title="CardContent" atomic="Molecule" framework="astro" />
-  <p>Layout wrapper with named slots for structured card content. Used inside Card.</p>
+  <p>Layout with named slots, used inside Card.</p>
 
   <DSBlock title="Slots">
     <DSStructure
       rows={[
-        { code: "slot=\"title\"", description: "Header/title area" },
-        { code: "slot=\"marge\"", description: "Right-aligned content next to title" },
-        { code: "slot=\"description\"", description: "Main body text" },
-        { code: "default slot", description: "Additional content (tags, links)" },
+        { code: "slot=\"title\"", description: "Header/title area (CardTitle)" },
+        { code: "slot=\"marge\"", description: "Right-aligned content next to title (LogoBox)" },
+        { code: "default slot", description: "Body: CardDescription + TagRow" },
       ]}
     />
   </DSBlock>
 
   <DSBlock title="Usage">
-    <DSCode inline>&lt;Card&gt;&lt;CardContent&gt;...&lt;/CardContent&gt;&lt;/Card&gt;</DSCode>
+    <DSCode inline>&lt;Card&gt;&lt;CardContent&gt;&lt;CardTitle slot="title" /&gt;&lt;LogoBox slot="marge" /&gt;&lt;CardDescription&gt;...&lt;/CardDescription&gt;&lt;TagRow&gt;...&lt;/TagRow&gt;&lt;/CardContent&gt;&lt;/Card&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Responsive spacing">
+    <DSPropsTable
+      headers={["Element", "Desktop", "≤900px", "≤600px"]}
+      rows={[
+        ["Title → body gap", "24px", "18px", "14px"],
+      ]}
+    />
   </DSBlock>
 </section>
 
@@ -108,6 +113,27 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Usage">
     <DSCode inline>&lt;CardTitle slot="title" title="Developer" tag="Freelance" ... /&gt;</DSCode>
+  </DSBlock>
+</section>
+
+<!-- CARD DESCRIPTION -->
+<section id="card-description">
+  <DSSectionHeader title="CardDescription" atomic="Molecule" framework="astro" />
+  <p>Text wrapper for card content. Handles paragraph gap and hides <code>&lt;br&gt;</code>.</p>
+
+  <DSBlock title="Features">
+    <DSStructure
+      rows={[
+        { code: "gap: 12px → 10px", description: "Paragraph spacing (responsive at ≤600px)" },
+        { code: "flex: 1", description: "Fills remaining card height" },
+        { code: "br { display: none }", description: "Gap replaces line breaks" },
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;CardDescription&gt;&lt;p&gt;...&lt;/p&gt;&lt;ul&gt;...&lt;/ul&gt;&lt;/CardDescription&gt;</DSCode>
+    <DSNote>Used inside CardContent (default slot) and CardSplit (description slot).</DSNote>
   </DSBlock>
 </section>
 
@@ -138,6 +164,17 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
         [{ code: "reverse" }, "boolean", "false", "Flips the layout (aside on left)"],
+        [{ code: "vertical" }, "boolean", "false", "Single-column: title → aside → description"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Responsive spacing">
+    <DSPropsTable
+      headers={["Element", "Desktop", "≤1100px", "≤600px"]}
+      rows={[
+        ["Row gap", "24px", "18px", "14px"],
+        ["Column gap", "64px", "—", "—"],
       ]}
     />
   </DSBlock>
@@ -148,7 +185,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       rows={[
         [{ code: "title" }, "Top-left", "Card header with H3Tagged"],
         [{ code: "description" }, "Bottom-left", "Main content area"],
-        [{ code: "aside" }, "Right column (spans 2 rows)", "Image or supplementary content"],
+        [{ code: "aside" }, "Right column (spans 2 rows)", "Image, slider, etc."],
       ]}
     />
   </DSBlock>
