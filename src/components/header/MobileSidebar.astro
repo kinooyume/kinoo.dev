@@ -1,6 +1,5 @@
 ---
 import github from "@/svgs/github.svg?raw";
-import linkedin from "@/svgs/linkedin.svg?raw";
 import terminal from "@/svgs/terminal.svg?raw";
 
 const sections = [
@@ -11,19 +10,6 @@ const sections = [
 ];
 
 const links = [
-  {
-    label: "GitHub",
-    href: "https://github.com/KinooYume",
-    icon: github,
-    external: true,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/martin-kinoo",
-    icon: linkedin,
-    external: true,
-  },
-  { label: "CV", href: "/MartinKinooCV.pdf", external: true },
   { label: "Design System", href: "/design-system" },
 ];
 ---
@@ -50,14 +36,29 @@ const links = [
   <hr class="mobile-sidebar-divider" />
 
   <div class="mobile-sidebar-links">
+    <a
+      href="https://github.com/KinooYume"
+      target="_blank"
+      rel="noreferrer nofollow noopener"
+    >
+      <span class="link-icon" set:html={github} />
+      GitHub
+    </a>
+    <a
+      href="/MartinKinooCV.pdf"
+      target="_blank"
+      rel="noreferrer nofollow noopener"
+    >
+      CV
+    </a>
+  </div>
+
+  <hr class="mobile-sidebar-divider" />
+
+  <div class="mobile-sidebar-links">
     {
       links.map((link) => (
-        <a
-          href={link.href}
-          target={link.external ? "_blank" : undefined}
-          rel={link.external ? "noreferrer nofollow noopener" : undefined}
-        >
-          {link.icon && <span class="link-icon" set:html={link.icon} />}
+        <a href={link.href}>
           {link.label}
         </a>
       ))
@@ -99,6 +100,22 @@ const links = [
   .mobile-sidebar-logo-icon :global(svg) {
     width: 20px;
     height: 20px;
+  }
+
+  .mobile-sidebar-meta-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-sidebar-meta-link:hover {
+    color: var(--accent-color);
   }
 
   .mobile-sidebar-title {
