@@ -87,6 +87,10 @@ export const sidebarSections: SidebarSection[] = [
     items: [{ label: "Sidebar", href: "#sidebar", framework: "astro" }],
   },
   {
+    title: "Footer",
+    items: [{ label: "Footer", href: "#footer-doc", framework: "astro" }],
+  },
+  {
     title: "Templates",
     items: [{ label: "Compositions", href: "#compositions" }],
   },

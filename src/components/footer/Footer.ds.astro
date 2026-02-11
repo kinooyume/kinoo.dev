@@ -1,0 +1,26 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import FooterComponent from "./Footer.astro";
+---
+
+<section id="footer-doc">
+  <DSSectionHeader title="Footer" atomic="Organism" framework="astro" />
+  <p>Site footer with copyright, credits, and tool links.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <FooterComponent />
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;Footer /&gt;</DSCode>
+    <DSNote>
+      No props required. Self-contained component with its own styles.
+    </DSNote>
+  </DSBlock>
+</section>
