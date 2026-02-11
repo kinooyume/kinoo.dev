@@ -1,9 +1,7 @@
 /**
  * Animations - Animation states and keyframes
- * Imported by Layout.astro
  */
 
-/* ===== Custom Properties ===== */
 @property --border-angle {
   inherits: false;
   initial-value: 0deg;

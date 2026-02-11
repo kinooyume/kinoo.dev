@@ -1,8 +1,4 @@
 ---
-/**
- * MobileSidebar - Mobile navigation sidebar content
- * Contains section links and utility links for the index page
- */
 import github from "@/svgs/github.svg?raw";
 import linkedin from "@/svgs/linkedin.svg?raw";
 import terminal from "@/svgs/terminal.svg?raw";
@@ -15,8 +11,18 @@ const sections = [
 ];
 
 const links = [
-  { label: "GitHub", href: "https://github.com/KinooYume", icon: github, external: true },
-  { label: "LinkedIn", href: "https://linkedin.com/in/martin-kinoo", icon: linkedin, external: true },
+  {
+    label: "GitHub",
+    href: "https://github.com/KinooYume",
+    icon: github,
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/martin-kinoo",
+    icon: linkedin,
+    external: true,
+  },
   { label: "CV", href: "/MartinKinooCV.pdf", external: true },
   { label: "Design System", href: "/design-system" },
 ];
@@ -31,27 +37,31 @@ const links = [
   </div>
 
   <nav class="mobile-sidebar-nav">
-    {sections.map((section) => (
-      <a href={section.href} style={`--section-color: ${section.color};`}>
-        <span class="nav-indicator"></span>
-        {section.label}
-      </a>
-    ))}
+    {
+      sections.map((section) => (
+        <a href={section.href} style={`--section-color: ${section.color};`}>
+          <span class="nav-indicator" />
+          {section.label}
+        </a>
+      ))
+    }
   </nav>
 
   <hr class="mobile-sidebar-divider" />
 
   <div class="mobile-sidebar-links">
-    {links.map((link) => (
-      <a
-        href={link.href}
-        target={link.external ? "_blank" : undefined}
-        rel={link.external ? "noreferrer nofollow noopener" : undefined}
-      >
-        {link.icon && <span class="link-icon" set:html={link.icon} />}
-        {link.label}
-      </a>
-    ))}
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noreferrer nofollow noopener" : undefined}
+        >
+          {link.icon && <span class="link-icon" set:html={link.icon} />}
+          {link.label}
+        </a>
+      ))
+    }
   </div>
 </div>
 

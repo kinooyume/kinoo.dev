@@ -15,7 +15,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const {
   title,
-  description = "Développeur front-end freelance basé à Paris. Spécialisé en TypeScript, React et Svelte. Création de sites web performants et accessibles.",
+  description = "Développeur front-end freelance basé à Paris. Spécialisé en TypeScript, Svelte et Astro. Création de sites web performants et accessibles.",
 } = Astro.props;
 
 const jsonLd = {
@@ -73,7 +73,11 @@ const jsonLd = {
     <title>{title}</title>
 
     <!-- Structured Data -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
 
     <slot name="head" />
   </head>
@@ -104,22 +108,4 @@ const jsonLd = {
       display: block;
     }
   }
-
-  .gradient-border-card {
-    position: relative;
-    padding: 40px;
-    flex: 1 1;
-    transition:
-      background 0.2s ease-in-out,
-      box-shadow 0.2s ease-in-out;
-    box-shadow:
-      0 0 0 1px transparent,
-      0 2px 4px transparent,
-      0 12px 24px transparent;
-    cursor: pointer;
-    border-radius: 32px;
-    height: 100%;
-    z-index: 1;
-  }
-
 </style>

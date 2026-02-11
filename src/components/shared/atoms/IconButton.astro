@@ -1,9 +1,4 @@
 ---
-/**
- * IconButton - Reusable icon button or link
- * Design System - Atom
- * Renders as <a> when href is provided, otherwise <button>
- */
 interface Props {
   id?: string;
   label: string;
@@ -35,20 +30,11 @@ const classes = [
 
 {
   href ? (
-    <a
-      id={id}
-      href={href}
-      class:list={classes}
-      aria-label={label}
-    >
+    <a id={id} href={href} class:list={classes} aria-label={label}>
       <slot />
     </a>
   ) : (
-    <button
-      id={id}
-      class:list={classes}
-      aria-label={label}
-    >
+    <button id={id} class:list={classes} aria-label={label}>
       <slot />
     </button>
   )
