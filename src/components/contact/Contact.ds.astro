@@ -1,75 +1,42 @@
 ---
-/**
- * Contact Component Documentation
- * Design System - Organism
- */
 import DSBlock from "@/components/design-system/DSBlock.astro";
-import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSStructure from "@/components/design-system/DSStructure.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="contact-doc">
   <DSSectionHeader title="Contact" atomic="Organism" framework="astro" />
-  <p>Full contact section combining description text and an interactive form (SolidJS).</p>
+  <p>
+    Full contact section combining description text and an interactive form
+    (SolidJS).
+  </p>
 
   <DSBlock title="Structure">
     <DSStructure
       rows={[
-        { code: "<section id=\"contact\">", description: "Main container with animation attribute" },
+        {
+          code: '<section id="contact">',
+          description: "Main container with animation attribute",
+        },
         { code: "<h2>", description: "Section title", indent: 1 },
-        { code: ".contact-content", description: "Flexbox container", indent: 1 },
-        { code: ".contact-description", description: "Left column with intro text", indent: 2 },
-        { code: "<ContactForm />", description: "SolidJS form component", indent: 2 },
+        {
+          code: ".contact-content",
+          description: "Flexbox container",
+          indent: 1,
+        },
+        {
+          code: ".contact-description",
+          description: "Left column with intro text",
+          indent: 2,
+        },
+        {
+          code: "<ContactForm />",
+          description: "SolidJS form component",
+          indent: 2,
+        },
       ]}
     />
   </DSBlock>
 
-  <DSBlock title="ContactForm (SolidJS)">
-    <DSPropsTable
-      headers={["Prop", "Type", "Description"]}
-      rows={[
-        [{ code: "accessToken" }, "string", "Web3Forms API access key"],
-      ]}
-    />
-    <DSNote>
-      Uses <code>client:load</code> directive for immediate hydration. Form validation handled by Modular Forms.
-    </DSNote>
-  </DSBlock>
 
-  <DSBlock title="Layout">
-    <DSPropsTable
-      headers={["Breakpoint", "Layout"]}
-      rows={[
-        ["Desktop (>1200px)", "Side-by-side: description (max 466px) + form"],
-        ["Tablet/Mobile", "Stacked: description then form"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Form Fields">
-    <DSPropsTable
-      headers={["Field", "Type", "Validation"]}
-      rows={[
-        ["Name", "text input", "Required"],
-        ["Email", "email input", "Required, email format"],
-        ["Message", "textarea", "Required"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;Contact /&gt;</DSCode>
-    <DSNote>
-      No props required. Form uses environment variable <code>VITE_WEB3FORMS_ACCESS_KEY</code> for API authentication.
-    </DSNote>
-  </DSBlock>
-
-  <DSBlock title="Integration">
-    <DSNote>
-      The <code>#contact</code> section is detected by <code>FloatingContact</code> and <code>viewDetection</code> utilities for scroll-based navigation highlighting.
-    </DSNote>
-  </DSBlock>
 </section>

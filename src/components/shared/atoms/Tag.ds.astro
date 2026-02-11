@@ -1,8 +1,4 @@
 ---
-/**
- * Tag Component Documentation
- * Design System - Atom
- */
 import TagComponent from "./Tag.astro";
 import terminal from "@/svgs/terminal.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
@@ -40,7 +36,12 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "title" }, "string", "required", "The text content of the tag"],
+        [
+          { code: "title" },
+          "string",
+          "required",
+          "The text content of the tag",
+        ],
         [{ code: "icon" }, "string", "-", "SVG icon as raw string"],
         [{ code: "highlight" }, "boolean", "false", "Adds accent border"],
         [{ code: "hero" }, "boolean", "false", "Hero animation variant"],

@@ -1,20 +1,21 @@
 ---
-/**
- * FloatingContact Component Documentation
- * Design System - Organism
- */
 import message from "@/svgs/message.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="floatingcontact">
-  <DSSectionHeader title="FloatingContact" atomic="Organism" framework="astro" />
-  <p>Mobile-only sticky contact button that appears at the bottom of the screen. Auto-hides when the contact section is visible.</p>
+  <DSSectionHeader
+    title="FloatingContact"
+    atomic="Organism"
+    framework="astro"
+  />
+  <p>
+    Mobile-only sticky contact button that appears at the bottom of the screen.
+    Auto-hides when the contact section is visible.
+  </p>
 
   <DSBlock title="Preview">
     <DSPreview class="states-preview">
@@ -28,7 +29,10 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       </div>
       <div class="state-demo">
         <span class="state-label">Hover State</span>
-        <a class="floating-contact-demo primary hover-state" href="#floatingcontact">
+        <a
+          class="floating-contact-demo primary hover-state"
+          href="#floatingcontact"
+        >
           <div class="icon-wrapper">
             <Fragment set:html={message} />
           </div>
@@ -36,7 +40,10 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       </div>
       <div class="state-demo">
         <span class="state-label">Hidden (.current)</span>
-        <a class="floating-contact-demo primary hidden-state" href="#floatingcontact">
+        <a
+          class="floating-contact-demo primary hidden-state"
+          href="#floatingcontact"
+        >
           <div class="icon-wrapper">
             <Fragment set:html={message} />
           </div>
@@ -51,35 +58,15 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       rows={[
         ["Desktop (>600px)", "Hidden", { code: "display: none" }],
         ["Mobile, #contact not visible", "Visible", "Default styles"],
-        ["Mobile, #contact in viewport", "Hidden", { code: ".current class added" }],
+        [
+          "Mobile, #contact in viewport",
+          "Hidden",
+          { code: ".current class added" },
+        ],
       ]}
     />
   </DSBlock>
 
-  <DSBlock title="Positioning">
-    <DSPropsTable
-      headers={["Property", "Value"]}
-      rows={[
-        [{ code: "position" }, "sticky"],
-        [{ code: "bottom" }, "36px"],
-        [{ code: "z-index" }, "300"],
-        [{ code: "width" }, "36px"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="View Detection Integration">
-    <DSNote>
-      Uses <code>viewDetection</code> utility from <code>@/lib/dom/viewDetection</code> to detect when <code>#contact</code> section enters the viewport. The <code>.current</code> class is toggled to fade out the button.
-    </DSNote>
-  </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;FloatingContact /&gt;</DSCode>
-    <DSNote>
-      No props required. Component is self-contained with its own scroll detection logic.
-    </DSNote>
-  </DSBlock>
 </section>
 
 <style>

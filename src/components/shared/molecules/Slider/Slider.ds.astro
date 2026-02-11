@@ -1,59 +1,51 @@
 ---
-/**
- * Slider Component Documentation
- * Design System - Molecule (SolidJS)
- */
+import SliderComponent from "./Slider.tsx";
+import arrow from "@/svgs/arrow.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSStructure from "@/components/design-system/DSStructure.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="slider">
   <DSSectionHeader title="Slider" atomic="Molecule" framework="solid" />
-  <p>
-    Image carousel powered by BlazeSlider with dot pagination and arrow
-    navigation. Used in project cards to showcase screenshots.
-  </p>
+  <p>Image carousel powered by BlazeSlider with dot pagination and arrow navigation.</p>
+
+  <DSBlock title="Demo">
+    <div class="slider-demo">
+      <SliderComponent
+        client:load
+        pictures={[
+          "ekeynox/01.webp",
+          "ekeynox/02.webp",
+          "ekeynox/03.webp",
+        ]}
+      >
+        <Fragment set:html={arrow} />
+      </SliderComponent>
+    </div>
+  </DSBlock>
 
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Description"]}
       rows={[
-        [{ code: "pictures" }, "string[]", "Array of image paths relative to /images/"],
-        [{ code: "children" }, "HTMLElement", "Arrow icon injected into prev/next buttons"],
+        [{ code: "pictures" }, "string[]", "Image paths relative to /images/"],
+        [{ code: "children" }, "HTMLElement", "Arrow icon for prev/next buttons"],
       ]}
     />
-  </DSBlock>
-
-  <DSBlock title="Structure">
-    <DSStructure
-      rows={[
-        { code: "<div ref={sliderEl}>", description: "BlazeSlider root" },
-        { code: ".blaze-container", description: "Slider container", indent: 1 },
-        { code: ".blaze-track-container", description: "Track wrapper", indent: 2 },
-        { code: ".blaze-track", description: "Scrollable track with slides", indent: 3 },
-        { code: "<img />", description: "One per picture entry", indent: 4 },
-        { code: ".blaze-navigation", description: "Controls bar", indent: 2 },
-        { code: "button.blaze-prev", description: "Previous arrow (rotated 180°)", indent: 3 },
-        { code: "<SliderPagination />", description: "Dot indicators", indent: 3 },
-        { code: "button.blaze-next", description: "Next arrow", indent: 3 },
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode
-      inline
-    >&lt;Slider client:load pictures=&#123;["project/01.webp", "project/02.webp"]&#125;&gt;
-  &lt;Fragment set:html=&#123;arrowSvg&#125; /&gt;
-&lt;/Slider&gt;</DSCode>
     <DSNote>
       Requires <code>client:load</code> directive for SolidJS hydration.
-      Images are resolved from <code>/images/</code>. Arrow SVG is passed as
-      children and rendered in both prev/next buttons.
     </DSNote>
   </DSBlock>
 </section>
+
+<style>
+  .slider-demo {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    max-width: 500px;
+  }
+</style>
