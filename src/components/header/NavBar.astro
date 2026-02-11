@@ -20,13 +20,15 @@ const { items = defaultItems } = Astro.props;
 
 <nav class="navbar">
   <ul>
-    {items.map((item) => (
-      <li>
-        <a class="anime nav" href={item.href} data-color={item.color}>
-          {item.label}
-        </a>
-      </li>
-    ))}
+    {
+      items.map((item) => (
+        <li>
+          <a class="anime nav" href={item.href} data-color={item.color}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
   </ul>
   <div class="indicator"></div>
 </nav>
@@ -59,14 +61,22 @@ const { items = defaultItems } = Astro.props;
       }
 
       if (!target) {
-        currentAnim = anime({ targets: indicator, opacity: 0, duration: 200, easing: "easeOutQuad" });
+        currentAnim = anime({
+          targets: indicator,
+          opacity: 0,
+          duration: 200,
+          easing: "easeOutQuad",
+        });
         return;
       }
 
       const rect = target.getBoundingClientRect();
       const navRect = navbar.getBoundingClientRect();
 
-      indicator.style.setProperty("--indicator-color", target.dataset.color || "#f8ba88");
+      indicator.style.setProperty(
+        "--indicator-color",
+        target.dataset.color || "#f8ba88",
+      );
       currentAnim = anime({
         targets: indicator,
         left: rect.left - navRect.left,
@@ -152,7 +162,7 @@ const { items = defaultItems } = Astro.props;
     color: var(--color);
     text-decoration: none;
     opacity: 0.6;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
   }
 
   a:hover,
