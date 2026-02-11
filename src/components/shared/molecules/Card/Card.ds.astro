@@ -1,6 +1,8 @@
 ---
-/** Card compound system: Card, CardContent, CardTitle, CardSplit, CardDescription */
 import CardComponent from "./Card.astro";
+import CardContent from "./CardContent.astro";
+import CardTitle from "./CardTitle.astro";
+import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -56,11 +58,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     />
   </DSBlock>
 
-  <DSBlock title="Animation Attributes">
-    <DSNote>
-      <code>data-animate-elem</code> on elements for reveal animations via <code>revealCards</code>.
-    </DSNote>
-  </DSBlock>
 </section>
 
 <!-- CARD CONTENT -->
@@ -191,6 +188,49 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   </DSBlock>
 </section>
 
+<!-- EXPERIENCE CARD -->
+<section id="experience-card">
+  <DSSectionHeader title="Experience Card" atomic="Template" framework="astro" />
+  <p>Composed card pattern used in the Experiences section: Spotlight + Card + CardContent + CardTitle.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview class="preview-card" id="experience-card-spotlight" data-spotlight>
+      <Spotlight color="var(--pink)">
+        <CardComponent>
+          <CardContent>
+            <CardTitle
+              slot="title"
+              title="Lead Developer"
+              tag="Freelance"
+              href="https://example.com"
+              label="Company"
+              location="Lille"
+              date="2024"
+            />
+            <p slot="description">
+              Description of the role and responsibilities. Includes <strong>highlighted</strong> technologies and achievements.
+            </p>
+            <ul>
+              <li>Feature or responsibility one</li>
+              <li>Feature or responsibility two</li>
+            </ul>
+            <div slot="marge" class="logo-placeholder">Logo</div>
+          </CardContent>
+        </CardComponent>
+      </Spotlight>
+    </DSPreview>
+  </DSBlock>
+</section>
+
+<script>
+  import { spotlight } from "@/lib/dom/spotlight";
+
+  const container = document.getElementById("experience-card-spotlight");
+  if (container) {
+    spotlight(container);
+  }
+</script>
+
 <style>
   .card-content-demo {
     display: flex;
@@ -253,5 +293,27 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   .placeholder-box.full {
     height: 100%;
     min-height: 176px;
+  }
+  .logo-placeholder {
+    width: 51px;
+    height: 51px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--color);
+    opacity: 0.6;
+  }
+  :global(#experience-card-spotlight .ds-preview) ul {
+    list-style: initial;
+    margin-left: 24px;
+    margin-top: 12px;
+  }
+  :global(#experience-card-spotlight .ds-preview) ul li {
+    color: var(--light-color);
+    font-weight: 200;
   }
 </style>

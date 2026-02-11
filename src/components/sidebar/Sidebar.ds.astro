@@ -1,20 +1,17 @@
 ---
-/**
- * Sidebar Component Documentation
- * Design System - Organism
- */
 import SidebarComponent from "./Sidebar.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="sidebar">
   <DSSectionHeader title="Sidebar" atomic="Organism" framework="astro" />
-  <p>Navigation sidebar with sticky positioning and active state support. Used for in-page navigation.</p>
+  <p>
+    Navigation sidebar with sticky positioning and active state support. Used
+    for in-page navigation.
+  </p>
 
   <DSBlock title="Preview">
     <DSPreview class="preview-sidebar">
@@ -43,37 +40,28 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         </nav>
       </aside>
     </DSPreview>
-    <DSCode inline>Add .active class to links via JavaScript</DSCode>
   </DSBlock>
 
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "title" }, "string", "required", "Section title displayed above links"],
-        [{ code: "items" }, "SidebarItem[]", "required", "Array of navigation items"],
+        [
+          { code: "title" },
+          "string",
+          "required",
+          "Section title displayed above links",
+        ],
+        [
+          { code: "items" },
+          "SidebarItem[]",
+          "required",
+          "Array of navigation items",
+        ],
       ]}
     />
   </DSBlock>
 
-  <DSBlock title="SidebarItem Type">
-    <DSCode inline>&#123; label: string; href: string &#125;</DSCode>
-  </DSBlock>
-
-  <DSBlock title="Features">
-    <ul class="feature-list">
-      <li>Sticky positioning at <code>top: 126px</code></li>
-      <li>Active state highlighting with accent color</li>
-      <li>Hover effects with subtle background</li>
-      <li>Responsive: horizontal layout on mobile (&lt;900px)</li>
-    </ul>
-  </DSBlock>
-
-  <DSBlock title="Usage with View Detection">
-    <DSNote>
-      Use <code>viewDetection</code> utility for automatic scroll-based highlighting. The utility adds/removes <code>.active</code> class based on which section is in view.
-    </DSNote>
-  </DSBlock>
 </section>
 
 <style>
@@ -108,21 +96,5 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   .sidebar-demo a.active {
     background-color: rgba(248, 186, 136, 0.12);
     color: var(--accent-color);
-  }
-  .feature-list {
-    list-style: disc;
-    padding-left: 24px;
-    margin: 0;
-  }
-  .feature-list li {
-    font-size: 15px;
-    color: var(--light-color);
-    margin-bottom: 8px;
-  }
-  .feature-list code {
-    background-color: #1c2638;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 13px;
   }
 </style>
