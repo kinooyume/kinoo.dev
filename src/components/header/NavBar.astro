@@ -41,8 +41,9 @@ const { items = defaultItems } = Astro.props;
   import { onHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
 
   function initNavbar() {
-    const navbar = document.querySelector(".navbar") as HTMLElement | null;
-    if (!navbar) return;
+    const navbarEl = document.querySelector(".navbar");
+    if (!navbarEl) return;
+    const navbar = navbarEl as HTMLElement;
     const indicator = navbar.querySelector(".indicator") as HTMLElement;
     const ul = navbar.querySelector("ul") as HTMLElement;
 
