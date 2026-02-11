@@ -17,7 +17,9 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         <Fragment set:html={ekeynoxIcon} />
       </LogoBoxPreview>
     </DSPreview>
-    <DSCode inline>&lt;LogoBox&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode>
+    <DSCode inline
+      >&lt;LogoBox&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode
+    >
   </DSBlock>
 
   <DSBlock title="Fullsize">
@@ -26,14 +28,21 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         <img src="/images/adeo.png" alt="adeo" />
       </LogoBoxPreview>
     </DSPreview>
-    <DSCode inline>&lt;LogoBox fullsize&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode>
+    <DSCode inline
+      >&lt;LogoBox fullsize&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode
+    >
   </DSBlock>
 
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "fullsize" }, "boolean", "false", "No padding, image covers the box"],
+        [
+          { code: "fullsize" },
+          "boolean",
+          "false",
+          "No padding, image covers the box",
+        ],
         [{ code: "class" }, "string", "-", "Additional CSS classes"],
       ]}
     />

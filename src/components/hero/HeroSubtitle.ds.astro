@@ -1,27 +1,39 @@
 ---
-/**
- * HeroSubtitle Component Documentation
- * Design System - Atom
- */
+import Tag from "@/components/shared/atoms/Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="herosubtitle">
   <DSSectionHeader title="HeroSubtitle" atomic="Atom" framework="astro" />
-  <p>Animated subtitle that wraps each character in a span for letter-by-letter animation effects.</p>
+  <p>
+    Animated subtitle that wraps each character in a span for letter-by-letter
+    animation effects.
+  </p>
 
-  <DSBlock title="Preview">
+  <DSBlock title="Interactive">
     <DSPreview class="hero-subtitle-preview">
-      <span class="subtitle-demo">
+      <span class="subtitle-demo" id="subtitle-demo">
         <span class="text-wrapper">
-          <span class="letter">D</span><span class="letter">é</span><span class="letter">v</span><span class="letter">e</span><span class="letter">l</span><span class="letter">o</span><span class="letter">p</span><span class="letter">p</span><span class="letter">e</span><span class="letter">u</span><span class="letter">r</span><span class="letter"> </span><span class="letter">F</span><span class="letter">r</span><span class="letter">o</span><span class="letter">n</span><span class="letter">t</span><span class="letter">e</span><span class="letter">n</span><span class="letter">d</span>
+          <span class="letter">D</span><span class="letter">é</span><span
+            class="letter">v</span
+          ><span class="letter">e</span><span class="letter">l</span><span
+            class="letter">o</span
+          ><span class="letter">p</span><span class="letter">p</span><span
+            class="letter">e</span
+          ><span class="letter">u</span><span class="letter">r</span><span
+            class="letter"
+          >
+          </span><span class="letter">F</span><span class="letter">r</span><span
+            class="letter">o</span
+          ><span class="letter">n</span><span class="letter">t</span><span
+            class="letter">e</span
+          ><span class="letter">n</span><span class="letter">d</span>
         </span>
       </span>
+      <button class="replay-btn" id="subtitle-replay">Replay</button>
     </DSPreview>
   </DSBlock>
 
@@ -29,33 +41,70 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSPropsTable
       headers={["Prop", "Type", "Description"]}
       rows={[
-        [{ code: "subtitle" }, "string", "Text to display (each character wrapped in a span)"],
+        [
+          { code: "subtitle" },
+          "string",
+          "Text to display (each character wrapped in a span)",
+        ],
       ]}
     />
   </DSBlock>
 
-  <DSBlock title="Animation">
-    <DSNote>
-      Each character is wrapped in a <code>&lt;span class="letter"&gt;</code> element. The <code>heroAnime.ts</code> animation applies a staggered <code>translateY</code> effect to reveal letters sequentially.
-    </DSNote>
-  </DSBlock>
+</section>
 
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;HeroSubtitle subtitle="Développeur Frontend Freelance" /&gt;</DSCode>
-  </DSBlock>
+<!-- HERO TITLE -->
+<section id="hero-title">
+  <DSSectionHeader title="Hero Title" atomic="Template" framework="astro" />
+  <p>Combined subtitle + h1 pattern used in the hero section.</p>
 
-  <DSBlock title="Styling">
-    <DSPropsTable
-      headers={["Property", "Value"]}
-      rows={[
-        [{ code: "font-size" }, "var(--hero-span-size)"],
-        [{ code: "font-weight" }, "100"],
-        [{ code: "color" }, "var(--accent-color)"],
-        [{ code: "line-height" }, "38px"],
-      ]}
-    />
+  <DSBlock title="Preview">
+    <DSPreview class="hero-title-preview">
+      <div class="hero-title-demo">
+        <span class="hero-subtitle-text">Développeur Frontend Freelance</span>
+        <h1 class="hero-h1"><span>Martin</span> <span>Kinoo</span></h1>
+      </div>
+    </DSPreview>
   </DSBlock>
 </section>
+
+<!-- TECH STACK TAGS -->
+<section id="tech-tags">
+  <DSSectionHeader title="Tech Stack Tags" atomic="Template" framework="astro" />
+  <p>Tag collection displaying the technology stack, used in the hero section.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <Tag title="TypeScript" hero={true} highlight={true} />
+      <Tag title="React" hero={true} highlight={true} />
+      <Tag title="Svelte" hero={true} />
+      <Tag title="Go" hero={true} />
+    </DSPreview>
+  </DSBlock>
+</section>
+
+<script>
+  function animateLetters() {
+    const letters = document.querySelectorAll<HTMLElement>("#subtitle-demo .letter");
+    letters.forEach((letter) => {
+      letter.style.transform = "translateY(1.1em)";
+      letter.style.opacity = "0";
+    });
+    letters.forEach((letter, i) => {
+      setTimeout(() => {
+        letter.style.transition = "transform 0.6s ease, opacity 0.6s ease";
+        letter.style.transform = "translateY(0)";
+        letter.style.opacity = "1";
+      }, i * 40);
+    });
+  }
+
+  animateLetters();
+  document.getElementById("subtitle-replay")?.addEventListener("click", () => {
+    const letters = document.querySelectorAll<HTMLElement>("#subtitle-demo .letter");
+    letters.forEach((l) => { l.style.transition = "none"; });
+    requestAnimationFrame(() => animateLetters());
+  });
+</script>
 
 <style>
   .hero-subtitle-preview :global(.ds-preview) {
@@ -77,6 +126,43 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     overflow: hidden;
   }
   .subtitle-demo .letter {
+    display: inline-block;
+  }
+  .replay-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .replay-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .hero-title-preview :global(.ds-preview) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-title-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hero-subtitle-text {
+    font-size: 28px;
+    font-weight: 100;
+    color: var(--accent-color);
+  }
+  .hero-h1 {
+    font-size: 64px;
+    font-weight: 200;
+    color: var(--color);
+    margin: 0;
+    line-height: 1;
+  }
+  .hero-h1 span {
     display: inline-block;
   }
 </style>

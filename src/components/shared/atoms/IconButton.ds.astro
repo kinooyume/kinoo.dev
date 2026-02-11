@@ -1,8 +1,4 @@
 ---
-/**
- * IconButton Documentation
- * Design System - Atom
- */
 import IconButtonComponent from "./IconButton.astro";
 import BurgerIcon from "./BurgerIcon.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
@@ -27,7 +23,9 @@ import message from "@/svgs/message.svg?raw";
         <BurgerIcon />
       </IconButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;IconButton label="Menu"&gt;&lt;BurgerIcon /&gt;&lt;/IconButton&gt;</DSCode>
+    <DSCode inline
+      >&lt;IconButton label="Menu"&gt;&lt;BurgerIcon /&gt;&lt;/IconButton&gt;</DSCode
+    >
   </DSBlock>
 
   <DSBlock title="Primary Color">
@@ -36,17 +34,30 @@ import message from "@/svgs/message.svg?raw";
         <Fragment set:html={message} />
       </IconButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;IconButton label="Contact" color="primary"&gt;...&lt;/IconButton&gt;</DSCode>
+    <DSCode inline
+      >&lt;IconButton label="Contact" color="primary"&gt;...&lt;/IconButton&gt;</DSCode
+    >
   </DSBlock>
 
   <DSBlock title="As Link">
     <DSPreview>
-      <IconButtonComponent label="Contact" href="#iconbutton" color="primary" class="primary-demo">
+      <IconButtonComponent
+        label="Contact"
+        href="#iconbutton"
+        color="primary"
+        class="primary-demo"
+      >
         <Fragment set:html={message} />
       </IconButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;IconButton label="Contact" href="#contact" color="primary"&gt;...&lt;/IconButton&gt;</DSCode>
-    <DSNote>When <code>href</code> is provided, renders as <code>&lt;a&gt;</code> instead of <code>&lt;button&gt;</code>.</DSNote>
+    <DSCode inline
+      >&lt;IconButton label="Contact" href="#contact"
+      color="primary"&gt;...&lt;/IconButton&gt;</DSCode
+    >
+    <DSNote
+      >When <code>href</code> is provided, renders as <code>&lt;a&gt;</code> instead
+      of <code>&lt;button&gt;</code>.</DSNote
+    >
   </DSBlock>
 
   <DSBlock title="With Open State">
@@ -55,7 +66,9 @@ import message from "@/svgs/message.svg?raw";
         <BurgerIcon />
       </IconButtonComponent>
     </DSPreview>
-    <DSNote>Add <code>.open</code> class to trigger BurgerIcon animation.</DSNote>
+    <DSNote
+      >Add <code>.open</code> class to trigger BurgerIcon animation.</DSNote
+    >
   </DSBlock>
 
   <DSBlock title="Props">
@@ -64,33 +77,29 @@ import message from "@/svgs/message.svg?raw";
       rows={[
         [{ code: "label" }, "string", "required", "Accessible aria-label"],
         [{ code: "id" }, "string", "-", "Optional ID for JavaScript targeting"],
-        [{ code: "href" }, "string", "-", "If provided, renders as <a> instead of <button>"],
-        [{ code: "variant" }, '"default" | "floating"', '"default"', "Floating adds fixed position and shadow"],
-        [{ code: "color" }, '"default" | "primary"', '"default"', "Color scheme"],
+        [
+          { code: "href" },
+          "string",
+          "-",
+          "If provided, renders as <a> instead of <button>",
+        ],
+        [
+          { code: "variant" },
+          '"default" | "floating"',
+          '"default"',
+          "Floating adds fixed position and shadow",
+        ],
+        [
+          { code: "color" },
+          '"default" | "primary"',
+          '"default"',
+          "Color scheme",
+        ],
         [{ code: "class" }, "string", "-", "Additional CSS classes"],
       ]}
     />
   </DSBlock>
 
-  <DSBlock title="Variants">
-    <DSPropsTable
-      headers={["Variant", "Description"]}
-      rows={[
-        [{ code: "default" }, "Standard button without positioning"],
-        [{ code: "floating" }, "Fixed position with z-index and box-shadow"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Colors">
-    <DSPropsTable
-      headers={["Color", "Description"]}
-      rows={[
-        [{ code: "default" }, "Card background with border"],
-        [{ code: "primary" }, "Accent bright background"],
-      ]}
-    />
-  </DSBlock>
 </section>
 
 <style>

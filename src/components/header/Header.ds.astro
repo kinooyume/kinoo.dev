@@ -1,14 +1,6 @@
 ---
-/**
- * Header Component Documentation
- * Design System - Organism
- */
 import terminal from "@/svgs/terminal.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
-import DSPreview from "@/components/design-system/DSPreview.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
-import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSStructure from "@/components/design-system/DSStructure.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
@@ -34,37 +26,17 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSStructure
       rows={[
         { code: "header", description: "Sticky container with frosted glass" },
-        { code: ".header", description: "Flex container (space-between)", indent: 1 },
+        {
+          code: ".header",
+          description: "Flex container (space-between)",
+          indent: 1,
+        },
         { code: "nav", description: "Left: logo + NavBar", indent: 2 },
         { code: "HeaderMenu", description: "Right: links + CTA", indent: 2 },
       ]}
     />
   </DSBlock>
 
-  <DSBlock title="Frosted Glass">
-    <DSPreview class="glass-demo">
-      <div class="glass-sample">
-        <code>backdrop-filter: blur(30px)</code>
-        <span class="glass-note">+ gradient mask</span>
-      </div>
-    </DSPreview>
-  </DSBlock>
-
-  <DSBlock title="Responsive">
-    <DSPropsTable
-      headers={["Breakpoint", "Height", "Changes"]}
-      rows={[
-        ["Default", "120px", "Full layout"],
-        ["<980px", "120px", "NavBar hidden"],
-        ["<600px", "80px", "CTA hidden"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;Header /&gt;</DSCode>
-    <DSNote>Included in Layout.astro. No props required.</DSNote>
-  </DSBlock>
 </section>
 
 <style>
@@ -107,29 +79,4 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     height: 24px;
   }
 
-  .glass-demo :global(.ds-preview) {
-    background: linear-gradient(135deg, #2a3a5a 0%, #1a2540 50%, #2a3a5a 100%);
-  }
-
-  .glass-sample {
-    background-color: rgba(24, 25, 39, 0.6);
-    backdrop-filter: blur(10px);
-    padding: 24px 32px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .glass-sample code {
-    font-size: 14px;
-    color: var(--accent-bright);
-  }
-
-  .glass-note {
-    font-size: 12px;
-    color: var(--color);
-    opacity: 0.6;
-  }
 </style>

@@ -1,26 +1,23 @@
 ---
-/**
- * NavBar Component Documentation
- * Design System - Molecule
- */
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
-import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
-import DSStructure from "@/components/design-system/DSStructure.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="navbar">
   <DSSectionHeader title="NavBar" atomic="Molecule" framework="astro" />
-  <p>Horizontal navigation bar with scroll-based active indicator and color-coded links for each section.</p>
+  <p>
+    Horizontal navigation bar with scroll-based active indicator and color-coded
+    links for each section.
+  </p>
 
   <DSBlock title="Interactive Demo">
-    <DSNote>Click or hover on links to see the indicator animation.</DSNote>
     <DSPreview>
       <nav class="navbar-interactive" id="navbar-demo">
         <ul>
-          <li><a href="#" data-color="#f68dab" class="nav active">Expériences</a></li>
+          <li>
+            <a href="#" data-color="#f68dab" class="nav active">Expériences</a>
+          </li>
           <li><a href="#" data-color="#66c384" class="nav">Réalisations</a></li>
           <li><a href="#" data-color="#9c85d3" class="nav">Formations</a></li>
         </ul>
@@ -29,91 +26,24 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     </DSPreview>
   </DSBlock>
 
-  <DSBlock title="Link Colors">
-    <DSPreview class="color-demo">
-      <div class="color-link">
-        <a href="#" class="nav-sample" style="--nav-color: #f68dab;">Expériences</a>
-        <div class="color-indicator" style="background-color: #f68dab;"></div>
-        <code>#f68dab</code>
-      </div>
-      <div class="color-link">
-        <a href="#" class="nav-sample" style="--nav-color: #66c384;">Réalisations</a>
-        <div class="color-indicator" style="background-color: #66c384;"></div>
-        <code>#66c384</code>
-      </div>
-      <div class="color-link">
-        <a href="#" class="nav-sample" style="--nav-color: #9c85d3;">Formations</a>
-        <div class="color-indicator" style="background-color: #9c85d3;"></div>
-        <code>#9c85d3</code>
-      </div>
-    </DSPreview>
-  </DSBlock>
-
-  <DSBlock title="Features">
-    <ul class="feature-list">
-      <li>Animated indicator follows active/hovered link</li>
-      <li>Indicator color matches section theme via <code>data-color</code></li>
-      <li>Scroll-based detection updates active state</li>
-      <li>Smooth 300ms transitions</li>
-      <li>Hidden on mobile (&lt;980px)</li>
-    </ul>
-  </DSBlock>
-
-  <DSBlock title="HTML Structure">
-    <DSStructure
-      rows={[
-        { code: "nav.navbar", description: "Container with relative positioning" },
-        { code: "ul", description: "Flex container for links", indent: 1 },
-        { code: "li > a.nav", description: "Navigation links with data-color", indent: 2 },
-        { code: ".indicator", description: "Animated underline element", indent: 1 },
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Data Attributes">
-    <DSPropsTable
-      headers={["Attribute", "Element", "Description"]}
-      rows={[
-        [{ code: "data-color" }, "a.nav", "Hex color for indicator when active/hovered"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="CSS Classes">
-    <DSPropsTable
-      headers={["Class", "Description"]}
-      rows={[
-        [{ code: ".navbar" }, "Main container"],
-        [{ code: ".nav" }, "Navigation link"],
-        [{ code: ".active" }, "Current section (set by scroll detection)"],
-        [{ code: ".enabled" }, "Added after hero animation completes"],
-        [{ code: ".indicator" }, "Moving underline element"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="JavaScript Integration">
-    <DSNote>
-      Uses <code>viewDetection</code> for scroll tracking. Waits for <code>onHeroAnimationComplete</code> before enabling interactions on pages with hero.
-    </DSNote>
-  </DSBlock>
 </section>
 
 <script>
   // Interactive navbar demo
-  const navbar = document.getElementById('navbar-demo');
+  const navbar = document.getElementById("navbar-demo");
   if (navbar) {
     const navbarEl = navbar;
-    const links = navbarEl.querySelectorAll('a');
-    const indicator = navbarEl.querySelector('.indicator') as HTMLElement;
-    let activeLink: Element | null = navbarEl.querySelector('a.active');
+    const links = navbarEl.querySelectorAll("a");
+    const indicator = navbarEl.querySelector(".indicator") as HTMLElement;
+    let activeLink: Element | null = navbarEl.querySelector("a.active");
 
     function updateIndicator(link: Element) {
       const rect = link.getBoundingClientRect();
       const parentRect = navbarEl.getBoundingClientRect();
       indicator.style.left = `${rect.left - parentRect.left}px`;
       indicator.style.width = `${rect.width}px`;
-      indicator.style.backgroundColor = (link as HTMLElement).dataset.color || 'var(--accent-color)';
+      indicator.style.backgroundColor =
+        (link as HTMLElement).dataset.color || "var(--accent-color)";
     }
 
     // Initialize
@@ -122,19 +52,19 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       requestAnimationFrame(() => updateIndicator(link));
     }
 
-    links.forEach(link => {
-      link.addEventListener('mouseenter', () => updateIndicator(link));
+    links.forEach((link) => {
+      link.addEventListener("mouseenter", () => updateIndicator(link));
 
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+        links.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
         activeLink = link;
         updateIndicator(link);
       });
     });
 
-    navbar.addEventListener('mouseleave', () => {
+    navbar.addEventListener("mouseleave", () => {
       if (activeLink) updateIndicator(activeLink);
     });
   }
@@ -177,50 +107,5 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     border-radius: 1px;
     transition: all 0.3s ease;
     background-color: var(--accent-color);
-  }
-  :global(.color-demo) {
-    flex-direction: column;
-    gap: 16px;
-  }
-  .color-link {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .nav-sample {
-    font-size: 18px;
-    font-weight: 200;
-    color: var(--color);
-    text-decoration: none;
-    min-width: 120px;
-  }
-  .nav-sample:hover {
-    color: var(--nav-color);
-  }
-  .color-indicator {
-    width: 60px;
-    height: 3px;
-    border-radius: 2px;
-  }
-  .color-link code {
-    font-size: 13px;
-    color: var(--color);
-    opacity: 0.6;
-  }
-  .feature-list {
-    list-style: disc;
-    padding-left: 24px;
-    margin: 0;
-  }
-  .feature-list li {
-    font-size: 15px;
-    color: var(--light-color);
-    margin-bottom: 8px;
-  }
-  .feature-list code {
-    background-color: #1c2638;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 13px;
   }
 </style>
