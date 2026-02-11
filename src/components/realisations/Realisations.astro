@@ -2,7 +2,7 @@
 import H3Tagged from "@/components/shared/atoms/H3Tagged.astro";
 import Card from "@/components/shared/molecules/Card/Card.astro";
 import CardSplit from "@/components/shared/molecules/Card/CardSplit.astro";
-import Slider from "./Slider.tsx";
+import Slider from "@/components/shared/molecules/Slider/Slider.tsx";
 import arrow from "@/svgs/arrow.svg?raw";
 import TagLink from "@/components/shared/atoms/TagLink.astro";
 import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
@@ -149,14 +149,16 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           </div>
           <CardDescription slot="description">
             <p>
-              Dashboard météo en <b>Svelte 5</b>, exemple d'<b>architecture hexagonale</b>
+              Dashboard météo en <b>Svelte 5</b>, exemple d'<b
+                >architecture hexagonale</b
+              >
               appliquée au frontend.
             </p>
             <br />
             <p>
               Les APIs météo sont interchangeables via <b>ports & adapters</b>
-              (OpenMeteo et mock). Tests unitaires avec <b>Vitest</b> et E2E
-              avec <b>Playwright</b>.
+              (OpenMeteo et mock). Tests unitaires avec <b>Vitest</b> et E2E avec
+              <b>Playwright</b>.
             </p>
             <br />
             <TagRow>
@@ -168,10 +170,7 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           <Slider
             slot="aside"
             client:load
-            pictures={[
-              "sunnydash/01.webp",
-              "sunnydash/02.webp",
-            ]}
+            pictures={["sunnydash/01.webp", "sunnydash/02.webp"]}
           >
             <Fragment set:html={arrow} />
           </Slider>
@@ -185,10 +184,7 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
             <div class="title-container">
               <H3Tagged title="kinoo.dev" tag="Portfolio" />
               <div class="links-row">
-                <TagLink
-                  href="/design-system"
-                  text="Design System"
-                />
+                <TagLink href="/design-system" text="Design System" />
                 <TagLink
                   href="https://github.com/kinooyume/kinoo.dev"
                   text="Voir le code"
@@ -201,19 +197,20 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           </div>
           <CardDescription slot="description">
             <p>
-              Site portfolio personnel conçu avec <b>Astro</b> et <b>SolidJS</b>,
-              optimisé pour la performance et l'accessibilité.
+              Site portfolio personnel conçu avec <b>Astro</b> et <b>SolidJS</b
+              >, optimisé pour la performance et l'accessibilité.
             </p>
             <br />
             <p>
-              Animations fluides avec <b>Anime.js</b> et système de design
-              modulaire avec composants <b>Design System</b>.
+              Animations fluides avec <b>Anime.js</b> et système de design modulaire
+              avec composants <b>Design System</b>.
             </p>
             <br />
             <p>
-              Architecture <b>Islands</b> pour un chargement optimal,
-              formulaire de contact avec validation, et CI/CD automatisé
-              avec <b>conventional commits</b> et déploiement sur <b>Netlify</b>.
+              Architecture <b>Islands</b> pour un chargement optimal, formulaire de
+              contact avec validation, et CI/CD automatisé avec <b
+                >conventional commits</b
+              > et déploiement sur <b>Netlify</b>.
             </p>
             <br />
             <TagRow>
@@ -282,7 +279,6 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
     align-items: center;
   }
 
-
   .title-container {
     display: flex;
     flex-direction: column;
@@ -304,5 +300,4 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
       flex-direction: column;
     }
   }
-
 </style>
