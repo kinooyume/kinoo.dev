@@ -4,7 +4,7 @@ import Card from "@/components/shared/molecules/Card/Card.astro";
 import CardSplit from "@/components/shared/molecules/Card/CardSplit.astro";
 import Slider from "@/components/shared/molecules/Slider/Slider.tsx";
 import arrow from "@/svgs/arrow.svg?raw";
-import TagLink from "@/components/shared/atoms/TagLink.astro";
+import Link from "@/components/shared/atoms/Link.astro";
 import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
@@ -22,7 +22,7 @@ import Section from "@/components/shared/organisms/Section.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="Ekeynox" tag="Projet perso" />
-              <TagLink
+              <Link
                 href="https://ekeynox.kinoo.dev"
                 text="Visiter le site"
               />
@@ -83,11 +83,11 @@ import Section from "@/components/shared/organisms/Section.astro";
             <div class="title-container">
               <H3Tagged title="Arteflix" tag="Projet perso" />
               <div class="links-row">
-                <TagLink
+                <Link
                   href="https://arteflix.kinoo.dev"
                   text="Visiter le site"
                 />
-                <TagLink
+                <Link
                   href="https://github.com/kinooyume/arteflix"
                   text="Voir le code"
                 />
@@ -137,7 +137,7 @@ import Section from "@/components/shared/organisms/Section.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="SunnyDash" tag="Projet perso" />
-              <TagLink
+              <Link
                 href="https://github.com/kinooyume/sunnydash"
                 text="Voir le code"
               />
@@ -183,8 +183,8 @@ import Section from "@/components/shared/organisms/Section.astro";
             <div class="title-container">
               <H3Tagged title="kinoo.dev" tag="Portfolio" />
               <div class="links-row">
-                <TagLink href="/design-system" text="Design System" />
-                <TagLink
+                <Link href="/design-system" text="Design System" />
+                <Link
                   href="https://github.com/kinooyume/kinoo.dev"
                   text="Voir le code"
                 />
