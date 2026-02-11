@@ -1,3 +1,4 @@
+import { Portal } from "solid-js/web";
 import { Show, createEffect, createSignal, on } from "solid-js";
 
 import {
@@ -12,7 +13,6 @@ type ContactFormType = {
   name: string;
   email: string;
   message: string;
-  access_key?: string;
 };
 
 enum FormState {
@@ -35,34 +35,24 @@ const ContactForm = (props: Props) => {
     values,
     _event,
   ) => {
-    const form = {
-      ...values,
-      access_key: props.accessToken,
-    };
-
     setFormState(FormState.sending);
     try {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("message", values.message);
+      formData.append("access_key", props.accessToken);
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
+        body: formData,
       });
 
-      if (response.ok) {
-        // const data = await response.json();
+      const data = await response.json();
+      if (data.success) {
         setFormState(FormState.sended);
       } else {
-        // Custom message for failed HTTP codes
-        if (response.status === 404) {
-          throw new Error("404, Not found");
-        }
-        if (response.status === 500) {
-          throw new Error("500, internal server error");
-        }
-        throw new Error(response.status.toString());
+        throw new Error(data.message || "Form submission failed");
       }
     } catch (error) {
       setError(`Error: ${error}`);
@@ -70,9 +60,10 @@ const ContactForm = (props: Props) => {
     }
   };
 
+  const disabled = () => formState() === FormState.sending;
+
   const [toastId, setToastId] = createSignal<string>();
 
-  // TODO: make a memo
   createEffect(
     on(formState, () => {
       switch (formState()) {
@@ -99,12 +90,14 @@ const ContactForm = (props: Props) => {
 
   return (
     <div class="about-contact">
-      <Toaster
-        gutter={8}
-        toastOptions={{
-          duration: 7000,
-        }}
-      />
+      <Portal>
+        <Toaster
+          gutter={8}
+          toastOptions={{
+            duration: 7000,
+          }}
+        />
+      </Portal>
       <Show when={formState() === FormState.error}>
         <span class="error">{error()}</span>
       </Show>
@@ -119,7 +112,7 @@ const ContactForm = (props: Props) => {
                 <label for="name">{"Nom"}</label>
                 <input
                   id="name"
-                  disabled={formState() === FormState.sending}
+                  disabled={disabled()}
                   {...props}
                   type="txt"
                   placeholder="Nom"
@@ -143,7 +136,7 @@ const ContactForm = (props: Props) => {
                 <label for="email">{"Email"}</label>
                 <input
                   id="email"
-                  disabled={formState() === FormState.sending}
+                  disabled={disabled()}
                   {...props}
                   type="email"
                   placeholder="email"
@@ -161,7 +154,7 @@ const ContactForm = (props: Props) => {
                 <label for="message">{"Message"}</label>
                 <textarea
                   id="message"
-                  disabled={formState() === FormState.sending}
+                  disabled={disabled()}
                   {...props}
                   placeholder="message"
                   required
@@ -172,7 +165,7 @@ const ContactForm = (props: Props) => {
         </div>
         <div class="actions">
           <button
-            disabled={formState() === FormState.sending}
+            disabled={disabled()}
             class="primary"
             type="submit"
           >
