@@ -4,14 +4,15 @@ import Tag from "./Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
-import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="tagrow">
   <DSSectionHeader title="TagRow" atomic="Atom" framework="astro" />
-  <p>Flex row for <code>Tag</code> components. Uses <code>margin-top: auto</code> to push down and <code>padding-top</code> for minimum spacing.</p>
+  <p>
+    Flex row for <code>Tag</code> components. Uses <code>margin-top: auto</code> to
+    push down and <code>padding-top</code> for minimum spacing.
+  </p>
 
   <DSBlock title="Preview">
     <DSPreview>
@@ -21,22 +22,10 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         <Tag title="Next.js" />
       </TagRowPreview>
     </DSPreview>
-    <DSCode inline>&lt;TagRow&gt;&lt;Tag title="React" /&gt;&lt;Tag title="TypeScript" /&gt;&lt;/TagRow&gt;</DSCode>
+    <DSCode inline
+      >&lt;TagRow&gt;&lt;Tag title="React" /&gt;&lt;Tag title="TypeScript"
+      /&gt;&lt;/TagRow&gt;</DSCode
+    >
   </DSBlock>
 
-  <DSBlock title="Responsive spacing">
-    <DSPropsTable
-      headers={["Property", "Desktop", "≤900px", "≤600px"]}
-      rows={[
-        ["padding-top", "36px", "24px", "18px"],
-        ["gap", "8px", "8px", "8px"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Behavior">
-    <DSNote>
-      <code>margin-top: auto</code> pushes to the bottom of a flex parent. <code>padding-top</code> sets the minimum gap from content above.
-    </DSNote>
-  </DSBlock>
 </section>

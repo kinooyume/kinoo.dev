@@ -1,0 +1,46 @@
+---
+import ContactFormComponent from "./ContactForm.tsx";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="contactform">
+  <DSSectionHeader title="ContactForm" atomic="Organism" framework="solid" />
+  <p>Interactive contact form powered by SolidJS and Modular Forms.</p>
+
+  <DSBlock title="Preview">
+    <div class="contactform-demo" id="contactform-demo">
+      <ContactFormComponent client:load accessToken="" />
+    </div>
+    <DSNote>Demo mode — form submission is disabled.</DSNote>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        [{ code: "accessToken" }, "string", "Web3Forms API access key"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<script>
+  const container = document.getElementById("contactform-demo");
+  container?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }, true);
+</script>
+
+<style>
+  .contactform-demo {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 500px;
+  }
+</style>

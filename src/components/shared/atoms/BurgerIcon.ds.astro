@@ -1,14 +1,8 @@
 ---
-/**
- * BurgerIcon Documentation
- * Design System - Atom
- */
 import BurgerIconComponent from "./BurgerIcon.astro";
 import IconButton from "./IconButton.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
-import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
@@ -17,67 +11,35 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   <DSSectionHeader title="BurgerIcon" atomic="Atom" framework="astro" />
   <p>Animated hamburger menu icon that transforms to an X when the parent has <code>.open</code> class.</p>
 
-  <DSBlock title="States">
+  <DSBlock title="Interactive">
     <DSPreview>
-      <div class="state-demo">
-        <div class="state-item">
-          <IconButton label="Closed menu">
-            <BurgerIconComponent />
-          </IconButton>
-          <span>Closed</span>
-        </div>
-        <div class="state-item">
-          <IconButton label="Open menu" class="open">
-            <BurgerIconComponent />
-          </IconButton>
-          <span>Open</span>
-        </div>
+      <div class="toggle-demo" id="burger-toggle">
+        <IconButton label="Toggle menu" class="burger-demo-btn">
+          <BurgerIconComponent />
+        </IconButton>
+        <span class="state-label">Click to toggle</span>
       </div>
     </DSPreview>
-  </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;BurgerIcon /&gt;</DSCode>
     <DSNote>
       Designed to be used inside an <code>IconButton</code>. The animation triggers when the parent element has the <code>.open</code> class.
     </DSNote>
   </DSBlock>
-
-  <DSBlock title="Props">
-    <DSPropsTable
-      headers={["Prop", "Type", "Default", "Description"]}
-      rows={[
-        [{ code: "class" }, "string", "-", "Additional CSS classes"],
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Animation">
-    <DSNote>
-      The three lines transform using CSS transitions (0.3s ease):
-      <ul style="margin-top: 8px; padding-left: 20px;">
-        <li>Top line rotates 45deg and moves down</li>
-        <li>Middle line fades out</li>
-        <li>Bottom line rotates -45deg and moves up</li>
-      </ul>
-    </DSNote>
-  </DSBlock>
 </section>
 
-<style>
-  .state-demo {
-    display: flex;
-    gap: 32px;
-  }
+<script>
+  const btn = document.querySelector(".burger-demo-btn");
+  btn?.addEventListener("click", () => btn.classList.toggle("open"));
+</script>
 
-  .state-item {
+<style>
+  .toggle-demo {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
   }
 
-  .state-item span {
+  .state-label {
     font-size: 13px;
     color: var(--color);
     opacity: 0.7;

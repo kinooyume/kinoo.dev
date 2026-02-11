@@ -1,8 +1,4 @@
 ---
-/**
- * HeaderMenu Documentation
- * Design System - Molecule
- */
 import HeaderMenuComponent from "./HeaderMenu.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -41,8 +37,16 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSStructure
       rows={[
         { code: ".header-menu", description: "Flex container with gap" },
-        { code: "HeaderLink (icon)", description: "GitHub icon link", indent: 1 },
-        { code: "HeaderLink (icon)", description: "LinkedIn icon link", indent: 1 },
+        {
+          code: "HeaderLink (icon)",
+          description: "GitHub icon link",
+          indent: 1,
+        },
+        {
+          code: "HeaderLink (icon)",
+          description: "LinkedIn icon link",
+          indent: 1,
+        },
         { code: "HeaderLink (badge)", description: "CV badge link", indent: 1 },
         { code: "HeaderLink (badge)", description: "DS badge link", indent: 1 },
         { code: "a.primary", description: "Contact CTA button", indent: 1 },
@@ -52,7 +56,8 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Responsive">
     <DSNote>
-      On mobile (&lt;600px), the "Me contacter" button is hidden and gap is reduced to 20px.
+      On mobile (&lt;600px), the "Me contacter" button is hidden and gap is
+      reduced to 20px.
     </DSNote>
   </DSBlock>
 </section>

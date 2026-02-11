@@ -37,6 +37,7 @@ export const sidebarSections: SidebarSection[] = [
       { label: "Spotlight", href: "#spotlight", framework: "astro" },
       { label: "LogoBox", href: "#logobox", framework: "astro" },
       { label: "H3Tagged", href: "#h3tagged", framework: "astro" },
+      { label: "Experience Card", href: "#experience-card", framework: "astro" },
     ],
   },
   {
@@ -71,6 +72,8 @@ export const sidebarSections: SidebarSection[] = [
     title: "Hero",
     items: [
       { label: "HeroSubtitle", href: "#herosubtitle", framework: "astro" },
+      { label: "Hero Title", href: "#hero-title", framework: "astro" },
+      { label: "Tech Stack Tags", href: "#tech-tags", framework: "astro" },
     ],
   },
   {
@@ -78,19 +81,12 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "Contact", href: "#contact-doc", framework: "astro" },
       { label: "ContactForm", href: "#contactform", framework: "solid" },
-      { label: "FloatingContact", href: "#floatingcontact", framework: "astro" },
     ],
   },
   {
     title: "Footer",
     items: [
       { label: "Footer", href: "#footer-doc", framework: "astro" },
-    ],
-  },
-  {
-    title: "Compositions",
-    items: [
-      { label: "Compositions", href: "#compositions" },
     ],
   },
   {

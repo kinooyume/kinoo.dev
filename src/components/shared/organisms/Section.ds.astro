@@ -1,49 +1,21 @@
 ---
-/**
- * Section Pattern Documentation
- * Design System - Organism
- * Shared pattern used by Experiences, Realisations, and Formations
- */
-import Card from "@/components/shared/molecules/Card/Card.astro";
-import CardContent from "@/components/shared/molecules/Card/CardContent.astro";
-import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
-import Spotlight from "@/components/shared/molecules/Spotlight.astro";
-import Tag from "@/components/shared/atoms/Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
-import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
-import DSStructure from "@/components/design-system/DSStructure.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-
-const themingCode = `#experiences {
-  --accent-color: #f68dab;
-  --secondary-accent-color: #f8c8d9;
-  --card-title-font-size: 16px;
-}`;
-
-const spotlightCode = `import { spotlight } from "@/lib/dom/spotlight";
-
-const container = document.getElementById("experiences-grid");
-if (container) spotlight(container);`;
 ---
 
-<!-- SECTION PATTERN -->
 <section id="section-pattern">
-  <DSSectionHeader title="Section Pattern" atomic="Organism" framework="astro" />
-  <p>Shared layout pattern used by Experiences, Realisations, and Formations sections. Combines section header, themed grid, and card-based content.</p>
-
-  <DSBlock title="Pattern Overview">
-    <DSPropsTable
-      headers={["Section", "Color Theme", "Card Type", "Grid Layout"]}
-      rows={[
-        [{ code: "Experiences" }, "Pink (#f68dab)", "CardContent", "2-column masonry"],
-        [{ code: "Realisations" }, "Green (#66c384)", "CardSplit", "3-column"],
-        [{ code: "Formations" }, "Purple (#9c85d3)", "CardContent", "3-column"],
-      ]}
-    />
-  </DSBlock>
+  <DSSectionHeader
+    title="Section Pattern"
+    atomic="Organism"
+    framework="astro"
+  />
+  <p>
+    Shared layout pattern used by Experiences, Realisations, and Formations
+    sections.
+  </p>
 
   <DSBlock title="Section Header">
     <DSPreview class="section-header-preview">
@@ -52,131 +24,33 @@ if (container) spotlight(container);`;
         <h2 class="section-h2">Expériences</h2>
       </div>
     </DSPreview>
-    <DSNote>
-      All sections use <code>&lt;span class="subtitle"&gt;</code> + <code>&lt;h2&gt;</code> pattern with section-specific accent colors.
-    </DSNote>
   </DSBlock>
 
-  <DSBlock title="Structure">
-    <DSStructure
-      rows={[
-        { code: "<section>", description: "Container with data-animate-section" },
-        { code: "<span.subtitle>", description: "Section label (e.g., \"Mes\")", indent: 1 },
-        { code: "<h2>", description: "Section title", indent: 1 },
-        { code: "<div.grid>", description: "Grid with data-spotlight", indent: 1 },
-        { code: "<Spotlight>", description: "Hover effect wrapper", indent: 2 },
-        { code: "<Card>", description: "Card container", indent: 3 },
-        { code: "<CardContent>", description: "or CardSplit for realisations", indent: 4 },
-      ]}
-    />
-  </DSBlock>
-
-  <DSBlock title="Section Theming">
-    <DSNote>
-      Each section overrides CSS custom properties for its color theme:
-    </DSNote>
-    <DSCode>{themingCode}</DSCode>
+  <DSBlock title="Props">
     <DSPropsTable
-      headers={["Variable", "Purpose"]}
+      headers={["Prop", "Type", "Description"]}
       rows={[
-        [{ code: "--accent-color" }, "Primary section color (subtitle, links, tags)"],
-        [{ code: "--secondary-accent-color" }, "Lighter variant for hover states"],
-        [{ code: "--card-title-font-size" }, "Title size override"],
+        [{ code: "id" }, "string", "Section anchor ID"],
+        [{ code: "subtitle" }, "string", 'Label above the title (e.g., "Mes")'],
+        [{ code: "title" }, "string", "Section heading"],
       ]}
     />
   </DSBlock>
 
-  <DSBlock title="Data Attributes">
+  <DSBlock title="Sections">
     <DSPropsTable
-      headers={["Attribute", "Element", "Purpose"]}
+      headers={["Section", "Color Theme", "Card Type"]}
       rows={[
-        [{ code: "data-animate-section" }, "section", "Triggers section reveal animation"],
-        [{ code: "data-spotlight" }, ".grid", "Enables spotlight mouse tracking"],
-        [{ code: "data-animate-elem" }, "cards", "Staggered card reveal"],
+        [{ code: "Experiences" }, "Pink (#f68dab)", "CardContent"],
+        [{ code: "Realisations" }, "Green (#66c384)", "CardSplit"],
+        [{ code: "Formations" }, "Purple (#9c85d3)", "CardContent"],
       ]}
     />
-  </DSBlock>
-
-  <DSBlock title="Grid Layouts">
-    <div class="grid-demos">
-      <div class="grid-demo">
-        <span class="grid-label">Experiences (2-col masonry)</span>
-        <div class="grid-preview experiences-grid">
-          <div class="cell span-2">Adeo</div>
-          <div class="cell">Verty</div>
-          <div class="cell span-rows">OPO</div>
-          <div class="cell">Impact H.</div>
-        </div>
-      </div>
-      <div class="grid-demo">
-        <span class="grid-label">Formations (3-col)</span>
-        <div class="grid-preview formations-grid">
-          <div class="cell span-3">Epitech</div>
-          <div class="cell">Manipal</div>
-          <div class="cell">DernierCri</div>
-          <div class="cell">Eurotunnel</div>
-        </div>
-      </div>
-      <div class="grid-demo">
-        <span class="grid-label">Realisations (3-col)</span>
-        <div class="grid-preview realisations-grid">
-          <div class="cell span-3">Arteflix</div>
-          <div class="cell span-3">Ekeynox</div>
-          <div class="cell span-3">kinoo.dev</div>
-        </div>
-      </div>
-    </div>
-  </DSBlock>
-
-  <DSBlock title="Spotlight Integration">
     <DSNote>
-      Each section initializes the spotlight effect via script:
+      Each section overrides <code>--accent-color</code> and <code>--secondary-accent-color</code> via scoped <code>:global(#id)</code>.
     </DSNote>
-    <DSCode>{spotlightCode}</DSCode>
-  </DSBlock>
-
-  <DSBlock title="Demo">
-    <DSPreview class="preview-card section-demo" id="section-demo" data-spotlight>
-      <Spotlight color="var(--pink)">
-        <Card>
-          <CardContent>
-            <CardTitle
-              slot="title"
-              title="Example Card"
-              tag="Demo"
-              href="#"
-              label="Company"
-              location="Location"
-              date="2024"
-            />
-            <p slot="description">
-              This demonstrates the card pattern used in section grids.
-            </p>
-            <img
-              slot="marge"
-              src="/favicon.svg"
-              alt="demo"
-              style="width: 51px; height: 51px;"
-            />
-            <div class="row">
-              <Tag title="Tag 1" />
-              <Tag title="Tag 2" />
-            </div>
-          </CardContent>
-        </Card>
-      </Spotlight>
-    </DSPreview>
   </DSBlock>
 </section>
-
-<script>
-  import { spotlight } from "@/lib/dom/spotlight";
-
-  const container = document.getElementById("section-demo");
-  if (container) {
-    spotlight(container);
-  }
-</script>
 
 <style>
   .section-header-preview :global(.ds-preview) {
@@ -201,74 +75,5 @@ if (container) spotlight(container);`;
     font-weight: 300;
     color: var(--color);
     margin: 0;
-  }
-
-  .grid-demos {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .grid-demo {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .grid-label {
-    font-size: 13px;
-    color: var(--accent-color);
-  }
-
-  .grid-preview {
-    display: grid;
-    gap: 8px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 12px;
-    border-radius: 8px;
-  }
-
-  .experiences-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 40px);
-  }
-
-  .formations-grid {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 40px);
-  }
-
-  .realisations-grid {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 40px);
-  }
-
-  .cell {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: var(--color);
-    opacity: 0.7;
-  }
-
-  .span-2 { grid-column: span 2; }
-  .span-3 { grid-column: span 3; }
-  .span-rows { grid-row: span 2; }
-
-  .section-demo {
-    --accent-color: #f68dab;
-    --secondary-accent-color: #f8c8d9;
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
   }
 </style>
