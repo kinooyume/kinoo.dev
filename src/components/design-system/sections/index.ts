@@ -1,9 +1,3 @@
-/**
- * Design System Sections Registry
- * Centralizes sidebar configuration for all DS sections
- */
-
-// Types for sidebar navigation
 export type Framework = "astro" | "solid";
 export type SidebarLeaf = { label: string; href: string; framework?: Framework };
 export type SidebarGroup = { label: string; children: SidebarNode[] };
@@ -13,7 +7,6 @@ export type SidebarSection = { title: string; items: SidebarNode[] };
 export const isGroup = (node: SidebarNode): node is SidebarGroup =>
   "children" in node;
 
-// Sidebar configuration - each section registers its items here
 export const sidebarSections: SidebarSection[] = [
   {
     title: "Foundations",
@@ -24,47 +17,39 @@ export const sidebarSections: SidebarSection[] = [
     ],
   },
   {
-    title: "Shared",
+    title: "Atoms",
     items: [
-      {
-        label: "Atoms",
-        children: [
-          { label: "Tag", href: "#tag", framework: "astro" },
-          { label: "TagLink", href: "#taglink", framework: "astro" },
-          { label: "Button", href: "#button", framework: "astro" },
-          { label: "IconButton", href: "#iconbutton", framework: "astro" },
-          { label: "BurgerIcon", href: "#burgericon", framework: "astro" },
-          { label: "H3Tagged", href: "#h3tagged", framework: "astro" },
-          { label: "LogoBox", href: "#logobox", framework: "astro" },
-          { label: "TagRow", href: "#tagrow", framework: "astro" },
-        ],
-      },
-      {
-        label: "Molecules",
-        children: [
-          {
-            label: "Card",
-            children: [
-              { label: "Card", href: "#card", framework: "astro" },
-              { label: "CardContent", href: "#card-content", framework: "astro" },
-              { label: "CardTitle", href: "#card-title", framework: "astro" },
-              { label: "CardSplit", href: "#card-split", framework: "astro" },
-              { label: "CardDescription", href: "#card-description", framework: "astro" },
-            ],
-          },
-          { label: "Spotlight", href: "#spotlight", framework: "astro" },
-          { label: "Slider", href: "#slider", framework: "solid" },
-        ],
-      },
-      {
-        label: "Organisms",
-        children: [{ label: "Section Pattern", href: "#section-pattern", framework: "astro" }],
-      },
+      { label: "Button", href: "#button", framework: "astro" },
+      { label: "IconButton", href: "#iconbutton", framework: "astro" },
+      { label: "Tag", href: "#tag", framework: "astro" },
+      { label: "TagRow", href: "#tagrow", framework: "astro" },
+      { label: "Link", href: "#link", framework: "astro" },
     ],
   },
   {
-    title: "Hero",
-    items: [{ label: "HeroSubtitle", href: "#herosubtitle", framework: "astro" }],
+    title: "Card",
+    items: [
+      { label: "Card", href: "#card", framework: "astro" },
+      { label: "CardContent", href: "#card-content", framework: "astro" },
+      { label: "CardTitle", href: "#card-title", framework: "astro" },
+      { label: "CardSplit", href: "#card-split", framework: "astro" },
+      { label: "CardDescription", href: "#card-description", framework: "astro" },
+      { label: "Spotlight", href: "#spotlight", framework: "astro" },
+      { label: "LogoBox", href: "#logobox", framework: "astro" },
+      { label: "H3Tagged", href: "#h3tagged", framework: "astro" },
+    ],
+  },
+  {
+    title: "Slider",
+    items: [
+      { label: "Slider", href: "#slider", framework: "solid" },
+    ],
+  },
+  {
+    title: "Section",
+    items: [
+      { label: "Section Pattern", href: "#section-pattern", framework: "astro" },
+    ],
   },
   {
     title: "Header",
@@ -76,6 +61,19 @@ export const sidebarSections: SidebarSection[] = [
     ],
   },
   {
+    title: "Navigation",
+    items: [
+      { label: "BurgerIcon", href: "#burgericon", framework: "astro" },
+      { label: "Sidebar", href: "#sidebar", framework: "astro" },
+    ],
+  },
+  {
+    title: "Hero",
+    items: [
+      { label: "HeroSubtitle", href: "#herosubtitle", framework: "astro" },
+    ],
+  },
+  {
     title: "Contact",
     items: [
       { label: "Contact", href: "#contact-doc", framework: "astro" },
@@ -84,16 +82,16 @@ export const sidebarSections: SidebarSection[] = [
     ],
   },
   {
-    title: "Sidebar",
-    items: [{ label: "Sidebar", href: "#sidebar", framework: "astro" }],
-  },
-  {
     title: "Footer",
-    items: [{ label: "Footer", href: "#footer-doc", framework: "astro" }],
+    items: [
+      { label: "Footer", href: "#footer-doc", framework: "astro" },
+    ],
   },
   {
-    title: "Templates",
-    items: [{ label: "Compositions", href: "#compositions" }],
+    title: "Compositions",
+    items: [
+      { label: "Compositions", href: "#compositions" },
+    ],
   },
   {
     title: "DS Components",
