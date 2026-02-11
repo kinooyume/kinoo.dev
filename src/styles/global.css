@@ -1,6 +1,5 @@
 /**
  * Global Styles - Base styles and reset
- * Imported by Layout.astro
  */
 
 /* ===== Font Definitions ===== */
@@ -145,13 +144,6 @@ h3 {
   line-height: 1;
 }
 
-.subtitle {
-  color: var(--accent-color);
-  font-weight: 200;
-  font-size: var(--subtitle-size);
-  margin: 0;
-}
-
 p,
 label {
   font-size: var(--font-size);
@@ -240,11 +232,6 @@ a.cv {
   a:hover.cv {
     opacity: 1;
   }
-}
-
-/* ===== Sections ===== */
-section {
-  margin: var(--section-margin) 0;
 }
 
 /* ===== Responsive ===== */

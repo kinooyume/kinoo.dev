@@ -1,0 +1,24 @@
+---
+interface Props {
+  id: string;
+  subtitle: string;
+  title: string;
+}
+
+const { id, subtitle, title } = Astro.props;
+---
+
+<section id={id} data-animate-section>
+  <span class="subtitle">{subtitle}</span>
+  <h2>{title}</h2>
+  <slot />
+</section>
+
+<style>
+  .subtitle {
+    color: var(--accent-color);
+    font-weight: 200;
+    font-size: var(--subtitle-size);
+    margin: 0;
+  }
+</style>
