@@ -17,10 +17,7 @@ const SliderPagination = (props: PaginationProps) => {
           <For each={props.pictures}>
             {(_, index) => (
               <li classList={{ active: index() === props.index() }}>
-                <button
-                  onClick={() => props.moveTo(index())}
-                  tabIndex={-1}
-                />
+                <button onClick={() => props.moveTo(index())} tabIndex={-1} />
               </li>
             )}
           </For>

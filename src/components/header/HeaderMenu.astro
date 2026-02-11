@@ -1,8 +1,4 @@
 ---
-/**
- * HeaderMenu - Header navigation links container
- * Design System - Molecule
- */
 import HeaderLink from "./HeaderLink.astro";
 import github from "@/svgs/github.svg?raw";
 import linkedin from "@/svgs/linkedin.svg?raw";
@@ -12,7 +8,11 @@ import linkedin from "@/svgs/linkedin.svg?raw";
   <HeaderLink href="https://github.com/KinooYume" label="GitHub" external>
     <Fragment set:html={github} />
   </HeaderLink>
-  <HeaderLink href="https://linkedin.com/in/martin-kinoo" label="LinkedIn" external>
+  <HeaderLink
+    href="https://linkedin.com/in/martin-kinoo"
+    label="LinkedIn"
+    external
+  >
     <Fragment set:html={linkedin} />
   </HeaderLink>
   <HeaderLink href="MartinKinooCV.pdf" label="CV" variant="badge" external />
@@ -28,7 +28,6 @@ import linkedin from "@/svgs/linkedin.svg?raw";
     gap: 24px;
   }
 
-  /* Hide entire menu on mobile - everything is in the mobile sidebar */
   @media screen and (max-width: 1100px) {
     .header-menu {
       display: none;
