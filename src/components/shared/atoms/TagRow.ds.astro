@@ -1,5 +1,5 @@
 ---
-import TagRow from "./TagRow.astro";
+import TagRowPreview from "./TagRow.astro";
 import Tag from "./Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -15,11 +15,11 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Preview">
     <DSPreview>
-      <TagRow>
+      <TagRowPreview>
         <Tag title="React" />
         <Tag title="TypeScript" />
         <Tag title="Next.js" />
-      </TagRow>
+      </TagRowPreview>
     </DSPreview>
     <DSCode inline>&lt;TagRow&gt;&lt;Tag title="React" /&gt;&lt;Tag title="TypeScript" /&gt;&lt;/TagRow&gt;</DSCode>
   </DSBlock>

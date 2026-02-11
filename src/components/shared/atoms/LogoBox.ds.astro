@@ -1,5 +1,5 @@
 ---
-import LogoBox from "./LogoBox.astro";
+import LogoBoxPreview from "./LogoBox.astro";
 import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -13,18 +13,18 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Default (centered)">
     <DSPreview>
-      <LogoBox>
+      <LogoBoxPreview>
         <Fragment set:html={ekeynoxIcon} />
-      </LogoBox>
+      </LogoBoxPreview>
     </DSPreview>
     <DSCode inline>&lt;LogoBox&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Fullsize">
     <DSPreview>
-      <LogoBox fullsize>
+      <LogoBoxPreview fullsize>
         <img src="/images/adeo.png" alt="adeo" />
-      </LogoBox>
+      </LogoBoxPreview>
     </DSPreview>
     <DSCode inline>&lt;LogoBox fullsize&gt;&lt;img src="..." /&gt;&lt;/LogoBox&gt;</DSCode>
   </DSBlock>
