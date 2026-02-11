@@ -17,6 +17,7 @@ function animateCard(card: Element) {
         targets: card,
         opacity: [0, 1],
         translateY: [20, 0],
+        scale: 1,
         duration: 500,
         easing: "easeOutCubic",
       })
