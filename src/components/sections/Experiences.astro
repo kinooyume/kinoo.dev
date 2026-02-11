@@ -7,11 +7,10 @@ import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
+import Section from "@/components/shared/organisms/Section.astro";
 ---
 
-<section id="experiences" data-animate-section>
-  <span class="subtitle">Mes</span>
-  <h2>Expériences</h2>
+<Section id="experiences" subtitle="Mes" title="Expériences">
   <div class="grid" id="experiences-grid" data-spotlight>
     <Spotlight color="var(--pink)" class="adeo">
       <Card>
@@ -27,17 +26,19 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           />
           <CardDescription>
             <p>
-              Développement d'applications de data discovery et gouvernance au sein de
-              l'écosystème <strong>DataHub</strong> pour la plateforme data.
+              Développement d'applications de data discovery et gouvernance au
+              sein de l'écosystème <strong>DataHub</strong> pour la plateforme data.
             </p>
             <ul>
               <li>
-                Application <strong>Svelte</strong> dans une architecture <strong>micro-frontend</strong> (Kobi)
-                avec backend <strong>NestJS</strong> (Vault, Datadog).
+                Application <strong>Svelte</strong> dans une architecture <strong
+                  >micro-frontend</strong
+                > (Kobi) avec backend <strong>NestJS</strong> (Vault, Datadog).
               </li>
               <li>
                 Application <strong>Vue 3</strong> : migration progressive vers
-                <strong>Composition API</strong> et <strong>Pinia</strong>, maintenance et développement.
+                <strong>Composition API</strong> et <strong>Pinia</strong>,
+                maintenance et développement.
               </li>
               <li>Développement du Design System interne.</li>
             </ul>
@@ -74,7 +75,11 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
             </p>
           </CardDescription>
           <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/impacthorizon.webp" alt="impacthorizon" />
+            <img
+              loading="lazy"
+              src="images/impacthorizon.webp"
+              alt="impacthorizon"
+            />
           </LogoBox>
           <TagRow>
             <Tag title="React" />
@@ -98,7 +103,9 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           <CardDescription>
             <p>
               Conception et développement d'une synchronisation entre Shopify et
-              un site de vente externe via les APIs. Services en <strong>Go</strong>
+              un site de vente externe via les APIs. Services en <strong
+                >Go</strong
+              >
               hébergés sur Scaleway, avec une architecture fiable et maintenable.
               Monitoring avec <strong>Grafana</strong>.
             </p>
@@ -129,9 +136,9 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           <CardDescription>
             <p>
               Responsable du développement du catalogue des formations gamifiées
-              et formations sur-mesure, de l'infrastructure et du parcours client.
-              En collaboration étroite avec l'UX designer, le marketing ainsi que
-              les clients.
+              et formations sur-mesure, de l'infrastructure et du parcours
+              client. En collaboration étroite avec l'UX designer, le marketing
+              ainsi que les clients.
             </p>
             <ul>
               <li>
@@ -147,8 +154,8 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
                 monitoring avec <b>Sentry</b>.
               </li>
               <li>
-                Architecture Backend <b>SOA</b>, services internes en <b>Go</b> et services
-                externes (headlessCMS, CRM, ...).
+                Architecture Backend <b>SOA</b>, services internes en <b>Go</b> et
+                services externes (headlessCMS, CRM, ...).
               </li>
               <li>
                 Api principalement en <b>REST</b> et <b>GraphQL</b> pour le headlessCMS.
@@ -196,7 +203,9 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
               ordonnances numériques.
             </p>
             <ul>
-              <li>Application electron.js se comportant comme une imprimante</li>
+              <li>
+                Application electron.js se comportant comme une imprimante
+              </li>
               <li>Chiffrement d'ordonnance avec le protocole pkcs11</li>
               <li>Envois de document à travers une API</li>
             </ul>
@@ -212,7 +221,7 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
       </Card>
     </Spotlight>
   </div>
-</section>
+</Section>
 
 <script>
   import { spotlight } from "@/lib/dom/spotlight";
@@ -221,7 +230,7 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
 </script>
 
 <style>
-  #experiences {
+  :global(#experiences) {
     --accent-color: #f68dab;
     --secondary-accent-color: #f8c8d9;
   }
@@ -260,5 +269,4 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
       flex-direction: column;
     }
   }
-
 </style>
