@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.11.2 - 2026-02-11
+#### Bug Fixes
+- **(Contact)** fix env variable key for web3forms - (0910600) - Martin Kinoo
+- **(ContactForm)** update web3Form format - (912adf8) - Martin Kinoo
+- **(astroCheck)** fix complains from astro check - (5491e57) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.11.1 - (826b0cf) - github-actions[bot]
+
+- - -
+
 ## v0.11.1 - 2026-02-10
 #### Bug Fixes
 - **(card)** scope ul style to card-description only - (58eee35) - Martin Kinoo
