@@ -9,6 +9,7 @@ import Contact from "@/components/contact/Contact.astro";
 import Formations from "@/components/formations/Formations.astro";
 import Realisations from "@/components/realisations/Realisations.astro";
 import FloatingContact from "@/components/contact/FloatingContact.astro";
+import Footer from "@/components/footer/Footer.astro";
 ---
 
 <Layout title="Martin Kinoo · Développeur Front-end freelance">
@@ -19,16 +20,6 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
     import { revealSections } from "@/lib/animations/revealSection";
     import { revealCards } from "@/lib/animations/revealCard";
     import { onHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
-
-    // Reset scroll on back-forward navigation
-    if (window.scrollY !== 0) {
-      const nav = performance.getEntriesByType("navigation")[0];
-      const isBfCache =
-        nav && (nav as PerformanceNavigationTiming).type === "back_forward";
-      if (isBfCache) {
-        window.scrollTo({ top: 0, behavior: "auto" });
-      }
-    }
 
     onHeroAnimationComplete(() => {
       revealSections();
@@ -41,13 +32,7 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
     <Realisations />
     <Formations />
     <Contact />
-    <footer>
-      <p>
-        © 2024 · Design et Code par <b>Martin Kinoo</b> · Réalisé avec <a
-          href="https://figma.com">Figma</a
-        > et <a href="https://astro.build">Astro</a>.
-      </p>
-    </footer>
+    <Footer />
     <FloatingContact />
   </main>
 </Layout>
@@ -70,24 +55,12 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
   :global([data-animate-section]:not(#hero)) {
     opacity: 0;
   }
-  footer {
-    opacity: 0.8;
-  }
-  footer a {
-    text-decoration: underline;
-  }
   main {
     margin: auto;
     padding: 1rem 32px;
     max-width: 1368px;
     line-height: 1.6;
   }
-  footer p {
-    font-size: 15px;
-    display: block;
-    margin: 36px 0;
-  }
-
   @media screen and (max-width: 900px) {
     main {
       padding: 1rem 16px;
