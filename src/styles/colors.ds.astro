@@ -1,10 +1,62 @@
 ---
-/**
- * Colors Documentation
- * Design System - Foundations
- */
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
+
+type Color = { var: string; hex: string; border?: boolean };
+
+const backgrounds: Color[] = [
+  { var: "--background-color", hex: "#181927" },
+  { var: "--background-frosted", hex: "rgba(24, 25, 39, 0.05)" },
+];
+
+const texts: Color[] = [
+  { var: "--color", hex: "#e0e0e0" },
+  { var: "--light-color", hex: "#f6f5f7" },
+];
+
+const accents: Color[] = [
+  { var: "--accent-color", hex: "#f8ba88" },
+  { var: "--secondary-accent-color", hex: "#c9a88d" },
+  { var: "--accent-bright", hex: "#f6b17a" },
+];
+
+const greens: Color[] = [
+  { var: "--green-lightest", hex: "#9ae5b1" },
+  { var: "--green-light", hex: "#80d49a" },
+  { var: "--green", hex: "#66c384" },
+  { var: "--green-dark", hex: "#5ab376" },
+  { var: "--green-darker", hex: "#4a9c63" },
+  { var: "--green-darkest", hex: "#3d8552" },
+];
+
+const pinks: Color[] = [
+  { var: "--pink-lightest", hex: "#f8c8d9" },
+  { var: "--pink-light", hex: "#f8a4c0" },
+  { var: "--pink", hex: "#f68dab" },
+  { var: "--pink-dark", hex: "#f47799" },
+  { var: "--pink-darker", hex: "#f26088" },
+  { var: "--pink-darkest", hex: "#d55478" },
+];
+
+const purples: Color[] = [
+  { var: "--purple-lightest", hex: "#c9bce6" },
+  { var: "--purple-light", hex: "#b09ee0" },
+  { var: "--purple", hex: "#9c85d3" },
+  { var: "--purple-dark", hex: "#8870c7" },
+  { var: "--purple-darker", hex: "#745bba" },
+  { var: "--purple-darkest", hex: "#6048a0" },
+];
+
+const cards: Color[] = [
+  { var: "--card-first-background-color", hex: "#2d2d3b" },
+  { var: "--card-alt-background-color", hex: "#1c2638" },
+  { var: "--card-hover-background", hex: "#313d50" },
+];
+
+const borders: Color[] = [
+  { var: "--border-color", hex: "rgba(255, 255, 255, 0.1)", border: true },
+  { var: "--border-hover-color", hex: "rgba(255, 255, 255, 0.2)", border: true },
+];
 ---
 
 <section id="colors">
@@ -13,65 +65,43 @@ import DSNote from "@/components/design-system/DSNote.astro";
 
   <DSBlock title="Background Colors">
     <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--background-color);"></div>
-        <div class="color-info">
-          <code>--background-color</code>
-          <span>#181927</span>
+      {backgrounds.map(c => (
+        <div class="color-swatch">
+          <div class="swatch" style={`background-color: var(${c.var});`} />
+          <div class="color-info">
+            <code>{c.var}</code>
+            <span>{c.hex}</span>
+          </div>
         </div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: rgba(24, 25, 39, 0.8);"></div>
-        <div class="color-info">
-          <code>--background-frosted</code>
-          <span>rgba(24, 25, 39, 0.05)</span>
-        </div>
-      </div>
+      ))}
     </div>
   </DSBlock>
 
   <DSBlock title="Text Colors">
     <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--color);"></div>
-        <div class="color-info">
-          <code>--color</code>
-          <span>#e0e0e0</span>
+      {texts.map(c => (
+        <div class="color-swatch">
+          <div class="swatch" style={`background-color: var(${c.var});`} />
+          <div class="color-info">
+            <code>{c.var}</code>
+            <span>{c.hex}</span>
+          </div>
         </div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--light-color);"></div>
-        <div class="color-info">
-          <code>--light-color</code>
-          <span>#f6f5f7</span>
-        </div>
-      </div>
+      ))}
     </div>
   </DSBlock>
 
   <DSBlock title="Accent Colors">
     <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--accent-color);"></div>
-        <div class="color-info">
-          <code>--accent-color</code>
-          <span>#f8ba88</span>
+      {accents.map(c => (
+        <div class="color-swatch">
+          <div class="swatch" style={`background-color: var(${c.var});`} />
+          <div class="color-info">
+            <code>{c.var}</code>
+            <span>{c.hex}</span>
+          </div>
         </div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--secondary-accent-color);"></div>
-        <div class="color-info">
-          <code>--secondary-accent-color</code>
-          <span>#c9a88d</span>
-        </div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--accent-bright);"></div>
-        <div class="color-info">
-          <code>--accent-bright</code>
-          <span>#f6b17a</span>
-        </div>
-      </div>
+      ))}
     </div>
   </DSBlock>
 
@@ -80,118 +110,53 @@ import DSNote from "@/components/design-system/DSNote.astro";
       Each section uses a themed color palette. These override <code>--accent-color</code> and <code>--secondary-accent-color</code> at the section level.
     </DSNote>
 
-    <h4>Green (Realisations)</h4>
-    <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--green-lightest);"></div>
-        <div class="color-info"><code>--green-lightest</code><span>#9ae5b1</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--green-light);"></div>
-        <div class="color-info"><code>--green-light</code><span>#80d49a</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--green);"></div>
-        <div class="color-info"><code>--green</code><span>#66c384</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--green-dark);"></div>
-        <div class="color-info"><code>--green-dark</code><span>#5ab376</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--green-darker);"></div>
-        <div class="color-info"><code>--green-darker</code><span>#4a9c63</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--green-darkest);"></div>
-        <div class="color-info"><code>--green-darkest</code><span>#3d8552</span></div>
-      </div>
-    </div>
-
-    <h4>Pink (Experiences)</h4>
-    <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--pink-lightest);"></div>
-        <div class="color-info"><code>--pink-lightest</code><span>#f8c8d9</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--pink-light);"></div>
-        <div class="color-info"><code>--pink-light</code><span>#f8a4c0</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--pink);"></div>
-        <div class="color-info"><code>--pink</code><span>#f68dab</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--pink-dark);"></div>
-        <div class="color-info"><code>--pink-dark</code><span>#f47799</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--pink-darker);"></div>
-        <div class="color-info"><code>--pink-darker</code><span>#f26088</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--pink-darkest);"></div>
-        <div class="color-info"><code>--pink-darkest</code><span>#d55478</span></div>
-      </div>
-    </div>
-
-    <h4>Purple (Formations)</h4>
-    <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--purple-lightest);"></div>
-        <div class="color-info"><code>--purple-lightest</code><span>#c9bce6</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--purple-light);"></div>
-        <div class="color-info"><code>--purple-light</code><span>#b09ee0</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--purple);"></div>
-        <div class="color-info"><code>--purple</code><span>#9c85d3</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--purple-dark);"></div>
-        <div class="color-info"><code>--purple-dark</code><span>#8870c7</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--purple-darker);"></div>
-        <div class="color-info"><code>--purple-darker</code><span>#745bba</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--purple-darkest);"></div>
-        <div class="color-info"><code>--purple-darkest</code><span>#6048a0</span></div>
-      </div>
-    </div>
+    {([
+      { title: "Green (Realisations)", colors: greens },
+      { title: "Pink (Experiences)", colors: pinks },
+      { title: "Purple (Formations)", colors: purples },
+    ] as const).map(group => (
+      <Fragment>
+        <h4>{group.title}</h4>
+        <div class="color-grid">
+          {group.colors.map(c => (
+            <div class="color-swatch">
+              <div class="swatch" style={`background-color: var(${c.var});`} />
+              <div class="color-info">
+                <code>{c.var}</code>
+                <span>{c.hex}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Fragment>
+    ))}
   </DSBlock>
 
   <DSBlock title="Card Colors">
     <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--card-first-background-color);"></div>
-        <div class="color-info"><code>--card-first-background-color</code><span>#2d2d3b</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--card-alt-background-color);"></div>
-        <div class="color-info"><code>--card-alt-background-color</code><span>#1c2638</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch" style="background-color: var(--card-hover-background);"></div>
-        <div class="color-info"><code>--card-hover-background</code><span>#313d50</span></div>
-      </div>
+      {cards.map(c => (
+        <div class="color-swatch">
+          <div class="swatch" style={`background-color: var(${c.var});`} />
+          <div class="color-info">
+            <code>{c.var}</code>
+            <span>{c.hex}</span>
+          </div>
+        </div>
+      ))}
     </div>
   </DSBlock>
 
   <DSBlock title="Border Colors">
     <div class="color-grid">
-      <div class="color-swatch">
-        <div class="swatch swatch-border" style="background-color: rgba(255, 255, 255, 0.1);"></div>
-        <div class="color-info"><code>--border-color</code><span>rgba(255, 255, 255, 0.1)</span></div>
-      </div>
-      <div class="color-swatch">
-        <div class="swatch swatch-border" style="background-color: rgba(255, 255, 255, 0.2);"></div>
-        <div class="color-info"><code>--border-hover-color</code><span>rgba(255, 255, 255, 0.2)</span></div>
-      </div>
+      {borders.map(c => (
+        <div class="color-swatch">
+          <div class={`swatch${c.border ? " swatch-border" : ""}`} style={`background-color: ${c.hex};`} />
+          <div class="color-info">
+            <code>{c.var}</code>
+            <span>{c.hex}</span>
+          </div>
+        </div>
+      ))}
     </div>
   </DSBlock>
 
