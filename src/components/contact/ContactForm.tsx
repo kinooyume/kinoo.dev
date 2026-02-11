@@ -8,6 +8,7 @@ import {
   required,
 } from "@modular-forms/solid";
 import toast, { Toaster } from "solid-toast";
+import styles from "./ContactForm.module.css";
 
 type ContactFormType = {
   name: string;
@@ -28,8 +29,7 @@ type Props = {
 const ContactForm = (props: Props) => {
   const [formState, setFormState] = createSignal<FormState>(FormState.unsend);
   const [error, setError] = createSignal<string | null>(null);
-  const [_loginForm, { Form, Field }] =
-    createForm<ContactFormType>();
+  const [_loginForm, { Form, Field }] = createForm<ContactFormType>();
 
   const submitHandler: SubmitHandler<ContactFormType> = async (
     values,
@@ -89,7 +89,7 @@ const ContactForm = (props: Props) => {
   );
 
   return (
-    <div class="about-contact">
+    <div class={styles.root}>
       <Portal>
         <Toaster
           gutter={8}
@@ -101,13 +101,13 @@ const ContactForm = (props: Props) => {
       <Show when={formState() === FormState.error}>
         <span class="error">{error()}</span>
       </Show>
-      <Form onSubmit={submitHandler} class="contact-form">
-        <div class="contact-meta">
+      <Form onSubmit={submitHandler} class={styles.form}>
+        <div class={styles.meta}>
           <Field name="name" validate={[required("Name is required")]}>
             {(field, props) => (
               <div
-                class="input-wrapper"
-                classList={{ invalid: field.error.length > 0 }}
+                class={styles.inputWrapper}
+                classList={{ [styles.invalid]: field.error.length > 0 }}
               >
                 <label for="name">{"Nom"}</label>
                 <input
@@ -130,8 +130,8 @@ const ContactForm = (props: Props) => {
           >
             {(field, props) => (
               <div
-                class="input-wrapper"
-                classList={{ invalid: field.error.length > 0 }}
+                class={styles.inputWrapper}
+                classList={{ [styles.invalid]: field.error.length > 0 }}
               >
                 <label for="email">{"Email"}</label>
                 <input
@@ -148,8 +148,8 @@ const ContactForm = (props: Props) => {
           <Field name="message" validate={[required("Message is required")]}>
             {(field, props) => (
               <div
-                class="input-wrapper textarea-wrapper"
-                classList={{ invalid: field.error.length > 0 }}
+                class={`${styles.inputWrapper} ${styles.textareaWrapper}`}
+                classList={{ [styles.invalid]: field.error.length > 0 }}
               >
                 <label for="message">{"Message"}</label>
                 <textarea
@@ -163,12 +163,8 @@ const ContactForm = (props: Props) => {
             )}
           </Field>
         </div>
-        <div class="actions">
-          <button
-            disabled={disabled()}
-            class="primary"
-            type="submit"
-          >
+        <div class={styles.actions}>
+          <button disabled={disabled()} class="primary" type="submit">
             Envoyer
           </button>
         </div>
