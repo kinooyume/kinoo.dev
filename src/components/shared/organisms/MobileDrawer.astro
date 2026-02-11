@@ -11,7 +11,11 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
 
 <div class="mobile-drawer-backdrop" id={`${id}-backdrop`}></div>
 
-<aside class:list={["mobile-drawer-panel", className]} id={`${id}-panel`} style={`--drawer-width: ${width};`}>
+<aside
+  class:list={["mobile-drawer-panel", className]}
+  id={`${id}-panel`}
+  style={`--drawer-width: ${width};`}
+>
   <slot />
 </aside>
 
