@@ -5,11 +5,10 @@ import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
+import Section from "@/components/shared/organisms/Section.astro";
 ---
 
-<section id="formations" data-animate-section>
-  <span class="subtitle">Mes</span>
-  <h2>Formations</h2>
+<Section id="formations" subtitle="Mes" title="Formations">
   <div class="grid" id="formations-grid" data-spotlight>
     <Spotlight color="var(--purple)" class="epitech">
       <Card>
@@ -28,12 +27,12 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           </LogoBox>
           <CardDescription>
             <p>
-              À travers des projets concrets et une approche par la pratique, j'ai
-              acquis une solide maîtrise des langages de programmation. Epitech
-              m'a également permis de développer une forte capacité d'autonomie,
-              de résolution de problèmes et d'innovation, des compétences
-              essentielles pour évoluer dans le domaine du développement web et
-              logiciel.
+              À travers des projets concrets et une approche par la pratique,
+              j'ai acquis une solide maîtrise des langages de programmation.
+              Epitech m'a également permis de développer une forte capacité
+              d'autonomie, de résolution de problèmes et d'innovation, des
+              compétences essentielles pour évoluer dans le domaine du
+              développement web et logiciel.
             </p>
           </CardDescription>
         </CardContent>
@@ -58,8 +57,8 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
             <p>
               Année académique passée à Manipal, Inde, où j'ai pu améliorer
               considérablement mon niveau d'anglais grâce à un environnement
-              multiculturel et des échanges quotidiens avec des étudiants du monde
-              entier.
+              multiculturel et des échanges quotidiens avec des étudiants du
+              monde entier.
             </p>
           </CardDescription>
         </CardContent>
@@ -83,8 +82,8 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
           <CardDescription>
             <ul>
               <li>
-                Service en Ruby de conversion de fichier markdown en html/pdf/epub
-                basé sur Pandoc.
+                Service en Ruby de conversion de fichier markdown en
+                html/pdf/epub basé sur Pandoc.
               </li>
               <li>Développement backend en Ruby On Rails.</li>
             </ul>
@@ -119,7 +118,7 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
       </Card>
     </Spotlight>
   </div>
-</section>
+</Section>
 
 <script>
   import { spotlight } from "@/lib/dom/spotlight";
@@ -128,7 +127,7 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
 </script>
 
 <style>
-  #formations {
+  :global(#formations) {
     --accent-color: #9c85d3;
     --secondary-accent-color: #c9bce6;
   }
@@ -160,5 +159,4 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
       flex-direction: column;
     }
   }
-
 </style>
