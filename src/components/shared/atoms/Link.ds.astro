@@ -1,9 +1,5 @@
 ---
-/**
- * TagLink Component Documentation
- * Design System - Atom
- */
-import TagLinkComponent from "./TagLink.astro";
+import LinkComponent from "./Link.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
@@ -11,12 +7,12 @@ import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
-<section id="taglink">
-  <DSSectionHeader title="TagLink" atomic="Atom" framework="astro" />
+<section id="link">
+  <DSSectionHeader title="Link" atomic="Atom" framework="astro" />
 
   <DSBlock title="Default">
     <DSPreview>
-      <TagLinkComponent href="https://github.com" text="View on GitHub" />
+      <LinkComponent href="https://github.com" text="View on GitHub" />
     </DSPreview>
     <DSCode inline>href="https://github.com" text="View on GitHub"</DSCode>
   </DSBlock>
