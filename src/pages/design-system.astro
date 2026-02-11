@@ -5,17 +5,17 @@ import DSSidebar from "@/components/design-system/DSSidebar.astro";
 import HeaderLink from "@/components/header/HeaderLink.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
 
-// Sections
 import FoundationsSection from "@/components/design-system/sections/FoundationsSection.astro";
-import SharedAtomsSection from "@/components/design-system/sections/SharedAtomsSection.astro";
-import SharedMoleculesSection from "@/components/design-system/sections/SharedMoleculesSection.astro";
-import SharedOrganismsSection from "@/components/design-system/sections/SharedOrganismsSection.astro";
-import HeroSection from "@/components/design-system/sections/HeroSection.astro";
+import AtomsSection from "@/components/design-system/sections/AtomsSection.astro";
+import CardSection from "@/components/design-system/sections/CardSection.astro";
+import SliderSection from "@/components/design-system/sections/SliderSection.astro";
+import SectionSection from "@/components/design-system/sections/SectionSection.astro";
 import HeaderSection from "@/components/design-system/sections/HeaderSection.astro";
+import NavigationSection from "@/components/design-system/sections/NavigationSection.astro";
+import HeroSection from "@/components/design-system/sections/HeroSection.astro";
 import ContactSection from "@/components/design-system/sections/ContactSection.astro";
-import SidebarSection from "@/components/design-system/sections/SidebarSection.astro";
 import FooterSection from "@/components/design-system/sections/FooterSection.astro";
-import TemplatesSection from "@/components/design-system/sections/TemplatesSection.astro";
+import CompositionsSection from "@/components/design-system/sections/CompositionsSection.astro";
 import DSComponentsSection from "@/components/design-system/sections/DSComponentsSection.astro";
 ---
 
@@ -30,18 +30,19 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
 
   <DSLayout
     title="Design System"
-    description="A contextual atomic design system for kinoo.dev. Shared components live in a common library, while feature-specific components stay with their context."
+    description="Domain-grouped atomic design system for kinoo.dev. Components are organized by feature domain with atomic classification as metadata."
   >
     <FoundationsSection />
-    <SharedAtomsSection />
-    <SharedMoleculesSection />
-    <SharedOrganismsSection />
-    <HeroSection />
+    <AtomsSection />
+    <CardSection />
+    <SliderSection />
+    <SectionSection />
     <HeaderSection />
+    <NavigationSection />
+    <HeroSection />
     <ContactSection />
-    <SidebarSection />
     <FooterSection />
-    <TemplatesSection />
+    <CompositionsSection />
     <DSComponentsSection />
   </DSLayout>
 </Layout>
