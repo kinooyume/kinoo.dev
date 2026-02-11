@@ -8,6 +8,23 @@
     --card-title-font-size: 16px;
   }
 
+  .gradient-border-card {
+    position: relative;
+    padding: 40px;
+    flex: 1 1;
+    transition:
+      background 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+    box-shadow:
+      0 0 0 1px transparent,
+      0 2px 4px transparent,
+      0 12px 24px transparent;
+    cursor: pointer;
+    border-radius: 32px;
+    height: 100%;
+    z-index: 1;
+  }
+
   .card :global(.card-description ul) {
     list-style: initial;
     margin-left: 24px;

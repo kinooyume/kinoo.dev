@@ -1,9 +1,4 @@
 ---
-/**
- * DSLayout - Design System Page Layout
- * Wraps DS page content with proper structure and styles
- * Mobile sidebar is provided via Layout.astro's mobile-sidebar slot
- */
 import DSSidebar from "./DSSidebar.astro";
 
 interface Props {
@@ -27,7 +22,6 @@ const { title = "Design System", description } = Astro.props;
     </footer>
   </main>
 
-  <!-- Desktop sidebar (mobile uses Layout's mobile-sidebar slot) -->
   <DSSidebar class="ds-sidebar-desktop" />
 </div>
 
@@ -96,12 +90,11 @@ const { title = "Design System", description } = Astro.props;
     font-size: 14px;
   }
 
-  /* Desktop sidebar visibility */
   .ds-sidebar-desktop {
     display: block;
   }
 
-  /* Responsive — matches mobile burger breakpoint (1100px) */
+  /* matches mobile burger breakpoint (1100px) */
   @media screen and (max-width: 1100px) {
     .ds-container {
       flex-direction: column;
