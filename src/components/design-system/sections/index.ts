@@ -53,6 +53,7 @@ export const sidebarSections: SidebarSection[] = [
             ],
           },
           { label: "Spotlight", href: "#spotlight", framework: "astro" },
+          { label: "Slider", href: "#slider", framework: "solid" },
         ],
       },
       {
