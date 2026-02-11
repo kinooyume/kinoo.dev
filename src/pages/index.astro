@@ -4,10 +4,10 @@ import NavBar from "@/components/header/NavBar.astro";
 import HeaderMenu from "@/components/header/HeaderMenu.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
 import Hero from "@/components/hero/Hero.astro";
-import Experiences from "@/components/experiences/Experiences.astro";
+import Experiences from "@/components/sections/Experiences.astro";
 import Contact from "@/components/contact/Contact.astro";
-import Formations from "@/components/formations/Formations.astro";
-import Realisations from "@/components/realisations/Realisations.astro";
+import Formations from "@/components/sections/Formations.astro";
+import Realisations from "@/components/sections/Realisations.astro";
 import FloatingContact from "@/components/contact/FloatingContact.astro";
 import Footer from "@/components/footer/Footer.astro";
 ---
@@ -55,6 +55,10 @@ import Footer from "@/components/footer/Footer.astro";
   :global([data-animate-section]:not(#hero)) {
     opacity: 0;
   }
+  :global(main > section) {
+    margin: var(--section-margin) 0;
+  }
+
   main {
     margin: auto;
     padding: 1rem 32px;
