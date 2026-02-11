@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.12.0 - 2026-02-11
+#### Bug Fixes
+- **(Contact)** fix env variable key for web3forms - (0910600) - Martin Kinoo
+- **(ContactForm)** update web3Form format - (912adf8) - Martin Kinoo
+- **(NavBar)** restore hover translate animation on nav links - (1b08a23) - Martin Kinoo
+- **(Slider)** replace role="button" with semantic button element - (ad02cf6) - Martin Kinoo
+- **(astroCheck)** fix complains from astro check - (5491e57) - Martin Kinoo
+- **(design-system)** move Portfolio link to right side of header - (243ceb8) - Martin Kinoo
+#### Features
+- **(footer)** extract Footer component and add to design system - (599ae29) - Martin Kinoo
+#### Miscellaneous Chores
+- **(file)** remove un-related file - (822c5df) - Martin Kinoo
+- **(version)** v0.11.2 - (354f991) - github-actions[bot]
+- **(version)** v0.11.1 - (826b0cf) - github-actions[bot]
+#### Refactoring
+- **(ContactForm)** extract styles to CSS modules - (dcff02e) - Martin Kinoo
+- **(DS)** trim verbosity, add interactivity, and distribute compositions - (51804ad) - Martin Kinoo
+- **(DS)** reorganize DS page by domain groups and rename TagLink to Link - (fe5da51) - Martin Kinoo
+- **(Section)** extract Section organism and consolidate page sections - (5f011cd) - Martin Kinoo
+- **(Slider)** extract to shared molecules and add DS documentation - (d7a2dc1) - Martin Kinoo
+- **(colors.ds)** replace repetitive markup with data-driven loops - (210a1a2) - Martin Kinoo
+- **(header)** rework nav links and add GitHub to title - (3498a81) - Martin Kinoo
+- clean up comments, formatting, and move card styles - (c972778) - Martin Kinoo
+
+- - -
+
 ## v0.11.2 - 2026-02-11
 #### Bug Fixes
 - **(Contact)** fix env variable key for web3forms - (0910600) - Martin Kinoo
