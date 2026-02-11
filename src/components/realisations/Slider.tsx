@@ -16,13 +16,12 @@ const SliderPagination = (props: PaginationProps) => {
         <ul class="list">
           <For each={props.pictures}>
             {(_, index) => (
-              <li
-                classList={{ active: index() === props.index() }}
-                onClick={() => props.moveTo(index())}
-                onKeyPress={(e) => e.key === 'Enter' && props.moveTo(index())}
-                role="button"
-                tabIndex={0}
-               />
+              <li classList={{ active: index() === props.index() }}>
+                <button
+                  onClick={() => props.moveTo(index())}
+                  tabIndex={-1}
+                />
+              </li>
             )}
           </For>
         </ul>
@@ -70,7 +69,7 @@ const Slider = (props: SliderProps) => {
   });
 
   return (
-    <div ref={sliderEl as HTMLDivElement}>
+    <div ref={sliderEl}>
       <div class="blaze-container">
         <div class="blaze-track-container">
           <div class="blaze-track">
