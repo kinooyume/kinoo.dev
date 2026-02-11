@@ -24,7 +24,7 @@
     fill: var(--accent-color);
   }
 
-  .pagination-wrapper .pagination ul li:hover::before {
+  .pagination-wrapper .pagination ul li button:hover::before {
     background: var(--accent-color);
   }
 }
@@ -76,10 +76,18 @@
   justify-content: center;
   height: 1rem;
   width: 1rem;
-  cursor: pointer;
   transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.pagination-wrapper .pagination ul li::before {
+.pagination-wrapper .pagination ul li button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.pagination-wrapper .pagination ul li button::before {
   content: "";
   display: block;
   height: 0.5rem;
@@ -97,14 +105,14 @@
 .pagination-wrapper .pagination ul li.active {
   width: 2rem;
 }
-.pagination-wrapper .pagination ul li.active::before {
+.pagination-wrapper .pagination ul li.active button::before {
   width: 1.25rem;
   animation: activeDot 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   opacity: 1;
 }
-.pagination-wrapper .pagination ul li:not(.active)::before {
+.pagination-wrapper .pagination ul li:not(.active) button::before {
   animation: inactiveDot 0.6s ease backwards;
 }
-.pagination-wrapper .pagination ul li:not(.active):hover::before {
+.pagination-wrapper .pagination ul li:not(.active) button:hover::before {
   opacity: 0.75;
 }
