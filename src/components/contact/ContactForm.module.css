@@ -7,7 +7,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(16px, 0.82rem + 0.75vw, 24px);
 }
 
 .textareaWrapper {
@@ -21,7 +21,7 @@
 .inputWrapper label {
   display: block;
   margin: 6px 0;
-  font-size: 16px;
+  font-size: var(--font-size);
   font-weight: 400;
   text-transform: capitalize;
 }
@@ -34,23 +34,18 @@
 .meta {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(16px, 0.82rem + 0.75vw, 24px);
 }
 
 .inputWrapper input {
   width: 100%;
-  padding: 16px 20px;
-}
-
-.root textarea {
-  min-height: 120px;
-  padding: 16px 20px;
+  padding: clamp(12px, 0.66rem + 0.38vw, 16px) clamp(16px, 0.91rem + 0.38vw, 20px);
 }
 
 .actions {
-  margin-top: 54px;
+  margin-top: clamp(32px, 1.52rem + 2.07vw, 54px);
   display: flex;
-  gap: 16px;
+  gap: clamp(16px, 0.82rem + 0.75vw, 24px);
 }
 
 .root input {
@@ -72,7 +67,8 @@
 .root textarea {
   font-family: Outfit, system-ui, sans-serif;
   width: 100%;
-  padding: 12px;
+  min-height: 120px;
+  padding: clamp(12px, 0.66rem + 0.38vw, 16px) clamp(16px, 0.91rem + 0.38vw, 20px);
   color: black;
   border-radius: 10px;
   border: 2px solid transparent;

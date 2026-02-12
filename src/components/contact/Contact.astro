@@ -29,23 +29,19 @@ import ContactForm from "./ContactForm.tsx";
 </section>
 
 <style>
-  :root {
-    --contact-h2-size: 32px;
-  }
-
   section {
     margin: var(--section-margin) 0;
   }
 
   h2 {
-    font-size: var(--contact-h2-size);
+    font-size: clamp(22px, 1.15rem + 0.94vw, 32px);
     font-weight: 400;
     color: #f6b17a;
   }
 
   .contact-content {
     display: flex;
-    gap: 36px;
+    gap: clamp(24px, 1.24rem + 1.13vw, 36px);
     flex-wrap: wrap;
     justify-content: space-between;
   }
@@ -55,25 +51,8 @@ import ContactForm from "./ContactForm.tsx";
   }
 
   @media screen and (max-width: 1200px) {
-    :root {
-      --contact-h2-size: 28px;
-    }
     .contact-description {
       max-width: unset;
-    }
-  }
-
-  @media screen and (max-width: 900px) {
-    h2 {
-      margin-bottom: 48px;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    :root {
-      --contact-h2-size: 22px;
-    }
-    h2 {
     }
   }
 </style>
