@@ -1,0 +1,53 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  height: 48px;
+  padding: 0 24px;
+  cursor: pointer;
+  font-size: var(--button-font-size);
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: none;
+  border: 1px solid transparent;
+}
+
+.primary {
+  color: black;
+  background-color: var(--accent-bright);
+  border-color: var(--accent-bright);
+}
+
+.secondary {
+  color: var(--light-color);
+  background-color: var(--card-alt-background-color);
+  border-color: var(--border-color);
+}
+
+.secondary:hover {
+  background-color: var(--card-hover-background);
+  border-color: var(--border-hover-color);
+}
+
+@media (hover: hover) {
+  .button:hover {
+    transform: translateY(-4px);
+  }
+
+  .button:active {
+    transform: translateY(5px);
+    transition: 200ms;
+  }
+}
+
+.loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.success {
+  background-color: var(--green) !important;
+  border-color: var(--green-dark) !important;
+}

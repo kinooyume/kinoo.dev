@@ -162,48 +162,7 @@ b {
   font-weight: 600;
 }
 
-/* ===== Buttons & Links ===== */
-a.primary,
-a.secondary,
-button.primary,
-button.secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  height: 48px;
-  padding: 0 24px;
-  cursor: pointer;
-  font-size: var(--button-font-size);
-  font-weight: 500;
-  text-decoration: none;
-  text-transform: capitalize;
-  border: 1px solid transparent;
-}
-
-/* Primary color */
-a.primary,
-button.primary {
-  color: black;
-  background-color: var(--accent-bright);
-  border-color: var(--accent-bright);
-}
-
-/* Secondary color */
-a.secondary,
-button.secondary {
-  color: var(--light-color);
-  background-color: var(--card-alt-background-color);
-  border-color: var(--border-color);
-}
-
-a.secondary:hover,
-button.secondary:hover {
-  background-color: var(--card-hover-background);
-  border-color: var(--border-hover-color);
-}
-
+/* ===== Links ===== */
 button {
   cursor: pointer;
 }
@@ -218,18 +177,12 @@ a.cv {
 }
 
 @media (hover: hover) {
-  button.primary:hover,
-  a.primary:hover,
   a.anime:hover,
-  .link-wrapper.anime:hover,
-  button.secondary:hover {
+  .link-wrapper.anime:hover {
     transform: translateY(-4px);
   }
 
-  button.primary:active,
-  a.primary:active,
-  a.anime:active,
-  button.secondary:active {
+  a.anime:active {
     transform: translateY(5px);
     transition: 200ms;
   }

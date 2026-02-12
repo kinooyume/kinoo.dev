@@ -11,6 +11,7 @@ import DSPropsTable from "./DSPropsTable.astro";
 import DSNote from "./DSNote.astro";
 import DSStructure from "./DSStructure.astro";
 import DSSectionHeader from "./DSSectionHeader.astro";
+import Button from "@/components/shared/atoms/Button";
 
 const blockExample = `<DSBlock title="Section Title">
   <DSPreview>
@@ -90,7 +91,7 @@ const structureExampleCode = `<DSStructure
 
   <DSBlock title="Example">
     <DSPreview>
-      <button class="primary">Preview Content</button>
+      <Button>Preview Content</Button>
     </DSPreview>
   </DSBlock>
 
