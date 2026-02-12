@@ -69,7 +69,7 @@
 @media screen and (max-width: 1368px) {
   :root {
     --h1-size: 92px;
-    --h2-size: 48px;
+    --h2-size: 36px;
     --h3-size: 24px;
     --subtitle-size: 24px;
     --font-size: 18px;
@@ -81,7 +81,7 @@
 @media screen and (max-width: 900px) {
   :root {
     --h1-size: 86px;
-    --h2-size: 44px;
+    --h2-size: 32px;
     --h3-size: 20px;
     --subtitle-size: 20px;
     --font-size: 16px;
@@ -93,7 +93,7 @@
 @media screen and (max-width: 600px) {
   :root {
     --h1-size: 64px;
-    --h2-size: 36px;
+    --h2-size: 28px;
     --h3-size: 18px;
     --section-margin: 94px;
   }
