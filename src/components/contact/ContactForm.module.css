@@ -43,42 +43,51 @@
 }
 
 .actions {
-  margin-top: clamp(32px, 1.52rem + 2.07vw, 54px);
+  margin-top: clamp(16px, 0.82rem + 0.75vw, 24px);
   display: flex;
   gap: clamp(16px, 0.82rem + 0.75vw, 24px);
 }
 
+@media screen and (max-width: 600px) {
+  .actions button {
+    width: 100%;
+  }
+}
+
 .root input {
   font-family: Outfit, system-ui, sans-serif;
-  border: 2px solid transparent;
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   font-size: 16px;
-  color: black;
+  color: var(--light-color);
   transition: all 0.06s ease;
-  background-color: #e0e0e0;
+  background-color: var(--card-alt-background-color);
 }
 
 .root input:focus {
   outline: none;
-  background-color: #f3f2f0;
   border-color: var(--accent-color);
 }
 
 .root textarea {
   font-family: Outfit, system-ui, sans-serif;
   width: 100%;
-  min-height: 120px;
+  min-height: 160px;
   padding: clamp(12px, 0.66rem + 0.38vw, 16px) clamp(16px, 0.91rem + 0.38vw, 20px);
-  color: black;
+  color: var(--light-color);
   border-radius: 10px;
-  border: 2px solid transparent;
-  background-color: #e0e0e0;
+  border: 2px solid var(--border-color);
+  background-color: var(--card-alt-background-color);
   font-size: 16px;
   transition: all 0.06s ease;
 }
 
 .root textarea:focus {
-  outline: none !important;
-  background-color: #f3f2f0;
+  outline: none;
   border-color: var(--accent-color);
+}
+
+.root input::placeholder,
+.root textarea::placeholder {
+  color: rgba(224, 224, 224, 0.4);
 }
