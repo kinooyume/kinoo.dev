@@ -5,7 +5,7 @@
     padding: 48px;
     cursor: auto;
     height: 100%;
-    --card-title-font-size: 16px;
+    --card-title-font-size: clamp(14px, 0.82rem + 0.21vw, 16px);
   }
 
   .gradient-border-card {
@@ -33,12 +33,6 @@
   @media screen and (max-width: 900px) {
     .card {
       padding: 24px;
-    }
-  }
-
-  @media screen and (max-width: 900px) {
-    .card {
-      --card-title-font-size: 14px;
     }
   }
 </style>

@@ -20,11 +20,14 @@ import Footer from "@/components/footer/Footer.astro";
     import { revealSections } from "@/lib/animations/revealSection";
     import { revealCards } from "@/lib/animations/revealCard";
     import { onHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
+    import { smoothHashLinks } from "@/lib/dom/smoothHashLinks";
 
     onHeroAnimationComplete(() => {
       revealSections();
       revealCards();
     });
+
+    smoothHashLinks();
   </script>
   <main>
     <Hero />
@@ -54,9 +57,6 @@ import Footer from "@/components/footer/Footer.astro";
 
   :global([data-animate-section]:not(#hero)) {
     opacity: 0;
-  }
-  :global(main > section) {
-    margin: var(--section-margin) 0;
   }
 
   main {

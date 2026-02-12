@@ -19,11 +19,18 @@ const { hero, title, icon, highlight } = Astro.props;
     width: 16px;
     height: 16px;
   }
+
+  @media screen and (max-width: 600px) {
+    .tag svg {
+      width: 13px;
+      height: 13px;
+    }
+  }
 </style>
 
 <style>
   :root {
-    --span-tag-size: 16px;
+    --span-tag-size: clamp(12px, 0.62rem + 0.42vw, 16px);
   }
   div {
     display: flex;
@@ -55,8 +62,13 @@ const { hero, title, icon, highlight } = Astro.props;
     div {
       padding: 6px 12px;
     }
-    span {
-      font-size: 14px;
+  }
+
+  @media screen and (max-width: 600px) {
+    div {
+      padding: 4px 10px;
+      gap: 6px;
+      border-radius: 8px;
     }
   }
 </style>

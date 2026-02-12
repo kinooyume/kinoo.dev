@@ -43,14 +43,14 @@ import DSNote from "@/components/design-system/DSNote.astro";
 
   <DSBlock title="Size Variables">
     <DSPropsTable
-      headers={["Variable", "Default", "1368px", "900px", "600px"]}
+      headers={["Variable", "Value", "Min", "Max"]}
       rows={[
-        [{ code: "--h1-size" }, "96px", "92px", "86px", "64px"],
-        [{ code: "--h2-size" }, "38px", "48px", "44px", "36px"],
-        [{ code: "--h3-size" }, "24px", "24px", "20px", "18px"],
-        [{ code: "--subtitle-size" }, "22px", "24px", "20px", "-"],
-        [{ code: "--font-size" }, "18px", "18px", "16px", "-"],
-        [{ code: "--button-font-size" }, "15px", "15px", "15px", "-"],
+        [{ code: "--h1-size" }, "clamp(48px, 1.58rem + 5.05vw, 96px)", "48px", "96px"],
+        [{ code: "--h2-size" }, "clamp(42px, 2.21rem + 1.47vw, 56px)", "42px", "56px"],
+        [{ code: "--h3-size" }, "clamp(18px, 0.95rem + 0.63vw, 24px)", "18px", "24px"],
+        [{ code: "--subtitle-size" }, "clamp(20px, 1.19rem + 0.21vw, 22px)", "20px", "22px"],
+        [{ code: "--font-size" }, "clamp(16px, 0.94rem + 0.21vw, 18px)", "16px", "18px"],
+        [{ code: "--button-font-size" }, "15px", "15px", "15px"],
       ]}
     />
   </DSBlock>

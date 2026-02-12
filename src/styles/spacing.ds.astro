@@ -48,11 +48,12 @@ import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
     </div>
   </DSBlock>
 
-  <DSBlock title="Section Margin">
+  <DSBlock title="Section Spacing">
     <DSPropsTable
-      headers={["Variable", "Default", "1368px", "900px", "600px"]}
+      headers={["Variable", "Value", "Min", "Max"]}
       rows={[
-        [{ code: "--section-margin" }, "142px", "192px", "148px", "94px"],
+        [{ code: "--section-margin" }, "clamp(96px, 4.11rem + 6.74vw, 160px)", "96px", "160px"],
+        [{ code: "--h2-margin-bottom" }, "clamp(40px, 1.79rem + 2.53vw, 64px)", "40px", "64px"],
       ]}
     />
   </DSBlock>
