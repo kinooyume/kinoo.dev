@@ -55,7 +55,7 @@
   --h2-size: clamp(42px, 2.21rem + 1.47vw, 56px);
   --h3-size: clamp(18px, 0.95rem + 0.63vw, 24px);
   --subtitle-size: clamp(20px, 1.19rem + 0.21vw, 22px);
-  --font-size: clamp(16px, 0.94rem + 0.21vw, 18px);
+  --font-size: clamp(14px, 0.76rem + 0.42vw, 18px);
   --button-font-size: 15px;
 
   /* ===== Spacing (fluid) ===== */

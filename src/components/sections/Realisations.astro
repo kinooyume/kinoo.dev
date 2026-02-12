@@ -252,8 +252,8 @@ import Section from "@/components/shared/organisms/Section.astro";
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, auto);
-    grid-row-gap: 26px;
-    grid-column-gap: 26px;
+    grid-row-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
+    grid-column-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
   }
 
   .grid > :global(.ekeynox) {

@@ -4,6 +4,7 @@ import Tag from "./Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
@@ -26,6 +27,16 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       >&lt;TagRow&gt;&lt;Tag title="React" /&gt;&lt;Tag title="TypeScript"
       /&gt;&lt;/TagRow&gt;</DSCode
     >
+  </DSBlock>
+
+  <DSBlock title="Fluid spacing">
+    <DSPropsTable
+      headers={["Property", "Value", "Min", "Max"]}
+      rows={[
+        ["gap", "clamp(6px, 0.32rem + 0.21vw, 8px)", "6px", "8px"],
+        ["padding-top", "clamp(18px, 0.59rem + 1.89vw, 36px)", "18px", "36px"],
+      ]}
+    />
   </DSBlock>
 
 </section>

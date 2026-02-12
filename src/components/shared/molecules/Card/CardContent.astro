@@ -24,20 +24,8 @@
   .title-wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 18px;
-    margin-bottom: 24px;
-  }
-
-  @media screen and (max-width: 900px) {
-    .title-wrapper {
-      margin-bottom: 18px;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .title-wrapper {
-      margin-bottom: 14px;
-    }
+    gap: clamp(14px, 0.76rem + 0.42vw, 18px);
+    margin-bottom: clamp(14px, 0.58rem + 1.05vw, 24px);
   }
 
   .title {

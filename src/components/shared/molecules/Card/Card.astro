@@ -2,7 +2,7 @@
 
 <style>
   .card {
-    padding: 48px;
+    padding: clamp(24px, 0.79rem + 2.53vw, 48px);
     cursor: auto;
     height: 100%;
     --card-title-font-size: clamp(14px, 0.82rem + 0.21vw, 16px);
@@ -10,7 +10,7 @@
 
   .gradient-border-card {
     position: relative;
-    padding: 40px;
+    padding: clamp(24px, 0.79rem + 2.53vw, 40px);
     flex: 1 1;
     transition:
       background 0.2s ease-in-out,
@@ -27,12 +27,8 @@
 
   .card :global(.card-description ul) {
     list-style: initial;
-    margin-left: 24px;
+    margin-left: 0;
+    padding-left: 1.2em;
   }
 
-  @media screen and (max-width: 900px) {
-    .card {
-      padding: 24px;
-    }
-  }
 </style>

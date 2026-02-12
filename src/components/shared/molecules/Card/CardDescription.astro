@@ -15,16 +15,10 @@ const { class: className } = Astro.props;
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 12px;
+    gap: clamp(10px, 0.57rem + 0.21vw, 12px);
   }
 
   .card-description > :global(br) {
     display: none;
-  }
-
-  @media screen and (max-width: 600px) {
-    .card-description {
-      gap: 10px;
-    }
   }
 </style>
