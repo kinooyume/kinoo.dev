@@ -8,6 +8,7 @@ import {
   required,
 } from "@modular-forms/solid";
 import toast, { Toaster } from "solid-toast";
+import Button from "@/components/shared/atoms/Button";
 import styles from "./ContactForm.module.css";
 
 type ContactFormType = {
@@ -60,7 +61,21 @@ const ContactForm = (props: Props) => {
     }
   };
 
-  const disabled = () => formState() === FormState.sending;
+  const inputsDisabled = () => formState() === FormState.sending;
+  const buttonDisabled = () =>
+    formState() === FormState.sending || formState() === FormState.sended;
+
+  const buttonState = () => {
+    if (formState() === FormState.sending) return "loading" as const;
+    if (formState() === FormState.sended) return "success" as const;
+    return "idle" as const;
+  };
+
+  const handleInput = () => {
+    if (formState() === FormState.sended) {
+      setFormState(FormState.unsend);
+    }
+  };
 
   const [toastId, setToastId] = createSignal<string>();
 
@@ -101,7 +116,7 @@ const ContactForm = (props: Props) => {
       <Show when={formState() === FormState.error}>
         <span class="error">{error()}</span>
       </Show>
-      <Form onSubmit={submitHandler} class={styles.form}>
+      <Form onSubmit={submitHandler} class={styles.form} onInput={handleInput}>
         <div class={styles.meta}>
           <Field name="name" validate={[required("Name is required")]}>
             {(field, props) => (
@@ -112,11 +127,10 @@ const ContactForm = (props: Props) => {
                 <label for="name">{"Votre nom"}</label>
                 <input
                   id="name"
-                  disabled={disabled()}
+                  disabled={inputsDisabled()}
                   {...props}
                   type="txt"
                   placeholder="Claude Monet"
-                  required
                 />
               </div>
             )}
@@ -136,11 +150,10 @@ const ContactForm = (props: Props) => {
                 <label for="email">{"Votre email"}</label>
                 <input
                   id="email"
-                  disabled={disabled()}
+                  disabled={inputsDisabled()}
                   {...props}
                   type="email"
                   placeholder="claude@giverny.fr"
-                  required
                 />
               </div>
             )}
@@ -154,19 +167,30 @@ const ContactForm = (props: Props) => {
                 <label for="message">{"Votre projet"}</label>
                 <textarea
                   id="message"
-                  disabled={disabled()}
+                  disabled={inputsDisabled()}
                   {...props}
                   placeholder="Décrivez votre contexte, vos objectifs et les enjeux techniques. (Produit à lancer, refonte, renfort d'équipe…)"
-                  required
                 />
               </div>
             )}
           </Field>
         </div>
         <div class={styles.actions}>
-          <button disabled={disabled()} class="primary" type="submit">
-            Envoyer
-          </button>
+          <div class={styles.submitGroup}>
+            <Button
+              disabled={buttonDisabled()}
+              variant="primary"
+              state={buttonState()}
+              type="submit"
+            >
+              {formState() === FormState.sending
+                ? "Envoi…"
+                : formState() === FormState.sended
+                  ? "Message envoyé \u2713"
+                  : "Discutons-en !"}
+            </Button>
+            <span class={styles.hint}>Réponse sous 24–48h.</span>
+          </div>
         </div>
       </Form>
     </div>
