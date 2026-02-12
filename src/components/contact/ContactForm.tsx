@@ -109,13 +109,13 @@ const ContactForm = (props: Props) => {
                 class={styles.inputWrapper}
                 classList={{ [styles.invalid]: field.error.length > 0 }}
               >
-                <label for="name">{"Nom"}</label>
+                <label for="name">{"Votre nom"}</label>
                 <input
                   id="name"
                   disabled={disabled()}
                   {...props}
                   type="txt"
-                  placeholder="Nom"
+                  placeholder="Claude Monet"
                   required
                 />
               </div>
@@ -133,13 +133,13 @@ const ContactForm = (props: Props) => {
                 class={styles.inputWrapper}
                 classList={{ [styles.invalid]: field.error.length > 0 }}
               >
-                <label for="email">{"Email"}</label>
+                <label for="email">{"Votre email"}</label>
                 <input
                   id="email"
                   disabled={disabled()}
                   {...props}
                   type="email"
-                  placeholder="email"
+                  placeholder="claude@giverny.fr"
                   required
                 />
               </div>
@@ -151,12 +151,12 @@ const ContactForm = (props: Props) => {
                 class={`${styles.inputWrapper} ${styles.textareaWrapper}`}
                 classList={{ [styles.invalid]: field.error.length > 0 }}
               >
-                <label for="message">{"Message"}</label>
+                <label for="message">{"Votre projet"}</label>
                 <textarea
                   id="message"
                   disabled={disabled()}
                   {...props}
-                  placeholder="message"
+                  placeholder="Décrivez votre contexte, vos objectifs et les enjeux techniques. (Produit à lancer, refonte, renfort d'équipe…)"
                   required
                 />
               </div>

@@ -3,22 +3,17 @@ import ContactForm from "./ContactForm.tsx";
 ---
 
 <section id="contact" data-animate-section>
-  <h2>Collaborons ensemble !</h2>
+  <h2>Parlons de votre projet.</h2>
   <div class="contact-content">
     <div class="contact-description">
       <p>
-        Vous recherchez un développeur freelance pour donner vie à votre projet
-        ou pour renforcer votre équipe technique ? Que ce soit pour un
-        développement sur mesure, l'optimisation de vos systèmes existants, ou
-        l'accompagnement technique de votre start-up, je suis à votre
-        disposition.
+        Vous cherchez un développeur frontend freelance expérimenté pour lancer
+        un produit, faire évoluer une application ou renforcer votre équipe ?
       </p>
       <br />
       <p>
-        Remplissez le formulaire ci-dessous en précisant les détails de votre
-        projet ou les compétences recherchées. Je vous contacterai rapidement
-        pour discuter de la meilleure manière de travailler ensemble et de
-        transformer vos idées en réalité.
+        Décrivez votre contexte et vos objectifs. Je vous recontacte rapidement
+        pour vous proposer des solutions claires, adaptées et pragmatiques.
       </p>
     </div>
     <ContactForm
@@ -40,19 +35,15 @@ import ContactForm from "./ContactForm.tsx";
   }
 
   .contact-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
     gap: clamp(24px, 1.24rem + 1.13vw, 36px);
-    flex-wrap: wrap;
-    justify-content: space-between;
+    align-items: start;
   }
 
-  .contact-description {
-    max-width: 466px;
-  }
-
-  @media screen and (max-width: 1200px) {
-    .contact-description {
-      max-width: unset;
+  @media screen and (max-width: 1024px) {
+    .contact-content {
+      grid-template-columns: 1fr;
     }
   }
 </style>
