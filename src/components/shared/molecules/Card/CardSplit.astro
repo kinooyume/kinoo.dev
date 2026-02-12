@@ -24,8 +24,8 @@ const { reverse, vertical } = Astro.props;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, minmax(0, auto));
-    grid-column-gap: 64px;
-    grid-row-gap: 24px;
+    grid-column-gap: clamp(32px, 1.05rem + 3.37vw, 64px);
+    grid-row-gap: clamp(14px, 0.58rem + 1.05vw, 24px);
     height: 100%;
     --duration: 16s;
 
@@ -48,7 +48,7 @@ const { reverse, vertical } = Astro.props;
   .card-split.vertical {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
-    grid-row-gap: 24px;
+    grid-row-gap: clamp(14px, 0.58rem + 1.05vw, 24px);
 
     > .title {
       grid-area: 1 / 1 / 2 / 2;
@@ -81,8 +81,6 @@ const { reverse, vertical } = Astro.props;
     .card-split {
       grid-template-columns: 1fr;
       grid-template-rows: repeat(3, minmax(0, auto));
-      grid-row-gap: 18px;
-
       > .title {
         grid-area: 1 / 1 / 2 / 2;
       }
@@ -95,9 +93,4 @@ const { reverse, vertical } = Astro.props;
     }
   }
 
-  @media screen and (max-width: 600px) {
-    .card-split {
-      grid-row-gap: 14px;
-    }
-  }
 </style>

@@ -79,11 +79,13 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSCode inline>&lt;Card&gt;&lt;CardContent&gt;&lt;CardTitle slot="title" /&gt;&lt;LogoBox slot="marge" /&gt;&lt;CardDescription&gt;...&lt;/CardDescription&gt;&lt;TagRow&gt;...&lt;/TagRow&gt;&lt;/CardContent&gt;&lt;/Card&gt;</DSCode>
   </DSBlock>
 
-  <DSBlock title="Responsive spacing">
+  <DSBlock title="Fluid spacing">
     <DSPropsTable
-      headers={["Element", "Desktop", "≤900px", "≤600px"]}
+      headers={["Element", "Value", "Min", "Max"]}
       rows={[
-        ["Title → body gap", "24px", "18px", "14px"],
+        ["Card padding", "clamp(24px, 0.79rem + 2.53vw, 48px)", "24px", "48px"],
+        ["Title → body gap", "clamp(14px, 0.58rem + 1.05vw, 24px)", "14px", "24px"],
+        ["Title wrapper gap", "clamp(14px, 0.76rem + 0.42vw, 18px)", "14px", "18px"],
       ]}
     />
   </DSBlock>
@@ -121,7 +123,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   <DSBlock title="Features">
     <DSStructure
       rows={[
-        { code: "gap: 12px → 10px", description: "Paragraph spacing (responsive at ≤600px)" },
+        { code: "gap: clamp(10px, ..., 12px)", description: "Paragraph spacing (fluid)" },
         { code: "flex: 1", description: "Fills remaining card height" },
         { code: "br { display: none }", description: "Gap replaces line breaks" },
       ]}
@@ -166,12 +168,12 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     />
   </DSBlock>
 
-  <DSBlock title="Responsive spacing">
+  <DSBlock title="Fluid spacing">
     <DSPropsTable
-      headers={["Element", "Desktop", "≤1100px", "≤600px"]}
+      headers={["Element", "Value", "Min", "Max"]}
       rows={[
-        ["Row gap", "24px", "18px", "14px"],
-        ["Column gap", "64px", "—", "—"],
+        ["Row gap", "clamp(14px, 0.58rem + 1.05vw, 24px)", "14px", "24px"],
+        ["Column gap", "clamp(32px, 1.05rem + 3.37vw, 64px)", "32px", "64px"],
       ]}
     />
   </DSBlock>

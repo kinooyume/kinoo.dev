@@ -15,20 +15,8 @@ const { class: className } = Astro.props;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: clamp(6px, 0.32rem + 0.21vw, 8px);
     margin-top: auto;
-    padding-top: 36px;
-  }
-
-  @media screen and (max-width: 900px) {
-    .tag-row {
-      padding-top: 24px;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .tag-row {
-      padding-top: 18px;
-    }
+    padding-top: clamp(18px, 0.59rem + 1.89vw, 36px);
   }
 </style>
