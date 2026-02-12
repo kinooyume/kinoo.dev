@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.15.0 - 2026-02-12
+#### Bug Fixes
+- **(button)** resolve astro check conflict in Button DS doc - (0c728d3) - Martin Kinoo
+#### Continuous Integration
+- add fixed alias URL for develop preview deploy - (f5eab34) - Martin Kinoo
+- add Netlify preview deploy on push to develop - (0bb93a0) - Martin Kinoo
+#### Features
+- **(button)** create SolidJS Button component and move styles from global CSS - (548d368) - Martin Kinoo
+- **(contact)** use Button component, fix validation, and update form UX - (9ddefa5) - Martin Kinoo
+- **(contact)** redesign form with dark theme, grid layout, and updated copy - (e6a88bc) - Martin Kinoo
+- **(nav)** add smooth scroll for same-page hash links - (fde6f23) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.14.0 - (e2a48e4) - github-actions[bot]
+#### Refactoring
+- **(cards)** fluid spacing, tighter mobile text and tags - (07bdf02) - Martin Kinoo
+- **(footer)** remove year and Figma, add SolidJS - (1c8037a) - Martin Kinoo
+- **(typography)** sync link, card subtitle, and contact form with fluid scaling - (4664cda) - Martin Kinoo
+
+- - -
+
 ## v0.14.0 - 2026-02-12
 #### Bug Fixes
 - **(animations)** reset scale in mobile card reveal after viewport change - (ae1be85) - Martin Kinoo
