@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import Button from "@/components/shared/atoms/Button";
 import github from "@/svgs/github.svg?raw";
 ---
 
@@ -9,7 +10,7 @@ import github from "@/svgs/github.svg?raw";
   <HeaderLink href="https://github.com/KinooYume" label="GitHub" external>
     <Fragment set:html={github} />
   </HeaderLink>
-  <a class="primary cta" href="/#contact">Me contacter</a>
+  <Button href="/#contact">Discutons ensemble</Button>
 </div>
 
 <style>

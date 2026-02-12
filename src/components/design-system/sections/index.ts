@@ -19,7 +19,7 @@ export const sidebarSections: SidebarSection[] = [
   {
     title: "Atoms",
     items: [
-      { label: "Button", href: "#button", framework: "astro" },
+      { label: "Button", href: "#button", framework: "solid" },
       { label: "IconButton", href: "#iconbutton", framework: "astro" },
       { label: "Tag", href: "#tag", framework: "astro" },
       { label: "TagRow", href: "#tagrow", framework: "astro" },

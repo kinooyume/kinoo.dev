@@ -4,35 +4,65 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import Button from "./Button";
 ---
 
 <section id="button">
-  <DSSectionHeader title="Button" atomic="Atom" framework="astro" />
+  <DSSectionHeader title="Button" atomic="Atom" framework="solid" />
+  <p>Reusable button with variant styling and loading/success states.</p>
 
   <DSBlock title="Primary">
     <DSPreview>
-      <button class="primary">Primary Button</button>
-      <a href="#button" class="primary">Primary Link</a>
+      <Button client:load variant="primary">Primary Button</Button>
+      <Button href="#button" variant="primary">Primary Link</Button>
     </DSPreview>
-    <DSCode inline>&lt;button class="primary"&gt;...&lt;/button&gt;</DSCode>
+    <DSCode inline>&lt;Button variant="primary"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Secondary">
     <DSPreview>
-      <button class="secondary">Secondary Button</button>
-      <a href="#button" class="secondary">Secondary Link</a>
+      <Button client:load variant="secondary">Secondary Button</Button>
+      <Button href="#button" variant="secondary">Secondary Link</Button>
     </DSPreview>
-    <DSCode inline>&lt;button class="secondary"&gt;...&lt;/button&gt;</DSCode>
+    <DSCode inline>&lt;Button variant="secondary"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
-  <DSBlock title="CSS Classes">
+  <DSBlock title="Loading State">
+    <DSPreview>
+      <Button client:load variant="primary" state="loading">Envoi…</Button>
+    </DSPreview>
+    <DSCode inline>&lt;Button state="loading"&gt;Envoi…&lt;/Button&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Success State">
+    <DSPreview>
+      <Button client:load variant="primary" state="success">Message envoyé ✓</Button>
+    </DSPreview>
+    <DSCode inline>&lt;Button state="success"&gt;Message envoyé ✓&lt;/Button&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
     <DSPropsTable
-      headers={["Class", "Description"]}
+      headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: ".primary" }, "Accent background, dark text"],
-        [{ code: ".secondary" }, "Card background, light text, border"],
-        [{ code: ".anime" }, "Adds hover lift animation to links"],
+        [{ code: "variant" }, { code: '"primary" | "secondary"' }, { code: '"primary"' }, "Visual style variant"],
+        [{ code: "state" }, { code: '"idle" | "loading" | "success"' }, { code: '"idle"' }, "Button state for form feedback"],
+        [{ code: "href" }, { code: "string" }, "—", "When set, renders as <a> instead of <button>"],
+        [{ code: "...attrs" }, { code: "ComponentProps<\"button\">" }, "—", "All native button attributes (disabled, type, etc.)"],
       ]}
     />
   </DSBlock>
 </section>
+
+<script>
+  document.getElementById("button")?.addEventListener(
+    "click",
+    (e) => {
+      if ((e.target as HTMLElement).closest("button")) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+    true,
+  );
+</script>
