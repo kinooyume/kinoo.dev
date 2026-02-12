@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.13.1 - 2026-02-12
+#### Bug Fixes
+- **(animations)** reset scale in mobile card reveal after viewport change - (ae1be85) - Martin Kinoo
+- **(header)** wrap default slot in flex container for consistent alignment - (d9e00ef) - Martin Kinoo
+- **(typography)** fix h2 responsive scale and align tag/card breakpoints - (2b85bc6) - Martin Kinoo
+#### Miscellaneous Chores
+- **(version)** v0.13.0 - (f181ff4) - github-actions[bot]
+#### Refactoring
+- **(typography)** switch to fluid clamp() scaling and fix section spacing - (147e417) - Martin Kinoo
+
+- - -
+
 ## v0.13.0 - 2026-02-11
 #### Bug Fixes
 - **(NavBar)** restore hover translate animation on nav links - (1b08a23) - Martin Kinoo
