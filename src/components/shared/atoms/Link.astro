@@ -22,19 +22,11 @@ const isExternal = href.startsWith("http");
 }
 
 <style>
-  :root {
-    --span-tag-size: 16px;
-  }
-  @media screen and (max-width: 1368px) {
-    :root {
-      --span-tag-size: 16px;
-    }
-  }
   a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: var(--span-tag-size);
+    font-size: var(--font-size);
     stroke: var(--light-color);
     color: var(--light-color);
     opacity: 0.6;
