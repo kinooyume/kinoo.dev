@@ -50,57 +50,18 @@
   --border-color: rgba(255, 255, 255, 0.1);
   --border-hover-color: rgba(255, 255, 255, 0.2);
 
-  /* ===== Typography Sizes ===== */
-  --h1-size: 96px;
-  --h2-size: 38px;
-  --h3-size: 24px;
-  --subtitle-size: 22px;
-  --font-size: 18px;
+  /* ===== Typography Sizes (fluid) ===== */
+  --h1-size: clamp(48px, 1.58rem + 5.05vw, 96px);
+  --h2-size: clamp(42px, 2.21rem + 1.47vw, 56px);
+  --h3-size: clamp(18px, 0.95rem + 0.63vw, 24px);
+  --subtitle-size: clamp(20px, 1.19rem + 0.21vw, 22px);
+  --font-size: clamp(16px, 0.94rem + 0.21vw, 18px);
   --button-font-size: 15px;
 
-  /* ===== Spacing ===== */
-  --section-margin: 142px;
+  /* ===== Spacing (fluid) ===== */
+  --section-margin: clamp(96px, 4.11rem + 6.74vw, 160px);
+  --h2-margin-bottom: clamp(40px, 1.79rem + 2.53vw, 64px);
 
   /* ===== Animation ===== */
   --border-angle: 360deg;
-}
-
-/* ===== Responsive Typography ===== */
-@media screen and (max-width: 1368px) {
-  :root {
-    --h1-size: 92px;
-    --h2-size: 36px;
-    --h3-size: 24px;
-    --subtitle-size: 24px;
-    --font-size: 18px;
-    --button-font-size: 15px;
-    --section-margin: 192px;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  :root {
-    --h1-size: 86px;
-    --h2-size: 32px;
-    --h3-size: 20px;
-    --subtitle-size: 20px;
-    --font-size: 16px;
-    --button-font-size: 15px;
-    --section-margin: 148px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  :root {
-    --h1-size: 64px;
-    --h2-size: 28px;
-    --h3-size: 18px;
-    --section-margin: 94px;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  :root {
-    --h1-size: 48px;
-  }
 }
