@@ -4,7 +4,7 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import Button from "./Button";
+import ButtonComponent from "./Button";
 ---
 
 <section id="button">
@@ -13,30 +13,30 @@ import Button from "./Button";
 
   <DSBlock title="Primary">
     <DSPreview>
-      <Button client:load variant="primary">Primary Button</Button>
-      <Button href="#button" variant="primary">Primary Link</Button>
+      <ButtonComponent client:load variant="primary">Primary Button</ButtonComponent>
+      <ButtonComponent href="#button" variant="primary">Primary Link</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button variant="primary"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Secondary">
     <DSPreview>
-      <Button client:load variant="secondary">Secondary Button</Button>
-      <Button href="#button" variant="secondary">Secondary Link</Button>
+      <ButtonComponent client:load variant="secondary">Secondary Button</ButtonComponent>
+      <ButtonComponent href="#button" variant="secondary">Secondary Link</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button variant="secondary"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Loading State">
     <DSPreview>
-      <Button client:load variant="primary" state="loading">Envoi…</Button>
+      <ButtonComponent client:load variant="primary" state="loading">Envoi…</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button state="loading"&gt;Envoi…&lt;/Button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Success State">
     <DSPreview>
-      <Button client:load variant="primary" state="success">Message envoyé ✓</Button>
+      <ButtonComponent client:load variant="primary" state="success">Message envoyé ✓</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button state="success"&gt;Message envoyé ✓&lt;/Button&gt;</DSCode>
   </DSBlock>
