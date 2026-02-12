@@ -1,6 +1,8 @@
 name: CI
 
 on:
+  push:
+    branches: [develop]
   pull_request:
     branches: [develop]
 
@@ -18,6 +20,7 @@ jobs:
           bun-version: latest
 
       - name: Validate PR commits
+        if: github.event_name == 'pull_request'
         uses: cocogitto/cocogitto-action@v3
         with:
           check-latest-tag-only: true
@@ -33,3 +36,15 @@ jobs:
 
       - name: Build
         run: bun run build
+        env:
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_ACCESS_KEY }}
+
+      - name: Deploy preview to Netlify
+        if: github.event_name == 'push'
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: ./dist
+          production-deploy: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
