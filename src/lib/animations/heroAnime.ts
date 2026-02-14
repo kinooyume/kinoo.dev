@@ -1,45 +1,46 @@
-import anime from "animejs/lib/anime.es.js";
+import { createTimeline } from "animejs";
 import { emitHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
 import { animateHeader } from "@/lib/animations/headerAnime";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("hero-animation");
 
-  const init = anime.timeline({ autoplay: false }).add({
-    targets: [".subtitle"],
+  const init = createTimeline({ autoplay: false }).add([".subtitle"], {
     opacity: 1,
   });
 
-  const subtitle = anime
-    .timeline({ autoplay: false })
-    .add({
-      targets: "h1 span",
+  const subtitle = createTimeline({ autoplay: false })
+    .add("h1 span", {
       opacity: [0, 1],
       duration: 600,
       scale: [0.8, 1],
       delay: (_el, i) => 70 * i,
+      ease: "outElastic(1, .5)",
     })
-    .add({
-      targets: ".text-wrapper .letter",
+    .add(".text-wrapper .letter", {
       translateY: ["1.3em", 0],
       translateZ: 0,
       duration: 750,
       delay: (_el, i) => 30 * i,
+      ease: "outElastic(1, .5)",
     });
 
-  const description = anime.timeline({ autoplay: false }).add({
-    targets: ["#hero .description > *", ".hero-tag"],
-    translateY: [50, 0],
-    opacity: [0, 1],
-    duration: 1000,
-    delay: (_el, i) => 30 * i,
-  });
+  const description = createTimeline({ autoplay: false }).add(
+    ["#hero .description > *", ".hero-tag"],
+    {
+      translateY: [50, 0],
+      opacity: [0, 1],
+      duration: 1000,
+      delay: (_el, i) => 30 * i,
+      ease: "outElastic(1, .5)",
+    },
+  );
 
-  const picture = anime.timeline({ autoplay: false }).add({
-    targets: [".hero-image"],
+  const picture = createTimeline({ autoplay: false }).add([".hero-image"], {
     opacity: [0, 1],
     scale: [0.8, 1],
     duration: 800,
+    ease: "outElastic(1, .5)",
   });
 
   const allTimelines = [init, subtitle, description, picture];

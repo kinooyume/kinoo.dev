@@ -1,19 +1,22 @@
-import anime from "animejs/lib/anime.es.js";
+import { createTimeline, type Timeline } from "animejs";
 
 export interface HeaderAnimationOptions {
   delay?: number;
 }
 
-export function animateHeader(options: HeaderAnimationOptions = {}): anime.AnimeInstance {
+export function animateHeader(options: HeaderAnimationOptions = {}): Timeline {
   const { delay = 0 } = options;
 
-  const timeline = anime.timeline({ autoplay: false }).add({
-    targets: [".header .title-wrapper", ".navbar li", ".header-menu"],
-    translateY: ["-1.2em", 0],
-    opacity: [0, 1],
-    duration: 800,
-    delay: (_el: Element, i: number) => delay + 30 * i,
-  });
+  const timeline = createTimeline({ autoplay: false }).add(
+    [".header .title-wrapper", ".navbar li", ".header-menu"],
+    {
+      translateY: ["-1.2em", 0],
+      opacity: [0, 1],
+      duration: 800,
+      delay: (_el, i) => delay + 30 * i,
+      ease: "outElastic(1, .5)",
+    },
+  );
 
   timeline.play();
   return timeline;

@@ -4,9 +4,10 @@
 
 Personal portfolio & freelance website.
 
-[![Astro](https://img.shields.io/badge/Astro-4.16-FF5D01?logo=astro&logoColor=white)](https://astro.build)
-[![SolidJS](https://img.shields.io/badge/SolidJS-1.8-2C4F7C?logo=solid&logoColor=white)](https://www.solidjs.com)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Astro](https://img.shields.io/badge/Astro-5.17-FF5D01?logo=astro&logoColor=white)](https://astro.build)
+[![SolidJS](https://img.shields.io/badge/SolidJS-1.9-2C4F7C?logo=solid&logoColor=white)](https://www.solidjs.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Anime.js](https://img.shields.io/badge/Anime.js-4.3-FF4B4B?logo=data:image/svg+xml;base64,&logoColor=white)](https://animejs.com)
 
 [Live Website](https://kinoo.dev) · [Design System](https://kinoo.dev/design-system)
 

@@ -1,4 +1,4 @@
-import anime from "animejs/lib/anime.es.js";
+import { animate } from "animejs";
 
 const MOBILE_BREAKPOINT = 900;
 
@@ -20,8 +20,7 @@ export function revealSections(): () => void {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        anime({
-          targets: entry.target,
+        animate(entry.target, {
           opacity: [0, 1],
           translateY: [20, 0],
           duration: 600,

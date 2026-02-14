@@ -33,7 +33,7 @@ type SliderProps = {
 };
 
 const Slider = (props: SliderProps) => {
-  let sliderEl!: HTMLDivElement;
+  let sliderEl: HTMLDivElement | undefined;
   let unsubscribe: () => void;
   const [currentIndex, setCurrentIndex] = createSignal(0);
   const [slider, setSlider] = createSignal<BlazeSlider>();
@@ -51,6 +51,7 @@ const Slider = (props: SliderProps) => {
   };
 
   onMount(() => {
+    if (!sliderEl) return;
     const slider = new BlazeSlider(sliderEl);
 
     setSlider(slider);
@@ -66,7 +67,7 @@ const Slider = (props: SliderProps) => {
   });
 
   return (
-    <div ref={sliderEl}>
+    <div ref={(el) => (sliderEl = el)}>
       <div class="blaze-container">
         <div class="blaze-track-container">
           <div class="blaze-track">
