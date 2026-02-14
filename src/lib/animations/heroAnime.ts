@@ -1,29 +1,58 @@
+import anime from "animejs/lib/anime.es.js";
 import { emitHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
-import { showHeaderImmediate } from "@/lib/animations/headerAnime";
+import { animateHeader } from "@/lib/animations/headerAnime";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const setFinalStyles = (selector: string, styles: Partial<CSSStyleDeclaration>) => {
-    document.querySelectorAll<HTMLElement>(selector).forEach((el) => {
-      Object.assign(el.style, styles);
+  document.body.classList.add("hero-animation");
+
+  const init = anime.timeline({ autoplay: false }).add({
+    targets: [".subtitle"],
+    opacity: 1,
+  });
+
+  const subtitle = anime
+    .timeline({ autoplay: false })
+    .add({
+      targets: "h1 span",
+      opacity: [0, 1],
+      duration: 600,
+      scale: [0.8, 1],
+      delay: (_el, i) => 70 * i,
+    })
+    .add({
+      targets: ".text-wrapper .letter",
+      translateY: ["1.3em", 0],
+      translateZ: 0,
+      duration: 750,
+      delay: (_el, i) => 30 * i,
     });
-  };
 
-  setFinalStyles(".subtitle", { opacity: "1" });
-  setFinalStyles("h1 span", { opacity: "1", transform: "scale(1)" });
-  setFinalStyles(".text-wrapper .letter", { transform: "translateY(0)" });
-  setFinalStyles("#hero .description > *, .hero-tag", { opacity: "1", transform: "translateY(0)" });
-  setFinalStyles(".hero-image", { opacity: "1", transform: "scale(1)" });
+  const description = anime.timeline({ autoplay: false }).add({
+    targets: ["#hero .description > *", ".hero-tag"],
+    translateY: [50, 0],
+    opacity: [0, 1],
+    duration: 1000,
+    delay: (_el, i) => 30 * i,
+  });
 
-  showHeaderImmediate();
+  const picture = anime.timeline({ autoplay: false }).add({
+    targets: [".hero-image"],
+    opacity: [0, 1],
+    scale: [0.8, 1],
+    duration: 800,
+  });
+
+  const allTimelines = [init, subtitle, description, picture];
+
+  allTimelines.forEach((tl) => tl.play());
+  animateHeader();
 
   document.body.classList.remove("hero-animation");
-
-  const headerEl = document.querySelector<HTMLElement>("header");
+  const headerEl = document.querySelector("header");
   if (headerEl) {
     headerEl.style.display = "";
   }
-
-  emitHeroAnimationComplete("cancelled");
+  emitHeroAnimationComplete("completed");
 
   if (globalThis.location.hash) {
     requestAnimationFrame(() => {
