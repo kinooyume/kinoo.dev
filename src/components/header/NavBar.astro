@@ -170,14 +170,17 @@ const { items = defaultItems } = Astro.props;
     opacity: 1;
   }
 
+  a[data-color="#f68dab"]:hover,
   a[data-color="#f68dab"].current {
-    color: #f68dab;
+    color: var(--pink-light);
   }
+  a[data-color="#66c384"]:hover,
   a[data-color="#66c384"].current {
-    color: #66c384;
+    color: var(--green-light);
   }
+  a[data-color="#9c85d3"]:hover,
   a[data-color="#9c85d3"].current {
-    color: #9c85d3;
+    color: var(--purple-light);
   }
 
   .indicator {
