@@ -18,6 +18,26 @@
   --secondary-accent-color: #c9a88d;
   --accent-bright: #f6b17a;
 
+  /* ===== Orange (Accent) ===== */
+  --orange: #f8ba88;
+  --orange-light: #f7caa6;
+  --orange-dark: #f4ac72;
+  --orange-darker: #ea9957;
+  --orange-darkest: #d17d39;
+  --orange-lightest: #f8dbc4;
+  --orange-bg: rgba(248, 186, 136, 0.05);
+  --orange-tint: rgba(248, 186, 136, 0.1);
+
+  /* ===== Red (Error / Validation) ===== */
+  --red: #ea8686;
+  --red-light: #edabab;
+  --red-dark: #dc6a6a;
+  --red-darker: #cb4d4d;
+  --red-darkest: #a63a3a;
+  --red-lightest: #f3cece;
+  --red-bg: rgba(234, 134, 134, 0.05);
+  --red-tint: rgba(234, 134, 134, 0.1);
+
   /* ===== Section Theme Colors ===== */
   --green: #66c384;
   --green-light: #a4dfb8;
@@ -25,6 +45,8 @@
   --green-darker: #4a9c63;
   --green-darkest: #3d8552;
   --green-lightest: #c0edcf;
+  --green-bg: rgba(102, 195, 132, 0.05);
+  --green-tint: rgba(102, 195, 132, 0.1);
 
   --pink: #f68dab;
   --pink-light: #f8a4c0;
@@ -32,6 +54,8 @@
   --pink-darker: #f26088;
   --pink-darkest: #d55478;
   --pink-lightest: #f8c8d9;
+  --pink-bg: rgba(246, 141, 171, 0.05);
+  --pink-tint: rgba(246, 141, 171, 0.1);
 
   --purple: #9c85d3;
   --purple-light: #b09ee0;
@@ -39,12 +63,13 @@
   --purple-darker: #745bba;
   --purple-darkest: #6048a0;
   --purple-lightest: #c9bce6;
+  --purple-bg: rgba(156, 133, 211, 0.05);
+  --purple-tint: rgba(156, 133, 211, 0.1);
 
   /* ===== Card Colors ===== */
-  --card-first-background-color: #2d2d3b;
-  --card-alt-background-color: #1c2638;
-  --card-background-color: var(--card-alt-background-color);
-  --card-hover-background: #313d50;
+  --card-surface-raised: #2d2d3b;
+  --card-surface: #1c2638;
+  --card-surface-hover: #313d50;
 
   /* ===== Border Colors ===== */
   --border-color: rgba(255, 255, 255, 0.1);
