@@ -17,6 +17,7 @@
   --accent-color: #f8ba88;
   --secondary-accent-color: #c9a88d;
   --accent-bright: #f6b17a;
+  --accent-tint: var(--orange-tint);
 
   /* ===== Orange (Accent) ===== */
   --orange: #f8ba88;

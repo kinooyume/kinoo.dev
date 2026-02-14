@@ -4,6 +4,7 @@ import terminal from "@/svgs/terminal.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
@@ -16,6 +17,32 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       <TagComponent title="TypeScript" />
     </DSPreview>
     <DSCode inline>title="TypeScript"</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Section Themed">
+    <DSNote>
+      Tags inherit <code>--accent-color</code> from the parent section and adapt their background tint and left border accordingly.
+    </DSNote>
+    <DSPreview>
+      <div class="themed-tags">
+        <div style="--accent-color: var(--orange); --accent-tint: var(--orange-tint);">
+          <TagComponent title="React" />
+          <TagComponent title="TypeScript" />
+        </div>
+        <div style="--accent-color: var(--pink); --accent-tint: var(--pink-tint);">
+          <TagComponent title="Vue.js" />
+          <TagComponent title="GraphQL" />
+        </div>
+        <div style="--accent-color: var(--green); --accent-tint: var(--green-tint);">
+          <TagComponent title="Node.js" />
+          <TagComponent title="PostgreSQL" />
+        </div>
+        <div style="--accent-color: var(--purple); --accent-tint: var(--purple-tint);">
+          <TagComponent title="Docker" />
+          <TagComponent title="AWS" />
+        </div>
+      </div>
+    </DSPreview>
   </DSBlock>
 
   <DSBlock title="With Icon">
@@ -53,11 +80,23 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSPropsTable
       headers={["Property", "Desktop", "≤900px", "≤600px"]}
       rows={[
-        [{ code: "font-size" }, "16px", "~14px", "12px"],
+        [{ code: "font-size" }, "14px", "~13px", "12px"],
         [{ code: "padding" }, "8px 18px", "6px 12px", "4px 10px"],
-        [{ code: "icon" }, "16px", "16px", "13px"],
-        [{ code: "border-radius" }, "12px", "12px", "8px"],
+        [{ code: "icon" }, "16px", "16px", "12px"],
       ]}
     />
   </DSBlock>
 </section>
+
+<style>
+  .themed-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .themed-tags > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
