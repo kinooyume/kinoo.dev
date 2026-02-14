@@ -1,4 +1,4 @@
-import anime from "animejs/lib/anime.es.js";
+import { createTimeline, stagger } from "animejs";
 
 const MOBILE_BREAKPOINT = 900;
 const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
@@ -9,26 +9,28 @@ const observerOptions: IntersectionObserverInit = {
 };
 
 function animateCard(card: Element) {
+  card.querySelectorAll<HTMLElement>("[data-animate-elem]").forEach(
+    (el) => (el.style.opacity = "0"),
+  );
+
   if (isMobile()) {
     const elems = card.querySelectorAll("[data-animate-elem]");
-    anime
-      .timeline()
-      .add({
-        targets: card,
+    createTimeline()
+      .add(card, {
         opacity: [0, 1],
         translateY: [20, 0],
         scale: 1,
         duration: 500,
-        easing: "easeOutCubic",
+        ease: "outCubic",
       })
       .add(
+        elems,
         {
-          targets: elems,
           opacity: [0, 1],
           translateY: [10, 0],
           duration: 400,
-          delay: anime.stagger(80),
-          easing: "easeOutCubic",
+          delay: stagger(80),
+          ease: "outCubic",
         },
         "-=200",
       );
@@ -36,22 +38,21 @@ function animateCard(card: Element) {
   }
 
   const elems = card.querySelectorAll("[data-animate-elem]");
-  anime
-    .timeline()
-    .add({
-      targets: card,
+  createTimeline()
+    .add(card, {
       opacity: [0, 1],
       translateY: [50, 0],
       scale: [0.8, 1],
       duration: 600,
-      delay: (_el: Element, i: number) => i * 200,
+      delay: (_el, i) => i * 200,
+      ease: "outElastic(1, .5)",
     })
-    .add({
-      targets: elems,
+    .add(elems, {
       opacity: [0, 1],
       translateX: [-20, 0],
       duration: 800,
-      delay: anime.stagger(200),
+      delay: stagger(200),
+      ease: "outElastic(1, .5)",
     });
 }
 
