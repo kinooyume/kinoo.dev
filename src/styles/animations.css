@@ -19,3 +19,14 @@
 .navbar {
   pointer-events: auto;
 }
+
+/* ===== Letter Reveal ===== */
+[data-reveal-letters] {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.reveal-letter {
+  display: inline-block;
+  transform: translateY(1.1em);
+}
