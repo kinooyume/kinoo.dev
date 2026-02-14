@@ -26,7 +26,8 @@
 
 .inputWrapper.invalid input,
 .inputWrapper.invalid textarea {
-  border-color: red;
+  border-color: var(--red-light);
+  background-color: var(--red-bg);
 }
 
 .meta {
@@ -75,12 +76,13 @@
   font-size: 16px;
   color: var(--light-color);
   transition: all 0.06s ease;
-  background-color: var(--card-alt-background-color);
+  background-color: var(--card-surface);
 }
 
 .root input:focus {
   outline: none;
-  border-color: var(--accent-color);
+  border-color: var(--orange-light);
+  background-color: var(--orange-bg);
 }
 
 .root textarea {
@@ -91,14 +93,15 @@
   color: var(--light-color);
   border-radius: 10px;
   border: 2px solid var(--border-color);
-  background-color: var(--card-alt-background-color);
+  background-color: var(--card-surface);
   font-size: 16px;
   transition: all 0.06s ease;
 }
 
 .root textarea:focus {
   outline: none;
-  border-color: var(--accent-color);
+  border-color: var(--orange-light);
+  background-color: var(--orange-bg);
 }
 
 .root input::placeholder,
