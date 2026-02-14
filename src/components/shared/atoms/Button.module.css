@@ -22,12 +22,12 @@
 
 .secondary {
   color: var(--light-color);
-  background-color: var(--card-alt-background-color);
+  background-color: var(--card-surface);
   border-color: var(--border-color);
 }
 
 .secondary:hover {
-  background-color: var(--card-hover-background);
+  background-color: var(--card-surface-hover);
   border-color: var(--border-hover-color);
 }
 
