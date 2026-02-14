@@ -57,8 +57,7 @@ function animateCard(card: Element) {
 }
 
 /**
- * Observes `[data-animate-card]` elements and reveals them with a
- * scale + slide-up animation when they enter the viewport.
+ * Observes `[data-animate-card]` elements and reveals them
  *
  * Cards already visible on init are triggered immediately to handle
  * tall elements that may not meet the 10% intersection threshold.
