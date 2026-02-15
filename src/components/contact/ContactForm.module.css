@@ -8,37 +8,10 @@
   gap: clamp(16px, 0.82rem + 0.75vw, 24px);
 }
 
-.textareaWrapper {
-  width: 100%;
-}
-
-.inputWrapper {
-  width: 100%;
-}
-
-.inputWrapper label {
-  display: block;
-  margin: 6px 0;
-  font-size: var(--font-size);
-  font-weight: 400;
-  text-transform: capitalize;
-}
-
-.inputWrapper.invalid input,
-.inputWrapper.invalid textarea {
-  border-color: var(--red-border);
-  background-color: var(--red-bg);
-}
-
 .meta {
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 0.82rem + 0.75vw, 24px);
-}
-
-.inputWrapper input {
-  width: 100%;
-  padding: clamp(12px, 0.66rem + 0.38vw, 16px) clamp(16px, 0.91rem + 0.38vw, 20px);
 }
 
 .actions {
@@ -66,45 +39,4 @@
   .actions button {
     width: 100%;
   }
-}
-
-
-.root input {
-  font-family: Outfit, system-ui, sans-serif;
-  border: 2px solid var(--border-color);
-  border-radius: 10px;
-  font-size: 16px;
-  color: var(--light-color);
-  transition: all 0.15s ease;
-  background-color: var(--card-surface-input);
-}
-
-.root input:focus {
-  outline: none;
-  border-color: var(--orange-border);
-  background-color: var(--orange-bg);
-}
-
-.root textarea {
-  font-family: Outfit, system-ui, sans-serif;
-  width: 100%;
-  min-height: 160px;
-  padding: clamp(12px, 0.66rem + 0.38vw, 16px) clamp(16px, 0.91rem + 0.38vw, 20px);
-  color: var(--light-color);
-  border-radius: 10px;
-  border: 2px solid var(--border-color);
-  background-color: var(--card-surface-input);
-  font-size: 16px;
-  transition: all 0.15s ease;
-}
-
-.root textarea:focus {
-  outline: none;
-  border-color: var(--orange-border);
-  background-color: var(--orange-bg);
-}
-
-.root input::placeholder,
-.root textarea::placeholder {
-  color: rgba(224, 224, 224, 0.4);
 }

@@ -77,6 +77,14 @@ export const sidebarSections: SidebarSection[] = [
     ],
   },
   {
+    title: "Form",
+    items: [
+      { label: "Input", href: "#input", framework: "solid" },
+      { label: "Textarea", href: "#textarea", framework: "solid" },
+      { label: "FormField", href: "#formfield", framework: "solid" },
+    ],
+  },
+  {
     title: "Contact",
     items: [
       { label: "Contact", href: "#contact-doc", framework: "astro" },

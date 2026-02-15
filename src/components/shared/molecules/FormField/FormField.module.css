@@ -1,0 +1,11 @@
+.field {
+  width: 100%;
+}
+
+.field label {
+  display: block;
+  margin: 6px 0;
+  font-size: var(--font-size);
+  font-weight: 400;
+  text-transform: capitalize;
+}

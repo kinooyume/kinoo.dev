@@ -1,0 +1,37 @@
+---
+import TextareaComponent from "./Textarea";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="textarea">
+  <DSSectionHeader title="Textarea" atomic="Atom" framework="solid" />
+  <p>Styled textarea with focus and invalid states.</p>
+
+  <DSBlock title="Default">
+    <DSPreview>
+      <TextareaComponent client:load placeholder="Describe your project..." />
+    </DSPreview>
+    <DSCode inline>&lt;Textarea placeholder="Describe your project..." /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Invalid">
+    <DSPreview>
+      <TextareaComponent client:load placeholder="Describe your project..." invalid />
+    </DSPreview>
+    <DSCode inline>&lt;Textarea invalid placeholder="..." /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "invalid" }, { code: "boolean" }, { code: "false" }, "Toggles red border/background"],
+        [{ code: "...attrs" }, { code: 'ComponentProps<"textarea">' }, "—", "All native textarea attributes"],
+      ]}
+    />
+  </DSBlock>
+</section>
