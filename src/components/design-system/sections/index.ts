@@ -66,7 +66,7 @@ export const sidebarSections: SidebarSection[] = [
     title: "Navigation",
     items: [
       { label: "BurgerIcon", href: "#burgericon", framework: "astro" },
-      { label: "Sidebar", href: "#sidebar", framework: "astro" },
+      { label: "Sidebar", href: "#sidebar", framework: "solid" },
     ],
   },
   {
