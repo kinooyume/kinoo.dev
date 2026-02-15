@@ -1,5 +1,5 @@
 import { animate } from "animejs";
-import { emitSectionReveal } from "./onSectionReveal";
+import { emit } from "@/lib/emitter";
 
 const MOBILE_BREAKPOINT = 900;
 
@@ -23,7 +23,7 @@ export function revealSections(): () => void {
           duration: 600,
         });
 
-        emitSectionReveal(section.id);
+        emit(`reveal:section:${section.id}`);
         observer.unobserve(section);
       }
     });
