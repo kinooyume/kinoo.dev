@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import DSLayout from "@/components/design-system/DSLayout.astro";
-import DSSidebar from "@/components/design-system/DSSidebar.astro";
+import DSSidebar from "@/components/design-system/DSSidebar.tsx";
 import HeaderLink from "@/components/header/HeaderLink.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
 
@@ -26,7 +26,7 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
   <meta slot="head" name="robots" content="noindex, nofollow" />
   <HeaderLink slot="header-menu" href="/" label="Portfolio" variant="badge" />
   <MobileMenu slot="header-menu" />
-  <DSSidebar slot="mobile-sidebar" />
+  <DSSidebar slot="mobile-sidebar" client:load />
 
   <DSLayout
     title="Design System"
