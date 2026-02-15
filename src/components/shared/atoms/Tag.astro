@@ -2,14 +2,15 @@
 interface Props {
   title: string;
   icon?: string;
-  hero?: boolean;
+  animated?: boolean;
   highlight?: boolean;
+  outline?: boolean;
 }
 
-const { hero, title, icon, highlight } = Astro.props;
+const { animated, title, icon, highlight, outline } = Astro.props;
 ---
 
-<div class=`tag ${ hero ? "hero-tag" : "show"} ${highlight ? "highlight" :""}`>
+<div class=`tag ${animated ? "tag-animated" : "show"} ${highlight ? "highlight" : ""} ${outline ? "outline" : ""}`>
   {icon && <Fragment set:html={icon} />}
   <span>{title}</span>
 </div>
@@ -44,11 +45,16 @@ const { hero, title, icon, highlight } = Astro.props;
   div.highlight {
     border: 1px solid var(--accent-color);
   }
+  div.outline {
+    background-color: transparent;
+    border: 1px solid var(--orange-border);
+    color: var(--accent-color);
+  }
   span {
     font-size: var(--span-tag-size);
     font-weight: 200;
   }
-  .tag:not(.hero-tag) {
+  .tag:not(.tag-animated) {
     background-color: var(--accent-tint);
     color: var(--accent-color);
   }

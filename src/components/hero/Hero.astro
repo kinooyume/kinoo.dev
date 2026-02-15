@@ -47,19 +47,19 @@ const techs: TagProps[] = [
         </p>
       </div>
       <ul>
-        {
-          techs.map((tech) => (
-            <li>
-              <Tag
-                title={tech.title}
-                hero={true}
-                icon={tech.icon}
-                highlight={tech.highlight}
-              />
-            </li>
-          ))
-        }
-      </ul>
+          {
+            techs.map((tech) => (
+              <li>
+                <Tag
+                  title={tech.title}
+                  animated
+                  icon={tech.icon}
+                  highlight={tech.highlight}
+                />
+              </li>
+            ))
+          }
+        </ul>
     </div>
     <img
       loading="lazy"
