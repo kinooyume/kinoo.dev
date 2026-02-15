@@ -11,8 +11,8 @@ const { id, subtitle, title } = Astro.props;
 ---
 
 <section id={id} data-animate-section>
-  <RevealText text={subtitle} as="span" class="subtitle" />
-  <RevealText text={title} as="h2" animation="slide" />
+  <RevealText text={subtitle} as="span" class="subtitle" trigger={`reveal:section:${id}`} />
+  <RevealText text={title} as="h2" animation="slide" trigger={`reveal:section:${id}`} />
   <slot />
 </section>
 
