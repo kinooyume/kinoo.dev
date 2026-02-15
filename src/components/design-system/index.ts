@@ -18,7 +18,7 @@ export { default as DSNote } from "./DSNote.astro";
 export { default as DSLayout } from "./DSLayout.astro";
 export { default as DSCategoryHeader } from "./DSCategoryHeader.astro";
 export { default as DSAtomicLabel } from "./DSAtomicLabel.astro";
-export { default as DSSidebar } from "./DSSidebar.astro";
+export { default as DSSidebar } from "./DSSidebar.tsx";
 
 // Sidebar config
 export * from "./sections/index";
