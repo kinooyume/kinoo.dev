@@ -135,6 +135,14 @@ feature/* → develop → main
            CI tests   Release + Deploy
 ```
 
+Follows standard **Gitflow**: feature branches merge into `develop`, `develop` merges into `main` for releases.
+
+- **feature → develop**: squash merge
+- **develop → main**: merge commit (preserves shared history between branches)
+- After release, CI merges `main` back into `develop` to sync the version bump
+
+> **TODO**: set GitHub repo merge strategy — enable "Allow merge commits" for develop → main PRs (Settings → General → Pull Requests)
+
 PRs to `develop` run lint + build. PRs to `main` create a GitHub release and deploy to Netlify.
 
 Commits must follow [Conventional Commits](https://www.conventionalcommits.org):

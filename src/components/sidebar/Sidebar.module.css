@@ -171,15 +171,22 @@
 }
 
 /* Mobile drawer overrides */
+:global(.mobile-drawer-panel):has(.sidebarWrapper) {
+  overflow-y: hidden;
+}
+
 :global(.mobile-drawer-panel) .sidebarWrapper {
   position: static;
   width: 100%;
   max-height: none;
+  height: 100%;
   padding: 0;
 }
 
 :global(.mobile-drawer-panel) .sidebarScroll {
-  overflow-y: visible;
+  overflow-y: auto;
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 :global(.mobile-drawer-panel) .sidebarHeader {

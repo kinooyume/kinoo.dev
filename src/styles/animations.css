@@ -28,7 +28,6 @@
 
 [data-reveal-text="slide"] {
   opacity: 0;
-  transform: translateX(30px);
 }
 
 .reveal-letter {
