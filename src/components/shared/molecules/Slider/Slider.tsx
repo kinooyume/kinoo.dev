@@ -1,4 +1,4 @@
-import { createSignal, For, onCleanup, onMount, type Accessor } from "solid-js";
+import { createSignal, createSelector, For, onCleanup, onMount, type Accessor } from "solid-js";
 import BlazeSlider from "blaze-slider/blaze-slider/src/index.ts";
 import "blaze-slider/blaze-slider/src/blaze.css";
 import "./Slider.css";
@@ -10,13 +10,15 @@ type PaginationProps = {
 };
 
 const SliderPagination = (props: Readonly<PaginationProps>) => {
+  const isActive = createSelector(() => props.index());
+
   return (
     <div class="pagination-wrapper">
       <div class="pagination" aria-hidden="true">
         <ul class="list">
           <For each={props.pictures}>
             {(_, index) => (
-              <li classList={{ active: index() === props.index() }}>
+              <li classList={{ active: isActive(index()) }}>
                 <button onClick={() => props.moveTo(index())} tabIndex={-1} />
               </li>
             )}
