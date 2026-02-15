@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.20.0 - 2026-02-15
+#### Documentation
+- **(portfolio)** sharpen expertise vocabulary and clean up tags - (d81e207) - Martin Kinoo
+#### Features
+- **(tag)** rename hero prop to animated, add outline variant - (bdc2a7f) - Martin Kinoo
+
+- - -
+
 ## v0.19.1 - 2026-02-15
 #### Bug Fixes
 - **(mobile)** prevent horizontal scroll and fix DS sidebar scroll - (815de4d) - Martin Kinoo
