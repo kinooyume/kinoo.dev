@@ -82,16 +82,10 @@ import Section from "@/components/shared/organisms/Section.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="Arteflix" tag="Projet perso" />
-              <div class="links-row">
-                <Link
-                  href="https://arteflix.kinoo.dev"
-                  text="Visiter le site"
-                />
-                <Link
-                  href="https://github.com/kinooyume/arteflix"
-                  text="Voir le code"
-                />
-              </div>
+              <Link
+                href="https://github.com/kinooyume/arteflix"
+                text="Voir le code"
+              />
             </div>
             <LogoBox>
               <img alt="arteflix" src="/images/arteflix/logo.webp" />
@@ -109,7 +103,7 @@ import Section from "@/components/shared/organisms/Section.astro";
             <p>
               Le site reprend le routing d'arte.tv, il suffit de changer le
               domaine dans l'URL pour accéder au même contenu. Architecture
-              entièrement <b>data-driven</b>, similaire à un <b>headless CMS</b
+              entièrement <b>API-first</b>, similaire à un <b>headless CMS</b
               >.
             </p>
             <br />
@@ -118,7 +112,7 @@ import Section from "@/components/shared/organisms/Section.astro";
               <Tag title="React" />
               <Tag title="Next.js" />
               <Tag title="Headless" />
-              <Tag title="Data-driven" />
+              <Tag title="API-first" />
               <Tag title="Storybook" />
             </TagRow>
           </CardDescription>
@@ -223,6 +217,7 @@ import Section from "@/components/shared/organisms/Section.astro";
               <Tag title="Astro" />
               <Tag title="SolidJS" />
               <Tag title="Anime.js" />
+              <Tag title="Design System" />
             </TagRow>
           </CardDescription>
           <Slider
