@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   const description = createTimeline({ autoplay: false }).add(
-    ["#hero .description > *", ".hero-tag"],
+    ["#hero .description > *", ".tag-animated"],
     {
       translateY: [50, 0],
       opacity: [0, 1],

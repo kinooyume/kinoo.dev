@@ -59,6 +59,15 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSCode inline>title="Featured" highlight</DSCode>
   </DSBlock>
 
+  <DSBlock title="Outline">
+    <DSPreview>
+      <TagComponent title="Headless" outline />
+      <TagComponent title="Design System" outline />
+      <TagComponent title="Composable" outline />
+    </DSPreview>
+    <DSCode inline>title="Headless" outline</DSCode>
+  </DSBlock>
+
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
@@ -71,7 +80,8 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         ],
         [{ code: "icon" }, "string", "-", "SVG icon as raw string"],
         [{ code: "highlight" }, "boolean", "false", "Adds accent border"],
-        [{ code: "hero" }, "boolean", "false", "Hero animation variant"],
+        [{ code: "outline" }, "boolean", "false", "Transparent background with accent border"],
+        [{ code: "animated" }, "boolean", "false", "Starts hidden for reveal animation"],
       ]}
     />
   </DSBlock>
