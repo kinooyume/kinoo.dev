@@ -81,6 +81,7 @@ export const sidebarSections: SidebarSection[] = [
     title: "Form",
     items: [
       { label: "Input", href: "#input", framework: "solid" },
+      { label: "SearchInput", href: "#searchinput", framework: "solid" },
       { label: "Textarea", href: "#textarea", framework: "solid" },
       { label: "FormField", href: "#formfield", framework: "solid" },
     ],
