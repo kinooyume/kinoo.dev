@@ -1,5 +1,5 @@
 ---
-import DSSidebar from "./DSSidebar.astro";
+import DSSidebar from "./DSSidebar.tsx";
 
 interface Props {
   title?: string;
@@ -22,7 +22,7 @@ const { title = "Design System", description } = Astro.props;
     </footer>
   </main>
 
-  <DSSidebar class="ds-sidebar-desktop" />
+  <DSSidebar class="ds-sidebar-desktop" client:load />
 </div>
 
 <style is:global>
@@ -90,10 +90,6 @@ const { title = "Design System", description } = Astro.props;
     font-size: 14px;
   }
 
-  .ds-sidebar-desktop {
-    display: block;
-  }
-
   /* matches mobile burger breakpoint (1100px) */
   @media screen and (max-width: 1100px) {
     .ds-container {
@@ -106,7 +102,7 @@ const { title = "Design System", description } = Astro.props;
       padding: 24px 0;
     }
 
-    .ds-sidebar-desktop.sidebar-wrapper {
+    .ds-sidebar-desktop {
       display: none;
     }
   }
