@@ -1,0 +1,29 @@
+---
+import SearchInputComponent from "./SearchInput";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="searchinput">
+  <DSSectionHeader title="SearchInput" atomic="Atom" framework="solid" />
+  <p>Compact search input wrapping Input with <code>type="search"</code> and a styled clear button.</p>
+
+  <DSBlock title="Default">
+    <DSPreview>
+      <SearchInputComponent client:load placeholder="Search…" />
+    </DSPreview>
+    <DSCode inline>&lt;SearchInput placeholder="Search…" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "...attrs" }, { code: 'ComponentProps<"input">' }, "—", "All native input attributes"],
+      ]}
+    />
+  </DSBlock>
+</section>
