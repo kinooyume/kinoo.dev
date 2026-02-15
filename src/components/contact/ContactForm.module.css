@@ -26,7 +26,7 @@
 
 .inputWrapper.invalid input,
 .inputWrapper.invalid textarea {
-  border-color: var(--red-light);
+  border-color: var(--red-border);
   background-color: var(--red-bg);
 }
 
@@ -53,7 +53,7 @@
 
 .hint {
   font-size: clamp(12px, 0.62rem + 0.32vw, 14px);
-  color: rgba(224, 224, 224, 0.4);
+  color: var(--text-muted);
   font-weight: 300;
 }
 
@@ -75,13 +75,13 @@
   border-radius: 10px;
   font-size: 16px;
   color: var(--light-color);
-  transition: all 0.06s ease;
-  background-color: var(--card-surface);
+  transition: all 0.15s ease;
+  background-color: var(--card-surface-input);
 }
 
 .root input:focus {
   outline: none;
-  border-color: var(--orange-light);
+  border-color: var(--orange-border);
   background-color: var(--orange-bg);
 }
 
@@ -93,14 +93,14 @@
   color: var(--light-color);
   border-radius: 10px;
   border: 2px solid var(--border-color);
-  background-color: var(--card-surface);
+  background-color: var(--card-surface-input);
   font-size: 16px;
-  transition: all 0.06s ease;
+  transition: all 0.15s ease;
 }
 
 .root textarea:focus {
   outline: none;
-  border-color: var(--orange-light);
+  border-color: var(--orange-border);
   background-color: var(--orange-bg);
 }
 

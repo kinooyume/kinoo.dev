@@ -12,6 +12,7 @@
   --color: #e0e0e0;
   --light-color: #f6f5f7;
   --extra-light-color: #f6f5f7;
+  --text-muted: #7b8fad;
 
   /* ===== Accent Colors ===== */
   --accent-color: #f8ba88;
@@ -28,6 +29,7 @@
   --orange-lightest: #f8dbc4;
   --orange-bg: rgba(248, 186, 136, 0.05);
   --orange-tint: rgba(248, 186, 136, 0.1);
+  --orange-border: rgba(248, 186, 136, 0.35);
 
   /* ===== Red (Error / Validation) ===== */
   --red: #ea8686;
@@ -38,6 +40,7 @@
   --red-lightest: #f3cece;
   --red-bg: rgba(234, 134, 134, 0.05);
   --red-tint: rgba(234, 134, 134, 0.1);
+  --red-border: rgba(234, 134, 134, 0.35);
 
   /* ===== Section Theme Colors ===== */
   --green: #66c384;
@@ -71,6 +74,7 @@
   --card-surface-raised: #2d2d3b;
   --card-surface: #1c2638;
   --card-surface-hover: #313d50;
+  --card-surface-input: #1a2232;
 
   /* ===== Border Colors ===== */
   --border-color: rgba(255, 255, 255, 0.1);
