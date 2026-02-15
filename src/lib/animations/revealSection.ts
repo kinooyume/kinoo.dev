@@ -1,4 +1,5 @@
-import { animate, stagger } from "animejs";
+import { animate } from "animejs";
+import { emitSectionReveal } from "./onSectionReveal";
 
 const MOBILE_BREAKPOINT = 900;
 
@@ -10,19 +11,11 @@ const observerOptions: IntersectionObserverInit = {
       : "0px 0px -100px 0px",
 };
 
-/**
- * Observes `[data-animate-section]` elements (excluding `#hero`) and
- * reveals them with a fade + slide-up animation when they enter the viewport.
- *
- * @returns A cleanup function that disconnects the observer.
- */
 export function revealSections(): () => void {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const section = entry.target;
-        const h2 = section.querySelector<HTMLElement>(":scope > h2");
-        const letterGroups = section.querySelectorAll("[data-reveal-letters]");
+        const section = entry.target as HTMLElement;
 
         animate(section, {
           opacity: [0, 1],
@@ -30,28 +23,7 @@ export function revealSections(): () => void {
           duration: 600,
         });
 
-        letterGroups.forEach((group, i) => {
-          const letters = group.querySelectorAll(".reveal-letter");
-          if (letters.length) {
-            animate(letters, {
-              translateY: ["1.1em", 0],
-              duration: 750,
-              delay: stagger(30, { start: 200 + i * 150 }),
-              ease: "outElastic(1, .5)",
-            });
-          }
-        });
-
-        if (h2 && !h2.closest("[data-reveal-letters]") && !h2.querySelector("[data-reveal-letters]")) {
-          animate(h2, {
-            opacity: [0, 1],
-            translateX: [30, 0],
-            duration: 600,
-            delay: 250,
-            ease: "outElastic(1, .5)",
-          });
-        }
-
+        emitSectionReveal(section.id);
         observer.unobserve(section);
       }
     });
@@ -62,11 +34,6 @@ export function revealSections(): () => void {
   );
   sections.forEach((section) => {
     (section as HTMLElement).style.opacity = "0";
-    const h2 = section.querySelector<HTMLElement>(":scope > h2");
-    if (h2 && !h2.closest("[data-reveal-letters]") && !h2.querySelector("[data-reveal-letters]")) {
-      h2.style.opacity = "0";
-      h2.style.transform = "translateX(30px)";
-    }
     observer.observe(section);
   });
 

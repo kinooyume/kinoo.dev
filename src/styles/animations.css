@@ -21,9 +21,14 @@
 }
 
 /* ===== Letter Reveal ===== */
-[data-reveal-letters] {
+[data-reveal-text="wave"] {
   display: inline-block;
   overflow: hidden;
+}
+
+[data-reveal-text="slide"] {
+  opacity: 0;
+  transform: translateX(30px);
 }
 
 .reveal-letter {

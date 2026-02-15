@@ -1,0 +1,46 @@
+---
+import RevealTextComponent from "./RevealText.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+---
+
+<section id="revealtext">
+  <DSSectionHeader title="RevealText" atomic="Atom" framework="astro" />
+  <p>Composable text reveal that self-animates when its parent section enters the viewport.</p>
+
+  <DSBlock title="Wave (default)">
+    <DSNote>
+      Each letter is wrapped in a <code>&lt;span&gt;</code> and staggered upward with an elastic ease. In the DS preview, letters stay in their initial hidden position since no section reveal event is fired.
+    </DSNote>
+    <DSPreview>
+      <RevealTextComponent text="Expériences" as="span" />
+    </DSPreview>
+    <DSCode inline>&lt;RevealText text="Expériences" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Slide">
+    <DSNote>
+      Renders plain text with an opacity + translateX entrance. Initial state is invisible.
+    </DSNote>
+    <DSPreview>
+      <RevealTextComponent text="Mes projets" as="h2" animation="slide" />
+    </DSPreview>
+    <DSCode inline>&lt;RevealText text="Mes projets" as="h2" animation="slide" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "text" }, "string", "required", "Text content to reveal"],
+        [{ code: "as" }, "string", '"span"', "HTML tag to render"],
+        [{ code: "animation" }, '"wave" | "slide"', '"wave"', "Animation variant"],
+        [{ code: "class" }, "string", "-", "CSS class forwarded to the root element"],
+      ]}
+    />
+  </DSBlock>
+</section>
