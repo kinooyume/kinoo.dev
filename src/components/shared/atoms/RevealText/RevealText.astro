@@ -3,10 +3,11 @@ interface Props {
   text: string;
   as?: string;
   animation?: "wave" | "slide";
+  trigger?: string;
   class?: string;
 }
 
-const { text, as: Tag = "span", animation = "wave", class: className } = Astro.props;
+const { text, as: Tag = "span", animation = "wave", trigger, class: className } = Astro.props;
 
 const letters =
   animation === "wave"
@@ -14,41 +15,44 @@ const letters =
     : null;
 ---
 
-<Tag class={className} data-reveal-text={animation}>
+<Tag class={className} data-reveal-text={animation} data-reveal-trigger={trigger}>
   {letters ? <Fragment set:html={letters} /> : text}
 </Tag>
 
 <script>
   import { animate, stagger } from "animejs";
-  import { onSectionReveal } from "@/lib/animations/onSectionReveal";
+  import { on } from "@/lib/emitter";
 
-  document.querySelectorAll<HTMLElement>("[data-reveal-text]").forEach((el) => {
-    const section = el.closest<HTMLElement>("[data-animate-section]");
-    if (!section?.id) return;
+  document
+    .querySelectorAll<HTMLElement>("[data-reveal-trigger]")
+    .forEach((el) => {
+      const trigger = el.dataset.revealTrigger;
+      if (!trigger) return;
+      const siblings = document.querySelectorAll(
+        `[data-reveal-trigger="${trigger}"]`,
+      );
+      const index = Array.from(siblings).indexOf(el);
+      const type = el.dataset.revealText;
 
-    const siblings = section.querySelectorAll("[data-reveal-text]");
-    const index = Array.from(siblings).indexOf(el);
-    const type = el.dataset.revealText;
-
-    onSectionReveal(section.id, () => {
-      if (type === "wave") {
-        const letters = el.querySelectorAll(".reveal-letter");
-        if (!letters.length) return;
-        animate(letters, {
-          translateY: ["1.1em", 0],
-          duration: 750,
-          delay: stagger(30, { start: 200 + index * 150 }),
-          ease: "outElastic(1, .5)",
-        });
-      } else {
-        animate(el, {
-          opacity: [0, 1],
-          translateX: [30, 0],
-          duration: 600,
-          delay: 250,
-          ease: "outElastic(1, .5)",
-        });
-      }
+      on(trigger, () => {
+        if (type === "wave") {
+          const letters = el.querySelectorAll(".reveal-letter");
+          if (!letters.length) return;
+          animate(letters, {
+            translateY: ["1.1em", 0],
+            duration: 750,
+            delay: stagger(30, { start: 200 + index * 150 }),
+            ease: "outElastic(1, .5)",
+          });
+        } else {
+          animate(el, {
+            opacity: [0, 1],
+            translateX: [30, 0],
+            duration: 600,
+            delay: 250,
+            ease: "outElastic(1, .5)",
+          });
+        }
+      });
     });
-  });
 </script>

@@ -5,31 +5,30 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 ---
 
 <section id="revealtext">
   <DSSectionHeader title="RevealText" atomic="Atom" framework="astro" />
-  <p>Composable text reveal that self-animates when its parent section enters the viewport.</p>
+  <p>Composable text reveal that self-animates when its trigger event fires.</p>
 
   <DSBlock title="Wave (default)">
-    <DSNote>
-      Each letter is wrapped in a <code>&lt;span&gt;</code> and staggered upward with an elastic ease. In the DS preview, letters stay in their initial hidden position since no section reveal event is fired.
-    </DSNote>
     <DSPreview>
-      <RevealTextComponent text="Expériences" as="span" />
+      <div id="ds-wave-demo">
+        <RevealTextComponent text="Expériences" as="span" trigger="ds-wave" />
+      </div>
+      <button class="ds-play-btn" data-ds-trigger="ds-wave">Play</button>
     </DSPreview>
-    <DSCode inline>&lt;RevealText text="Expériences" /&gt;</DSCode>
+    <DSCode inline>&lt;RevealText text="Expériences" trigger="my-event" /&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Slide">
-    <DSNote>
-      Renders plain text with an opacity + translateX entrance. Initial state is invisible.
-    </DSNote>
     <DSPreview>
-      <RevealTextComponent text="Mes projets" as="h2" animation="slide" />
+      <div id="ds-slide-demo">
+        <RevealTextComponent text="Mes projets" as="h2" animation="slide" trigger="ds-slide" />
+      </div>
+      <button class="ds-play-btn" data-ds-trigger="ds-slide">Play</button>
     </DSPreview>
-    <DSCode inline>&lt;RevealText text="Mes projets" as="h2" animation="slide" /&gt;</DSCode>
+    <DSCode inline>&lt;RevealText text="Mes projets" as="h2" animation="slide" trigger="my-event" /&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Props">
@@ -39,8 +38,61 @@ import DSNote from "@/components/design-system/DSNote.astro";
         [{ code: "text" }, "string", "required", "Text content to reveal"],
         [{ code: "as" }, "string", '"span"', "HTML tag to render"],
         [{ code: "animation" }, '"wave" | "slide"', '"wave"', "Animation variant"],
+        [{ code: "trigger" }, "string", "-", "Event name that starts the animation"],
         [{ code: "class" }, "string", "-", "CSS class forwarded to the root element"],
       ]}
     />
   </DSBlock>
 </section>
+
+<script>
+  import { animate, stagger } from "animejs";
+
+  document.querySelectorAll<HTMLButtonElement>(".ds-play-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const container = btn.closest("[class*='preview']") ?? btn.parentElement;
+      if (!container) return;
+
+      const waves = container.querySelectorAll<HTMLElement>("[data-reveal-text='wave']");
+      waves.forEach((el) => {
+        const letters = el.querySelectorAll(".reveal-letter");
+        if (!letters.length) return;
+        animate(letters, {
+          translateY: ["1.1em", 0],
+          duration: 750,
+          delay: stagger(30, { start: 200 }),
+          ease: "outElastic(1, .5)",
+        });
+      });
+
+      const slides = container.querySelectorAll<HTMLElement>("[data-reveal-text='slide']");
+      slides.forEach((el) => {
+        animate(el, {
+          opacity: [0, 1],
+          translateX: [30, 0],
+          duration: 600,
+          delay: 250,
+          ease: "outElastic(1, .5)",
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .ds-play-btn {
+    margin-top: 12px;
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--card-surface);
+    color: var(--light-color);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .ds-play-btn:hover {
+    background: var(--card-surface-hover);
+    border-color: var(--border-hover-color);
+  }
+</style>
