@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.19.0 - 2026-02-15
+#### Bug Fixes
+- **(ci)** sync release tag back to develop after bump - (5d0e7fd) - Martin Kinoo
+- **(content)** replace em dash with comma in arteflix description - (4752063) - Martin Kinoo
+- **(layout)** restore subtitle spacing and match contact text size - (6d2c905) - Martin Kinoo
+#### Documentation
+- add event bus to README/CLAUDE.md, add jsdoc to emitter - (d5cd3b3) - Martin Kinoo
+#### Features
+- **(animations)** add letter wave reveal to section and contact titles - (03e85bf) - Martin Kinoo
+#### Miscellaneous Chores
+- **(ci)** rename jobs with descriptive labels - (8f6c5ea) - Martin Kinoo
+- **(deps)** update all deps and migrate anime.js v3 to v4 - (e50c036) - Martin Kinoo
+- **(version)** v0.18.0 - (da21e92) - github-actions[bot]
+#### Refactoring
+- **(animations)** generic emitter with namespaced trigger events - (161184e) - Martin Kinoo
+- **(animations)** remove hero gate for section/card reveals - (8147a59) - Martin Kinoo
+- **(animations)** extract RevealText atom with event-based reveal - (12effc0) - Martin Kinoo
+- **(content)** rework descriptions, reorder tags, and refine form inputs - (5907252) - Martin Kinoo
+- **(form)** extract Input, Textarea, and FormField from ContactForm - (70f3dd8) - Martin Kinoo
+- **(lib)** extract createEventBus factory from emitter - (ebb51ae) - Martin Kinoo
+
+- - -
+
 ## v0.18.0 - 2026-02-15
 #### Bug Fixes
 - **(colors)** adjust green-light and green-lightest to match pink/purple lightness - (0bdb97c) - Martin Kinoo
