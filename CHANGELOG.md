@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.18.0 - 2026-02-15
+#### Bug Fixes
+- **(colors)** adjust green-light and green-lightest to match pink/purple lightness - (0bdb97c) - Martin Kinoo
+- **(hero)** restore anime.js animations and remove scroll gating - (0106538) - Martin Kinoo
+- **(layout)** restore subtitle spacing and match contact text size - (6d2c905) - Martin Kinoo
+- **(tag)** reduce default size - (feff29a) - Martin Kinoo
+#### Features
+- **(animations)** add letter wave reveal to section and contact titles - (03e85bf) - Martin Kinoo
+- **(colors)** add full color scales, rename card vars to surface, and use DS tokens - (9ee440b) - Martin Kinoo
+- **(contact)** use Button component, fix validation, and update form UX - (f8ced4e) - Martin Kinoo
+- **(contact)** redesign form with dark theme, grid layout, and updated copy - (bc98c33) - Martin Kinoo
+- **(header)** add LinkedIn icon next to GitHub - (fa034ba) - Martin Kinoo
+- **(navbar)** use light color variants for hover and current states - (93b5df8) - Martin Kinoo
+- **(tag)** theme tags with section accent colors - (481727f) - Martin Kinoo
+#### Miscellaneous Chores
+- **(deps)** update all deps and migrate anime.js v3 to v4 - (e50c036) - Martin Kinoo
+- **(version)** v0.17.0 - (cbea325) - github-actions[bot]
+#### Refactoring
+- **(content)** rework descriptions, reorder tags, and refine form inputs - (5907252) - Martin Kinoo
+- **(hero)** remove unused anime.js timelines from heroAnime - (fc644fc) - Martin Kinoo
+
+- - -
+
 ## v0.17.0 - 2026-02-14
 #### Bug Fixes
 - **(colors)** adjust green-light and green-lightest to match pink/purple lightness - (0bdb97c) - Martin Kinoo
