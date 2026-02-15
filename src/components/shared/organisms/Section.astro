@@ -1,4 +1,6 @@
 ---
+import RevealText from "@/components/shared/atoms/RevealText/RevealText.astro";
+
 interface Props {
   id: string;
   subtitle: string;
@@ -6,17 +8,11 @@ interface Props {
 }
 
 const { id, subtitle, title } = Astro.props;
-const subtitleLetters = subtitle.replace(
-  /\S/g,
-  "<span class='reveal-letter'>$&</span>",
-);
 ---
 
 <section id={id} data-animate-section>
-  <span class="subtitle" data-reveal-letters>
-    <Fragment set:html={subtitleLetters} />
-  </span>
-  <h2>{title}</h2>
+  <RevealText text={subtitle} as="span" class="subtitle" />
+  <RevealText text={title} as="h2" animation="slide" />
   <slot />
 </section>
 
@@ -25,7 +21,7 @@ const subtitleLetters = subtitle.replace(
     margin: var(--section-margin) 0;
   }
 
-  .subtitle {
+  section :global(.subtitle) {
     display: block;
     color: var(--accent-color);
     font-weight: 200;
