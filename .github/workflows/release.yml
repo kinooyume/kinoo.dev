@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   release:
+    name: Release (bump, build, changelog, deploy)
     runs-on: ubuntu-latest
 
     steps:
