@@ -11,7 +11,6 @@ Personal portfolio & freelance website.
 
 [Live Website](https://kinoo.dev) · [Design System](https://kinoo.dev/design-system)
 
----
 
 ## Getting Started
 
@@ -42,7 +41,6 @@ bun install
 bunx lefthook install
 ```
 
----
 
 ## Commands
 
@@ -55,13 +53,11 @@ bunx lefthook install
 | `bun run lint:fix` | Fix lint issues |
 | `bunx astro check` | Type check |
 
----
 
 ## About
 
 My portfolio site, built with Astro + SolidJS. Static generation, animations with Anime.js, and a design system for component documentation.
 
----
 
 ## Features
 
@@ -72,7 +68,13 @@ My portfolio site, built with Astro + SolidJS. Static generation, animations wit
 - Form validation with Modular Forms
 - SEO + sitemap
 
----
+
+## Event Bus
+
+The site relies on animations while keeping components isolated. To decouple what triggers an animation from what actually animates, there's a one-shot event bus (`src/lib/eventBus.ts`).
+
+Components import `on` and `emit` from a shared instance (`src/lib/emitter.ts`). Events use namespaced names like `reveal:section:experiences`. Each event fires once; late listeners are called immediately, so render order doesn't matter.
+
 
 ## Tech Stack
 
@@ -84,7 +86,6 @@ My portfolio site, built with Astro + SolidJS. Static generation, animations wit
 
 Optional: Nix flake for reproducible dev environment
 
----
 
 ## Design System
 
@@ -112,7 +113,6 @@ src/components/
 
 [View Design System →](https://kinoo.dev/design-system)
 
----
 
 ## Project Structure
 
@@ -126,7 +126,6 @@ src/
 └── svgs/
 ```
 
----
 
 ## CI/CD
 
@@ -148,7 +147,6 @@ Lefthook runs ESLint on pre-commit and validates commit messages.
 
 **Secrets needed**: `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`
 
----
 
 ## License
 
