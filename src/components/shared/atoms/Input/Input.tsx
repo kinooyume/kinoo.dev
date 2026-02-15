@@ -5,13 +5,17 @@ type InputProps = ComponentProps<"input"> & {
   invalid?: boolean;
 };
 
-const Input = (props: InputProps) => {
+const Input = (props: Readonly<InputProps>) => {
   const [local, rest] = splitProps(props, ["invalid", "class"]);
 
   return (
     <input
       {...rest}
-      class={`${styles.input} ${local.invalid ? styles.invalid : ""} ${local.class ?? ""}`}
+      classList={{
+        [styles.input]: true,
+        [styles.invalid]: !!local.invalid,
+        [local.class ?? ""]: !!local.class,
+      }}
     />
   );
 };

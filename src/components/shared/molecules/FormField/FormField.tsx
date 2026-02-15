@@ -6,7 +6,7 @@ type FormFieldProps = {
   children: JSX.Element;
 };
 
-const FormField = (props: FormFieldProps) => {
+const FormField = (props: Readonly<FormFieldProps>) => {
   return (
     <div class={styles.field}>
       <label>{props.label}</label>

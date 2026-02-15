@@ -5,13 +5,17 @@ type TextareaProps = ComponentProps<"textarea"> & {
   invalid?: boolean;
 };
 
-const Textarea = (props: TextareaProps) => {
+const Textarea = (props: Readonly<TextareaProps>) => {
   const [local, rest] = splitProps(props, ["invalid", "class"]);
 
   return (
     <textarea
       {...rest}
-      class={`${styles.textarea} ${local.invalid ? styles.invalid : ""} ${local.class ?? ""}`}
+      classList={{
+        [styles.textarea]: true,
+        [styles.invalid]: !!local.invalid,
+        [local.class ?? ""]: !!local.class,
+      }}
     />
   );
 };
