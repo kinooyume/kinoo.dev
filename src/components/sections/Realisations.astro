@@ -99,21 +99,26 @@ import Section from "@/components/shared/organisms/Section.astro";
           </div>
           <CardDescription slot="description">
             <p>
-              Arteflix est un site web permetant d'accéder au catalogue d'<b
-                >ARTE</b
-              > en reprenant le system design de <b>Netflix</b>.
+              Clone du catalogue d'<b>ARTE</b> avec le design system de <b
+                >Netflix</b
+              >. L'API d'ARTE a été <b>reverse-engineerée</b> : chaque page,
+              section et contenu est généré dynamiquement depuis les données de
+              l'API, en respectant la structure du site original.
             </p>
             <br />
             <p>
-              Le site web respecte l'url du site arte.tv, il suffit donc de
-              changer l'url pour accéder au même contenu.
+              Le site reprend le routing d'arte.tv — il suffit de changer le
+              domaine dans l'URL pour accéder au même contenu. Architecture
+              entièrement <b>data-driven</b>, similaire à un <b>headless CMS</b
+              >.
             </p>
             <br />
-            <br />
             <TagRow>
+              <Tag title="Rescript" />
               <Tag title="React" />
               <Tag title="Next.js" />
-              <Tag title="Rescript" />
+              <Tag title="Headless" />
+              <Tag title="Data-driven" />
               <Tag title="Storybook" />
             </TagRow>
           </CardDescription>
@@ -161,9 +166,10 @@ import Section from "@/components/shared/organisms/Section.astro";
             </p>
             <br />
             <TagRow>
+              <Tag title="TypeScript" />
               <Tag title="Svelte 5" />
               <Tag title="SvelteKit" />
-              <Tag title="TypeScript" />
+              <Tag title="Archi hexagonale" />
             </TagRow>
           </CardDescription>
           <Slider
@@ -213,9 +219,9 @@ import Section from "@/components/shared/organisms/Section.astro";
             </p>
             <br />
             <TagRow>
+              <Tag title="TypeScript" />
               <Tag title="Astro" />
               <Tag title="SolidJS" />
-              <Tag title="TypeScript" />
               <Tag title="Anime.js" />
             </TagRow>
           </CardDescription>
