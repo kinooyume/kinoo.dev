@@ -1,0 +1,43 @@
+---
+import FormFieldComponent from "./FormField";
+import InputComponent from "@/components/shared/atoms/Input/Input";
+import TextareaComponent from "@/components/shared/atoms/Textarea/Textarea";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="formfield">
+  <DSSectionHeader title="FormField" atomic="Molecule" framework="solid" />
+  <p>Label + input wrapper for form layouts.</p>
+
+  <DSBlock title="With Input">
+    <DSPreview>
+      <FormFieldComponent client:load label="Votre nom">
+        <InputComponent placeholder="Claude Monet" type="text" />
+      </FormFieldComponent>
+    </DSPreview>
+    <DSCode inline>&lt;FormField label="Votre nom"&gt;&lt;Input ... /&gt;&lt;/FormField&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="With Textarea">
+    <DSPreview>
+      <FormFieldComponent client:load label="Votre projet">
+        <TextareaComponent placeholder="Describe your project..." />
+      </FormFieldComponent>
+    </DSPreview>
+    <DSCode inline>&lt;FormField label="Votre projet"&gt;&lt;Textarea ... /&gt;&lt;/FormField&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        [{ code: "label" }, { code: "string" }, "Label text displayed above the input"],
+        [{ code: "children" }, { code: "JSX.Element" }, "Input or Textarea component"],
+      ]}
+    />
+  </DSBlock>
+</section>

@@ -9,6 +9,9 @@ import {
 } from "@modular-forms/solid";
 import toast, { Toaster } from "solid-toast";
 import Button from "@/components/shared/atoms/Button";
+import Input from "@/components/shared/atoms/Input/Input";
+import Textarea from "@/components/shared/atoms/Textarea/Textarea";
+import FormField from "@/components/shared/molecules/FormField/FormField";
 import styles from "./ContactForm.module.css";
 
 type ContactFormType = {
@@ -120,19 +123,16 @@ const ContactForm = (props: Props) => {
         <div class={styles.meta}>
           <Field name="name" validate={[required("Name is required")]}>
             {(field, props) => (
-              <div
-                class={styles.inputWrapper}
-                classList={{ [styles.invalid]: field.error.length > 0 }}
-              >
-                <label for="name">{"Votre nom"}</label>
-                <input
+              <FormField label="Votre nom">
+                <Input
                   id="name"
                   disabled={inputsDisabled()}
-                  {...props}
-                  type="txt"
+                  invalid={field.error.length > 0}
                   placeholder="Claude Monet"
+                  {...props}
+                  type="text"
                 />
-              </div>
+              </FormField>
             )}
           </Field>
           <Field
@@ -143,35 +143,29 @@ const ContactForm = (props: Props) => {
             ]}
           >
             {(field, props) => (
-              <div
-                class={styles.inputWrapper}
-                classList={{ [styles.invalid]: field.error.length > 0 }}
-              >
-                <label for="email">{"Votre email"}</label>
-                <input
+              <FormField label="Votre email">
+                <Input
                   id="email"
                   disabled={inputsDisabled()}
+                  invalid={field.error.length > 0}
+                  placeholder="claude@giverny.fr"
                   {...props}
                   type="email"
-                  placeholder="claude@giverny.fr"
                 />
-              </div>
+              </FormField>
             )}
           </Field>
           <Field name="message" validate={[required("Message is required")]}>
             {(field, props) => (
-              <div
-                class={`${styles.inputWrapper} ${styles.textareaWrapper}`}
-                classList={{ [styles.invalid]: field.error.length > 0 }}
-              >
-                <label for="message">{"Votre projet"}</label>
-                <textarea
+              <FormField label="Votre projet">
+                <Textarea
                   id="message"
                   disabled={inputsDisabled()}
-                  {...props}
+                  invalid={field.error.length > 0}
                   placeholder="Décrivez votre contexte, vos objectifs et les enjeux techniques. (Produit à lancer, refonte, renfort d'équipe…)"
+                  {...props}
                 />
-              </div>
+              </FormField>
             )}
           </Field>
         </div>
