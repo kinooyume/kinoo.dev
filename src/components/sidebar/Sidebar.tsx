@@ -48,7 +48,7 @@ interface Props {
   class?: string;
 }
 
-export default function Sidebar(props: Props) {
+export default function Sidebar(props: Readonly<Props>) {
   const [query, setQuery] = createSignal("");
   const [activeHref, setActiveHref] = createSignal<string | null>(null);
   const isActive = createSelector(activeHref);
