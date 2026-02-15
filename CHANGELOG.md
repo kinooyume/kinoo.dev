@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.19.1 - 2026-02-15
+#### Bug Fixes
+- **(mobile)** prevent horizontal scroll and fix DS sidebar scroll - (815de4d) - Martin Kinoo
+#### Documentation
+- **(readme)** document gitflow merge strategy in CI/CD section - (1abb68f) - Martin Kinoo
+
+- - -
+
 ## v0.19.0 - 2026-02-15
 #### Bug Fixes
 - **(ci)** clean checkout develop before merging main back - (7d93ee0) - Martin Kinoo
