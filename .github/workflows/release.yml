@@ -28,7 +28,12 @@ jobs:
 
       - name: Push bump commit and tag
         if: steps.bump.outputs.version != ''
-        run: git push origin main --follow-tags
+        run: |
+          git push origin main --follow-tags
+          git checkout develop
+          git pull origin develop
+          git merge main --no-edit
+          git push origin develop
 
       - uses: oven-sh/setup-bun@v2
         if: steps.bump.outputs.version != ''
