@@ -1,100 +1,69 @@
 ---
-import SidebarComponent from "./Sidebar.astro";
+import SidebarComponent from "./Sidebar";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+
+const demoSections = [
+  {
+    title: "Getting Started",
+    items: [
+      { label: "Overview", href: "#colors" },
+      { label: "Installation", href: "#typography" },
+    ],
+  },
+  {
+    title: "Components",
+    items: [
+      { label: "Button", href: "#button", framework: "solid" as const },
+      { label: "Card", href: "#card", framework: "astro" as const },
+    ],
+  },
+];
 ---
 
 <section id="sidebar">
-  <DSSectionHeader title="Sidebar" atomic="Organism" framework="astro" />
+  <DSSectionHeader title="Sidebar" atomic="Organism" framework="solid" />
   <p>
-    Navigation sidebar with sticky positioning and active state support. Used
-    for in-page navigation.
+    Searchable navigation sidebar with collapsible sections, view detection,
+    and auto-scroll to active link. Accepts any <code>SidebarSection[]</code> data.
   </p>
 
-  <DSBlock title="Preview">
-    <DSPreview class="preview-sidebar">
-      <SidebarComponent
-        title="Navigation"
-        items={[
-          { label: "Overview", href: "#overview" },
-          { label: "Getting Started", href: "#getting-started" },
-          { label: "Components", href: "#components" },
-          { label: "API Reference", href: "#api" },
-        ]}
-      />
+  <DSBlock title="Minimal example">
+    <DSPreview>
+      <SidebarComponent sections={demoSections} client:load />
     </DSPreview>
-  </DSBlock>
-
-  <DSBlock title="With Active State">
-    <DSPreview class="preview-sidebar">
-      <aside class="sidebar-demo">
-        <nav>
-          <h3>Section</h3>
-          <ul>
-            <li><a href="#item1">Item 1</a></li>
-            <li><a href="#item2" class="active">Item 2 (active)</a></li>
-            <li><a href="#item3">Item 3</a></li>
-          </ul>
-        </nav>
-      </aside>
-    </DSPreview>
+    <DSCode>{`<Sidebar
+  sections={[
+    {
+      title: "Getting Started",
+      items: [
+        { label: "Overview", href: "#overview" },
+        { label: "Installation", href: "#install" },
+      ],
+    },
+    {
+      title: "Components",
+      items: [
+        { label: "Button", href: "#button", framework: "solid" },
+        { label: "Card", href: "#card", framework: "astro" },
+      ],
+    },
+  ]}
+  client:load
+/>`}</DSCode>
   </DSBlock>
 
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [
-          { code: "title" },
-          "string",
-          "required",
-          "Section title displayed above links",
-        ],
-        [
-          { code: "items" },
-          "SidebarItem[]",
-          "required",
-          "Array of navigation items",
-        ],
+        [{ code: "sections" }, { code: "SidebarSection[]" }, "required", "Navigation tree data"],
+        [{ code: "title" }, "string", "—", "Header title (shown in mobile drawer)"],
+        [{ code: "class" }, "string", "—", "Additional CSS class"],
       ]}
     />
   </DSBlock>
-
 </section>
-
-<style>
-  .sidebar-demo {
-    width: 100%;
-  }
-  .sidebar-demo nav h3 {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent-color);
-    margin-bottom: 16px;
-  }
-  .sidebar-demo ul {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .sidebar-demo a {
-    display: block;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--light-color);
-    transition: all 0.2s ease;
-  }
-  .sidebar-demo a:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--accent-color);
-  }
-  .sidebar-demo a.active {
-    background-color: var(--orange-tint);
-    color: var(--accent-color);
-  }
-</style>

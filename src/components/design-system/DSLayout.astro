@@ -1,5 +1,6 @@
 ---
-import DSSidebar from "./DSSidebar.tsx";
+import Sidebar from "@/components/sidebar/Sidebar.tsx";
+import { sidebarSections } from "./sections/index";
 
 interface Props {
   title?: string;
@@ -22,7 +23,7 @@ const { title = "Design System", description } = Astro.props;
     </footer>
   </main>
 
-  <DSSidebar class="ds-sidebar-desktop" client:load />
+  <Sidebar sections={sidebarSections} class="ds-sidebar-desktop" client:load />
 </div>
 
 <style is:global>

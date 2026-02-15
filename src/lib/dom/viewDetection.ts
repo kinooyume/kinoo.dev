@@ -2,9 +2,9 @@
 interface ViewDetectionElement {
   dom: Element;
   /** Called when the element is inside the detection bounds. */
-  onInside: () => void;
+  onInside?: () => void;
   /** Called when the element is outside the detection bounds. */
-  onOutside: () => void;
+  onOutside?: () => void;
 }
 
 /** Options for {@link createViewDetection}. */
@@ -13,6 +13,8 @@ interface ViewDetectionOptions {
   setOffset?: (height: number) => number;
   /** Derives `[min, max]` bounds from the offset. Defaults to `[offset, offset]`. */
   setBounds?: (offset: number) => number[];
+  /** When set, called with the single closest in-bounds element (or null). */
+  onBestMatch?: (entry: ViewDetectionElement | null) => void;
 }
 
 /**
@@ -28,20 +30,28 @@ export const createViewDetection = (
   {
     setOffset = (height: number) => height / 2,
     setBounds = (offset: number) => [offset, offset],
+    onBestMatch,
   }: ViewDetectionOptions = {},
 ): (() => void) => {
   return () => {
     const offset = setOffset(window.innerHeight);
     const [min, max] = setBounds(offset);
-    elements.forEach(({ dom, onInside, onOutside }) => {
-      const rect = dom.getBoundingClientRect();
 
+    let best: ViewDetectionElement | null = null;
+    let bestDist = Infinity;
+
+    elements.forEach((entry) => {
+      const rect = entry.dom.getBoundingClientRect();
       if (rect.top <= min && rect.bottom >= max) {
-        onInside();
+        entry.onInside?.();
+        const dist = Math.abs(rect.top);
+        if (dist < bestDist) { best = entry; bestDist = dist; }
       } else {
-        onOutside();
+        entry.onOutside?.();
       }
     });
+
+    onBestMatch?.(best);
   };
 };
 
