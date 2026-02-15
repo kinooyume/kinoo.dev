@@ -9,7 +9,7 @@ type PaginationProps = {
   moveTo: (index: number) => void;
 };
 
-const SliderPagination = (props: PaginationProps) => {
+const SliderPagination = (props: Readonly<PaginationProps>) => {
   return (
     <div class="pagination-wrapper">
       <div class="pagination" aria-hidden="true">
@@ -32,7 +32,7 @@ type SliderProps = {
   children: HTMLElement;
 };
 
-const Slider = (props: SliderProps) => {
+const Slider = (props: Readonly<SliderProps>) => {
   let sliderEl: HTMLDivElement | undefined;
   let unsubscribe: () => void;
   const [currentIndex, setCurrentIndex] = createSignal(0);
@@ -74,7 +74,7 @@ const Slider = (props: SliderProps) => {
             <For each={props.pictures}>
               {(picture) => (
                 <div>
-                  <img src={`images/${picture}`} alt={picture} />
+                  <img src={`/images/${picture}`} alt={picture} />
                 </div>
               )}
             </For>

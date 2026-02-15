@@ -30,7 +30,7 @@ enum FormState {
 type Props = {
   accessToken: string;
 };
-const ContactForm = (props: Props) => {
+const ContactForm = (props: Readonly<Props>) => {
   const [formState, setFormState] = createSignal<FormState>(FormState.unsend);
   const [error, setError] = createSignal<string | null>(null);
   const [_loginForm, { Form, Field }] = createForm<ContactFormType>();

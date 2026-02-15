@@ -7,7 +7,7 @@ type ButtonProps = {
   href?: string;
 } & ComponentProps<"button">;
 
-const Button = (props: ButtonProps) => {
+const Button = (props: Readonly<ButtonProps>) => {
   const [local, rest] = splitProps(props, [
     "variant",
     "state",
@@ -18,21 +18,25 @@ const Button = (props: ButtonProps) => {
 
   const variant = () => local.variant ?? "primary";
   const state = () => local.state ?? "idle";
-  const variantClass = () =>
-    variant() === "primary" ? styles.primary : styles.secondary;
-  const classes = () =>
-    `${styles.button} ${variantClass()} ${state() === "loading" ? styles.loading : ""} ${state() === "success" ? styles.success : ""} ${local.class ?? ""}`;
+  const classes = () => ({
+    [styles.button]: true,
+    [styles.primary]: variant() === "primary",
+    [styles.secondary]: variant() === "secondary",
+    [styles.loading]: state() === "loading",
+    [styles.success]: state() === "success",
+    [local.class ?? ""]: !!local.class,
+  });
 
   return (
     <Show
       when={local.href}
       fallback={
-        <button {...rest} class={classes()}>
+        <button {...rest} classList={classes()}>
           {local.children}
         </button>
       }
     >
-      <a href={local.href} class={classes()}>
+      <a href={local.href} classList={classes()}>
         {local.children}
       </a>
     </Show>
