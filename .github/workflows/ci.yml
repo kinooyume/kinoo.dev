@@ -24,7 +24,8 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: cocogitto/cocogitto-action@v4
         with:
-          check-latest-tag-only: true
+          command: check
+          args: --from-latest-tag
 
       - name: Install dependencies
         run: bun install

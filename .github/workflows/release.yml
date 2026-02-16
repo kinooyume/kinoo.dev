@@ -21,8 +21,8 @@ jobs:
         id: bump
         uses: cocogitto/cocogitto-action@v4
         with:
-          release: true
-          check-latest-tag-only: true
+          command: bump
+          args: --auto
           git-user: "github-actions[bot]"
           git-user-email: "github-actions[bot]@users.noreply.github.com"
 
