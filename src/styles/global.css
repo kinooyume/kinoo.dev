@@ -171,7 +171,7 @@ a.anime {
   transition: all 0.3s ease;
 }
 
-a svg path,
+a:not(.link) svg path,
 a.cv {
   opacity: 0.8;
 }
@@ -187,7 +187,7 @@ a.cv {
     transition: 200ms;
   }
 
-  a:hover svg path,
+  a:not(.link):hover svg path,
   a:hover.cv {
     opacity: 1;
   }
