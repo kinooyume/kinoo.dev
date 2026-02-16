@@ -5,7 +5,6 @@ import CardSplit from "@/components/shared/molecules/Card/CardSplit.astro";
 import Slider from "@/components/shared/molecules/Slider/Slider.tsx";
 import arrow from "@/svgs/arrow.svg?raw";
 import Link from "@/components/shared/atoms/Link.astro";
-import DotRow from "@/components/shared/atoms/DotRow.astro";
 import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
@@ -183,13 +182,15 @@ import Section from "@/components/shared/organisms/Section.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="kinoo.dev" tag="Portfolio" />
-              <DotRow class="links-row">
+              <p class="links-row">
                 <Link href="/design-system" text="Design System" />
-                <Link
-                  href="https://github.com/kinooyume/kinoo.dev"
-                  text="Voir le code"
-                />
-              </DotRow>
+                <span class="dotted">
+                  <Link
+                    href="https://github.com/kinooyume/kinoo.dev"
+                    text="Voir le code"
+                  />
+                </span>
+              </p>
             </div>
             <LogoBox>
               <img alt="kinoo.dev" src="/favicon.svg" />
@@ -289,6 +290,16 @@ import Section from "@/components/shared/organisms/Section.astro";
     align-items: flex-start;
   }
 
+  .links-row {
+    margin: 0;
+  }
+
+  .links-row .dotted::before {
+    content: "·";
+    padding: 0 6px;
+    color: var(--accent-color);
+    opacity: 0.6;
+  }
 
   @media screen and (max-width: 900px) {
     .grid {

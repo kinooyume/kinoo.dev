@@ -1,0 +1,41 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import ArticleCard from "./ArticleCard.astro";
+---
+
+<section id="articlecard">
+  <DSSectionHeader title="ArticleCard" atomic="Molecule" framework="astro" />
+  <p>Card for the articles listing page. Composes Spotlight + Card with title, date, description and tags.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div data-spotlight style="max-width: 720px;">
+        <ArticleCard
+          title="Event-based approach instead of global state"
+          description="How a one-shot event bus replaces global window flags for coordinating animation lifecycle signals."
+          date={new Date("2025-01-15")}
+          tags={["architecture", "typescript"]}
+          href="#"
+        />
+      </div>
+    </DSPreview>
+    <DSCode inline>&lt;ArticleCard title="…" description="…" date={new Date()} tags={["tag"]} href="/articles/slug" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["title", { code: "string" }, "Article title"],
+        ["description", { code: "string" }, "Short description"],
+        ["date", { code: "Date" }, "Publication date"],
+        ["tags", { code: "string[]" }, "Tag labels"],
+        ["href", { code: "string" }, "Link to the article"],
+      ]}
+    />
+  </DSBlock>
+</section>

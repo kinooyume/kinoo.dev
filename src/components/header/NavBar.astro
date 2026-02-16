@@ -13,6 +13,7 @@ const defaultItems: NavItem[] = [
   { label: "Expériences", href: "/#experiences", color: "#f68dab" },
   { label: "Réalisations", href: "/#realisations", color: "#66c384" },
   { label: "Formations", href: "/#formations", color: "#9c85d3" },
+  { label: "Articles", href: "/articles", color: "#f8ba88" },
 ];
 
 const { items = defaultItems } = Astro.props;
@@ -179,6 +180,10 @@ const { items = defaultItems } = Astro.props;
   a[data-color="#9c85d3"]:hover,
   a[data-color="#9c85d3"].current {
     color: var(--purple-light);
+  }
+  a[data-color="#f8ba88"]:hover,
+  a[data-color="#f8ba88"].current {
+    color: var(--orange-light);
   }
 
   .indicator {

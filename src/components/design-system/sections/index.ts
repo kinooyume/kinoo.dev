@@ -96,6 +96,13 @@ export const sidebarSections: SidebarSection[] = [
     ],
   },
   {
+    title: "Articles",
+    items: [
+      { label: "Prose", href: "#prose" },
+      { label: "ArticleCard", href: "#articlecard", framework: "astro" },
+    ],
+  },
+  {
     title: "Footer",
     items: [
       { label: "Footer", href: "#footer-doc", framework: "astro" },

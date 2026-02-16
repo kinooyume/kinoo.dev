@@ -1,0 +1,67 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import Prose from "./Prose.astro";
+---
+
+<section id="prose">
+  <DSSectionHeader title="Prose" atomic="Molecule" framework="astro" />
+  <p>Typography wrapper for article content. Restores spacing, list styles, and link colors stripped by the global reset. Downsizes h2 to h3 scale for article subheadings.</p>
+
+  <DSBlock title="Headings">
+    <DSPreview>
+      <Prose>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+      </Prose>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Text & Links">
+    <DSPreview>
+      <Prose>
+        <p>Regular paragraph with <strong>bold text</strong> and a <a href="#">link to something</a>. Line-height is set to 1.7 for readability.</p>
+      </Prose>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Lists">
+    <DSPreview>
+      <Prose>
+        <ul>
+          <li>Unordered item one</li>
+          <li>Unordered item two</li>
+        </ul>
+        <ol>
+          <li>Ordered item one</li>
+          <li>Ordered item two</li>
+        </ol>
+      </Prose>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Blockquote">
+    <DSPreview>
+      <Prose>
+        <blockquote><p>A blockquote with accent-colored left border and card surface background.</p></blockquote>
+      </Prose>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Code">
+    <DSPreview>
+      <Prose>
+        <p>Inline <code>code</code> uses card-surface-raised background.</p>
+        <pre><code>const bus = new EventTarget();
+bus.dispatchEvent(new Event("complete"));</code></pre>
+      </Prose>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;Prose&gt;&lt;slot /&gt;&lt;/Prose&gt;</DSCode>
+  </DSBlock>
+</section>
