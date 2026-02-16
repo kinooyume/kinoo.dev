@@ -1,25 +1,30 @@
 ---
-import externalLink from "@/svgs/external-link.svg?raw";
+import externalLinkIcon from "@/svgs/external-link.svg?raw";
 
 type Props = {
   href: string;
   text: string;
+  external?: boolean;
+  class?: string;
 };
 
-const { href, text } = Astro.props;
-const isExternal = href.startsWith("http");
+const { href, text, class: className, external: forceExternal } = Astro.props;
+const isExternal = forceExternal ?? href.startsWith("http");
+
+const externalProps = isExternal
+  ? { target: "_blank", rel: "noreferrer nofollow noopener" }
+  : {};
+
+const hasPrepend = Astro.slots.has("prepend");
+const hasAppend = Astro.slots.has("append");
 ---
 
-{
-  isExternal ? (
-    <a href={href} rel="noreferrer nofollow noopener" target="_blank">
-      {text}
-      <Fragment set:html={externalLink} />
-    </a>
-  ) : (
-    <a href={href}>{text}</a>
-  )
-}
+<a class:list={["link", className]} href={href} {...externalProps}>
+  {hasPrepend && <span class="link-slot"><slot name="prepend" /></span>}
+  {text}
+  {hasAppend && <span class="link-slot"><slot name="append" /></span>}
+  {isExternal && !hasAppend && <Fragment set:html={externalLinkIcon} />}
+</a>
 
 <style>
   a {
@@ -27,8 +32,8 @@ const isExternal = href.startsWith("http");
     align-items: center;
     gap: 6px;
     font-size: var(--font-size);
-    stroke: var(--light-color);
-    color: var(--light-color);
+    color: var(--accent-color, var(--light-color));
+    stroke: var(--accent-color, var(--light-color));
     opacity: 0.6;
     transition: all 0.3s ease;
     text-decoration: underline;
@@ -36,5 +41,15 @@ const isExternal = href.startsWith("http");
 
   a:hover {
     opacity: 1;
+  }
+
+  .link-slot {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .link-slot :global(svg) {
+    width: 16px;
+    height: 16px;
   }
 </style>

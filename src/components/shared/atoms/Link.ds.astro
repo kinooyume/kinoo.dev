@@ -1,5 +1,7 @@
 ---
 import LinkComponent from "./Link.astro";
+import BackLink from "./BackLink.astro";
+import ExternalLink from "./ExternalLink.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
@@ -9,20 +11,74 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 <section id="link">
   <DSSectionHeader title="Link" atomic="Atom" framework="astro" />
+  <p>Inherits <code>--accent-color</code> from its section context, falling back to <code>--light-color</code>.</p>
 
   <DSBlock title="Default">
     <DSPreview>
+      <LinkComponent href="/articles" text="Internal link" />
+    </DSPreview>
+    <DSCode inline>&lt;Link href="/articles" text="Internal link" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="External (auto-detected)">
+    <DSPreview>
       <LinkComponent href="https://github.com" text="View on GitHub" />
     </DSPreview>
-    <DSCode inline>href="https://github.com" text="View on GitHub"</DSCode>
+    <DSCode inline>&lt;Link href="https://github.com" text="View on GitHub" /&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "href" }, "string", "required", "URL to link to"],
+        [{ code: "href" }, "string", "required", "URL"],
         [{ code: "text" }, "string", "required", "Link text"],
+        [{ code: "external" }, "boolean", "auto", "Force external link behavior"],
+        [{ code: "class" }, "string", "—", "Additional CSS class"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="backlink">
+  <DSSectionHeader title="BackLink" atomic="Atom" framework="astro" />
+  <p>Link composition with a back arrow prepended. Uses the arrow SVG rotated 180°.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <BackLink href="/articles" text="Articles" />
+    </DSPreview>
+    <DSCode inline>&lt;BackLink href="/articles" text="Articles" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        [{ code: "href" }, "string", "URL to navigate back to"],
+        [{ code: "text" }, "string", "Link text"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="externallink">
+  <DSSectionHeader title="ExternalLink" atomic="Atom" framework="astro" />
+  <p>Link composition with an external-link icon appended. Always opens in a new tab.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <ExternalLink href="https://github.com" text="View on GitHub" />
+    </DSPreview>
+    <DSCode inline>&lt;ExternalLink href="https://github.com" text="View on GitHub" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        [{ code: "href" }, "string", "External URL"],
+        [{ code: "text" }, "string", "Link text"],
       ]}
     />
   </DSBlock>
