@@ -1,0 +1,15 @@
+---
+import Link from "./Link.astro";
+import externalLinkIcon from "@/svgs/external-link.svg?raw";
+
+type Props = {
+  href: string;
+  text: string;
+};
+
+const { href, text } = Astro.props;
+---
+
+<Link href={href} text={text} external>
+  <Fragment slot="append" set:html={externalLinkIcon} />
+</Link>

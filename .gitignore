@@ -27,5 +27,11 @@ pnpm-debug.log*
 # direnv
 .direnv/
 
-# articles
-src/pages/articles/*
+# legacy husky (replaced by lefthook)
+.husky/
+
+# articles (draft — not ready for production)
+src/content/
+src/pages/articles/
+src/pages/articles-draft.astro
+src/pages/rss.xml.ts

@@ -1,0 +1,127 @@
+<div class="prose">
+  <slot />
+</div>
+
+<style is:global>
+  .prose {
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Headings — restore spacing, downscale h2 to h3 level for article subheadings */
+  .prose h2 {
+    font-size: var(--h3-size);
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+  }
+
+  .prose h3 {
+    font-size: 1.15em;
+    color: var(--light-color);
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+
+  .prose h4 {
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--light-color);
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+  }
+
+  /* Paragraphs — restore spacing */
+  .prose p {
+    margin-bottom: 1.25em;
+  }
+
+  /* Links — visible accent styling */
+  .prose a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose a:hover {
+    color: var(--accent-bright);
+  }
+
+  /* Bold */
+  .prose strong {
+    color: var(--light-color);
+    font-weight: 600;
+  }
+
+  /* Lists — restore styles stripped by reset */
+  .prose ul,
+  .prose ol {
+    padding-left: 1.5em;
+    margin-bottom: 1.25em;
+  }
+
+  .prose ul {
+    list-style: disc;
+  }
+
+  .prose ol {
+    list-style: decimal;
+  }
+
+  .prose li {
+    margin-bottom: 0.4em;
+  }
+
+  .prose li > ul,
+  .prose li > ol {
+    margin-top: 0.4em;
+    margin-bottom: 0;
+  }
+
+  /* Blockquotes */
+  .prose blockquote {
+    border-left: 3px solid var(--accent-color);
+    background: var(--card-surface);
+    padding: 1em 1.25em;
+    margin: 1.5em 0;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .prose blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Code blocks */
+  .prose pre {
+    background: var(--card-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25em;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+
+  /* Inline code */
+  .prose :not(pre) > code {
+    background: var(--card-surface-raised);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  /* Images */
+  .prose img {
+    max-width: 100%;
+    border-radius: 16px;
+    margin: 1.5em 0;
+  }
+
+  /* Horizontal rules */
+  .prose hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2.5em 0;
+  }
+</style>

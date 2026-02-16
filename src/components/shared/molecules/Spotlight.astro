@@ -65,7 +65,7 @@ const { color, class: className } = Astro.props;
     opacity: 1;
   }
 
-  .spotlight-card:hover::after {
+  :global([data-spotlight]):hover .spotlight-card::after {
     opacity: 0.1;
   }
 
