@@ -49,6 +49,16 @@ const { title, tag, href, label, location, date } = Astro.props;
 
   a {
     text-decoration: underline;
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    transform: translateY(-4px);
+  }
+
+  a:active {
+    transform: translateY(5px);
+    transition: 200ms;
   }
 
   @media screen and (max-width: 900px) {

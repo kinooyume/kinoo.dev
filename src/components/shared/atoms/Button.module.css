@@ -16,18 +16,18 @@
 
 .primary {
   color: black;
-  background-color: var(--accent-bright);
+  background: linear-gradient(to bottom, var(--accent-bright) 50%, #cc956b);
   border-color: var(--accent-bright);
 }
 
 .secondary {
   color: var(--light-color);
-  background-color: var(--card-surface);
+  background: linear-gradient(to bottom, var(--card-surface) 50%, #162030);
   border-color: var(--border-color);
 }
 
 .secondary:hover {
-  background-color: var(--card-surface-hover);
+  background: linear-gradient(to bottom, var(--card-surface-hover) 50%, #1a2a3d);
   border-color: var(--border-hover-color);
 }
 
@@ -48,6 +48,6 @@
 }
 
 .success {
-  background-color: var(--green) !important;
+  background: linear-gradient(to bottom, var(--green) 50%, var(--green-darker)) !important;
   border-color: var(--green-dark) !important;
 }

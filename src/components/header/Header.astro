@@ -34,6 +34,12 @@ import terminal from "@/svgs/terminal.svg?raw";
       top: 0;
       width: 100%;
       height: 120px;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background-color: var(--background-frosted);
       mask-image: linear-gradient(
         rgb(0, 0, 0) 50%,
@@ -41,6 +47,7 @@ import terminal from "@/svgs/terminal.svg?raw";
         rgba(0, 0, 0, 0) 100%
       );
       backdrop-filter: blur(30px);
+      pointer-events: none;
     }
 
     .header {
@@ -69,6 +76,7 @@ import terminal from "@/svgs/terminal.svg?raw";
       align-items: center;
       gap: 24px;
     }
+
 
     .title-wrapper {
       display: flex;

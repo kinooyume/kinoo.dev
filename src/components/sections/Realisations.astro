@@ -182,13 +182,15 @@ import Section from "@/components/shared/organisms/Section.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="kinoo.dev" tag="Portfolio" />
-              <div class="links-row">
+              <p class="links-row">
                 <Link href="/design-system" text="Design System" />
-                <Link
-                  href="https://github.com/kinooyume/kinoo.dev"
-                  text="Voir le code"
-                />
-              </div>
+                <span class="dotted">
+                  <Link
+                    href="https://github.com/kinooyume/kinoo.dev"
+                    text="Voir le code"
+                  />
+                </span>
+              </p>
             </div>
             <LogoBox>
               <img alt="kinoo.dev" src="/favicon.svg" />
@@ -289,10 +291,14 @@ import Section from "@/components/shared/organisms/Section.astro";
   }
 
   .links-row {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    flex-wrap: wrap;
+    margin: 0;
+  }
+
+  .links-row .dotted::before {
+    content: "·";
+    padding: 0 6px;
+    color: var(--accent-color);
+    opacity: 0.6;
   }
 
   @media screen and (max-width: 900px) {

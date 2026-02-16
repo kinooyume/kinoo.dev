@@ -24,6 +24,8 @@ export const sidebarSections: SidebarSection[] = [
       { label: "Tag", href: "#tag", framework: "astro" },
       { label: "TagRow", href: "#tagrow", framework: "astro" },
       { label: "Link", href: "#link", framework: "astro" },
+      { label: "BackLink", href: "#backlink", framework: "astro" },
+      { label: "ExternalLink", href: "#externallink", framework: "astro" },
       { label: "RevealText", href: "#revealtext", framework: "astro" },
     ],
   },
@@ -91,6 +93,13 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "Contact", href: "#contact-doc", framework: "astro" },
       { label: "ContactForm", href: "#contactform", framework: "solid" },
+    ],
+  },
+  {
+    title: "Articles",
+    items: [
+      { label: "Prose", href: "#prose" },
+      { label: "ArticleCard", href: "#articlecard", framework: "astro" },
     ],
   },
   {
