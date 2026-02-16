@@ -41,6 +41,12 @@ const hasAppend = Astro.slots.has("append");
 
   a:hover {
     opacity: 1;
+    transform: translateY(-4px);
+  }
+
+  a:active {
+    transform: translateY(5px);
+    transition: 200ms;
   }
 
   .link-slot {
