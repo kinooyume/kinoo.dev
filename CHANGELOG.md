@@ -2,6 +2,33 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.21.0 - 2026-02-16
+#### Features
+- (**blog**) add article components, layouts, and content config - (151da5e) - Martin Kinoo
+- (**button**) add bottom gradient to primary, secondary, and success variants - (2c78f60) - Martin Kinoo
+- (**dot-row**) add DotRow atom, apply to CardTitle and Realisations - (a312da7) - Martin Kinoo
+- (**link**) add hover/active translateY effect to Link and CardTitle links - (177aded) - Martin Kinoo
+- (**link**) add prepend/append slots, BackLink and ExternalLink compositions - (90a8459) - Martin Kinoo
+#### Bug Fixes
+- (**button**) add aria-label to ArticleCard, fix secondary hover gradient - (5386a63) - Martin Kinoo
+- (**ci**) update cocogitto-action v4 inputs (command/args API) - (b21cdf9) - Martin Kinoo
+- (**ci**) update cocogitto-action v4 inputs (command/args API) - (a520b96) - Martin Kinoo
+- (**ci**) upgrade cocogitto-action from v3 to v4 - (fccb01a) - Martin Kinoo
+- (**ci**) upgrade cocogitto-action from v3 to v4 - (baee03d) - Martin Kinoo
+- (**ds**) rename imports in ds.astro files to avoid name conflicts - (bad29c6) - Martin Kinoo
+- (**header**) move frosted backdrop to pseudo-element so content stays opaque - (0441ebf) - Martin Kinoo
+- (**link**) exclude .link from global svg path opacity rules - (b8fb6a4) - Martin Kinoo
+- (**spotlight**) show inner glow on parent hover, not just card hover - (8e6c741) - Martin Kinoo
+#### Refactoring
+- (**global**) remove blanket a svg path opacity rule - (9368db1) - Martin Kinoo
+#### Miscellaneous Chores
+- (**git**) remove .husky from tracking, add to gitignore - (8818b35) - Martin Kinoo
+- (**global**) remove unused a.cv styles - (6b37007) - Martin Kinoo
+- (**nav**) remove articles link from navbar and mobile sidebar - (749eb63) - Martin Kinoo
+- (**version**) v0.20.1 - (69f3768) - github-actions[bot]
+
+- - -
+
 ## v0.20.1 - 2026-02-16
 #### Bug Fixes
 - (**ci**) update cocogitto-action v4 inputs (command/args API) - (b21cdf9) - Martin Kinoo
