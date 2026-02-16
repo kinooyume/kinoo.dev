@@ -48,8 +48,9 @@ const hasAppend = Astro.slots.has("append");
     align-items: center;
   }
 
-  .link-slot :global(svg) {
-    width: 16px;
-    height: 16px;
+  .link-slot :global(svg),
+  a > :global(svg) {
+    width: 12px;
+    height: 12px;
   }
 </style>

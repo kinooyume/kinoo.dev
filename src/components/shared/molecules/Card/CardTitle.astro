@@ -1,5 +1,6 @@
 ---
 import H3Tagged from "@/components/shared/atoms/H3Tagged.astro";
+import DotRow from "@/components/shared/atoms/DotRow.astro";
 
 type Props = {
   title: string;
@@ -15,11 +16,11 @@ const { title, tag, href, label, location, date } = Astro.props;
 
 <div class="card-title">
   <H3Tagged title={title} tag={tag} />
-  <p>
+  <DotRow>
     <a href={href} rel="noreferrer nofollow noopener" target="_blank">{label}</a>
-    {location && <span class="dotted">{location}</span>}
+    {location && <span>{location}</span>}
     {date && <span>{date}</span>}
-  </p>
+  </DotRow>
 </div>
 
 <style>
@@ -29,22 +30,11 @@ const { title, tag, href, label, location, date } = Astro.props;
     justify-content: space-between;
   }
 
-  .card-title p {
-    margin: 0;
-  }
-
-  .card-title span,
-  .card-title a {
-    display: inline-block;
+  .card-title :global(.dot-row span),
+  .card-title :global(.dot-row a) {
     font-size: var(--card-title-font-size, 16px);
     font-weight: 400;
     color: rgba(143, 143, 151, 0.7);
-  }
-
-  .card-title .dotted:after,
-  .card-title .dotted:before {
-    content: "·";
-    padding: 0 6px;
   }
 
   a {
