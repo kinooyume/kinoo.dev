@@ -27,7 +27,7 @@
 }
 
 .secondary:hover {
-  background-color: var(--card-surface-hover);
+  background: linear-gradient(to bottom, var(--card-surface-hover) 50%, #1a2a3d);
   border-color: var(--border-hover-color);
 }
 

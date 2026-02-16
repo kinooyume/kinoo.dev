@@ -21,7 +21,7 @@ const formattedDate = date.toLocaleDateString("fr-FR", {
 });
 ---
 
-<a href={href} class="article-card-link">
+<a href={href} class="article-card-link" aria-label={title}>
   <Spotlight color="var(--accent-color)">
     <Card>
       <time datetime={date.toISOString()}>{formattedDate}</time>
