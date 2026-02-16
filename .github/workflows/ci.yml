@@ -22,7 +22,7 @@ jobs:
 
       - name: Validate PR commits
         if: github.event_name == 'pull_request'
-        uses: cocogitto/cocogitto-action@v3
+        uses: cocogitto/cocogitto-action@v4
         with:
           check-latest-tag-only: true
 
