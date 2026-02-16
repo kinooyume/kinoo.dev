@@ -3,7 +3,7 @@ import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import Prose from "./Prose.astro";
+import ProseComponent from "./Prose.astro";
 ---
 
 <section id="prose">
@@ -12,25 +12,25 @@ import Prose from "./Prose.astro";
 
   <DSBlock title="Headings">
     <DSPreview>
-      <Prose>
+      <ProseComponent>
         <h2>Heading 2</h2>
         <h3>Heading 3</h3>
         <h4>Heading 4</h4>
-      </Prose>
+      </ProseComponent>
     </DSPreview>
   </DSBlock>
 
   <DSBlock title="Text & Links">
     <DSPreview>
-      <Prose>
+      <ProseComponent>
         <p>Regular paragraph with <strong>bold text</strong> and a <a href="#">link to something</a>. Line-height is set to 1.7 for readability.</p>
-      </Prose>
+      </ProseComponent>
     </DSPreview>
   </DSBlock>
 
   <DSBlock title="Lists">
     <DSPreview>
-      <Prose>
+      <ProseComponent>
         <ul>
           <li>Unordered item one</li>
           <li>Unordered item two</li>
@@ -39,25 +39,25 @@ import Prose from "./Prose.astro";
           <li>Ordered item one</li>
           <li>Ordered item two</li>
         </ol>
-      </Prose>
+      </ProseComponent>
     </DSPreview>
   </DSBlock>
 
   <DSBlock title="Blockquote">
     <DSPreview>
-      <Prose>
+      <ProseComponent>
         <blockquote><p>A blockquote with accent-colored left border and card surface background.</p></blockquote>
-      </Prose>
+      </ProseComponent>
     </DSPreview>
   </DSBlock>
 
   <DSBlock title="Code">
     <DSPreview>
-      <Prose>
+      <ProseComponent>
         <p>Inline <code>code</code> uses card-surface-raised background.</p>
         <pre><code>const bus = new EventTarget();
 bus.dispatchEvent(new Event("complete"));</code></pre>
-      </Prose>
+      </ProseComponent>
     </DSPreview>
   </DSBlock>
 

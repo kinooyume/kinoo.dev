@@ -4,7 +4,7 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import ArticleCard from "./ArticleCard.astro";
+import ArticleCardComponent from "./ArticleCard.astro";
 ---
 
 <section id="articlecard">
@@ -14,7 +14,7 @@ import ArticleCard from "./ArticleCard.astro";
   <DSBlock title="Preview">
     <DSPreview>
       <div data-spotlight style="max-width: 720px;">
-        <ArticleCard
+        <ArticleCardComponent
           title="Event-based approach instead of global state"
           description="How a one-shot event bus replaces global window flags for coordinating animation lifecycle signals."
           date={new Date("2025-01-15")}
