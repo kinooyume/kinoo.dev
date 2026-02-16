@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.20.1 - 2026-02-16
+#### Bug Fixes
+- (**ci**) update cocogitto-action v4 inputs (command/args API) - (b21cdf9) - Martin Kinoo
+- (**ci**) upgrade cocogitto-action from v3 to v4 - (fccb01a) - Martin Kinoo
+
+- - -
+
 ## v0.20.0 - 2026-02-15
 #### Documentation
 - **(portfolio)** sharpen expertise vocabulary and clean up tags - (d81e207) - Martin Kinoo
