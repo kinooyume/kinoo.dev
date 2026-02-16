@@ -171,10 +171,6 @@ a.anime {
   transition: all 0.3s ease;
 }
 
-a.cv {
-  opacity: 0.8;
-}
-
 @media (hover: hover) {
   a.anime:hover,
   .link-wrapper.anime:hover {
@@ -184,10 +180,6 @@ a.cv {
   a.anime:active {
     transform: translateY(5px);
     transition: 200ms;
-  }
-
-  a:hover.cv {
-    opacity: 1;
   }
 }
 
