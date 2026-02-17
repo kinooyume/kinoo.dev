@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.23.2 - 2026-02-17
+#### Bug Fixes
+- (**animations**) clear residual transforms after card reveal animation - (9febca5) - Martin Kinoo
+
+- - -
+
 ## v0.23.1 - 2026-02-17
 #### Bug Fixes
 - (**realisations**) fix spotlight bottom gap in grid layout - (cf511ff) - Martin Kinoo
