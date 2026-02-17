@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.22.0 - 2026-02-17
+#### Features
+- (**realisations**) add GitHub link to Ekeynox card - (5fa5a41) - Martin Kinoo
+
+- - -
+
 ## v0.21.1 - 2026-02-17
 #### Bug Fixes
 - (**header**) add z-index to backdrop pseudo-element for drawer stacking - (dbe42e9) - Martin Kinoo
