@@ -22,10 +22,15 @@ import Section from "@/components/shared/organisms/Section.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="Ekeynox" tag="Projet perso" />
-              <Link
-                href="https://ekeynox.kinoo.dev"
-                text="Visiter le site"
-              />
+              <p class="links-row">
+                <Link href="https://ekeynox.kinoo.dev" text="Visiter le site" />
+                <span class="dotted">
+                  <Link
+                    href="https://github.com/kinooyume/ekeynox"
+                    text="Voir le code"
+                  />
+                </span>
+              </p>
             </div>
             <LogoBox>
               <Fragment set:html={ekeynoxIcon} />
