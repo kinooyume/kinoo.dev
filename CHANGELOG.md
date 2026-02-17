@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.23.0 - 2026-02-17
+#### Features
+- (**realisations**) add site link to Arteflix card - (6a3778c) - Martin Kinoo
+
+- - -
+
 ## v0.22.0 - 2026-02-17
 #### Features
 - (**realisations**) add GitHub link to Ekeynox card - (5fa5a41) - Martin Kinoo
