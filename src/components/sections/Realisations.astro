@@ -87,10 +87,15 @@ import Section from "@/components/shared/organisms/Section.astro";
           <div slot="title" class="title-wrapper">
             <div class="title-container">
               <H3Tagged title="Arteflix" tag="Projet perso" />
-              <Link
-                href="https://github.com/kinooyume/arteflix"
-                text="Voir le code"
-              />
+              <p class="links-row">
+                <Link href="https://arteflix.kinoo.dev" text="Visiter le site" />
+                <span class="dotted">
+                  <Link
+                    href="https://github.com/kinooyume/arteflix"
+                    text="Voir le code"
+                  />
+                </span>
+              </p>
             </div>
             <LogoBox>
               <img alt="arteflix" src="/images/arteflix/logo.webp" />
