@@ -8,14 +8,25 @@ const observerOptions: IntersectionObserverInit = {
   rootMargin: "0px 0px -100px 0px",
 };
 
+function clearTransforms(card: Element) {
+  requestAnimationFrame(() => {
+    (card as HTMLElement).style.transform = "";
+    card.querySelectorAll<HTMLElement>("[data-animate-elem]").forEach((child) => {
+      child.style.transform = "";
+    });
+  });
+}
+
 function animateCard(card: Element) {
   card.querySelectorAll<HTMLElement>("[data-animate-elem]").forEach(
     (el) => (el.style.opacity = "0"),
   );
 
+  const onComplete = () => clearTransforms(card);
+
   if (isMobile()) {
     const elems = card.querySelectorAll("[data-animate-elem]");
-    createTimeline()
+    createTimeline({ onComplete })
       .add(card, {
         opacity: [0, 1],
         translateY: [20, 0],
@@ -38,7 +49,7 @@ function animateCard(card: Element) {
   }
 
   const elems = card.querySelectorAll("[data-animate-elem]");
-  createTimeline()
+  createTimeline({ onComplete })
     .add(card, {
       opacity: [0, 1],
       translateY: [50, 0],
