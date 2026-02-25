@@ -113,6 +113,13 @@ const ContactForm = (props: Readonly<Props>) => {
           gutter={8}
           toastOptions={{
             duration: 7000,
+            style: {
+              background: "var(--card-surface-raised)",
+              color: "var(--color)",
+              "border-radius": "12px",
+              border: "1px solid var(--border-color)",
+              "font-size": "var(--font-size)",
+            },
           }}
         />
       </Portal>
@@ -120,6 +127,7 @@ const ContactForm = (props: Readonly<Props>) => {
         <span class="error">{error()}</span>
       </Show>
       <Form onSubmit={submitHandler} class={styles.form} onInput={handleInput}>
+        <input type="checkbox" name="botcheck" class={styles.honeypot} />
         <div class={styles.meta}>
           <Field name="name" validate={[required("Name is required")]}>
             {(field, props) => (
