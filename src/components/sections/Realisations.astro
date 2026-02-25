@@ -39,10 +39,10 @@ const rendered = await Promise.all(
                   <p class="links-row">
                     {data.links.map((link, i) =>
                       i === 0 ? (
-                        <Link href={link.href} text={link.text} />
+                        <Link href={link.href} text={link.text} small />
                       ) : (
                         <span class="dotted">
-                          <Link href={link.href} text={link.text} />
+                          <Link href={link.href} text={link.text} small />
                         </span>
                       )
                     )}

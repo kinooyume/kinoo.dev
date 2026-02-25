@@ -5,10 +5,11 @@ type Props = {
   href: string;
   text: string;
   external?: boolean;
+  small?: boolean;
   class?: string;
 };
 
-const { href, text, class: className, external: forceExternal } = Astro.props;
+const { href, text, class: className, external: forceExternal, small } = Astro.props;
 const isExternal = forceExternal ?? href.startsWith("http");
 
 const externalProps = isExternal
@@ -19,7 +20,7 @@ const hasPrepend = Astro.slots.has("prepend");
 const hasAppend = Astro.slots.has("append");
 ---
 
-<a class:list={["link", className]} href={href} {...externalProps}>
+<a class:list={["link", className, { small }]} href={href} {...externalProps}>
   {hasPrepend && <span class="link-slot"><slot name="prepend" /></span>}
   {text}
   {hasAppend && <span class="link-slot"><slot name="append" /></span>}
@@ -47,6 +48,10 @@ const hasAppend = Astro.slots.has("append");
   a:active {
     transform: translateY(5px);
     transition: 200ms;
+  }
+
+  a.small {
+    font-size: var(--card-title-font-size, 16px);
   }
 
   .link-slot {
