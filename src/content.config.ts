@@ -23,7 +23,7 @@ const experiences = defineCollection({
     date: z.string().optional(),
     logo: z.string(),
     tags: z.array(z.string()).default([]),
-    grid: z.string(),
+    gridArea: z.string(),
     order: z.number(),
   }),
 });
@@ -39,7 +39,7 @@ const formations = defineCollection({
     date: z.string().optional(),
     logo: z.string(),
     tags: z.array(z.string()).default([]),
-    grid: z.string(),
+    gridArea: z.string(),
     order: z.number(),
   }),
 });
@@ -50,13 +50,12 @@ const realisations = defineCollection({
     title: z.string(),
     tag: z.string(),
     logo: z.string(),
-    svgLogo: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     links: z
       .array(z.object({ text: z.string(), href: z.string() }))
       .default([]),
     pictures: z.array(z.string()).default([]),
-    grid: z.string(),
+    gridArea: z.string(),
     order: z.number(),
     reverse: z.boolean().default(false),
     vertical: z.boolean().default(false),

@@ -2,16 +2,18 @@
 interface Props {
   color: string;
   class?: string;
+  style?: string;
 }
 
-const { color, class: className } = Astro.props;
+const { color, class: className, style } = Astro.props;
+const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join("; ");
 ---
 
 <div
   class:list={["spotlight-card", className]}
   data-spotlight-card
   data-animate-card
-  style={`--spotlight-color: ${color}`}
+  style={inlineStyle}
 >
   <div class="spotlight-inner">
     <slot />

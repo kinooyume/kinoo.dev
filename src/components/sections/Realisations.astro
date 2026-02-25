@@ -13,9 +13,6 @@ import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import arrow from "@/svgs/arrow.svg?raw";
-import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
-
-const svgLogos: Record<string, string> = { ekeynox: ekeynoxIcon };
 
 const entries = await getCollection("realisations");
 const realisations = entries.sort((a, b) => a.data.order - b.data.order);
@@ -30,7 +27,7 @@ const rendered = await Promise.all(
 <Section id="realisations" subtitle="Mes" title="Réalisations">
   <div class="grid" id="realisations-grid" data-spotlight>
     {rendered.map(({ data, Content }) => (
-      <Spotlight color="#66c384" class={data.grid}>
+      <Spotlight color="#66c384" style={`grid-area: ${data.gridArea}`}>
         <Card>
           <CardSplit reverse={data.reverse} vertical={data.vertical}>
             <div slot="title" class="title-wrapper">
@@ -51,11 +48,7 @@ const rendered = await Promise.all(
                 )}
               </div>
               <LogoBox>
-                {data.svgLogo ? (
-                  <Fragment set:html={svgLogos[data.logo]} />
-                ) : (
-                  <img alt={data.title} src={data.logo} />
-                )}
+                <img alt={data.title} src={data.logo} />
               </LogoBox>
             </div>
             <CardDescription slot="description">
@@ -94,25 +87,9 @@ const rendered = await Promise.all(
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, minmax(0, auto));
+    grid-auto-rows: minmax(0, auto);
     grid-row-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
     grid-column-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
-  }
-
-  .grid > :global(.ekeynox) {
-    grid-area: 1 / 1 / 2 / 3;
-  }
-
-  .grid > :global(.arteflix) {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-
-  .grid > :global(.sunnydash) {
-    grid-area: 2 / 2 / 3 / 3;
-  }
-
-  .grid > :global(.kinoodev) {
-    grid-area: 3 / 1 / 4 / 3;
   }
 
   .title-wrapper {
