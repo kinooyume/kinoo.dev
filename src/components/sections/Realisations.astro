@@ -8,11 +8,13 @@ import CardSplit from "@/components/shared/molecules/Card/CardSplit.astro";
 import Slider from "@/components/shared/molecules/Slider/Slider.tsx";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import H3Tagged from "@/components/shared/atoms/H3Tagged.astro";
+import ButtonLink from "@/components/shared/atoms/ButtonLink.astro";
 import Link from "@/components/shared/atoms/Link.astro";
 import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import arrow from "@/svgs/arrow.svg?raw";
+import github from "@/svgs/github.svg?raw";
 
 const entries = await getCollection("realisations");
 const realisations = entries.sort((a, b) => a.data.order - b.data.order);
@@ -69,6 +71,9 @@ const rendered = await Promise.all(
       </Spotlight>
     ))}
   </div>
+  <div class="cta">
+    <ButtonLink href="https://github.com/KinooYume" text="Voir plus sur GitHub" icon={github} />
+  </div>
 </Section>
 
 <script>
@@ -115,6 +120,12 @@ const rendered = await Promise.all(
     padding: 0 6px;
     color: var(--accent-color);
     opacity: 0.6;
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(24px, 1.24rem + 1.13vw, 40px);
   }
 
   @media screen and (max-width: 900px) {
