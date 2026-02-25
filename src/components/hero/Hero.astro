@@ -41,25 +41,24 @@ const techs: TagProps[] = [
         </p>
         <p>
           Je simplifie les choix techniques et je sécurise l'architecture pour
-          que les projets avancent de façon prévisible. Force de proposition, je
-          m'intègre facilement aux équipes et aide à prendre les bonnes
-          décisions au bon moment.
+          que les projets avancent de façon prévisible. Peu importe le
+          framework, la rigueur et l'architecture restent les mêmes.
         </p>
       </div>
       <ul>
-          {
-            techs.map((tech) => (
-              <li>
-                <Tag
-                  title={tech.title}
-                  animated
-                  icon={tech.icon}
-                  highlight={tech.highlight}
-                />
-              </li>
-            ))
-          }
-        </ul>
+        {
+          techs.map((tech) => (
+            <li>
+              <Tag
+                title={tech.title}
+                animated
+                icon={tech.icon}
+                highlight={tech.highlight}
+              />
+            </li>
+          ))
+        }
+      </ul>
     </div>
     <img
       loading="lazy"
