@@ -11,6 +11,7 @@ const Input = (props: Readonly<InputProps>) => {
   return (
     <input
       {...rest}
+      aria-invalid={local.invalid}
       classList={{
         [styles.input]: true,
         [styles.invalid]: !!local.invalid,

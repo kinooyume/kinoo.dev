@@ -11,6 +11,7 @@ const Textarea = (props: Readonly<TextareaProps>) => {
   return (
     <textarea
       {...rest}
+      aria-invalid={local.invalid}
       classList={{
         [styles.textarea]: true,
         [styles.invalid]: !!local.invalid,

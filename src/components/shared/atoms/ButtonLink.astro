@@ -13,7 +13,7 @@ const externalProps = isExternal
 ---
 
 <a class="button-link" href={href} {...externalProps}>
-  {icon && <span class="icon" set:html={icon} />}
+  {icon && <span class="icon" aria-hidden="true" set:html={icon} />}
   {text}
 </a>
 

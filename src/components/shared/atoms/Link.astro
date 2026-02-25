@@ -21,10 +21,10 @@ const hasAppend = Astro.slots.has("append");
 ---
 
 <a class:list={["link", className, { small }]} href={href} {...externalProps}>
-  {hasPrepend && <span class="link-slot"><slot name="prepend" /></span>}
+  {hasPrepend && <span class="link-slot" aria-hidden="true"><slot name="prepend" /></span>}
   {text}
-  {hasAppend && <span class="link-slot"><slot name="append" /></span>}
-  {isExternal && !hasAppend && <Fragment set:html={externalLinkIcon} />}
+  {hasAppend && <span class="link-slot" aria-hidden="true"><slot name="append" /></span>}
+  {isExternal && !hasAppend && <span aria-hidden="true"><Fragment set:html={externalLinkIcon} /></span>}
 </a>
 
 <style>
@@ -60,7 +60,7 @@ const hasAppend = Astro.slots.has("append");
   }
 
   .link-slot :global(svg),
-  a > :global(svg) {
+  a > span > :global(svg) {
     width: 12px;
     height: 12px;
   }
