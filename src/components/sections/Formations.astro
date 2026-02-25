@@ -1,122 +1,58 @@
 ---
+import { getCollection, render } from "astro:content";
+
+import Section from "@/components/shared/organisms/Section.astro";
 import Card from "@/components/shared/molecules/Card/Card.astro";
 import CardContent from "@/components/shared/molecules/Card/CardContent.astro";
+import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
 import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import LogoBox from "@/components/shared/atoms/LogoBox.astro";
-import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
-import Section from "@/components/shared/organisms/Section.astro";
+import Tag from "@/components/shared/atoms/Tag.astro";
+import TagRow from "@/components/shared/atoms/TagRow.astro";
+
+const entries = await getCollection("formations");
+const formations = entries.sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(
+  formations.map(async (entry) => ({
+    data: entry.data,
+    Content: (await render(entry)).Content,
+  }))
+);
 ---
 
 <Section id="formations" subtitle="Mes" title="Formations">
   <div class="grid" id="formations-grid" data-spotlight>
-    <Spotlight color="var(--purple)" class="epitech">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Master Epitech"
-            tag="Bac+5"
-            href="https://epitech.eu"
-            label="Epitech"
-            location="Lille"
-            date="2013-2018"
-          />
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/epitech.png" alt="epitech" />
-          </LogoBox>
-          <CardDescription>
-            <p>
-              À travers des projets concrets et une approche par la pratique,
-              j'ai acquis une solide maîtrise des langages de programmation.
-              Epitech m'a également permis de développer une forte capacité
-              d'autonomie, de résolution de problèmes et d'innovation, des
-              compétences essentielles pour évoluer dans le domaine du
-              développement web et logiciel.
-            </p>
-          </CardDescription>
-        </CardContent>
-      </Card>
-    </Spotlight>
-    <Spotlight color="var(--purple)" class="manipal">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Student Exchange"
-            tag="1 an"
-            href="https://www.manipal.edu/mit"
-            label="Manipal MIT"
-            location="Manipal (India)"
-            date="2017"
-          />
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/manipal.png" alt="manipal-logo" />
-          </LogoBox>
-          <CardDescription>
-            <p>
-              Année académique passée à Manipal, Inde, où j'ai pu améliorer
-              considérablement mon niveau d'anglais grâce à un environnement
-              multiculturel et des échanges quotidiens avec des étudiants du
-              monde entier.
-            </p>
-          </CardDescription>
-        </CardContent>
-      </Card>
-    </Spotlight>
-    <Spotlight color="var(--purple)" class="derniercri">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Dév. RubyOnRails"
-            tag="Stage"
-            href="https://derniercri.fr"
-            label="DernierCri"
-            location="Lille"
-            date="2016 (4 mois)"
-          />
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/derniercri.png" alt="derniercri" />
-          </LogoBox>
-          <CardDescription>
-            <ul>
-              <li>
-                Service en <b>Ruby</b> de conversion de fichier markdown en
-                html/pdf/epub basé sur <b>Pandoc</b>.
-              </li>
-              <li>Développement backend en <b>Ruby On Rails</b>.</li>
-            </ul>
-          </CardDescription>
-        </CardContent>
-      </Card>
-    </Spotlight>
-    <Spotlight color="var(--purple)" class="eurotunel">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Dév. Angular"
-            tag="Alternance"
-            href="https://www.leshuttle.com/"
-            label="Eurotunnel"
-            location="Calais"
-            date="2015 (6 mois)"
-          />
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/eurotunnel.png" alt="eurotunnel" />
-          </LogoBox>
-          <CardDescription>
-            <p>
-              Dans le cadre de la construction d'une documentation plus avancée
-              décrivant les "bonnes pratiques" au sein du développement à
-              Eurotunnel, j'ai réalisé une documentation complète par l'exemple
-              sur l'ergonomie et le design en <b>Angular</b>.
-            </p>
-          </CardDescription>
-        </CardContent>
-      </Card>
-    </Spotlight>
+    {rendered.map(({ data, Content }) => (
+      <Spotlight color="var(--purple)" class={data.grid}>
+        <Card>
+          <CardContent>
+            <CardTitle
+              slot="title"
+              title={data.title}
+              tag={data.tag}
+              href={data.href}
+              label={data.label}
+              location={data.location}
+              date={data.date}
+            />
+            <LogoBox slot="marge" fullsize>
+              <img loading="lazy" src={data.logo} alt={data.label} />
+            </LogoBox>
+            <CardDescription>
+              <Content />
+            </CardDescription>
+            {data.tags.length > 0 && (
+              <TagRow>
+                {data.tags.map((t) => (
+                  <Tag title={t} />
+                ))}
+              </TagRow>
+            )}
+          </CardContent>
+        </Card>
+      </Spotlight>
+    ))}
   </div>
 </Section>
 

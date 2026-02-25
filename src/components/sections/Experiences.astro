@@ -1,239 +1,60 @@
 ---
+import { getCollection, render } from "astro:content";
+
+import Section from "@/components/shared/organisms/Section.astro";
 import Card from "@/components/shared/molecules/Card/Card.astro";
 import CardContent from "@/components/shared/molecules/Card/CardContent.astro";
+import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
 import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
+import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
-import LogoBox from "@/components/shared/atoms/LogoBox.astro";
-import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
-import Section from "@/components/shared/organisms/Section.astro";
+
+const entries = await getCollection("experiences");
+const experiences = entries.sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(
+  experiences.map(async (entry) => ({
+    data: entry.data,
+    Content: (await render(entry)).Content,
+  })),
+);
 ---
 
 <Section id="experiences" subtitle="Mes" title="Expériences">
   <div class="grid" id="experiences-grid" data-spotlight>
-    <Spotlight color="var(--pink)" class="adeo">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Développeur Frontend"
-            tag="Freelance"
-            href="https://www.adeo.com/"
-            label="Adeo"
-            location="Lille"
-            date="depuis septembre 2025"
-          />
-          <CardDescription>
-            <p>
-              Développement d'applications de data discovery et gouvernance au
-              sein de l'écosystème <b>DataHub</b> pour la plateforme data.
-            </p>
-            <ul>
-              <li>
-                Application <b>Svelte</b> dans une architecture <b
-                  >micro-frontend</b
-                > (Kobi) avec backend <b>NestJS</b> (Vault, Datadog).
-              </li>
-              <li>
-                Application <b>Vue 3</b> : migration progressive vers
-                <b>Composition API</b> et <b>Pinia</b>,
-                maintenance et développement.
-              </li>
-              <li>Développement du Design System interne.</li>
-            </ul>
-          </CardDescription>
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="/images/adeo.png" alt="adeo" />
-          </LogoBox>
-          <TagRow>
-            <Tag title="TypeScript" />
-            <Tag title="Svelte" />
-            <Tag title="Vue 3" />
-          </TagRow>
-        </CardContent>
-      </Card>
-    </Spotlight>
-    <Spotlight color="var(--pink)" class="impacthorizon">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Développeur frontend"
-            tag="Freelance"
-            href="https://impacthorizongroup.com/"
-            label="Impact Horizon"
-            location="Remote"
-            date="2025 (6 mois)"
-          />
-          <CardDescription>
-            <p>
-              Développement d'un système de génération de sites <b
-                >API-first</b
-              > en <b>React</b> : <b>contenu</b> et
-              <b>mise en page</b> pilotés par les données, structuré
-              pour les LLM. Architecture <b>composable</b> avec composants
-              réutilisables (UI, logique, intégrations externes).
-            </p>
-          </CardDescription>
-          <LogoBox slot="marge" fullsize>
-            <img
-              loading="lazy"
-              src="images/impacthorizon.webp"
-              alt="impacthorizon"
-            />
-          </LogoBox>
-          <TagRow>
-            <Tag title="TypeScript" />
-            <Tag title="React" />
-            <Tag title="API-first" />
-          </TagRow>
-        </CardContent>
-      </Card>
-    </Spotlight>
-    <Spotlight color="var(--pink)" class="verty">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Développeur backend"
-            tag="Forfait"
-            href="https://verty.eu/"
-            label="Verty"
-            location="Remote"
-            date="2025 (4 mois)"
-          />
-          <CardDescription>
-            <p>
-              Conception et développement d'une synchronisation entre <b
-                >Shopify</b
-              > et un site de vente externe via les <b>APIs</b>. Services en <b
-                >Go</b
-              >
-              hébergés sur <b>Scaleway</b>, avec une architecture fiable et
-              maintenable. Monitoring avec <b>Grafana</b>.
-            </p>
-          </CardDescription>
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/verty.webp" alt="verty" />
-          </LogoBox>
-          <TagRow>
-            <Tag title="Go" />
-            <Tag title="Shopify API" />
-            <Tag title="Grafana" />
-          </TagRow>
-        </CardContent>
-      </Card>
-    </Spotlight>
-    <Spotlight color="var(--pink)" class="opo">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Lead Développeur fullstack"
-            tag="CDI"
-            href="https://oeilpouroeilcreations.fr"
-            label="Oeil pour Oeil"
-            location="Lille"
-            date="2019-2022 (3 ans et 6 mois)"
-          />
-          <CardDescription>
-            <p>
-              Responsable global du développement : catalogue de formations
-              gamifiées, formations sur-mesure, infrastructure et parcours
-              client. En collaboration étroite avec l'UX designer, le marketing
-              et les clients.
-            </p>
-            <ul>
-              <li>
-                Catalogue de formations gamifiées en <b>React</b>, <b
-                  >API-first</b
-                >, généré depuis un <b>headless CMS</b> (<b>GraphQL</b>). <b
-                  >Migration en Svelte</b
-                >.
-              </li>
-              <li>
-                Framework de génération de formations (<b>SSG/SSR</b>) en <b
-                  >Rescript</b
-                >, architecture hexagonale, <b>composable</b> et framework-agnostic.
-              </li>
-              <li>
-                Formations sur-mesure selon les technos demandées par le client,
-                package <b>SCORM</b> ou depuis un <b>SaaS</b> interne. Dashboard
-                du SaaS en <b>Vue</b>.
-              </li>
-              <li>
-                Architecture backend <b>SOA</b>, services internes en <b>Go</b>,
-                services externes (headless CMS, CRM). APIs <b>REST</b> et <b
-                  >GraphQL</b
-                >.
-              </li>
-              <li>
-                Site vitrine SSG en <b>Svelte</b> avec <b>ElderJs</b>,
-                architecture <b>Islands</b>, optimisé <b>SEO</b>. Mainteneur
-                d'ElderJs.
-              </li>
-              <li>
-                CI/CD, tests avec <b>Jest</b> et <b>Cypress</b>, monitoring <b
-                  >Sentry</b
-                >.
-              </li>
-            </ul>
-          </CardDescription>
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/opo.png" alt="oeilpouroeil" />
-          </LogoBox>
-          <TagRow>
-            <Tag title="TypeScript" />
-            <Tag title="Rescript" />
-            <Tag title="Go" />
-            <Tag title="Multi-framework" />
-            <Tag title="GraphQL" />
-            <Tag title="Headless" />
-            <Tag title="Composable" />
-          </TagRow>
-        </CardContent>
-      </Card>
-    </Spotlight><Spotlight color="var(--pink)" class="ordoclic">
-      <Card>
-        <CardContent>
-          <CardTitle
-            slot="title"
-            title="Lead Développeur"
-            tag="Freelance"
-            href="https://ordoclic.fr"
-            label="Ordoclic"
-            location="Lille"
-            date="2017-2018 (8 mois)"
-          />
-          <CardDescription>
-            <p>
-              Responsable du développement d'une imprimante virtuelle chez les
-              professionnelles de santé afin de faciliter le passage aux
-              ordonnances numériques.
-            </p>
-            <ul>
-              <li>
-                Application <b>Electron.js</b> se comportant comme une
-                imprimante
-              </li>
-              <li>
-                Chiffrement d'ordonnance avec le protocole <b>PKCS#11</b>
-              </li>
-              <li>Envois de document à travers une <b>API</b></li>
-            </ul>
-          </CardDescription>
-          <LogoBox slot="marge" fullsize>
-            <img loading="lazy" src="images/ordoclic.png" alt="ordoclic" />
-          </LogoBox>
-          <TagRow>
-            <Tag title="TypeScript" />
-            <Tag title="Node.js" />
-            <Tag title="Electron.js" />
-          </TagRow>
-        </CardContent>
-      </Card>
-    </Spotlight>
+    {
+      rendered.map(({ data, Content }) => (
+        <Spotlight color="var(--pink)" class={data.grid}>
+          <Card>
+            <CardContent>
+              <CardTitle
+                slot="title"
+                title={data.title}
+                tag={data.tag}
+                href={data.href}
+                label={data.label}
+                location={data.location}
+                date={data.date}
+              />
+              <CardDescription>
+                <Content />
+              </CardDescription>
+              <LogoBox slot="marge" fullsize>
+                <img loading="lazy" src={data.logo} alt={data.label} />
+              </LogoBox>
+              {data.tags.length > 0 && (
+                <TagRow>
+                  {data.tags.map((t) => (
+                    <Tag title={t} />
+                  ))}
+                </TagRow>
+              )}
+            </CardContent>
+          </Card>
+        </Spotlight>
+      ))
+    }
   </div>
 </Section>
 
