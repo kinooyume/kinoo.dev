@@ -1,5 +1,5 @@
 import { splitProps, type ComponentProps } from "solid-js";
-import styles from "./Textarea.module.css";
+import styles from "./Textarea.module.scss";
 
 type TextareaProps = ComponentProps<"textarea"> & {
   invalid?: boolean;

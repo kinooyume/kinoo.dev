@@ -62,7 +62,7 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
   initMobileDrawer();
 </script>
 
-<style>
+<style lang="scss">
   .mobile-drawer-backdrop {
     position: fixed;
     inset: 0;
@@ -72,11 +72,11 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-  }
 
-  .mobile-drawer-backdrop.open {
-    opacity: 1;
-    pointer-events: auto;
+    &.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   .mobile-drawer-panel {
@@ -98,9 +98,9 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 16px;
-  }
 
-  .mobile-drawer-panel.open {
-    transform: translateX(0);
+    &.open {
+      transform: translateX(0);
+    }
   }
 </style>

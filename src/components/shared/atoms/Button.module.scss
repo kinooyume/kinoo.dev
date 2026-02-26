@@ -18,21 +18,21 @@
   color: black;
   background: linear-gradient(to bottom, var(--accent-bright) 50%, #cc956b);
   border-color: var(--accent-bright);
-}
 
-.primary:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 .secondary {
   color: var(--light-color);
   background: linear-gradient(to bottom, var(--card-surface) 50%, #162030);
   border-color: var(--border-color);
-}
 
-.secondary:hover {
-  background: linear-gradient(to bottom, var(--card-surface-hover) 50%, #1a2a3d);
-  border-color: var(--border-hover-color);
+  &:hover {
+    background: linear-gradient(to bottom, var(--card-surface-hover) 50%, #1a2a3d);
+    border-color: var(--border-hover-color);
+  }
 }
 
 @media (hover: hover) {

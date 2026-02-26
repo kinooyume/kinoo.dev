@@ -36,37 +36,37 @@ const { headers, rows } = Astro.props;
   </tbody>
 </table>
 
-<style>
+<style lang="scss">
   .ds-props-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 16px;
     font-size: 15px;
-  }
 
-  .ds-props-table th,
-  .ds-props-table td {
-    text-align: left;
-    padding: 12px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
+    th,
+    td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-  .ds-props-table th {
-    font-weight: 500;
-    color: var(--accent-color);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+    th {
+      font-weight: 500;
+      color: var(--accent-color);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-  .ds-props-table td {
-    font-weight: 200;
-    color: var(--light-color);
-  }
+    td {
+      font-weight: 200;
+      color: var(--light-color);
+    }
 
-  .ds-props-table code {
-    background-color: transparent;
-    padding: 0;
-    color: var(--accent-bright);
+    code {
+      background-color: transparent;
+      padding: 0;
+      color: var(--accent-bright);
+    }
   }
 </style>

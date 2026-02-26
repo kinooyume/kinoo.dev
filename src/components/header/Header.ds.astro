@@ -39,7 +39,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 </section>
 
-<style>
+<style lang="scss">
   .header-preview {
     background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -64,19 +64,18 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     text-decoration: none;
     color: var(--color);
     transition: opacity 0.2s;
-  }
 
-  .title:hover {
-    opacity: 0.8;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .terminal-wrapper {
     margin-top: 4px;
-  }
 
-  .terminal-wrapper :global(svg) {
-    width: 24px;
-    height: 24px;
+    :global(svg) {
+      width: 24px;
+      height: 24px;
+    }
   }
-
 </style>

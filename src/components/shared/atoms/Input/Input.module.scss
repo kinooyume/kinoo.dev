@@ -1,0 +1,10 @@
+@use "@/styles/form-field" as *;
+
+.input {
+  @include form-field;
+}
+
+.invalid {
+  border-color: var(--red-border);
+  background-color: var(--red-bg);
+}

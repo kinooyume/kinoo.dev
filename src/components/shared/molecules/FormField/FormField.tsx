@@ -1,5 +1,5 @@
 import type { JSX } from "solid-js";
-import styles from "./FormField.module.css";
+import styles from "./FormField.module.scss";
 
 type FormFieldProps = {
   label: string;

@@ -1,0 +1,64 @@
+@use "sass:map";
+@use "sass:list";
+
+$colors: (
+  orange: (base: #f8ba88, light: #f7caa6, dark: #f4ac72, darker: #ea9957, darkest: #d17d39, lightest: #f8dbc4),
+  red: (base: #ea8686, light: #edabab, dark: #dc6a6a, darker: #cb4d4d, darkest: #a63a3a, lightest: #f3cece),
+  green: (base: #66c384, light: #a4dfb8, dark: #5ab376, darker: #4a9c63, darkest: #3d8552, lightest: #c0edcf),
+  pink: (base: #f68dab, light: #f8a4c0, dark: #f47799, darker: #f26088, darkest: #d55478, lightest: #f8c8d9),
+  purple: (base: #9c85d3, light: #b09ee0, dark: #8870c7, darker: #745bba, darkest: #6048a0, lightest: #c9bce6),
+);
+
+$colors-with-border: orange, red;
+
+:root {
+  --background-color: #181927;
+  --background-frosted: rgba(24, 25, 39, 0.05);
+
+  --color: #e0e0e0;
+  --light-color: #f6f5f7;
+  --extra-light-color: #f6f5f7;
+  --text-muted: #7b8fad;
+
+  --accent-color: #f8ba88;
+  --secondary-accent-color: #c9a88d;
+  --accent-bright: #f6b17a;
+  --accent-tint: var(--orange-tint);
+
+  @each $name, $shades in $colors {
+    $base: map.get($shades, base);
+
+    --#{$name}: #{$base};
+    --#{$name}-light: #{map.get($shades, light)};
+    --#{$name}-dark: #{map.get($shades, dark)};
+    --#{$name}-darker: #{map.get($shades, darker)};
+    --#{$name}-darkest: #{map.get($shades, darkest)};
+    --#{$name}-lightest: #{map.get($shades, lightest)};
+    --#{$name}-bg: #{rgba($base, 0.05)};
+    --#{$name}-tint: #{rgba($base, 0.1)};
+
+    @if list.index($colors-with-border, $name) {
+      --#{$name}-border: #{rgba($base, 0.35)};
+    }
+  }
+
+  --card-surface-raised: #2d2d3b;
+  --card-surface: #1c2638;
+  --card-surface-hover: #313d50;
+  --card-surface-input: #1a2232;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-hover-color: rgba(255, 255, 255, 0.2);
+
+  --h1-size: clamp(48px, 1.58rem + 5.05vw, 96px);
+  --h2-size: clamp(42px, 2.21rem + 1.47vw, 56px);
+  --h3-size: clamp(18px, 0.95rem + 0.63vw, 24px);
+  --subtitle-size: clamp(20px, 1.19rem + 0.21vw, 22px);
+  --font-size: clamp(14px, 0.76rem + 0.42vw, 18px);
+  --button-font-size: 15px;
+
+  --section-margin: clamp(96px, 4.11rem + 6.74vw, 160px);
+  --h2-margin-bottom: clamp(40px, 1.79rem + 2.53vw, 64px);
+
+  --border-angle: 360deg;
+}

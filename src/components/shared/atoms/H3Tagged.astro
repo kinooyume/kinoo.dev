@@ -12,10 +12,13 @@ const { title, tag } = Astro.props;
   <span>{tag}</span>
 </div>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   :root {
     --experience-span-size: 14px;
   }
+
   div {
     display: flex;
     align-items: flex-start;
@@ -35,7 +38,7 @@ const { title, tag } = Astro.props;
     background-color: var(--accent-color);
   }
 
-  @media screen and (max-width: 900px) {
+  @include tablet {
     :root {
       --experience-span-size: 12px;
     }
@@ -43,7 +46,8 @@ const { title, tag } = Astro.props;
       line-height: 1.2;
     }
   }
-  @media screen and (max-width: 600px) {
+
+  @include mobile {
     .title-container span {
       padding: 0 6px;
     }

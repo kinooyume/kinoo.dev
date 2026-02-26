@@ -14,14 +14,14 @@ const { href, text } = Astro.props;
   <span class="back-arrow" slot="prepend" set:html={arrow} />
 </Link>
 
-<style>
+<style lang="scss">
   .back-arrow :global(svg) {
     transform: rotate(180deg);
     width: 12px;
     height: 12px;
-  }
 
-  .back-arrow :global(svg path) {
-    fill: currentColor;
+    path {
+      fill: currentColor;
+    }
   }
 </style>

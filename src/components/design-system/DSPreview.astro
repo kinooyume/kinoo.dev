@@ -18,7 +18,7 @@ const variantClass = variant !== "default" ? `ds-preview--${variant}` : "";
   <slot />
 </div>
 
-<style>
+<style lang="scss">
   .ds-preview {
     background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -28,17 +28,17 @@ const variantClass = variant !== "default" ? `ds-preview--${variant}` : "";
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
-  }
 
-  .ds-preview--card {
-    display: block;
-  }
+    &--card {
+      display: block;
+    }
 
-  .ds-preview--sidebar {
-    display: block;
-  }
+    &--sidebar {
+      display: block;
+    }
 
-  .ds-preview :global(.tag) {
-    opacity: 1;
+    :global(.tag) {
+      opacity: 1;
+    }
   }
 </style>

@@ -10,15 +10,15 @@ const { class: className } = Astro.props;
   <slot />
 </div>
 
-<style>
+<style lang="scss">
   .card-description {
     display: flex;
     flex-direction: column;
     flex: 1;
     gap: clamp(10px, 0.57rem + 0.21vw, 12px);
-  }
 
-  .card-description > :global(br) {
-    display: none;
+    > :global(br) {
+      display: none;
+    }
   }
 </style>

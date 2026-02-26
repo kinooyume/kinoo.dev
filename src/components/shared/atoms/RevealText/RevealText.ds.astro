@@ -79,7 +79,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   });
 </script>
 
-<style>
+<style lang="scss">
   .ds-play-btn {
     margin-top: 12px;
     padding: 6px 16px;
@@ -90,9 +90,10 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     font-size: 13px;
     cursor: pointer;
     transition: all 0.2s ease;
-  }
-  .ds-play-btn:hover {
-    background: var(--card-surface-hover);
-    border-color: var(--border-hover-color);
+
+    &:hover {
+      background: var(--card-surface-hover);
+      border-color: var(--border-hover-color);
+    }
   }
 </style>

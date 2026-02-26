@@ -29,7 +29,7 @@ const frameworkIcons: Record<Framework, string> = {
   <p class="atomic-label">{atomic}</p>
 </div>
 
-<style>
+<style lang="scss">
   .section-header {
     margin-bottom: 16px;
   }
@@ -38,20 +38,20 @@ const frameworkIcons: Record<Framework, string> = {
     display: flex;
     align-items: center;
     gap: 12px;
-  }
 
-  .title-row h2 {
-    margin-bottom: 0;
+    h2 {
+      margin-bottom: 0;
+    }
   }
 
   .framework-icon {
     display: flex;
     align-items: center;
-  }
 
-  .framework-icon :global(svg) {
-    width: 24px;
-    height: 24px;
+    :global(svg) {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   .atomic-label {

@@ -15,7 +15,7 @@ const { animated, title, icon, highlight, outline } = Astro.props;
   <span>{title}</span>
 </div>
 
-<style is:global>
+<style lang="scss" is:global>
   .tag svg {
     width: 16px;
     height: 16px;
@@ -29,10 +29,13 @@ const { animated, title, icon, highlight, outline } = Astro.props;
   }
 </style>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   :root {
     --span-tag-size: clamp(12px, 0.62rem + 0.42vw, 14px);
   }
+
   div {
     display: flex;
     align-items: center;
@@ -40,46 +43,48 @@ const { animated, title, icon, highlight, outline } = Astro.props;
     padding: 8px 18px;
     border-radius: 12px;
     background-color: var(--card-surface-input);
-  }
 
-  div.highlight {
-    border: 1px solid var(--accent-color);
-  }
-  div.outline {
-    background-color: transparent;
-    border: 1px solid var(--orange-border);
-    color: var(--accent-color);
-  }
-  span {
-    font-size: var(--span-tag-size);
-    font-weight: 200;
-  }
-  .tag:not(.tag-animated) {
-    background-color: var(--accent-tint);
-    color: var(--accent-color);
-  }
-  .tag {
-    opacity: 0;
-  }
-  .tag.show {
-    opacity: 1;
-  }
+    &.highlight {
+      border: 1px solid var(--accent-color);
+    }
 
-  @media screen and (max-width: 900px) {
-    div {
+    &.outline {
+      background-color: transparent;
+      border: 1px solid var(--orange-border);
+      color: var(--accent-color);
+    }
+
+    @include tablet {
       padding: 6px 12px;
     }
-  }
 
-  @media screen and (max-width: 600px) {
-    div {
+    @include mobile {
       padding: 4px 10px;
       gap: 5px;
     }
-    span {
+  }
+
+  span {
+    font-size: var(--span-tag-size);
+    font-weight: 200;
+
+    @include mobile {
       font-size: 0.75rem;
       font-weight: 500;
       line-height: 1.25rem;
+    }
+  }
+
+  .tag {
+    opacity: 0;
+
+    &:not(.tag-animated) {
+      background-color: var(--accent-tint);
+      color: var(--accent-color);
+    }
+
+    &.show {
+      opacity: 1;
     }
   }
 </style>

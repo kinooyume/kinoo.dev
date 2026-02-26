@@ -1,5 +1,5 @@
 import { Show, splitProps, type ComponentProps } from "solid-js";
-import styles from "./Button.module.css";
+import styles from "./Button.module.scss";
 
 type ButtonProps = {
   variant?: "primary" | "secondary";

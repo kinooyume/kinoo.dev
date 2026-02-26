@@ -28,32 +28,34 @@ import linkedin from "@/svgs/linkedin.svg?raw";
   </div>
 </section>
 
-<style>
+<style lang="scss">
   section {
     margin: var(--section-margin) 0;
+
+    :global(.subtitle) {
+      display: block;
+      color: var(--accent-color);
+      font-weight: 200;
+      font-size: var(--subtitle-size);
+      margin: 0;
+    }
+
+    :global(h2) {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.15em;
+    }
   }
 
-  section :global(.subtitle) {
-    display: block;
-    color: var(--accent-color);
-    font-weight: 200;
-    font-size: var(--subtitle-size);
-    margin: 0;
-  }
+  .contact-description {
+    p {
+      font-size: var(--hero-font-size);
+      font-weight: 200;
+    }
 
-  section :global(h2) {
-    display: block;
-    overflow: hidden;
-    padding-bottom: 0.15em;
-  }
-
-  .contact-description p {
-    font-size: var(--hero-font-size);
-    font-weight: 200;
-  }
-
-  .contact-description :global(.button-link) {
-    margin-top: 24px;
+    :global(.button-link) {
+      margin-top: 24px;
+    }
   }
 
   .contact-content {

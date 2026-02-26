@@ -102,18 +102,22 @@ import message from "@/svgs/message.svg?raw";
 
 </section>
 
-<style>
-  section :global(.icon-button svg) {
-    width: 20px;
-    height: 20px;
-    opacity: 0.8;
+<style lang="scss">
+  section :global(.icon-button) {
+    svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+
+      path {
+        fill: var(--accent-color);
+      }
+    }
   }
 
-  section :global(.icon-button svg path) {
-    fill: var(--accent-color);
-  }
-
-  section :global(.icon-button--primary svg path) {
-    fill: var(--background-color);
+  section :global(.icon-button--primary) {
+    svg path {
+      fill: var(--background-color);
+    }
   }
 </style>

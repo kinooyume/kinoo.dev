@@ -37,49 +37,53 @@ import message from "@/svgs/message.svg?raw";
   window.addEventListener("load", hideContactWhenSectionVisible);
 </script>
 
-<style is:global>
+<style lang="scss" is:global>
+  @use "@/styles/breakpoints" as *;
+
   .floating-contact.icon-button {
     display: none;
   }
 
-  @media screen and (max-width: 600px) {
-    .floating-contact.icon-button {
-      position: sticky;
-      z-index: 300;
-      bottom: 36px;
-      right: 12px;
-      margin-left: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background-color: var(--card-surface);
-      border: 1px solid var(--border-color);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+  @include mobile {
+    .floating-contact {
+      &.icon-button {
+        position: sticky;
+        z-index: 300;
+        bottom: 36px;
+        right: 12px;
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background-color: var(--card-surface);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
 
-    .floating-contact.icon-button:hover {
-      background-color: var(--card-surface-hover);
-      border-color: var(--border-hover-color);
-    }
+        &:hover {
+          background-color: var(--card-surface-hover);
+          border-color: var(--border-hover-color);
+        }
+      }
 
-    .floating-contact svg {
-      width: 20px;
-      height: 20px;
-    }
+      svg {
+        width: 20px;
+        height: 20px;
 
-    .floating-contact svg path {
-      fill: var(--accent-color);
-    }
+        path {
+          fill: var(--accent-color);
+        }
+      }
 
-    .floating-contact.current {
-      pointer-events: none;
-      opacity: 0;
+      &.current {
+        pointer-events: none;
+        opacity: 0;
+      }
     }
   }
 </style>

@@ -40,7 +40,7 @@ const classes = [
   )
 }
 
-<style is:global>
+<style lang="scss" is:global>
   .icon-button {
     display: flex;
     flex-direction: column;
@@ -55,40 +55,37 @@ const classes = [
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-  }
 
-  .icon-button:hover {
-    background-color: var(--card-surface-hover);
-    border-color: var(--border-hover-color);
-  }
+    &:hover {
+      background-color: var(--card-surface-hover);
+      border-color: var(--border-hover-color);
+    }
 
-  /* Size variants */
-  .icon-button--small {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-  }
+    &--small {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
 
-  /* Color variants */
-  .icon-button.icon-button--primary {
-    background-color: var(--accent-bright);
-    border-color: var(--accent-bright);
-  }
+    &.icon-button--primary {
+      background-color: var(--accent-bright);
+      border-color: var(--accent-bright);
 
-  .icon-button.icon-button--primary:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    transform: translateY(-4px);
-  }
+      &:hover {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        transform: translateY(-4px);
+      }
+    }
 
-  .icon-button--primary:active {
-    transform: translateY(2px);
-  }
+    &--primary:active {
+      transform: translateY(2px);
+    }
 
-  /* Position variants */
-  .icon-button--floating {
-    position: fixed;
-    z-index: 1001;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    &--floating {
+      position: fixed;
+      z-index: 1001;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
   }
 </style>

@@ -25,7 +25,9 @@ const externalProps = external
   {variant === "icon" && <span class="tooltip">{tooltipText}</span>}
 </a>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   .header-link {
     position: relative;
     display: flex;
@@ -33,13 +35,49 @@ const externalProps = external
     align-items: center;
     opacity: 0.8;
     transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+
+      .tooltip {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-8px);
+      }
+    }
+
+    &--icon {
+      :global(svg) {
+        width: 22px;
+        height: 22px;
+      }
+
+      :global(svg path) {
+        fill: var(--light-color);
+        transition: fill 0.3s ease;
+      }
+
+      &:hover :global(svg path) {
+        fill: var(--accent-color);
+      }
+    }
+
+    &--badge {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      height: 22px;
+      padding: 0 6px;
+      color: var(--light-color);
+
+      &:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+    }
   }
 
-  .header-link:hover {
-    opacity: 1;
-  }
-
-  /* Tooltip */
   .tooltip {
     position: absolute;
     bottom: 100%;
@@ -58,44 +96,7 @@ const externalProps = external
     transition: all 0.2s ease;
   }
 
-  .header-link:hover .tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-8px);
-  }
-
-  /* Icon variant */
-  .header-link--icon :global(svg) {
-    width: 22px;
-    height: 22px;
-  }
-
-  .header-link--icon :global(svg path) {
-    fill: var(--light-color);
-    transition: fill 0.3s ease;
-  }
-
-  .header-link--icon:hover :global(svg path) {
-    fill: var(--accent-color);
-  }
-
-  /* Badge variant */
-  .header-link--badge {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    height: 22px;
-    padding: 0 6px;
-    color: var(--light-color);
-  }
-
-  .header-link--badge:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-  }
-
-  @media screen and (max-width: 600px) {
+  @include mobile {
     .header-link {
       transform: none !important;
     }

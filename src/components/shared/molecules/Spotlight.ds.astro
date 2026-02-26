@@ -62,7 +62,9 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   }
 </script>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   #spotlight-demo {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -71,29 +73,27 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 32px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
   }
 
   .demo-card {
     padding: 24px;
     min-height: 150px;
-  }
 
-  .demo-card h4 {
-    font-size: 16px;
-    margin: 0 0 8px 0;
-    color: var(--light-color);
-  }
+    h4 {
+      font-size: 16px;
+      margin: 0 0 8px 0;
+      color: var(--light-color);
+    }
 
-  .demo-card p {
-    font-size: 14px;
-    margin: 0;
-    color: var(--color);
-    opacity: 0.8;
-  }
-
-  @media screen and (max-width: 600px) {
-    #spotlight-demo {
-      grid-template-columns: 1fr;
+    p {
+      font-size: 14px;
+      margin: 0;
+      color: var(--color);
+      opacity: 0.8;
     }
   }
 </style>

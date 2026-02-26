@@ -198,22 +198,28 @@ const borders: Color[] = [
   </DSBlock>
 </section>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   h4 {
     font-size: 16px;
     font-weight: 500;
     color: var(--light-color);
     margin: 24px 0 12px 0;
-  }
 
-  h4:first-of-type {
-    margin-top: 0;
+    &:first-of-type {
+      margin-top: 0;
+    }
   }
 
   .color-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
+
+    @include mobile {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
   }
 
   .color-swatch {
@@ -227,11 +233,11 @@ const borders: Color[] = [
   .swatch {
     height: 80px;
     width: 100%;
-  }
 
-  .swatch-border {
-    border: 1px dashed rgba(255, 255, 255, 0.3);
-    box-sizing: border-box;
+    &-border {
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      box-sizing: border-box;
+    }
   }
 
   .color-info {
@@ -240,23 +246,17 @@ const borders: Color[] = [
     display: flex;
     flex-direction: column;
     gap: 4px;
-  }
 
-  .color-info code {
-    font-size: 13px;
-    color: var(--accent-bright);
-  }
+    code {
+      font-size: 13px;
+      color: var(--accent-bright);
+    }
 
-  .color-info span {
-    font-size: 12px;
-    color: var(--color);
-    opacity: 0.7;
-    font-family: monospace;
-  }
-
-  @media screen and (max-width: 600px) {
-    .color-grid {
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    span {
+      font-size: 12px;
+      color: var(--color);
+      opacity: 0.7;
+      font-family: monospace;
     }
   }
 </style>

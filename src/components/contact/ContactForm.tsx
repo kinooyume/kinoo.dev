@@ -12,7 +12,7 @@ import Button from "@/components/shared/atoms/Button";
 import Input from "@/components/shared/atoms/Input/Input";
 import Textarea from "@/components/shared/atoms/Textarea/Textarea";
 import FormField from "@/components/shared/molecules/FormField/FormField";
-import styles from "./ContactForm.module.css";
+import styles from "./ContactForm.module.scss";
 
 type ContactFormType = {
   name: string;
