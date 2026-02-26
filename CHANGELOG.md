@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.24.0 - 2026-02-26
+#### Features
+- (**Hero**) update hero content - (dcb5dea) - Martin Kinoo
+- (**atoms**) extract ButtonLink component from inline Link overrides - (61a2c6c) - Martin Kinoo
+- (**content**) migrate portfolio sections to MDX content collections - (439e801) - Martin Kinoo
+#### Bug Fixes
+- (**a11y**) add WCAG accessibility improvements across the site - (1013bba) - Martin Kinoo
+- (**contact**) add honeypot spam protection and style toasts with DS tokens - (c918b5f) - Martin Kinoo
+- (**content**) update experience descriptions and normalize card title sizing - (1196f8e) - Martin Kinoo
+- (**ui**) improve link visibility and card text readability - (88424aa) - Martin Kinoo
+#### Refactoring
+- (**content**) data-driven grid layout and uniform logo handling - (53c12c8) - Martin Kinoo
+
+- - -
+
 ## v0.23.2 - 2026-02-17
 #### Bug Fixes
 - (**animations**) clear residual transforms after card reveal animation - (9febca5) - Martin Kinoo
