@@ -9,13 +9,15 @@ import BurgerIcon from "@/components/shared/atoms/BurgerIcon.astro";
   </IconButton>
 </div>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   .mobile-menu-trigger {
     display: none;
     align-items: center;
   }
 
-  @media screen and (max-width: 1100px) {
+  @include desktop {
     .mobile-menu-trigger {
       display: flex;
     }

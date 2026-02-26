@@ -69,7 +69,9 @@ const techs: TagProps[] = [
   </div>
 </section>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   :root {
     --hero-font-size: 20px;
     --hero-span-size: 36px;
@@ -86,12 +88,13 @@ const techs: TagProps[] = [
     margin: 0;
     font-weight: 200;
     color: var(--color);
+
+    span {
+      opacity: 0;
+      display: inline-block;
+    }
   }
 
-  h1 span {
-    opacity: 0;
-    display: inline-block;
-  }
   .description > * {
     opacity: 0;
   }
@@ -108,16 +111,15 @@ const techs: TagProps[] = [
     color: var(--accent-color);
     font-weight: 200;
     font-size: calc(var(--hero-font-size) + 2px);
-  }
-
-  .catchphrase {
     margin-bottom: 16px;
   }
+
   ul {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
   }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -145,40 +147,47 @@ const techs: TagProps[] = [
   strong {
     font-weight: 600;
   }
+
   img {
     margin: auto 0;
     opacity: 0;
   }
 
-  @media screen and (max-width: 1368px) {
+  @include ultrawide {
     :root {
       --hero-font-size: 18px;
       --hero-span-size: 34px;
     }
+
     .punchline {
       font-size: 28px;
     }
   }
+
   @media screen and (max-width: 1145px) {
     img {
       display: none;
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @include mobile {
     :root {
       --hero-span-size: 28px;
       --hero-font-size: 16px;
     }
+
     h1 {
       line-height: 1;
     }
+
     .punchline {
       font-size: 22px;
     }
+
     #hero {
       margin-top: 32px;
     }
+
     .content {
       gap: 28px;
     }
@@ -195,6 +204,7 @@ const techs: TagProps[] = [
       --hero-span-size: 20px;
     }
   }
+
   @media screen and (max-width: 340px) {
     :root {
       --hero-span-size: 18px;

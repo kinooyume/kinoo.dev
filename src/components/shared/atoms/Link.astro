@@ -27,7 +27,7 @@ const hasAppend = Astro.slots.has("append");
   {isExternal && !hasAppend && <span aria-hidden="true"><Fragment set:html={externalLinkIcon} /></span>}
 </a>
 
-<style>
+<style lang="scss">
   a {
     display: inline-flex;
     align-items: center;
@@ -38,30 +38,34 @@ const hasAppend = Astro.slots.has("append");
     opacity: 0.8;
     transition: all 0.3s ease;
     text-decoration: underline;
-  }
 
-  a:hover {
-    opacity: 1;
-    transform: translateY(-4px);
-  }
+    &:hover {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
 
-  a:active {
-    transform: translateY(5px);
-    transition: 200ms;
-  }
+    &:active {
+      transform: translateY(5px);
+      transition: 200ms;
+    }
 
-  a.small {
-    font-size: var(--card-title-font-size, 16px);
+    &.small {
+      font-size: var(--card-title-font-size, 16px);
+    }
+
+    > span > :global(svg) {
+      width: 12px;
+      height: 12px;
+    }
   }
 
   .link-slot {
     display: inline-flex;
     align-items: center;
-  }
 
-  .link-slot :global(svg),
-  a > span > :global(svg) {
-    width: 12px;
-    height: 12px;
+    :global(svg) {
+      width: 12px;
+      height: 12px;
+    }
   }
 </style>

@@ -16,15 +16,17 @@ const { title, description } = Astro.props;
   <p class="category-description">{description}</p>
 </div>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   .category-header {
     margin: 80px 0 48px 0;
     padding-top: 24px;
     border-top: 2px solid var(--accent-color);
-  }
 
-  .category-header:first-of-type {
-    margin-top: 64px;
+    &:first-of-type {
+      margin-top: 64px;
+    }
   }
 
   .category-title {
@@ -32,6 +34,10 @@ const { title, description } = Astro.props;
     font-weight: 400;
     margin-bottom: 8px;
     color: var(--accent-bright);
+
+    @include tablet {
+      font-size: 28px;
+    }
   }
 
   .category-description {
@@ -39,11 +45,5 @@ const { title, description } = Astro.props;
     opacity: 0.8;
     font-size: 16px;
     margin-bottom: 0;
-  }
-
-  @media screen and (max-width: 900px) {
-    .category-title {
-      font-size: 28px;
-    }
   }
 </style>

@@ -1,0 +1,11 @@
+@use "@/styles/form-field" as *;
+
+.textarea {
+  @include form-field;
+  min-height: 160px;
+}
+
+.invalid {
+  border-color: var(--red-border);
+  background-color: var(--red-bg);
+}

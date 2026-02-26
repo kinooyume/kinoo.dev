@@ -36,7 +36,9 @@ import Footer from "@/components/footer/Footer.astro";
   </main>
 </Layout>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   :global(.header .title-wrapper),
   :global(.menu),
   :global(.navbar li) {
@@ -60,9 +62,8 @@ import Footer from "@/components/footer/Footer.astro";
     padding: 1rem 32px;
     max-width: 1368px;
     line-height: 1.6;
-  }
-  @media screen and (max-width: 900px) {
-    main {
+
+    @include tablet {
       padding: 1rem 16px;
     }
   }

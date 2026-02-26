@@ -12,7 +12,7 @@ import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
 import SearchInput from "@/components/shared/atoms/SearchInput/SearchInput";
 import astroIcon from "@/svgs/astro.svg?raw";
 import solidIcon from "@/svgs/solid.svg?raw";
-import styles from "./Sidebar.module.css";
+import styles from "./Sidebar.module.scss";
 
 const frameworkIcons: Record<Framework, string> = {
   astro: astroIcon,

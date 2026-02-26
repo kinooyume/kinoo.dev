@@ -1,6 +1,6 @@
 import { splitProps, type ComponentProps } from "solid-js";
 import Input from "@/components/shared/atoms/Input/Input";
-import styles from "./SearchInput.module.css";
+import styles from "./SearchInput.module.scss";
 
 const SearchInput = (props: Readonly<ComponentProps<"input">>) => {
   const [local, rest] = splitProps(props, ["class"]);

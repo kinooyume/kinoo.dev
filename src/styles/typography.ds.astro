@@ -62,7 +62,9 @@ import DSNote from "@/components/design-system/DSNote.astro";
   </DSBlock>
 </section>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   .subtitle {
     color: var(--accent-color);
     font-weight: 200;
@@ -85,23 +87,23 @@ import DSNote from "@/components/design-system/DSNote.astro";
     gap: 8px;
     padding: 16px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
 
-  .type-sample:last-child {
-    border-bottom: none;
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   .type-label {
     font-size: 13px;
     color: var(--color);
     opacity: 0.6;
-  }
 
-  .type-label code {
-    background-color: #1c2638;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 8px;
+    code {
+      background-color: #1c2638;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
   }
 
   .sample-h1 {
@@ -109,6 +111,10 @@ import DSNote from "@/components/design-system/DSNote.astro";
     font-weight: 300;
     line-height: 1;
     margin: 0;
+
+    @include tablet {
+      font-size: 48px;
+    }
   }
 
   .sample-h2 {
@@ -127,11 +133,5 @@ import DSNote from "@/components/design-system/DSNote.astro";
     padding: 12px 24px;
     border-radius: 12px;
     display: inline-block;
-  }
-
-  @media screen and (max-width: 900px) {
-    .sample-h1 {
-      font-size: 48px;
-    }
   }
 </style>

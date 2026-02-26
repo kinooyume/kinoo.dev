@@ -20,7 +20,9 @@ import terminal from "@/svgs/terminal.svg?raw";
     </div>
   </div>
 
-  <style>
+  <style lang="scss">
+    @use "@/styles/breakpoints" as *;
+
     :root {
       --header-font-size: 24px;
     }
@@ -34,21 +36,21 @@ import terminal from "@/svgs/terminal.svg?raw";
       top: 0;
       width: 100%;
       height: 120px;
-    }
 
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-color: var(--background-frosted);
-      mask-image: linear-gradient(
-        rgb(0, 0, 0) 50%,
-        rgba(0, 0, 0, 0.8) 70%,
-        rgba(0, 0, 0, 0) 100%
-      );
-      backdrop-filter: blur(30px);
-      pointer-events: none;
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-color: var(--background-frosted);
+        mask-image: linear-gradient(
+          rgb(0, 0, 0) 50%,
+          rgba(0, 0, 0, 0.8) 70%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        backdrop-filter: blur(30px);
+        pointer-events: none;
+      }
     }
 
     .header {
@@ -78,7 +80,6 @@ import terminal from "@/svgs/terminal.svg?raw";
       gap: 24px;
     }
 
-
     .title-wrapper {
       display: flex;
       align-items: center;
@@ -95,14 +96,13 @@ import terminal from "@/svgs/terminal.svg?raw";
       margin-top: 6px;
     }
 
-
-    @media screen and (max-width: 1368px) {
+    @include ultrawide {
       :root {
         --header-font-size: 22px;
       }
     }
 
-    @media screen and (max-width: 600px) {
+    @include mobile {
       :root {
         --header-font-size: 18px;
       }

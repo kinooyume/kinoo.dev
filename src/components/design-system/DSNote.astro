@@ -9,18 +9,18 @@
   <slot />
 </p>
 
-<style>
+<style lang="scss">
   .ds-note {
     color: var(--color);
     opacity: 0.7;
     font-size: 15px;
     margin-top: 12px;
-  }
 
-  .ds-note :global(code) {
-    background-color: #1c2638;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 13px;
+    :global(code) {
+      background-color: #1c2638;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
   }
 </style>

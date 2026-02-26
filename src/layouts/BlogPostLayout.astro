@@ -70,11 +70,17 @@ const blogPostingJsonLd = {
   </main>
 </Layout>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   main {
     margin: auto;
     padding: 1rem 32px;
     max-width: 1368px;
+
+    @include tablet {
+      padding: 1rem 16px;
+    }
   }
 
   article {
@@ -86,11 +92,11 @@ const blogPostingJsonLd = {
 
   .article-header {
     margin-bottom: 48px;
-  }
 
-  .article-header :global(.link) {
-    margin-bottom: 24px;
-    text-decoration: none;
+    :global(.link) {
+      margin-bottom: 24px;
+      text-decoration: none;
+    }
   }
 
   h1 {
@@ -110,11 +116,5 @@ const blogPostingJsonLd = {
   .article-tags {
     margin-top: 16px;
     padding-top: 0;
-  }
-
-  @media screen and (max-width: 900px) {
-    main {
-      padding: 1rem 16px;
-    }
   }
 </style>

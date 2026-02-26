@@ -17,7 +17,9 @@ import linkedin from "@/svgs/linkedin.svg?raw";
   <Button href="/#contact">Discutons ensemble</Button>
 </div>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   .header-menu {
     display: flex;
     align-items: center;
@@ -25,7 +27,7 @@ import linkedin from "@/svgs/linkedin.svg?raw";
     gap: 24px;
   }
 
-  @media screen and (max-width: 1100px) {
+  @include desktop {
     .header-menu {
       display: none;
     }

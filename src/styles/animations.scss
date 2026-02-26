@@ -1,15 +1,9 @@
-/**
- * Animations - Animation states and keyframes
- */
-
 @property --border-angle {
   inherits: false;
   initial-value: 0deg;
   syntax: "<angle>";
 }
 
-/* ===== Header Default State ===== */
-/* Header is visible by default (for pages without hero) */
 .title-wrapper,
 .menu,
 .navbar li {
@@ -20,7 +14,6 @@
   pointer-events: auto;
 }
 
-/* ===== Letter Reveal ===== */
 [data-reveal-text="wave"] {
   display: inline-block;
   overflow: hidden;

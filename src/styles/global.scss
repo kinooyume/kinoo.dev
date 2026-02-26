@@ -1,8 +1,5 @@
-/**
- * Global Styles - Base styles and reset
- */
+@use "breakpoints" as *;
 
-/* ===== Font Definitions ===== */
 @font-face {
   font-family: "Outfit";
   src: url("/fonts/Outfit/Outfit-ExtraLight.ttf");
@@ -59,7 +56,6 @@
   font-style: normal;
 }
 
-/* ===== Reset & Base ===== */
 html {
   box-sizing: border-box;
   font-family: Outfit, system-ui, sans-serif;
@@ -67,6 +63,10 @@ html {
   color: var(--color);
   scroll-behavior: smooth;
   scroll-padding-top: 126px;
+
+  @include mobile {
+    scroll-padding-top: 92px;
+  }
 }
 
 *,
@@ -87,10 +87,13 @@ body {
   border-style: solid;
 }
 
-/* ===== Base Element Styles ===== */
 a {
   color: inherit;
   text-decoration: inherit;
+
+  &.anime {
+    transition: all 0.3s ease;
+  }
 }
 
 img,
@@ -127,7 +130,6 @@ ul {
   margin: 0;
 }
 
-/* ===== Typography ===== */
 h2 {
   font-weight: 300;
   line-height: 1;
@@ -162,15 +164,6 @@ b {
   font-weight: 600;
 }
 
-/* ===== Links ===== */
-button {
-  cursor: pointer;
-}
-
-a.anime {
-  transition: all 0.3s ease;
-}
-
 @media (hover: hover) {
   a.anime:hover,
   .link-wrapper.anime:hover {
@@ -183,7 +176,6 @@ a.anime {
   }
 }
 
-/* ===== Focus ===== */
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--accent-color);
@@ -194,7 +186,6 @@ button:focus-visible {
   outline: none;
 }
 
-/* ===== Reduced Motion ===== */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -203,12 +194,5 @@ button:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* ===== Responsive ===== */
-@media screen and (max-width: 600px) {
-  html {
-    scroll-padding-top: 92px;
   }
 }

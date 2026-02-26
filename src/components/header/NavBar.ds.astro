@@ -70,42 +70,47 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   }
 </script>
 
-<style>
+<style lang="scss">
   .navbar-interactive {
     position: relative;
     display: flex;
     align-items: center;
-  }
-  .navbar-interactive ul {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
-    margin: 0;
-  }
-  .navbar-interactive li {
-    list-style: none;
-  }
-  .navbar-interactive a {
-    display: block;
-    padding: 16px 16px;
-    font-size: 18px;
-    font-weight: 200;
-    color: var(--color);
-    text-decoration: none;
-    opacity: 0.6;
-    transition: opacity 0.2s ease;
-  }
-  .navbar-interactive a:hover,
-  .navbar-interactive a.active {
-    opacity: 1;
-  }
-  .navbar-interactive .indicator {
-    position: absolute;
-    bottom: 0;
-    height: 2px;
-    border-radius: 1px;
-    transition: all 0.3s ease;
-    background-color: var(--accent-color);
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      display: block;
+      padding: 16px 16px;
+      font-size: 18px;
+      font-weight: 200;
+      color: var(--color);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+
+      &:hover,
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    .indicator {
+      position: absolute;
+      bottom: 0;
+      height: 2px;
+      border-radius: 1px;
+      transition: all 0.3s ease;
+      background-color: var(--accent-color);
+    }
   }
 </style>

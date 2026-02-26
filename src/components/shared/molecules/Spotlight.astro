@@ -20,64 +20,68 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .spotlight-card {
     position: relative;
     overflow: hidden;
     border-radius: 32px;
     padding: 1px;
     background-color: rgba(71, 85, 105, 0.48);
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 20rem;
+      height: 20rem;
+      left: -10rem;
+      top: -10rem;
+      background: var(--spotlight-color);
+      border-radius: 9999px;
+      filter: blur(100px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 500ms;
+      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
+      z-index: 2;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 24rem;
+      height: 24rem;
+      left: -12rem;
+      top: -12rem;
+      background: var(--spotlight-color);
+      border-radius: 9999px;
+      filter: blur(100px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 500ms;
+      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
+      z-index: 4;
+    }
   }
 
-  .spotlight-card::before {
-    content: "";
-    position: absolute;
-    width: 20rem;
-    height: 20rem;
-    left: -10rem;
-    top: -10rem;
-    background: var(--spotlight-color);
-    border-radius: 9999px;
-    filter: blur(100px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 500ms;
-    transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
-    z-index: 2;
-  }
+  :global([data-spotlight]):hover .spotlight-card {
+    &::before {
+      opacity: 1;
+    }
 
-  .spotlight-card::after {
-    content: "";
-    position: absolute;
-    width: 24rem;
-    height: 24rem;
-    left: -12rem;
-    top: -12rem;
-    background: var(--spotlight-color);
-    border-radius: 9999px;
-    filter: blur(100px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 500ms;
-    transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
-    z-index: 4;
-  }
-
-  :global([data-spotlight]):hover .spotlight-card::before {
-    opacity: 1;
-  }
-
-  :global([data-spotlight]):hover .spotlight-card::after {
-    opacity: 0.1;
+    &::after {
+      opacity: 0.1;
+    }
   }
 
   @media (hover: none) {
-    .spotlight-card::before {
-      opacity: 0.6;
-    }
+    .spotlight-card {
+      &::before {
+        opacity: 0.6;
+      }
 
-    .spotlight-card::after {
-      opacity: 0.06;
+      &::after {
+        opacity: 0.06;
+      }
     }
   }
 

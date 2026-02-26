@@ -13,13 +13,13 @@ const subElement = subtitle.replace(/\S/g, "<span class='letter'>$&</span>");
   </span>
 </span>
 
-<style is:global>
+<style lang="scss" is:global>
   .letter {
     display: inline-block;
     transform: translateY(1.3em);
   }
 </style>
-<style>
+<style lang="scss">
   .subtitle {
     position: relative;
     margin: 0;
@@ -29,10 +29,11 @@ const subElement = subtitle.replace(/\S/g, "<span class='letter'>$&</span>");
     font-size: var(--hero-span-size);
     font-weight: 100;
     color: var(--accent-color);
-  }
-  .subtitle .text-wrapper {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
+
+    .text-wrapper {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
   }
 </style>

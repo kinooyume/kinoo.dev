@@ -64,7 +64,9 @@ const rendered = await Promise.all(
   if (container) spotlight(container);
 </script>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   :global(#experiences) {
     --accent-color: #f68dab;
     --secondary-accent-color: #f8c8d9;
@@ -77,10 +79,8 @@ const rendered = await Promise.all(
     grid-auto-rows: minmax(0, auto);
     grid-column-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
     grid-row-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
-  }
 
-  @media screen and (max-width: 1200px) {
-    .grid {
+    @include wide {
       display: flex;
       flex-direction: column;
     }

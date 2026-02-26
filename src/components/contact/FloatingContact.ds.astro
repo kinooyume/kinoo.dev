@@ -69,21 +69,24 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 </section>
 
-<style>
+<style lang="scss">
   .states-preview :global(.ds-preview) {
     gap: 48px;
   }
+
   .state-demo {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
   }
+
   .state-label {
     font-size: 13px;
     color: var(--color);
     opacity: 0.6;
   }
+
   .floating-contact-demo {
     width: 48px;
     height: 48px;
@@ -93,23 +96,28 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     justify-content: center;
     text-decoration: none;
     transition: all 0.3s ease;
+
+    .icon-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      :global(svg) {
+        width: 20px;
+        height: 20px;
+      }
+
+      :global(svg path) {
+        fill: black;
+      }
+    }
   }
-  .floating-contact-demo .icon-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .floating-contact-demo .icon-wrapper :global(svg) {
-    width: 20px;
-    height: 20px;
-  }
-  .floating-contact-demo .icon-wrapper :global(svg path) {
-    fill: black;
-  }
+
   .hover-state {
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(246, 177, 122, 0.3);
   }
+
   .hidden-state {
     opacity: 0.3;
     pointer-events: none;

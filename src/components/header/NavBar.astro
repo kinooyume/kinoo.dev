@@ -134,14 +134,16 @@ const { items = defaultItems } = Astro.props;
   window.addEventListener("load", initNavbar);
 </script>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   .navbar {
     position: relative;
     pointer-events: none;
-  }
 
-  .navbar.enabled {
-    pointer-events: auto;
+    &.enabled {
+      pointer-events: auto;
+    }
   }
 
   ul {
@@ -161,26 +163,33 @@ const { items = defaultItems } = Astro.props;
     text-decoration: none;
     opacity: 0.6;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease;
-  }
 
-  a:hover,
-  a.current {
-    opacity: 1;
-  }
+    &:hover,
+    &.current {
+      opacity: 1;
+    }
 
-  a[data-color="#f68dab"]:hover,
-  a[data-color="#f68dab"].current {
-    color: var(--pink-lightest);
-  }
-  a[data-color="#66c384"]:hover,
-  a[data-color="#66c384"].current {
-    color: var(--green-lightest);
-  }
-  a[data-color="#9c85d3"]:hover,
-  a[data-color="#9c85d3"].current {
-    color: var(--purple-lightest);
-  }
+    &[data-color="#f68dab"] {
+      &:hover,
+      &.current {
+        color: var(--pink-lightest);
+      }
+    }
 
+    &[data-color="#66c384"] {
+      &:hover,
+      &.current {
+        color: var(--green-lightest);
+      }
+    }
+
+    &[data-color="#9c85d3"] {
+      &:hover,
+      &.current {
+        color: var(--purple-lightest);
+      }
+    }
+  }
 
   .indicator {
     --indicator-color: #f8ba88;
@@ -195,7 +204,7 @@ const { items = defaultItems } = Astro.props;
       color-mix(in srgb, var(--indicator-color) 50%, transparent);
   }
 
-  @media screen and (max-width: 1100px) {
+  @include desktop {
     .navbar {
       display: none;
     }

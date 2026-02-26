@@ -1,5 +1,5 @@
 import { splitProps, type ComponentProps } from "solid-js";
-import styles from "./Input.module.css";
+import styles from "./Input.module.scss";
 
 type InputProps = ComponentProps<"input"> & {
   invalid?: boolean;

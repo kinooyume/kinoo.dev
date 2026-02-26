@@ -106,11 +106,12 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   });
 </script>
 
-<style>
+<style lang="scss">
   .hero-subtitle-preview :global(.ds-preview) {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .subtitle-demo {
     position: relative;
     margin: 0;
@@ -119,15 +120,18 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     font-size: 36px;
     font-weight: 100;
     color: var(--accent-color);
+
+    .text-wrapper {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .letter {
+      display: inline-block;
+    }
   }
-  .subtitle-demo .text-wrapper {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-  }
-  .subtitle-demo .letter {
-    display: inline-block;
-  }
+
   .replay-btn {
     padding: 6px 16px;
     border-radius: 6px;
@@ -137,32 +141,38 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     font-size: 13px;
     cursor: pointer;
     transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
-  .replay-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
+
   .hero-title-preview :global(.ds-preview) {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .hero-title-demo {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
+
   .hero-subtitle-text {
     font-size: 28px;
     font-weight: 100;
     color: var(--accent-color);
   }
+
   .hero-h1 {
     font-size: 64px;
     font-weight: 200;
     color: var(--color);
     margin: 0;
     line-height: 1;
-  }
-  .hero-h1 span {
-    display: inline-block;
+
+    span {
+      display: inline-block;
+    }
   }
 </style>

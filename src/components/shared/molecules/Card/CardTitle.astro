@@ -23,36 +23,38 @@ const { title, tag, href, label, location, date } = Astro.props;
   </p>
 </div>
 
-<style>
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
   .card-title {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 4px;
-  }
 
-  .card-title p {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
+    p {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
 
-  .card-title span {
-    display: inline-block;
-    font-size: var(--card-title-font-size, 16px);
-    font-weight: 400;
-    color: rgba(143, 143, 151, 0.7);
-  }
+    span {
+      display: inline-block;
+      font-size: var(--card-title-font-size, 16px);
+      font-weight: 400;
+      color: rgba(143, 143, 151, 0.7);
+    }
 
-  .card-title .dotted:after,
-  .card-title .dotted:before {
-    content: "·";
-    padding: 0 6px;
-  }
+    .dotted {
+      &::after,
+      &::before {
+        content: "·";
+        padding: 0 6px;
+      }
+    }
 
-  @media screen and (max-width: 900px) {
-    .card-title {
+    @include tablet {
       gap: 2px;
     }
   }

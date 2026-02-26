@@ -26,7 +26,9 @@ const { title = "Design System", description } = Astro.props;
   <Sidebar sections={sidebarSections} class="ds-sidebar-desktop" client:load />
 </div>
 
-<style is:global>
+<style lang="scss" is:global>
+  @use "@/styles/breakpoints" as *;
+
   .ds-container {
     display: flex;
     min-height: calc(100vh - 80px);
@@ -43,12 +45,35 @@ const { title = "Design System", description } = Astro.props;
     max-width: 900px;
     min-width: 0;
     overflow-x: auto;
-  }
 
-  .ds-main h1 {
-    font-size: 48px;
-    font-weight: 300;
-    margin-bottom: 16px;
+    h1 {
+      font-size: 48px;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    section {
+      margin: 0 0 80px 0;
+      padding-top: 24px;
+
+      h2 {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 16px;
+        margin-bottom: 12px;
+      }
+    }
+
+    footer {
+      min-height: 50vh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 32px;
+      opacity: 0.5;
+
+      p {
+        font-size: 14px;
+      }
+    }
   }
 
   .intro {
@@ -68,31 +93,7 @@ const { title = "Design System", description } = Astro.props;
     border-radius: 4px;
   }
 
-  .ds-main section {
-    margin: 0 0 80px 0;
-    padding-top: 24px;
-  }
-
-  .ds-main section h2 {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 16px;
-    margin-bottom: 12px;
-  }
-
-  .ds-main footer {
-    min-height: 50vh;
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 32px;
-    opacity: 0.5;
-  }
-
-  .ds-main footer p {
-    font-size: 14px;
-  }
-
-  /* matches mobile burger breakpoint (1100px) */
-  @media screen and (max-width: 1100px) {
+  @include desktop {
     .ds-container {
       flex-direction: column;
       padding: 0 16px;
