@@ -14,12 +14,16 @@ const SliderPagination = (props: Readonly<PaginationProps>) => {
 
   return (
     <div class="pagination-wrapper">
-      <div class="pagination" aria-hidden="true">
+      <div class="pagination">
         <ul class="list">
           <For each={props.pictures}>
             {(_, index) => (
               <li classList={{ active: isActive(index()) }}>
-                <button onClick={() => props.moveTo(index())} tabIndex={-1} />
+                <button
+                  onClick={() => props.moveTo(index())}
+                  aria-label={`Slide ${index() + 1}`}
+                  aria-current={isActive(index()) ? "true" : undefined}
+                />
               </li>
             )}
           </For>
@@ -76,7 +80,7 @@ const Slider = (props: Readonly<SliderProps>) => {
             <For each={props.pictures}>
               {(picture) => (
                 <div>
-                  <img src={`/images/${picture}`} alt={picture} />
+                  <img src={`/images/${picture}`} alt={picture.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')} />
                 </div>
               )}
             </For>
@@ -84,13 +88,13 @@ const Slider = (props: Readonly<SliderProps>) => {
         </div>
 
         <div class="blaze-navigation">
-          <button class="blaze-prev">{props.children}</button>
+          <button class="blaze-prev" aria-label="Slide précédent">{props.children}</button>
           <SliderPagination
             pictures={props.pictures}
             index={currentIndex}
             moveTo={moveTo}
           />
-          <button class="blaze-next">{props.children}</button>
+          <button class="blaze-next" aria-label="Slide suivant">{props.children}</button>
         </div>
       </div>
     </div>

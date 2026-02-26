@@ -1,3 +1,7 @@
+.honeypot {
+  display: none !important;
+}
+
 .root {
   width: 100%;
 }

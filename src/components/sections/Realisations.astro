@@ -1,251 +1,78 @@
 ---
-import H3Tagged from "@/components/shared/atoms/H3Tagged.astro";
+import { getCollection, render } from "astro:content";
+
+import Section from "@/components/shared/organisms/Section.astro";
 import Card from "@/components/shared/molecules/Card/Card.astro";
+import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
 import CardSplit from "@/components/shared/molecules/Card/CardSplit.astro";
 import Slider from "@/components/shared/molecules/Slider/Slider.tsx";
-import arrow from "@/svgs/arrow.svg?raw";
+import Spotlight from "@/components/shared/molecules/Spotlight.astro";
+import H3Tagged from "@/components/shared/atoms/H3Tagged.astro";
+import ButtonLink from "@/components/shared/atoms/ButtonLink.astro";
 import Link from "@/components/shared/atoms/Link.astro";
-import ekeynoxIcon from "@/svgs/ekeynox.svg?raw";
+import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
-import Spotlight from "@/components/shared/molecules/Spotlight.astro";
-import LogoBox from "@/components/shared/atoms/LogoBox.astro";
-import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
-import Section from "@/components/shared/organisms/Section.astro";
+import arrow from "@/svgs/arrow.svg?raw";
+import github from "@/svgs/github.svg?raw";
+
+const entries = await getCollection("realisations");
+const realisations = entries.sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(
+  realisations.map(async (entry) => ({
+    data: entry.data,
+    Content: (await render(entry)).Content,
+  }))
+);
 ---
 
 <Section id="realisations" subtitle="Mes" title="Réalisations">
   <div class="grid" id="realisations-grid" data-spotlight>
-    <Spotlight color="#66c384" class="ekeynox">
-      <Card>
-        <CardSplit>
-          <div slot="title" class="title-wrapper">
-            <div class="title-container">
-              <H3Tagged title="Ekeynox" tag="Projet perso" />
-              <p class="links-row">
-                <Link href="https://ekeynox.kinoo.dev" text="Visiter le site" />
-                <span class="dotted">
-                  <Link
-                    href="https://github.com/kinooyume/ekeynox"
-                    text="Voir le code"
-                  />
-                </span>
-              </p>
+    {rendered.map(({ data, Content }) => (
+      <Spotlight color="#66c384" style={`grid-area: ${data.gridArea}`}>
+        <Card>
+          <CardSplit reverse={data.reverse} vertical={data.vertical}>
+            <div slot="title" class="title-wrapper">
+              <div class="title-container">
+                <H3Tagged title={data.title} tag={data.tag} />
+                {data.links.length > 0 && (
+                  <p class="links-row">
+                    {data.links.map((link, i) =>
+                      i === 0 ? (
+                        <Link href={link.href} text={link.text} small />
+                      ) : (
+                        <span class="dotted">
+                          <Link href={link.href} text={link.text} small />
+                        </span>
+                      )
+                    )}
+                  </p>
+                )}
+              </div>
+              <LogoBox>
+                <img alt={data.title} src={data.logo} />
+              </LogoBox>
             </div>
-            <LogoBox>
-              <Fragment set:html={ekeynoxIcon} />
-            </LogoBox>
-          </div>
-          <CardDescription slot="description">
-            <p>
-              Ekeynox est un jeu de <b>dactylographie</b>, permettant de
-              s'entrainer à taper au clavier, plus rapidement et sans fautes.
-            </p>
-            <br />
-            <p>
-              Le jeu propose 2 modes de jeu, un mode <b>course de mot</b> et un mode
-              <b>contre la montre</b> et différent type de contenu, à savoir <b
-                >des mots aléatoires</b
-              >, des <b>citations</b> ou un <b>texte personnalisé</b>.
-            </p>
-            <br />
-            <p>
-              À la fin d'une partie, le joueur peut consulter ses <b>
-                statistiques</b
-              > et
-              <b>rejouer</b> en mode fantôme contre son score précédent.
-            </p>
-            <br />
-            <TagRow>
-              <Tag title="SolidJS" />
-              <Tag title="SolidStart" />
-              <Tag title="Figma" />
-            </TagRow>
-          </CardDescription>
-          <Slider
-            slot="aside"
-            client:load
-            pictures={[
-              "ekeynox/01.webp",
-              "ekeynox/02.webp",
-              "ekeynox/03.webp",
-              "ekeynox/04.webp",
-              "ekeynox/05.webp",
-              "ekeynox/06.webp",
-              "ekeynox/07.webp",
-              "ekeynox/08.webp",
-            ]}
-          >
-            <Fragment set:html={arrow} />
-          </Slider>
-        </CardSplit>
-      </Card>
-    </Spotlight>
-    <Spotlight color="#66c384" class="arteflix">
-      <Card>
-        <CardSplit vertical>
-          <div slot="title" class="title-wrapper">
-            <div class="title-container">
-              <H3Tagged title="Arteflix" tag="Projet perso" />
-              <p class="links-row">
-                <Link href="https://arteflix.kinoo.dev" text="Visiter le site" />
-                <span class="dotted">
-                  <Link
-                    href="https://github.com/kinooyume/arteflix"
-                    text="Voir le code"
-                  />
-                </span>
-              </p>
-            </div>
-            <LogoBox>
-              <img alt="arteflix" src="/images/arteflix/logo.webp" />
-            </LogoBox>
-          </div>
-          <CardDescription slot="description">
-            <p>
-              Clone du catalogue d'<b>ARTE</b> avec le design system de <b
-                >Netflix</b
-              >. L'API d'ARTE a été <b>reverse-engineerée</b> : chaque page,
-              section et contenu est généré dynamiquement depuis les données de
-              l'API, en respectant la structure du site original.
-            </p>
-            <br />
-            <p>
-              Le site reprend le routing d'arte.tv, il suffit de changer le
-              domaine dans l'URL pour accéder au même contenu. Architecture
-              entièrement <b>API-first</b>, similaire à un <b>headless CMS</b
-              >.
-            </p>
-            <br />
-            <TagRow>
-              <Tag title="Rescript" />
-              <Tag title="React" />
-              <Tag title="Next.js" />
-              <Tag title="Headless" />
-              <Tag title="API-first" />
-              <Tag title="Storybook" />
-            </TagRow>
-          </CardDescription>
-          <Slider
-            slot="aside"
-            client:load
-            pictures={[
-              "arteflix/01.webp",
-              "arteflix/02.webp",
-              "arteflix/03.webp",
-            ]}
-          >
-            <Fragment set:html={arrow} />
-          </Slider>
-        </CardSplit>
-      </Card>
-    </Spotlight>
-    <Spotlight color="#66c384" class="sunnydash">
-      <Card>
-        <CardSplit vertical>
-          <div slot="title" class="title-wrapper">
-            <div class="title-container">
-              <H3Tagged title="SunnyDash" tag="Projet perso" />
-              <Link
-                href="https://github.com/kinooyume/sunnydash"
-                text="Voir le code"
-              />
-            </div>
-            <LogoBox>
-              <img alt="sunnydash" src="/images/sunnydash/logo.webp" />
-            </LogoBox>
-          </div>
-          <CardDescription slot="description">
-            <p>
-              Dashboard météo en <b>Svelte 5</b>, exemple d'<b
-                >architecture hexagonale</b
-              >
-              appliquée au frontend.
-            </p>
-            <br />
-            <p>
-              Les APIs météo sont interchangeables via <b>ports & adapters</b>
-              (OpenMeteo et mock). Tests unitaires avec <b>Vitest</b> et E2E avec
-              <b>Playwright</b>.
-            </p>
-            <br />
-            <TagRow>
-              <Tag title="TypeScript" />
-              <Tag title="Svelte 5" />
-              <Tag title="SvelteKit" />
-              <Tag title="Archi hexagonale" />
-            </TagRow>
-          </CardDescription>
-          <Slider
-            slot="aside"
-            client:load
-            pictures={["sunnydash/01.webp", "sunnydash/02.webp"]}
-          >
-            <Fragment set:html={arrow} />
-          </Slider>
-        </CardSplit>
-      </Card>
-    </Spotlight>
-    <Spotlight color="#66c384" class="kinoodev">
-      <Card>
-        <CardSplit reverse>
-          <div slot="title" class="title-wrapper">
-            <div class="title-container">
-              <H3Tagged title="kinoo.dev" tag="Portfolio" />
-              <p class="links-row">
-                <Link href="/design-system" text="Design System" />
-                <span class="dotted">
-                  <Link
-                    href="https://github.com/kinooyume/kinoo.dev"
-                    text="Voir le code"
-                  />
-                </span>
-              </p>
-            </div>
-            <LogoBox>
-              <img alt="kinoo.dev" src="/favicon.svg" />
-            </LogoBox>
-          </div>
-          <CardDescription slot="description">
-            <p>
-              Site portfolio personnel conçu avec <b>Astro</b> et <b>SolidJS</b
-              >, optimisé pour la performance et l'accessibilité.
-            </p>
-            <br />
-            <p>
-              Animations fluides avec <b>Anime.js</b> et système de design modulaire
-              avec composants <b>Design System</b>.
-            </p>
-            <br />
-            <p>
-              Architecture <b>Islands</b> pour un chargement optimal, formulaire de
-              contact avec validation, et CI/CD automatisé avec <b
-                >conventional commits</b
-              > et déploiement sur <b>Netlify</b>.
-            </p>
-            <br />
-            <TagRow>
-              <Tag title="TypeScript" />
-              <Tag title="Astro" />
-              <Tag title="SolidJS" />
-              <Tag title="Anime.js" />
-              <Tag title="Design System" />
-            </TagRow>
-          </CardDescription>
-          <Slider
-            slot="aside"
-            client:load
-            pictures={[
-              "kinoo.dev/01.webp",
-              "kinoo.dev/02.webp",
-              "kinoo.dev/03.webp",
-            ]}
-          >
-            <Fragment set:html={arrow} />
-          </Slider>
-        </CardSplit>
-      </Card>
-    </Spotlight>
+            <CardDescription slot="description">
+              <Content />
+              {data.tags.length > 0 && (
+                <TagRow>
+                  {data.tags.map((t) => (
+                    <Tag title={t} />
+                  ))}
+                </TagRow>
+              )}
+            </CardDescription>
+            <Slider slot="aside" client:load pictures={data.pictures}>
+              <Fragment set:html={arrow} />
+            </Slider>
+          </CardSplit>
+        </Card>
+      </Spotlight>
+    ))}
+  </div>
+  <div class="cta">
+    <ButtonLink href="https://github.com/KinooYume" text="Voir plus sur GitHub" icon={github} />
   </div>
 </Section>
 
@@ -265,25 +92,9 @@ import Section from "@/components/shared/organisms/Section.astro";
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, minmax(0, auto));
+    grid-auto-rows: minmax(0, auto);
     grid-row-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
     grid-column-gap: clamp(18px, 0.89rem + 0.84vw, 26px);
-  }
-
-  .grid > :global(.ekeynox) {
-    grid-area: 1 / 1 / 2 / 3;
-  }
-
-  .grid > :global(.arteflix) {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-
-  .grid > :global(.sunnydash) {
-    grid-area: 2 / 2 / 3 / 3;
-  }
-
-  .grid > :global(.kinoodev) {
-    grid-area: 3 / 1 / 4 / 3;
   }
 
   .title-wrapper {
@@ -309,6 +120,12 @@ import Section from "@/components/shared/organisms/Section.astro";
     padding: 0 6px;
     color: var(--accent-color);
     opacity: 0.6;
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(24px, 1.24rem + 1.13vw, 40px);
   }
 
   @media screen and (max-width: 900px) {

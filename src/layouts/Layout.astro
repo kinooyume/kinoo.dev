@@ -87,6 +87,7 @@ const {
     <slot name="head" />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
     <Header>
       <slot name="header-nav" slot="nav" />
       <slot name="header-menu" />
@@ -104,6 +105,23 @@ const {
 </html>
 
 <style is:global>
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 10000;
+    padding: 8px 16px;
+    background: var(--accent-color);
+    color: var(--background-color);
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: 16px;
+  }
+
   .mobile-menu-drawer {
     display: none;
   }

@@ -113,6 +113,13 @@ const ContactForm = (props: Readonly<Props>) => {
           gutter={8}
           toastOptions={{
             duration: 7000,
+            style: {
+              background: "var(--card-surface-raised)",
+              color: "var(--color)",
+              "border-radius": "12px",
+              border: "1px solid var(--border-color)",
+              "font-size": "var(--font-size)",
+            },
           }}
         />
       </Portal>
@@ -120,10 +127,11 @@ const ContactForm = (props: Readonly<Props>) => {
         <span class="error">{error()}</span>
       </Show>
       <Form onSubmit={submitHandler} class={styles.form} onInput={handleInput}>
+        <input type="checkbox" name="botcheck" class={styles.honeypot} aria-hidden="true" tabindex={-1} />
         <div class={styles.meta}>
           <Field name="name" validate={[required("Name is required")]}>
             {(field, props) => (
-              <FormField label="Votre nom">
+              <FormField label="Votre nom" for="name">
                 <Input
                   id="name"
                   disabled={inputsDisabled()}
@@ -143,7 +151,7 @@ const ContactForm = (props: Readonly<Props>) => {
             ]}
           >
             {(field, props) => (
-              <FormField label="Votre email">
+              <FormField label="Votre email" for="email">
                 <Input
                   id="email"
                   disabled={inputsDisabled()}
@@ -157,7 +165,7 @@ const ContactForm = (props: Readonly<Props>) => {
           </Field>
           <Field name="message" validate={[required("Message is required")]}>
             {(field, props) => (
-              <FormField label="Votre projet">
+              <FormField label="Votre projet" for="message">
                 <Textarea
                   id="message"
                   disabled={inputsDisabled()}
@@ -176,6 +184,7 @@ const ContactForm = (props: Readonly<Props>) => {
               variant="primary"
               state={buttonState()}
               type="submit"
+              aria-busy={formState() === FormState.sending}
             >
               {formState() === FormState.sending
                 ? "Envoi…"

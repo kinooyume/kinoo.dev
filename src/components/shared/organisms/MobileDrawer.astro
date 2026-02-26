@@ -15,6 +15,8 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
   class:list={["mobile-drawer-panel", className]}
   id={`${id}-panel`}
   style={`--drawer-width: ${width};`}
+  aria-label="Menu de navigation"
+  aria-hidden="true"
 >
   <slot />
 </aside>
@@ -30,6 +32,8 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
       trigger?.classList.toggle("open", isOpen);
       backdrop?.classList.toggle("open", isOpen);
       document.body.style.overflow = isOpen ? "hidden" : "";
+      panel?.setAttribute("aria-hidden", String(!isOpen));
+      trigger?.setAttribute("aria-expanded", String(!!isOpen));
     }
 
     function close() {
@@ -37,6 +41,8 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
       trigger?.classList.remove("open");
       backdrop?.classList.remove("open");
       document.body.style.overflow = "";
+      panel?.setAttribute("aria-hidden", "true");
+      trigger?.setAttribute("aria-expanded", "false");
     }
 
     trigger?.addEventListener("click", toggle);
