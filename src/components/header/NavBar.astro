@@ -10,9 +10,10 @@ interface Props {
 }
 
 const defaultItems: NavItem[] = [
-  { label: "Expériences", href: "/#experiences", color: "#f68dab" },
-  { label: "Réalisations", href: "/#realisations", color: "#66c384" },
-  { label: "Formations", href: "/#formations", color: "#9c85d3" },
+  { label: "Expériences", href: "/#experiences", color: "var(--pink)" },
+  { label: "Réalisations", href: "/#realisations", color: "var(--green)" },
+  { label: "Formations", href: "/#formations", color: "var(--purple)" },
+  { label: "Articles", href: "/#articles", color: "var(--orange)" },
 ];
 
 const { items = defaultItems } = Astro.props;
@@ -74,7 +75,7 @@ const { items = defaultItems } = Astro.props;
 
       indicator.style.setProperty(
         "--indicator-color",
-        target.dataset.color || "#f8ba88",
+        target.dataset.color || "var(--orange)",
       );
       currentAnim = animate(indicator, {
         left: rect.left - navRect.left,
@@ -169,30 +170,37 @@ const { items = defaultItems } = Astro.props;
       opacity: 1;
     }
 
-    &[data-color="#f68dab"] {
+    &[data-color="var(--pink)"] {
       &:hover,
       &.current {
         color: var(--pink-lightest);
       }
     }
 
-    &[data-color="#66c384"] {
+    &[data-color="var(--green)"] {
       &:hover,
       &.current {
         color: var(--green-lightest);
       }
     }
 
-    &[data-color="#9c85d3"] {
+    &[data-color="var(--purple)"] {
       &:hover,
       &.current {
         color: var(--purple-lightest);
       }
     }
+
+    &[data-color="var(--orange)"] {
+      &:hover,
+      &.current {
+        color: var(--orange-lightest);
+      }
+    }
   }
 
   .indicator {
-    --indicator-color: #f8ba88;
+    --indicator-color: var(--orange);
     position: absolute;
     bottom: 8px;
     height: 2px;

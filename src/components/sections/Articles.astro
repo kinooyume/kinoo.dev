@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+
+import Section from "@/components/shared/organisms/Section.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+
+const articles = (await getCollection("articles"))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Section id="articles" subtitle="Mes" title="Articles">
+  <div class="grid" id="articles-grid" data-spotlight>
+    {
+      articles.map((article) => (
+        <ArticleCard
+          title={article.data.title}
+          description={article.data.description}
+          date={article.data.date}
+          tags={article.data.tags}
+          href={`/articles/${article.id}`}
+        />
+      ))
+    }
+  </div>
+</Section>
+
+<script>
+  import { spotlight } from "@/lib/dom/spotlight";
+  const container = document.getElementById("articles-grid");
+  if (container) spotlight(container);
+</script>
+
+<style lang="scss">
+  :global(#articles) {
+    --accent-color: var(--orange);
+    --secondary-accent-color: var(--orange-light);
+    --accent-tint: var(--orange-tint);
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+</style>

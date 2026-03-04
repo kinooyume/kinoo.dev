@@ -29,7 +29,7 @@ const rendered = await Promise.all(
 <Section id="realisations" subtitle="Mes" title="Réalisations">
   <div class="grid" id="realisations-grid" data-spotlight>
     {rendered.map(({ data, Content }) => (
-      <Spotlight color="#66c384" style={`grid-area: ${data.gridArea}`}>
+      <Spotlight color="var(--green)" style={`grid-area: ${data.gridArea}`}>
         <Card>
           <CardSplit reverse={data.reverse} vertical={data.vertical}>
             <div slot="title" class="title-wrapper">
@@ -86,8 +86,8 @@ const rendered = await Promise.all(
   @use "@/styles/breakpoints" as *;
 
   :global(#realisations) {
-    --accent-color: #66c384;
-    --secondary-accent-color: #a4dfb8;
+    --accent-color: var(--green);
+    --secondary-accent-color: var(--green-light);
     --accent-tint: var(--green-tint);
   }
 
@@ -120,12 +120,12 @@ const rendered = await Promise.all(
 
   .links-row {
     margin: 0;
+    --link-color: rgba(143, 143, 151, 0.7);
 
     .dotted::before {
       content: "·";
       padding: 0 6px;
-      color: var(--accent-color);
-      opacity: 0.6;
+      color: rgba(143, 143, 151, 0.7);
     }
   }
 

@@ -1,6 +1,6 @@
 ---
 import Link from "./Link.astro";
-import arrow from "@/svgs/arrow.svg?raw";
+import arrowLeft from "@/svgs/arrow-left.svg?raw";
 
 type Props = {
   href: string;
@@ -11,17 +11,12 @@ const { href, text } = Astro.props;
 ---
 
 <Link href={href} text={text} class="back-link">
-  <span class="back-arrow" slot="prepend" set:html={arrow} />
+  <span class="back-arrow" slot="prepend" set:html={arrowLeft} />
 </Link>
 
 <style lang="scss">
   .back-arrow :global(svg) {
-    transform: rotate(180deg);
-    width: 12px;
-    height: 12px;
-
-    path {
-      fill: currentColor;
-    }
+    width: 14px;
+    height: 14px;
   }
 </style>
