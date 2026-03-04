@@ -2,14 +2,14 @@
 @use "sass:list";
 
 $colors: (
-  orange: (base: #f8ba88, light: #f7caa6, dark: #f4ac72, darker: #ea9957, darkest: #d17d39, lightest: #f8dbc4),
-  red: (base: #ea8686, light: #edabab, dark: #dc6a6a, darker: #cb4d4d, darkest: #a63a3a, lightest: #f3cece),
-  green: (base: #66c384, light: #a4dfb8, dark: #5ab376, darker: #4a9c63, darkest: #3d8552, lightest: #c0edcf),
-  pink: (base: #f68dab, light: #f8a4c0, dark: #f47799, darker: #f26088, darkest: #d55478, lightest: #f8c8d9),
-  purple: (base: #9c85d3, light: #b09ee0, dark: #8870c7, darker: #745bba, darkest: #6048a0, lightest: #c9bce6),
+  "orange": (base: #f8ba88, light: #f7caa6, dark: #f4ac72, darker: #ea9957, darkest: #d17d39, lightest: #f8dbc4),
+  "red": (base: #ea8686, light: #edabab, dark: #dc6a6a, darker: #cb4d4d, darkest: #a63a3a, lightest: #f3cece),
+  "green": (base: #66c384, light: #a4dfb8, dark: #5ab376, darker: #4a9c63, darkest: #3d8552, lightest: #c0edcf),
+  "pink": (base: #f68dab, light: #f8a4c0, dark: #f47799, darker: #f26088, darkest: #d55478, lightest: #f8c8d9),
+  "purple": (base: #9c85d3, light: #b09ee0, dark: #8870c7, darker: #745bba, darkest: #6048a0, lightest: #c9bce6),
 );
 
-$colors-with-border: orange, red;
+$colors-with-border: "orange", "red";
 
 :root {
   --background-color: #181927;
