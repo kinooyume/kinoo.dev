@@ -66,8 +66,8 @@ const rendered = await Promise.all(
   @use "@/styles/breakpoints" as *;
 
   :global(#formations) {
-    --accent-color: #9c85d3;
-    --secondary-accent-color: #c9bce6;
+    --accent-color: var(--purple);
+    --secondary-accent-color: var(--purple-lightest);
     --accent-tint: var(--purple-tint);
   }
 

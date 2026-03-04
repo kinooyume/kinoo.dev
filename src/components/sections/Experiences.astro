@@ -68,8 +68,8 @@ const rendered = await Promise.all(
   @use "@/styles/breakpoints" as *;
 
   :global(#experiences) {
-    --accent-color: #f68dab;
-    --secondary-accent-color: #f8c8d9;
+    --accent-color: var(--pink);
+    --secondary-accent-color: var(--pink-lightest);
     --accent-tint: var(--pink-tint);
   }
 

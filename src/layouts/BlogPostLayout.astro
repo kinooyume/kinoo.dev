@@ -41,7 +41,7 @@ const blogPostingJsonLd = {
 ---
 
 <Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" jsonLd={blogPostingJsonLd}>
-  <NavBar slot="header-nav" items={[{ label: "Articles", href: "/articles", color: "#f8ba88" }]} />
+  <NavBar slot="header-nav" />
   <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
 
@@ -53,7 +53,7 @@ const blogPostingJsonLd = {
   <main>
     <article>
       <header class="article-header">
-        <BackLink href="/articles" text="Articles" />
+        <BackLink href="/#articles" text="Articles" />
         <h1>{title}</h1>
         <time datetime={date.toISOString()}>{formattedDate}</time>
         {tags.length > 0 && (
