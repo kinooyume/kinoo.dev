@@ -10,6 +10,7 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
+import ButtonLink from "@/components/shared/atoms/ButtonLink.astro";
 
 const entries = await getCollection("experiences");
 const experiences = entries.sort((a, b) => a.data.order - b.data.order);
@@ -56,6 +57,9 @@ const rendered = await Promise.all(
       ))
     }
   </div>
+  <div class="cta">
+    <ButtonLink href="/MartinKinooCV.pdf" text="Voir mon CV" />
+  </div>
 </Section>
 
 <script>
@@ -71,6 +75,12 @@ const rendered = await Promise.all(
     --accent-color: #f68dab;
     --secondary-accent-color: #f8c8d9;
     --accent-tint: var(--pink-tint);
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(24px, 1.24rem + 1.13vw, 40px);
   }
 
   .grid {
