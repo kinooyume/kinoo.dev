@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.25.0 - 2026-03-06
+#### Features
+- (**experiences**) add CV download button after experiences section - (048912f) - Martin Kinoo
+#### Bug Fixes
+- (**styles**) quote SCSS color map keys to avoid interpolation warnings - (0656064) - Martin Kinoo
+#### Refactoring
+- (**styles**) convert CSS to SCSS across the entire project - (c6880a2) - Martin Kinoo
+#### Miscellaneous Chores
+- (**cv**) update CV - (b8772cb) - Martin Kinoo
+- (**images**) convert png screenshots to webp - (c43e7a7) - Martin Kinoo
+- update CV - (d10cda5) - Martin Kinoo
+
+- - -
+
 ## v0.24.0 - 2026-02-26
 #### Features
 - (**Hero**) update hero content - (dcb5dea) - Martin Kinoo
