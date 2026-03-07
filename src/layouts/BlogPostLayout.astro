@@ -11,12 +11,13 @@ import Prose from "@/components/articles/Prose.astro";
 
 interface Props {
   title: string;
+  subtitle?: string;
   description: string;
   date: Date;
   tags: string[];
 }
 
-const { title, description, date, tags } = Astro.props;
+const { title, subtitle, description, date, tags } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const formattedDate = date.toLocaleDateString("fr-FR", {
@@ -55,6 +56,7 @@ const blogPostingJsonLd = {
       <header class="article-header">
         <BackLink href="/#articles" text="Portfolio" />
         <h1>{title}</h1>
+        {subtitle && <p class="subtitle">{subtitle}</p>}
         <time datetime={date.toISOString()}>{formattedDate}</time>
         {tags.length > 0 && (
           <TagRow class="article-tags">
@@ -84,7 +86,7 @@ const blogPostingJsonLd = {
   }
 
   article {
-    max-width: 720px;
+    max-width: 960px;
     margin: 0 auto;
     padding-top: 48px;
     padding-bottom: 64px;
@@ -108,8 +110,18 @@ const blogPostingJsonLd = {
     text-wrap: balance;
   }
 
+  .subtitle {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    text-wrap: balance;
+  }
+
   time {
     font-size: 14px;
+    font-weight: 100;
     color: var(--text-muted);
   }
 

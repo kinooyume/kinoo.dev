@@ -6,13 +6,13 @@ import Tag from "@/components/shared/atoms/Tag.astro";
 
 interface Props {
   title: string;
-  description: string;
+  subtitle?: string;
   date: Date;
   tags: string[];
   href: string;
 }
 
-const { title, description, date, tags, href } = Astro.props;
+const { title, subtitle, date, tags, href } = Astro.props;
 
 const formattedDate = date.toLocaleDateString("fr-FR", {
   year: "numeric",
@@ -26,7 +26,7 @@ const formattedDate = date.toLocaleDateString("fr-FR", {
     <Card>
       <time datetime={date.toISOString()}>{formattedDate}</time>
       <h3>{title}</h3>
-      <p>{description}</p>
+      {subtitle && <p>{subtitle}</p>}
       {tags.length > 0 && (
         <TagRow class="article-card-tags">
           {tags.map((tag) => <Tag title={tag} />)}
