@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.26.0 - 2026-03-09
+#### Features
+- (**realisations**) set ekeynox to vertical layout - (399b761) - Martin Kinoo
+- (**realisations**) swap arteflix and ekeynox positions - (7c677c0) - Martin Kinoo
+#### Miscellaneous Chores
+- update CV - (9ee9273) - Martin Kinoo
+
+- - -
+
 ## v0.25.0 - 2026-03-06
 #### Features
 - (**experiences**) add CV download button after experiences section - (048912f) - Martin Kinoo
