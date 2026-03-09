@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.27.0 - 2026-03-09
+#### Features
+- (**hero**) hightlight all tags - (63f1efc) - Martin Kinoo
+
+- - -
+
 ## v0.26.0 - 2026-03-09
 #### Features
 - (**realisations**) set ekeynox to vertical layout - (399b761) - Martin Kinoo
