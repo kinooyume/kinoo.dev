@@ -141,6 +141,7 @@ const { items = defaultItems } = Astro.props;
   .navbar {
     position: relative;
     pointer-events: none;
+    margin-top: 12px;
 
     &.enabled {
       pointer-events: auto;
@@ -163,13 +164,15 @@ const { items = defaultItems } = Astro.props;
 
   a {
     display: block;
-    padding: 8px 12px;
+    padding: 12px;
     font-size: 18px;
     font-weight: 200;
     color: var(--color);
     text-decoration: none;
     opacity: 0.6;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease;
 
     &:hover,
     &.current {
