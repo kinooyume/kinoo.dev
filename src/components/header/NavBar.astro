@@ -148,16 +148,22 @@ const { items = defaultItems } = Astro.props;
   }
 
   ul {
+    list-style: none;
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px;
+    padding: 0px 8px;
     margin: -8px;
+    margin-bottom: 0;
+  }
+
+  li {
+    margin-bottom: 0;
   }
 
   a {
     display: block;
-    padding: 16px 12px;
+    padding: 8px 12px;
     font-size: 18px;
     font-weight: 200;
     color: var(--color);

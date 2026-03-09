@@ -9,21 +9,21 @@ import ArticleCardComponent from "./ArticleCard.astro";
 
 <section id="articlecard">
   <DSSectionHeader title="ArticleCard" atomic="Molecule" framework="astro" />
-  <p>Card for the articles listing page. Composes Spotlight + Card with title, date, description and tags.</p>
+  <p>Card for the articles listing page. Composes Spotlight + Card with title, date, subtitle and tags.</p>
 
   <DSBlock title="Preview">
     <DSPreview>
       <div data-spotlight style="max-width: 720px;">
         <ArticleCardComponent
           title="Event-based approach instead of global state"
-          description="How a one-shot event bus replaces global window flags for coordinating animation lifecycle signals."
+          subtitle="A one-shot event bus to coordinate animation lifecycle signals between decoupled components."
           date={new Date("2025-01-15")}
           tags={["architecture", "typescript"]}
           href="#"
         />
       </div>
     </DSPreview>
-    <DSCode inline>&lt;ArticleCard title="…" description="…" date={new Date()} tags={["tag"]} href="/articles/slug" /&gt;</DSCode>
+    <DSCode inline>&lt;ArticleCard title="…" subtitle="…" date={new Date()} tags={["tag"]} href="/articles/slug" /&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Props">
@@ -31,7 +31,7 @@ import ArticleCardComponent from "./ArticleCard.astro";
       headers={["Prop", "Type", "Description"]}
       rows={[
         ["title", { code: "string" }, "Article title"],
-        ["description", { code: "string" }, "Short description"],
+        ["subtitle", { code: "string?" }, "Short subtitle"],
         ["date", { code: "Date" }, "Publication date"],
         ["tags", { code: "string[]" }, "Tag labels"],
         ["href", { code: "string" }, "Link to the article"],

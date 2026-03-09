@@ -23,7 +23,7 @@ const frameworkIcons: Record<Framework, string> = {
 
 <div class="section-header">
   <div class="title-row">
-    <h2>{title}</h2>
+    <h2 class="display-heading">{title}</h2>
     <span class="framework-icon" set:html={frameworkIcons[framework]} />
   </div>
   <p class="atomic-label">{atomic}</p>
@@ -55,6 +55,7 @@ const frameworkIcons: Record<Framework, string> = {
   }
 
   .atomic-label {
+    margin: 0;
     margin-top: 8px;
   }
 </style>
