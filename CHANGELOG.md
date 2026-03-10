@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.28.0 - 2026-03-10
+#### Features
+- (**articles**) un-ignore articles index page and add accent colors - (55b3592) - Martin Kinoo
+- (**articles**) add arteflix reverse engineering article - (32917fd) - Martin Kinoo
+- (**articles**) use shared card components in ArticleCard - (0c2829e) - Martin Kinoo
+- (**articles**) add links field to article schema and layout - (cf8939a) - Martin Kinoo
+- (**articles**) update components and styles - (c38e89a) - Martin Kinoo
+- (**articles**) add subtitle field and widen article layout - (196e560) - Martin Kinoo
+- (**articles**) add Articles section to homepage and navigation - (23e23a8) - Martin Kinoo
+- (**atoms**) add ArrowLink component, refactor BackLink - (99066e6) - Martin Kinoo
+- (**styles**) add font size scale and unify muted text color - (eb7cd39) - Martin Kinoo
+#### Bug Fixes
+- (**articles**) adjust arteflix article tone - (89a53e4) - Martin Kinoo
+- (**articles**) rework arteflix closing paragraph - (d7dc50e) - Martin Kinoo
+- (**header**) bump mobile nav breakpoint and update back link text - (291125d) - Martin Kinoo
+- (**styles**) scope article typography to Prose, restore global resets - (8f64f2f) - Martin Kinoo
+- (**yo**) yo - (9163e72) - Martin Kinoo
+#### Miscellaneous Chores
+- simplify gitignore, track article pages - (22b334c) - Martin Kinoo
+
+- - -
+
 ## v0.27.1 - 2026-03-09
 #### Bug Fixes
 - (**arteflix**) horizontal - (d7d5cda) - Martin Kinoo
