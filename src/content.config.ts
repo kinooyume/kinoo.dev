@@ -9,6 +9,9 @@ const articles = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
+    links: z
+      .array(z.object({ text: z.string(), href: z.string() }))
+      .default([]),
     draft: z.boolean().default(false),
   }),
 });
