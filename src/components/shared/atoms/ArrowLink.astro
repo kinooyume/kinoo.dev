@@ -1,0 +1,29 @@
+---
+import Link from "./Link.astro";
+import arrowLeft from "@/svgs/arrow-left.svg?raw";
+import arrowRight from "@/svgs/arrow.svg?raw";
+
+type Props = {
+  href: string;
+  text: string;
+  direction?: "back" | "forward";
+  class?: string;
+};
+
+const { href, text, direction = "forward", class: className } = Astro.props;
+const icon = direction === "back" ? arrowLeft : arrowRight;
+const slot = direction === "back" ? "prepend" : "append";
+---
+
+<Link href={href} text={text} class:list={["arrow-link", className]}>
+  <span class="arrow-icon" slot={slot} set:html={icon} />
+</Link>
+
+<style lang="scss">
+  .arrow-icon :global(svg) {
+    width: 0.7em;
+    height: 0.7em;
+    fill: currentColor;
+    transition: transform 0.2s ease;
+  }
+</style>

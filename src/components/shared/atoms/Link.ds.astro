@@ -1,6 +1,7 @@
 ---
 import LinkComponent from "./Link.astro";
 import BackLink from "./BackLink.astro";
+import ArrowLink from "./ArrowLink.astro";
 import ExternalLink from "./ExternalLink.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -40,25 +41,46 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   </DSBlock>
 </section>
 
+<section id="arrowlink">
+  <DSSectionHeader title="ArrowLink" atomic="Atom" framework="astro" />
+  <p>Link with a directional arrow. <code>back</code> prepends a left arrow, <code>forward</code> appends a right arrow.</p>
+
+  <DSBlock title="Back">
+    <DSPreview>
+      <ArrowLink href="/articles" text="Articles" direction="back" />
+    </DSPreview>
+    <DSCode inline>&lt;ArrowLink href="/articles" text="Articles" direction="back" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Forward (default)">
+    <DSPreview>
+      <ArrowLink href="/articles" text="Read article" />
+    </DSPreview>
+    <DSCode inline>&lt;ArrowLink href="/articles" text="Read article" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "href" }, "string", "required", "URL"],
+        [{ code: "text" }, "string", "required", "Link text"],
+        [{ code: "direction" }, '"back" | "forward"', '"forward"', "Arrow direction"],
+        [{ code: "class" }, "string", "—", "Additional CSS class"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
 <section id="backlink">
   <DSSectionHeader title="BackLink" atomic="Atom" framework="astro" />
-  <p>Link composition with a back arrow prepended. Uses the arrow SVG rotated 180°.</p>
+  <p>Shorthand for <code>&lt;ArrowLink direction="back" /&gt;</code>.</p>
 
   <DSBlock title="Preview">
     <DSPreview>
       <BackLink href="/articles" text="Articles" />
     </DSPreview>
     <DSCode inline>&lt;BackLink href="/articles" text="Articles" /&gt;</DSCode>
-  </DSBlock>
-
-  <DSBlock title="Props">
-    <DSPropsTable
-      headers={["Prop", "Type", "Description"]}
-      rows={[
-        [{ code: "href" }, "string", "URL to navigate back to"],
-        [{ code: "text" }, "string", "Link text"],
-      ]}
-    />
   </DSBlock>
 </section>
 

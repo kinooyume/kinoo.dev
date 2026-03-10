@@ -30,8 +30,7 @@ pnpm-debug.log*
 # legacy husky (replaced by lefthook)
 .husky/
 
-# articles (draft — not ready for production)
-src/content/articles/
-src/pages/articles/
-src/pages/articles-draft.astro
-src/pages/rss.xml.ts
+# article content (draft)
+src/content/articles/*.md
+src/content/articles/*.mdx
+!src/content/articles/arteflix-reverse-engineering-arte-api.mdx

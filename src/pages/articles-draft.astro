@@ -1,0 +1,96 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import NavBar from "@/components/header/NavBar.astro";
+import HeaderMenu from "@/components/header/HeaderMenu.astro";
+import MobileMenu from "@/components/header/MobileMenu.astro";
+import Footer from "@/components/footer/Footer.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+
+const articles = import.meta.env.DEV
+  ? (await getCollection("articles")).sort(
+      (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+    )
+  : [];
+---
+
+{
+  import.meta.env.DEV ? (
+    <Layout
+      title="Articles (drafts) · Martin Kinoo"
+      description="Draft articles."
+    >
+      <NavBar
+        slot="header-nav"
+      />
+      <HeaderMenu slot="header-menu" />
+      <MobileMenu slot="header-menu" />
+
+      <script>
+        import { spotlight } from "@/lib/dom/spotlight";
+        const container =
+          document.querySelector<HTMLElement>("[data-spotlight]");
+        if (container) spotlight(container);
+      </script>
+      <main>
+        <header class="articles-header">
+          <h2 class="display-heading">Articles <span class="draft-badge">drafts</span></h2>
+        </header>
+        <div class="articles-grid" data-spotlight>
+          {articles.map((article) => (
+            <ArticleCard
+              title={article.data.title}
+              subtitle={article.data.subtitle}
+              date={article.data.date}
+              tags={article.data.tags}
+              href={`/articles/${article.id}`}
+            />
+          ))}
+        </div>
+        <Footer />
+      </main>
+    </Layout>
+  ) : (
+    <meta http-equiv="refresh" content="0;url=/articles" />
+  )
+}
+
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
+  main {
+    margin: auto;
+    padding: 1rem 32px;
+    max-width: 1368px;
+
+    @include tablet {
+      padding: 1rem 16px;
+    }
+  }
+
+  .articles-header {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-top: 48px;
+    margin-bottom: 48px;
+  }
+
+  .draft-badge {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--orange);
+    border: 1px solid var(--orange-border);
+    border-radius: 8px;
+    padding: 4px 10px;
+    vertical-align: middle;
+  }
+
+  .articles-grid {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 64px;
+  }
+</style>

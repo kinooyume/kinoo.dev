@@ -3,27 +3,42 @@ import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSStructure from "@/components/design-system/DSStructure.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 import ArticleCardComponent from "./ArticleCard.astro";
 ---
 
 <section id="articlecard">
   <DSSectionHeader title="ArticleCard" atomic="Molecule" framework="astro" />
-  <p>Card for the articles listing page. Composes Spotlight + Card with title, date, description and tags.</p>
+  <p>Article listing card. Same composition as Experience Card (Spotlight → Card → CardContent → CardDescription) wrapped in a link.</p>
 
   <DSBlock title="Preview">
     <DSPreview>
       <div data-spotlight style="max-width: 720px;">
         <ArticleCardComponent
           title="Event-based approach instead of global state"
-          description="How a one-shot event bus replaces global window flags for coordinating animation lifecycle signals."
+          subtitle="A one-shot event bus to coordinate animation lifecycle signals between decoupled components."
           date={new Date("2025-01-15")}
           tags={["architecture", "typescript"]}
           href="#"
         />
       </div>
     </DSPreview>
-    <DSCode inline>&lt;ArticleCard title="…" description="…" date={new Date()} tags={["tag"]} href="/articles/slug" /&gt;</DSCode>
+    <DSCode inline>&lt;ArticleCard title="…" subtitle="…" date={new Date()} tags={["tag"]} href="/articles/slug" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Structure">
+    <DSStructure
+      rows={[
+        { code: "<a>", description: "Link wrapper" },
+        { code: "Spotlight", description: "Hover glow effect", indent: 1 },
+        { code: "Card", description: "Shared card shell (.text-sm)", indent: 2 },
+        { code: "CardContent", description: "Title + body layout", indent: 3 },
+        { code: "slot=\"title\"", description: "Date + h3 with hover arrow", indent: 4 },
+        { code: "CardDescription", description: "Subtitle text (shared styles)", indent: 4 },
+        { code: "TagRow", description: "Tag list", indent: 4 },
+      ]}
+    />
   </DSBlock>
 
   <DSBlock title="Props">
@@ -31,7 +46,7 @@ import ArticleCardComponent from "./ArticleCard.astro";
       headers={["Prop", "Type", "Description"]}
       rows={[
         ["title", { code: "string" }, "Article title"],
-        ["description", { code: "string" }, "Short description"],
+        ["subtitle", { code: "string?" }, "Short subtitle"],
         ["date", { code: "Date" }, "Publication date"],
         ["tags", { code: "string[]" }, "Tag labels"],
         ["href", { code: "string" }, "Link to the article"],
