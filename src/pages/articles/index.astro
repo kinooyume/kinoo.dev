@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import NavBar from "@/components/header/NavBar.astro";
+import HeaderMenu from "@/components/header/HeaderMenu.astro";
+import MobileMenu from "@/components/header/MobileMenu.astro";
+import Footer from "@/components/footer/Footer.astro";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+
+const articles = (await getCollection("articles"))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout
+  title="Articles · Martin Kinoo"
+  description="Articles sur le développement front-end, l'architecture et les outils."
+>
+  <NavBar slot="header-nav" />
+  <HeaderMenu slot="header-menu" />
+  <MobileMenu slot="header-menu" />
+
+  <script>
+    import { spotlight } from "@/lib/dom/spotlight";
+    const container = document.querySelector<HTMLElement>("[data-spotlight]");
+    if (container) spotlight(container);
+  </script>
+  <main>
+    <header class="articles-header">
+      <h2 class="display-heading">Articles</h2>
+    </header>
+    <div class="articles-grid" data-spotlight>
+      {
+        articles.map((article) => (
+          <ArticleCard
+            title={article.data.title}
+            subtitle={article.data.subtitle}
+            date={article.data.date}
+            tags={article.data.tags}
+            href={`/articles/${article.id}`}
+          />
+        ))
+      }
+    </div>
+    <Footer />
+  </main>
+</Layout>
+
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
+  main {
+    --accent-color: var(--orange);
+    --secondary-accent-color: var(--orange-light);
+    --accent-tint: var(--orange-tint);
+    margin: auto;
+    padding: 1rem 32px;
+    max-width: 1368px;
+
+    @include tablet {
+      padding: 1rem 16px;
+    }
+  }
+
+  .articles-header {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-top: 48px;
+    margin-bottom: 48px;
+  }
+
+  .articles-grid {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 64px;
+  }
+</style>
