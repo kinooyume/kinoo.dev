@@ -101,13 +101,18 @@ const { items = defaultItems } = Astro.props;
       }, 150);
     });
 
-    const targets = anchorsQueryToViewDetectionElement(".navbar a", {
-      onInside: (anchor) => anchor.classList.add("current"),
-      onOutside: (anchor) => anchor.classList.remove("current"),
-    });
+    const navLinks = Array.from(navbar.querySelectorAll("a"));
+    const targets = anchorsQueryToViewDetectionElement(".navbar a");
 
     const detect = createViewDetection(targets, {
-      setBounds: (offset) => [offset + 100, offset - 100],
+      setBounds: (offset) => [offset, 0],
+      onBestMatch: (best) => {
+        navLinks.forEach((a) => a.classList.remove("current"));
+        if (best) {
+          const idx = targets.indexOf(best);
+          navLinks[idx]?.classList.add("current");
+        }
+      },
     });
 
     function checkVisibility() {
