@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.28.1 - 2026-03-10
+#### Bug Fixes
+- (**content**) align experiences with updated CV - (1a1461e) - Martin Kinoo
+
+- - -
+
 ## v0.28.0 - 2026-03-10
 #### Features
 - (**articles**) un-ignore articles index page and add accent colors - (55b3592) - Martin Kinoo
