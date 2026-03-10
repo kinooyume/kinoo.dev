@@ -31,7 +31,8 @@ pnpm-debug.log*
 .husky/
 
 # articles (draft — not ready for production)
-src/content/articles/
+src/content/articles/*
+!src/content/articles/arteflix-reverse-engineering-arte-api.mdx
 src/pages/articles/
 src/pages/articles-draft.astro
 src/pages/rss.xml.ts
