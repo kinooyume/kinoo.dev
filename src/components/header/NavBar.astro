@@ -10,9 +10,10 @@ interface Props {
 }
 
 const defaultItems: NavItem[] = [
-  { label: "Expériences", href: "/#experiences", color: "#f68dab" },
-  { label: "Réalisations", href: "/#realisations", color: "#66c384" },
-  { label: "Formations", href: "/#formations", color: "#9c85d3" },
+  { label: "Articles", href: "/#articles", color: "var(--orange)" },
+  { label: "Réalisations", href: "/#realisations", color: "var(--green)" },
+  { label: "Expériences", href: "/#experiences", color: "var(--pink)" },
+  { label: "Formations", href: "/#formations", color: "var(--purple)" },
 ];
 
 const { items = defaultItems } = Astro.props;
@@ -74,7 +75,7 @@ const { items = defaultItems } = Astro.props;
 
       indicator.style.setProperty(
         "--indicator-color",
-        target.dataset.color || "#f8ba88",
+        target.dataset.color || "var(--orange)",
       );
       currentAnim = animate(indicator, {
         left: rect.left - navRect.left,
@@ -140,6 +141,7 @@ const { items = defaultItems } = Astro.props;
   .navbar {
     position: relative;
     pointer-events: none;
+    margin-top: 12px;
 
     &.enabled {
       pointer-events: auto;
@@ -147,52 +149,67 @@ const { items = defaultItems } = Astro.props;
   }
 
   ul {
+    list-style: none;
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px;
+    padding: 0px 8px;
     margin: -8px;
+    margin-bottom: 0;
+  }
+
+  li {
+    margin-bottom: 0;
   }
 
   a {
     display: block;
-    padding: 16px 12px;
+    padding: 12px;
     font-size: 18px;
     font-weight: 200;
     color: var(--color);
     text-decoration: none;
     opacity: 0.6;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease;
 
     &:hover,
     &.current {
       opacity: 1;
     }
 
-    &[data-color="#f68dab"] {
+    &[data-color="var(--pink)"] {
       &:hover,
       &.current {
         color: var(--pink-lightest);
       }
     }
 
-    &[data-color="#66c384"] {
+    &[data-color="var(--green)"] {
       &:hover,
       &.current {
         color: var(--green-lightest);
       }
     }
 
-    &[data-color="#9c85d3"] {
+    &[data-color="var(--purple)"] {
       &:hover,
       &.current {
         color: var(--purple-lightest);
       }
     }
+
+    &[data-color="var(--orange)"] {
+      &:hover,
+      &.current {
+        color: var(--orange-lightest);
+      }
+    }
   }
 
   .indicator {
-    --indicator-color: #f8ba88;
+    --indicator-color: var(--orange);
     position: absolute;
     bottom: 8px;
     height: 2px;
@@ -204,7 +221,7 @@ const { items = defaultItems } = Astro.props;
       color-mix(in srgb, var(--indicator-color) 50%, transparent);
   }
 
-  @include desktop {
+  @include wide {
     .navbar {
       display: none;
     }

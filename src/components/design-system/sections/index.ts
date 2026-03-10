@@ -25,6 +25,7 @@ export const sidebarSections: SidebarSection[] = [
       { label: "TagRow", href: "#tagrow", framework: "astro" },
       { label: "ButtonLink", href: "#buttonlink", framework: "astro" },
       { label: "Link", href: "#link", framework: "astro" },
+      { label: "ArrowLink", href: "#arrowlink", framework: "astro" },
       { label: "BackLink", href: "#backlink", framework: "astro" },
       { label: "ExternalLink", href: "#externallink", framework: "astro" },
       { label: "RevealText", href: "#revealtext", framework: "astro" },

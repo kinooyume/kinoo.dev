@@ -8,15 +8,18 @@ import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import BackLink from "@/components/shared/atoms/BackLink.astro";
 import Prose from "@/components/articles/Prose.astro";
+import BadgeLink from "@/components/shared/atoms/BadgeLink.astro";
 
 interface Props {
   title: string;
+  subtitle?: string;
   description: string;
   date: Date;
   tags: string[];
+  links?: { text: string; href: string }[];
 }
 
-const { title, description, date, tags } = Astro.props;
+const { title, subtitle, description, date, tags, links = [] } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const formattedDate = date.toLocaleDateString("fr-FR", {
@@ -41,7 +44,7 @@ const blogPostingJsonLd = {
 ---
 
 <Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" jsonLd={blogPostingJsonLd}>
-  <NavBar slot="header-nav" items={[{ label: "Articles", href: "/articles", color: "#f8ba88" }]} />
+  <NavBar slot="header-nav" />
   <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
 
@@ -53,9 +56,19 @@ const blogPostingJsonLd = {
   <main>
     <article>
       <header class="article-header">
-        <BackLink href="/articles" text="Articles" />
+        <BackLink href="/#articles" text="Portfolio" />
         <h1>{title}</h1>
-        <time datetime={date.toISOString()}>{formattedDate}</time>
+        {subtitle && <p class="subtitle">{subtitle}</p>}
+        <div class="article-meta">
+          <time datetime={date.toISOString()}>{formattedDate}</time>
+          {links.length > 0 && (
+            <div class="article-links">
+              {links.map((link) => (
+                <BadgeLink href={link.href} text={link.text} />
+              ))}
+            </div>
+          )}
+        </div>
         {tags.length > 0 && (
           <TagRow class="article-tags">
             {tags.map((tag) => <Tag title={tag} />)}
@@ -84,7 +97,7 @@ const blogPostingJsonLd = {
   }
 
   article {
-    max-width: 720px;
+    max-width: 960px;
     margin: 0 auto;
     padding-top: 48px;
     padding-bottom: 64px;
@@ -108,13 +121,34 @@ const blogPostingJsonLd = {
     text-wrap: balance;
   }
 
+  .subtitle {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    text-wrap: balance;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   time {
     font-size: 14px;
+    font-weight: 100;
     color: var(--text-muted);
   }
 
   .article-tags {
     margin-top: 16px;
     padding-top: 0;
+  }
+
+  .article-links {
+    display: flex;
+    gap: 8px;
   }
 </style>

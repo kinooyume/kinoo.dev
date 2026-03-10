@@ -7,7 +7,7 @@ import linkedin from "@/svgs/linkedin.svg?raw";
 
 <section id="contact" data-animate-section>
   <RevealText text="Parlons de" as="span" class="subtitle" trigger="reveal:section:contact" />
-  <RevealText text="Votre projet" as="h2" trigger="reveal:section:contact" />
+  <RevealText text="Votre projet" as="h2" class="display-heading" trigger="reveal:section:contact" />
   <div class="contact-content">
     <div class="contact-description">
       <p>
@@ -51,6 +51,7 @@ import linkedin from "@/svgs/linkedin.svg?raw";
     p {
       font-size: var(--hero-font-size);
       font-weight: 200;
+      margin-bottom: 0;
     }
 
     :global(.button-link) {

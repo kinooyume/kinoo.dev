@@ -1,0 +1,64 @@
+---
+import externalLinkIcon from "@/svgs/external-link.svg?raw";
+
+interface Props {
+  href: string;
+  text: string;
+  icon?: string;
+}
+
+const { href, text, icon } = Astro.props;
+const isExternal = href.startsWith("http");
+const externalProps = isExternal
+  ? { target: "_blank", rel: "noreferrer nofollow noopener" }
+  : {};
+const displayIcon = icon ?? (isExternal ? externalLinkIcon : undefined);
+---
+
+<a class="badge-link" href={href} {...externalProps}>
+  {text}
+  {displayIcon && <span class="icon" aria-hidden="true" set:html={displayIcon} />}
+</a>
+
+<style lang="scss">
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--light-color);
+    opacity: 0.8;
+    background: linear-gradient(to bottom, var(--card-surface) 50%, #162030);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+      color: var(--accent-color);
+      border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
+    }
+  }
+
+  .icon :global(svg) {
+    display: block;
+    width: 11px;
+    height: 11px;
+    stroke: currentColor;
+  }
+
+  @media (hover: hover) {
+    a:hover {
+      transform: translateY(-2px);
+    }
+
+    a:active {
+      transform: translateY(2px);
+      transition: 200ms;
+    }
+  }
+</style>

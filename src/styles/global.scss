@@ -160,6 +160,18 @@ li {
   text-wrap: pretty;
 }
 
+.text-sm,
+.text-sm p,
+.text-sm li,
+.text-sm label {
+  font-size: var(--font-size-sm);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
 b {
   font-weight: 600;
 }
