@@ -54,7 +54,10 @@ $colors-with-border: "orange", "red";
   --h2-size: clamp(42px, 2.21rem + 1.47vw, 56px);
   --h3-size: clamp(18px, 0.95rem + 0.63vw, 24px);
   --subtitle-size: clamp(20px, 1.19rem + 0.21vw, 22px);
-  --font-size: clamp(14px, 0.76rem + 0.42vw, 18px);
+  --font-size-lg: clamp(16px, 0.89rem + 0.42vw, 20px);
+  --font-size: clamp(16px, 0.89rem + 0.21vw, 18px);
+  --font-size-sm: clamp(14px, 0.78rem + 0.21vw, 16px);
+  --font-size-xs: clamp(13px, 0.69rem + 0.42vw, 17px);
   --button-font-size: 15px;
 
   --section-margin: clamp(96px, 4.11rem + 6.74vw, 160px);

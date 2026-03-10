@@ -120,12 +120,12 @@ const rendered = await Promise.all(
 
   .links-row {
     margin: 0;
-    --link-color: rgba(143, 143, 151, 0.7);
+    --link-color: var(--text-muted);
 
     .dotted::before {
       content: "·";
       padding: 0 6px;
-      color: rgba(143, 143, 151, 0.7);
+      color: var(--text-muted);
     }
   }
 
