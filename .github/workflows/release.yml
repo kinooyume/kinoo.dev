@@ -12,6 +12,7 @@ permissions:
 jobs:
   release:
     name: Release (bump, build, changelog, deploy)
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
@@ -23,27 +24,6 @@ jobs:
 
       - name: Use GITHUB_TOKEN for pushing to kinoo.dev
         run: git remote set-url origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
-
-      - name: Update articles submodule
-        if: github.event_name == 'repository_dispatch'
-        id: submodule
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git submodule update --remote src/content/articles
-          if git diff --quiet src/content/articles; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            git add src/content/articles
-            git commit -m "fix(content): update articles"
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Skip if articles already up to date
-        if: github.event_name == 'repository_dispatch' && steps.submodule.outputs.changed == 'false'
-        run: |
-          echo "Submodule already at latest — skipping release"
-          exit 1
 
       - name: Bump version and generate changelog
         id: bump
@@ -94,6 +74,41 @@ jobs:
 
       - name: Deploy to Netlify
         if: steps.bump.outputs.version != ''
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: ./dist
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  deploy-articles:
+    name: Deploy (articles update)
+    if: github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ssh-key: ${{ secrets.ARTICLES_DEPLOY_KEY }}
+
+      - name: Update articles submodule
+        run: git submodule update --remote src/content/articles
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+        env:
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_ACCESS_KEY }}
+
+      - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: ./dist
