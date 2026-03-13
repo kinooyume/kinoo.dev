@@ -16,7 +16,7 @@
 
 .primary {
   color: black;
-  background: var(--accent-bright);
+  background: var(--accent-color);
   border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
 
   &:hover {
@@ -51,6 +51,19 @@
   }
 }
 
+.alternative {
+  background: var(--accent-tint);
+  color: var(--accent-color);
+  font-weight: 300;
+  border-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent-color) 15%, transparent);
+    border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);
+    box-shadow: 0 0 10px var(--accent-tint), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
+  }
+}
+
 @media (hover: hover) {
   .button:hover {
     transform: translateY(-4px);
@@ -65,7 +78,7 @@
 .tiny {
   height: 28px;
   padding: 0 14px;
-  font-size: 12px;
+  font-size: var(--font-size-2xs);
   border-radius: 8px;
 }
 

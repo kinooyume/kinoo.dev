@@ -54,6 +54,8 @@ $colors: (
   --font-size: clamp(16px, 0.89rem + 0.21vw, 18px);
   --font-size-sm: clamp(14px, 0.78rem + 0.21vw, 16px);
   --font-size-xs: clamp(13px, 0.69rem + 0.42vw, 17px);
+  --font-size-2xs: 12px;
+  --font-size-3xs: 11px;
   --button-font-size: 15px;
 
   --section-margin: clamp(96px, 4.11rem + 6.74vw, 160px);

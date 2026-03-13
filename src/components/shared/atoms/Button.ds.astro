@@ -9,7 +9,7 @@ import ButtonComponent from "./Button";
 
 <section id="button">
   <DSSectionHeader title="Button" atomic="Atom" framework="solid" />
-  <p>Structural button for global actions — contact form submit, primary CTAs. The primary variant uses the global orange; it's the one intentional accent in the structural layer.</p>
+  <p>Chromatic button — primary inherits <code>--accent-color</code> from its container. Default is orange, but it adapts to any section theme.</p>
 
   <DSBlock title="Primary">
     <DSPreview>
@@ -35,12 +35,20 @@ import ButtonComponent from "./Button";
     <DSCode inline>&lt;Button variant="tertiary"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
+  <DSBlock title="Alternative" subtitle="Chromatic tint background with accent glow on hover">
+    <DSPreview>
+      <ButtonComponent client:load variant="alternative">Alternative Button</ButtonComponent>
+      <ButtonComponent href="#button" variant="alternative">Alternative Link</ButtonComponent>
+    </DSPreview>
+    <DSCode inline>&lt;Button variant="alternative"&gt;...&lt;/Button&gt;</DSCode>
+  </DSBlock>
+
   <DSBlock title="Tiny">
     <DSPreview>
       <ButtonComponent client:load variant="primary" size="tiny">Tiny Primary</ButtonComponent>
       <ButtonComponent client:load variant="secondary" size="tiny">Tiny Secondary</ButtonComponent>
-      <ButtonComponent client:load variant="tertiary" size="tiny">Design System</ButtonComponent>
-      <ButtonComponent client:load variant="tertiary" size="tiny">CV</ButtonComponent>
+      <ButtonComponent client:load variant="tertiary" size="tiny">Tiny Tertiary</ButtonComponent>
+      <ButtonComponent client:load variant="alternative" size="tiny">Tiny Alternative</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button size="tiny"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
@@ -59,11 +67,32 @@ import ButtonComponent from "./Button";
     <DSCode inline>&lt;Button state="success"&gt;Message envoyé ✓&lt;/Button&gt;</DSCode>
   </DSBlock>
 
+  <DSBlock title="Chromatic" subtitle="All variants adapt to --accent-color">
+    <DSPreview>
+      <div style="--accent-color: var(--orange); --accent-tint: var(--orange-tint);">
+        <ButtonComponent client:load variant="primary">Orange</ButtonComponent>
+        <ButtonComponent client:load variant="alternative">Orange</ButtonComponent>
+      </div>
+      <div style="--accent-color: var(--purple); --accent-tint: var(--purple-tint);">
+        <ButtonComponent client:load variant="primary">Purple</ButtonComponent>
+        <ButtonComponent client:load variant="alternative">Purple</ButtonComponent>
+      </div>
+      <div style="--accent-color: var(--green); --accent-tint: var(--green-tint);">
+        <ButtonComponent client:load variant="primary">Green</ButtonComponent>
+        <ButtonComponent client:load variant="alternative">Green</ButtonComponent>
+      </div>
+      <div style="--accent-color: var(--pink); --accent-tint: var(--pink-tint);">
+        <ButtonComponent client:load variant="primary">Pink</ButtonComponent>
+        <ButtonComponent client:load variant="alternative">Pink</ButtonComponent>
+      </div>
+    </DSPreview>
+  </DSBlock>
+
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "variant" }, { code: '"primary" | "secondary" | "tertiary"' }, { code: '"primary"' }, "Visual style variant"],
+        [{ code: "variant" }, { code: '"primary" | "secondary" | "tertiary" | "alternative"' }, { code: '"primary"' }, "Visual style variant"],
         [{ code: "size" }, { code: '"default" | "tiny"' }, { code: '"default"' }, "Compact 28px variant"],
         [{ code: "state" }, { code: '"idle" | "loading" | "success"' }, { code: '"idle"' }, "Button state for form feedback"],
         [{ code: "href" }, { code: "string" }, "—", "When set, renders as <a> instead of <button>"],

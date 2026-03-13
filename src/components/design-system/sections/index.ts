@@ -110,6 +110,13 @@ export const sidebarSections: SidebarSection[] = [
     ],
   },
   {
+    title: "Templates",
+    items: [
+      { label: "Form Page", href: "#template-form" },
+      { label: "Product Cards", href: "#template-products" },
+    ],
+  },
+  {
     title: "DS Components",
     items: [
       { label: "DSBlock", href: "#ds-block", framework: "astro" },

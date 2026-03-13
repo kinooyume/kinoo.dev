@@ -10,7 +10,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 <section id="buttonlink">
   <DSSectionHeader title="ButtonLink" atomic="Atom" framework="astro" />
-  <p>Chromatic CTA link with néon glow. Lives inside themed sections and articles — the border and glow come from <code>--accent-color</code>. Clearly distinct from Tag: Tag is passive metadata, ButtonLink is an action.</p>
+  <p>Astro equivalent of <code>Button variant="alternative"</code>. Chromatic tint background, accent text, glow on hover — inherits <code>--accent-color</code>.</p>
 
   <DSBlock title="Default">
     <DSPreview>
@@ -34,7 +34,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSCode inline>href="#" text="Tiny" tiny</DSCode>
   </DSBlock>
 
-  <DSBlock title="Section Themed">
+  <DSBlock title="Chromatic" subtitle="Adapts to --accent-color">
     <DSPreview>
       <div class="themed">
         <div style="--accent-color: var(--orange); --accent-tint: var(--orange-tint);">
@@ -48,12 +48,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         </div>
         <div style="--accent-color: var(--purple); --accent-tint: var(--purple-tint);">
           <ButtonLinkComponent href="#" text="Purple" icon={github} />
-        </div>
-        <div style="--accent-color: var(--blue); --accent-tint: var(--blue-tint);">
-          <ButtonLinkComponent href="#" text="Blue" icon={github} />
-        </div>
-        <div style="--accent-color: var(--cyan); --accent-tint: var(--cyan-tint);">
-          <ButtonLinkComponent href="#" text="Cyan" icon={github} />
         </div>
       </div>
     </DSPreview>

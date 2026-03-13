@@ -9,20 +9,20 @@ import Tag from "@/components/shared/atoms/Tag.astro";
 import BackLink from "@/components/shared/atoms/BackLink.astro";
 import Prose from "@/components/articles/Prose.astro";
 import BadgeLink from "@/components/shared/atoms/BadgeLink.astro";
-import { categoryColors } from "@/lib/categoryColors";
+import { categoryColors, defaultAccent } from "@/lib/categoryColors";
 
 interface Props {
   title: string;
   subtitle?: string;
   description: string;
   date: Date;
-  category: string;
+  category?: string;
   tags: string[];
   links?: { text: string; href: string }[];
 }
 
 const { title, subtitle, description, date, category, tags, links = [] } = Astro.props;
-const accent = categoryColors[category];
+const accent = (category && categoryColors[category]) ?? defaultAccent;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const formattedDate = date.toLocaleDateString("fr-FR", {
@@ -140,7 +140,7 @@ const blogPostingJsonLd = {
   }
 
   time {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     font-weight: 200;
     color: var(--accent-color);
   }
