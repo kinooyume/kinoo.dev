@@ -21,6 +21,9 @@ jobs:
           submodules: recursive
           ssh-key: ${{ secrets.ARTICLES_DEPLOY_KEY }}
 
+      - name: Use GITHUB_TOKEN for pushing to kinoo.dev
+        run: git remote set-url origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+
       - name: Update articles submodule
         if: github.event_name == 'repository_dispatch'
         id: submodule
