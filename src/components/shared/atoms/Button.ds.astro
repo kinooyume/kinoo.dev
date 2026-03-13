@@ -9,7 +9,7 @@ import ButtonComponent from "./Button";
 
 <section id="button">
   <DSSectionHeader title="Button" atomic="Atom" framework="solid" />
-  <p>Reusable button with variant styling and loading/success states.</p>
+  <p>Structural button for global actions — contact form submit, primary CTAs. The primary variant uses the global orange; it's the one intentional accent in the structural layer.</p>
 
   <DSBlock title="Primary">
     <DSPreview>
@@ -25,6 +25,24 @@ import ButtonComponent from "./Button";
       <ButtonComponent href="#button" variant="secondary">Secondary Link</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button variant="secondary"&gt;...&lt;/Button&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Tertiary">
+    <DSPreview>
+      <ButtonComponent client:load variant="tertiary">Tertiary Button</ButtonComponent>
+      <ButtonComponent href="#button" variant="tertiary">Tertiary Link</ButtonComponent>
+    </DSPreview>
+    <DSCode inline>&lt;Button variant="tertiary"&gt;...&lt;/Button&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Tiny">
+    <DSPreview>
+      <ButtonComponent client:load variant="primary" size="tiny">Tiny Primary</ButtonComponent>
+      <ButtonComponent client:load variant="secondary" size="tiny">Tiny Secondary</ButtonComponent>
+      <ButtonComponent client:load variant="tertiary" size="tiny">Design System</ButtonComponent>
+      <ButtonComponent client:load variant="tertiary" size="tiny">CV</ButtonComponent>
+    </DSPreview>
+    <DSCode inline>&lt;Button size="tiny"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Loading State">
@@ -45,9 +63,11 @@ import ButtonComponent from "./Button";
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "variant" }, { code: '"primary" | "secondary"' }, { code: '"primary"' }, "Visual style variant"],
+        [{ code: "variant" }, { code: '"primary" | "secondary" | "tertiary"' }, { code: '"primary"' }, "Visual style variant"],
+        [{ code: "size" }, { code: '"default" | "tiny"' }, { code: '"default"' }, "Compact 28px variant"],
         [{ code: "state" }, { code: '"idle" | "loading" | "success"' }, { code: '"idle"' }, "Button state for form feedback"],
         [{ code: "href" }, { code: "string" }, "—", "When set, renders as <a> instead of <button>"],
+        [{ code: "external" }, { code: "boolean" }, "—", "Opens in new tab with noreferrer/nofollow"],
         [{ code: "...attrs" }, { code: "ComponentProps<\"button\">" }, "—", "All native button attributes (disabled, type, etc.)"],
       ]}
     />

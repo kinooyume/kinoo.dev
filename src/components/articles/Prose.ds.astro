@@ -8,7 +8,7 @@ import ProseComponent from "./Prose.astro";
 
 <section id="prose">
   <DSSectionHeader title="Prose" atomic="Molecule" framework="astro" />
-  <p>Reading context wrapper for article content. Provides styled links, blockquotes, code blocks, and image presentation. Base typography (headings, lists, paragraphs) is now handled by global defaults.</p>
+  <p>Article content wrapper. Links, blockquotes, code blocks, and <code>hr</code> all use <code>--accent-color</code> from the article's category. The chromatic layer at work inside long-form content.</p>
 
   <DSBlock title="Headings">
     <DSPreview>

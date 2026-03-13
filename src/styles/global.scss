@@ -2,58 +2,66 @@
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-ExtraLight.ttf");
+  src: url("/fonts/Outfit/Outfit-Thin.woff2") format("woff2");
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Light.ttf");
+  src: url("/fonts/Outfit/Outfit-ExtraLight.woff2") format("woff2");
   font-weight: 200;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Thin.ttf");
+  src: url("/fonts/Outfit/Outfit-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Medium.ttf");
+  src: url("/fonts/Outfit/Outfit-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit/Outfit-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Regular.ttf");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-SemiBold.ttf");
+  src: url("/fonts/Outfit/Outfit-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Bold.ttf");
+  src: url("/fonts/Outfit/Outfit-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-ExtraBold.ttf");
+  src: url("/fonts/Outfit/Outfit-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
+  font-display: swap;
 }
 
 html {
@@ -131,7 +139,7 @@ ul {
 }
 
 h2 {
-  font-weight: 300;
+  font-weight: 100;
   line-height: 1;
   font-size: var(--h2-size);
   margin: 0;
@@ -152,7 +160,7 @@ p,
 label,
 li {
   font-size: var(--font-size);
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.4;
   color: var(--light-color);
   overflow-wrap: break-word;

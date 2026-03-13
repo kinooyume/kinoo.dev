@@ -8,6 +8,7 @@ const articles = defineCollection({
     subtitle: z.string().optional(),
     description: z.string(),
     date: z.coerce.date(),
+    category: z.enum(["front", "system", "reverse-engineering"]),
     tags: z.array(z.string()).default([]),
     links: z
       .array(z.object({ text: z.string(), href: z.string() }))

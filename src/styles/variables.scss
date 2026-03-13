@@ -1,5 +1,4 @@
 @use "sass:map";
-@use "sass:list";
 
 $colors: (
   "orange": (base: #f8ba88, light: #f7caa6, dark: #f4ac72, darker: #ea9957, darkest: #d17d39, lightest: #f8dbc4),
@@ -7,9 +6,9 @@ $colors: (
   "green": (base: #66c384, light: #a4dfb8, dark: #5ab376, darker: #4a9c63, darkest: #3d8552, lightest: #c0edcf),
   "pink": (base: #f68dab, light: #f8a4c0, dark: #f47799, darker: #f26088, darkest: #d55478, lightest: #f8c8d9),
   "purple": (base: #9c85d3, light: #b09ee0, dark: #8870c7, darker: #745bba, darkest: #6048a0, lightest: #c9bce6),
+  "blue": (base: #7eb8f7, light: #a0ccfa, dark: #6aa4e8, darker: #5690d4, darkest: #4278b8, lightest: #bee0fc),
+  "cyan": (base: #5ecfcf, light: #8edede, dark: #4dbfbf, darker: #3daeae, darkest: #2e9494, lightest: #b0e8e8),
 );
-
-$colors-with-border: "orange", "red";
 
 :root {
   --background-color: #181927;
@@ -36,10 +35,7 @@ $colors-with-border: "orange", "red";
     --#{$name}-lightest: #{map.get($shades, lightest)};
     --#{$name}-bg: #{rgba($base, 0.05)};
     --#{$name}-tint: #{rgba($base, 0.1)};
-
-    @if list.index($colors-with-border, $name) {
-      --#{$name}-border: #{rgba($base, 0.35)};
-    }
+    --#{$name}-border: #{rgba($base, 0.35)};
   }
 
   --card-surface-raised: #2d2d3b;

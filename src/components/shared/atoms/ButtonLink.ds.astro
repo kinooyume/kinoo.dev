@@ -10,7 +10,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 <section id="buttonlink">
   <DSSectionHeader title="ButtonLink" atomic="Atom" framework="astro" />
-  <p>CTA link styled as a pill button. Inherits accent color from parent section.</p>
+  <p>Chromatic CTA link with néon glow. Lives inside themed sections and articles — the border and glow come from <code>--accent-color</code>. Clearly distinct from Tag: Tag is passive metadata, ButtonLink is an action.</p>
 
   <DSBlock title="Default">
     <DSPreview>
@@ -24,6 +24,14 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       <ButtonLinkComponent href="#" text="Voir plus sur GitHub" icon={github} />
     </DSPreview>
     <DSCode inline>href="#" text="Voir plus sur GitHub" icon=&#123;githubSvg&#125;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Tiny">
+    <DSPreview>
+      <ButtonLinkComponent href="#" text="Tiny" tiny />
+      <ButtonLinkComponent href="#" text="Tiny with icon" icon={github} tiny />
+    </DSPreview>
+    <DSCode inline>href="#" text="Tiny" tiny</DSCode>
   </DSBlock>
 
   <DSBlock title="Section Themed">
@@ -41,6 +49,12 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         <div style="--accent-color: var(--purple); --accent-tint: var(--purple-tint);">
           <ButtonLinkComponent href="#" text="Purple" icon={github} />
         </div>
+        <div style="--accent-color: var(--blue); --accent-tint: var(--blue-tint);">
+          <ButtonLinkComponent href="#" text="Blue" icon={github} />
+        </div>
+        <div style="--accent-color: var(--cyan); --accent-tint: var(--cyan-tint);">
+          <ButtonLinkComponent href="#" text="Cyan" icon={github} />
+        </div>
       </div>
     </DSPreview>
   </DSBlock>
@@ -52,6 +66,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         [{ code: "href" }, "string", "required", "Link destination"],
         [{ code: "text" }, "string", "required", "Button label"],
         [{ code: "icon" }, "string", "-", "Raw SVG string (rendered before text)"],
+        [{ code: "tiny" }, "boolean", "false", "Compact variant"],
       ]}
     />
   </DSBlock>

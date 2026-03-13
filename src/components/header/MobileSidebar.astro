@@ -11,9 +11,6 @@ const sections = [
   { label: "Contact", href: "/#contact", color: "var(--accent-color)" },
 ];
 
-const links = [
-  { label: "Design System", href: "/design-system" },
-];
 ---
 
 <div class="mobile-sidebar">
@@ -38,6 +35,19 @@ const links = [
   <hr class="mobile-sidebar-divider" />
 
   <div class="mobile-sidebar-links">
+    <a href="/design-system">Design System</a>
+  </div>
+
+  <hr class="mobile-sidebar-divider" />
+
+  <div class="mobile-sidebar-links">
+    <a
+      href="/MartinKinooCV.pdf"
+      target="_blank"
+      rel="noreferrer nofollow noopener"
+    >
+      CV
+    </a>
     <a
       href="https://github.com/KinooYume"
       target="_blank"
@@ -54,25 +64,6 @@ const links = [
       <span class="link-icon" set:html={linkedin} />
       LinkedIn
     </a>
-    <a
-      href="/MartinKinooCV.pdf"
-      target="_blank"
-      rel="noreferrer nofollow noopener"
-    >
-      CV
-    </a>
-  </div>
-
-  <hr class="mobile-sidebar-divider" />
-
-  <div class="mobile-sidebar-links">
-    {
-      links.map((link) => (
-        <a href={link.href}>
-          {link.label}
-        </a>
-      ))
-    }
   </div>
 </div>
 
@@ -97,7 +88,7 @@ const links = [
     gap: 10px;
     text-decoration: none;
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 300;
     color: var(--light-color);
   }
 

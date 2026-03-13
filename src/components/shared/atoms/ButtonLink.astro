@@ -3,16 +3,17 @@ interface Props {
   href: string;
   text: string;
   icon?: string;
+  tiny?: boolean;
 }
 
-const { href, text, icon } = Astro.props;
+const { href, text, icon, tiny } = Astro.props;
 const isExternal = href.startsWith("http");
 const externalProps = isExternal
   ? { target: "_blank", rel: "noreferrer nofollow noopener" }
   : {};
 ---
 
-<a class="button-link" href={href} {...externalProps}>
+<a class:list={["button-link", { tiny }]} href={href} {...externalProps}>
   {icon && <span class="icon" aria-hidden="true" set:html={icon} />}
   {text}
 </a>
@@ -26,14 +27,17 @@ const externalProps = isExternal
     border-radius: 12px;
     background: var(--accent-tint);
     color: var(--accent-color);
-    font-weight: 200;
+    font-weight: 300;
     text-decoration: none;
-    border: 1px solid transparent;
+    border: 1px solid color-mix(in srgb, var(--accent-color) 20%, transparent);
+    box-shadow: none;
     transition: all 0.3s ease;
 
     @media (hover: hover) {
       &:hover {
-        border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
+        background: color-mix(in srgb, var(--accent-color) 15%, transparent);
+        border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);
+        box-shadow: 0 0 10px var(--accent-tint), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
         transform: translateY(-4px);
       }
 
@@ -44,9 +48,21 @@ const externalProps = isExternal
     }
   }
 
+  a.tiny {
+    padding: 4px 14px;
+    font-size: 12px;
+    border-radius: 8px;
+    gap: 5px;
+  }
+
   .icon :global(svg) {
     display: block;
     width: 18px;
     height: 18px;
+  }
+
+  .tiny .icon :global(svg) {
+    width: 14px;
+    height: 14px;
   }
 </style>

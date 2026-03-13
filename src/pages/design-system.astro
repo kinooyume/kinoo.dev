@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import DSLayout from "@/components/design-system/DSLayout.astro";
 import Sidebar from "@/components/sidebar/Sidebar.tsx";
 import { sidebarSections } from "@/components/design-system/sections/index";
-import HeaderLink from "@/components/header/HeaderLink.astro";
+import Button from "@/components/shared/atoms/Button";
 import MobileMenu from "@/components/header/MobileMenu.astro";
 
 import FoundationsSection from "@/components/design-system/sections/FoundationsSection.astro";
@@ -26,7 +26,7 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
   description="Components library for kinoo.dev"
 >
   <meta slot="head" name="robots" content="noindex, nofollow" />
-  <HeaderLink slot="header-menu" href="/" label="Portfolio" variant="badge" />
+  <Button slot="header-menu" href="/" variant="tertiary" size="tiny">Portfolio</Button>
   <MobileMenu slot="header-menu" />
   <Sidebar sections={sidebarSections} title="Design System" slot="mobile-sidebar" client:load />
 
@@ -34,6 +34,17 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
     title="Design System"
     description="Domain-grouped atomic design system for kinoo.dev. Components are organized by feature domain with atomic classification as metadata."
   >
+    <div class="ds-intro" slot="intro">
+      <p>The site uses two visual layers.</p>
+      <div class="ds-layer">
+        <h3>Structural layer</h3>
+        <p>Neutral surfaces, cards, header, footer. No accent glow, no theming. <code>Button</code> primary is the one exception — it keeps the global orange fill because it's always a primary CTA.</p>
+      </div>
+      <div class="ds-layer">
+        <h3>Chromatic layer</h3>
+        <p>Activates inside a themed section or article. <code>--accent-color</code> is set on the container, and everything inside inherits it: <code>ButtonLink</code> glow, <code>Tag</code> tint, links, blockquote borders, code block accents. Each article category maps to its own color.</p>
+      </div>
+    </div>
     <FoundationsSection />
     <AtomsSection />
     <CardSection />
