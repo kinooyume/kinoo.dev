@@ -30,7 +30,5 @@ pnpm-debug.log*
 # legacy husky (replaced by lefthook)
 .husky/
 
-# article content (draft)
-src/content/articles/*.md
-src/content/articles/*.mdx
-!src/content/articles/arteflix-reverse-engineering-arte-api.mdx
+
+.unlighthouse
