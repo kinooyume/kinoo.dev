@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.29.0 - 2026-03-13
+#### Features
+- (**experiences**) update adeo with migration plan and storybook - (c33660f) - Martin Kinoo
+- (**hero**) add back vue.js - (8c05a36) - Martin Kinoo
+#### Bug Fixes
+- (**hero**) tech tag order - (ea5b582) - Martin Kinoo
+#### Miscellaneous Chores
+- (**arte-article**) update tags and add linkedin link - (54c86e0) - Martin Kinoo
+- (**cv**) update - (0bb6515) - Martin Kinoo
+
+- - -
+
 ## v0.28.2 - 2026-03-10
 #### Bug Fixes
 - (**header**) use best match for section detection - (6059c3d) - Martin Kinoo
