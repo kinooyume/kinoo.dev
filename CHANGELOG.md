@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.29.1 - 2026-03-13
+#### Bug Fixes
+- (**arte-article**) move linkedin link to article footer - (508fcc8) - Martin Kinoo
+- (**release**) use GITHUB_TOKEN for push, SSH key for submodule only - (14baf73) - Martin Kinoo
+- (**release**) set git identity for submodule commit - (44db208) - Martin Kinoo
+#### Performance Improvements
+- (**images**) resize arteflix logo for displayed dimensions - (d40a535) - Martin Kinoo
+#### Documentation
+- (**readme**) add articles submodule section and setup instructions - (94007ef) - Martin Kinoo
+#### Build system
+- (**articles**) move articles to private submodule - (388a671) - Martin Kinoo
+#### Continuous Integration
+- (**articles**) skip deploy for draft-only changes - (b760025) - Martin Kinoo
+- (**gitignore**) ignore .unlighthouse - (16441cd) - Martin Kinoo
+
+- - -
+
 ## v0.29.0 - 2026-03-13
 #### Features
 - (**experiences**) update adeo with migration plan and storybook - (c33660f) - Martin Kinoo
