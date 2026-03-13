@@ -15,8 +15,13 @@ Personal portfolio & freelance website.
 ## Getting Started
 
 ```bash
-git clone https://github.com/yourusername/kinoo.dev.git
+git clone --recurse-submodules git@github.com:kinooyume/kinoo.dev.git
 cd kinoo.dev
+```
+
+Already cloned? Pull the submodule:
+```bash
+git submodule update --init
 ```
 
 ### With Nix (recommended)
@@ -153,7 +158,14 @@ fix: nav overflow
 
 Lefthook runs ESLint on pre-commit and validates commit messages.
 
-**Secrets needed**: `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`
+**Secrets needed**: `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `ARTICLES_DEPLOY_KEY`
+
+
+## Articles
+
+Articles live in a [private repo](https://github.com/kinooyume/articles) mounted as a submodule at `src/content/articles/`. MDX files, processed by Astro content collections.
+
+Pushing to `main` on the articles repo fires a `repository_dispatch` to this repo, which triggers a build + deploy automatically. No need to touch kinoo.dev to publish an article.
 
 
 ## License

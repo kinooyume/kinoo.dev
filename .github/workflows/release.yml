@@ -23,13 +23,22 @@ jobs:
 
       - name: Update articles submodule
         if: github.event_name == 'repository_dispatch'
-        run: git submodule update --remote src/content/articles
-
-      - name: Commit submodule update
-        if: github.event_name == 'repository_dispatch'
+        id: submodule
         run: |
-          git add src/content/articles
-          git commit -m "fix(content): update articles" || true
+          git submodule update --remote src/content/articles
+          if git diff --quiet src/content/articles; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git add src/content/articles
+            git commit -m "fix(content): update articles"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Skip if articles already up to date
+        if: github.event_name == 'repository_dispatch' && steps.submodule.outputs.changed == 'false'
+        run: |
+          echo "Submodule already at latest — skipping release"
+          exit 1
 
       - name: Bump version and generate changelog
         id: bump
