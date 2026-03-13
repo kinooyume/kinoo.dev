@@ -7,6 +7,7 @@ import Svelte from "@/svgs/svelte.svg?raw";
 import Rescript from "@/svgs/rescript.svg?raw";
 import Ts from "@/svgs/ts.svg?raw";
 import Go from "@/svgs/go.svg?raw";
+import Vue from "@/svgs/vue.svg?raw";
 
 type TagProps = {
   title: string;
@@ -17,8 +18,9 @@ type TagProps = {
 const techs: TagProps[] = [
   { title: "Typescript", icon: Ts, highlight: true },
   { title: "Astro", icon: AstroIcon, highlight: true },
-  { title: "React.js", icon: React, highlight: true },
   { title: "Svelte", icon: Svelte, highlight: true },
+  { title: "Vue.js", icon: Vue, highlight: true },
+  { title: "React.js", icon: React, highlight: true },
   { title: "Rescript", icon: Rescript, highlight: true },
   { title: "Golang", icon: Go, highlight: true },
   { title: "Votre stack ?" },
