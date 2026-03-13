@@ -33,11 +33,12 @@ const externalProps = external
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.8;
+    opacity: 0.6;
     transition: all 0.3s ease;
 
     &:hover {
       opacity: 1;
+      color: var(--orange-lightest);
 
       .tooltip {
         opacity: 1;
@@ -50,21 +51,12 @@ const externalProps = external
         width: 22px;
         height: 22px;
       }
-
-      :global(svg path) {
-        fill: var(--light-color);
-        transition: fill 0.3s ease;
-      }
-
-      &:hover :global(svg path) {
-        fill: var(--accent-color);
-      }
     }
 
     &--badge {
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 6px;
-      font-size: 11px;
+      font-size: var(--font-size-3xs);
       font-weight: 700;
       letter-spacing: 0.5px;
       height: 22px;
@@ -87,7 +79,7 @@ const externalProps = external
     border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: var(--font-size-2xs);
     font-weight: 500;
     color: var(--light-color);
     white-space: nowrap;

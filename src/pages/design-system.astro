@@ -3,7 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import DSLayout from "@/components/design-system/DSLayout.astro";
 import Sidebar from "@/components/sidebar/Sidebar.tsx";
 import { sidebarSections } from "@/components/design-system/sections/index";
-import Button from "@/components/shared/atoms/Button";
+import NavBar from "@/components/header/NavBar.astro";
+import HeaderMenu from "@/components/header/HeaderMenu.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
 
 import FoundationsSection from "@/components/design-system/sections/FoundationsSection.astro";
@@ -18,6 +19,7 @@ import FormSection from "@/components/design-system/sections/FormSection.astro";
 import ContactSection from "@/components/design-system/sections/ContactSection.astro";
 import ArticlesSection from "@/components/design-system/sections/ArticlesSection.astro";
 import FooterSection from "@/components/design-system/sections/FooterSection.astro";
+import TemplatesSection from "@/components/design-system/sections/TemplatesSection.astro";
 import DSComponentsSection from "@/components/design-system/sections/DSComponentsSection.astro";
 ---
 
@@ -26,7 +28,8 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
   description="Components library for kinoo.dev"
 >
   <meta slot="head" name="robots" content="noindex, nofollow" />
-  <Button slot="header-menu" href="/" variant="tertiary" size="tiny">Portfolio</Button>
+  <NavBar slot="header-nav" />
+  <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
   <Sidebar sections={sidebarSections} title="Design System" slot="mobile-sidebar" client:load />
 
@@ -35,14 +38,14 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
     description="Domain-grouped atomic design system for kinoo.dev. Components are organized by feature domain with atomic classification as metadata."
   >
     <div class="ds-intro" slot="intro">
-      <p>The site uses two visual layers.</p>
+      <p>Everything is chromatic. <code>--accent-color</code> is set on the container and every component inherits it: <code>Button</code> primary fill, <code>ButtonLink</code> glow, <code>Tag</code> tint, links, blockquote borders, code block accents. The default accent is orange; each section or article category overrides it with its own color.</p>
       <div class="ds-layer">
         <h3>Structural layer</h3>
-        <p>Neutral surfaces, cards, header, footer. No accent glow, no theming. <code>Button</code> primary is the one exception — it keeps the global orange fill because it's always a primary CTA.</p>
+        <p>Neutral surfaces, cards, header, footer — the chrome that doesn't change between sections.</p>
       </div>
       <div class="ds-layer">
         <h3>Chromatic layer</h3>
-        <p>Activates inside a themed section or article. <code>--accent-color</code> is set on the container, and everything inside inherits it: <code>ButtonLink</code> glow, <code>Tag</code> tint, links, blockquote borders, code block accents. Each article category maps to its own color.</p>
+        <p>Accent-driven components that adapt to their context. Set <code>--accent-color</code> on a container and everything inside follows: buttons, links, tags, borders, glows.</p>
       </div>
     </div>
     <FoundationsSection />
@@ -57,6 +60,7 @@ import DSComponentsSection from "@/components/design-system/sections/DSComponent
     <ContactSection />
     <ArticlesSection />
     <FooterSection />
+    <TemplatesSection />
     <DSComponentsSection />
   </DSLayout>
 </Layout>

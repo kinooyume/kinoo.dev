@@ -30,6 +30,11 @@ const { items = defaultItems } = Astro.props;
         </li>
       ))
     }
+    <li class="push-right">
+      <a class="anime nav" href="/design-system" data-color="var(--orange)" data-page>
+        Design System
+      </a>
+    </li>
   </ul>
   <div class="indicator"></div>
 </nav>
@@ -48,7 +53,6 @@ const { items = defaultItems } = Astro.props;
     if (!navbarEl) return;
     const navbar = navbarEl as HTMLElement;
     const indicator = navbar.querySelector(".indicator") as HTMLElement;
-    const ul = navbar.querySelector("ul") as HTMLElement;
 
     let isHovering = false;
     let activeLink: HTMLElement | null = null;
@@ -86,7 +90,7 @@ const { items = defaultItems } = Astro.props;
       });
     }
 
-    ul.querySelectorAll("a").forEach((link) => {
+    navbar.querySelectorAll("a").forEach((link) => {
       link.addEventListener("mouseenter", () => {
         if (hoverTimeout) clearTimeout(hoverTimeout);
         isHovering = true;
@@ -94,23 +98,35 @@ const { items = defaultItems } = Astro.props;
       });
     });
 
-    ul.addEventListener("mouseleave", () => {
+    navbar.addEventListener("mouseleave", () => {
       isHovering = false;
       hoverTimeout = window.setTimeout(() => {
         if (!isHovering) moveIndicator(activeLink);
       }, 150);
     });
 
-    const navLinks = Array.from(navbar.querySelectorAll("a"));
-    const targets = anchorsQueryToViewDetectionElement(".navbar a");
+    const pageLink = navbar.querySelector("a[data-page]") as HTMLElement | null;
+    const pageLinkHref = pageLink?.getAttribute("href") ?? "";
+    const isOnPageRoute = pageLink && pageLinkHref && window.location.pathname.startsWith(pageLinkHref);
+
+    if (isOnPageRoute && pageLink) {
+      pageLink.classList.add("current");
+      activeLink = pageLink;
+    }
+
+    const scrollLinks = Array.from(navbar.querySelectorAll("a:not([data-page])"));
+    const targets = anchorsQueryToViewDetectionElement(".navbar a:not([data-page])");
 
     const detect = createViewDetection(targets, {
       setBounds: (offset) => [offset, 0],
       onBestMatch: (best) => {
-        navLinks.forEach((a) => a.classList.remove("current"));
+        scrollLinks.forEach((a) => a.classList.remove("current"));
         if (best) {
           const idx = targets.indexOf(best);
-          navLinks[idx]?.classList.add("current");
+          scrollLinks[idx]?.classList.add("current");
+          if (pageLink) pageLink.classList.remove("current");
+        } else if (isOnPageRoute && pageLink) {
+          pageLink.classList.add("current");
         }
       },
     });
@@ -122,6 +138,10 @@ const { items = defaultItems } = Astro.props;
         activeLink = newActive;
         if (!isHovering) moveIndicator(activeLink);
       }
+    }
+
+    if (isOnPageRoute) {
+      moveIndicator(pageLink);
     }
 
     function enable() {
@@ -145,6 +165,7 @@ const { items = defaultItems } = Astro.props;
 
   .navbar {
     position: relative;
+    flex: 1;
     pointer-events: none;
     margin-top: 12px;
 
@@ -156,6 +177,7 @@ const { items = defaultItems } = Astro.props;
   ul {
     list-style: none;
     display: flex;
+    flex: 1;
     align-items: center;
     gap: 8px;
     padding: 0px 8px;
@@ -165,6 +187,10 @@ const { items = defaultItems } = Astro.props;
 
   li {
     margin-bottom: 0;
+
+    &.push-right {
+      margin-left: auto;
+    }
   }
 
   a {
