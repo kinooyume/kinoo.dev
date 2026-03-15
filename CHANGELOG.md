@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.30.0 - 2026-03-15
+#### Features
+- (**design-system**) chromatic layer, button alternative variant, DS updates - (dcbb463) - Martin Kinoo
+- (**design-system**) duo-tone chromatic layer, button variants, font upgrade - (86b498c) - Martin Kinoo
+- (**header**) unify header across pages, switch to Lucide icons - (d8d2ba8) - Martin Kinoo
+#### Bug Fixes
+- (**button**) correct font-weight after variable font switch - (c7476e0) - Martin Kinoo
+- (**categoryColors**) use exported type - (df370d3) - Martin Kinoo
+- (**layout**) remove duplicate Footer from BlogPostLayout - (58bda98) - Martin Kinoo
+- (**layout**) move Footer into Layout so it renders on all pages - (05cc460) - Martin Kinoo
+- (**navbar**) fade in indicator on initial load instead of sliding, add CV icon to experiences CTA - (aeafba8) - Martin Kinoo
+- (**release**) split article deploy from version release - (b6087c6) - Martin Kinoo
+#### Performance Improvements
+- (**fonts**) switch to single variable woff2 (181K → 32K) - (221234d) - Martin Kinoo
+#### Refactoring
+- (**button**) delete ButtonLink, consolidate into Button with icon prop and descriptive variant names - (4fdf087) - Martin Kinoo
+
+- - -
+
 ## v0.29.1 - 2026-03-13
 #### Bug Fixes
 - (**arte-article**) move linkedin link to article footer - (508fcc8) - Martin Kinoo
