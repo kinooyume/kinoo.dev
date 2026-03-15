@@ -3,23 +3,25 @@ import Layout from "./Layout.astro";
 import NavBar from "@/components/header/NavBar.astro";
 import HeaderMenu from "@/components/header/HeaderMenu.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
-import Footer from "@/components/footer/Footer.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import BackLink from "@/components/shared/atoms/BackLink.astro";
 import Prose from "@/components/articles/Prose.astro";
 import BadgeLink from "@/components/shared/atoms/BadgeLink.astro";
+import { type AccentTokens, categoryColors, defaultAccent } from "@/lib/categoryColors";
 
 interface Props {
   title: string;
   subtitle?: string;
   description: string;
   date: Date;
+  category?: string;
   tags: string[];
   links?: { text: string; href: string }[];
 }
 
-const { title, subtitle, description, date, tags, links = [] } = Astro.props;
+const { title, subtitle, description, date, category, tags, links = [] } = Astro.props;
+const accent: AccentTokens = (category && categoryColors[category]) || defaultAccent;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const formattedDate = date.toLocaleDateString("fr-FR", {
@@ -54,7 +56,7 @@ const blogPostingJsonLd = {
   </Fragment>
 
   <main>
-    <article>
+    <article style={`--accent-color: ${accent.color}; --accent-tint: ${accent.tint}; --accent-bright: ${accent.bright}; --accent-bg: ${accent.bg};`}>
       <header class="article-header">
         <BackLink href="/#articles" text="Portfolio" />
         <h1>{title}</h1>
@@ -79,7 +81,6 @@ const blogPostingJsonLd = {
         <slot />
       </Prose>
     </article>
-    <Footer />
   </main>
 </Layout>
 
@@ -114,7 +115,7 @@ const blogPostingJsonLd = {
 
   h1 {
     font-size: var(--h2-size);
-    font-weight: 300;
+    font-weight: 100;
     line-height: 1;
     color: var(--light-color);
     margin-bottom: 12px;
@@ -137,9 +138,9 @@ const blogPostingJsonLd = {
   }
 
   time {
-    font-size: 14px;
-    font-weight: 100;
-    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: 200;
+    color: var(--accent-color);
   }
 
   .article-tags {

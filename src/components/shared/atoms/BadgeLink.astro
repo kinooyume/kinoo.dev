@@ -25,14 +25,16 @@ const displayIcon = icon ?? (isExternal ? externalLinkIcon : undefined);
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 4px 14px;
-    font-size: 13px;
-    font-weight: 500;
+    height: 22px;
+    padding: 0 8px;
+    font-size: var(--font-size-3xs);
+    font-weight: 700;
+    letter-spacing: 0.5px;
     color: var(--light-color);
     opacity: 0.8;
-    background: linear-gradient(to bottom, var(--card-surface) 50%, #162030);
-    border: 1px solid transparent;
-    border-radius: 8px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -40,7 +42,7 @@ const displayIcon = icon ?? (isExternal ? externalLinkIcon : undefined);
     &:hover {
       opacity: 1;
       color: var(--accent-color);
-      border-color: color-mix(in srgb, var(--accent-color) 30%, transparent);
+      border-color: var(--accent-color);
     }
   }
 

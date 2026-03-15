@@ -21,59 +21,107 @@ const accents: Color[] = [
   { var: "--accent-tint", hex: "var(--orange-tint)" },
 ];
 
-const oranges: Color[] = [
-  { var: "--orange-lightest", hex: "#f8dbc4" },
-  { var: "--orange-light", hex: "#f7caa6" },
-  { var: "--orange", hex: "#f8ba88" },
-  { var: "--orange-dark", hex: "#f4ac72" },
-  { var: "--orange-darker", hex: "#ea9957" },
-  { var: "--orange-darkest", hex: "#d17d39" },
-  { var: "--orange-bg", hex: "rgba(248, 186, 136, 0.05)" },
-  { var: "--orange-tint", hex: "rgba(248, 186, 136, 0.1)" },
-];
+type ColorScale = { name: string; label: string; shades: Color[] };
 
-const reds: Color[] = [
-  { var: "--red-lightest", hex: "#f3cece" },
-  { var: "--red-light", hex: "#edabab" },
-  { var: "--red", hex: "#ea8686" },
-  { var: "--red-dark", hex: "#dc6a6a" },
-  { var: "--red-darker", hex: "#cb4d4d" },
-  { var: "--red-darkest", hex: "#a63a3a" },
-  { var: "--red-bg", hex: "rgba(234, 134, 134, 0.05)" },
-  { var: "--red-tint", hex: "rgba(234, 134, 134, 0.1)" },
-];
-
-const greens: Color[] = [
-  { var: "--green-lightest", hex: "#c0edcf" },
-  { var: "--green-light", hex: "#a4dfb8" },
-  { var: "--green", hex: "#66c384" },
-  { var: "--green-dark", hex: "#5ab376" },
-  { var: "--green-darker", hex: "#4a9c63" },
-  { var: "--green-darkest", hex: "#3d8552" },
-  { var: "--green-bg", hex: "rgba(102, 195, 132, 0.05)" },
-  { var: "--green-tint", hex: "rgba(102, 195, 132, 0.1)" },
-];
-
-const pinks: Color[] = [
-  { var: "--pink-lightest", hex: "#f8c8d9" },
-  { var: "--pink-light", hex: "#f8a4c0" },
-  { var: "--pink", hex: "#f68dab" },
-  { var: "--pink-dark", hex: "#f47799" },
-  { var: "--pink-darker", hex: "#f26088" },
-  { var: "--pink-darkest", hex: "#d55478" },
-  { var: "--pink-bg", hex: "rgba(246, 141, 171, 0.05)" },
-  { var: "--pink-tint", hex: "rgba(246, 141, 171, 0.1)" },
-];
-
-const purples: Color[] = [
-  { var: "--purple-lightest", hex: "#c9bce6" },
-  { var: "--purple-light", hex: "#b09ee0" },
-  { var: "--purple", hex: "#9c85d3" },
-  { var: "--purple-dark", hex: "#8870c7" },
-  { var: "--purple-darker", hex: "#745bba" },
-  { var: "--purple-darkest", hex: "#6048a0" },
-  { var: "--purple-bg", hex: "rgba(156, 133, 211, 0.05)" },
-  { var: "--purple-tint", hex: "rgba(156, 133, 211, 0.1)" },
+const colorScales: ColorScale[] = [
+  {
+    name: "orange", label: "Orange",
+    shades: [
+      { var: "--orange-bg", hex: "rgba(248, 186, 136, 0.05)" },
+      { var: "--orange-tint", hex: "rgba(248, 186, 136, 0.1)" },
+      { var: "--orange-border", hex: "rgba(248, 186, 136, 0.35)" },
+      { var: "--orange-lightest", hex: "#f8dbc4" },
+      { var: "--orange-light", hex: "#f7caa6" },
+      { var: "--orange", hex: "#f8ba88" },
+      { var: "--orange-dark", hex: "#f4ac72" },
+      { var: "--orange-darker", hex: "#ea9957" },
+      { var: "--orange-darkest", hex: "#d17d39" },
+    ],
+  },
+  {
+    name: "red", label: "Red",
+    shades: [
+      { var: "--red-bg", hex: "rgba(234, 134, 134, 0.05)" },
+      { var: "--red-tint", hex: "rgba(234, 134, 134, 0.1)" },
+      { var: "--red-border", hex: "rgba(234, 134, 134, 0.35)" },
+      { var: "--red-lightest", hex: "#f3cece" },
+      { var: "--red-light", hex: "#edabab" },
+      { var: "--red", hex: "#ea8686" },
+      { var: "--red-dark", hex: "#dc6a6a" },
+      { var: "--red-darker", hex: "#cb4d4d" },
+      { var: "--red-darkest", hex: "#a63a3a" },
+    ],
+  },
+  {
+    name: "green", label: "Green",
+    shades: [
+      { var: "--green-bg", hex: "rgba(102, 195, 132, 0.05)" },
+      { var: "--green-tint", hex: "rgba(102, 195, 132, 0.1)" },
+      { var: "--green-border", hex: "rgba(102, 195, 132, 0.35)" },
+      { var: "--green-lightest", hex: "#c0edcf" },
+      { var: "--green-light", hex: "#a4dfb8" },
+      { var: "--green", hex: "#66c384" },
+      { var: "--green-dark", hex: "#5ab376" },
+      { var: "--green-darker", hex: "#4a9c63" },
+      { var: "--green-darkest", hex: "#3d8552" },
+    ],
+  },
+  {
+    name: "pink", label: "Pink",
+    shades: [
+      { var: "--pink-bg", hex: "rgba(246, 141, 171, 0.05)" },
+      { var: "--pink-tint", hex: "rgba(246, 141, 171, 0.1)" },
+      { var: "--pink-border", hex: "rgba(246, 141, 171, 0.35)" },
+      { var: "--pink-lightest", hex: "#f8c8d9" },
+      { var: "--pink-light", hex: "#f8a4c0" },
+      { var: "--pink", hex: "#f68dab" },
+      { var: "--pink-dark", hex: "#f47799" },
+      { var: "--pink-darker", hex: "#f26088" },
+      { var: "--pink-darkest", hex: "#d55478" },
+    ],
+  },
+  {
+    name: "purple", label: "Purple",
+    shades: [
+      { var: "--purple-bg", hex: "rgba(156, 133, 211, 0.05)" },
+      { var: "--purple-tint", hex: "rgba(156, 133, 211, 0.1)" },
+      { var: "--purple-border", hex: "rgba(156, 133, 211, 0.35)" },
+      { var: "--purple-lightest", hex: "#c9bce6" },
+      { var: "--purple-light", hex: "#b09ee0" },
+      { var: "--purple", hex: "#9c85d3" },
+      { var: "--purple-dark", hex: "#8870c7" },
+      { var: "--purple-darker", hex: "#745bba" },
+      { var: "--purple-darkest", hex: "#6048a0" },
+    ],
+  },
+  {
+    name: "blue", label: "Blue",
+    shades: [
+      { var: "--blue-bg", hex: "rgba(126, 184, 247, 0.05)" },
+      { var: "--blue-tint", hex: "rgba(126, 184, 247, 0.1)" },
+      { var: "--blue-border", hex: "rgba(126, 184, 247, 0.35)" },
+      { var: "--blue-lightest", hex: "#bee0fc" },
+      { var: "--blue-light", hex: "#a0ccfa" },
+      { var: "--blue", hex: "#7eb8f7" },
+      { var: "--blue-dark", hex: "#6aa4e8" },
+      { var: "--blue-darker", hex: "#5690d4" },
+      { var: "--blue-darkest", hex: "#4278b8" },
+    ],
+  },
+  {
+    name: "cyan", label: "Cyan",
+    shades: [
+      { var: "--cyan-bg", hex: "rgba(94, 207, 207, 0.05)" },
+      { var: "--cyan-tint", hex: "rgba(94, 207, 207, 0.1)" },
+      { var: "--cyan-border", hex: "rgba(94, 207, 207, 0.35)" },
+      { var: "--cyan-lightest", hex: "#b0e8e8" },
+      { var: "--cyan-light", hex: "#8edede" },
+      { var: "--cyan", hex: "#5ecfcf" },
+      { var: "--cyan-dark", hex: "#4dbfbf" },
+      { var: "--cyan-darker", hex: "#3daeae" },
+      { var: "--cyan-darkest", hex: "#2e9494" },
+    ],
+  },
 ];
 
 const surfaces: Color[] = [
@@ -148,33 +196,24 @@ const borders: Color[] = [
     </div>
   </DSBlock>
 
-  <DSBlock title="Section Theme Colors">
+  <DSBlock title="Color Scales">
     <DSNote>
       Each section uses a themed color palette. These override <code>--accent-color</code> and <code>--secondary-accent-color</code> at the section level.
     </DSNote>
 
-    {([
-      { title: "Orange (Accent)", colors: oranges },
-      { title: "Red (Error / Validation)", colors: reds },
-      { title: "Green (Realisations)", colors: greens },
-      { title: "Pink (Experiences)", colors: pinks },
-      { title: "Purple (Formations)", colors: purples },
-    ] as const).map(group => (
-      <Fragment>
-        <h4>{group.title}</h4>
-        <div class="color-grid">
-          {group.colors.map(c => (
-            <div class="color-swatch">
-              <div class="swatch" style={`background-color: var(${c.var});`} />
-              <div class="color-info">
-                <code>{c.var}</code>
-                <span>{c.hex}</span>
-              </div>
+    <div class="scales">
+      {colorScales.map(scale => (
+        <div class="scale-col">
+          <span class="scale-label">{scale.label}</span>
+          {scale.shades.map(c => (
+            <div class="scale-row">
+              <div class="scale-chip" style={`background-color: var(${c.var});`} />
+              <code>{c.var}</code>
             </div>
           ))}
         </div>
-      </Fragment>
-    ))}
+      ))}
+    </div>
   </DSBlock>
 
   <DSBlock title="Border Colors">
@@ -200,17 +239,6 @@ const borders: Color[] = [
 
 <style lang="scss">
   @use "@/styles/breakpoints" as *;
-
-  h4 {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--light-color);
-    margin: 24px 0 12px 0;
-
-    &:first-of-type {
-      margin-top: 0;
-    }
-  }
 
   .color-grid {
     display: grid;
@@ -258,5 +286,53 @@ const borders: Color[] = [
       opacity: 0.7;
       font-family: monospace;
     }
+  }
+
+  .scales {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+
+    @include mobile {
+      gap: 8px;
+    }
+  }
+
+  .scale-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .scale-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--light-color);
+    margin-bottom: 4px;
+    white-space: nowrap;
+  }
+
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    code {
+      font-size: 10px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .scale-chip {
+    width: 24px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
   }
 </style>

@@ -10,7 +10,8 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
-import ButtonLink from "@/components/shared/atoms/ButtonLink.astro";
+import Button from "@/components/shared/atoms/Button";
+import cv from "@/svgs/cv.svg?raw";
 
 const entries = await getCollection("experiences");
 const experiences = entries.sort((a, b) => a.data.order - b.data.order);
@@ -58,7 +59,7 @@ const rendered = await Promise.all(
     }
   </div>
   <div class="cta">
-    <ButtonLink href="/MartinKinooCV.pdf" text="Voir mon CV" />
+    <Button href="/MartinKinooCV.pdf" variant="tint" icon={cv} client:load>Voir mon CV</Button>
   </div>
 </Section>
 

@@ -9,7 +9,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 <section id="input">
   <DSSectionHeader title="Input" atomic="Atom" framework="solid" />
-  <p>Styled text input with focus and invalid states.</p>
+  <p>Chromatic text input — focus border and glow inherit <code>--accent-color</code>.</p>
 
   <DSBlock title="Default">
     <DSPreview>
@@ -23,6 +23,23 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       <InputComponent client:load placeholder="Claude Monet" type="text" invalid />
     </DSPreview>
     <DSCode inline>&lt;Input invalid placeholder="..." /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Chromatic" subtitle="Focus adapts to --accent-color">
+    <DSPreview>
+      <div style="--accent-color: var(--orange);">
+        <InputComponent client:load placeholder="Orange focus" type="text" />
+      </div>
+      <div style="--accent-color: var(--purple);">
+        <InputComponent client:load placeholder="Purple focus" type="text" />
+      </div>
+      <div style="--accent-color: var(--green);">
+        <InputComponent client:load placeholder="Green focus" type="text" />
+      </div>
+      <div style="--accent-color: var(--pink);">
+        <InputComponent client:load placeholder="Pink focus" type="text" />
+      </div>
+    </DSPreview>
   </DSBlock>
 
   <DSBlock title="Props">

@@ -1,7 +1,7 @@
 ---
 import ContactForm from "./ContactForm.tsx";
 import RevealText from "@/components/shared/atoms/RevealText/RevealText.astro";
-import ButtonLink from "@/components/shared/atoms/ButtonLink.astro";
+import Button from "@/components/shared/atoms/Button";
 import linkedin from "@/svgs/linkedin.svg?raw";
 ---
 
@@ -19,7 +19,7 @@ import linkedin from "@/svgs/linkedin.svg?raw";
         Décrivez votre contexte et vos objectifs. Je vous recontacte rapidement
         pour vous proposer des solutions claires, adaptées et pragmatiques.
       </p>
-      <ButtonLink href="https://www.linkedin.com/in/martin-kinoo/" text="Me retrouver sur LinkedIn" icon={linkedin} />
+      <Button href="https://www.linkedin.com/in/martin-kinoo/" variant="tint" icon={linkedin} external client:load>Me retrouver sur LinkedIn</Button>
     </div>
     <ContactForm
       client:load
@@ -35,7 +35,7 @@ import linkedin from "@/svgs/linkedin.svg?raw";
     :global(.subtitle) {
       display: block;
       color: var(--accent-color);
-      font-weight: 200;
+      font-weight: 300;
       font-size: var(--subtitle-size);
       margin: 0;
     }
@@ -50,11 +50,11 @@ import linkedin from "@/svgs/linkedin.svg?raw";
   .contact-description {
     p {
       font-size: var(--hero-font-size);
-      font-weight: 200;
+      font-weight: 300;
       margin-bottom: 0;
     }
 
-    :global(.button-link) {
+    :global(a) {
       margin-top: 24px;
     }
   }

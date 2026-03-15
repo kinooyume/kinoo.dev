@@ -181,7 +181,7 @@ const ContactForm = (props: Readonly<Props>) => {
           <div class={styles.submitGroup}>
             <Button
               disabled={buttonDisabled()}
-              variant="primary"
+              variant="solid"
               state={buttonState()}
               type="submit"
               aria-busy={formState() === FormState.sending}

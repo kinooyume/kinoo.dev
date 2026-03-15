@@ -22,13 +22,13 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Contents">
     <DSPropsTable
-      headers={["Link", "Type", "Destination"]}
+      headers={["Link", "Component", "Destination"]}
       rows={[
-        ["GitHub", "icon", "External - GitHub profile"],
-        ["LinkedIn", "icon", "External - LinkedIn profile"],
-        ["CV", "badge", "External - PDF download"],
-        ["DS", "badge", "Internal - Design System"],
-        ["Me contacter", "button", "Internal - Contact section"],
+        ["Design System", "Button tertiary tiny", "Internal - Design System"],
+        ["CV", "Button tertiary tiny", "External - PDF download"],
+        ["GitHub", "Icon link", "External - GitHub profile"],
+        ["LinkedIn", "Icon link", "External - LinkedIn profile"],
+        ["Discutons ensemble", "Button primary", "Internal - Contact section"],
       ]}
     />
   </DSBlock>
@@ -37,19 +37,11 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSStructure
       rows={[
         { code: ".header-menu", description: "Flex container with gap" },
-        {
-          code: "HeaderLink (icon)",
-          description: "GitHub icon link",
-          indent: 1,
-        },
-        {
-          code: "HeaderLink (icon)",
-          description: "LinkedIn icon link",
-          indent: 1,
-        },
-        { code: "HeaderLink (badge)", description: "CV badge link", indent: 1 },
-        { code: "HeaderLink (badge)", description: "DS badge link", indent: 1 },
-        { code: "a.primary", description: "Contact CTA button", indent: 1 },
+        { code: "Button tertiary tiny", description: "DS badge link", indent: 1 },
+        { code: "Button tertiary tiny", description: "CV badge link", indent: 1 },
+        { code: "a.header-icon", description: "GitHub icon link", indent: 1 },
+        { code: "a.header-icon", description: "LinkedIn icon link", indent: 1 },
+        { code: "Button primary", description: "Contact CTA", indent: 1 },
       ]}
     />
   </DSBlock>

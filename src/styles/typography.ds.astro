@@ -1,8 +1,4 @@
 ---
-/**
- * Typography Documentation
- * Design System - Foundations
- */
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
@@ -10,33 +6,62 @@ import DSNote from "@/components/design-system/DSNote.astro";
 
 <section id="typography">
   <h2>Typography</h2>
-  <p>Font sizes and heading styles used throughout the website.</p>
+  <p>Outfit, weights 100–800. Article typography is the baseline — hero uses oversized variants.</p>
 
   <DSBlock title="Headings">
     <div class="typography-preview">
       <div class="type-sample">
-        <span class="type-label">h1 <code>--h1-size</code></span>
-        <h1 class="sample-h1">Heading 1</h1>
+        <span class="type-label">h1 <code>--h2-size</code></span>
+        <h1 class="sample-h1">Article Title</h1>
       </div>
       <div class="type-sample">
-        <span class="type-label">h2 <code>--h2-size</code></span>
+        <span class="type-label">h2 <code>clamp(24px, …, 30px)</code></span>
         <h2 class="sample-h2">Heading 2</h2>
       </div>
       <div class="type-sample">
-        <span class="type-label">h3 <code>--h3-size</code></span>
+        <span class="type-label">h3 <code>1.15em</code></span>
         <h3 class="sample-h3">Heading 3</h3>
       </div>
       <div class="type-sample">
-        <span class="type-label">subtitle <code>--subtitle-size</code></span>
-        <p class="subtitle">Subtitle text</p>
+        <span class="type-label">h4 <code>1em</code></span>
+        <h4 class="sample-h4">Heading 4</h4>
+      </div>
+    </div>
+  </DSBlock>
+
+  <DSBlock title="Body">
+    <div class="typography-preview">
+      <div class="type-sample">
+        <span class="type-label">p <code>--font-size · line-height: 1.7</code></span>
+        <p class="sample-body">Body text. Longer line-height for reading comfort, em-based margins between paragraphs.</p>
       </div>
       <div class="type-sample">
-        <span class="type-label">p <code>--font-size</code></span>
-        <p>Body text paragraph</p>
+        <span class="type-label">subtitle <code>--subtitle-size</code></span>
+        <p class="sample-subtitle">Subtitle text</p>
       </div>
       <div class="type-sample">
         <span class="type-label">button <code>--button-font-size</code></span>
         <span class="sample-button">Button text</span>
+      </div>
+    </div>
+  </DSBlock>
+
+  <DSBlock title="Hero (oversized)">
+    <DSNote>
+      The hero section uses larger heading sizes for the landing page. These override the defaults.
+    </DSNote>
+    <div class="typography-preview">
+      <div class="type-sample">
+        <span class="type-label">h1 <code>--h1-size</code></span>
+        <h1 class="sample-hero-h1">Hero Title</h1>
+      </div>
+      <div class="type-sample">
+        <span class="type-label">h2 <code>--h2-size</code></span>
+        <h2 class="sample-hero-h2">Section Title</h2>
+      </div>
+      <div class="type-sample">
+        <span class="type-label">h3 <code>--h3-size</code></span>
+        <h3 class="sample-hero-h3">Card Title</h3>
       </div>
     </div>
   </DSBlock>
@@ -49,7 +74,12 @@ import DSNote from "@/components/design-system/DSNote.astro";
         [{ code: "--h2-size" }, "clamp(42px, 2.21rem + 1.47vw, 56px)", "42px", "56px"],
         [{ code: "--h3-size" }, "clamp(18px, 0.95rem + 0.63vw, 24px)", "18px", "24px"],
         [{ code: "--subtitle-size" }, "clamp(20px, 1.19rem + 0.21vw, 22px)", "20px", "22px"],
-        [{ code: "--font-size" }, "clamp(16px, 0.94rem + 0.21vw, 18px)", "16px", "18px"],
+        [{ code: "--font-size-lg" }, "clamp(16px, 0.89rem + 0.42vw, 20px)", "16px", "20px"],
+        [{ code: "--font-size" }, "clamp(16px, 0.89rem + 0.21vw, 18px)", "16px", "18px"],
+        [{ code: "--font-size-sm" }, "clamp(14px, 0.78rem + 0.21vw, 16px)", "14px", "16px"],
+        [{ code: "--font-size-xs" }, "clamp(13px, 0.69rem + 0.42vw, 17px)", "13px", "17px"],
+        [{ code: "--font-size-2xs" }, "12px", "12px", "12px"],
+        [{ code: "--font-size-3xs" }, "11px", "11px", "11px"],
         [{ code: "--button-font-size" }, "15px", "15px", "15px"],
       ]}
     />
@@ -64,12 +94,6 @@ import DSNote from "@/components/design-system/DSNote.astro";
 
 <style lang="scss">
   @use "@/styles/breakpoints" as *;
-
-  .subtitle {
-    color: var(--accent-color);
-    font-weight: 200;
-    font-size: var(--subtitle-size);
-  }
 
   .typography-preview {
     display: flex;
@@ -99,7 +123,7 @@ import DSNote from "@/components/design-system/DSNote.astro";
     opacity: 0.6;
 
     code {
-      background-color: #1c2638;
+      background-color: var(--card-surface);
       padding: 2px 6px;
       border-radius: 4px;
       margin-left: 8px;
@@ -107,21 +131,45 @@ import DSNote from "@/components/design-system/DSNote.astro";
   }
 
   .sample-h1 {
-    font-size: var(--h1-size);
-    font-weight: 300;
+    font-size: var(--h2-size);
+    font-weight: 100;
     line-height: 1;
+    color: var(--light-color);
     margin: 0;
-
-    @include tablet {
-      font-size: 48px;
-    }
   }
 
   .sample-h2 {
+    font-size: clamp(24px, 1.26rem + 0.63vw, 30px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--accent-bright);
     margin: 0;
   }
 
   .sample-h3 {
+    font-size: 1.15em;
+    font-weight: 400;
+    color: var(--light-color);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .sample-h4 {
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--light-color);
+    margin: 0;
+  }
+
+  .sample-body {
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .sample-subtitle {
+    color: var(--accent-color);
+    font-weight: 300;
+    font-size: var(--subtitle-size);
     margin: 0;
   }
 
@@ -133,5 +181,28 @@ import DSNote from "@/components/design-system/DSNote.astro";
     padding: 12px 24px;
     border-radius: 12px;
     display: inline-block;
+  }
+
+  .sample-hero-h1 {
+    font-size: var(--h1-size);
+    font-weight: 100;
+    line-height: 1;
+    margin: 0;
+
+    @include tablet {
+      font-size: 48px;
+    }
+  }
+
+  .sample-hero-h2 {
+    font-size: var(--h2-size);
+    font-weight: 100;
+    margin: 0;
+  }
+
+  .sample-hero-h3 {
+    font-size: var(--h3-size);
+    font-weight: 400;
+    margin: 0;
   }
 </style>

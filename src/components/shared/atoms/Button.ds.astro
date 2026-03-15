@@ -5,54 +5,105 @@ import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 import ButtonComponent from "./Button";
+import github from "@/svgs/github.svg?raw";
 ---
 
 <section id="button">
   <DSSectionHeader title="Button" atomic="Atom" framework="solid" />
-  <p>Reusable button with variant styling and loading/success states.</p>
+  <p>Chromatic button — inherits <code>--accent-color</code> from its container. Renders as <code>&lt;a&gt;</code> when <code>href</code> is set, <code>&lt;button&gt;</code> otherwise.</p>
 
-  <DSBlock title="Primary">
+  <DSBlock title="Variants">
     <DSPreview>
-      <ButtonComponent client:load variant="primary">Primary Button</ButtonComponent>
-      <ButtonComponent href="#button" variant="primary">Primary Link</ButtonComponent>
+      <ButtonComponent client:load variant="solid">Solid</ButtonComponent>
+      <ButtonComponent client:load variant="surface">Surface</ButtonComponent>
+      <ButtonComponent client:load variant="ghost">Ghost</ButtonComponent>
+      <ButtonComponent client:load variant="tint">Tint</ButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;Button variant="primary"&gt;...&lt;/Button&gt;</DSCode>
+    <DSCode inline>&lt;Button variant="solid | surface | ghost | tint"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
-  <DSBlock title="Secondary">
+  <DSBlock title="As Link">
     <DSPreview>
-      <ButtonComponent client:load variant="secondary">Secondary Button</ButtonComponent>
-      <ButtonComponent href="#button" variant="secondary">Secondary Link</ButtonComponent>
+      <ButtonComponent href="#button" variant="solid">Solid Link</ButtonComponent>
+      <ButtonComponent href="#button" variant="surface">Surface Link</ButtonComponent>
+      <ButtonComponent href="#button" variant="ghost">Ghost Link</ButtonComponent>
+      <ButtonComponent href="#button" variant="tint">Tint Link</ButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;Button variant="secondary"&gt;...&lt;/Button&gt;</DSCode>
+    <DSCode inline>&lt;Button href="#" variant="tint"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
-  <DSBlock title="Loading State">
+  <DSBlock title="Tiny">
     <DSPreview>
-      <ButtonComponent client:load variant="primary" state="loading">Envoi…</ButtonComponent>
+      <ButtonComponent client:load variant="solid" size="tiny">Solid</ButtonComponent>
+      <ButtonComponent client:load variant="surface" size="tiny">Surface</ButtonComponent>
+      <ButtonComponent client:load variant="ghost" size="tiny">Ghost</ButtonComponent>
+      <ButtonComponent client:load variant="tint" size="tiny">Tint</ButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;Button state="loading"&gt;Envoi…&lt;/Button&gt;</DSCode>
+    <DSCode inline>&lt;Button size="tiny"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
-  <DSBlock title="Success State">
+  <DSBlock title="With Icon" subtitle="Raw SVG string rendered before text">
     <DSPreview>
-      <ButtonComponent client:load variant="primary" state="success">Message envoyé ✓</ButtonComponent>
+      <ButtonComponent href="#button" variant="solid" icon={github}>Solid</ButtonComponent>
+      <ButtonComponent href="#button" variant="tint" icon={github}>Tint</ButtonComponent>
+      <ButtonComponent href="#button" variant="tint" icon={github} size="tiny">Tiny</ButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;Button state="success"&gt;Message envoyé ✓&lt;/Button&gt;</DSCode>
+    <DSCode inline>&lt;Button icon=&#123;githubSvg&#125;&gt;...&lt;/Button&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="States">
+    <DSPreview>
+      <ButtonComponent client:load variant="solid" state="loading">Envoi…</ButtonComponent>
+      <ButtonComponent client:load variant="solid" state="success">Message envoyé ✓</ButtonComponent>
+    </DSPreview>
+    <DSCode inline>&lt;Button state="loading | success"&gt;...&lt;/Button&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Chromatic" subtitle="All variants adapt to --accent-color">
+    <DSPreview>
+      <div class="chromatic-row" style="--accent-color: var(--orange); --accent-tint: var(--orange-tint);">
+        <ButtonComponent client:load variant="solid">Orange</ButtonComponent>
+        <ButtonComponent client:load variant="tint" icon={github}>Orange</ButtonComponent>
+      </div>
+      <div class="chromatic-row" style="--accent-color: var(--purple); --accent-tint: var(--purple-tint);">
+        <ButtonComponent client:load variant="solid">Purple</ButtonComponent>
+        <ButtonComponent client:load variant="tint" icon={github}>Purple</ButtonComponent>
+      </div>
+      <div class="chromatic-row" style="--accent-color: var(--green); --accent-tint: var(--green-tint);">
+        <ButtonComponent client:load variant="solid">Green</ButtonComponent>
+        <ButtonComponent client:load variant="tint" icon={github}>Green</ButtonComponent>
+      </div>
+      <div class="chromatic-row" style="--accent-color: var(--pink); --accent-tint: var(--pink-tint);">
+        <ButtonComponent client:load variant="solid">Pink</ButtonComponent>
+        <ButtonComponent client:load variant="tint" icon={github}>Pink</ButtonComponent>
+      </div>
+    </DSPreview>
   </DSBlock>
 
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "variant" }, { code: '"primary" | "secondary"' }, { code: '"primary"' }, "Visual style variant"],
+        [{ code: "variant" }, { code: '"solid" | "surface" | "ghost" | "tint"' }, { code: '"solid"' }, "Visual style variant"],
+        [{ code: "size" }, { code: '"default" | "tiny"' }, { code: '"default"' }, "Compact 28px variant"],
         [{ code: "state" }, { code: '"idle" | "loading" | "success"' }, { code: '"idle"' }, "Button state for form feedback"],
         [{ code: "href" }, { code: "string" }, "—", "When set, renders as <a> instead of <button>"],
+        [{ code: "external" }, { code: "boolean" }, "—", "Opens in new tab with noreferrer/nofollow"],
+        [{ code: "icon" }, { code: "string" }, "—", "Raw SVG string rendered before text"],
         [{ code: "...attrs" }, { code: "ComponentProps<\"button\">" }, "—", "All native button attributes (disabled, type, etc.)"],
       ]}
     />
   </DSBlock>
 </section>
+
+<style lang="scss">
+  .chromatic-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+</style>
 
 <script>
   document.getElementById("button")?.addEventListener(

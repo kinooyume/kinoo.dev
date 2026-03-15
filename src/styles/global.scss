@@ -2,58 +2,10 @@
 
 @font-face {
   font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-ExtraLight.ttf");
-  font-weight: 100;
+  src: url("/fonts/Outfit/Outfit-variable-latin.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Light.ttf");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Thin.ttf");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Medium.ttf");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Regular.ttf");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-SemiBold.ttf");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-Bold.ttf");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-ExtraBold.ttf");
-  font-weight: 800;
-  font-style: normal;
+  font-display: swap;
 }
 
 html {
@@ -131,7 +83,7 @@ ul {
 }
 
 h2 {
-  font-weight: 300;
+  font-weight: 100;
   line-height: 1;
   font-size: var(--h2-size);
   margin: 0;
@@ -152,7 +104,7 @@ p,
 label,
 li {
   font-size: var(--font-size);
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.4;
   color: var(--light-color);
   overflow-wrap: break-word;

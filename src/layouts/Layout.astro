@@ -1,5 +1,6 @@
 ---
 import Header from "@/components/header/Header.astro";
+import Footer from "@/components/footer/Footer.astro";
 import MobileDrawer from "@/components/shared/organisms/MobileDrawer.astro";
 import MobileSidebar from "@/components/header/MobileSidebar.astro";
 import "@/styles/variables.scss";
@@ -93,6 +94,7 @@ const {
       <slot name="header-menu" />
     </Header>
     <slot />
+    <Footer />
 
     <div class="mobile-menu-drawer">
       <MobileDrawer id="mobile-menu" triggerId="mobile-menu-trigger">

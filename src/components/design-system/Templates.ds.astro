@@ -1,0 +1,213 @@
+---
+import Card from "@/components/shared/molecules/Card/Card.astro";
+import CardContent from "@/components/shared/molecules/Card/CardContent.astro";
+import CardTitle from "@/components/shared/molecules/Card/CardTitle.astro";
+import CardDescription from "@/components/shared/molecules/Card/CardDescription.astro";
+import H3Tagged from "@/components/shared/atoms/H3Tagged.astro";
+import Tag from "@/components/shared/atoms/Tag.astro";
+import TagRow from "@/components/shared/atoms/TagRow.astro";
+import Button from "@/components/shared/atoms/Button";
+import FormField from "@/components/shared/molecules/FormField/FormField";
+import Input from "@/components/shared/atoms/Input/Input";
+import Textarea from "@/components/shared/atoms/Textarea/Textarea";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+---
+
+<section id="template-form">
+  <DSSectionHeader title="Form Page" atomic="Template" framework="astro" />
+  <p>Registration-style form composed from Card, FormField, Input, Textarea, TagRow, and Button.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview variant="card">
+      <div class="form-template" style="--accent-color: var(--purple); --accent-tint: var(--purple-tint); --secondary-accent-color: var(--purple-light);">
+        <Card>
+          <CardContent>
+            <H3Tagged title="Create account" tag="Sign up" slot="title" />
+            <div class="form-body">
+              <div class="form-row">
+                <FormField label="First name" for="tpl-fname" client:load>
+                  <Input id="tpl-fname" type="text" placeholder="Jane" client:load />
+                </FormField>
+                <FormField label="Email" for="tpl-email" client:load>
+                  <Input id="tpl-email" type="email" placeholder="jane@example.com" client:load />
+                </FormField>
+              </div>
+              <FormField label="Bio" for="tpl-bio" client:load>
+                <Textarea id="tpl-bio" placeholder="Tell us about yourself…" rows={3} client:load />
+              </FormField>
+              <div class="interests">
+                <p class="interests-label">Interests</p>
+                <TagRow>
+                  <Tag title="Design" highlight />
+                  <Tag title="Engineering" />
+                  <Tag title="Product" />
+                  <Tag title="Open Source" outline />
+                </TagRow>
+              </div>
+              <div class="form-actions">
+                <Button client:load variant="solid">Sign up</Button>
+                <Button client:load variant="surface">Cancel</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </DSPreview>
+  </DSBlock>
+</section>
+
+<section id="template-products">
+  <DSSectionHeader title="Product Cards" atomic="Template" framework="astro" />
+  <p>Product grid composed from Card, CardContent, CardTitle, CardDescription, TagRow, and Button.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview variant="card">
+      <div class="products-template" style="--accent-color: var(--green); --accent-tint: var(--green-tint); --secondary-accent-color: var(--green-light);">
+        <div class="product-grid">
+          <Card>
+            <CardContent>
+              <CardTitle title="Wireless Headphones" tag="New" href="#" label="Audio" slot="title" />
+              <CardDescription>
+                <p>Over-ear noise-cancelling headphones with 30h battery life and spatial audio.</p>
+              </CardDescription>
+              <p class="price">€149</p>
+              <TagRow>
+                <Tag title="Black" />
+                <Tag title="Wireless" />
+                <Tag title="ANC" outline />
+              </TagRow>
+              <div class="product-actions">
+                <Button client:load variant="solid" size="tiny">Add to cart</Button>
+                <Button href="#" variant="tint" size="tiny" client:load>Details</Button>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <CardTitle title="Mechanical Keyboard" tag="Popular" href="#" label="Peripherals" slot="title" />
+              <CardDescription>
+                <p>65% hot-swappable mechanical keyboard with RGB backlight and USB-C.</p>
+              </CardDescription>
+              <p class="price">€89</p>
+              <TagRow>
+                <Tag title="65%" />
+                <Tag title="Hot-swap" />
+                <Tag title="RGB" outline />
+              </TagRow>
+              <div class="product-actions">
+                <Button client:load variant="solid" size="tiny">Add to cart</Button>
+                <Button href="#" variant="tint" size="tiny" client:load>Details</Button>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <CardTitle title="USB-C Hub" tag="Sale" href="#" label="Accessories" slot="title" />
+              <CardDescription>
+                <p>7-in-1 hub with HDMI 4K, SD reader, and 100W passthrough charging.</p>
+              </CardDescription>
+              <p class="price"><s>€59</s> €39</p>
+              <TagRow>
+                <Tag title="USB-C" />
+                <Tag title="HDMI" />
+                <Tag title="100W" highlight />
+              </TagRow>
+              <div class="product-actions">
+                <Button client:load variant="solid" size="tiny">Add to cart</Button>
+                <Button href="#" variant="tint" size="tiny" client:load>Details</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </DSPreview>
+  </DSBlock>
+
+  <DSNote>
+    Templates are purely visual compositions — no form submission or cart logic.
+  </DSNote>
+</section>
+
+<style lang="scss">
+  .form-template {
+    max-width: 520px;
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .interests {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .interests-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+  }
+
+  .interests :global(.tag-row) {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 8px;
+  }
+
+  .products-template {
+    width: 100%;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .price {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+
+    s {
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-right: 6px;
+    }
+  }
+
+  .product-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
