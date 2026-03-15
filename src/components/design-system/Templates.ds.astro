@@ -6,7 +6,6 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
 import H3Tagged from "@/components/shared/atoms/H3Tagged.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
-import ButtonLink from "@/components/shared/atoms/ButtonLink.astro";
 import Button from "@/components/shared/atoms/Button";
 import FormField from "@/components/shared/molecules/FormField/FormField";
 import Input from "@/components/shared/atoms/Input/Input";
@@ -49,8 +48,8 @@ import DSNote from "@/components/design-system/DSNote.astro";
                 </TagRow>
               </div>
               <div class="form-actions">
-                <Button client:load variant="primary">Sign up</Button>
-                <Button client:load variant="secondary">Cancel</Button>
+                <Button client:load variant="solid">Sign up</Button>
+                <Button client:load variant="surface">Cancel</Button>
               </div>
             </div>
           </CardContent>
@@ -62,7 +61,7 @@ import DSNote from "@/components/design-system/DSNote.astro";
 
 <section id="template-products">
   <DSSectionHeader title="Product Cards" atomic="Template" framework="astro" />
-  <p>Product grid composed from Card, CardContent, CardTitle, CardDescription, TagRow, ButtonLink, and Button.</p>
+  <p>Product grid composed from Card, CardContent, CardTitle, CardDescription, TagRow, and Button.</p>
 
   <DSBlock title="Preview">
     <DSPreview variant="card">
@@ -81,8 +80,8 @@ import DSNote from "@/components/design-system/DSNote.astro";
                 <Tag title="ANC" outline />
               </TagRow>
               <div class="product-actions">
-                <Button client:load variant="primary" size="tiny">Add to cart</Button>
-                <ButtonLink href="#" text="Details" tiny />
+                <Button client:load variant="solid" size="tiny">Add to cart</Button>
+                <Button href="#" variant="tint" size="tiny" client:load>Details</Button>
               </div>
             </CardContent>
           </Card>
@@ -99,8 +98,8 @@ import DSNote from "@/components/design-system/DSNote.astro";
                 <Tag title="RGB" outline />
               </TagRow>
               <div class="product-actions">
-                <Button client:load variant="primary" size="tiny">Add to cart</Button>
-                <ButtonLink href="#" text="Details" tiny />
+                <Button client:load variant="solid" size="tiny">Add to cart</Button>
+                <Button href="#" variant="tint" size="tiny" client:load>Details</Button>
               </div>
             </CardContent>
           </Card>
@@ -117,8 +116,8 @@ import DSNote from "@/components/design-system/DSNote.astro";
                 <Tag title="100W" highlight />
               </TagRow>
               <div class="product-actions">
-                <Button client:load variant="primary" size="tiny">Add to cart</Button>
-                <ButtonLink href="#" text="Details" tiny />
+                <Button client:load variant="solid" size="tiny">Add to cart</Button>
+                <Button href="#" variant="tint" size="tiny" client:load>Details</Button>
               </div>
             </CardContent>
           </Card>

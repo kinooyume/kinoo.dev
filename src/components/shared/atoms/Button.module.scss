@@ -2,6 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border-radius: 12px;
   transition: all 0.3s ease;
   height: 48px;
@@ -14,7 +15,7 @@
   border: 1px solid transparent;
 }
 
-.primary {
+.solid {
   color: black;
   background: var(--accent-color);
   border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
@@ -25,7 +26,7 @@
   }
 }
 
-.secondary {
+.surface {
   color: var(--light-color);
   background: var(--card-surface);
   border-color: var(--border-color);
@@ -36,7 +37,7 @@
   }
 }
 
-.tertiary {
+.ghost {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--light-color);
@@ -51,7 +52,7 @@
   }
 }
 
-.alternative {
+.tint {
   background: var(--accent-tint);
   color: var(--accent-color);
   font-weight: 300;
@@ -80,6 +81,18 @@
   padding: 0 14px;
   font-size: var(--font-size-2xs);
   border-radius: 8px;
+  gap: 5px;
+}
+
+.icon :global(svg) {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.tiny .icon :global(svg) {
+  width: 14px;
+  height: 14px;
 }
 
 .loading {
