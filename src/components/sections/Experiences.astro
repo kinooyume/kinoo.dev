@@ -11,6 +11,7 @@ import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Button from "@/components/shared/atoms/Button";
+import cv from "@/svgs/cv.svg?raw";
 
 const entries = await getCollection("experiences");
 const experiences = entries.sort((a, b) => a.data.order - b.data.order);
@@ -58,7 +59,7 @@ const rendered = await Promise.all(
     }
   </div>
   <div class="cta">
-    <Button href="/MartinKinooCV.pdf" variant="tint" client:load>Voir mon CV</Button>
+    <Button href="/MartinKinooCV.pdf" variant="tint" icon={cv} client:load>Voir mon CV</Button>
   </div>
 </Section>
 

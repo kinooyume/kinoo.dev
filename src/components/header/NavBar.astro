@@ -59,7 +59,7 @@ const { items = defaultItems } = Astro.props;
     let hoverTimeout: number | null = null;
     let currentAnim: JSAnimation | null = null;
 
-    function moveIndicator(target: HTMLElement | null) {
+    function moveIndicator(target: HTMLElement | null, instant = false) {
       if (currentAnim) {
         currentAnim.pause();
         currentAnim = null;
@@ -81,6 +81,18 @@ const { items = defaultItems } = Astro.props;
         "--indicator-color",
         target.dataset.color || "var(--orange)",
       );
+
+      if (instant) {
+        indicator.style.left = `${rect.left - navRect.left}px`;
+        indicator.style.width = `${rect.width}px`;
+        currentAnim = animate(indicator, {
+          opacity: 1,
+          duration: 500,
+          ease: "outQuad",
+        });
+        return;
+      }
+
       currentAnim = animate(indicator, {
         left: rect.left - navRect.left,
         width: rect.width,
@@ -131,21 +143,25 @@ const { items = defaultItems } = Astro.props;
       },
     });
 
+    let firstCheck = true;
+
     function checkVisibility() {
       detect();
       const newActive = navbar.querySelector("a.current") as HTMLElement | null;
       if (newActive !== activeLink) {
         activeLink = newActive;
-        if (!isHovering) moveIndicator(activeLink);
+        if (!isHovering) moveIndicator(activeLink, firstCheck);
       }
+      firstCheck = false;
     }
 
     if (isOnPageRoute) {
-      moveIndicator(pageLink);
+      moveIndicator(pageLink, true);
     }
 
     function enable() {
       navbar.classList.add("enabled");
+      checkVisibility();
       onScrollAndResize(checkVisibility, "navbarDetection");
     }
 
