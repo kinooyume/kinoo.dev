@@ -1,4 +1,4 @@
-type AccentTokens = { color: string; tint: string; bright: string; bg: string };
+export type AccentTokens = { color: string; tint: string; bright: string; bg: string };
 
 export const defaultAccent: AccentTokens = {
   color: "var(--orange)",
