@@ -1,5 +1,6 @@
 ---
 import Sidebar from "@/components/sidebar/Sidebar.tsx";
+import DSWipNotice from "./DSWipNotice.astro";
 import { sidebarSections } from "./sections/index";
 
 interface Props {
@@ -13,9 +14,9 @@ const { title = "Design System", description } = Astro.props;
 <div class="ds-container">
   <main class="ds-main">
     <h1>{title}</h1>
+    <DSWipNotice>Work in progress. I'm adding components as I go, following patterns from what's already documented. Nothing here is set in stone yet.</DSWipNotice>
     {description && <p class="intro">{description}</p>}
     <slot name="intro" />
-    <p class="wip-notice">Work in progress.</p>
 
     <slot />
 
@@ -24,7 +25,7 @@ const { title = "Design System", description } = Astro.props;
     </footer>
   </main>
 
-  <Sidebar sections={sidebarSections} class="ds-sidebar-desktop" client:load />
+  <Sidebar sections={sidebarSections} showColorSwitcher class="ds-sidebar-desktop" client:load />
 </div>
 
 <style lang="scss" is:global>
@@ -119,17 +120,6 @@ const { title = "Design System", description } = Astro.props;
       padding: 1px 5px;
       border-radius: 3px;
     }
-  }
-
-  .wip-notice {
-    color: var(--accent-bright);
-    font-size: 14px;
-    font-style: italic;
-    margin-bottom: 64px;
-    padding: 12px 16px;
-    background-color: var(--orange-tint);
-    border-left: 3px solid var(--accent-bright);
-    border-radius: 4px;
   }
 
   @include desktop {
