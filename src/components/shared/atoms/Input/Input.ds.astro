@@ -5,6 +5,7 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import ChromaticPreview from "@/components/design-system/ChromaticPreview.astro";
 ---
 
 <section id="input">
@@ -26,20 +27,9 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   </DSBlock>
 
   <DSBlock title="Chromatic" subtitle="Focus adapts to --accent-color">
-    <DSPreview>
-      <div style="--accent-color: var(--orange);">
-        <InputComponent client:load placeholder="Orange focus" type="text" />
-      </div>
-      <div style="--accent-color: var(--purple);">
-        <InputComponent client:load placeholder="Purple focus" type="text" />
-      </div>
-      <div style="--accent-color: var(--green);">
-        <InputComponent client:load placeholder="Green focus" type="text" />
-      </div>
-      <div style="--accent-color: var(--pink);">
-        <InputComponent client:load placeholder="Pink focus" type="text" />
-      </div>
-    </DSPreview>
+    <ChromaticPreview>
+      <InputComponent client:load placeholder="Focus me" type="text" />
+    </ChromaticPreview>
   </DSBlock>
 
   <DSBlock title="Props">
