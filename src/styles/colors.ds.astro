@@ -1,6 +1,7 @@
 ---
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
+import DSColorSwatch from "@/components/design-system/DSColorSwatch.astro";
 
 type Color = { var: string; hex: string; border?: boolean };
 
@@ -14,18 +15,12 @@ const texts: Color[] = [
   { var: "--light-color", hex: "#f6f5f7" },
 ];
 
-const accents: Color[] = [
-  { var: "--accent-color", hex: "#f8ba88" },
-  { var: "--secondary-accent-color", hex: "#c9a88d" },
-  { var: "--accent-bright", hex: "#f6b17a" },
-  { var: "--accent-tint", hex: "var(--orange-tint)" },
-];
-
 type ColorScale = { name: string; label: string; shades: Color[] };
 
 const colorScales: ColorScale[] = [
   {
-    name: "orange", label: "Orange",
+    name: "orange",
+    label: "Orange",
     shades: [
       { var: "--orange-bg", hex: "rgba(248, 186, 136, 0.05)" },
       { var: "--orange-tint", hex: "rgba(248, 186, 136, 0.1)" },
@@ -39,7 +34,8 @@ const colorScales: ColorScale[] = [
     ],
   },
   {
-    name: "red", label: "Red",
+    name: "red",
+    label: "Red",
     shades: [
       { var: "--red-bg", hex: "rgba(234, 134, 134, 0.05)" },
       { var: "--red-tint", hex: "rgba(234, 134, 134, 0.1)" },
@@ -53,7 +49,8 @@ const colorScales: ColorScale[] = [
     ],
   },
   {
-    name: "green", label: "Green",
+    name: "green",
+    label: "Green",
     shades: [
       { var: "--green-bg", hex: "rgba(102, 195, 132, 0.05)" },
       { var: "--green-tint", hex: "rgba(102, 195, 132, 0.1)" },
@@ -67,7 +64,8 @@ const colorScales: ColorScale[] = [
     ],
   },
   {
-    name: "pink", label: "Pink",
+    name: "pink",
+    label: "Pink",
     shades: [
       { var: "--pink-bg", hex: "rgba(246, 141, 171, 0.05)" },
       { var: "--pink-tint", hex: "rgba(246, 141, 171, 0.1)" },
@@ -81,7 +79,8 @@ const colorScales: ColorScale[] = [
     ],
   },
   {
-    name: "purple", label: "Purple",
+    name: "purple",
+    label: "Purple",
     shades: [
       { var: "--purple-bg", hex: "rgba(156, 133, 211, 0.05)" },
       { var: "--purple-tint", hex: "rgba(156, 133, 211, 0.1)" },
@@ -95,7 +94,8 @@ const colorScales: ColorScale[] = [
     ],
   },
   {
-    name: "blue", label: "Blue",
+    name: "blue",
+    label: "Blue",
     shades: [
       { var: "--blue-bg", hex: "rgba(126, 184, 247, 0.05)" },
       { var: "--blue-tint", hex: "rgba(126, 184, 247, 0.1)" },
@@ -109,7 +109,8 @@ const colorScales: ColorScale[] = [
     ],
   },
   {
-    name: "cyan", label: "Cyan",
+    name: "cyan",
+    label: "Cyan",
     shades: [
       { var: "--cyan-bg", hex: "rgba(94, 207, 207, 0.05)" },
       { var: "--cyan-tint", hex: "rgba(94, 207, 207, 0.1)" },
@@ -132,7 +133,11 @@ const surfaces: Color[] = [
 
 const borders: Color[] = [
   { var: "--border-color", hex: "rgba(255, 255, 255, 0.1)", border: true },
-  { var: "--border-hover-color", hex: "rgba(255, 255, 255, 0.2)", border: true },
+  {
+    var: "--border-hover-color",
+    hex: "rgba(255, 255, 255, 0.2)",
+    border: true,
+  },
 ];
 ---
 
@@ -142,97 +147,59 @@ const borders: Color[] = [
 
   <DSBlock title="Background Colors">
     <div class="color-grid">
-      {backgrounds.map(c => (
-        <div class="color-swatch">
-          <div class="swatch" style={`background-color: var(${c.var});`} />
-          <div class="color-info">
-            <code>{c.var}</code>
-            <span>{c.hex}</span>
-          </div>
-        </div>
-      ))}
+      {backgrounds.map((c) => <DSColorSwatch var={c.var} hex={c.hex} />)}
     </div>
   </DSBlock>
 
   <DSBlock title="Surface Colors">
     <div class="color-grid">
-      {surfaces.map(c => (
-        <div class="color-swatch">
-          <div class="swatch" style={`background-color: var(${c.var});`} />
-          <div class="color-info">
-            <code>{c.var}</code>
-            <span>{c.hex}</span>
-          </div>
-        </div>
-      ))}
+      {surfaces.map((c) => <DSColorSwatch var={c.var} hex={c.hex} />)}
     </div>
   </DSBlock>
 
   <DSBlock title="Text Colors">
     <div class="color-grid">
-      {texts.map(c => (
-        <div class="color-swatch">
-          <div class="swatch" style={`background-color: var(${c.var});`} />
-          <div class="color-info">
-            <code>{c.var}</code>
-            <span>{c.hex}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </DSBlock>
-
-  <DSBlock title="Accent Colors">
-    <div class="color-grid">
-      {accents.map(c => (
-        <div class="color-swatch">
-          <div class="swatch" style={`background-color: var(${c.var});`} />
-          <div class="color-info">
-            <code>{c.var}</code>
-            <span>{c.hex}</span>
-          </div>
-        </div>
-      ))}
+      {texts.map((c) => <DSColorSwatch var={c.var} hex={c.hex} />)}
     </div>
   </DSBlock>
 
   <DSBlock title="Color Scales">
     <DSNote>
-      Each section uses a themed color palette. These override <code>--accent-color</code> and <code>--secondary-accent-color</code> at the section level.
+      Each section uses a themed color palette. These override <code
+        >--accent-color</code
+      > and <code>--secondary-accent-color</code> at the section level.
     </DSNote>
 
     <div class="scales">
-      {colorScales.map(scale => (
-        <div class="scale-col">
-          <span class="scale-label">{scale.label}</span>
-          {scale.shades.map(c => (
-            <div class="scale-row">
-              <div class="scale-chip" style={`background-color: var(${c.var});`} />
-              <code>{c.var}</code>
-            </div>
-          ))}
-        </div>
-      ))}
+      {
+        colorScales.map((scale) => (
+          <div class="scale-col">
+            <span class="scale-label">{scale.label}</span>
+            {scale.shades.map((c) => (
+              <div class="scale-row">
+                <div
+                  class="scale-chip"
+                  style={`background-color: var(${c.var});`}
+                />
+                <code>{c.var}</code>
+              </div>
+            ))}
+          </div>
+        ))
+      }
     </div>
   </DSBlock>
 
   <DSBlock title="Border Colors">
     <div class="color-grid">
-      {borders.map(c => (
-        <div class="color-swatch">
-          <div class={`swatch${c.border ? " swatch-border" : ""}`} style={`background-color: ${c.hex};`} />
-          <div class="color-info">
-            <code>{c.var}</code>
-            <span>{c.hex}</span>
-          </div>
-        </div>
-      ))}
+      {borders.map((c) => <DSColorSwatch var={c.var} hex={c.hex} border={c.border} />)}
     </div>
   </DSBlock>
 
   <DSBlock title="Usage">
     <DSNote>
-      Import variables from <code>@/styles/variables.css</code> or use CSS custom properties directly in your styles.
+      Import variables from <code>@/styles/variables.css</code> or use CSS custom
+      properties directly in your styles.
     </DSNote>
   </DSBlock>
 </section>
@@ -241,51 +208,9 @@ const borders: Color[] = [
   @use "@/styles/breakpoints" as *;
 
   .color-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-
-    @include mobile {
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    }
-  }
-
-  .color-swatch {
     display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .swatch {
-    height: 80px;
-    width: 100%;
-
-    &-border {
-      border: 1px dashed rgba(255, 255, 255, 0.3);
-      box-sizing: border-box;
-    }
-  }
-
-  .color-info {
-    padding: 12px;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-
-    code {
-      font-size: 13px;
-      color: var(--accent-bright);
-    }
-
-    span {
-      font-size: 12px;
-      color: var(--color);
-      opacity: 0.7;
-      font-family: monospace;
-    }
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .scales {

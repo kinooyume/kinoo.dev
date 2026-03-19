@@ -1,0 +1,43 @@
+---
+import ColorSwitcherComponent from "./ColorSwitcher";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="colorswitcher">
+  <DSSectionHeader title="ColorSwitcher" atomic="Atom" framework="solid" />
+  <p>Chromatic dropdown that switches <code>--accent-color</code> and all related tokens on <code>:root</code>.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div style="width: 220px;">
+        <ColorSwitcherComponent client:load />
+      </div>
+    </DSPreview>
+    <DSNote>
+      Selecting a color sets <code>--accent-color</code>, <code>--accent-bright</code>, <code>--accent-tint</code>, and <code>--secondary-accent-color</code> on <code>:root</code>.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Tokens Updated">
+    <DSPropsTable
+      headers={["Variable", "Maps To"]}
+      rows={[
+        [{ code: "--accent-color" }, { code: "--{color}" }],
+        [{ code: "--accent-bright" }, { code: "--{color}-dark" }],
+        [{ code: "--accent-tint" }, { code: "--{color}-tint" }],
+        [{ code: "--secondary-accent-color" }, { code: "--{color}-light" }],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{`import ColorSwitcher from "@/components/sidebar/ColorSwitcher";
+
+<ColorSwitcher client:load />`}</DSCode>
+  </DSBlock>
+</section>
