@@ -32,6 +32,11 @@ body {
   padding: 0;
 }
 
+::selection {
+  background-color: var(--accent-tint);
+  color: var(--accent-color);
+}
+
 *,
 ::before,
 ::after {
