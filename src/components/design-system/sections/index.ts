@@ -26,7 +26,6 @@ export const sidebarSections: SidebarSection[] = [
       { label: "IconButton", href: "#iconbutton", framework: "astro" },
       { label: "Tag", href: "#tag", framework: "astro" },
       { label: "TagRow", href: "#tagrow", framework: "astro" },
-      { label: "RevealText", href: "#revealtext", framework: "astro" },
     ],
   },
   {
@@ -108,6 +107,15 @@ export const sidebarSections: SidebarSection[] = [
     title: "Footer",
     items: [
       { label: "Footer", href: "#footer-doc", framework: "astro" },
+    ],
+  },
+  {
+    title: "Animations",
+    items: [
+      { label: "RevealText", href: "#revealtext", framework: "astro" },
+      { label: "Header Animation", href: "#header-animation" },
+      { label: "Section Reveal", href: "#section-reveal" },
+      { label: "Card Reveal", href: "#card-reveal" },
     ],
   },
   {

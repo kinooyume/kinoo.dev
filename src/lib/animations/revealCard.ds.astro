@@ -1,0 +1,135 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="card-reveal">
+  <DSSectionHeader title="Card Reveal" atomic="Foundation" framework="astro" />
+  <p>IntersectionObserver-based card entrance with scale and staggered children. Adapts to mobile.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div class="card-demo">
+        <div class="demo-card">
+          <span class="demo-elem">Title</span>
+          <span class="demo-elem">Description</span>
+          <span class="demo-elem">Tags</span>
+        </div>
+      </div>
+      <button class="ds-play-btn" data-play="card">Play</button>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Desktop Timeline">
+    <DSPropsTable
+      headers={["Step", "Target", "Properties", "Timing"]}
+      rows={[
+        ["1", "Card", "opacity 0→1, translateY 50→0, scale 0.8→1", "600ms elastic"],
+        ["2", "[data-animate-elem]", "opacity 0→1, translateX -20→0", "800ms stagger 200ms"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Mobile Timeline">
+    <DSPropsTable
+      headers={["Step", "Target", "Properties", "Timing"]}
+      rows={[
+        ["1", "Card", "opacity 0→1, translateY 20→0", "500ms cubic"],
+        ["2", "[data-animate-elem]", "opacity 0→1, translateY 10→0", "400ms stagger 80ms"],
+      ]}
+    />
+    <DSNote>
+      Mobile breakpoint: 900px. Cards in viewport on load are triggered immediately to handle tall elements that don't meet the 10% threshold.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{`import { revealCards } from "@/lib/animations/revealCard";
+
+const cleanup = revealCards();
+
+// Mark cards and their animated children:
+<div data-animate-card>
+  <h3 data-animate-elem>Title</h3>
+  <p data-animate-elem>Content</p>
+</div>`}</DSCode>
+  </DSBlock>
+</section>
+
+<script>
+  import { createTimeline, stagger } from "animejs";
+
+  document.querySelectorAll<HTMLButtonElement>("[data-play='card']").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const preview = btn.closest("[class*='preview']") ?? btn.parentElement;
+      if (!preview) return;
+      const card = preview.querySelector<HTMLElement>(".demo-card");
+      const elems = preview.querySelectorAll<HTMLElement>(".demo-elem");
+      if (!card) return;
+
+      card.style.opacity = "0";
+      card.style.transform = "translateY(50px) scale(0.8)";
+      elems.forEach((el) => { el.style.opacity = "0"; });
+
+      createTimeline()
+        .add(card, {
+          opacity: [0, 1],
+          translateY: [50, 0],
+          scale: [0.8, 1],
+          duration: 600,
+          ease: "outElastic(1, .5)",
+        })
+        .add(elems, {
+          opacity: [0, 1],
+          translateX: [-20, 0],
+          duration: 800,
+          delay: stagger(200),
+          ease: "outElastic(1, .5)",
+        });
+    });
+  });
+</script>
+
+<style lang="scss">
+  .card-demo {
+    width: 100%;
+  }
+
+  .demo-card {
+    padding: 24px;
+    background: var(--card-surface);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .demo-elem {
+    color: var(--light-color);
+    font-size: 14px;
+    padding: 8px 12px;
+    background: var(--card-surface-raised);
+    border-radius: 8px;
+  }
+
+  .ds-play-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--card-surface);
+    color: var(--light-color);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--card-surface-hover);
+      border-color: var(--border-hover-color);
+    }
+  }
+</style>
