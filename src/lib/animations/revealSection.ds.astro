@@ -1,0 +1,100 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="section-reveal">
+  <DSSectionHeader title="Section Reveal" atomic="Foundation" framework="astro" />
+  <p>IntersectionObserver-based fade-in for page sections. Fires a reveal event per section so child components can react.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div class="reveal-demo">
+        <div class="demo-section">Section content</div>
+      </div>
+      <button class="ds-play-btn" data-play="section">Play</button>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Behavior">
+    <DSPropsTable
+      headers={["Property", "Value"]}
+      rows={[
+        ["Trigger", "IntersectionObserver (10% threshold)"],
+        ["translateY", "20px → 0"],
+        ["opacity", "0 → 1"],
+        ["Duration", "600ms"],
+        ["Root margin (mobile)", "0px 0px 50px 0px"],
+        ["Root margin (desktop)", "0px 0px -100px 0px"],
+      ]}
+    />
+    <DSNote>
+      Each revealed section emits <code>reveal:section:{'{id}'}</code> via the event bus, letting child components (RevealText, tags) animate in response.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{`import { revealSections } from "@/lib/animations/revealSection";
+
+const cleanup = revealSections();
+
+// Mark sections in markup:
+<section id="experiences" data-animate-section>...</section>`}</DSCode>
+  </DSBlock>
+</section>
+
+<script>
+  import { animate } from "animejs";
+
+  document.querySelectorAll<HTMLButtonElement>("[data-play='section']").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const preview = btn.closest("[class*='preview']") ?? btn.parentElement;
+      if (!preview) return;
+      const section = preview.querySelector<HTMLElement>(".demo-section");
+      if (!section) return;
+      section.style.opacity = "0";
+      section.style.transform = "translateY(20px)";
+      animate(section, {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 600,
+      });
+    });
+  });
+</script>
+
+<style lang="scss">
+  .reveal-demo {
+    width: 100%;
+  }
+
+  .demo-section {
+    padding: 32px;
+    background: var(--card-surface);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    color: var(--light-color);
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .ds-play-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--card-surface);
+    color: var(--light-color);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--card-surface-hover);
+      border-color: var(--border-hover-color);
+    }
+  }
+</style>

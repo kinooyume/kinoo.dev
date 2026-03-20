@@ -1,0 +1,107 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+
+const breakpoints = [
+  { name: "mobile", max: "600px", label: "Mobile" },
+  { name: "tablet", max: "900px", label: "Tablet" },
+  { name: "desktop", max: "1100px", label: "Desktop" },
+  { name: "wide", max: "1200px", label: "Wide" },
+  { name: "ultrawide", max: "1368px", label: "Ultrawide" },
+];
+---
+
+<section id="breakpoints">
+  <h2>Breakpoints</h2>
+  <p>SCSS mixins from <code>_breakpoints.scss</code>. All mobile-first, triggered at max-width.</p>
+
+  <DSBlock title="Scale">
+    <div class="bp-visual">
+      {breakpoints.map((bp) => (
+        <div class="bp-bar-row">
+          <div class="bp-bar" style={`width: calc(${bp.max} / 1368 * 100%);`}>
+            <span class="bp-label">{bp.label}</span>
+          </div>
+          <code class="bp-value">{bp.max}</code>
+        </div>
+      ))}
+    </div>
+  </DSBlock>
+
+  <DSBlock title="Mixins">
+    <DSPropsTable
+      headers={["Mixin", "Max Width", "Typical Use"]}
+      rows={[
+        [{ code: "@include mobile" }, "600px", "Single column, compact spacing"],
+        [{ code: "@include tablet" }, "900px", "Stacked layouts, smaller typography"],
+        [{ code: "@include desktop" }, "1100px", "Sidebar collapse, grid adjustments"],
+        [{ code: "@include wide" }, "1200px", "Minor width tweaks"],
+        [{ code: "@include ultrawide" }, "1368px", "Max content width boundary"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{`@use "@/styles/breakpoints" as *;
+
+.component {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+
+  @include mobile {
+    padding: 16px;
+  }
+}`}</DSCode>
+    <DSNote>
+      Import with <code>@use "@/styles/breakpoints" as *</code> to use mixins without a namespace prefix.
+    </DSNote>
+  </DSBlock>
+</section>
+
+<style lang="scss">
+  .bp-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .bp-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bp-bar {
+    height: 28px;
+    background-color: var(--accent-tint);
+    border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    min-width: 80px;
+  }
+
+  .bp-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-color);
+    white-space: nowrap;
+  }
+
+  .bp-value {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+</style>

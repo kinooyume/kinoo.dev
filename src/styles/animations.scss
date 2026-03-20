@@ -27,3 +27,81 @@
   display: inline-block;
   transform: translateY(1.1em);
 }
+
+// Initial hidden states for animations (only when not yet played)
+body:not([data-animations-done]) {
+  .header .title-wrapper,
+  .header-menu {
+    opacity: 0;
+  }
+
+  .navbar {
+    pointer-events: none;
+  }
+
+  .navbar li {
+    opacity: 0;
+  }
+
+  [data-animate-section]:not(#hero) {
+    opacity: 0;
+  }
+
+  &.hero-animation main > *:not(#hero) {
+    display: none;
+  }
+}
+
+// Final states when animations have already played
+body[data-animations-done] {
+  .header .title-wrapper,
+  .header-menu,
+  .navbar li {
+    opacity: 1;
+    transform: none;
+  }
+
+  .navbar {
+    pointer-events: auto;
+  }
+
+  [data-animate-section] {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-animate-card] {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-animate-card] [data-animate-elem] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-letter {
+    transform: none;
+  }
+
+  [data-reveal-text="slide"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  h1 span,
+  .subtitle,
+  .hero-image {
+    opacity: 1;
+  }
+
+  #hero .description > *,
+  .tag-animated {
+    opacity: 1;
+    transform: none;
+  }
+
+  .text-wrapper .letter {
+    transform: none;
+  }
+}

@@ -1,0 +1,22 @@
+---
+import DSBlock from "./DSBlock.astro";
+import DSPreview from "./DSPreview.astro";
+import DSCode from "./DSCode.astro";
+import DSSectionHeader from "./DSSectionHeader.astro";
+import WipNotice from "./DSWipNotice.astro";
+---
+
+<section id="ds-wip-notice">
+  <DSSectionHeader title="DSWipNotice" atomic="Atom" framework="astro" />
+  <p>Notice for flagging incomplete or evolving sections.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <WipNotice>Something is cooking.</WipNotice>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;DSWipNotice&gt;Notice text&lt;/DSWipNotice&gt;</DSCode>
+  </DSBlock>
+</section>

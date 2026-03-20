@@ -3,6 +3,7 @@ import Header from "@/components/header/Header.astro";
 import Footer from "@/components/footer/Footer.astro";
 import MobileDrawer from "@/components/shared/organisms/MobileDrawer.astro";
 import MobileSidebar from "@/components/header/MobileSidebar.astro";
+import { ClientRouter } from "astro:transitions";
 import "@/styles/variables.scss";
 import "@/styles/global.scss";
 import "@/styles/animations.scss";
@@ -85,6 +86,7 @@ const {
       set:html={JSON.stringify(jsonLd)}
     />
 
+    <ClientRouter />
     <slot name="head" />
   </head>
   <body>
@@ -93,8 +95,10 @@ const {
       <slot name="header-nav" slot="nav" />
       <slot name="header-menu" />
     </Header>
-    <slot />
-    <Footer />
+    <div class="page-content">
+      <slot />
+      <Footer />
+    </div>
 
     <div class="mobile-menu-drawer">
       <MobileDrawer id="mobile-menu" triggerId="mobile-menu-trigger">
@@ -105,6 +109,32 @@ const {
     </div>
   </body>
 </html>
+
+<script>
+  import { hasPlayed } from "@/lib/animations/sessionTracker";
+  import { reset as resetEmitter } from "@/lib/emitter";
+  import type { TransitionBeforeSwapEvent } from "astro:transitions/client";
+
+  document.addEventListener("astro:before-swap", (e) => {
+    resetEmitter();
+    document.body.style.overflow = "";
+    const ev = e as TransitionBeforeSwapEvent;
+    if (hasPlayed("hero")) {
+      ev.newDocument.body.dataset.animationsDone = "";
+    }
+    ev.newDocument.documentElement.style.scrollBehavior = "auto";
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    if (location.hash) {
+      const target = document.querySelector(location.hash);
+      if (target) target.scrollIntoView();
+    }
+    requestAnimationFrame(() => {
+      document.documentElement.style.scrollBehavior = "";
+    });
+  });
+</script>
 
 <style lang="scss" is:global>
   @use "@/styles/breakpoints" as *;
@@ -133,4 +163,35 @@ const {
       display: block;
     }
   }
+
+  @keyframes vt-fade-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(1.03); }
+  }
+
+  @keyframes vt-zoom-in {
+    from { opacity: 0; transform: scale(0.96); }
+    40% { opacity: 1; }
+    75% { transform: scale(1.002); }
+    90% { transform: scale(0.999); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  ::view-transition-old(root) {
+    animation: vt-fade-out 180ms ease-in both;
+  }
+
+  ::view-transition-new(root) {
+    animation: vt-zoom-in 400ms cubic-bezier(0.22, 1.3, 0.36, 1) both;
+  }
+
+  ::view-transition-group(root) {
+    animation-duration: 400ms;
+  }
+
+
+  .page-content {
+    padding-top: var(--header-height, 120px);
+  }
+
 </style>

@@ -14,6 +14,8 @@ export const sidebarSections: SidebarSection[] = [
       { label: "Colors", href: "#colors" },
       { label: "Typography", href: "#typography" },
       { label: "Spacing", href: "#spacing" },
+      { label: "Borders", href: "#borders" },
+      { label: "Breakpoints", href: "#breakpoints" },
     ],
   },
   {
@@ -24,7 +26,6 @@ export const sidebarSections: SidebarSection[] = [
       { label: "IconButton", href: "#iconbutton", framework: "astro" },
       { label: "Tag", href: "#tag", framework: "astro" },
       { label: "TagRow", href: "#tagrow", framework: "astro" },
-      { label: "RevealText", href: "#revealtext", framework: "astro" },
     ],
   },
   {
@@ -58,6 +59,7 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "Header", href: "#header", framework: "astro" },
       { label: "HeaderMenu", href: "#headermenu", framework: "astro" },
+      { label: "HeaderLink", href: "#headerlink", framework: "astro" },
       { label: "NavBar", href: "#navbar", framework: "astro" },
     ],
   },
@@ -66,6 +68,7 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "BurgerIcon", href: "#burgericon", framework: "astro" },
       { label: "Sidebar", href: "#sidebar", framework: "solid" },
+      { label: "ColorSwitcher", href: "#colorswitcher", framework: "solid" },
     ],
   },
   {
@@ -96,6 +99,7 @@ export const sidebarSections: SidebarSection[] = [
     title: "Articles",
     items: [
       { label: "Prose", href: "#prose" },
+      { label: "Diagram", href: "#diagram", framework: "astro" },
       { label: "ArticleCard", href: "#articlecard", framework: "astro" },
     ],
   },
@@ -103,6 +107,15 @@ export const sidebarSections: SidebarSection[] = [
     title: "Footer",
     items: [
       { label: "Footer", href: "#footer-doc", framework: "astro" },
+    ],
+  },
+  {
+    title: "Animations",
+    items: [
+      { label: "RevealText", href: "#revealtext", framework: "astro" },
+      { label: "Header Animation", href: "#header-animation" },
+      { label: "Section Reveal", href: "#section-reveal" },
+      { label: "Card Reveal", href: "#card-reveal" },
     ],
   },
   {
@@ -121,6 +134,9 @@ export const sidebarSections: SidebarSection[] = [
       { label: "DSPropsTable", href: "#ds-propstable", framework: "astro" },
       { label: "DSStructure", href: "#ds-structure", framework: "astro" },
       { label: "DSNote", href: "#ds-note", framework: "astro" },
+      { label: "DSWipNotice", href: "#ds-wip-notice", framework: "astro" },
+      { label: "ChromaticPreview", href: "#ds-chromatic-preview", framework: "astro" },
+      { label: "DSColorSwatch", href: "#ds-color-swatch", framework: "astro" },
     ],
   },
 ];

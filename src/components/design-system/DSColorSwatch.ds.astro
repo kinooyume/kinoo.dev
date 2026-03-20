@@ -1,0 +1,36 @@
+---
+import DSBlock from "./DSBlock.astro";
+import DSPreview from "./DSPreview.astro";
+import DSCode from "./DSCode.astro";
+import DSPropsTable from "./DSPropsTable.astro";
+import DSSectionHeader from "./DSSectionHeader.astro";
+import ColorSwatch from "./DSColorSwatch.astro";
+---
+
+<section id="ds-color-swatch">
+  <DSSectionHeader title="DSColorSwatch" atomic="Atom" framework="astro" />
+  <p>Compact swatch with color block on the left, variable name and hex on the right.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <ColorSwatch var="--orange" hex="#f8ba88" />
+      <ColorSwatch var="--purple" hex="#9c85d3" />
+      <ColorSwatch var="--border-color" hex="rgba(255, 255, 255, 0.1)" border />
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "var" }, "string", "required", "CSS variable name"],
+        [{ code: "hex" }, "string", "required", "Display value (hex or rgba)"],
+        [{ code: "border" }, "boolean", "false", "Dashed border style for semi-transparent colors"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;DSColorSwatch var="--orange" hex="#f8ba88" /&gt;</DSCode>
+  </DSBlock>
+</section>

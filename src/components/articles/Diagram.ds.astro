@@ -1,0 +1,101 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import DiagramComponent from "./Diagram.astro";
+---
+
+<section id="diagram">
+  <DSSectionHeader title="Diagram" atomic="Molecule" framework="astro" />
+  <p>Colored inline diagrams for articles. Stacked rows or arrow layout, importable in MDX.</p>
+
+  <DSBlock title="Stack">
+    <DSPreview>
+      <DiagramComponent
+        rows={[
+          { label: "Presentation", color: "purple" },
+          { label: "Logic", color: "blue" },
+          { label: "Data", color: "green" },
+        ]}
+      />
+    </DSPreview>
+    <DSCode inline>{`<Diagram rows={[{ label, color }]} />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Stack with badges">
+    <DSPreview>
+      <DiagramComponent
+        rows={[
+          { label: "TypeScript", badge: "strict", color: "blue" },
+          { label: "CSS Modules", badge: "scoped", color: "purple" },
+          { label: "HTML", badge: "static", color: "green" },
+        ]}
+        caption="Build output per layer"
+      />
+    </DSPreview>
+    <DSCode inline>{`<Diagram rows={[{ label, badge?, color }]} caption? />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Stack with detail">
+    <DSPreview>
+      <DiagramComponent
+        rows={[
+          { label: "Server-rendered", badge: "SSR", detail: "(fast)", color: "green" },
+          { label: "Client-hydrated", badge: "island", detail: "(deferred)", color: "orange" },
+          { label: "Static", badge: "HTML", detail: "(zero JS)", color: "cyan" },
+        ]}
+      />
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Arrow">
+    <DSPreview>
+      <DiagramComponent
+        arrow={{
+          from: { label: "Source", detail: "emits event", color: "orange" },
+          to: { label: "Target", detail: "reacts", color: "purple" },
+          label: "event",
+        }}
+      />
+    </DSPreview>
+    <DSCode inline>{`<Diagram arrow={{ from: { label, detail?, color }, to: { ... }, label? }} />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Colors">
+    <DSPreview>
+      <DiagramComponent
+        rows={[
+          { label: "purple", color: "purple" },
+          { label: "orange", color: "orange" },
+          { label: "red", color: "red" },
+          { label: "green", color: "green" },
+          { label: "blue", color: "blue" },
+          { label: "cyan", color: "cyan" },
+          { label: "pink", color: "pink" },
+        ]}
+      />
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["rows", { code: "DiagramRow[]" }, "Stacked row layout"],
+        ["arrow", { code: "DiagramArrow" }, "Two-box arrow layout"],
+        ["caption", { code: "string" }, "Centered caption below"],
+      ]}
+    />
+    <DSPropsTable
+      headers={["DiagramRow", "Type", ""]}
+      rows={[
+        ["label", { code: "string" }, "Main text"],
+        ["badge", { code: "string" }, "Colored pill on the right"],
+        ["detail", { code: "string" }, "Muted text next to badge"],
+        ["color", { code: "Color" }, "purple, orange, red, green, pink, blue, cyan"],
+      ]}
+    />
+  </DSBlock>
+</section>

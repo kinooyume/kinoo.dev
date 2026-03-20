@@ -1,0 +1,114 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="header-animation">
+  <DSSectionHeader title="Header Animation" atomic="Foundation" framework="astro" />
+  <p>Staggered entrance for header elements. Title, nav items, and menu slide up with elastic easing.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div class="header-demo">
+        <span class="demo-title">kinoo.dev</span>
+        <span class="demo-nav">Expériences</span>
+        <span class="demo-nav">Formations</span>
+        <span class="demo-nav">Réalisations</span>
+        <span class="demo-menu">Discutons ensemble</span>
+      </div>
+      <button class="ds-play-btn" data-play="header">Play</button>
+    </DSPreview>
+  </DSBlock>
+
+  <DSBlock title="Timeline">
+    <DSPropsTable
+      headers={["Target", "Property", "Value", "Timing"]}
+      rows={[
+        [".title-wrapper", "translateY", "-1.2em → 0", "delay: 0"],
+        [".navbar li", "translateY", "-1.2em → 0", "stagger: 30ms"],
+        [".header-menu", "opacity", "0 → 1", "with translateY"],
+      ]}
+    />
+    <DSNote>
+      Easing: <code>outElastic(1, .5)</code> · Duration: 800ms · Triggered after hero or immediately on non-hero pages.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode>{`import { animateHeader } from "@/lib/animations/headerAnime";
+
+animateHeader();
+animateHeader({ delay: 300 });`}</DSCode>
+  </DSBlock>
+</section>
+
+<script>
+  import { animate } from "animejs";
+
+  document.querySelectorAll<HTMLButtonElement>("[data-play='header']").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const preview = btn.closest("[class*='preview']") ?? btn.parentElement;
+      if (!preview) return;
+      const els = preview.querySelectorAll<HTMLElement>(".demo-title, .demo-nav, .demo-menu");
+      els.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(-1.2em)";
+      });
+      animate(els, {
+        translateY: ["-1.2em", 0],
+        opacity: [0, 1],
+        duration: 800,
+        delay: (_el, i) => 30 * i,
+        ease: "outElastic(1, .5)",
+      });
+    });
+  });
+</script>
+
+<style lang="scss">
+  .header-demo {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 0;
+  }
+
+  .demo-title {
+    font-size: 18px;
+    font-weight: 100;
+    color: var(--light-color);
+  }
+
+  .demo-nav {
+    font-size: 14px;
+    color: var(--color);
+    opacity: 0.8;
+  }
+
+  .demo-menu {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent-color);
+    margin-left: auto;
+  }
+
+  .ds-play-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--card-surface);
+    color: var(--light-color);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--card-surface-hover);
+      border-color: var(--border-hover-color);
+    }
+  }
+</style>

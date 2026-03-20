@@ -1,0 +1,240 @@
+---
+export type DiagramRow = {
+  label: string;
+  detail?: string;
+  badge?: string;
+  color: "purple" | "orange" | "red" | "green" | "pink" | "blue" | "cyan";
+};
+
+export type DiagramArrow = {
+  from: { label: string; detail?: string; color: "purple" | "orange" | "red" | "green" | "pink" | "blue" | "cyan" };
+  to: { label: string; detail?: string; color: "purple" | "orange" | "red" | "green" | "pink" | "blue" | "cyan" };
+  label?: string;
+};
+
+interface Props {
+  rows?: DiagramRow[];
+  arrow?: DiagramArrow;
+  caption?: string;
+}
+
+const { rows, arrow, caption } = Astro.props;
+---
+
+<figure class="diagram">
+  {rows && (
+    <div class="diagram-stack">
+      {rows.map((row) => (
+        <div class={`diagram-row color-${row.color}`}>
+          <span class="diagram-label">{row.label}</span>
+          <span class="diagram-right">
+            {row.detail && <span class="diagram-detail">{row.detail}</span>}
+            {row.badge && <span class={`diagram-badge color-${row.color}`}>{row.badge}</span>}
+          </span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {arrow && (
+    <div class="diagram-arrow">
+      <div class={`diagram-arrow-box color-${arrow.from.color}`}>
+        <span class="diagram-arrow-label">{arrow.from.label}</span>
+        {arrow.from.detail && <span class="diagram-arrow-detail">{arrow.from.detail}</span>}
+      </div>
+      <div class="diagram-arrow-middle">
+        {arrow.label && <span class="diagram-arrow-text">{arrow.label}</span>}
+        <span class="diagram-arrow-icon">&rarr;</span>
+      </div>
+      <div class={`diagram-arrow-box color-${arrow.to.color}`}>
+        <span class="diagram-arrow-label">{arrow.to.label}</span>
+        {arrow.to.detail && <span class="diagram-arrow-detail">{arrow.to.detail}</span>}
+      </div>
+    </div>
+  )}
+
+  {caption && <figcaption class="diagram-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .diagram {
+    margin: 1.5em 0;
+  }
+
+  .diagram-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .diagram-row {
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .diagram-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .diagram-label {
+    font-weight: 500;
+  }
+
+  .diagram-detail {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .diagram-badge {
+    font-size: var(--font-size-2xs);
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .diagram-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .diagram-arrow-box {
+    padding: 12px 16px;
+    text-align: center;
+  }
+
+  .diagram-arrow-box:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  .diagram-arrow-box:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+
+  .diagram-arrow-label {
+    display: block;
+    font-weight: 600;
+  }
+
+  .diagram-arrow-detail {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: 2px;
+  }
+
+  .diagram-arrow-middle {
+    background: var(--card-surface);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .diagram-arrow-text {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .diagram-arrow-icon {
+    color: var(--accent-color);
+    font-size: 1.2em;
+  }
+
+  .diagram-caption {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: 6px;
+  }
+
+  /* Color variants */
+  .diagram-row.color-purple {
+    background: var(--purple-tint);
+    border: 1px solid var(--purple-border);
+    color: var(--purple-light);
+  }
+  .diagram-row.color-orange {
+    background: var(--orange-tint);
+    border: 1px solid var(--orange-border);
+    color: var(--orange-light);
+  }
+  .diagram-row.color-red {
+    background: var(--red-tint);
+    border: 1px solid var(--red-border);
+    color: var(--red-light);
+  }
+  .diagram-row.color-green {
+    background: var(--green-tint);
+    border: 1px solid var(--green-border);
+    color: var(--green-light);
+  }
+  .diagram-row.color-pink {
+    background: var(--pink-tint);
+    border: 1px solid var(--pink-border);
+    color: var(--pink-light);
+  }
+  .diagram-row.color-blue {
+    background: var(--blue-tint);
+    border: 1px solid var(--blue-border);
+    color: var(--blue-light);
+  }
+  .diagram-row.color-cyan {
+    background: var(--cyan-tint);
+    border: 1px solid var(--cyan-border);
+    color: var(--cyan-light);
+  }
+
+  .diagram-badge.color-purple { background: var(--purple); color: var(--background-color); }
+  .diagram-badge.color-orange { background: var(--orange); color: var(--background-color); }
+  .diagram-badge.color-red { background: var(--red); color: var(--background-color); }
+  .diagram-badge.color-green { background: var(--green); color: var(--background-color); }
+  .diagram-badge.color-pink { background: var(--pink); color: var(--background-color); }
+  .diagram-badge.color-blue { background: var(--blue); color: var(--background-color); }
+  .diagram-badge.color-cyan { background: var(--cyan); color: var(--background-color); }
+
+  .diagram-arrow-box.color-purple {
+    background: var(--purple-tint);
+    border: 1px solid var(--purple-border);
+    color: var(--purple-light);
+  }
+  .diagram-arrow-box.color-orange {
+    background: var(--orange-tint);
+    border: 1px solid var(--orange-border);
+    color: var(--orange-light);
+  }
+  .diagram-arrow-box.color-red {
+    background: var(--red-tint);
+    border: 1px solid var(--red-border);
+    color: var(--red-light);
+  }
+  .diagram-arrow-box.color-green {
+    background: var(--green-tint);
+    border: 1px solid var(--green-border);
+    color: var(--green-light);
+  }
+  .diagram-arrow-box.color-pink {
+    background: var(--pink-tint);
+    border: 1px solid var(--pink-border);
+    color: var(--pink-light);
+  }
+  .diagram-arrow-box.color-blue {
+    background: var(--blue-tint);
+    border: 1px solid var(--blue-border);
+    color: var(--blue-light);
+  }
+  .diagram-arrow-box.color-cyan {
+    background: var(--cyan-tint);
+    border: 1px solid var(--cyan-border);
+    color: var(--cyan-light);
+  }
+</style>

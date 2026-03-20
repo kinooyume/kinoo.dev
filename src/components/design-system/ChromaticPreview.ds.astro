@@ -1,0 +1,28 @@
+---
+import DSBlock from "./DSBlock.astro";
+import DSCode from "./DSCode.astro";
+import DSNote from "./DSNote.astro";
+import DSSectionHeader from "./DSSectionHeader.astro";
+import Preview from "./ChromaticPreview.astro";
+import Tag from "@/components/shared/atoms/Tag.astro";
+---
+
+<section id="ds-chromatic-preview">
+  <DSSectionHeader title="ChromaticPreview" atomic="Atom" framework="astro" />
+  <p>Preview container with a color dot bar. Switches <code>--accent-color</code> on its content.</p>
+
+  <DSBlock title="Preview">
+    <Preview>
+      <Tag title="React" />
+      <Tag title="TypeScript" />
+      <Tag title="Astro" />
+    </Preview>
+  </DSBlock>
+
+  <DSBlock title="Usage">
+    <DSCode inline>&lt;ChromaticPreview&gt;...chromatic content...&lt;/ChromaticPreview&gt;</DSCode>
+    <DSNote>
+      Replaces repeated color-wrapper divs in DS docs. One component, one dot bar, all colors.
+    </DSNote>
+  </DSBlock>
+</section>

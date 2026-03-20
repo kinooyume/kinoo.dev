@@ -1,0 +1,64 @@
+---
+interface Props {
+  var: string;
+  hex: string;
+  border?: boolean;
+}
+
+const { var: varName, hex, border = false } = Astro.props;
+---
+
+<div class="ds-color-swatch">
+  <div
+    class:list={["swatch", { "swatch-border": border }]}
+    style={border ? `background-color: ${hex};` : `background-color: var(${varName});`}
+  />
+  <div class="color-info">
+    <code>{varName}</code>
+    <span>{hex}</span>
+  </div>
+</div>
+
+<style lang="scss">
+  .ds-color-swatch {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex: 0 0 auto;
+
+    .swatch {
+      width: 48px;
+      flex-shrink: 0;
+
+      &-border {
+        border: 1px dashed rgba(255, 255, 255, 0.3);
+        box-sizing: border-box;
+      }
+    }
+
+    .color-info {
+      padding: 8px 12px;
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      white-space: nowrap;
+
+      code {
+        font-size: 13px;
+        color: var(--accent-bright);
+      }
+
+      span {
+        font-size: 11px;
+        color: var(--color);
+        opacity: 0.7;
+        font-family: monospace;
+      }
+    }
+  }
+</style>

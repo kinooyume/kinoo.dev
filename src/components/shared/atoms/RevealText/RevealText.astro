@@ -23,36 +23,53 @@ const letters =
   import { animate, stagger } from "animejs";
   import { on } from "@/lib/emitter";
 
-  document
-    .querySelectorAll<HTMLElement>("[data-reveal-trigger]")
-    .forEach((el) => {
-      const trigger = el.dataset.revealTrigger;
-      if (!trigger) return;
-      const siblings = document.querySelectorAll(
-        `[data-reveal-trigger="${trigger}"]`,
-      );
-      const index = Array.from(siblings).indexOf(el);
-      const type = el.dataset.revealText;
+  const isRevisit = () => document.body.hasAttribute("data-animations-done");
 
-      on(trigger, () => {
-        if (type === "wave") {
-          const letters = el.querySelectorAll(".reveal-letter");
-          if (!letters.length) return;
-          animate(letters, {
-            translateY: ["1.1em", 0],
-            duration: 750,
-            delay: stagger(30, { start: 200 + index * 150 }),
-            ease: "outElastic(1, .5)",
-          });
-        } else {
-          animate(el, {
-            opacity: [0, 1],
-            translateX: [30, 0],
-            duration: 600,
-            delay: 250,
-            ease: "outElastic(1, .5)",
-          });
-        }
+  function initRevealText() {
+    document
+      .querySelectorAll<HTMLElement>("[data-reveal-trigger]")
+      .forEach((el) => {
+        const trigger = el.dataset.revealTrigger;
+        if (!trigger) return;
+        const siblings = document.querySelectorAll(
+          `[data-reveal-trigger="${trigger}"]`,
+        );
+        const index = Array.from(siblings).indexOf(el);
+        const type = el.dataset.revealText;
+
+        on(trigger, () => {
+          if (isRevisit()) {
+            if (type === "wave") {
+              el.querySelectorAll<HTMLElement>(".reveal-letter").forEach((l) => { l.style.transform = "none"; });
+            } else {
+              el.style.opacity = "1";
+              el.style.transform = "none";
+            }
+            return;
+          }
+
+          if (type === "wave") {
+            const letters = el.querySelectorAll(".reveal-letter");
+            if (!letters.length) return;
+            animate(letters, {
+              translateY: ["1.1em", 0],
+              duration: 750,
+              delay: stagger(30, { start: 200 + index * 150 }),
+              ease: "outElastic(1, .5)",
+            });
+          } else {
+            animate(el, {
+              opacity: [0, 1],
+              translateX: [30, 0],
+              duration: 600,
+              delay: 250,
+              ease: "outElastic(1, .5)",
+            });
+          }
+        });
       });
-    });
+  }
+
+  document.addEventListener("astro:page-load", initRevealText);
+  initRevealText();
 </script>

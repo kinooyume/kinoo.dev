@@ -14,6 +14,7 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
 <aside
   class:list={["mobile-drawer-panel", className]}
   id={`${id}-panel`}
+  data-drawer-trigger={triggerId}
   style={`--drawer-width: ${width};`}
   aria-label="Menu de navigation"
   aria-hidden="true"
@@ -21,45 +22,53 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
   <slot />
 </aside>
 
-<script define:vars={{ id, triggerId }}>
-  function initMobileDrawer() {
-    const trigger = document.getElementById(triggerId);
-    const backdrop = document.getElementById(`${id}-backdrop`);
-    const panel = document.getElementById(`${id}-panel`);
+<script>
+  function initDrawers() {
+    document.querySelectorAll<HTMLElement>("[data-drawer-trigger]").forEach((panel) => {
+      if (panel.dataset.drawerBound) return;
+      panel.dataset.drawerBound = "true";
 
-    function toggle() {
-      const isOpen = panel?.classList.toggle("open");
-      trigger?.classList.toggle("open", isOpen);
-      backdrop?.classList.toggle("open", isOpen);
-      document.body.style.overflow = isOpen ? "hidden" : "";
-      panel?.setAttribute("aria-hidden", String(!isOpen));
-      trigger?.setAttribute("aria-expanded", String(!!isOpen));
-    }
+      const triggerId = panel.dataset.drawerTrigger;
+      if (!triggerId) return;
+      const id = panel.id.replace("-panel", "");
+      const trigger = document.getElementById(triggerId);
+      const backdrop = document.getElementById(`${id}-backdrop`);
 
-    function close() {
-      panel?.classList.remove("open");
-      trigger?.classList.remove("open");
-      backdrop?.classList.remove("open");
-      document.body.style.overflow = "";
-      panel?.setAttribute("aria-hidden", "true");
-      trigger?.setAttribute("aria-expanded", "false");
-    }
-
-    trigger?.addEventListener("click", toggle);
-    backdrop?.addEventListener("click", close);
-
-    panel?.querySelectorAll("a, [data-close-drawer]").forEach((el) => {
-      el.addEventListener("click", close);
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && panel?.classList.contains("open")) {
-        close();
+      function toggle() {
+        const isOpen = panel.classList.toggle("open");
+        trigger?.classList.toggle("open", isOpen);
+        backdrop?.classList.toggle("open", isOpen);
+        document.body.style.overflow = isOpen ? "hidden" : "";
+        panel.setAttribute("aria-hidden", String(!isOpen));
+        trigger?.setAttribute("aria-expanded", String(!!isOpen));
       }
+
+      function close() {
+        panel.classList.remove("open");
+        trigger?.classList.remove("open");
+        backdrop?.classList.remove("open");
+        document.body.style.overflow = "";
+        panel.setAttribute("aria-hidden", "true");
+        trigger?.setAttribute("aria-expanded", "false");
+      }
+
+      trigger?.addEventListener("click", toggle);
+      backdrop?.addEventListener("click", close);
+
+      panel.querySelectorAll("a, [data-close-drawer]").forEach((el) => {
+        el.addEventListener("click", close);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && panel.classList.contains("open")) {
+          close();
+        }
+      });
     });
   }
 
-  initMobileDrawer();
+  document.addEventListener("astro:page-load", initDrawers);
+  initDrawers();
 </script>
 
 <style lang="scss">

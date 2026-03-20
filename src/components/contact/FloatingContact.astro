@@ -34,7 +34,8 @@ import message from "@/svgs/message.svg?raw";
     onScrollAndResize(checkVisibility);
   }
 
-  window.addEventListener("load", hideContactWhenSectionVisible);
+  document.addEventListener("astro:page-load", hideContactWhenSectionVisible);
+  hideContactWhenSectionVisible();
 </script>
 
 <style lang="scss" is:global>

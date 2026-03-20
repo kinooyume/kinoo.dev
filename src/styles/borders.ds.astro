@@ -1,0 +1,200 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+---
+
+<section id="borders">
+  <h2>Borders</h2>
+  <p>Border tokens and radius conventions.</p>
+
+  <DSBlock title="Border Colors">
+    <div class="border-grid">
+      <div class="border-sample">
+        <div class="border-box" style="border-color: var(--border-color);"></div>
+        <div class="border-info">
+          <code>--border-color</code>
+          <span>rgba(255, 255, 255, 0.1)</span>
+        </div>
+      </div>
+      <div class="border-sample">
+        <div class="border-box" style="border-color: var(--border-hover-color);"></div>
+        <div class="border-info">
+          <code>--border-hover-color</code>
+          <span>rgba(255, 255, 255, 0.2)</span>
+        </div>
+      </div>
+      <div class="border-sample chromatic">
+        <div class="border-box" style="border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);"></div>
+        <div class="border-info">
+          <code>accent-color 35%</code>
+          <span>Focus state borders</span>
+        </div>
+      </div>
+    </div>
+  </DSBlock>
+
+  <DSBlock title="Accent Border Scales">
+    <DSNote>
+      Each color scale includes a <code>--{'{color}'}-border</code> token at 35% opacity, used for chromatic borders.
+    </DSNote>
+    <div class="accent-borders">
+      {["orange", "red", "green", "pink", "purple", "blue", "cyan"].map((c) => (
+        <div class="accent-border-item">
+          <div class="accent-border-box" style={`border-color: var(--${c}-border);`}></div>
+          <code>--{c}-border</code>
+        </div>
+      ))}
+    </div>
+  </DSBlock>
+
+  <DSBlock title="Radius Scale">
+    <div class="radius-grid">
+      {[
+        { px: "3px", usage: "Chips, scale indicators" },
+        { px: "4px", usage: "Code blocks, small elements" },
+        { px: "6px", usage: "Links, badges, nested details" },
+        { px: "8px", usage: "Sidebar items, inputs (search), cards (small)" },
+        { px: "10px", usage: "Form fields" },
+        { px: "12px", usage: "Buttons, cards, preview containers" },
+        { px: "32px", usage: "Spotlight, pill shapes" },
+        { px: "9999px", usage: "Full circle (spotlight glow)" },
+      ].map(({ px, usage }) => (
+        <div class="radius-item">
+          <div class="radius-box" style={`border-radius: ${px};`}></div>
+          <div class="radius-info">
+            <code>{px}</code>
+            <span>{usage}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </DSBlock>
+
+  <DSBlock title="Common Patterns">
+    <DSPropsTable
+      headers={["Pattern", "Border", "Radius"]}
+      rows={[
+        ["Card", { code: "1px solid var(--border-color)" }, { code: "12px" }],
+        ["Form field", { code: "2px solid var(--border-color)" }, { code: "10px" }],
+        ["Preview container", { code: "1px solid rgba(255,255,255,0.1)" }, { code: "12px" }],
+        ["Sidebar item", "none", { code: "8px" }],
+        ["Button", "none", { code: "12px" }],
+        ["Button (tiny)", "none", { code: "8px" }],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
+  .border-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .border-sample {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .border-box {
+    height: 48px;
+    border: 2px solid;
+    margin: 16px;
+    border-radius: 8px;
+  }
+
+  .border-info {
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    code {
+      font-size: 13px;
+      color: var(--accent-bright);
+    }
+
+    span {
+      font-size: 12px;
+      color: var(--color);
+      opacity: 0.7;
+      font-family: monospace;
+    }
+  }
+
+  .accent-borders {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .accent-border-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    code {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  }
+
+  .accent-border-box {
+    width: 48px;
+    height: 32px;
+    border: 2px solid;
+    border-radius: 6px;
+  }
+
+  .radius-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+
+    @include mobile {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+  }
+
+  .radius-item {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .radius-box {
+    height: 48px;
+    background-color: var(--accent-tint);
+    border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+  }
+
+  .radius-info {
+    padding: 10px 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    code {
+      font-size: 13px;
+      color: var(--accent-bright);
+    }
+
+    span {
+      font-size: 11px;
+      color: var(--color);
+      opacity: 0.6;
+    }
+  }
+</style>

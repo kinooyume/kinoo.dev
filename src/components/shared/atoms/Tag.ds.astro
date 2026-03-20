@@ -7,6 +7,7 @@ import DSCode from "@/components/design-system/DSCode.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import ChromaticPreview from "@/components/design-system/ChromaticPreview.astro";
 ---
 
 <section id="tag">
@@ -20,30 +21,15 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSCode inline>title="TypeScript"</DSCode>
   </DSBlock>
 
-  <DSBlock title="Section Themed">
+  <DSBlock title="Chromatic">
     <DSNote>
       Tags inherit <code>--accent-color</code> from the parent section and adapt their background tint and left border accordingly.
     </DSNote>
-    <DSPreview>
-      <div class="themed-tags">
-        <div style="--accent-color: var(--orange); --accent-tint: var(--orange-tint);">
-          <TagComponent title="React" />
-          <TagComponent title="TypeScript" />
-        </div>
-        <div style="--accent-color: var(--pink); --accent-tint: var(--pink-tint);">
-          <TagComponent title="Vue.js" />
-          <TagComponent title="GraphQL" />
-        </div>
-        <div style="--accent-color: var(--green); --accent-tint: var(--green-tint);">
-          <TagComponent title="Node.js" />
-          <TagComponent title="PostgreSQL" />
-        </div>
-        <div style="--accent-color: var(--purple); --accent-tint: var(--purple-tint);">
-          <TagComponent title="Docker" />
-          <TagComponent title="AWS" />
-        </div>
-      </div>
-    </DSPreview>
+    <ChromaticPreview>
+      <TagComponent title="React" />
+      <TagComponent title="TypeScript" />
+      <TagComponent title="Node.js" />
+    </ChromaticPreview>
   </DSBlock>
 
   <DSBlock title="With Icon">
@@ -99,16 +85,3 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   </DSBlock>
 </section>
 
-<style lang="scss">
-  .themed-tags {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    > div {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  }
-</style>

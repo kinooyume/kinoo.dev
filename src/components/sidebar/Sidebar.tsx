@@ -10,6 +10,7 @@ import {
 import { createViewDetection } from "@/lib/dom/viewDetection";
 import { onScrollAndResize } from "@/lib/dom/onWindowEvent";
 import SearchInput from "@/components/shared/atoms/SearchInput/SearchInput";
+import ColorSwitcher from "./ColorSwitcher";
 import astroIcon from "@/svgs/astro.svg?raw";
 import solidIcon from "@/svgs/solid.svg?raw";
 import styles from "./Sidebar.module.scss";
@@ -46,6 +47,7 @@ interface Props {
   sections: SidebarSection[];
   title?: string;
   class?: string;
+  showColorSwitcher?: boolean;
 }
 
 export default function Sidebar(props: Readonly<Props>) {
@@ -195,6 +197,9 @@ export default function Sidebar(props: Readonly<Props>) {
         <div class={styles.sidebarHeader}>
           <span class={styles.sidebarTitle}>{props.title}</span>
         </div>
+      </Show>
+      <Show when={props.showColorSwitcher}>
+        <ColorSwitcher />
       </Show>
       <SearchInput
         placeholder="Search…"
