@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.31.0 - 2026-03-20
+#### Features
+- (**ds**) add Diagram component, CV icon in mobile sidebar - (22a7530) - Martin Kinoo
+- (**ds**) add Animations section with header, section and card reveals - (8ac30e2) - Martin Kinoo
+- (**ds**) centralize color tokens, DSColorSwatch, chromatic HeaderLink - (6f57d0d) - Martin Kinoo
+- (**ds**) add borders and breakpoints to foundations - (2c09553) - Martin Kinoo
+- (**ds**) add ChromaticPreview, replace inline color demos - (bf35422) - Martin Kinoo
+- (**ds**) add ColorSwitcher dropdown to sidebar - (3de1c5c) - Martin Kinoo
+- (**ds**) add DSWipNotice component - (e6d2783) - Martin Kinoo
+- (**transitions**) add Astro View Transitions with ClientRouter - (998dfeb) - Martin Kinoo
+- (**ui**) chromatic text selection - (59b8e2b) - Martin Kinoo
+#### Bug Fixes
+- (**assets**) use absolute paths for content images - (58823d6) - Martin Kinoo
+#### Refactoring
+- (**animations**) decouple from DOMContentLoaded, add session tracking - (6f2088e) - Martin Kinoo
+
+- - -
+
 ## v0.30.0 - 2026-03-15
 #### Features
 - (**design-system**) chromatic layer, button alternative variant, DS updates - (dcbb463) - Martin Kinoo
