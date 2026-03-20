@@ -7,7 +7,12 @@
  *
  * @returns A cleanup function that removes the listener.
  */
+let registered = false;
+
 export function smoothHashLinks(): () => void {
+  if (registered) return () => {};
+  registered = true;
+
   function handler(e: MouseEvent) {
     const link = (e.target as Element).closest('a[href*="#"]');
     if (!link) return;

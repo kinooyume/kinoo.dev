@@ -22,5 +22,10 @@ export function createEventBus() {
       fired.add(event);
       target.dispatchEvent(new Event(event));
     },
+
+    /** Clear all fired events so they can be re-emitted. */
+    reset(): void {
+      fired.clear();
+    },
   };
 }

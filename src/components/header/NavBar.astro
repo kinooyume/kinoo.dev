@@ -173,7 +173,8 @@ const { items = defaultItems } = Astro.props;
     }
   }
 
-  window.addEventListener("load", initNavbar);
+  document.addEventListener("astro:page-load", initNavbar);
+  initNavbar();
 </script>
 
 <style lang="scss">

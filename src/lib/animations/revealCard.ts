@@ -1,4 +1,5 @@
 import { createTimeline, stagger } from "animejs";
+import { hasPlayed, markPlayed } from "@/lib/animations/sessionTracker";
 
 const MOBILE_BREAKPOINT = 900;
 const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
@@ -17,7 +18,17 @@ function clearTransforms(card: Element) {
   });
 }
 
-function animateCard(card: Element) {
+function showCardImmediate(card: HTMLElement) {
+  card.style.opacity = "1";
+  card.style.transform = "none";
+  card.querySelectorAll<HTMLElement>("[data-animate-elem]").forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
+  });
+}
+
+function animateCard(card: Element, index: number) {
+  markPlayed(`card:${index}`);
   card.querySelectorAll<HTMLElement>("[data-animate-elem]").forEach(
     (el) => (el.style.opacity = "0"),
   );
@@ -67,42 +78,42 @@ function animateCard(card: Element) {
     });
 }
 
-/**
- * Observes `[data-animate-card]` elements and reveals them
- *
- * Cards already visible on init are triggered immediately to handle
- * tall elements that may not meet the 10% intersection threshold.
- *
- * @returns A cleanup function that disconnects the observer.
- */
 export function revealCards(): () => void {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        animateCard(entry.target);
-        observer.unobserve(entry.target);
+        const card = entry.target as HTMLElement;
+        const index = parseInt(card.dataset.cardIndex ?? "0", 10);
+        animateCard(card, index);
+        observer.unobserve(card);
       }
     });
   }, observerOptions);
 
   const mobile = isMobile();
-  const cards = document.querySelectorAll("[data-animate-card]");
-  cards.forEach((card) => {
-    (card as HTMLElement).style.opacity = "0";
-    if (!mobile) {
-      (card as HTMLElement).style.transform = "translateY(50px) scale(0.8)";
+  const cards = document.querySelectorAll<HTMLElement>("[data-animate-card]");
+
+  cards.forEach((card, i) => {
+    card.dataset.cardIndex = String(i);
+    const key = `card:${i}`;
+
+    if (hasPlayed(key)) {
+      showCardImmediate(card);
+    } else {
+      card.style.opacity = "0";
+      if (!mobile) card.style.transform = "translateY(50px) scale(0.8)";
+      observer.observe(card);
     }
-    observer.observe(card);
   });
 
-  // Cards already in viewport may not meet the 10% threshold yet
-  // (e.g. tall cards spanning multiple grid rows), trigger them directly
   requestAnimationFrame(() => {
     cards.forEach((card) => {
+      if (card.style.opacity === "1") return;
       const rect = card.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const index = parseInt(card.dataset.cardIndex ?? "0", 10);
         observer.unobserve(card);
-        animateCard(card);
+        animateCard(card, index);
       }
     });
   });

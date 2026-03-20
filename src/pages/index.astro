@@ -17,13 +17,46 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
   <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
   <script>
+    import { hasPlayed, markPlayed } from "@/lib/animations/sessionTracker";
+    import { playHeroAnimation, showHeroImmediate } from "@/lib/animations/heroAnime";
     import { revealSections } from "@/lib/animations/revealSection";
     import { revealCards } from "@/lib/animations/revealCard";
     import { smoothHashLinks } from "@/lib/dom/smoothHashLinks";
 
-    revealSections();
-    revealCards();
-    smoothHashLinks();
+    let cleanupSections: (() => void) | null = null;
+    let cleanupCards: (() => void) | null = null;
+    let lastInit = "";
+
+    function initIndex() {
+      if (!document.getElementById("hero")) return;
+      const key = location.pathname + location.search;
+      if (key === lastInit) return;
+      lastInit = key;
+
+      if (hasPlayed("hero")) {
+        showHeroImmediate();
+      } else {
+        markPlayed("hero");
+        playHeroAnimation();
+      }
+
+      cleanupSections = revealSections();
+      cleanupCards = revealCards();
+      smoothHashLinks();
+    }
+
+    document.addEventListener("astro:before-swap", () => {
+      cleanupSections?.();
+      cleanupCards?.();
+      cleanupSections = null;
+      cleanupCards = null;
+      lastInit = "";
+    });
+
+    document.addEventListener("astro:page-load", initIndex);
+
+    // Initial load: run directly in case astro:page-load already fired
+    initIndex();
   </script>
   <main id="main-content">
     <Hero />
@@ -38,24 +71,6 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
 
 <style lang="scss">
   @use "@/styles/breakpoints" as *;
-
-  :global(.header .title-wrapper),
-  :global(.menu),
-  :global(.navbar li) {
-    opacity: 0;
-  }
-
-  :global(.navbar) {
-    pointer-events: none;
-  }
-
-  :global(body.hero-animation main > *:not(#hero)) {
-    display: none;
-  }
-
-  :global([data-animate-section]:not(#hero)) {
-    opacity: 0;
-  }
 
   main {
     margin: auto;
