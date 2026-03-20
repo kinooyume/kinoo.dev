@@ -1,8 +1,8 @@
 import { createTimeline } from "animejs";
 import { emitHeroAnimationComplete } from "@/lib/animations/onHeroAnimationComplete";
-import { animateHeader } from "@/lib/animations/headerAnime";
+import { animateHeader, showHeaderImmediate } from "@/lib/animations/headerAnime";
 
-document.addEventListener("DOMContentLoaded", () => {
+export function playHeroAnimation(): void {
   document.body.classList.add("hero-animation");
 
   const init = createTimeline({ autoplay: false }).add([".subtitle"], {
@@ -43,24 +43,40 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "outElastic(1, .5)",
   });
 
-  const allTimelines = [init, subtitle, description, picture];
-
-  allTimelines.forEach((tl) => tl.play());
+  [init, subtitle, description, picture].forEach((tl) => tl.play());
   animateHeader();
 
   document.body.classList.remove("hero-animation");
   const headerEl = document.querySelector("header");
-  if (headerEl) {
-    headerEl.style.display = "";
-  }
+  if (headerEl) headerEl.style.display = "";
   emitHeroAnimationComplete("completed");
 
   if (globalThis.location.hash) {
     requestAnimationFrame(() => {
       const target = document.querySelector(globalThis.location.hash);
-      if (target) {
-        target.scrollIntoView({ behavior: "instant" });
-      }
+      if (target) target.scrollIntoView({ behavior: "instant" });
     });
   }
-});
+}
+
+export function showHeroImmediate(): void {
+  document.querySelectorAll<HTMLElement>("h1 span").forEach((el) => {
+    el.style.opacity = "1";
+  });
+  document.querySelectorAll<HTMLElement>(".subtitle").forEach((el) => {
+    el.style.opacity = "1";
+  });
+  document.querySelectorAll<HTMLElement>(".text-wrapper .letter").forEach((el) => {
+    el.style.transform = "none";
+  });
+  document.querySelectorAll<HTMLElement>("#hero .description > *, .tag-animated").forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
+  });
+  document.querySelectorAll<HTMLElement>(".hero-image").forEach((el) => {
+    el.style.opacity = "1";
+  });
+
+  showHeaderImmediate();
+  emitHeroAnimationComplete("completed");
+}

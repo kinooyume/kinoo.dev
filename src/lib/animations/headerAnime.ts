@@ -1,10 +1,12 @@
 import { createTimeline, type Timeline } from "animejs";
+import { hasPlayed, markPlayed } from "@/lib/animations/sessionTracker";
 
 export interface HeaderAnimationOptions {
   delay?: number;
 }
 
 export function animateHeader(options: HeaderAnimationOptions = {}): Timeline {
+  markPlayed("header");
   const { delay = 0 } = options;
 
   const timeline = createTimeline({ autoplay: false }).add(
@@ -35,5 +37,17 @@ export function showHeaderImmediate(): void {
   const navbar = document.querySelector<HTMLElement>(".navbar");
   if (navbar) {
     navbar.classList.add("enabled");
+  }
+}
+
+export function initHeader(): void {
+  // On index first visit, hero sequence handles the header animation (synced)
+  const hasHero = !!document.getElementById("hero");
+  if (hasHero && !hasPlayed("hero")) return;
+
+  if (hasPlayed("header")) {
+    showHeaderImmediate();
+  } else {
+    animateHeader();
   }
 }
