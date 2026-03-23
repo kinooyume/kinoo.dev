@@ -6,6 +6,9 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   site: "https://kinoo.dev",
+  prefetch: {
+    defaultStrategy: "hover",
+  },
   integrations: [solidJs(), sitemap({ filter: (page) => !page.includes('articles-draft') }), mdx()],
   markdown: {
     shikiConfig: {
