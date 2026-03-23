@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.32.0 - 2026-03-23
+#### Features
+- (**transitions**) prefetch on hover, parallel exit animation, fade only - (0777712) - Martin Kinoo
+
+- - -
+
 ## v0.31.0 - 2026-03-20
 #### Features
 - (**ds**) add Diagram component, CV icon in mobile sidebar - (22a7530) - Martin Kinoo
