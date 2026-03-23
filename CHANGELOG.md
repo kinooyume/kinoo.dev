@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.33.0 - 2026-03-23
+#### Features
+- (**prefetch**) fetch-based prefetch for Firefox and mobile support - (373030b) - Martin Kinoo
+
+- - -
+
 ## v0.32.0 - 2026-03-23
 #### Features
 - (**transitions**) prefetch on hover, parallel exit animation, fade only - (0777712) - Martin Kinoo
