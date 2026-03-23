@@ -111,6 +111,11 @@ const {
 </html>
 
 <script>
+  import { initFetchPrefetch } from "@/lib/dom/fetchPrefetch";
+  initFetchPrefetch();
+</script>
+
+<script>
   import { animate } from "animejs";
   import { hasPlayed } from "@/lib/animations/sessionTracker";
   import { reset as resetEmitter } from "@/lib/emitter";
