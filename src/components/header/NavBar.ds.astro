@@ -37,6 +37,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     let activeLink: Element | null = navbar.querySelector("a.active");
 
     function updateIndicator(link: Element) {
+      if (!navbar) return;
       const rect = link.getBoundingClientRect();
       const parentRect = navbar.getBoundingClientRect();
       indicator.style.left = `${rect.left - parentRect.left}px`;
