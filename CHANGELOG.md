@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.34.0 - 2026-03-24
+#### Features
+- (**atoms**) add Dropdown and NavCard, update Tag and Button - (82b5ef5) - Martin Kinoo
+- (**ds**) extend color utilities, fix borders doc import - (12cc801) - Martin Kinoo
+- (**ds**) split design system into per-section pages - (15b1ef1) - Martin Kinoo
+#### Bug Fixes
+- (**ds**) nullable guard in NavBar demo script - (a0f1c26) - Martin Kinoo
+- (**ds**) update component docs for multipage layout - (e8de390) - Martin Kinoo
+#### Refactoring
+- (**diagram**) decompose monolithic Diagram into sub-components - (ce2fe78) - Martin Kinoo
+- (**sidebar**) rewrite ColorSwitcher and ChromaticPreview as SolidJS - (4933f52) - Martin Kinoo
+
+- - -
+
 ## v0.33.0 - 2026-03-23
 #### Features
 - (**prefetch**) fetch-based prefetch for Firefox and mobile support - (373030b) - Martin Kinoo
