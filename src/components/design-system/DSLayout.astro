@@ -6,9 +6,10 @@ import { sidebarSections } from "./sections/index";
 interface Props {
   title?: string;
   description?: string;
+  currentSlug?: string;
 }
 
-const { title = "Design System", description } = Astro.props;
+const { title = "Design System", description, currentSlug } = Astro.props;
 ---
 
 <div class="ds-container">
@@ -25,8 +26,20 @@ const { title = "Design System", description } = Astro.props;
     </footer>
   </main>
 
-  <Sidebar sections={sidebarSections} showColorSwitcher class="ds-sidebar-desktop" client:load />
+  <Sidebar sections={sidebarSections} currentSlug={currentSlug} showColorSwitcher class="ds-sidebar-desktop" client:load transition:persist="ds-sidebar" />
 </div>
+
+<script>
+  import { restoreAccentColor, resetAccentColor } from "@/lib/colors";
+  restoreAccentColor();
+  document.addEventListener("astro:after-swap", () => {
+    if (location.pathname.startsWith("/design-system")) {
+      restoreAccentColor();
+    } else {
+      resetAccentColor();
+    }
+  });
+</script>
 
 <style lang="scss" is:global>
   @use "@/styles/breakpoints" as *;
