@@ -2,6 +2,7 @@ import { createSignal, createSelector, createEffect, For, Show, onMount, onClean
 import { createStore } from "solid-js/store";
 import {
   isGroup,
+  DS_BASE,
   type SidebarSection,
   type SidebarNode,
   type SidebarLeaf,
@@ -19,6 +20,12 @@ const frameworkIcons: Record<Framework, string> = {
   astro: astroIcon,
   solid: solidIcon,
 };
+
+function slugFromUrl(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  const match = location.pathname.match(new RegExp(`^${DS_BASE}/([^/]+)`));
+  return match?.[1];
+}
 
 function filterSections(sections: SidebarSection[], q: string): SidebarSection[] {
   const lower = q.toLowerCase();
@@ -45,6 +52,7 @@ const SCROLL_PADDING = 80;
 
 interface Props {
   sections: SidebarSection[];
+  currentSlug?: string;
   title?: string;
   class?: string;
   showColorSwitcher?: boolean;
@@ -52,6 +60,8 @@ interface Props {
 
 export default function Sidebar(props: Readonly<Props>) {
   const [query, setQuery] = createSignal("");
+  // eslint-disable-next-line solid/reactivity
+  const [currentSlug, setCurrentSlug] = createSignal(props.currentSlug ?? slugFromUrl());
   const [activeHref, setActiveHref] = createSignal<string | null>(null);
   const isActive = createSelector(activeHref);
   const [openSections, setOpenSections] = createStore<Record<string, boolean>>({});
@@ -66,25 +76,35 @@ export default function Sidebar(props: Readonly<Props>) {
   const filteredSections = () =>
     searching() ? filterSections(props.sections, query()) : props.sections;
 
-  function hasActiveLeaf(nodes: SidebarNode[]): boolean {
+  const isCurrentSection = (section: SidebarSection) =>
+    currentSlug() === section.slug;
+
+  function resolveHref(section: SidebarSection, hash: string): string {
+    if (isCurrentSection(section)) return hash;
+    return `${DS_BASE}/${section.slug}${hash}`;
+  }
+
+  function hasActiveLeaf(nodes: SidebarNode[], section: SidebarSection): boolean {
     return nodes.some((n) =>
-      isGroup(n) ? hasActiveLeaf(n.children) : n.href === activeHref(),
+      isGroup(n) ? hasActiveLeaf(n.children, section) : resolveHref(section, n.href) === activeHref(),
     );
   }
 
   function sectionOpen(section: SidebarSection) {
     if (searching()) return true;
+    if (isCurrentSection(section)) return true;
     const key = section.title.toLowerCase();
-    return openSections[key] || hasActiveLeaf(section.items);
+    return openSections[key] || hasActiveLeaf(section.items, section);
   }
 
   function handleSectionToggle(section: SidebarSection, el: HTMLDetailsElement) {
     if (searching()) return;
-    if (!el.open && hasActiveLeaf(section.items)) return;
+    if (!el.open && (isCurrentSection(section) || hasActiveLeaf(section.items, section))) return;
     setOpenSections(section.title.toLowerCase(), el.open);
   }
 
   function handleLinkClick(e: MouseEvent, href: string) {
+    if (!href.startsWith("#")) return;
     e.preventDefault();
     const target = document.querySelector(href);
     if (!target) return;
@@ -98,7 +118,6 @@ export default function Sidebar(props: Readonly<Props>) {
 
     const clear = () => { scrollingTo = null; };
     window.addEventListener("scrollend", clear, { once: true });
-    // scrollend won't fire if target is already in view (no scroll occurs)
     requestAnimationFrame(() => requestAnimationFrame(() => {
       if (window.scrollY === startY) {
         window.removeEventListener("scrollend", clear);
@@ -107,11 +126,43 @@ export default function Sidebar(props: Readonly<Props>) {
     }));
   }
 
+  function setupScrollDetection() {
+    cleanupScroll?.();
+    cleanupScroll = undefined;
+
+    const wrapper = wrapperRef();
+    if (!wrapper) return;
+
+    const hrefByTarget = new Map<Element, string>();
+    const elements: { dom: Element }[] = [];
+
+    wrapper.querySelectorAll("a").forEach((anchor) => {
+      const href = anchor.getAttribute("href");
+      if (!href || !href.startsWith("#")) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      hrefByTarget.set(target, href);
+      elements.push({ dom: target });
+    });
+
+    if (!elements.length) return;
+
+    const detect = createViewDetection(elements, {
+      setBounds: (offset) => [offset + 100, offset - 100],
+      onBestMatch: (entry) => {
+        if (scrollingTo) return;
+        setActiveHref(entry ? hrefByTarget.get(entry.dom) ?? null : null);
+      },
+    });
+
+    cleanupScroll = onScrollAndResize(detect, "sidebarDetection");
+  }
+
   createEffect(() => {
     const href = activeHref();
     const scroller = scrollRef();
     if (!href || !scroller) return;
-    const link = scroller.querySelector(`a[href="${href}"]`);
+    const link = scroller.querySelector(`a[href="${CSS.escape(href)}"]`);
     if (!link) return;
     const linkRect = link.getBoundingClientRect();
     const scrollRect = scroller.getBoundingClientRect();
@@ -123,57 +174,44 @@ export default function Sidebar(props: Readonly<Props>) {
   });
 
   onMount(() => {
-    const wrapper = wrapperRef();
-    if (!wrapper) return;
+    setupScrollDetection();
 
-    const hrefByTarget = new Map<Element, string>();
-    const elements: { dom: Element }[] = [];
+    const onPageLoad = () => {
+      setCurrentSlug(slugFromUrl());
+      setActiveHref(null);
+      requestAnimationFrame(() => setupScrollDetection());
+    };
 
-    wrapper.querySelectorAll("a").forEach((anchor) => {
-      const href = anchor.getAttribute("href");
-      if (!href) return;
-      const hashIdx = href.indexOf("#");
-      if (hashIdx === -1) return;
-      const target = document.querySelector(href.slice(hashIdx));
-      if (!target) return;
-      hrefByTarget.set(target, href);
-      elements.push({ dom: target });
+    document.addEventListener("astro:page-load", onPageLoad);
+    onCleanup(() => {
+      document.removeEventListener("astro:page-load", onPageLoad);
+      cleanupScroll?.();
     });
-
-    const detect = createViewDetection(elements, {
-      setBounds: (offset) => [offset + 100, offset - 100],
-      onBestMatch: (entry) => {
-        if (scrollingTo) return;
-        setActiveHref(entry ? hrefByTarget.get(entry.dom) ?? null : null);
-      },
-    });
-
-    cleanupScroll = onScrollAndResize(detect, "sidebarDetection");
   });
 
-  onCleanup(() => {
-    cleanupScroll?.();
-  });
+  const renderLeaf = (leaf: SidebarLeaf, section: SidebarSection) => {
+    const href = () => resolveHref(section, leaf.href);
+    const isHash = () => href().startsWith("#");
+    return (
+      <li>
+        <a
+          href={href()}
+          classList={{ [styles.active]: isActive(href()) }}
+          onClick={(e) => { if (isHash()) handleLinkClick(e, href()); }}
+        >
+          <Show when={leaf.framework}>
+            {(fw) => (
+              <span class={styles.frameworkIcon} ref={(el) => { el.innerHTML = frameworkIcons[fw()]; }} />
+            )}
+          </Show>
+          {leaf.label}
+        </a>
+      </li>
+    );
+  };
 
-  const renderLeaf = (leaf: SidebarLeaf) => (
-    <li>
-      <a
-        href={leaf.href}
-        classList={{ [styles.active]: isActive(leaf.href) }}
-        onClick={(e) => handleLinkClick(e, leaf.href)}
-      >
-        <Show when={leaf.framework}>
-          {(fw) => (
-            <span class={styles.frameworkIcon} ref={(el) => { el.innerHTML = frameworkIcons[fw()]; }} />
-          )}
-        </Show>
-        {leaf.label}
-      </a>
-    </li>
-  );
-
-  const renderNode = (node: SidebarNode, depth = 0): JSX.Element => {
-    if (!isGroup(node)) return renderLeaf(node);
+  const renderNode = (node: SidebarNode, section: SidebarSection, depth = 0): JSX.Element => {
+    if (!isGroup(node)) return renderLeaf(node, section);
     return (
       <li class={styles.nestedGroup}>
         <details
@@ -183,7 +221,7 @@ export default function Sidebar(props: Readonly<Props>) {
           <summary>{node.label}</summary>
           <ul>
             <For each={node.children}>
-              {(child) => renderNode(child, depth + 1)}
+              {(child) => renderNode(child, section, depth + 1)}
             </For>
           </ul>
         </details>
@@ -215,10 +253,16 @@ export default function Sidebar(props: Readonly<Props>) {
               open={sectionOpen(section) || undefined}
               onToggle={(e) => handleSectionToggle(section, e.currentTarget)}
             >
-              <summary>{section.title}</summary>
+              <summary>
+                <Show when={!isCurrentSection(section)} fallback={section.title}>
+                  <a href={`${DS_BASE}/${section.slug}`} class={styles.sectionLink}>
+                    {section.title}
+                  </a>
+                </Show>
+              </summary>
               <ul>
                 <For each={section.items}>
-                  {(item) => renderNode(item)}
+                  {(item) => renderNode(item, section)}
                 </For>
               </ul>
             </details>

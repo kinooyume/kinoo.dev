@@ -3,16 +3,16 @@ import DSBlock from "./DSBlock.astro";
 import DSCode from "./DSCode.astro";
 import DSNote from "./DSNote.astro";
 import DSSectionHeader from "./DSSectionHeader.astro";
-import Preview from "./ChromaticPreview.astro";
+import Preview from "./ChromaticPreview.tsx";
 import Tag from "@/components/shared/atoms/Tag.astro";
 ---
 
 <section id="ds-chromatic-preview">
-  <DSSectionHeader title="ChromaticPreview" atomic="Atom" framework="astro" />
+  <DSSectionHeader title="ChromaticPreview" atomic="Atom" framework="solid" />
   <p>Preview container with a color dot bar. Switches <code>--accent-color</code> on its content.</p>
 
   <DSBlock title="Preview">
-    <Preview>
+    <Preview client:load>
       <Tag title="React" />
       <Tag title="TypeScript" />
       <Tag title="Astro" />
