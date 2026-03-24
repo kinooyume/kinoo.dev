@@ -4,78 +4,83 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import DiagramComponent from "./Diagram.astro";
+import DiagramWrapper from "./diagram/Diagram.astro";
+import DiagramStack from "./diagram/DiagramStack.astro";
+import DiagramArrow from "./diagram/DiagramArrow.astro";
+import DiagramFlow from "./diagram/DiagramFlow.astro";
+import DiagramPageMap from "./diagram/DiagramPageMap.astro";
+import DiagramTree from "./diagram/DiagramTree.astro";
+import DiagramCompare from "./diagram/DiagramCompare.astro";
+import DiagramCycle from "./diagram/DiagramCycle.astro";
 ---
 
 <section id="diagram">
   <DSSectionHeader title="Diagram" atomic="Molecule" framework="astro" />
-  <p>Colored inline diagrams for articles. Stacked rows or arrow layout, importable in MDX.</p>
+  <p>Figure wrapper with optional caption. Contains layout sub-components for different diagram types.</p>
 
-  <DSBlock title="Stack">
+  <DSBlock title="Wrapper only">
     <DSPreview>
-      <DiagramComponent
-        rows={[
-          { label: "Presentation", color: "purple" },
-          { label: "Logic", color: "blue" },
-          { label: "Data", color: "green" },
-        ]}
-      />
+      <DiagramWrapper caption="A simple caption">
+        <div style="padding: 16px; text-align: center; color: var(--text-muted);">Layout content goes here</div>
+      </DiagramWrapper>
     </DSPreview>
-    <DSCode inline>{`<Diagram rows={[{ label, color }]} />`}</DSCode>
+    <DSCode inline>{`<Diagram caption="...">...</Diagram>`}</DSCode>
   </DSBlock>
 
-  <DSBlock title="Stack with badges">
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["caption", { code: "string" }, "Centered caption below the diagram"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="diagram-stack">
+  <DSSectionHeader title="DiagramStack" atomic="Molecule" framework="astro" />
+  <p>Vertical column of labeled rows with optional detail text and badges.</p>
+
+  <DSBlock title="Basic">
     <DSPreview>
-      <DiagramComponent
-        rows={[
-          { label: "TypeScript", badge: "strict", color: "blue" },
-          { label: "CSS Modules", badge: "scoped", color: "purple" },
-          { label: "HTML", badge: "static", color: "green" },
-        ]}
-        caption="Build output per layer"
-      />
+      <DiagramWrapper>
+        <DiagramStack
+          rows={[
+            { label: "Presentation", color: "purple" },
+            { label: "Logic", color: "blue" },
+            { label: "Data", color: "green" },
+          ]}
+        />
+      </DiagramWrapper>
     </DSPreview>
-    <DSCode inline>{`<Diagram rows={[{ label, badge?, color }]} caption? />`}</DSCode>
+    <DSCode inline>{`<DiagramStack rows={[{ label, color }]} />`}</DSCode>
   </DSBlock>
 
-  <DSBlock title="Stack with detail">
+  <DSBlock title="With badges">
     <DSPreview>
-      <DiagramComponent
-        rows={[
-          { label: "Server-rendered", badge: "SSR", detail: "(fast)", color: "green" },
-          { label: "Client-hydrated", badge: "island", detail: "(deferred)", color: "orange" },
-          { label: "Static", badge: "HTML", detail: "(zero JS)", color: "cyan" },
-        ]}
-      />
+      <DiagramWrapper caption="Build output per layer">
+        <DiagramStack
+          rows={[
+            { label: "TypeScript", badge: "strict", color: "blue" },
+            { label: "CSS Modules", badge: "scoped", color: "purple" },
+            { label: "HTML", badge: "static", color: "green" },
+          ]}
+        />
+      </DiagramWrapper>
     </DSPreview>
   </DSBlock>
 
-  <DSBlock title="Arrow">
+  <DSBlock title="With detail">
     <DSPreview>
-      <DiagramComponent
-        arrow={{
-          from: { label: "Source", detail: "emits event", color: "orange" },
-          to: { label: "Target", detail: "reacts", color: "purple" },
-          label: "event",
-        }}
-      />
-    </DSPreview>
-    <DSCode inline>{`<Diagram arrow={{ from: { label, detail?, color }, to: { ... }, label? }} />`}</DSCode>
-  </DSBlock>
-
-  <DSBlock title="Colors">
-    <DSPreview>
-      <DiagramComponent
-        rows={[
-          { label: "purple", color: "purple" },
-          { label: "orange", color: "orange" },
-          { label: "red", color: "red" },
-          { label: "green", color: "green" },
-          { label: "blue", color: "blue" },
-          { label: "cyan", color: "cyan" },
-          { label: "pink", color: "pink" },
-        ]}
-      />
+      <DiagramWrapper>
+        <DiagramStack
+          rows={[
+            { label: "Server-rendered", badge: "SSR", detail: "(fast)", color: "green" },
+            { label: "Client-hydrated", badge: "island", detail: "(deferred)", color: "orange" },
+            { label: "Static", badge: "HTML", detail: "(zero JS)", color: "cyan" },
+          ]}
+        />
+      </DiagramWrapper>
     </DSPreview>
   </DSBlock>
 
@@ -83,9 +88,7 @@ import DiagramComponent from "./Diagram.astro";
     <DSPropsTable
       headers={["Prop", "Type", "Description"]}
       rows={[
-        ["rows", { code: "DiagramRow[]" }, "Stacked row layout"],
-        ["arrow", { code: "DiagramArrow" }, "Two-box arrow layout"],
-        ["caption", { code: "string" }, "Centered caption below"],
+        ["rows", { code: "DiagramRow[]" }, "Array of row data"],
       ]}
     />
     <DSPropsTable
@@ -94,8 +97,252 @@ import DiagramComponent from "./Diagram.astro";
         ["label", { code: "string" }, "Main text"],
         ["badge", { code: "string" }, "Colored pill on the right"],
         ["detail", { code: "string" }, "Muted text next to badge"],
-        ["color", { code: "Color" }, "purple, orange, red, green, pink, blue, cyan"],
+        ["color", { code: "DiagramColor" }, "purple, orange, red, green, pink, blue, cyan"],
       ]}
     />
+  </DSBlock>
+</section>
+
+<section id="diagram-arrow">
+  <DSSectionHeader title="DiagramArrow" atomic="Molecule" framework="astro" />
+  <p>Two-box layout connected by an arrow, with optional label.</p>
+
+  <DSBlock title="Basic">
+    <DSPreview>
+      <DiagramWrapper>
+        <DiagramArrow
+          from={{ label: "Source", detail: "emits event", color: "orange" }}
+          to={{ label: "Target", detail: "reacts", color: "purple" }}
+          label="event"
+        />
+      </DiagramWrapper>
+    </DSPreview>
+    <DSCode inline>{`<DiagramArrow from={node} to={node} label="event" />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Bidirectional">
+    <DSPreview>
+      <DiagramWrapper>
+        <DiagramArrow
+          from={{ label: "Client", detail: "sends request", color: "blue" }}
+          to={{ label: "Server", detail: "sends response", color: "green" }}
+          label="HTTP"
+          bidirectional
+        />
+      </DiagramWrapper>
+    </DSPreview>
+    <DSCode inline>{`<DiagramArrow from={node} to={node} label="HTTP" bidirectional />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["from", { code: "DiagramNode" }, "Left box (label, detail?, color)"],
+        ["to", { code: "DiagramNode" }, "Right box (label, detail?, color)"],
+        ["label", { code: "string" }, "Text between boxes"],
+        ["bidirectional", { code: "boolean" }, "Show arrows in both directions"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="diagram-flow">
+  <DSSectionHeader title="DiagramFlow" atomic="Molecule" framework="astro" />
+  <p>Horizontal step chain with arrows between each step.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <DiagramWrapper>
+        <DiagramFlow
+          steps={[
+            { label: "MDX", detail: "author", color: "purple" },
+            { label: "Astro", detail: "build", color: "orange" },
+            { label: "HTML", detail: "output", color: "green" },
+          ]}
+        />
+      </DiagramWrapper>
+    </DSPreview>
+    <DSCode inline>{`<DiagramFlow steps={[{ label, detail?, color }]} />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["steps", { code: "DiagramFlowStep[]" }, "Array of step data"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="diagram-tree">
+  <DSSectionHeader title="DiagramTree" atomic="Molecule" framework="astro" />
+  <p>Indented hierarchy with recursive nesting.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <DiagramWrapper>
+        <DiagramTree
+          nodes={[
+            { label: "src/", color: "purple", children: [
+              { label: "components/", color: "blue", children: [
+                { label: "Button.tsx", color: "cyan" },
+                { label: "Card.astro", color: "cyan" },
+              ]},
+              { label: "layouts/", color: "orange", children: [
+                { label: "Layout.astro", color: "cyan" },
+              ]},
+              { label: "pages/", color: "green", children: [
+                { label: "index.astro", color: "cyan" },
+              ]},
+            ]},
+          ]}
+        />
+      </DiagramWrapper>
+    </DSPreview>
+    <DSCode inline>{`<DiagramTree nodes={[{ label, color, children? }]} />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["nodes", { code: "DiagramTreeNode[]" }, "Root nodes (recursive)"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="diagram-compare">
+  <DSSectionHeader title="DiagramCompare" atomic="Molecule" framework="astro" />
+  <p>Side-by-side columns for comparing options.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <DiagramWrapper caption="Rendering strategies">
+        <DiagramCompare
+          columns={[
+            { title: "SSR", color: "green", items: ["Fast TTFB", "SEO friendly", "Server cost"] },
+            { title: "CSR", color: "orange", items: ["Rich interactions", "Offline capable", "Slow initial load"] },
+            { title: "SSG", color: "purple", items: ["Zero runtime", "CDN cacheable", "Build-time only"] },
+          ]}
+        />
+      </DiagramWrapper>
+    </DSPreview>
+    <DSCode inline>{`<DiagramCompare columns={[{ title, color, items }]} />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["columns", { code: "DiagramCompareColumn[]" }, "Array of column data"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="diagram-cycle">
+  <DSSectionHeader title="DiagramCycle" atomic="Molecule" framework="astro" />
+  <p>Circular loop with arrows wrapping around.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <DiagramWrapper caption="Development cycle">
+        <DiagramCycle
+          steps={[
+            { label: "Plan", color: "purple" },
+            { label: "Build", color: "blue" },
+            { label: "Test", color: "orange" },
+            { label: "Deploy", color: "green" },
+          ]}
+        />
+      </DiagramWrapper>
+    </DSPreview>
+    <DSCode inline>{`<DiagramCycle steps={[{ label, color }]} />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["steps", { code: "DiagramCycleStep[]" }, "Array of cycle step data"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="diagram-pagemap">
+  <DSSectionHeader title="DiagramPageMap" atomic="Molecule" framework="astro" />
+  <p>Nested page wireframe showing component regions. Blocks can contain children laid out in rows or columns, up to 3 levels deep.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <DiagramWrapper caption="Architecture islands · fiche produit">
+        <DiagramPageMap
+          blocks={[
+            { label: "Header", color: "green", badge: "statique", direction: "row", children: [
+              { label: "Logo", color: "green" },
+              { label: "Nav", color: "green" },
+              { label: "Recherche", color: "purple", badge: "island" },
+              { label: "Panier", color: "purple", badge: "island" },
+            ]},
+            { label: "Contenu", color: "green", direction: "row", children: [
+              { label: "Galerie", color: "green" },
+              { label: "Zone d'achat", color: "purple", badge: "island", children: [
+                { label: "Taille", color: "purple" },
+                { label: "Ajout panier", color: "purple" },
+              ]},
+            ]},
+            { label: "Footer", color: "green", badge: "statique" },
+          ]}
+        />
+      </DiagramWrapper>
+    </DSPreview>
+    <DSCode inline>{`<DiagramPageMap blocks={[{ label, color, badge?, children?, direction? }]} />`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["blocks", { code: "PageMapBlock[]" }, "Root-level page regions"],
+      ]}
+    />
+    <DSPropsTable
+      headers={["PageMapBlock", "Type", ""]}
+      rows={[
+        ["label", { code: "string" }, "Region name"],
+        ["color", { code: "DiagramColor" }, "Color variant"],
+        ["badge", { code: "string" }, "Badge label (e.g. 'island', 'statique')"],
+        ["detail", { code: "string" }, "Muted detail text"],
+        ["children", { code: "PageMapBlock[]" }, "Nested blocks (up to 3 levels)"],
+        ["direction", { code: "'row' | 'column'" }, "Children layout direction (default: column)"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<section id="diagram-colors">
+  <DSSectionHeader title="Diagram Colors" atomic="Foundation" framework="astro" />
+  <p>All available color variants for diagram elements.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <DiagramWrapper>
+        <DiagramStack
+          rows={[
+            { label: "purple", color: "purple" },
+            { label: "orange", color: "orange" },
+            { label: "red", color: "red" },
+            { label: "green", color: "green" },
+            { label: "blue", color: "blue" },
+            { label: "cyan", color: "cyan" },
+            { label: "pink", color: "pink" },
+          ]}
+        />
+      </DiagramWrapper>
+    </DSPreview>
   </DSBlock>
 </section>

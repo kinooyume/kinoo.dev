@@ -1,0 +1,64 @@
+---
+import type { DiagramFlowStep } from "./types";
+import { colorStyle } from "./types";
+
+interface Props {
+  steps: DiagramFlowStep[];
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="diagram-flow">
+  {steps.map((step, i) => (
+    <>
+      <div class="flow-step" style={colorStyle(step.color)}>
+        <span class="flow-label">{step.label}</span>
+        {step.detail && <span class="flow-detail">{step.detail}</span>}
+      </div>
+      {i < steps.length - 1 && (
+        <span class="flow-arrow">&rarr;</span>
+      )}
+    </>
+  ))}
+</div>
+
+<style>
+  .diagram-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .flow-step {
+    background: var(--cell-bg);
+    border: 1px solid var(--cell-border);
+    color: var(--cell-text);
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .flow-label {
+    display: block;
+    font-weight: 600;
+  }
+
+  .flow-detail {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: 2px;
+  }
+
+  .flow-arrow {
+    color: var(--accent-color);
+    font-size: 1.2em;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+</style>
