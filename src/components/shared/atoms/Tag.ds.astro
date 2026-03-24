@@ -1,73 +1,65 @@
 ---
 import TagComponent from "./Tag.astro";
+import TagRowComponent from "./TagRow.astro";
 import terminal from "@/svgs/terminal.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import ChromaticPreview from "@/components/design-system/ChromaticPreview.astro";
+import ChromaticPreview from "@/components/design-system/ChromaticPreview.tsx";
 ---
 
 <section id="tag">
   <DSSectionHeader title="Tag" atomic="Atom" framework="astro" />
   <p>Passive metadata label. No hover state, no interactivity — just shows what something is. Picks up <code>--accent-color</code> from its section for the tint and left border.</p>
 
-  <DSBlock title="Default">
+  <DSBlock title="Variants">
     <DSPreview>
-      <TagComponent title="TypeScript" />
+      <TagComponent title="Default" />
+      <TagComponent title="Highlight" highlight />
+      <TagComponent title="Outline" outline />
+      <TagComponent title="Badge" badge />
     </DSPreview>
-    <DSCode inline>title="TypeScript"</DSCode>
   </DSBlock>
 
-  <DSBlock title="Chromatic">
-    <DSNote>
-      Tags inherit <code>--accent-color</code> from the parent section and adapt their background tint and left border accordingly.
-    </DSNote>
-    <ChromaticPreview>
-      <TagComponent title="React" />
-      <TagComponent title="TypeScript" />
-      <TagComponent title="Node.js" />
-    </ChromaticPreview>
+  <DSBlock title="Small">
+    <DSPreview>
+      <TagComponent title="Default" size="small" />
+      <TagComponent title="Highlight" highlight size="small" />
+      <TagComponent title="Outline" outline size="small" />
+      <TagComponent title="Badge" badge size="small" />
+    </DSPreview>
+    <DSCode inline>size="small"</DSCode>
   </DSBlock>
 
   <DSBlock title="With Icon">
     <DSPreview>
       <TagComponent title="Terminal" icon={terminal} />
+      <TagComponent title="Terminal" icon={terminal} size="small" />
     </DSPreview>
-    <DSCode inline>title="Terminal" icon=&#123;terminalSvg&#125;</DSCode>
+    <DSCode inline>icon=&#123;terminalSvg&#125;</DSCode>
   </DSBlock>
 
-  <DSBlock title="Highlighted">
-    <DSPreview>
-      <TagComponent title="Featured" highlight />
-    </DSPreview>
-    <DSCode inline>title="Featured" highlight</DSCode>
-  </DSBlock>
-
-  <DSBlock title="Outline">
-    <DSPreview>
-      <TagComponent title="Headless" outline />
-      <TagComponent title="Design System" outline />
-      <TagComponent title="Composable" outline />
-    </DSPreview>
-    <DSCode inline>title="Headless" outline</DSCode>
+  <DSBlock title="Chromatic">
+    <ChromaticPreview client:load>
+      <TagComponent title="Default" />
+      <TagComponent title="Highlight" highlight />
+      <TagComponent title="Outline" outline />
+      <TagComponent title="Badge" badge />
+    </ChromaticPreview>
   </DSBlock>
 
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [
-          { code: "title" },
-          "string",
-          "required",
-          "The text content of the tag",
-        ],
+        [{ code: "title" }, "string", "required", "The text content of the tag"],
+        [{ code: "size" }, { code: '"default" | "small"' }, { code: '"default"' }, "Compact variant"],
         [{ code: "icon" }, "string", "-", "SVG icon as raw string"],
         [{ code: "highlight" }, "boolean", "false", "Adds accent border"],
         [{ code: "outline" }, "boolean", "false", "Transparent background with accent border"],
+        [{ code: "badge" }, "boolean", "false", "Solid accent background, black text"],
         [{ code: "animated" }, "boolean", "false", "Starts hidden for reveal animation"],
       ]}
     />
@@ -85,3 +77,28 @@ import ChromaticPreview from "@/components/design-system/ChromaticPreview.astro"
   </DSBlock>
 </section>
 
+<section id="tagrow">
+  <DSSectionHeader title="TagRow" atomic="Atom" framework="astro" />
+  <p>Flex row for <code>Tag</code> components. Uses <code>margin-top: auto</code> to push down and <code>padding-top</code> for minimum spacing.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <TagRowComponent>
+        <TagComponent title="React" />
+        <TagComponent title="TypeScript" />
+        <TagComponent title="Next.js" />
+      </TagRowComponent>
+    </DSPreview>
+    <DSCode inline>&lt;TagRow&gt;&lt;Tag title="React" /&gt;&lt;Tag title="TypeScript" /&gt;&lt;/TagRow&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Fluid spacing">
+    <DSPropsTable
+      headers={["Property", "Value", "Min", "Max"]}
+      rows={[
+        ["gap", "clamp(6px, 0.32rem + 0.21vw, 8px)", "6px", "8px"],
+        ["padding-top", "clamp(18px, 0.59rem + 1.89vw, 36px)", "18px", "36px"],
+      ]}
+    />
+  </DSBlock>
+</section>

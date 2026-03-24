@@ -1,0 +1,47 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const { href, title, subtitle, class: className } = Astro.props;
+---
+
+<a href={href} class:list={["nav-card", className]}>
+  <span class="nav-card-title">{title}</span>
+  {subtitle && <span class="nav-card-subtitle">{subtitle}</span>}
+</a>
+
+<style lang="scss">
+  .nav-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--card-surface);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--border-hover-color);
+      background: var(--card-surface-hover);
+      transform: translateY(-2px);
+    }
+  }
+
+  .nav-card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--light-color);
+  }
+
+  .nav-card-subtitle {
+    font-size: 13px;
+    color: var(--color);
+    opacity: 0.6;
+  }
+</style>

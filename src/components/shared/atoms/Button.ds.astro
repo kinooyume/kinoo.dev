@@ -4,7 +4,7 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import ChromaticPreview from "@/components/design-system/ChromaticPreview.astro";
+import ChromaticPreview from "@/components/design-system/ChromaticPreview.tsx";
 import ButtonComponent from "./Button";
 import github from "@/svgs/github.svg?raw";
 ---
@@ -33,21 +33,21 @@ import github from "@/svgs/github.svg?raw";
     <DSCode inline>&lt;Button href="#" variant="tint"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
-  <DSBlock title="Tiny">
+  <DSBlock title="Small">
     <DSPreview>
-      <ButtonComponent client:load variant="solid" size="tiny">Solid</ButtonComponent>
-      <ButtonComponent client:load variant="surface" size="tiny">Surface</ButtonComponent>
-      <ButtonComponent client:load variant="ghost" size="tiny">Ghost</ButtonComponent>
-      <ButtonComponent client:load variant="tint" size="tiny">Tint</ButtonComponent>
+      <ButtonComponent client:load variant="solid" size="small">Solid</ButtonComponent>
+      <ButtonComponent client:load variant="surface" size="small">Surface</ButtonComponent>
+      <ButtonComponent client:load variant="ghost" size="small">Ghost</ButtonComponent>
+      <ButtonComponent client:load variant="tint" size="small">Tint</ButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;Button size="tiny"&gt;...&lt;/Button&gt;</DSCode>
+    <DSCode inline>&lt;Button size="small"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="With Icon" subtitle="Raw SVG string rendered before text">
     <DSPreview>
       <ButtonComponent href="#button" variant="solid" icon={github}>Solid</ButtonComponent>
       <ButtonComponent href="#button" variant="tint" icon={github}>Tint</ButtonComponent>
-      <ButtonComponent href="#button" variant="tint" icon={github} size="tiny">Tiny</ButtonComponent>
+      <ButtonComponent href="#button" variant="tint" icon={github} size="small">Small</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button icon=&#123;githubSvg&#125;&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
@@ -61,7 +61,7 @@ import github from "@/svgs/github.svg?raw";
   </DSBlock>
 
   <DSBlock title="Chromatic" subtitle="All variants adapt to --accent-color">
-    <ChromaticPreview>
+    <ChromaticPreview client:load>
       <ButtonComponent client:load variant="solid">Solid</ButtonComponent>
       <ButtonComponent client:load variant="tint" icon={github}>Tint</ButtonComponent>
       <ButtonComponent client:load variant="surface">Surface</ButtonComponent>
@@ -74,7 +74,7 @@ import github from "@/svgs/github.svg?raw";
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
         [{ code: "variant" }, { code: '"solid" | "surface" | "ghost" | "tint"' }, { code: '"solid"' }, "Visual style variant"],
-        [{ code: "size" }, { code: '"default" | "tiny"' }, { code: '"default"' }, "Compact 28px variant"],
+        [{ code: "size" }, { code: '"default" | "small"' }, { code: '"default"' }, "Compact 28px variant"],
         [{ code: "state" }, { code: '"idle" | "loading" | "success"' }, { code: '"idle"' }, "Button state for form feedback"],
         [{ code: "href" }, { code: "string" }, "—", "When set, renders as <a> instead of <button>"],
         [{ code: "external" }, { code: "boolean" }, "—", "Opens in new tab with noreferrer/nofollow"],
@@ -86,16 +86,21 @@ import github from "@/svgs/github.svg?raw";
 </section>
 
 <script>
-  document.getElementById("button")?.addEventListener(
-    "click",
-    (e) => {
-      const target = e.target as HTMLElement;
-      if (target.closest("[data-chromatic]")) return;
-      if (target.closest("button")) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    },
-    true,
-  );
+  function init() {
+    document.getElementById("button")?.addEventListener(
+      "click",
+      (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest("[data-chromatic]")) return;
+        if (target.closest("button")) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true,
+    );
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>

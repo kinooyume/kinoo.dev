@@ -1,0 +1,36 @@
+---
+import NavCardComponent from "./NavCard.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="navcard">
+  <DSSectionHeader title="NavCard" atomic="Atom" framework="astro" />
+  <p>Link card with title and optional subtitle. Used for navigation grids.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%;">
+        <NavCardComponent href="#navcard" title="Foundations" subtitle="5 components" />
+        <NavCardComponent href="#navcard" title="Atoms" subtitle="6 components" />
+        <NavCardComponent href="#navcard" title="Cards" />
+      </div>
+    </DSPreview>
+    <DSCode inline>&lt;NavCard href="/path" title="Section" subtitle="5 components" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Default", "Description"]}
+      rows={[
+        [{ code: "href" }, "string", "required", "Link destination"],
+        [{ code: "title" }, "string", "required", "Card title"],
+        [{ code: "subtitle" }, "string", "-", "Secondary text below title"],
+        [{ code: "class" }, "string", "-", "Additional CSS class"],
+      ]}
+    />
+  </DSBlock>
+</section>
