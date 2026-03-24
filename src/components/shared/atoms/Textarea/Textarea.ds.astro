@@ -5,7 +5,7 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
-import ChromaticPreview from "@/components/design-system/ChromaticPreview.astro";
+import ChromaticPreview from "@/components/design-system/ChromaticPreview.tsx";
 ---
 
 <section id="textarea">
@@ -27,7 +27,7 @@ import ChromaticPreview from "@/components/design-system/ChromaticPreview.astro"
   </DSBlock>
 
   <DSBlock title="Chromatic" subtitle="Focus adapts to --accent-color">
-    <ChromaticPreview>
+    <ChromaticPreview client:load>
       <TextareaComponent client:load placeholder="Focus me" rows={2} />
     </ChromaticPreview>
   </DSBlock>

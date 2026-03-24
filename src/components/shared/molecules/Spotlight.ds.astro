@@ -56,10 +56,13 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 <script>
   import { spotlight } from "@/lib/dom/spotlight";
 
-  const container = document.querySelector<HTMLElement>("#spotlight-demo");
-  if (container) {
-    spotlight(container);
+  function init() {
+    const container = document.querySelector<HTMLElement>("#spotlight-demo");
+    if (container) spotlight(container);
   }
+
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>
 
 <style lang="scss">
