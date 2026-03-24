@@ -1,0 +1,67 @@
+---
+import type { DiagramRow } from "./types";
+import { colorStyle, badgeStyle } from "./types";
+
+interface Props {
+  rows: DiagramRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="diagram-stack">
+  {rows.map((row) => (
+    <div class="diagram-row" style={colorStyle(row.color)}>
+      <span class="diagram-label">{row.label}</span>
+      <span class="diagram-right">
+        {row.detail && <span class="diagram-detail">{row.detail}</span>}
+        {row.badge && <span class="diagram-badge" style={badgeStyle(row.color)}>{row.badge}</span>}
+      </span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .diagram-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .diagram-row {
+    background: var(--cell-bg);
+    border: 1px solid var(--cell-border);
+    color: var(--cell-text);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .diagram-label {
+    font-weight: 500;
+  }
+
+  .diagram-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .diagram-detail {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .diagram-badge {
+    background: var(--cell-bg);
+    color: var(--cell-text);
+    font-size: var(--font-size-2xs);
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+</style>

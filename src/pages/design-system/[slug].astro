@@ -10,6 +10,7 @@ import MobileMenu from "@/components/header/MobileMenu.astro";
 import FoundationsSection from "@/components/design-system/sections/FoundationsSection.astro";
 import AtomsSection from "@/components/design-system/sections/AtomsSection.astro";
 import CardSection from "@/components/design-system/sections/CardSection.astro";
+import DiagramSection from "@/components/design-system/sections/DiagramSection.astro";
 import SliderSection from "@/components/design-system/sections/SliderSection.astro";
 import SectionSection from "@/components/design-system/sections/SectionSection.astro";
 import HeaderSection from "@/components/design-system/sections/HeaderSection.astro";
@@ -19,50 +20,52 @@ import FormSection from "@/components/design-system/sections/FormSection.astro";
 import ContactSection from "@/components/design-system/sections/ContactSection.astro";
 import ArticlesSection from "@/components/design-system/sections/ArticlesSection.astro";
 import FooterSection from "@/components/design-system/sections/FooterSection.astro";
-import TemplatesSection from "@/components/design-system/sections/TemplatesSection.astro";
 import AnimationsSection from "@/components/design-system/sections/AnimationsSection.astro";
+import TemplatesSection from "@/components/design-system/sections/TemplatesSection.astro";
 import DSComponentsSection from "@/components/design-system/sections/DSComponentsSection.astro";
+
+const sectionComponents: Record<string, typeof FoundationsSection> = {
+  foundations: FoundationsSection,
+  atoms: AtomsSection,
+  cards: CardSection,
+  diagram: DiagramSection,
+  slider: SliderSection,
+  sections: SectionSection,
+  header: HeaderSection,
+  navigation: NavigationSection,
+  hero: HeroSection,
+  forms: FormSection,
+  contact: ContactSection,
+  articles: ArticlesSection,
+  footer: FooterSection,
+  animations: AnimationsSection,
+  templates: TemplatesSection,
+  "ds-components": DSComponentsSection,
+};
+
+export function getStaticPaths() {
+  return sidebarSections.map((s) => ({
+    params: { slug: s.slug },
+    props: { title: s.title },
+  }));
+}
+
+const { slug } = Astro.params;
+const { title } = Astro.props;
+const SectionComponent = sectionComponents[slug!];
 ---
 
 <Layout
-  title="Design System · kinoo.dev"
-  description="Components library for kinoo.dev"
+  title={`${title} · Design System · kinoo.dev`}
+  description={`${title} — Design System kinoo.dev`}
 >
   <meta slot="head" name="robots" content="noindex, nofollow" />
   <NavBar slot="header-nav" />
   <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
-  <Sidebar sections={sidebarSections} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load />
+  <Sidebar sections={sidebarSections} currentSlug={slug} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load transition:persist="ds-mobile-sidebar" />
 
-  <DSLayout
-    title="Design System"
-    description="Domain-grouped atomic design system for kinoo.dev. Components are organized by feature domain with atomic classification as metadata."
-  >
-    <div class="ds-intro" slot="intro">
-      <p>Everything is chromatic. <code>--accent-color</code> is set on the container and every component inherits it: <code>Button</code> primary fill and alternative glow, <code>Tag</code> tint, links, blockquote borders, code block accents. The default accent is orange; each section or article category overrides it with its own color.</p>
-      <div class="ds-layer">
-        <h3>Structural layer</h3>
-        <p>Neutral surfaces, cards, header, footer — the chrome that doesn't change between sections.</p>
-      </div>
-      <div class="ds-layer">
-        <h3>Chromatic layer</h3>
-        <p>Accent-driven components that adapt to their context. Set <code>--accent-color</code> on a container and everything inside follows: buttons, links, tags, borders, glows.</p>
-      </div>
-    </div>
-    <FoundationsSection />
-    <AtomsSection />
-    <CardSection />
-    <SliderSection />
-    <SectionSection />
-    <HeaderSection />
-    <NavigationSection />
-    <HeroSection />
-    <FormSection />
-    <ContactSection />
-    <ArticlesSection />
-    <FooterSection />
-    <AnimationsSection />
-    <TemplatesSection />
-    <DSComponentsSection />
+  <DSLayout currentSlug={slug}>
+    <SectionComponent />
   </DSLayout>
 </Layout>

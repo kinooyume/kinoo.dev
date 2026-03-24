@@ -1,4 +1,5 @@
 ---
+import IconButton from "@/components/shared/atoms/IconButton.astro";
 import message from "@/svgs/message.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
@@ -18,37 +19,13 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   </p>
 
   <DSBlock title="Preview">
-    <DSPreview class="states-preview">
-      <div class="state-demo">
-        <span class="state-label">Default State</span>
-        <a class="floating-contact-demo primary" href="#floatingcontact">
-          <div class="icon-wrapper">
-            <Fragment set:html={message} />
-          </div>
-        </a>
-      </div>
-      <div class="state-demo">
-        <span class="state-label">Hover State</span>
-        <a
-          class="floating-contact-demo primary hover-state"
-          href="#floatingcontact"
-        >
-          <div class="icon-wrapper">
-            <Fragment set:html={message} />
-          </div>
-        </a>
-      </div>
-      <div class="state-demo">
-        <span class="state-label">Hidden (.current)</span>
-        <a
-          class="floating-contact-demo primary hidden-state"
-          href="#floatingcontact"
-        >
-          <div class="icon-wrapper">
-            <Fragment set:html={message} />
-          </div>
-        </a>
-      </div>
+    <DSPreview>
+      <IconButton label="Me contacter" href="#floatingcontact">
+        <Fragment set:html={message} />
+      </IconButton>
+      <IconButton label="Me contacter" href="#floatingcontact" size="small">
+        <Fragment set:html={message} />
+      </IconButton>
     </DSPreview>
   </DSBlock>
 
@@ -58,68 +35,8 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       rows={[
         ["Desktop (>600px)", "Hidden", { code: "display: none" }],
         ["Mobile, #contact not visible", "Visible", "Default styles"],
-        [
-          "Mobile, #contact in viewport",
-          "Hidden",
-          { code: ".current class added" },
-        ],
+        ["Mobile, #contact in viewport", "Hidden", { code: ".current class added" }],
       ]}
     />
   </DSBlock>
-
 </section>
-
-<style lang="scss">
-  .states-preview :global(.ds-preview) {
-    gap: 48px;
-  }
-
-  .state-demo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .state-label {
-    font-size: 13px;
-    color: var(--color);
-    opacity: 0.6;
-  }
-
-  .floating-contact-demo {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-
-    .icon-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      :global(svg) {
-        width: 20px;
-        height: 20px;
-      }
-
-      :global(svg path) {
-        fill: black;
-      }
-    }
-  }
-
-  .hover-state {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(246, 177, 122, 0.3);
-  }
-
-  .hidden-state {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-</style>

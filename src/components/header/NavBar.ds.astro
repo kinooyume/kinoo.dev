@@ -29,24 +29,23 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 </section>
 
 <script>
-  // Interactive navbar demo
-  const navbar = document.getElementById("navbar-demo");
-  if (navbar) {
-    const navbarEl = navbar;
-    const links = navbarEl.querySelectorAll("a");
-    const indicator = navbarEl.querySelector(".indicator") as HTMLElement;
-    let activeLink: Element | null = navbarEl.querySelector("a.active");
+  function init() {
+    const navbar = document.getElementById("navbar-demo");
+    if (!navbar) return;
+    const links = navbar.querySelectorAll("a");
+    const indicator = navbar.querySelector(".indicator") as HTMLElement;
+    let activeLink: Element | null = navbar.querySelector("a.active");
 
     function updateIndicator(link: Element) {
+      if (!navbar) return;
       const rect = link.getBoundingClientRect();
-      const parentRect = navbarEl.getBoundingClientRect();
+      const parentRect = navbar.getBoundingClientRect();
       indicator.style.left = `${rect.left - parentRect.left}px`;
       indicator.style.width = `${rect.width}px`;
       indicator.style.backgroundColor =
         (link as HTMLElement).dataset.color || "var(--accent-color)";
     }
 
-    // Initialize
     if (activeLink) {
       const link = activeLink;
       requestAnimationFrame(() => updateIndicator(link));
@@ -54,7 +53,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
     links.forEach((link) => {
       link.addEventListener("mouseenter", () => updateIndicator(link));
-
       link.addEventListener("click", (e) => {
         e.preventDefault();
         links.forEach((l) => l.classList.remove("active"));
@@ -68,6 +66,9 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       if (activeLink) updateIndicator(activeLink);
     });
   }
+
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>
 
 <style lang="scss">

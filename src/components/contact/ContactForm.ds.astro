@@ -28,11 +28,16 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 </section>
 
 <script>
-  const container = document.getElementById("contactform-demo");
-  container?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, true);
+  function init() {
+    const container = document.getElementById("contactform-demo");
+    container?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>
 
 <style lang="scss">

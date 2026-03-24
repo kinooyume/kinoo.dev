@@ -9,10 +9,10 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
 
 <section id="h3tagged">
-  <DSSectionHeader title="H3Tagged" atomic="Atom" framework="astro" />
-  <p>Heading with an inline tag badge, used for card titles with categorization.</p>
+  <DSSectionHeader title="H3Tagged" atomic="Molecule" framework="astro" />
+  <p>Heading with an inline <code>Tag badge</code>. Used for card titles with categorization.</p>
 
-  <DSBlock title="Default">
+  <DSBlock title="Preview">
     <DSPreview>
       <H3TaggedComponent title="Project Title" tag="React" />
     </DSPreview>
@@ -24,14 +24,14 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
         [{ code: "title" }, "string", "required", "The heading text"],
-        [{ code: "tag" }, "string", "required", "The tag/badge text"],
+        [{ code: "tag" }, "string", "required", "Passed as Tag badge"],
       ]}
     />
   </DSBlock>
 
   <DSBlock title="Usage">
     <DSNote>
-      Typically used within <code>CardTitle</code> to display job titles or project names with their category/type.
+      Used within <code>CardTitle</code> to display job titles or project names. Internally uses <code>&lt;Tag badge size="small" /&gt;</code>.
     </DSNote>
   </DSBlock>
 </section>

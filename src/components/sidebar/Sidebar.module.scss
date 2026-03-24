@@ -18,7 +18,7 @@
 .sidebarScroll {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 4px;
   flex: 1 1 0;
   overflow-y: auto;
 }
@@ -27,6 +27,9 @@
   border-radius: 8px;
 
   summary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -42,12 +45,13 @@
       display: none;
     }
 
-    &::before {
+    &::after {
       content: "▶";
       display: inline-block;
-      margin-right: 8px;
+      margin-left: auto;
       font-size: 10px;
       transition: transform 0.2s ease;
+      transform: rotate(90deg);
     }
 
     &:hover {
@@ -55,8 +59,8 @@
     }
   }
 
-  &[open] summary::before {
-    transform: rotate(90deg);
+  &[open] summary::after {
+    transform: rotate(-90deg);
   }
 
   ul {
@@ -85,6 +89,12 @@
       color: var(--accent-color);
     }
   }
+
+  summary a.sectionLink {
+    all: unset;
+    cursor: pointer;
+    color: inherit;
+  }
 }
 
 .frameworkIcon {
@@ -97,6 +107,7 @@
     height: 14px;
   }
 }
+
 
 .active {
   background-color: var(--orange-tint);

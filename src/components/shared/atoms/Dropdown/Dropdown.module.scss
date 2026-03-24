@@ -1,0 +1,74 @@
+.dropdown {
+  position: relative;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  font-family: Outfit, system-ui, sans-serif;
+  font-size: 13px;
+  color: var(--accent-color);
+  background-color: var(--accent-tint);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
+  }
+}
+
+.chevron {
+  font-size: 10px;
+  opacity: 0.5;
+  transition: transform 0.15s ease;
+  margin-left: auto;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: var(--card-surface-raised);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+  border-radius: 8px;
+  padding: 4px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-family: Outfit, system-ui, sans-serif;
+  font-size: 13px;
+  color: var(--light-color);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.optionActive {
+  background-color: var(--accent-tint);
+  color: var(--accent-color);
+}

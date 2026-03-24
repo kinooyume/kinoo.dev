@@ -2,13 +2,15 @@
 import CardComponent from "./Card.astro";
 import CardContent from "./CardContent.astro";
 import CardTitle from "./CardTitle.astro";
+import CardDescription from "./CardDescription.astro";
 import Spotlight from "@/components/shared/molecules/Spotlight.astro";
+import LogoBox from "@/components/shared/atoms/LogoBox.astro";
+import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
-import DSNote from "@/components/design-system/DSNote.astro";
 import DSStructure from "@/components/design-system/DSStructure.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 ---
@@ -65,6 +67,32 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   <DSSectionHeader title="CardContent" atomic="Molecule" framework="astro" />
   <p>Layout with named slots, used inside Card.</p>
 
+  <DSBlock title="Preview">
+    <DSPreview class="preview-card">
+      <CardComponent>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Developer"
+            tag="Freelance"
+            href="https://example.com"
+            label="Company"
+            location="Paris"
+            date="2024"
+          />
+          <LogoBox slot="marge" />
+          <CardDescription>
+            <p>Description of the role and responsibilities.</p>
+          </CardDescription>
+          <TagRow>
+            <Tag title="TypeScript" />
+            <Tag title="Astro" />
+          </TagRow>
+        </CardContent>
+      </CardComponent>
+    </DSPreview>
+  </DSBlock>
+
   <DSBlock title="Slots">
     <DSStructure
       rows={[
@@ -73,10 +101,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         { code: "default slot", description: "Body: CardDescription + TagRow" },
       ]}
     />
-  </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;Card&gt;&lt;CardContent&gt;&lt;CardTitle slot="title" /&gt;&lt;LogoBox slot="marge" /&gt;&lt;CardDescription&gt;...&lt;/CardDescription&gt;&lt;TagRow&gt;...&lt;/TagRow&gt;&lt;/CardContent&gt;&lt;/Card&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Fluid spacing">
@@ -96,6 +120,24 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   <DSSectionHeader title="CardTitle" atomic="Molecule" framework="astro" />
   <p>Title block for cards with company/project metadata. Uses H3Tagged internally.</p>
 
+  <DSBlock title="Preview">
+    <DSPreview class="preview-card">
+      <CardComponent>
+        <CardContent>
+          <CardTitle
+            slot="title"
+            title="Lead Developer"
+            tag="Freelance"
+            href="https://example.com"
+            label="Company"
+            location="Paris"
+            date="2023 – 2024"
+          />
+        </CardContent>
+      </CardComponent>
+    </DSPreview>
+  </DSBlock>
+
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Description"]}
@@ -109,16 +151,25 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       ]}
     />
   </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;CardTitle slot="title" title="Developer" tag="Freelance" ... /&gt;</DSCode>
-  </DSBlock>
 </section>
 
 <!-- CARD DESCRIPTION -->
 <section id="card-description">
   <DSSectionHeader title="CardDescription" atomic="Molecule" framework="astro" />
   <p>Text wrapper for card content. Handles paragraph gap and hides <code>&lt;br&gt;</code>.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview class="preview-card">
+      <CardComponent>
+        <CardContent>
+          <CardDescription>
+            <p>First paragraph of the description. Handles multiple paragraphs with consistent spacing.</p>
+            <p>Second paragraph — the gap replaces manual line breaks.</p>
+          </CardDescription>
+        </CardContent>
+      </CardComponent>
+    </DSPreview>
+  </DSBlock>
 
   <DSBlock title="Features">
     <DSStructure
@@ -128,11 +179,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         { code: "br { display: none }", description: "Gap replaces line breaks" },
       ]}
     />
-  </DSBlock>
-
-  <DSBlock title="Usage">
-    <DSCode inline>&lt;CardDescription&gt;&lt;p&gt;...&lt;/p&gt;&lt;ul&gt;...&lt;/ul&gt;&lt;/CardDescription&gt;</DSCode>
-    <DSNote>Used inside CardContent (default slot) and CardSplit (description slot).</DSNote>
   </DSBlock>
 </section>
 
@@ -227,10 +273,13 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 <script>
   import { spotlight } from "@/lib/dom/spotlight";
 
-  const container = document.getElementById("experience-card-spotlight");
-  if (container) {
-    spotlight(container);
+  function init() {
+    const container = document.getElementById("experience-card-spotlight");
+    if (container) spotlight(container);
   }
+
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>
 
 <style lang="scss">

@@ -1,0 +1,45 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import DropdownDemo from "./DropdownDemo";
+---
+
+<section id="dropdown">
+  <DSSectionHeader title="Dropdown" atomic="Atom" framework="solid" />
+  <p>Generic dropdown with trigger slot, click-outside close, and chevron indicator. Content is fully custom via children.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div style="width: 200px;">
+        <DropdownDemo client:load />
+      </div>
+    </DSPreview>
+    <DSCode>{`<Dropdown trigger={() => <span>Label</span>}>
+  <button class={dropdownStyles.option}>Option</button>
+</Dropdown>`}</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        [{ code: "trigger" }, { code: "(open: Accessor<boolean>) => JSX.Element" }, "Render function for the trigger content"],
+        [{ code: "children" }, { code: "JSX.Element" }, "Dropdown panel content"],
+        [{ code: "class" }, { code: "string" }, "Additional class on the wrapper"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Exported styles">
+    <DSPropsTable
+      headers={["Class", "Usage"]}
+      rows={[
+        [{ code: "dropdownStyles.option" }, "Standard option button"],
+        [{ code: "dropdownStyles.optionActive" }, "Active/selected option"],
+      ]}
+    />
+  </DSBlock>
+</section>

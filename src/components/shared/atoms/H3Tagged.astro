@@ -1,4 +1,6 @@
 ---
+import Tag from "./Tag.astro";
+
 type Props = {
   title: string;
   tag: string;
@@ -9,15 +11,11 @@ const { title, tag } = Astro.props;
 
 <div>
   <h3>{title}</h3>
-  <span>{tag}</span>
+  <Tag title={tag} badge size="small" />
 </div>
 
 <style lang="scss">
   @use "@/styles/breakpoints" as *;
-
-  :root {
-    --experience-span-size: 14px;
-  }
 
   div {
     display: flex;
@@ -34,26 +32,9 @@ const { title, tag } = Astro.props;
     padding-bottom: 3px;
   }
 
-  span {
-    font-size: var(--experience-span-size);
-    border-radius: 6px;
-    padding: 2px 6px;
-    color: black;
-    background-color: var(--accent-color);
-  }
-
   @include tablet {
-    :root {
-      --experience-span-size: 12px;
-    }
     h3 {
       line-height: 1.2;
-    }
-  }
-
-  @include mobile {
-    .title-container span {
-      padding: 0 6px;
     }
   }
 </style>
