@@ -27,8 +27,13 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 </section>
 
 <script>
-  const btn = document.querySelector(".burger-demo-btn");
-  btn?.addEventListener("click", () => btn.classList.toggle("open"));
+  function init() {
+    const btn = document.querySelector(".burger-demo-btn");
+    btn?.addEventListener("click", () => btn.classList.toggle("open"));
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>
 
 <style lang="scss">

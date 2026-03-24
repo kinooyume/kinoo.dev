@@ -1,0 +1,86 @@
+---
+import type { DiagramNode } from "./types";
+import { colorStyle } from "./types";
+
+interface Props {
+  from: DiagramNode;
+  to: DiagramNode;
+  label?: string;
+  bidirectional?: boolean;
+}
+
+const { from, to, label, bidirectional } = Astro.props;
+---
+
+<div class="diagram-arrow">
+  <div class="arrow-box arrow-first" style={colorStyle(from.color)}>
+    <span class="arrow-label">{from.label}</span>
+    {from.detail && <span class="arrow-detail">{from.detail}</span>}
+  </div>
+  <div class:list={["arrow-middle", { bidirectional }]}>
+    {bidirectional && <span class="arrow-icon">&larr;</span>}
+    {label && <span class="arrow-text">{label}</span>}
+    <span class="arrow-icon">&rarr;</span>
+  </div>
+  <div class="arrow-box arrow-last" style={colorStyle(to.color)}>
+    <span class="arrow-label">{to.label}</span>
+    {to.detail && <span class="arrow-detail">{to.detail}</span>}
+  </div>
+</div>
+
+<style>
+  .diagram-arrow {
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow-box {
+    background: var(--cell-bg);
+    border: 1px solid var(--cell-border);
+    color: var(--cell-text);
+    padding: 12px 16px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .arrow-first {
+    border-radius: 8px 0 0 8px;
+  }
+
+  .arrow-last {
+    border-radius: 0 8px 8px 0;
+  }
+
+  .arrow-label {
+    display: block;
+    font-weight: 600;
+  }
+
+  .arrow-detail {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: 2px;
+  }
+
+  .arrow-middle {
+    background: var(--card-surface);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+  }
+
+  .arrow-text {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .arrow-icon {
+    color: var(--accent-color);
+    font-size: 1.2em;
+  }
+</style>

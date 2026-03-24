@@ -1,0 +1,25 @@
+---
+interface Props {
+  caption?: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<figure class="diagram">
+  <slot />
+  {caption && <figcaption class="diagram-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .diagram {
+    margin: 1.5em 0;
+  }
+
+  .diagram-caption {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: 6px;
+  }
+</style>

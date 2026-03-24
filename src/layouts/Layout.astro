@@ -121,12 +121,15 @@ const {
   import { reset as resetEmitter } from "@/lib/emitter";
   import type { TransitionBeforeSwapEvent, TransitionBeforePreparationEvent } from "astro:transitions/client";
 
+  function isDsPage() {
+    return location.pathname.startsWith("/design-system");
+  }
+
   function exitAnimation(): Promise<void> {
-    const content = document.querySelector<HTMLElement>(".page-content");
-    if (!content) return Promise.resolve();
-    return animate(content, {
+    const target = document.querySelector<HTMLElement>(isDsPage() ? ".ds-main" : ".page-content");
+    if (!target) return Promise.resolve();
+    return animate(target, {
       opacity: [1, 0],
-      // scale: [1, 0.97],
       duration: 150,
       ease: "inQuad",
     }).then(() => {});
@@ -144,7 +147,7 @@ const {
     resetEmitter();
     document.body.style.overflow = "";
     const ev = e as TransitionBeforeSwapEvent;
-    if (hasPlayed("hero")) {
+    if (hasPlayed("hero") || hasPlayed("header")) {
       ev.newDocument.body.dataset.animationsDone = "";
     }
     ev.newDocument.documentElement.style.scrollBehavior = "auto";
@@ -159,11 +162,10 @@ const {
       }
     }
 
-    const content = document.querySelector<HTMLElement>(".page-content");
-    if (content) {
-      animate(content, {
+    const target = document.querySelector<HTMLElement>(isDsPage() ? ".ds-main" : ".page-content");
+    if (target) {
+      animate(target, {
         opacity: [0, 1],
-        // scale: [0.98, 1],
         duration: 200,
         ease: "outCubic",
       });

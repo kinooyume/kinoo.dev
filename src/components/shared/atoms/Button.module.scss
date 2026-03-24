@@ -76,7 +76,7 @@
   }
 }
 
-.tiny {
+.small {
   height: 28px;
   padding: 0 14px;
   font-size: var(--font-size-2xs);
@@ -90,7 +90,7 @@
   height: 18px;
 }
 
-.tiny .icon :global(svg) {
+.small .icon :global(svg) {
   width: 14px;
   height: 14px;
 }

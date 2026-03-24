@@ -1,0 +1,68 @@
+---
+import type { DiagramTreeNode } from "./types";
+import { colorStyle } from "./types";
+
+interface Props {
+  nodes: DiagramTreeNode[];
+}
+
+const { nodes } = Astro.props;
+
+function flattenTree(nodes: DiagramTreeNode[], depth = 0): { node: DiagramTreeNode; depth: number; hasChildren: boolean }[] {
+  const result: { node: DiagramTreeNode; depth: number; hasChildren: boolean }[] = [];
+  for (const node of nodes) {
+    const hasChildren = !!node.children?.length;
+    result.push({ node, depth, hasChildren });
+    if (node.children) {
+      result.push(...flattenTree(node.children, depth + 1));
+    }
+  }
+  return result;
+}
+---
+
+<div class="diagram-tree">
+  {flattenTree(nodes).map(({ node, depth, hasChildren }) => (
+    <div
+      class:list={["tree-node", { "has-children": hasChildren }]}
+      style={`${colorStyle(node.color)} --depth: ${depth}`}
+    >
+      <span class="tree-indent">{"  ".repeat(depth)}{depth > 0 ? "└ " : ""}</span>
+      <span class="tree-label">{node.label}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .diagram-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tree-node {
+    background: var(--cell-bg);
+    border: 1px solid var(--cell-border);
+    color: var(--cell-text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-left: calc(var(--depth) * 24px);
+  }
+
+  .tree-node.has-children {
+    font-weight: 600;
+  }
+
+  .tree-indent {
+    color: var(--text-muted);
+    white-space: pre;
+    user-select: none;
+  }
+
+  .tree-label {
+    font-weight: 500;
+  }
+</style>

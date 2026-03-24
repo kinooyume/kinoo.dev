@@ -17,14 +17,28 @@ export const accentColors: AccentColor[] = [
 ];
 
 const accentProps = ["--accent-color", "--accent-bright", "--accent-tint", "--secondary-accent-color"] as const;
+const STORAGE_KEY = "ds-accent-color";
 
 export function applyAccentColor(color: AccentColor, target: HTMLElement = document.documentElement) {
   target.style.setProperty("--accent-color", `var(${color.base})`);
   target.style.setProperty("--accent-bright", `var(${color.bright})`);
   target.style.setProperty("--accent-tint", `var(${color.tint})`);
   target.style.setProperty("--secondary-accent-color", `var(${color.secondary})`);
+  try { localStorage.setItem(STORAGE_KEY, color.name); } catch {}
+}
+
+export function restoreAccentColor(target: HTMLElement = document.documentElement): AccentColor | null {
+  try {
+    const name = localStorage.getItem(STORAGE_KEY);
+    if (!name) return null;
+    const color = accentColors.find((c) => c.name === name);
+    if (!color) return null;
+    applyAccentColor(color, target);
+    return color;
+  } catch { return null; }
 }
 
 export function resetAccentColor(target: HTMLElement = document.documentElement) {
   accentProps.forEach((p) => target.style.removeProperty(p));
+  try { localStorage.removeItem(STORAGE_KEY); } catch {}
 }

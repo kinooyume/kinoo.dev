@@ -1,0 +1,66 @@
+---
+import type { DiagramCompareColumn } from "./types";
+import { colorStyle, mutedStyle } from "./types";
+
+interface Props {
+  columns: DiagramCompareColumn[];
+}
+
+const { columns } = Astro.props;
+---
+
+<div class="diagram-compare" style={`--cols: ${columns.length}`}>
+  {columns.map((col) => (
+    <div class="compare-col">
+      <div class="compare-header" style={colorStyle(col.color)}>{col.title}</div>
+      <div class="compare-items">
+        {col.items.map((item, i) => (
+          <div
+            class:list={["compare-item", { last: i === col.items.length - 1 }]}
+            style={mutedStyle(col.color)}
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .diagram-compare {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: 8px;
+  }
+
+  .compare-header {
+    background: var(--cell-bg);
+    border: 1px solid var(--cell-border);
+    color: var(--cell-text);
+    padding: 10px 14px;
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .compare-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .compare-item {
+    background: var(--cell-bg);
+    border-left: 1px solid var(--cell-border);
+    border-right: 1px solid var(--cell-border);
+    color: var(--cell-text);
+    padding: 8px 14px;
+    font-size: var(--font-size-sm);
+  }
+
+  .compare-item.last {
+    border-bottom: 1px solid var(--cell-border);
+    border-radius: 0 0 8px 8px;
+  }
+</style>
