@@ -1,10 +1,11 @@
-export type DiagramColor = "purple" | "orange" | "red" | "green" | "pink" | "blue" | "cyan";
+export type DiagramColor = "purple" | "orange" | "red" | "green" | "pink" | "blue" | "cyan" | "teal" | "yellow" | "indigo";
 
 export type DiagramRow = {
   label: string;
   detail?: string;
   badge?: string;
   color: DiagramColor;
+  href?: string;
 };
 
 export type DiagramNode = {
@@ -54,6 +55,17 @@ export function badgeStyle(color: DiagramColor) {
 export function mutedStyle(color: DiagramColor) {
   return `--cell-bg: var(--${color}-bg); --cell-border: var(--${color}-border); --cell-text: var(--${color}-lightest);`;
 }
+
+export type FlowSplitBranch = {
+  label: string;
+  detail?: string;
+  color: DiagramColor;
+};
+
+export type DiagramFlowSplitData = {
+  steps: DiagramFlowStep[];
+  branches: FlowSplitBranch[];
+};
 
 export type PageMapBlock = {
   label: string;

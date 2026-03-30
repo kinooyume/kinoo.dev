@@ -2,12 +2,33 @@ export type Framework = "astro" | "solid";
 export type SidebarLeaf = { label: string; href: string; framework?: Framework };
 export type SidebarGroup = { label: string; children: SidebarNode[] };
 export type SidebarNode = SidebarLeaf | SidebarGroup;
-export type SidebarSection = { title: string; slug: string; items: SidebarNode[] };
+export type SidebarSection = { title: string; slug: string; items: SidebarNode[]; devOnly?: boolean };
 
 export const isGroup = (node: SidebarNode): node is SidebarGroup =>
   "children" in node;
 
 export const DS_BASE = "/design-system";
+
+export type PaginationLink = { label: string; slug: string; href: string };
+
+export function getPrevNext(currentSlug?: string): {
+  prev?: PaginationLink;
+  next?: PaginationLink;
+} {
+  const idx = sidebarSections.findIndex((s) => s.slug === currentSlug);
+  if (idx === -1) return {};
+  const prev = idx > 0 ? sidebarSections[idx - 1] : undefined;
+  const next =
+    idx < sidebarSections.length - 1 ? sidebarSections[idx + 1] : undefined;
+  return {
+    prev: prev
+      ? { label: prev.title, slug: prev.slug, href: `${DS_BASE}/${prev.slug}` }
+      : undefined,
+    next: next
+      ? { label: next.title, slug: next.slug, href: `${DS_BASE}/${next.slug}` }
+      : undefined,
+  };
+}
 
 export const sidebarSections: SidebarSection[] = [
   // Foundations & primitives
@@ -159,6 +180,23 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "Form Page", href: "#template-form" },
       { label: "Product Cards", href: "#template-products" },
+    ],
+  },
+  {
+    title: "Experimental · Dual Tone",
+    slug: "experimental",
+    devOnly: true,
+    items: [
+      { label: "Overview", href: "#dual-tone" },
+      { label: "Base", href: "#dt-base" },
+      { label: "Deep shift", href: "#dt-deep" },
+      { label: "Warm shift", href: "#dt-warm" },
+      { label: "Cool shift", href: "#dt-cool" },
+      { label: "Complementary", href: "#dt-complementary" },
+      { label: "Desaturated", href: "#dt-desaturated" },
+      { label: "Monochrome", href: "#dt-monochrome" },
+      { label: "Card Title", href: "#dt-card-title" },
+      { label: "Spotlight Effects", href: "#dual-tone-effects" },
     ],
   },
   {

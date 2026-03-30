@@ -50,6 +50,11 @@ function flattenTree(nodes: DiagramTreeNode[], depth = 0): { node: DiagramTreeNo
     padding: 8px 14px;
     border-radius: 8px;
     margin-left: calc(var(--depth) * 24px);
+
+    &::selection, & *::selection {
+      background-color: var(--cell-text);
+      color: var(--background-color);
+    }
   }
 
   .tree-node.has-children {

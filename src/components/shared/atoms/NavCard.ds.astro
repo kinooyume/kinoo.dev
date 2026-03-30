@@ -22,6 +22,26 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSCode inline>&lt;NavCard href="/path" title="Section" subtitle="5 components" /&gt;</DSCode>
   </DSBlock>
 
+  <DSBlock title="Direction · card">
+    <DSPreview>
+      <div style="display: flex; justify-content: space-between; gap: 12px; width: 100%;">
+        <NavCardComponent href="#navcard" title="Foundations" direction="prev" />
+        <NavCardComponent href="#navcard" title="Cards" direction="next" />
+      </div>
+    </DSPreview>
+    <DSCode inline>&lt;NavCard href="/prev" title="Foundations" direction="prev" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Direction · minimal">
+    <DSPreview>
+      <div style="display: flex; justify-content: space-between; gap: 12px; width: 100%;">
+        <NavCardComponent href="#navcard" title="Foundations" direction="prev" variant="minimal" />
+        <NavCardComponent href="#navcard" title="Cards" direction="next" variant="minimal" />
+      </div>
+    </DSPreview>
+    <DSCode inline>&lt;NavCard href="/prev" title="Foundations" direction="prev" variant="minimal" /&gt;</DSCode>
+  </DSBlock>
+
   <DSBlock title="Props">
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
@@ -29,6 +49,8 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
         [{ code: "href" }, "string", "required", "Link destination"],
         [{ code: "title" }, "string", "required", "Card title"],
         [{ code: "subtitle" }, "string", "-", "Secondary text below title"],
+        [{ code: "direction" }, '"prev" | "next"', "-", "Adds direction label and aligns accordingly"],
+        [{ code: "variant" }, '"card" | "minimal"', '"card"', "Visual style — card (border + bg) or minimal (accent title, no border)"],
         [{ code: "class" }, "string", "-", "Additional CSS class"],
       ]}
     />

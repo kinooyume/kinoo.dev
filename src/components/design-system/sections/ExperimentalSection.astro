@@ -1,0 +1,531 @@
+---
+import DSCategoryHeader from "../DSCategoryHeader.astro";
+import DSBlock from "../DSBlock.astro";
+import Spotlight from "@/components/shared/molecules/Spotlight.astro";
+
+type DualTone = { label: string; light: string; dark: string };
+
+// Warm → Cold: Yellow, Orange, Red, Pink, Purple, Indigo, Blue, Cyan, Teal, Green
+const colors = {
+  yellow:  "#e8d48a", // DS --yellow
+  orange:  "#f8ba88", // DS --orange
+  red:     "#ea8686", // DS --red
+  pink:    "#f68dab", // DS --pink
+  purple:  "#9c85d3", // DS --purple
+  indigo:  "#8b85d8", // DS --indigo
+  blue:    "#7eb8f7", // DS --blue
+  cyan:    "#5ecfcf", // DS --cyan
+  teal:    "#6dc4b0", // DS --teal
+  green:   "#66c384", // DS --green
+};
+
+const dualTones: DualTone[] = [
+  { label: "Yellow",  light: colors.yellow, dark: "#5C4A10" },
+  { label: "Orange",  light: colors.orange, dark: "#5C3A1A" },
+  { label: "Red",     light: colors.red,    dark: "#5A1B1B" },
+  { label: "Pink",    light: colors.pink,   dark: "#5A1E3A" },
+  { label: "Purple",  light: colors.purple, dark: "#2E1A4D" },
+  { label: "Indigo",  light: colors.indigo, dark: "#1E1A4D" },
+  { label: "Blue",    light: colors.blue,   dark: "#1B3A5A" },
+  { label: "Cyan",    light: colors.cyan,   dark: "#0F4C5C" },
+  { label: "Teal",    light: colors.teal,   dark: "#0A3D36" },
+  { label: "Green",   light: colors.green,  dark: "#1A3D24" },
+];
+
+const dualTonesDeep: DualTone[] = [
+  { label: "Yellow",  light: colors.yellow, dark: "#2E2508" },
+  { label: "Orange",  light: colors.orange, dark: "#2E1A08" },
+  { label: "Red",     light: colors.red,    dark: "#2E0808" },
+  { label: "Pink",    light: colors.pink,   dark: "#2E0818" },
+  { label: "Purple",  light: colors.purple, dark: "#1E0E3D" },
+  { label: "Indigo",  light: colors.indigo, dark: "#0E0A30" },
+  { label: "Blue",    light: colors.blue,   dark: "#0C1F33" },
+  { label: "Cyan",    light: colors.cyan,   dark: "#062A30" },
+  { label: "Teal",    light: colors.teal,   dark: "#041F1C" },
+  { label: "Green",   light: colors.green,  dark: "#0A1F10" },
+];
+
+const dualTonesWarm: DualTone[] = [
+  { label: "Yellow → Bordeaux",  light: colors.yellow, dark: "#4D1A1A" },
+  { label: "Orange → Prune",     light: colors.orange, dark: "#3D1A33" },
+  { label: "Red → Brun",         light: colors.red,    dark: "#4A3520" },
+  { label: "Pink → Olive",       light: colors.pink,   dark: "#2E3A1A" },
+  { label: "Purple → Aubergine", light: colors.purple, dark: "#3D1A2E" },
+  { label: "Indigo → Brun chaud",light: colors.indigo, dark: "#3D2A1A" },
+  { label: "Blue → Terracotta",  light: colors.blue,   dark: "#4D2E1A" },
+  { label: "Cyan → Brun rosé",   light: colors.cyan,   dark: "#4D2A1B" },
+  { label: "Teal → Bordeaux",    light: colors.teal,   dark: "#4D1A2A" },
+  { label: "Green → Brun",       light: colors.green,  dark: "#4A3520" },
+];
+
+const dualTonesCool: DualTone[] = [
+  { label: "Yellow → Ardoise",    light: colors.yellow, dark: "#2E3440" },
+  { label: "Orange → Bleu nuit",  light: colors.orange, dark: "#1B2838" },
+  { label: "Red → Acier",         light: colors.red,    dark: "#2E3440" },
+  { label: "Pink → Gris froid",   light: colors.pink,   dark: "#33272E" },
+  { label: "Purple → Gris bleu",  light: colors.purple, dark: "#2C2E3E" },
+  { label: "Indigo → Ardoise",    light: colors.indigo, dark: "#1C2833" },
+  { label: "Blue → Marine",       light: colors.blue,   dark: "#0D1B2A" },
+  { label: "Cyan → Pétrole",      light: colors.cyan,   dark: "#1A3A3A" },
+  { label: "Teal → Marine",       light: colors.teal,   dark: "#0D1B2A" },
+  { label: "Green → Pétrole",     light: colors.green,  dark: "#1A2E2E" },
+];
+
+const dualTonesComplementary: DualTone[] = [
+  { label: "Yellow → Violet",   light: colors.yellow, dark: "#2E1A4D" },
+  { label: "Orange → Bleu",     light: colors.orange, dark: "#1A2E4D" },
+  { label: "Red → Cyan",        light: colors.red,    dark: "#0F3D3D" },
+  { label: "Pink → Vert",       light: colors.pink,   dark: "#1A3D1A" },
+  { label: "Purple → Jaune",    light: colors.purple, dark: "#4D4A1A" },
+  { label: "Indigo → Orange",   light: colors.indigo, dark: "#4D2E1A" },
+  { label: "Blue → Rose",       light: colors.blue,   dark: "#4D1A2E" },
+  { label: "Cyan → Rouge",      light: colors.cyan,   dark: "#4D1A1A" },
+  { label: "Teal → Magenta",    light: colors.teal,   dark: "#4D1A3D" },
+  { label: "Green → Magenta",   light: colors.green,  dark: "#4D1A3D" },
+];
+
+const dualTonesDesaturated: DualTone[] = [
+  { label: "Yellow → Gris chaud",  light: colors.yellow, dark: "#3D3A30" },
+  { label: "Orange → Gris sable",  light: colors.orange, dark: "#33302A" },
+  { label: "Red → Gris chaud",     light: colors.red,    dark: "#332A2A" },
+  { label: "Pink → Gris rosé",     light: colors.pink,   dark: "#332A2E" },
+  { label: "Purple → Gris mauve",  light: colors.purple, dark: "#302A33" },
+  { label: "Indigo → Gris ardoise",light: colors.indigo, dark: "#2A2A33" },
+  { label: "Blue → Gris bleu",     light: colors.blue,   dark: "#2A2E33" },
+  { label: "Cyan → Gris teal",     light: colors.cyan,   dark: "#263030" },
+  { label: "Teal → Gris vert",     light: colors.teal,   dark: "#283030" },
+  { label: "Green → Gris vert",    light: colors.green,  dark: "#2E332E" },
+];
+
+const dualTonesMono: DualTone[] = [
+  { label: "Yellow",  light: colors.yellow, dark: "#605018" },
+  { label: "Orange",  light: colors.orange, dark: "#664020" },
+  { label: "Red",     light: colors.red,    dark: "#662020" },
+  { label: "Pink",    light: colors.pink,   dark: "#662040" },
+  { label: "Purple",  light: colors.purple, dark: "#3D2066" },
+  { label: "Indigo",  light: colors.indigo, dark: "#28206B" },
+  { label: "Blue",    light: colors.blue,   dark: "#1A4D80" },
+  { label: "Cyan",    light: colors.cyan,   dark: "#16605A" },
+  { label: "Teal",    light: colors.teal,   dark: "#105A50" },
+  { label: "Green",   light: colors.green,  dark: "#1A5A2E" },
+];
+
+// Card title variant — uses -light shades like card titles (--secondary-accent-color)
+const colorsLight = {
+  yellow:  "#f0e0a8", // lightest pastel yellow
+  orange:  "#f7caa6", // DS --orange-light
+  red:     "#edabab", // DS --red-light
+  pink:    "#f8a4c0", // DS --pink-light
+  purple:  "#b09ee0", // DS --purple-light
+  indigo:  "#a8a4e8", // pastel indigo light
+  blue:    "#a0ccfa", // DS --blue-light
+  cyan:    "#8edede", // DS --cyan-light
+  teal:    "#8ad8c8", // pastel teal light
+  green:   "#a4dfb8", // DS --green-light
+};
+
+const dualTonesCardTitle: DualTone[] = [
+  { label: "Yellow",  light: colorsLight.yellow, dark: "#3D3010" },
+  { label: "Orange",  light: colorsLight.orange, dark: "#3D2210" },
+  { label: "Red",     light: colorsLight.red,    dark: "#3D1212" },
+  { label: "Pink",    light: colorsLight.pink,   dark: "#3D1228" },
+  { label: "Purple",  light: colorsLight.purple, dark: "#201440" },
+  { label: "Indigo",  light: colorsLight.indigo, dark: "#181440" },
+  { label: "Blue",    light: colorsLight.blue,   dark: "#122840" },
+  { label: "Cyan",    light: colorsLight.cyan,   dark: "#0C3838" },
+  { label: "Teal",    light: colorsLight.teal,   dark: "#0C3028" },
+  { label: "Green",   light: colorsLight.green,  dark: "#0C3018" },
+];
+
+const allSets = [
+  { tones: dualTones, title: "Base", id: "dt-base" },
+  { tones: dualTonesDeep, title: "Deep shift", id: "dt-deep" },
+  { tones: dualTonesWarm, title: "Warm shift", id: "dt-warm" },
+  { tones: dualTonesCool, title: "Cool shift", id: "dt-cool" },
+  { tones: dualTonesComplementary, title: "Complementary", id: "dt-complementary" },
+  { tones: dualTonesDesaturated, title: "Desaturated", id: "dt-desaturated" },
+  { tones: dualTonesMono, title: "Monochrome", id: "dt-monochrome" },
+  { tones: dualTonesCardTitle, title: "Card Title", id: "dt-card-title" },
+];
+
+const spotIds: string[] = [];
+let spotIdx = 0;
+function nextSpotId(prefix: string) {
+  const id = `dt-spot-${prefix}-${spotIdx++}`;
+  spotIds.push(id);
+  return id;
+}
+---
+
+<DSCategoryHeader
+  title="Experimental · Dual Tone"
+  description="Work in progress. Testing ground for color pair patterns and spotlight effects."
+/>
+
+<section id="dual-tone">
+  <h3>Overview</h3>
+
+  <DSBlock title="All pairs · Light bg">
+    {allSets.map((set) => (
+      <div class="dual-tone-set">
+        <span class="dual-tone-set-label">{set.title}</span>
+        <div class="dual-tone-grid">
+          {set.tones.map((t) => (
+            <div class="dual-tone-chip" style={`background:${t.light}; color:${t.dark};`}>
+              <span class="dual-tone-label"><span class="dual-tone-swatch" style={`background:${t.dark}; border-color:${t.dark};`} />{t.label}</span>
+              <span class="dual-tone-hex">{t.light} / {t.dark}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </DSBlock>
+
+  <DSBlock title="All pairs · Dark bg">
+    {allSets.map((set) => (
+      <div class="dual-tone-set">
+        <span class="dual-tone-set-label">{set.title}</span>
+        <div class="dual-tone-grid">
+          {set.tones.map((t) => (
+            <div class="dual-tone-chip" style={`background:${t.dark}; color:${t.light};`}>
+              <span class="dual-tone-label"><span class="dual-tone-swatch" style={`background:${t.light}; border-color:${t.light};`} />{t.label}</span>
+              <span class="dual-tone-hex">{t.dark} / {t.light}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </DSBlock>
+</section>
+
+{allSets.map((set) => (
+  <section id={set.id}>
+    <h3>{set.title}</h3>
+
+    <DSBlock title="Light bg">
+      <div class="dual-tone-grid">
+        {set.tones.map((t) => (
+          <div class="dual-tone-chip" style={`background:${t.light}; color:${t.dark};`}>
+            <span class="dual-tone-label">{t.label}</span>
+            <span class="dual-tone-hex">{t.light} / {t.dark}</span>
+          </div>
+        ))}
+      </div>
+    </DSBlock>
+
+    <DSBlock title="Dark bg">
+      <div class="dual-tone-grid">
+        {set.tones.map((t) => (
+          <div class="dual-tone-chip" style={`background:${t.dark}; color:${t.light};`}>
+            <span class="dual-tone-label">{t.label}</span>
+            <span class="dual-tone-hex">{t.dark} / {t.light}</span>
+          </div>
+        ))}
+      </div>
+    </DSBlock>
+
+    <DSBlock title="Spotlight · Dark bg">
+      <div id={nextSpotId("dk")} data-spotlight class="spotlight-grid spotlight-grid--sm">
+        {set.tones.map((t) => (
+          <Spotlight color={t.light} style={`--dt-bg:${t.dark}; --dt-border:${t.light};`} class="dt-spotlight">
+            <div class="spotlight-chip" style={`color:${t.light};`}>
+              <span class="spotlight-chip-label">{t.label}</span>
+              <span class="spotlight-chip-hex">{t.light}</span>
+            </div>
+          </Spotlight>
+        ))}
+      </div>
+    </DSBlock>
+
+    <DSBlock title="Spotlight · Light bg">
+      <div id={nextSpotId("lt")} data-spotlight class="spotlight-grid spotlight-grid--sm spotlight-grid--light">
+        {set.tones.map((t) => (
+          <Spotlight color={t.dark} style={`--dt-bg:${t.light}; --dt-border:${t.dark};`} class="dt-spotlight dt-spotlight--light">
+            <div class="spotlight-chip" style={`color:${t.dark};`}>
+              <span class="spotlight-chip-label">{t.label}</span>
+              <span class="spotlight-chip-hex">{t.dark}</span>
+            </div>
+          </Spotlight>
+        ))}
+      </div>
+    </DSBlock>
+
+    <DSBlock title="Spotlight · Surface">
+      <div id={nextSpotId("sf")} data-spotlight class="spotlight-grid spotlight-grid--sm">
+        {set.tones.map((t) => (
+          <Spotlight color={t.light} style={`--dt-bg: color-mix(in srgb, ${t.dark} 60%, #181927); --dt-border:${t.light};`} class="dt-spotlight">
+            <div class="spotlight-chip" style={`color:${t.light};`}>
+              <span class="spotlight-chip-label">{t.label}</span>
+              <span class="spotlight-chip-hex">surface</span>
+            </div>
+          </Spotlight>
+        ))}
+      </div>
+    </DSBlock>
+  </section>
+))}
+
+<section id="dual-tone-effects">
+  <h3>Spotlight Effects</h3>
+
+  <DSBlock title="Gradient bg">
+    {allSets.slice(0, 4).map((set) => (
+      <div id={nextSpotId("gr")} data-spotlight class="spotlight-grid spotlight-grid--sm">
+        <span class="spotlight-set-label">{set.title}</span>
+        {set.tones.map((t) => (
+          <Spotlight color={t.light} style={`--dt-bg: linear-gradient(135deg, ${t.dark}, color-mix(in srgb, ${t.dark} 70%, ${t.light})); --dt-border:${t.light};`} class="dt-spotlight">
+            <div class="spotlight-chip" style={`color:${t.light};`}>
+              <span class="spotlight-chip-label">{t.label}</span>
+              <span class="spotlight-chip-hex">gradient</span>
+            </div>
+          </Spotlight>
+        ))}
+      </div>
+    ))}
+  </DSBlock>
+
+  <DSBlock title="Glass / Frosted">
+    {allSets.slice(0, 4).map((set) => (
+      <div id={nextSpotId("gl")} data-spotlight class="spotlight-grid spotlight-grid--sm">
+        <span class="spotlight-set-label">{set.title}</span>
+        {set.tones.map((t) => (
+          <Spotlight color={t.light} style={`--dt-bg: color-mix(in srgb, ${t.dark} 80%, transparent); --dt-border:${t.light};`} class="dt-spotlight dt-glass">
+            <div class="spotlight-chip" style={`color:${t.light};`}>
+              <span class="spotlight-chip-label">{t.label}</span>
+              <span class="spotlight-chip-hex">glass</span>
+            </div>
+          </Spotlight>
+        ))}
+      </div>
+    ))}
+  </DSBlock>
+
+  <DSBlock title="Border only">
+    {allSets.slice(0, 4).map((set) => (
+      <div id={nextSpotId("bo")} data-spotlight class="spotlight-grid spotlight-grid--sm">
+        <span class="spotlight-set-label">{set.title}</span>
+        {set.tones.map((t) => (
+          <Spotlight color={t.light} style={`--dt-bg: transparent; --dt-border:${t.light}; --dt-border-color:${t.light};`} class="dt-spotlight dt-border-only">
+            <div class="spotlight-chip" style={`color:${t.light};`}>
+              <span class="spotlight-chip-label">{t.label}</span>
+              <span class="spotlight-chip-hex">border</span>
+            </div>
+          </Spotlight>
+        ))}
+      </div>
+    ))}
+  </DSBlock>
+
+  <DSBlock title="Duo spotlight">
+    {allSets.slice(0, 4).map((set) => (
+      <div id={nextSpotId("du")} data-spotlight class="spotlight-grid spotlight-grid--sm">
+        <span class="spotlight-set-label">{set.title}</span>
+        {set.tones.map((t) => (
+          <Spotlight color={t.light} style={`--dt-bg:${t.dark}; --dt-border:${t.light}; --spotlight-color-2:${t.dark};`} class="dt-spotlight dt-duo">
+            <div class="spotlight-chip" style={`color:${t.light};`}>
+              <span class="spotlight-chip-label">{t.label}</span>
+              <span class="spotlight-chip-hex">duo</span>
+            </div>
+          </Spotlight>
+        ))}
+      </div>
+    ))}
+  </DSBlock>
+</section>
+
+<script define:vars={{ spotIds }}>
+  // pass IDs to client
+  window.__dtSpotIds = spotIds;
+</script>
+
+<script>
+  import { spotlight } from "@/lib/dom/spotlight";
+
+  function init() {
+    const ids = (window as Record<string, unknown>).__dtSpotIds as string[] | undefined;
+    if (!ids) return;
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) spotlight(el);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>
+
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
+  .dual-tone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 6px;
+  }
+
+  .dual-tone-chip {
+    padding: 12px 14px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .dual-tone-label {
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dual-tone-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+
+  .dual-tone-hex {
+    font-size: 10px;
+    opacity: 0.8;
+    font-family: monospace;
+  }
+
+  .dual-tone-set {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+
+  .dual-tone-set-label,
+  .spotlight-set-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .spotlight-set-label {
+    grid-column: 1 / -1;
+    padding-top: 8px;
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  .spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr 1fr;
+      padding: 12px;
+    }
+  }
+
+  .spotlight-grid--sm {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .spotlight-grid--light {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  // Base spotlight overrides
+  :global(.dt-spotlight.spotlight-card) {
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  :global(.dt-spotlight .spotlight-inner) {
+    background: var(--dt-bg) !important;
+    border-radius: 11px;
+  }
+
+  // Light variant
+  :global(.dt-spotlight--light.spotlight-card) {
+    background-color: var(--dt-border);
+    padding: 2px;
+  }
+
+  :global(.dt-spotlight--light .spotlight-inner) {
+    border-radius: 10px;
+  }
+
+  :global(.dt-spotlight--light.spotlight-card::before),
+  :global(.dt-spotlight--light.spotlight-card::after) {
+    mix-blend-mode: multiply;
+  }
+
+  :global([data-spotlight]:hover .dt-spotlight--light.spotlight-card::before) {
+    opacity: 1 !important;
+  }
+
+  :global([data-spotlight]:hover .dt-spotlight--light.spotlight-card::after) {
+    opacity: 0.3 !important;
+  }
+
+  // Glass variant
+  :global(.dt-glass .spotlight-inner) {
+    backdrop-filter: blur(20px);
+  }
+
+  // Border-only variant
+  :global(.dt-border-only.spotlight-card) {
+    background-color: transparent;
+    border: 1px solid var(--dt-border-color);
+  }
+
+  :global(.dt-border-only .spotlight-inner) {
+    background: var(--background-color, #181927) !important;
+  }
+
+  // Duo spotlight variant
+  :global(.dt-duo.spotlight-card::after) {
+    background: var(--spotlight-color-2) !important;
+  }
+
+  :global([data-spotlight]:hover .dt-duo.spotlight-card::after) {
+    opacity: 0.4 !important;
+  }
+
+  .spotlight-chip {
+    padding: 16px 14px;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  .spotlight-chip-label {
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .spotlight-chip-hex {
+    font-size: 10px;
+    opacity: 0.7;
+    font-family: monospace;
+  }
+</style>

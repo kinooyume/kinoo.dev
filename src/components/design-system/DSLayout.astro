@@ -1,7 +1,8 @@
 ---
 import Sidebar from "@/components/sidebar/Sidebar.tsx";
 import DSWipNotice from "./DSWipNotice.astro";
-import { sidebarSections } from "./sections/index";
+import NavCard from "@/components/shared/atoms/NavCard.astro";
+import { sidebarSections, getPrevNext } from "./sections/index";
 
 interface Props {
   title?: string;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const { title = "Design System", description, currentSlug } = Astro.props;
+const { prev, next } = getPrevNext(currentSlug);
 ---
 
 <div class="ds-container">
@@ -20,6 +22,11 @@ const { title = "Design System", description, currentSlug } = Astro.props;
     <slot name="intro" />
 
     <slot />
+
+    <nav class="ds-pagination">
+      {prev ? <NavCard href={prev.href} title={prev.label} direction="prev" variant="minimal" /> : <span />}
+      {next ? <NavCard href={next.href} title={next.label} direction="next" variant="minimal" /> : <span />}
+    </nav>
 
     <footer>
       <p>kinoo.dev · Design System</p>
@@ -133,6 +140,15 @@ const { title = "Design System", description, currentSlug } = Astro.props;
       padding: 1px 5px;
       border-radius: 3px;
     }
+  }
+
+  .ds-pagination {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 48px;
+    margin-top: 64px;
+    border-top: 1px solid var(--border-color);
   }
 
   @include desktop {

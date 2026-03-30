@@ -1,0 +1,101 @@
+---
+import type { DiagramFlowStep, DiagramColor } from "./types";
+import { colorStyle } from "./types";
+import DiagramArrowIcon from "./DiagramArrowIcon.astro";
+
+export type FlowSplitBranch = {
+  label: string;
+  detail?: string;
+  color: DiagramColor;
+};
+
+export type DiagramFlowSplitData = {
+  steps: DiagramFlowStep[];
+  branches: FlowSplitBranch[];
+};
+
+type Props = DiagramFlowSplitData;
+
+const { steps, branches } = Astro.props;
+---
+
+<div class="flow-split">
+  <div class="flow-linear">
+    {steps.map((step, i) => (
+      <>
+        <div class="flow-step" style={colorStyle(step.color)}>
+          <span class="flow-label">{step.label}</span>
+          {step.detail && <span class="flow-detail">{step.detail}</span>}
+        </div>
+        {i < steps.length - 1 && <DiagramArrowIcon />}
+      </>
+    ))}
+    <DiagramArrowIcon />
+  </div>
+  <div class="flow-branches">
+    {branches.map((branch) => (
+      <div class="flow-branch" style={colorStyle(branch.color)}>
+        <span class="flow-label">{branch.label}</span>
+        {branch.detail && <span class="flow-detail">{branch.detail}</span>}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .flow-split {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .flow-linear {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .flow-step,
+  .flow-branch {
+    background: var(--cell-bg);
+    border: 1px solid var(--cell-border);
+    color: var(--cell-text);
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-align: center;
+
+    &::selection, & *::selection {
+      background-color: var(--cell-text);
+      color: var(--background-color);
+    }
+  }
+
+  .flow-step {
+    min-width: 0;
+  }
+
+  .flow-branches {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .flow-branch {
+    flex: 1;
+  }
+
+  .flow-label {
+    display: block;
+    font-weight: 600;
+  }
+
+  .flow-detail {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: 2px;
+  }
+</style>

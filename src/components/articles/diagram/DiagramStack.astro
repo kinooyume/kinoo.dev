@@ -10,15 +10,32 @@ const { rows } = Astro.props;
 ---
 
 <div class="diagram-stack">
-  {rows.map((row) => (
-    <div class="diagram-row" style={colorStyle(row.color)}>
-      <span class="diagram-label">{row.label}</span>
-      <span class="diagram-right">
-        {row.detail && <span class="diagram-detail">{row.detail}</span>}
-        {row.badge && <span class="diagram-badge" style={badgeStyle(row.color)}>{row.badge}</span>}
-      </span>
-    </div>
-  ))}
+  {rows.map((row) => {
+    const style = colorStyle(row.color);
+    const inner = (
+      <>
+        <span class="diagram-label">{row.label}</span>
+        <span class="diagram-right">
+          {row.detail && <span class="diagram-detail">{row.detail}</span>}
+          {row.badge && <span class="diagram-badge" style={badgeStyle(row.color)}>{row.badge}</span>}
+        </span>
+      </>
+    );
+
+    return row.href ? (
+      <a class="diagram-row diagram-row--link" style={style} href={row.href}>
+        <span class="diagram-label"><span class="diagram-arrow">→</span>{row.label}</span>
+        <span class="diagram-right">
+          {row.detail && <span class="diagram-detail">{row.detail}</span>}
+          {row.badge && <span class="diagram-badge" style={badgeStyle(row.color)}>{row.badge}</span>}
+        </span>
+      </a>
+    ) : (
+      <div class="diagram-row" style={style}>
+        {inner}
+      </div>
+    );
+  })}
 </div>
 
 <style>
@@ -38,6 +55,40 @@ const { rows } = Astro.props;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
+
+    &::selection, & *::selection {
+      background-color: var(--cell-text);
+      color: var(--background-color);
+    }
+  }
+
+  .diagram-row--link {
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--cell-text) !important;
+
+    &:hover {
+      border-color: var(--cell-text);
+      box-shadow: 0 0 10px var(--cell-bg), 0 0 20px color-mix(in srgb, var(--cell-border) 30%, transparent);
+      color: var(--cell-text) !important;
+
+      .diagram-detail {
+        color: var(--cell-text);
+        opacity: 0.7;
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    .diagram-row--link:hover {
+      transform: translateY(-2px);
+    }
+
+    .diagram-row--link:active {
+      transform: translateY(2px);
+      transition: 200ms;
+    }
   }
 
   .diagram-label {
@@ -55,6 +106,20 @@ const { rows } = Astro.props;
     font-size: var(--font-size-sm);
   }
 
+  .diagram-arrow {
+    color: var(--cell-text);
+    opacity: 0.4;
+    font-size: 1.1em;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    margin-right: 6px;
+    display: inline-block;
+  }
+
+  .diagram-row--link:hover .diagram-arrow {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+
   .diagram-badge {
     background: var(--cell-bg);
     color: var(--cell-text);
@@ -63,5 +128,10 @@ const { rows } = Astro.props;
     padding: 2px 8px;
     border-radius: 4px;
     white-space: nowrap;
+
+    &::selection {
+      background-color: var(--cell-text);
+      color: var(--cell-bg);
+    }
   }
 </style>
