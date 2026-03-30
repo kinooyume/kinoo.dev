@@ -22,6 +22,7 @@ import ArticlesSection from "@/components/design-system/sections/ArticlesSection
 import FooterSection from "@/components/design-system/sections/FooterSection.astro";
 import AnimationsSection from "@/components/design-system/sections/AnimationsSection.astro";
 import TemplatesSection from "@/components/design-system/sections/TemplatesSection.astro";
+import ExperimentalSection from "@/components/design-system/sections/ExperimentalSection.astro";
 import DSComponentsSection from "@/components/design-system/sections/DSComponentsSection.astro";
 
 const sectionComponents: Record<string, typeof FoundationsSection> = {
@@ -40,15 +41,21 @@ const sectionComponents: Record<string, typeof FoundationsSection> = {
   footer: FooterSection,
   animations: AnimationsSection,
   templates: TemplatesSection,
+  experimental: ExperimentalSection,
   "ds-components": DSComponentsSection,
 };
 
 export function getStaticPaths() {
-  return sidebarSections.map((s) => ({
-    params: { slug: s.slug },
-    props: { title: s.title },
-  }));
+  const isDev = import.meta.env.DEV;
+  return sidebarSections
+    .filter((s) => isDev || !s.devOnly)
+    .map((s) => ({
+      params: { slug: s.slug },
+      props: { title: s.title },
+    }));
 }
+
+const visibleSections = sidebarSections.filter((s) => import.meta.env.DEV || !s.devOnly);
 
 const { slug } = Astro.params;
 const { title } = Astro.props;
@@ -63,7 +70,7 @@ const SectionComponent = sectionComponents[slug!];
   <NavBar slot="header-nav" />
   <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
-  <Sidebar sections={sidebarSections} currentSlug={slug} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load transition:persist="ds-mobile-sidebar" />
+  <Sidebar sections={visibleSections} currentSlug={slug} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load transition:persist="ds-mobile-sidebar" />
 
   <DSLayout currentSlug={slug}>
     <SectionComponent />

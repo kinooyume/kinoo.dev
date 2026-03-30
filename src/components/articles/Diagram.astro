@@ -1,11 +1,12 @@
 ---
-import type { DiagramRow, DiagramArrowData, DiagramFlowStep, DiagramTreeNode, DiagramCompareColumn, DiagramCycleStep, PageMapBlock } from "./diagram/types";
-export type { DiagramColor, DiagramRow, DiagramNode, DiagramArrowData, DiagramArrowData as DiagramArrow, DiagramFlowStep, DiagramTreeNode, DiagramCompareColumn, DiagramCycleStep, PageMapBlock } from "./diagram/types";
+import type { DiagramRow, DiagramArrowData, DiagramFlowStep, DiagramTreeNode, DiagramCompareColumn, DiagramCycleStep, PageMapBlock, DiagramFlowSplitData } from "./diagram/types";
+export type { DiagramColor, DiagramRow, DiagramNode, DiagramArrowData, DiagramArrowData as DiagramArrow, DiagramFlowStep, DiagramTreeNode, DiagramCompareColumn, DiagramCycleStep, PageMapBlock, DiagramFlowSplitData, FlowSplitBranch } from "./diagram/types";
 
 import DiagramWrapper from "./diagram/Diagram.astro";
 import DiagramStack from "./diagram/DiagramStack.astro";
 import DiagramArrow from "./diagram/DiagramArrow.astro";
 import DiagramFlow from "./diagram/DiagramFlow.astro";
+import DiagramFlowSplit from "./diagram/DiagramFlowSplit.astro";
 import DiagramTree from "./diagram/DiagramTree.astro";
 import DiagramCompare from "./diagram/DiagramCompare.astro";
 import DiagramCycle from "./diagram/DiagramCycle.astro";
@@ -15,6 +16,7 @@ interface Props {
   rows?: DiagramRow[];
   arrow?: DiagramArrowData;
   flow?: DiagramFlowStep[];
+  flowSplit?: DiagramFlowSplitData;
   tree?: DiagramTreeNode[];
   compare?: DiagramCompareColumn[];
   cycle?: DiagramCycleStep[];
@@ -22,13 +24,14 @@ interface Props {
   caption?: string;
 }
 
-const { rows, arrow, flow, tree, compare, cycle, pagemap, caption } = Astro.props;
+const { rows, arrow, flow, flowSplit, tree, compare, cycle, pagemap, caption } = Astro.props;
 ---
 
 <DiagramWrapper caption={caption}>
   {rows && <DiagramStack rows={rows} />}
   {arrow && <DiagramArrow {...arrow} />}
   {flow && <DiagramFlow steps={flow} />}
+  {flowSplit && <DiagramFlowSplit {...flowSplit} />}
   {tree && <DiagramTree nodes={tree} />}
   {compare && <DiagramCompare columns={compare} />}
   {cycle && <DiagramCycle steps={cycle} />}

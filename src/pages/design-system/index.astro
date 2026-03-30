@@ -7,6 +7,9 @@ import { sidebarSections, DS_BASE } from "@/components/design-system/sections/in
 import NavBar from "@/components/header/NavBar.astro";
 import HeaderMenu from "@/components/header/HeaderMenu.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
+
+const isDev = import.meta.env.DEV;
+const visibleSections = sidebarSections.filter((s) => isDev || !s.devOnly);
 ---
 
 <Layout
@@ -17,7 +20,7 @@ import MobileMenu from "@/components/header/MobileMenu.astro";
   <NavBar slot="header-nav" />
   <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
-  <Sidebar sections={sidebarSections} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load transition:persist="ds-mobile-sidebar" />
+  <Sidebar sections={visibleSections} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load transition:persist="ds-mobile-sidebar" />
 
   <DSLayout
     title="Design System"
@@ -36,7 +39,7 @@ import MobileMenu from "@/components/header/MobileMenu.astro";
     </div>
 
     <nav class="ds-nav-grid">
-      {sidebarSections.map((section) => (
+      {visibleSections.map((section) => (
         <NavCard
           href={`${DS_BASE}/${section.slug}`}
           title={section.title}

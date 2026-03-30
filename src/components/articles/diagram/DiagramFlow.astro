@@ -1,6 +1,7 @@
 ---
 import type { DiagramFlowStep } from "./types";
 import { colorStyle } from "./types";
+import DiagramArrowIcon from "./DiagramArrowIcon.astro";
 
 interface Props {
   steps: DiagramFlowStep[];
@@ -16,9 +17,7 @@ const { steps } = Astro.props;
         <span class="flow-label">{step.label}</span>
         {step.detail && <span class="flow-detail">{step.detail}</span>}
       </div>
-      {i < steps.length - 1 && (
-        <span class="flow-arrow">&rarr;</span>
-      )}
+      {i < steps.length - 1 && <DiagramArrowIcon />}
     </>
   ))}
 </div>
@@ -41,6 +40,11 @@ const { steps } = Astro.props;
     text-align: center;
     flex: 1;
     min-width: 0;
+
+    &::selection, & *::selection {
+      background-color: var(--cell-text);
+      color: var(--background-color);
+    }
   }
 
   .flow-label {
@@ -53,12 +57,5 @@ const { steps } = Astro.props;
     color: var(--text-muted);
     font-size: var(--font-size-sm);
     margin-top: 2px;
-  }
-
-  .flow-arrow {
-    color: var(--accent-color);
-    font-size: 1.2em;
-    padding: 0 8px;
-    flex-shrink: 0;
   }
 </style>

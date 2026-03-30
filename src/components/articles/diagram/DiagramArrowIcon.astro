@@ -1,0 +1,23 @@
+---
+interface Props {
+  direction?: "left" | "right";
+  loop?: boolean;
+}
+
+const { direction = "right", loop } = Astro.props;
+---
+
+<span class:list={["arrow-icon", { loop }]}>{direction === "left" ? "\u2190" : "\u2192"}</span>
+
+<style>
+  .arrow-icon {
+    color: var(--accent-color);
+    font-size: 1.2em;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  .loop {
+    transform: scaleX(-1) rotate(180deg);
+  }
+</style>

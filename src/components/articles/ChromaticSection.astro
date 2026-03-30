@@ -1,0 +1,40 @@
+---
+type Color = "orange" | "red" | "green" | "pink" | "purple" | "blue" | "cyan" | "yellow" | "indigo" | "teal";
+
+interface Props {
+  color: Color;
+}
+
+const { color } = Astro.props;
+
+const vars = [
+  `--accent-color: var(--${color})`,
+  `--accent-bright: var(--${color}-light)`,
+  `--accent-tint: var(--${color}-tint)`,
+  `--secondary-accent-color: var(--${color}-light)`,
+  `--accent-border: var(--${color}-border)`,
+  `--accent-bg: var(--${color}-bg)`,
+  `--accent-lightest: var(--${color}-lightest)`,
+  `--accent-darkest: var(--${color}-darkest)`,
+  `--accent-dark: var(--${color}-dark)`,
+  `--accent-darker: var(--${color}-darker)`,
+].join("; ");
+---
+
+<div class="phase-section" style={vars}>
+  <slot />
+</div>
+
+<style is:global>
+  .phase-section {
+    margin: 0;
+
+    a {
+      color: var(--accent-color);
+
+      &:hover {
+        color: var(--accent-bright);
+      }
+    }
+  }
+</style>
