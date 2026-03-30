@@ -14,6 +14,9 @@ export const accentColors: AccentColor[] = [
   { name: "Purple", base: "--purple", bright: "--purple-dark", tint: "--purple-tint", secondary: "--purple-light" },
   { name: "Blue", base: "--blue", bright: "--blue-dark", tint: "--blue-tint", secondary: "--blue-light" },
   { name: "Cyan", base: "--cyan", bright: "--cyan-dark", tint: "--cyan-tint", secondary: "--cyan-light" },
+  { name: "Yellow", base: "--yellow", bright: "--yellow-dark", tint: "--yellow-tint", secondary: "--yellow-light" },
+  { name: "Indigo", base: "--indigo", bright: "--indigo-dark", tint: "--indigo-tint", secondary: "--indigo-light" },
+  { name: "Teal", base: "--teal", bright: "--teal-dark", tint: "--teal-tint", secondary: "--teal-light" },
 ];
 
 const accentProps = ["--accent-color", "--accent-bright", "--accent-tint", "--secondary-accent-color"] as const;

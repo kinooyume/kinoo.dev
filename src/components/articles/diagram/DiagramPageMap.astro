@@ -1,6 +1,6 @@
 ---
 import type { PageMapBlock } from "./types";
-import { colorStyle, badgeStyle } from "./types";
+import DiagramPageMapBlock from "./DiagramPageMapBlock.astro";
 
 interface Props {
   blocks: PageMapBlock[];
@@ -11,45 +11,7 @@ const { blocks } = Astro.props;
 
 <div class="pagemap">
   {blocks.map((block) => (
-    <div
-      class:list={["block", { "has-children": !!block.children?.length }]}
-      style={colorStyle(block.color)}
-    >
-      <div class="block-header">
-        <span class="block-label">{block.label}</span>
-        {block.detail && <span class="block-detail">{block.detail}</span>}
-        {block.badge && <span class="block-badge" style={badgeStyle(block.color)}>{block.badge}</span>}
-      </div>
-      {block.children && (
-        <div class:list={["block-children", block.direction === "row" ? "row" : "col"]}>
-          {block.children.map((child) => (
-            <div
-              class:list={["block", "nested", { "has-children": !!child.children?.length }]}
-              style={colorStyle(child.color)}
-            >
-              <div class="block-header">
-                <span class="block-label">{child.label}</span>
-                {child.detail && <span class="block-detail">{child.detail}</span>}
-                {child.badge && <span class="block-badge" style={badgeStyle(child.color)}>{child.badge}</span>}
-              </div>
-              {child.children && (
-                <div class:list={["block-children", child.direction === "row" ? "row" : "col"]}>
-                  {child.children.map((grandchild) => (
-                    <div class="block nested leaf" style={colorStyle(grandchild.color)}>
-                      <div class="block-header">
-                        <span class="block-label">{grandchild.label}</span>
-                        {grandchild.detail && <span class="block-detail">{grandchild.detail}</span>}
-                        {grandchild.badge && <span class="block-badge" style={badgeStyle(grandchild.color)}>{grandchild.badge}</span>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <DiagramPageMapBlock block={block} />
   ))}
 </div>
 
@@ -58,70 +20,5 @@ const { blocks } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 4px;
-  }
-
-  .block {
-    background: var(--cell-bg);
-    border: 1px solid var(--cell-border);
-    color: var(--cell-text);
-    border-radius: 8px;
-    padding: 10px 14px;
-  }
-
-  .block.has-children {
-    padding-bottom: 12px;
-  }
-
-  .block.nested {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .block-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .block-label {
-    font-weight: 600;
-    font-size: var(--font-size-sm);
-  }
-
-  .block-detail {
-    color: var(--text-muted);
-    font-size: var(--font-size-2xs);
-  }
-
-  .block-badge {
-    background: var(--cell-bg);
-    color: var(--cell-text);
-    font-size: var(--font-size-2xs);
-    font-weight: 600;
-    padding: 1px 6px;
-    border-radius: 4px;
-    white-space: nowrap;
-    margin-left: auto;
-  }
-
-  .block-children {
-    display: flex;
-    gap: 4px;
-    margin-top: 8px;
-  }
-
-  .block-children.row {
-    flex-direction: row;
-  }
-
-  .block-children.col {
-    flex-direction: column;
-  }
-
-  @media (max-width: 580px) {
-    .block-children.row {
-      flex-direction: column;
-    }
   }
 </style>

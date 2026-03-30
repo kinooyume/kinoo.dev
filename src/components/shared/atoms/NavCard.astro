@@ -3,13 +3,17 @@ interface Props {
   href: string;
   title: string;
   subtitle?: string;
+  direction?: "prev" | "next";
+  variant?: "card" | "minimal";
   class?: string;
 }
 
-const { href, title, subtitle, class: className } = Astro.props;
+const { href, title, subtitle, direction, variant = "card", class: className } = Astro.props;
+const dirLabel = direction === "prev" ? "← Previous" : direction === "next" ? "Next →" : null;
 ---
 
-<a href={href} class:list={["nav-card", className]}>
+<a href={href} class:list={["nav-card", `nav-card--${variant}`, direction && `nav-card--${direction}`, className]}>
+  {dirLabel && <span class="nav-card-direction">{dirLabel}</span>}
   <span class="nav-card-title">{title}</span>
   {subtitle && <span class="nav-card-subtitle">{subtitle}</span>}
 </a>
@@ -21,16 +25,41 @@ const { href, title, subtitle, class: className } = Astro.props;
     gap: 4px;
     padding: 20px;
     border-radius: 12px;
-    background: var(--card-surface);
-    border: 1px solid var(--border-color);
     text-decoration: none;
     transition: all 0.2s ease;
+  }
+
+  .nav-card--card {
+    background: var(--card-surface);
+    border: 1px solid var(--border-color);
 
     &:hover {
       border-color: var(--border-hover-color);
       background: var(--card-surface-hover);
       transform: translateY(-2px);
     }
+  }
+
+  .nav-card--minimal {
+    padding: 12px 16px;
+
+    &:hover {
+      background: var(--card-surface);
+    }
+
+    .nav-card-title {
+      color: var(--accent-color);
+    }
+  }
+
+  .nav-card--next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .nav-card-direction {
+    font-size: 13px;
+    color: var(--text-muted);
   }
 
   .nav-card-title {

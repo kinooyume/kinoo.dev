@@ -1,6 +1,7 @@
 ---
 import type { DiagramCycleStep } from "./types";
 import { colorStyle } from "./types";
+import DiagramArrowIcon from "./DiagramArrowIcon.astro";
 
 interface Props {
   steps: DiagramCycleStep[];
@@ -15,7 +16,7 @@ const { steps } = Astro.props;
       <div class="cycle-step" style={colorStyle(step.color)}>
         <span class="cycle-label">{step.label}</span>
       </div>
-      <span class:list={["cycle-arrow", { "cycle-arrow-last": i === steps.length - 1 }]}>&rarr;</span>
+      <DiagramArrowIcon loop={i === steps.length - 1} />
     </>
   ))}
 </div>
@@ -36,20 +37,14 @@ const { steps } = Astro.props;
     padding: 10px 16px;
     border-radius: 8px;
     text-align: center;
+
+    &::selection, & *::selection {
+      background-color: var(--cell-text);
+      color: var(--background-color);
+    }
   }
 
   .cycle-label {
     font-weight: 500;
-  }
-
-  .cycle-arrow {
-    color: var(--accent-color);
-    font-size: 1.2em;
-    padding: 0 8px;
-    flex-shrink: 0;
-  }
-
-  .cycle-arrow-last {
-    transform: scaleX(-1) rotate(180deg);
   }
 </style>
