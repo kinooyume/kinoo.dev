@@ -45,15 +45,17 @@ const sectionComponents: Record<string, typeof FoundationsSection> = {
   "ds-components": DSComponentsSection,
 };
 
-const isDev = import.meta.env.DEV;
-const visibleSections = sidebarSections.filter((s) => isDev || !s.devOnly);
-
 export function getStaticPaths() {
-  return visibleSections.map((s) => ({
-    params: { slug: s.slug },
-    props: { title: s.title },
-  }));
+  const isDev = import.meta.env.DEV;
+  return sidebarSections
+    .filter((s) => isDev || !s.devOnly)
+    .map((s) => ({
+      params: { slug: s.slug },
+      props: { title: s.title },
+    }));
 }
+
+const visibleSections = sidebarSections.filter((s) => import.meta.env.DEV || !s.devOnly);
 
 const { slug } = Astro.params;
 const { title } = Astro.props;
