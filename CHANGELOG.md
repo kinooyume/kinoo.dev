@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.35.0 - 2026-03-30
+#### Features
+- chromatic sections, dual tone DS, diagram components, new colors - (3965ecd) - Martin Kinoo
+#### Bug Fixes
+- (**ds**) move filter inside getStaticPaths to fix build - (ebc876a) - Martin Kinoo
+- (**ds**) remove define:vars, query DOM for spotlight containers - (17a9adc) - Martin Kinoo
+
+- - -
+
 ## v0.34.0 - 2026-03-24
 #### Features
 - (**atoms**) add Dropdown and NavCard, update Tag and Button - (82b5ef5) - Martin Kinoo
