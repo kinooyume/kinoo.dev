@@ -18,9 +18,10 @@ interface Props {
   category?: string;
   tags: string[];
   links?: { text: string; href: string }[];
+  ogImage?: string;
 }
 
-const { title, subtitle, description, date, category, tags, links = [] } = Astro.props;
+const { title, subtitle, description, date, category, tags, links = [], ogImage } = Astro.props;
 const accent: AccentTokens = (category && categoryColors[category]) || defaultAccent;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -45,7 +46,7 @@ const blogPostingJsonLd = {
 };
 ---
 
-<Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" jsonLd={blogPostingJsonLd}>
+<Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" ogImage={ogImage} jsonLd={blogPostingJsonLd}>
   <NavBar slot="header-nav" />
   <HeaderMenu slot="header-menu" />
   <MobileMenu slot="header-menu" />
