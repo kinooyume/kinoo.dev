@@ -172,7 +172,7 @@ export const GET: APIRoute = async ({ props }) => {
   const resvg = new Resvg(svg, { fitTo: { mode: "width", value: 1200 } });
   const png = resvg.render().asPng();
 
-  return new Response(png, {
+  return new Response(new Uint8Array(png), {
     headers: { "Content-Type": "image/png" },
   });
 };
