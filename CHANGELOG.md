@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.36.0 - 2026-04-02
+#### Features
+- (**og**) generate og image for articles - (7d2b461) - Martin Kinoo
+#### Bug Fixes
+- (**og**) use Uint8Array for Response body type compatibility - (63b2661) - Martin Kinoo
+#### Miscellaneous Chores
+- update articles submodule (rename migration article) - (4b14542) - Martin Kinoo
+
+- - -
+
 ## v0.35.0 - 2026-03-30
 #### Features
 - chromatic sections, dual tone DS, diagram components, new colors - (3965ecd) - Martin Kinoo
