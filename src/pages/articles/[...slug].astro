@@ -12,6 +12,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await render(article);
+const ogImage = new URL(`/og/${article.id}.png`, Astro.site).href;
 ---
 
 <BlogPostLayout
@@ -22,6 +23,7 @@ const { Content } = await render(article);
   category={article.data.category}
   tags={article.data.tags}
   links={article.data.links}
+  ogImage={ogImage}
 >
   <Content />
 </BlogPostLayout>
