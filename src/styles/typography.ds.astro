@@ -2,6 +2,7 @@
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
+import Button from "@/components/shared/atoms/Button";
 ---
 
 <section id="typography">
@@ -41,7 +42,7 @@ import DSNote from "@/components/design-system/DSNote.astro";
       </div>
       <div class="type-sample">
         <span class="type-label">button <code>--button-font-size</code></span>
-        <span class="sample-button">Button text</span>
+        <Button client:load variant="solid">Button text</Button>
       </div>
     </div>
   </DSBlock>
@@ -171,16 +172,6 @@ import DSNote from "@/components/design-system/DSNote.astro";
     font-weight: 300;
     font-size: var(--subtitle-size);
     margin: 0;
-  }
-
-  .sample-button {
-    font-size: var(--button-font-size);
-    font-weight: 500;
-    color: black;
-    background-color: var(--accent-bright);
-    padding: 12px 24px;
-    border-radius: 12px;
-    display: inline-block;
   }
 
   .sample-hero-h1 {

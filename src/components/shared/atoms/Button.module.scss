@@ -16,7 +16,7 @@
 }
 
 .solid {
-  color: black;
+  color: var(--accent-cool-shift);
   background: var(--accent-color);
   border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
 

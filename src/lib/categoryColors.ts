@@ -1,10 +1,11 @@
-export type AccentTokens = { color: string; tint: string; bright: string; bg: string };
+export type AccentTokens = { color: string; tint: string; bright: string; bg: string; coolShift: string };
 
 export const defaultAccent: AccentTokens = {
   color: "var(--orange)",
   tint: "var(--orange-tint)",
   bright: "var(--orange-light)",
   bg: "var(--orange-bg)",
+  coolShift: "var(--orange-cool-shift)",
 };
 
 // Per-category overrides — add entries here to give a category its own color:
