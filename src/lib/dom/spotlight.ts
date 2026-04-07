@@ -1,4 +1,4 @@
-import { mouseTracker } from "./mouseTracker";
+import { subscribe } from "./mousePosition";
 import { gyroTracker } from "./gyroTracker";
 
 const _isMobile = () => window.matchMedia("(hover: none)").matches;
@@ -28,16 +28,22 @@ export function spotlight(container: HTMLElement): () => void {
   );
 
   // TODO: re-enable gyroTracker for mobile when calibration is refined
-  const track = forceGyro ? gyroTracker : mouseTracker;
+  if (forceGyro) {
+    return gyroTracker(container, (x, y) => {
+      const rect = container.getBoundingClientRect();
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect();
+        card.style.setProperty("--mouse-x", `${x - (cardRect.left - rect.left)}px`);
+        card.style.setProperty("--mouse-y", `${y - (cardRect.top - rect.top)}px`);
+      });
+    });
+  }
 
-  return track(container, (x, y) => {
-    const rect = container.getBoundingClientRect();
+  return subscribe((pos) => {
     cards.forEach((card) => {
       const cardRect = card.getBoundingClientRect();
-      const cardX = x - (cardRect.left - rect.left);
-      const cardY = y - (cardRect.top - rect.top);
-      card.style.setProperty("--mouse-x", `${cardX}px`);
-      card.style.setProperty("--mouse-y", `${cardY}px`);
+      card.style.setProperty("--mouse-x", `${pos.x - cardRect.left}px`);
+      card.style.setProperty("--mouse-y", `${pos.y - cardRect.top}px`);
     });
   });
 }

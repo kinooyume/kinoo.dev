@@ -22,6 +22,7 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
     import { revealSections } from "@/lib/animations/revealSection";
     import { revealCards } from "@/lib/animations/revealCard";
     import { smoothHashLinks } from "@/lib/dom/smoothHashLinks";
+    import { dispose as disposeMousePosition } from "@/lib/dom/mousePosition";
 
     let cleanupSections: (() => void) | null = null;
     let cleanupCards: (() => void) | null = null;
@@ -51,6 +52,7 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
       cleanupSections = null;
       cleanupCards = null;
       lastInit = "";
+      disposeMousePosition();
     });
 
     document.addEventListener("astro:page-load", initIndex);
