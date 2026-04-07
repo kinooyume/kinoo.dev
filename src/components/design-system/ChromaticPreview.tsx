@@ -10,6 +10,7 @@ function cssVars(color: AccentColor): Record<string, string> {
     "--accent-bright": `var(${color.bright})`,
     "--accent-tint": `var(${color.tint})`,
     "--secondary-accent-color": `var(${color.secondary})`,
+    "--accent-cool-shift": `var(${color.coolShift})`,
   };
 }
 

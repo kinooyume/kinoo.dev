@@ -19,8 +19,9 @@ import github from "@/svgs/github.svg?raw";
       <ButtonComponent client:load variant="surface">Surface</ButtonComponent>
       <ButtonComponent client:load variant="ghost">Ghost</ButtonComponent>
       <ButtonComponent client:load variant="tint">Tint</ButtonComponent>
+      <ButtonComponent client:load variant="cool-shift">Cool Shift</ButtonComponent>
     </DSPreview>
-    <DSCode inline>&lt;Button variant="solid | surface | ghost | tint"&gt;...&lt;/Button&gt;</DSCode>
+    <DSCode inline>&lt;Button variant="solid | surface | ghost | tint | cool-shift"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="As Link">
@@ -29,6 +30,7 @@ import github from "@/svgs/github.svg?raw";
       <ButtonComponent href="#button" variant="surface">Surface Link</ButtonComponent>
       <ButtonComponent href="#button" variant="ghost">Ghost Link</ButtonComponent>
       <ButtonComponent href="#button" variant="tint">Tint Link</ButtonComponent>
+      <ButtonComponent href="#button" variant="cool-shift">Cool Shift Link</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button href="#" variant="tint"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
@@ -39,6 +41,7 @@ import github from "@/svgs/github.svg?raw";
       <ButtonComponent client:load variant="surface" size="small">Surface</ButtonComponent>
       <ButtonComponent client:load variant="ghost" size="small">Ghost</ButtonComponent>
       <ButtonComponent client:load variant="tint" size="small">Tint</ButtonComponent>
+      <ButtonComponent client:load variant="cool-shift" size="small">Cool Shift</ButtonComponent>
     </DSPreview>
     <DSCode inline>&lt;Button size="small"&gt;...&lt;/Button&gt;</DSCode>
   </DSBlock>
@@ -66,6 +69,7 @@ import github from "@/svgs/github.svg?raw";
       <ButtonComponent client:load variant="tint" icon={github}>Tint</ButtonComponent>
       <ButtonComponent client:load variant="surface">Surface</ButtonComponent>
       <ButtonComponent client:load variant="ghost">Ghost</ButtonComponent>
+      <ButtonComponent client:load variant="cool-shift">Cool Shift</ButtonComponent>
     </ChromaticPreview>
   </DSBlock>
 
@@ -73,7 +77,7 @@ import github from "@/svgs/github.svg?raw";
     <DSPropsTable
       headers={["Prop", "Type", "Default", "Description"]}
       rows={[
-        [{ code: "variant" }, { code: '"solid" | "surface" | "ghost" | "tint"' }, { code: '"solid"' }, "Visual style variant"],
+        [{ code: "variant" }, { code: '"solid" | "surface" | "ghost" | "tint" | "cool-shift"' }, { code: '"solid"' }, "Visual style variant"],
         [{ code: "size" }, { code: '"default" | "small"' }, { code: '"default"' }, "Compact 28px variant"],
         [{ code: "state" }, { code: '"idle" | "loading" | "success"' }, { code: '"idle"' }, "Button state for form feedback"],
         [{ code: "href" }, { code: "string" }, "—", "When set, renders as <a> instead of <button>"],

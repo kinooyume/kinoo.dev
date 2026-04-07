@@ -2,7 +2,7 @@ import { Show, splitProps, type ComponentProps } from "solid-js";
 import styles from "./Button.module.scss";
 
 type ButtonProps = {
-  variant?: "solid" | "surface" | "ghost" | "tint";
+  variant?: "solid" | "surface" | "ghost" | "tint" | "cool-shift";
   size?: "default" | "small";
   state?: "idle" | "loading" | "success";
   href?: string;
@@ -30,6 +30,7 @@ const Button = (props: Readonly<ButtonProps>) => {
     [styles.surface]: variant() === "surface",
     [styles.ghost]: variant() === "ghost",
     [styles.tint]: variant() === "tint",
+    [styles.coolShift]: variant() === "cool-shift",
     [styles.small]: local.size === "small",
     [styles.loading]: state() === "loading",
     [styles.success]: state() === "success",

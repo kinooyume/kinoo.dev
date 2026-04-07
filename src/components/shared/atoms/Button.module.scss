@@ -65,6 +65,17 @@
   }
 }
 
+.coolShift {
+  background: var(--accent-cool-shift);
+  color: var(--accent-color);
+  border-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);
+    box-shadow: 0 0 10px var(--accent-tint), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
+  }
+}
+
 @media (hover: hover) {
   .button:hover {
     transform: translateY(-4px);
