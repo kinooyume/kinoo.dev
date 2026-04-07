@@ -14,6 +14,8 @@ const subs = new Set<Subscriber>();
 let onMove: EventListener | null = null;
 let onScroll: EventListener | null = null;
 let onEnter: EventListener | null = null;
+let onLeave: EventListener | null = null;
+let onVisibility: (() => void) | null = null;
 
 function notify() {
   if (!pos) return;
@@ -26,23 +28,34 @@ function updatePos(e: Event) {
   notify();
 }
 
+function invalidate() { pos = null; }
+
 function attach() {
   onMove = rafDebounce(updatePos);
   onScroll = rafDebounce(() => notify());
   onEnter = updatePos;
+  onLeave = invalidate;
+  onVisibility = () => { if (document.hidden) invalidate(); };
 
   document.addEventListener("mousemove", onMove);
   document.addEventListener("pointerenter", onEnter);
+  document.addEventListener("pointerleave", onLeave);
+  document.addEventListener("visibilitychange", onVisibility);
   window.addEventListener("scroll", onScroll);
 }
 
 function detach() {
   if (onMove) document.removeEventListener("mousemove", onMove);
   if (onEnter) document.removeEventListener("pointerenter", onEnter);
+  if (onLeave) document.removeEventListener("pointerleave", onLeave);
+  if (onVisibility) document.removeEventListener("visibilitychange", onVisibility);
   if (onScroll) window.removeEventListener("scroll", onScroll);
   onMove = null;
   onScroll = null;
   onEnter = null;
+  onLeave = null;
+  onVisibility = null;
+  pos = null;
 }
 
 export function peek(): MousePos | null {
