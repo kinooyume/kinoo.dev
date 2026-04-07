@@ -28,37 +28,33 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
     padding: 1px;
     background-color: rgba(71, 85, 105, 0.48);
 
-    &::before {
+    &::before,
+    &::after {
       content: "";
       position: absolute;
+      background: var(--spotlight-color);
+      border-radius: 9999px;
+      filter: blur(100px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 500ms;
+      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
+      will-change: transform;
+    }
+
+    &::before {
       width: 20rem;
       height: 20rem;
       left: -10rem;
       top: -10rem;
-      background: var(--spotlight-color);
-      border-radius: 9999px;
-      filter: blur(100px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 500ms;
-      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
       z-index: 2;
     }
 
     &::after {
-      content: "";
-      position: absolute;
       width: 24rem;
       height: 24rem;
       left: -12rem;
       top: -12rem;
-      background: var(--spotlight-color);
-      border-radius: 9999px;
-      filter: blur(100px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 500ms;
-      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
       z-index: 4;
     }
   }
@@ -75,12 +71,9 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
 
   @media (hover: none) {
     .spotlight-card {
-      &::before {
-        opacity: 0.6;
-      }
-
+      &::before,
       &::after {
-        opacity: 0.06;
+        display: none;
       }
     }
   }

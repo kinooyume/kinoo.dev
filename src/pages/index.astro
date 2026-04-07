@@ -44,6 +44,7 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
       cleanupSections = revealSections();
       cleanupCards = revealCards();
       smoothHashLinks();
+      document.body.setAttribute("data-animations-done", "");
     }
 
     document.addEventListener("astro:before-swap", () => {
@@ -52,6 +53,7 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
       cleanupSections = null;
       cleanupCards = null;
       lastInit = "";
+      document.body.removeAttribute("data-animations-done");
       disposeMousePosition();
     });
 
