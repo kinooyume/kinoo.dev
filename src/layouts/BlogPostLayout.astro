@@ -5,7 +5,7 @@ import HeaderMenu from "@/components/header/HeaderMenu.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
-import BackLink from "@/components/shared/atoms/BackLink.astro";
+import ArrowLink from "@/components/shared/atoms/ArrowLink.astro";
 import Prose from "@/components/articles/Prose.astro";
 import BadgeLink from "@/components/shared/atoms/BadgeLink.astro";
 import { type AccentTokens, categoryColors, defaultAccent } from "@/lib/categoryColors";
@@ -59,7 +59,7 @@ const blogPostingJsonLd = {
   <main>
     <article style={`--accent-color: ${accent.color}; --accent-tint: ${accent.tint}; --accent-bright: ${accent.bright}; --accent-bg: ${accent.bg}; --accent-cool-shift: ${accent.coolShift};`}>
       <header class="article-header">
-        <BackLink href="/#articles" text="Portfolio" />
+        <ArrowLink href="/#articles" text="Portfolio" direction="back" />
         <h1>{title}</h1>
         {subtitle && <p class="subtitle">{subtitle}</p>}
         <div class="article-meta">
