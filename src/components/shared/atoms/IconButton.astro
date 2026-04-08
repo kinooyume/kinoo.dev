@@ -49,11 +49,11 @@ const classes = [
     gap: 5px;
     width: 48px;
     height: 48px;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     background-color: var(--card-surface);
     border: 1px solid var(--border-color);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
     text-decoration: none;
 
     &:hover {
@@ -64,7 +64,7 @@ const classes = [
     &--small {
       width: 36px;
       height: 36px;
-      border-radius: 10px;
+      border-radius: var(--radius-md);
     }
 
     &.icon-button--primary {

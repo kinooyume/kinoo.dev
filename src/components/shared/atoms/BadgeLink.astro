@@ -21,29 +21,19 @@ const displayIcon = icon ?? (isExternal ? externalLinkIcon : undefined);
 </a>
 
 <style lang="scss">
+  @use "@/styles/ghost" as *;
+
   a {
+    @include ghost;
     display: inline-flex;
     align-items: center;
     gap: 5px;
     height: 22px;
     padding: 0 8px;
     font-size: var(--font-size-3xs);
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--light-color);
-    opacity: 0.8;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      opacity: 1;
-      color: var(--accent-color);
-      border-color: var(--accent-color);
-    }
   }
 
   .icon :global(svg) {
@@ -60,7 +50,7 @@ const displayIcon = icon ?? (isExternal ? externalLinkIcon : undefined);
 
     a:active {
       transform: translateY(2px);
-      transition: 200ms;
+      transition: var(--transition-snap);
     }
   }
 </style>

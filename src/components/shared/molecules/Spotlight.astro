@@ -24,7 +24,7 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
   .spotlight-card {
     position: relative;
     overflow: hidden;
-    border-radius: 32px;
+    border-radius: var(--radius-xl);
     padding: 1px;
     background-color: rgba(71, 85, 105, 0.48);
 
@@ -83,7 +83,7 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
     z-index: 3;
     background-color: var(--card-surface);
     background: linear-gradient(45deg, #172033, #1e293b 50%, #172033);
-    border-radius: 31px;
+    border-radius: calc(var(--radius-xl) - 1px);
     height: 100%;
   }
 </style>

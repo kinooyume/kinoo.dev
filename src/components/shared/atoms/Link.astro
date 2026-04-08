@@ -35,8 +35,8 @@ const hasAppend = Astro.slots.has("append");
     font-size: var(--font-size);
     color: var(--link-color, var(--accent-color, var(--light-color)));
     stroke: var(--link-color, var(--accent-color, var(--light-color)));
-    opacity: 0.8;
-    transition: all 0.3s ease;
+    opacity: var(--opacity-idle);
+    transition: all var(--transition-base);
     text-decoration: underline;
 
     &:hover {
@@ -46,7 +46,7 @@ const hasAppend = Astro.slots.has("append");
 
     &:active {
       transform: translateY(5px);
-      transition: 200ms;
+      transition: var(--transition-snap);
     }
 
     &.small {
