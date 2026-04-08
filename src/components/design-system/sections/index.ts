@@ -38,8 +38,8 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "Colors", href: "#colors" },
       { label: "Typography", href: "#typography" },
-      { label: "Spacing", href: "#spacing" },
       { label: "Borders", href: "#borders" },
+      { label: "Interactions", href: "#interactions" },
       { label: "Breakpoints", href: "#breakpoints" },
     ],
   },

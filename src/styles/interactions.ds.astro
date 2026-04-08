@@ -1,0 +1,297 @@
+---
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import BadgeLink from "@/components/shared/atoms/BadgeLink.astro";
+import Button from "@/components/shared/atoms/Button";
+import github from "@/svgs/github.svg?raw";
+---
+
+<section id="interactions">
+  <h2>Interactions</h2>
+  <p>Tokens for interactive states — transitions, opacity, borders, and shared patterns.</p>
+
+  <DSBlock title="Transitions">
+    <div class="token-grid">
+      <div class="transition-demo">
+        <div class="transition-box base">Hover me</div>
+        <div class="transition-info">
+          <code>--transition-base</code>
+          <span>0.3s ease — general hover/focus</span>
+        </div>
+      </div>
+      <div class="transition-demo">
+        <div class="transition-box fast">Hover me</div>
+        <div class="transition-info">
+          <code>--transition-fast</code>
+          <span>0.2s ease — subtle interactions</span>
+        </div>
+      </div>
+      <div class="transition-demo">
+        <div class="transition-box snap">Click me</div>
+        <div class="transition-info">
+          <code>--transition-snap</code>
+          <span>200ms — active/press states</span>
+        </div>
+      </div>
+    </div>
+    <DSPropsTable
+      headers={["Token", "Value", "Used by"]}
+      rows={[
+        [{ code: "--transition-base" }, { code: "0.3s ease" }, "Button, Link, IconButton, BadgeLink, HeaderLink, .anime"],
+        [{ code: "--transition-fast" }, { code: "0.2s ease" }, "NavCard, ArrowLink icons, tooltips"],
+        [{ code: "--transition-snap" }, { code: "200ms" }, "Active/press state on buttons and links"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Opacity">
+    <div class="opacity-grid">
+      <div class="opacity-demo">
+        <div class="opacity-box" style="opacity: var(--opacity-idle);">
+          <span class="opacity-value">0.8</span>
+        </div>
+        <div class="opacity-info">
+          <code>--opacity-idle</code>
+          <span>Interactive elements at rest</span>
+        </div>
+      </div>
+      <div class="opacity-demo">
+        <div class="opacity-box" style="opacity: var(--opacity-muted);">
+          <span class="opacity-value">0.6</span>
+        </div>
+        <div class="opacity-info">
+          <code>--opacity-muted</code>
+          <span>Secondary content, subtitles</span>
+        </div>
+      </div>
+      <div class="opacity-demo">
+        <div class="opacity-box" style="opacity: 1;">
+          <span class="opacity-value">1.0</span>
+        </div>
+        <div class="opacity-info">
+          <code>1</code>
+          <span>Hover state (full opacity)</span>
+        </div>
+      </div>
+    </div>
+    <DSPropsTable
+      headers={["Token", "Value", "Used by"]}
+      rows={[
+        [{ code: "--opacity-idle" }, { code: "0.8" }, "Link, BadgeLink, Button ghost"],
+        [{ code: "--opacity-muted" }, { code: "0.6" }, "NavCard subtitle, HeaderLink icon"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Letter Spacing">
+    <div class="letter-spacing-grid">
+      <div class="ls-demo">
+        <span class="ls-normal">Normal spacing</span>
+        <span class="ls-code">letter-spacing: 0</span>
+      </div>
+      <div class="ls-demo">
+        <span class="ls-wide">Wide spacing</span>
+        <span class="ls-code">--letter-spacing-wide: 0.5px</span>
+      </div>
+    </div>
+    <DSNote>
+      Used on ghost-styled elements — badges, ghost buttons — where bold + wide tracking gives a label-like feel without uppercase.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="Ghost Pattern" subtitle="Shared mixin from _ghost.scss — border, weight, spacing, hover accent">
+    <DSPreview>
+      <BadgeLink href="#interactions" text="BadgeLink" />
+      <BadgeLink href="#interactions" text="External" icon={github} />
+      <Button client:load variant="ghost" size="small">Button ghost sm</Button>
+      <Button client:load variant="ghost">Button ghost</Button>
+    </DSPreview>
+    <DSCode>{`@use "@/styles/ghost" as *;
+
+.my-element {
+  @include ghost;
+  // adds: transparent bg, ghost border, 700 weight,
+  //       wide tracking, idle opacity, accent hover
+}`}</DSCode>
+    <DSNote>
+      The mixin provides the visual identity. Layout (display, padding, height, radius) stays in the component.
+    </DSNote>
+  </DSBlock>
+
+  <DSBlock title="All Tokens">
+    <DSPropsTable
+      headers={["Token", "Value", "Category"]}
+      rows={[
+        [{ code: "--transition-base" }, { code: "0.3s ease" }, "Transition"],
+        [{ code: "--transition-fast" }, { code: "0.2s ease" }, "Transition"],
+        [{ code: "--transition-snap" }, { code: "200ms" }, "Transition"],
+        [{ code: "--opacity-idle" }, { code: "0.8" }, "Opacity"],
+        [{ code: "--opacity-muted" }, { code: "0.6" }, "Opacity"],
+        [{ code: "--border-ghost-color" }, { code: "rgba(255,255,255,0.3)" }, "Border"],
+        [{ code: "--letter-spacing-wide" }, { code: "0.5px" }, "Typography"],
+        [{ code: "--radius-xs" }, { code: "4px" }, "Radius"],
+        [{ code: "--radius-sm" }, { code: "6px" }, "Radius"],
+        [{ code: "--radius-md" }, { code: "8px" }, "Radius"],
+        [{ code: "--radius-lg" }, { code: "12px" }, "Radius"],
+        [{ code: "--radius-xl" }, { code: "32px" }, "Radius"],
+      ]}
+    />
+  </DSBlock>
+</section>
+
+<style lang="scss">
+  .token-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .transition-demo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .transition-box {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--light-color);
+    background-color: var(--accent-tint);
+    border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+    cursor: pointer;
+    opacity: var(--opacity-idle);
+
+    &.base {
+      transition: all var(--transition-base);
+    }
+
+    &.fast {
+      transition: all var(--transition-fast);
+    }
+
+    &.snap {
+      transition: all var(--transition-snap);
+    }
+
+    &:hover {
+      opacity: 1;
+      background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  .transition-info,
+  .opacity-info {
+    padding: 10px 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    code {
+      font-size: 13px;
+      color: var(--accent-bright);
+    }
+
+    span {
+      font-size: 11px;
+      color: var(--color);
+      opacity: var(--opacity-muted);
+    }
+  }
+
+  .opacity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .opacity-demo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .opacity-box {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-color);
+  }
+
+  .opacity-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--background-color);
+  }
+
+  .letter-spacing-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+
+  .ls-demo {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ls-normal {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--light-color);
+    letter-spacing: 0;
+  }
+
+  .ls-wide {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--light-color);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .ls-code {
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--text-muted);
+  }
+
+</style>
+
+<script>
+  function init() {
+    document.getElementById("interactions")?.addEventListener(
+      "click",
+      (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest("[data-chromatic]")) return;
+        if (target.closest("button")) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true,
+    );
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>
