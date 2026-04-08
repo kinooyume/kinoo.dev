@@ -49,8 +49,26 @@ $colors: (
   --card-surface-hover: #313d50;
   --card-surface-input: #1a2232;
 
+  --card-surface-darker: #1f2233;
+
   --border-color: rgba(255, 255, 255, 0.1);
   --border-hover-color: rgba(255, 255, 255, 0.2);
+  --border-ghost-color: rgba(255, 255, 255, 0.3);
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 32px;
+
+  --transition-base: 0.3s ease;
+  --transition-fast: 0.2s ease;
+  --transition-snap: 200ms;
+
+  --opacity-idle: 0.8;
+  --opacity-muted: 0.6;
+
+  --letter-spacing-wide: 0.5px;
 
   --h1-size: clamp(48px, 1.58rem + 5.05vw, 96px);
   --h2-size: clamp(42px, 2.21rem + 1.47vw, 56px);
