@@ -64,6 +64,10 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
           close();
         }
       });
+
+      window.addEventListener("resize", () => {
+        if (panel.classList.contains("open")) close();
+      });
     });
   }
 
@@ -95,7 +99,7 @@ const { id, triggerId, width = "280px", class: className } = Astro.props;
     bottom: 0;
     width: var(--drawer-width);
     max-width: 85vw;
-    max-height: 100vh;
+    max-height: 100dvh;
     padding: 24px 16px 80px 16px;
     background-color: var(--background-color);
     border-left: 1px solid var(--border-color);
