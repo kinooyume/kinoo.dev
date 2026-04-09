@@ -20,8 +20,8 @@ export function revealSections(): () => void {
         const key = `section:${section.id}`;
 
         markPlayed(key);
+        section.style.opacity = "1";
         animate(section, {
-          opacity: [0, 1],
           translateY: [20, 0],
           duration: 600,
         });

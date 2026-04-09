@@ -64,7 +64,6 @@ function animateCard(card: Element, index: number) {
     .add(card, {
       opacity: [0, 1],
       translateY: [50, 0],
-      scale: [0.8, 1],
       duration: 600,
       delay: (_el, i) => i * 200,
       ease: "outElastic(1, .5)",
@@ -101,7 +100,7 @@ export function revealCards(): () => void {
       showCardImmediate(card);
     } else {
       card.style.opacity = "0";
-      if (!mobile) card.style.transform = "translateY(50px) scale(0.8)";
+      if (!mobile) card.style.transform = "translateY(50px)";
       observer.observe(card);
     }
   });
