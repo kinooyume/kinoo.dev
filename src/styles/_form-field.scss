@@ -24,6 +24,6 @@
   }
 
   &::placeholder {
-    color: rgba(224, 224, 224, 0.4);
+    color: var(--text-muted);
   }
 }

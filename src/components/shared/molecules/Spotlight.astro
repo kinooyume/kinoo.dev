@@ -26,7 +26,7 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
     overflow: hidden;
     border-radius: var(--radius-xl);
     padding: 1px;
-    background-color: rgba(71, 85, 105, 0.48);
+    background-color: var(--border-hover-color);
 
     &::before,
     &::after {
@@ -82,7 +82,7 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
     position: relative;
     z-index: 3;
     background-color: var(--card-surface);
-    background: linear-gradient(45deg, #172033, #1e293b 50%, #172033);
+    background: linear-gradient(45deg, var(--card-surface-darker), var(--card-surface) 50%, var(--card-surface-darker));
     border-radius: calc(var(--radius-xl) - 1px);
     height: 100%;
   }

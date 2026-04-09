@@ -1,5 +1,6 @@
 ---
 import terminal from "@/svgs/terminal.svg?raw";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header>
@@ -12,6 +13,7 @@ import terminal from "@/svgs/terminal.svg?raw";
           </div>
           Martin Kinoo
         </a>
+        <ThemeToggle />
       </div>
       <slot name="nav" />
     </div>
@@ -86,6 +88,7 @@ import terminal from "@/svgs/terminal.svg?raw";
     .title-wrapper {
       display: flex;
       align-items: center;
+      gap: 12px;
     }
 
     a.title {

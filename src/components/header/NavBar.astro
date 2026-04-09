@@ -10,10 +10,10 @@ interface Props {
 }
 
 const defaultItems: NavItem[] = [
-  { label: "Articles", href: "/#articles", color: "var(--orange)" },
-  { label: "Réalisations", href: "/#realisations", color: "var(--green)" },
-  { label: "Expériences", href: "/#experiences", color: "var(--pink)" },
-  { label: "Formations", href: "/#formations", color: "var(--purple)" },
+  { label: "Articles", href: "/#articles", color: "var(--orange-dark)" },
+  { label: "Réalisations", href: "/#realisations", color: "var(--green-dark)" },
+  { label: "Expériences", href: "/#experiences", color: "var(--pink-dark)" },
+  { label: "Formations", href: "/#formations", color: "var(--purple-dark)" },
 ];
 
 const { items = defaultItems } = Astro.props;
@@ -31,7 +31,7 @@ const { items = defaultItems } = Astro.props;
       ))
     }
     <li class="push-right">
-      <a class="anime nav" href="/design-system" data-color="var(--orange)" data-page>
+      <a class="anime nav" href="/design-system" data-color="var(--orange-dark)" data-page>
         Design System
       </a>
     </li>
@@ -227,37 +227,37 @@ const { items = defaultItems } = Astro.props;
       opacity: 1;
     }
 
-    &[data-color="var(--pink)"] {
+    &[data-color="var(--pink-dark)"] {
       &:hover,
       &.current {
-        color: var(--pink-lightest);
+        color: var(--pink-dark);
       }
     }
 
-    &[data-color="var(--green)"] {
+    &[data-color="var(--green-dark)"] {
       &:hover,
       &.current {
-        color: var(--green-lightest);
+        color: var(--green-dark);
       }
     }
 
-    &[data-color="var(--purple)"] {
+    &[data-color="var(--purple-dark)"] {
       &:hover,
       &.current {
-        color: var(--purple-lightest);
+        color: var(--purple-dark);
       }
     }
 
-    &[data-color="var(--orange)"] {
+    &[data-color="var(--orange-dark)"] {
       &:hover,
       &.current {
-        color: var(--orange-lightest);
+        color: var(--orange-dark);
       }
     }
   }
 
   .indicator {
-    --indicator-color: var(--orange);
+    --indicator-color: var(--orange-dark);
     position: absolute;
     bottom: 8px;
     height: 2px;

@@ -21,7 +21,7 @@
   border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--border-ghost-color);
     box-shadow: 0 0 10px var(--accent-tint), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
   }
 }

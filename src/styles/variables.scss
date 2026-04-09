@@ -85,5 +85,48 @@ $colors: (
   --section-margin: clamp(96px, 4.11rem + 6.74vw, 160px);
   --h2-margin-bottom: clamp(40px, 1.79rem + 2.53vw, 64px);
 
+  --icon-badge: #444451;
+
   --border-angle: 360deg;
+}
+
+html[data-theme="light"] {
+  --icon-badge: #b8bcc8;
+  --background-color: #f5f7fc;
+  --background-frosted: rgba(245, 247, 252, 0.6);
+
+  --color: #2d3748;
+  --light-color: #1a202c;
+  --extra-light-color: #1a202c;
+  --text-muted: #64748b;
+
+  --accent-color: var(--orange-dark);
+  --accent-bright: #e8952e;
+  --secondary-accent-color: #a07850;
+
+  --card-surface-raised: #f7f9ff;
+  --card-surface: #eef3fc;
+  --card-surface-hover: #e5ecf8;
+  --card-surface-input: #f3f7ff;
+  --card-surface-darker: #e0e8f5;
+
+  --border-color: rgba(60, 80, 130, 0.12);
+  --border-hover-color: rgba(60, 80, 130, 0.22);
+  --border-ghost-color: rgba(60, 80, 130, 0.16);
+
+  @each $name, $shades in $colors {
+    $base: map.get($shades, base);
+    $dark: map.get($shades, dark);
+    $darker: map.get($shades, darker);
+
+    --#{$name}: #{$dark};
+    --#{$name}-light: #{$base};
+    --#{$name}-dark: #{$darker};
+    --#{$name}-lightest: #{map.get($shades, light)};
+    --#{$name}-bg: #{rgba($dark, 0.1)};
+    --#{$name}-tint: #{rgba($dark, 0.15)};
+    --#{$name}-border: #{rgba($dark, 0.3)};
+    --#{$name}-cool-shift: #edf0f8;
+    --#{$name}-desaturated: #e4e7f0;
+  }
 }

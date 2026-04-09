@@ -13,8 +13,13 @@ html {
   font-family: Outfit, system-ui, sans-serif;
   background: var(--background-color);
   color: var(--color);
+  color-scheme: dark;
   scroll-behavior: smooth;
   scroll-padding-top: 126px;
+
+  &[data-theme="light"] {
+    color-scheme: light;
+  }
 
   @include mobile {
     scroll-padding-top: 92px;
