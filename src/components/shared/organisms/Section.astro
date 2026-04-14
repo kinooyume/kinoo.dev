@@ -28,5 +28,9 @@ const { id, subtitle, title } = Astro.props;
       font-size: var(--subtitle-size);
       margin: 0;
     }
+
+    :global(html[data-theme="light"]) & :global(.subtitle) {
+      color: var(--accent-bright);
+    }
   }
 </style>

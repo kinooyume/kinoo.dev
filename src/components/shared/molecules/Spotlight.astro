@@ -69,6 +69,16 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
     }
   }
 
+  :global(html[data-theme="light"] [data-spotlight]):hover .spotlight-card {
+    &::before {
+      opacity: 0.5;
+    }
+
+    &::after {
+      opacity: 0.2;
+    }
+  }
+
   @media (hover: none) {
     .spotlight-card {
       &::before,
