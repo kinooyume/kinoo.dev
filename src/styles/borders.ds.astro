@@ -24,6 +24,13 @@ import DSNote from "@/components/design-system/DSNote.astro";
           <span>rgba(255, 255, 255, 0.2)</span>
         </div>
       </div>
+      <div class="border-sample">
+        <div class="border-box" style="border-color: var(--border-ghost-color);"></div>
+        <div class="border-info">
+          <code>--border-ghost-color</code>
+          <span>rgba(255, 255, 255, 0.3)</span>
+        </div>
+      </div>
       <div class="border-sample chromatic">
         <div class="border-box" style="border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);"></div>
         <div class="border-info">
@@ -51,20 +58,18 @@ import DSNote from "@/components/design-system/DSNote.astro";
   <DSBlock title="Radius Scale">
     <div class="radius-grid">
       {[
-        { px: "3px", usage: "Chips, scale indicators" },
-        { px: "4px", usage: "Code blocks, small elements" },
-        { px: "6px", usage: "Links, badges, nested details" },
-        { px: "8px", usage: "Sidebar items, inputs (search), cards (small)" },
-        { px: "10px", usage: "Form fields" },
-        { px: "12px", usage: "Buttons, cards, preview containers" },
-        { px: "32px", usage: "Spotlight, pill shapes" },
-        { px: "9999px", usage: "Full circle (spotlight glow)" },
-      ].map(({ px, usage }) => (
+        { token: "--radius-xs", px: "4px", usage: "Code blocks, diagram badges" },
+        { token: "--radius-sm", px: "6px", usage: "Badges, tooltips, ghost links" },
+        { token: "--radius-md", px: "8px", usage: "Small buttons, logo boxes, sidebar items" },
+        { token: "--radius-lg", px: "12px", usage: "Buttons, tags, icon buttons, nav cards, form fields" },
+        { token: "--radius-xl", px: "32px", usage: "Cards, spotlight" },
+        { token: "9999px", px: "9999px", usage: "Full circle (spotlight glow)" },
+      ].map(({ token, px, usage }) => (
         <div class="radius-item">
           <div class="radius-box" style={`border-radius: ${px};`}></div>
           <div class="radius-info">
-            <code>{px}</code>
-            <span>{usage}</span>
+            <code>{token}</code>
+            <span>{px} — {usage}</span>
           </div>
         </div>
       ))}
@@ -75,12 +80,11 @@ import DSNote from "@/components/design-system/DSNote.astro";
     <DSPropsTable
       headers={["Pattern", "Border", "Radius"]}
       rows={[
-        ["Card", { code: "1px solid var(--border-color)" }, { code: "12px" }],
-        ["Form field", { code: "2px solid var(--border-color)" }, { code: "10px" }],
-        ["Preview container", { code: "1px solid rgba(255,255,255,0.1)" }, { code: "12px" }],
-        ["Sidebar item", "none", { code: "8px" }],
-        ["Button", "none", { code: "12px" }],
-        ["Button (small)", "none", { code: "8px" }],
+        ["Card / Spotlight", { code: "1px solid var(--border-color)" }, { code: "var(--radius-xl)" }],
+        ["Button / Tag", { code: "1px solid transparent" }, { code: "var(--radius-lg)" }],
+        ["Form field", { code: "2px solid var(--border-color)" }, { code: "var(--radius-lg)" }],
+        ["Small button", "none", { code: "var(--radius-md)" }],
+        ["Badge / Ghost link", { code: "1px solid var(--border-ghost-color)" }, { code: "var(--radius-sm)" }],
       ]}
     />
   </DSBlock>

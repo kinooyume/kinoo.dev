@@ -1,16 +1,16 @@
 @use "sass:map";
 
 $colors: (
-  "orange": (base: #f8ba88, light: #f7caa6, dark: #f4ac72, darker: #ea9957, darkest: #d17d39, lightest: #f8dbc4),
-  "red": (base: #ea8686, light: #edabab, dark: #dc6a6a, darker: #cb4d4d, darkest: #a63a3a, lightest: #f3cece),
-  "green": (base: #66c384, light: #a4dfb8, dark: #5ab376, darker: #4a9c63, darkest: #3d8552, lightest: #c0edcf),
-  "pink": (base: #f68dab, light: #f8a4c0, dark: #f47799, darker: #f26088, darkest: #d55478, lightest: #f8c8d9),
-  "purple": (base: #9c85d3, light: #b09ee0, dark: #8870c7, darker: #745bba, darkest: #6048a0, lightest: #c9bce6),
-  "blue": (base: #7eb8f7, light: #a0ccfa, dark: #6aa4e8, darker: #5690d4, darkest: #4278b8, lightest: #bee0fc),
-  "cyan": (base: #5ecfcf, light: #8edede, dark: #4dbfbf, darker: #3daeae, darkest: #2e9494, lightest: #b0e8e8),
-  "yellow": (base: #e8d48a, light: #f0e0a8, dark: #d4c070, darker: #baa856, darkest: #9a8c40, lightest: #f5ecc8),
-  "indigo": (base: #8b85d8, light: #a8a4e8, dark: #7570c8, darker: #625cb8, darkest: #504aa0, lightest: #c4c0f0),
-  "teal": (base: #6dc4b0, light: #8ad8c8, dark: #58b4a0, darker: #48a490, darkest: #388a78, lightest: #b0e8d8),
+  "orange": (base: #f8ba88, light: #f7caa6, dark: #f4ac72, darker: #ea9957, darkest: #d17d39, lightest: #f8dbc4, cool-shift: #242534, desaturated: #312A24),
+  "red": (base: #ea8686, light: #edabab, dark: #dc6a6a, darker: #cb4d4d, darkest: #a63a3a, lightest: #f3cece, cool-shift: #252532, desaturated: #322828),
+  "green": (base: #66c384, light: #a4dfb8, dark: #5ab376, darker: #4a9c63, darkest: #3d8552, lightest: #c0edcf, cool-shift: #252534, desaturated: #262E28),
+  "pink": (base: #f68dab, light: #f8a4c0, dark: #f47799, darker: #f26088, darkest: #d55478, lightest: #f8c8d9, cool-shift: #252531, desaturated: #32282B),
+  "purple": (base: #9c85d3, light: #b09ee0, dark: #8870c7, darker: #745bba, darkest: #6048a0, lightest: #c9bce6, cool-shift: #25262D, desaturated: #2C2A32),
+  "blue": (base: #7eb8f7, light: #a0ccfa, dark: #6aa4e8, darker: #5690d4, darkest: #4278b8, lightest: #bee0fc, cool-shift: #25252E, desaturated: #262C33),
+  "cyan": (base: #5ecfcf, light: #8edede, dark: #4dbfbf, darker: #3daeae, darkest: #2e9494, lightest: #b0e8e8, cool-shift: #252532, desaturated: #232E2E),
+  "yellow": (base: #e8d48a, light: #f0e0a8, dark: #d4c070, darker: #baa856, darkest: #9a8c40, lightest: #f5ecc8, cool-shift: #242437, desaturated: #2E2B23),
+  "indigo": (base: #8b85d8, light: #a8a4e8, dark: #7570c8, darker: #625cb8, darkest: #504aa0, lightest: #c4c0f0, cool-shift: #25262C, desaturated: #2A2A33),
+  "teal": (base: #6dc4b0, light: #8ad8c8, dark: #58b4a0, darker: #48a490, darkest: #388a78, lightest: #b0e8d8, cool-shift: #252533, desaturated: #242E2B),
 );
 
 :root {
@@ -26,6 +26,7 @@ $colors: (
   --secondary-accent-color: #c9a88d;
   --accent-bright: #f6b17a;
   --accent-tint: var(--orange-tint);
+  --accent-cool-shift: var(--orange-cool-shift);
 
   @each $name, $shades in $colors {
     $base: map.get($shades, base);
@@ -39,6 +40,8 @@ $colors: (
     --#{$name}-bg: #{rgba($base, 0.05)};
     --#{$name}-tint: #{rgba($base, 0.1)};
     --#{$name}-border: #{rgba($base, 0.35)};
+    --#{$name}-cool-shift: #{map.get($shades, cool-shift)};
+    --#{$name}-desaturated: #{map.get($shades, desaturated)};
   }
 
   --card-surface-raised: #2d2d3b;
@@ -46,8 +49,26 @@ $colors: (
   --card-surface-hover: #313d50;
   --card-surface-input: #1a2232;
 
+  --card-surface-darker: #1f2233;
+
   --border-color: rgba(255, 255, 255, 0.1);
   --border-hover-color: rgba(255, 255, 255, 0.2);
+  --border-ghost-color: rgba(255, 255, 255, 0.3);
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 32px;
+
+  --transition-base: 0.3s ease;
+  --transition-fast: 0.2s ease;
+  --transition-snap: 200ms;
+
+  --opacity-idle: 0.8;
+  --opacity-muted: 0.6;
+
+  --letter-spacing-wide: 0.5px;
 
   --h1-size: clamp(48px, 1.58rem + 5.05vw, 96px);
   --h2-size: clamp(42px, 2.21rem + 1.47vw, 56px);

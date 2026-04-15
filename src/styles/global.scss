@@ -49,7 +49,7 @@ a {
   text-decoration: inherit;
 
   &.anime {
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
   }
 }
 
@@ -141,7 +141,7 @@ b {
 
   a.anime:active {
     transform: translateY(5px);
-    transition: 200ms;
+    transition: var(--transition-snap);
   }
 }
 

@@ -1,0 +1,15 @@
+@mixin ghost {
+  background: transparent;
+  border: 1px solid var(--border-ghost-color);
+  color: var(--light-color);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-wide);
+  opacity: var(--opacity-idle);
+  transition: all var(--transition-base);
+
+  &:hover {
+    opacity: 1;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+}

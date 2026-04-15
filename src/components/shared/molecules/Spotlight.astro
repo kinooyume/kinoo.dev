@@ -24,41 +24,37 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
   .spotlight-card {
     position: relative;
     overflow: hidden;
-    border-radius: 32px;
+    border-radius: var(--radius-xl);
     padding: 1px;
     background-color: rgba(71, 85, 105, 0.48);
 
-    &::before {
+    &::before,
+    &::after {
       content: "";
       position: absolute;
+      background: var(--spotlight-color);
+      border-radius: 9999px;
+      filter: blur(100px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 500ms;
+      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
+      will-change: transform;
+    }
+
+    &::before {
       width: 20rem;
       height: 20rem;
       left: -10rem;
       top: -10rem;
-      background: var(--spotlight-color);
-      border-radius: 9999px;
-      filter: blur(100px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 500ms;
-      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
       z-index: 2;
     }
 
     &::after {
-      content: "";
-      position: absolute;
       width: 24rem;
       height: 24rem;
       left: -12rem;
       top: -12rem;
-      background: var(--spotlight-color);
-      border-radius: 9999px;
-      filter: blur(100px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 500ms;
-      transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
       z-index: 4;
     }
   }
@@ -75,12 +71,9 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
 
   @media (hover: none) {
     .spotlight-card {
-      &::before {
-        opacity: 0.6;
-      }
-
+      &::before,
       &::after {
-        opacity: 0.06;
+        display: none;
       }
     }
   }
@@ -90,7 +83,7 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
     z-index: 3;
     background-color: var(--card-surface);
     background: linear-gradient(45deg, #172033, #1e293b 50%, #172033);
-    border-radius: 31px;
+    border-radius: calc(var(--radius-xl) - 1px);
     height: 100%;
   }
 </style>

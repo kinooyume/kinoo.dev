@@ -22,8 +22,16 @@ const letters =
 <script>
   import { animate, stagger } from "animejs";
   import { on } from "@/lib/emitter";
+  import { hasPlayed, markPlayed } from "@/lib/animations/sessionTracker";
 
-  const isRevisit = () => document.body.hasAttribute("data-animations-done");
+  function showImmediate(el: HTMLElement, type: string) {
+    if (type === "wave") {
+      el.querySelectorAll<HTMLElement>(".reveal-letter").forEach((l) => { l.style.transform = "none"; });
+    } else {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    }
+  }
 
   function initRevealText() {
     document
@@ -36,17 +44,26 @@ const letters =
         );
         const index = Array.from(siblings).indexOf(el);
         const type = el.dataset.revealText;
+        const key = `reveal-text:${trigger}:${index}`;
+
+        if (hasPlayed(key)) {
+          showImmediate(el, type ?? "wave");
+          return;
+        }
+
+        if (type === "wave") {
+          el.style.overflow = "hidden";
+          el.querySelectorAll<HTMLElement>(".reveal-letter").forEach((l) => {
+            l.style.display = "inline-block";
+            l.style.transform = "translateY(1.1em)";
+          });
+        } else {
+          el.style.opacity = "0";
+          el.style.transform = "translateX(30px)";
+        }
 
         on(trigger, () => {
-          if (isRevisit()) {
-            if (type === "wave") {
-              el.querySelectorAll<HTMLElement>(".reveal-letter").forEach((l) => { l.style.transform = "none"; });
-            } else {
-              el.style.opacity = "1";
-              el.style.transform = "none";
-            }
-            return;
-          }
+          markPlayed(key);
 
           if (type === "wave") {
             const letters = el.querySelectorAll(".reveal-letter");

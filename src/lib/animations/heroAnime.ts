@@ -5,24 +5,22 @@ import { animateHeader, showHeaderImmediate } from "@/lib/animations/headerAnime
 export function playHeroAnimation(): void {
   document.body.classList.add("hero-animation");
 
-  const init = createTimeline({ autoplay: false }).add([".subtitle"], {
-    opacity: 1,
-  });
-
-  const subtitle = createTimeline({ autoplay: false })
+  const subtitle = createTimeline({
+    autoplay: false,
+    defaults: { ease: "outElastic(1, .5)" },
+  })
     .add("h1 span", {
       opacity: [0, 1],
       duration: 600,
       scale: [0.8, 1],
       delay: (_el, i) => 70 * i,
-      ease: "outElastic(1, .5)",
     })
     .add(".text-wrapper .letter", {
+      opacity: [0, 1],
       translateY: ["1.3em", 0],
       translateZ: 0,
       duration: 750,
       delay: (_el, i) => 30 * i,
-      ease: "outElastic(1, .5)",
     });
 
   const description = createTimeline({ autoplay: false }).add(
@@ -43,7 +41,7 @@ export function playHeroAnimation(): void {
     ease: "outElastic(1, .5)",
   });
 
-  [init, subtitle, description, picture].forEach((tl) => tl.play());
+  [subtitle, description, picture].forEach((tl) => tl.play());
   animateHeader();
 
   document.body.classList.remove("hero-animation");
@@ -67,6 +65,7 @@ export function showHeroImmediate(): void {
     el.style.opacity = "1";
   });
   document.querySelectorAll<HTMLElement>(".text-wrapper .letter").forEach((el) => {
+    el.style.opacity = "1";
     el.style.transform = "none";
   });
   document.querySelectorAll<HTMLElement>("#hero .description > *, .tag-animated").forEach((el) => {

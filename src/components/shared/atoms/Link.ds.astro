@@ -1,8 +1,6 @@
 ---
 import LinkComponent from "./Link.astro";
-import BackLink from "./BackLink.astro";
 import ArrowLink from "./ArrowLink.astro";
-import ExternalLink from "./ExternalLink.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
@@ -28,20 +26,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       <ArrowLink href="/articles" text="Articles" direction="back" />
     </DSPreview>
     <DSCode inline>&lt;ArrowLink href="/articles" text="Read article" direction="back | forward" /&gt;</DSCode>
-  </DSBlock>
-
-  <DSBlock title="Back" subtitle="BackLink — shorthand for ArrowLink direction=back">
-    <DSPreview>
-      <BackLink href="/articles" text="Articles" />
-    </DSPreview>
-    <DSCode inline>&lt;BackLink href="/articles" text="Articles" /&gt;</DSCode>
-  </DSBlock>
-
-  <DSBlock title="External" subtitle="ExternalLink — always opens in new tab with icon">
-    <DSPreview>
-      <ExternalLink href="https://github.com" text="View on GitHub" />
-    </DSPreview>
-    <DSCode inline>&lt;ExternalLink href="https://github.com" text="View on GitHub" /&gt;</DSCode>
   </DSBlock>
 
   <DSBlock title="Props">

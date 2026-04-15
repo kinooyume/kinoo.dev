@@ -24,9 +24,9 @@ const dirLabel = direction === "prev" ? "← Previous" : direction === "next" ? 
     flex-direction: column;
     gap: 4px;
     padding: 20px;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
   }
 
   .nav-card--card {
@@ -71,6 +71,6 @@ const dirLabel = direction === "prev" ? "← Previous" : direction === "next" ? 
   .nav-card-subtitle {
     font-size: 13px;
     color: var(--color);
-    opacity: 0.6;
+    opacity: var(--opacity-muted);
   }
 </style>

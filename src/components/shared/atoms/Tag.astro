@@ -52,12 +52,12 @@ const classes = [
     align-items: center;
     gap: 8px;
     padding: 8px 18px;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     background-color: var(--card-surface-input);
 
     &.small {
       padding: 2px 8px;
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       gap: 5px;
 
       span {
@@ -88,7 +88,7 @@ const classes = [
 
     &.badge {
       background-color: var(--accent-color);
-      color: black;
+      color: var(--accent-cool-shift);
 
       span {
         font-weight: 400;
