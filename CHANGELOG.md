@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.37.1 - 2026-04-15
+#### Bug Fixes
+- (**ios**) restore visibility after iPad orientation change - (92b48d6) - Martin Kinoo
+
+- - -
+
 ## v0.37.0 - 2026-04-15
 #### Features
 - (**button**) add cool-shift variant and wire chromatic support - (cfa47ff) - Martin Kinoo
