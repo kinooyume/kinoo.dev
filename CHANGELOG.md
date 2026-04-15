@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.37.0 - 2026-04-15
+#### Features
+- (**button**) add cool-shift variant and wire chromatic support - (cfa47ff) - Martin Kinoo
+- (**colors**) add desaturated token and refine cool-shift values - (3554a4e) - Martin Kinoo
+- (**colors**) add cool-shift token from dualTone palette - (fa46ed9) - Martin Kinoo
+- (**ds**) add interactions foundation, update borders, remove spacing - (4e45ae2) - Martin Kinoo
+- (**tokens**) add interaction tokens and ghost mixin - (2d8990a) - Martin Kinoo
+#### Bug Fixes
+- (**animations**) fix reveal timing and card border-radius glitch - (9326337) - Martin Kinoo
+- (**spotlight**) invalidate position on detach and visibility change - (b9f3ad5) - Martin Kinoo
+- (**spotlight**) replace per-container mouse tracking with global singleton - (ff3a2cd) - Martin Kinoo
+#### Performance Improvements
+- (**spotlight**) fix iPad lag and card reappear on scroll - (41f200c) - Martin Kinoo
+#### Refactoring
+- (**atoms**) use design tokens across shared components - (c290472) - Martin Kinoo
+- (**link**) remove ExternalLink and BackLink wrappers - (e8ce380) - Martin Kinoo
+
+- - -
+
 ## v0.36.0 - 2026-04-02
 #### Features
 - (**og**) generate og image for articles - (7d2b461) - Martin Kinoo
