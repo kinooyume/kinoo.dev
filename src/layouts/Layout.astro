@@ -153,6 +153,20 @@ const {
     ev.newDocument.documentElement.style.scrollBehavior = "auto";
   });
 
+  // iOS Safari: orientation change can trigger a ghost popstate, leaving
+  // the exit-animation opacity stuck at 0. Restore after resize settles.
+  let resizeRAF: number;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(resizeRAF);
+    resizeRAF = requestAnimationFrame(() => {
+      const sel = isDsPage() ? ".ds-main" : ".page-content";
+      const el = document.querySelector<HTMLElement>(sel);
+      if (el && el.style.opacity === "0") {
+        el.style.opacity = "1";
+      }
+    });
+  });
+
   document.addEventListener("astro:after-swap", () => {
     if (location.hash) {
       const target = document.querySelector<HTMLElement>(location.hash);
