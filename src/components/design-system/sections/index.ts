@@ -50,6 +50,7 @@ export const sidebarSections: SidebarSection[] = [
       { label: "Button", href: "#button", framework: "solid" },
       { label: "Link", href: "#link", framework: "astro" },
       { label: "IconButton", href: "#iconbutton", framework: "astro" },
+      { label: "IconLink", href: "#iconlink", framework: "astro" },
       { label: "Dropdown", href: "#dropdown", framework: "solid" },
       { label: "NavCard", href: "#navcard", framework: "astro" },
       { label: "Tag", href: "#tag", framework: "astro" },

@@ -1,0 +1,96 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  tooltip?: string;
+  variant?: "icon" | "badge";
+  external?: boolean;
+}
+
+const { href, label, tooltip, variant = "icon", external = false } = Astro.props;
+const tooltipText = tooltip || label;
+
+const externalProps = external
+  ? { target: "_blank", rel: "noreferrer nofollow noopener" }
+  : {};
+---
+
+<a
+  class:list={["icon-link", `icon-link--${variant}`, "anime"]}
+  href={href}
+  aria-label={label}
+  {...externalProps}
+>
+  {variant === "badge" ? label : <slot />}
+  {variant === "icon" && <span class="tooltip">{tooltipText}</span>}
+</a>
+
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
+  .icon-link {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: var(--opacity-muted);
+    transition: all var(--transition-base);
+
+    &:hover {
+      opacity: 1;
+      color: var(--accent-color);
+
+      .tooltip {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-8px);
+      }
+    }
+
+    &--icon {
+      :global(svg) {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    &--badge {
+      border: 1px solid var(--border-ghost-color);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-3xs);
+      font-weight: 700;
+      letter-spacing: var(--letter-spacing-wide);
+      height: 22px;
+      padding: 0 6px;
+      color: var(--light-color);
+
+      &:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  .tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background-color: var(--card-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-size: var(--font-size-2xs);
+    font-weight: 500;
+    color: var(--light-color);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-fast);
+  }
+
+  @include mobile {
+    .icon-link {
+      transform: none !important;
+    }
+  }
+</style>
