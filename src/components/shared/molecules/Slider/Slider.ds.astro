@@ -1,6 +1,5 @@
 ---
 import SliderComponent from "./Slider.tsx";
-import arrow from "@/svgs/arrow.svg?raw";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
@@ -9,7 +8,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 <section id="slider">
   <DSSectionHeader title="Slider" atomic="Molecule" framework="solid" />
-  <p>Image carousel powered by BlazeSlider with dot pagination and arrow navigation.</p>
+  <p>Image carousel powered by BlazeSlider with dot pagination.</p>
 
   <DSBlock title="Demo">
     <div class="slider-demo">
@@ -20,9 +19,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
           "ekeynox/02.webp",
           "ekeynox/03.webp",
         ]}
-      >
-        <Fragment set:html={arrow} />
-      </SliderComponent>
+      />
     </div>
   </DSBlock>
 
@@ -31,7 +28,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       headers={["Prop", "Type", "Description"]}
       rows={[
         [{ code: "pictures" }, "string[]", "Image paths relative to /images/"],
-        [{ code: "children" }, "HTMLElement", "Arrow icon for prev/next buttons"],
       ]}
     />
     <DSNote>

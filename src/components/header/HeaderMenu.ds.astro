@@ -24,10 +24,6 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSPropsTable
       headers={["Link", "Component", "Destination"]}
       rows={[
-        ["Design System", "Button tertiary small", "Internal - Design System"],
-        ["CV", "Button tertiary small", "External - PDF download"],
-        ["GitHub", "Icon link", "External - GitHub profile"],
-        ["LinkedIn", "Icon link", "External - LinkedIn profile"],
         ["Discutons ensemble", "Button primary", "Internal - Contact section"],
       ]}
     />
@@ -36,11 +32,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   <DSBlock title="Structure">
     <DSStructure
       rows={[
-        { code: ".header-menu", description: "Flex container with gap" },
-        { code: "Button tertiary small", description: "DS badge link", indent: 1 },
-        { code: "Button tertiary small", description: "CV badge link", indent: 1 },
-        { code: "a.header-icon", description: "GitHub icon link", indent: 1 },
-        { code: "a.header-icon", description: "LinkedIn icon link", indent: 1 },
+        { code: ".header-menu", description: "Flex container" },
         { code: "Button primary", description: "Contact CTA", indent: 1 },
       ]}
     />

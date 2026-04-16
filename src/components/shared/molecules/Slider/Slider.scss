@@ -16,7 +16,12 @@
   justify-content: center;
   align-items: center;
   margin-top: 16px;
-  fill: var(--light-color);
+  fill: var(--secondary-accent-color);
+  transition: fill 0.2s ease-out;
+}
+
+.blaze-prev {
+  transform: rotate(180deg);
 }
 
 @media (hover: hover) {
@@ -26,12 +31,8 @@
   }
 
   .pagination-wrapper .pagination ul li button:hover::before {
-    background: var(--accent-color);
+    background: var(--secondary-accent-color);
   }
-}
-
-.blaze-prev {
-  transform: rotate(180deg);
 }
 
 @keyframes activeDot {
@@ -95,7 +96,7 @@
             height: 0.5rem;
             width: 0.5rem;
             border-radius: 0.25rem;
-            background: #fff;
+            background: var(--accent-color);
             transform-origin: 50% 50%;
             transition:
               width 0.6s cubic-bezier(0.23, 1, 0.32, 1),

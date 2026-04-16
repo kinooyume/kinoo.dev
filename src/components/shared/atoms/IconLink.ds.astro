@@ -1,5 +1,5 @@
 ---
-import HeaderLinkComponent from "./HeaderLink.astro";
+import IconLinkComponent from "./IconLink.astro";
 import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
@@ -10,43 +10,43 @@ import linkedin from "@/svgs/linkedin.svg?raw";
 import cv from "@/svgs/cv.svg?raw";
 ---
 
-<section id="headerlink">
-  <DSSectionHeader title="HeaderLink" atomic="Atom" framework="astro" />
-  <p>Icon or badge link used in the header. Hover inherits <code>--accent-color</code>.</p>
+<section id="iconlink">
+  <DSSectionHeader title="IconLink" atomic="Atom" framework="astro" />
+  <p>Icon or badge link with hover tooltip. Inherits <code>--accent-color</code> on hover.</p>
 
   <DSBlock title="Icon Variant">
     <DSPreview>
-      <HeaderLinkComponent href="#headerlink" label="GitHub">
+      <IconLinkComponent href="#iconlink" label="GitHub">
         <Fragment set:html={github} />
-      </HeaderLinkComponent>
-      <HeaderLinkComponent href="#headerlink" label="LinkedIn">
+      </IconLinkComponent>
+      <IconLinkComponent href="#iconlink" label="LinkedIn">
         <Fragment set:html={linkedin} />
-      </HeaderLinkComponent>
-      <HeaderLinkComponent href="#headerlink" label="CV">
+      </IconLinkComponent>
+      <IconLinkComponent href="#iconlink" label="CV">
         <Fragment set:html={cv} />
-      </HeaderLinkComponent>
+      </IconLinkComponent>
     </DSPreview>
   </DSBlock>
 
   <DSBlock title="Badge Variant">
     <DSPreview>
-      <HeaderLinkComponent href="#headerlink" label="DS" variant="badge" />
-      <HeaderLinkComponent href="#headerlink" label="CV" variant="badge" />
+      <IconLinkComponent href="#iconlink" label="DS" variant="badge" />
+      <IconLinkComponent href="#iconlink" label="CV" variant="badge" />
     </DSPreview>
   </DSBlock>
 
   <DSBlock title="Chromatic">
     <ChromaticPreview client:load>
-      <HeaderLinkComponent href="#headerlink" label="GitHub">
+      <IconLinkComponent href="#iconlink" label="GitHub">
         <Fragment set:html={github} />
-      </HeaderLinkComponent>
-      <HeaderLinkComponent href="#headerlink" label="LinkedIn">
+      </IconLinkComponent>
+      <IconLinkComponent href="#iconlink" label="LinkedIn">
         <Fragment set:html={linkedin} />
-      </HeaderLinkComponent>
-      <HeaderLinkComponent href="#headerlink" label="CV">
+      </IconLinkComponent>
+      <IconLinkComponent href="#iconlink" label="CV">
         <Fragment set:html={cv} />
-      </HeaderLinkComponent>
-      <HeaderLinkComponent href="#headerlink" label="DS" variant="badge" />
+      </IconLinkComponent>
+      <IconLinkComponent href="#iconlink" label="DS" variant="badge" />
     </ChromaticPreview>
   </DSBlock>
 

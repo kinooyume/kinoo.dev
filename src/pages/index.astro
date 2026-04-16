@@ -44,7 +44,6 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
       cleanupSections = revealSections();
       cleanupCards = revealCards();
       smoothHashLinks();
-      document.body.setAttribute("data-animations-done", "");
     }
 
     document.addEventListener("astro:before-swap", () => {

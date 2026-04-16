@@ -9,12 +9,16 @@ export function playHeroAnimation(): void {
     autoplay: false,
     defaults: { ease: "outElastic(1, .5)" },
   })
+    .add(".subtitle", {
+      opacity: [0, 1],
+      duration: 400,
+    })
     .add("h1 span", {
       opacity: [0, 1],
       duration: 600,
       scale: [0.8, 1],
       delay: (_el, i) => 70 * i,
-    })
+    }, 0)
     .add(".text-wrapper .letter", {
       opacity: [0, 1],
       translateY: ["1.3em", 0],
@@ -34,20 +38,36 @@ export function playHeroAnimation(): void {
     },
   );
 
-  const picture = createTimeline({ autoplay: false }).add([".hero-image"], {
-    opacity: [0, 1],
-    scale: [0.8, 1],
-    duration: 800,
-    ease: "outElastic(1, .5)",
-  });
+  const picture = createTimeline({ autoplay: false })
+    .add([".hero-image"], {
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      duration: 800,
+      ease: "outElastic(1, .5)",
+    })
+    .add(
+      ".hero-socials",
+      {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 600,
+        ease: "outElastic(1, .5)",
+      },
+      "-=400",
+    );
 
   [subtitle, description, picture].forEach((tl) => tl.play());
-  animateHeader();
+  const header = animateHeader();
 
   document.body.classList.remove("hero-animation");
   const headerEl = document.querySelector("header");
   if (headerEl) headerEl.style.display = "";
-  emitHeroAnimationComplete("completed");
+
+  Promise.all([subtitle, description, picture, header])
+    .then(() => {
+      document.body.setAttribute("data-animations-done", "");
+      emitHeroAnimationComplete("completed");
+    });
 
   if (globalThis.location.hash) {
     requestAnimationFrame(() => {
@@ -75,7 +95,12 @@ export function showHeroImmediate(): void {
   document.querySelectorAll<HTMLElement>(".hero-image").forEach((el) => {
     el.style.opacity = "1";
   });
+  document.querySelectorAll<HTMLElement>(".hero-socials").forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
+  });
 
   showHeaderImmediate();
+  document.body.setAttribute("data-animations-done", "");
   emitHeroAnimationComplete("completed");
 }

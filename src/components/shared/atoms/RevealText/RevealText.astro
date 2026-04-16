@@ -55,7 +55,7 @@ const letters =
           el.style.overflow = "hidden";
           el.querySelectorAll<HTMLElement>(".reveal-letter").forEach((l) => {
             l.style.display = "inline-block";
-            l.style.transform = "translateY(1.1em)";
+            l.style.transform = "translateY(1.5em)";
           });
         } else {
           el.style.opacity = "0";
@@ -69,7 +69,7 @@ const letters =
             const letters = el.querySelectorAll(".reveal-letter");
             if (!letters.length) return;
             animate(letters, {
-              translateY: ["1.1em", 0],
+              translateY: ["1.5em", 0],
               duration: 750,
               delay: stagger(30, { start: 200 + index * 150 }),
               ease: "outElastic(1, .5)",

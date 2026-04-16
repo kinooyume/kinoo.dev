@@ -1,23 +1,10 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
 import Button from "@/components/shared/atoms/Button";
-import cv from "@/svgs/cv.svg?raw";
-import github from "@/svgs/github.svg?raw";
-import linkedin from "@/svgs/linkedin.svg?raw";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <div class="header-menu">
-  <div class="icon-group">
-    <HeaderLink href="MartinKinooCV.pdf" label="CV" external>
-      <Fragment set:html={cv} />
-    </HeaderLink>
-    <HeaderLink href="https://github.com/KinooYume" label="GitHub" external>
-      <Fragment set:html={github} />
-    </HeaderLink>
-    <HeaderLink href="https://www.linkedin.com/in/martin-kinoo/" label="LinkedIn" external>
-      <Fragment set:html={linkedin} />
-    </HeaderLink>
-  </div>
+  <ThemeToggle />
   <Button href="/#contact">Discutons ensemble</Button>
 </div>
 
@@ -27,15 +14,8 @@ import linkedin from "@/svgs/linkedin.svg?raw";
   .header-menu {
     display: flex;
     align-items: center;
-    opacity: 0;
     gap: 24px;
-  }
-
-  .icon-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 8px;
+    opacity: 0;
   }
 
   @include wide {
