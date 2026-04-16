@@ -54,6 +54,16 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#181927" />
 
+    <script is:inline>
+      ;(function() {
+        const t = localStorage.getItem("theme");
+        const theme = (t === "light" || t === "dark") ? t : (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.dataset.theme = theme;
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.content = theme === "light" ? "#f5f7fc" : "#181927";
+      })();
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Martin Kinoo" href="/rss.xml" />
@@ -150,6 +160,7 @@ const {
     if (hasPlayed("hero") || hasPlayed("header")) {
       ev.newDocument.body.dataset.animationsDone = "";
     }
+    ev.newDocument.documentElement.dataset.theme = document.documentElement.dataset.theme || "";
     ev.newDocument.documentElement.style.scrollBehavior = "auto";
   });
 

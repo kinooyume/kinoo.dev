@@ -16,7 +16,7 @@ const externalProps = external
 ---
 
 <a
-  class:list={["header-link", `header-link--${variant}`, "anime"]}
+  class:list={["icon-link", `icon-link--${variant}`, "anime"]}
   href={href}
   aria-label={label}
   {...externalProps}
@@ -28,7 +28,7 @@ const externalProps = external
 <style lang="scss">
   @use "@/styles/breakpoints" as *;
 
-  .header-link {
+  .icon-link {
     position: relative;
     display: flex;
     justify-content: center;
@@ -89,7 +89,7 @@ const externalProps = external
   }
 
   @include mobile {
-    .header-link {
+    .icon-link {
       transform: none !important;
     }
   }

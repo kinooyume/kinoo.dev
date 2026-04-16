@@ -9,7 +9,7 @@
   padding: 0 24px;
   cursor: pointer;
   font-size: var(--button-font-size);
-  font-weight: 400;
+  font-weight: 500;
   text-decoration: none;
   text-transform: none;
   border: 1px solid transparent;
@@ -21,7 +21,7 @@
   border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--border-ghost-color);
     box-shadow: 0 0 10px var(--accent-tint), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
   }
 }
@@ -50,18 +50,32 @@
     border-color: var(--accent-color);
     color: var(--accent-color);
   }
+
+  :global(html[data-theme="light"]) &:hover {
+    border-color: var(--accent-bright);
+    color: var(--accent-bright);
+  }
 }
 
 .tint {
   background: var(--accent-tint);
   color: var(--accent-color);
-  font-weight: 300;
+  font-weight: 500;
   border-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
 
   &:hover {
     background: color-mix(in srgb, var(--accent-color) 15%, transparent);
     border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);
     box-shadow: 0 0 10px var(--accent-tint), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
+  }
+
+  :global(html[data-theme="light"]) & {
+    color: var(--accent-bright);
+    border-color: color-mix(in srgb, var(--accent-bright) 20%, transparent);
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--accent-bright) 35%, transparent);
+    }
   }
 }
 
@@ -73,6 +87,10 @@
   &:hover {
     border-color: color-mix(in srgb, var(--accent-color) 35%, transparent);
     box-shadow: 0 0 10px var(--accent-tint), 0 0 20px color-mix(in srgb, var(--accent-color) 8%, transparent);
+  }
+
+  :global(html[data-theme="light"]) & {
+    color: var(--accent-bright);
   }
 }
 

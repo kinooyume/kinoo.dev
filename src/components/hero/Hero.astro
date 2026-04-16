@@ -8,6 +8,10 @@ import Rescript from "@/svgs/rescript.svg?raw";
 import Ts from "@/svgs/ts.svg?raw";
 import Go from "@/svgs/go.svg?raw";
 import Vue from "@/svgs/vue.svg?raw";
+import IconLink from "@/components/shared/atoms/IconLink.astro";
+import cv from "@/svgs/cv.svg?raw";
+import github from "@/svgs/github.svg?raw";
+import linkedin from "@/svgs/linkedin.svg?raw";
 
 type TagProps = {
   title: string;
@@ -61,12 +65,25 @@ const techs: TagProps[] = [
         }
       </ul>
     </div>
-    <img
-      loading="eager"
-      class="image hero-image"
-      src="/images/profil.png"
-      alt="Photo de Martin Kinoo"
-    />
+    <div class="hero-right">
+      <img
+        loading="eager"
+        class="image hero-image"
+        src="/images/profil.png"
+        alt="Photo de Martin Kinoo"
+      />
+      <div class="hero-socials">
+        <IconLink href="MartinKinooCV.pdf" label="CV" external>
+          <Fragment set:html={cv} />
+        </IconLink>
+        <IconLink href="https://github.com/KinooYume" label="GitHub" external>
+          <Fragment set:html={github} />
+        </IconLink>
+        <IconLink href="https://www.linkedin.com/in/martin-kinoo/" label="LinkedIn" external>
+          <Fragment set:html={linkedin} />
+        </IconLink>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -154,8 +171,22 @@ const techs: TagProps[] = [
     font-weight: 600;
   }
 
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .hero-socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+  }
+
   img {
-    margin: auto 0;
     opacity: 0;
   }
 
@@ -171,7 +202,7 @@ const techs: TagProps[] = [
   }
 
   @media screen and (max-width: 1145px) {
-    img {
+    .hero-right {
       display: none;
     }
   }

@@ -35,7 +35,7 @@ const SliderPagination = (props: Readonly<PaginationProps>) => {
 
 type SliderProps = {
   pictures: string[];
-  children: HTMLElement;
+  children?: HTMLElement;
 };
 
 const Slider = (props: Readonly<SliderProps>) => {
