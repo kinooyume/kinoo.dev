@@ -1,9 +1,10 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
 import cv from "@/svgs/cv.svg?raw";
 import github from "@/svgs/github.svg?raw";
 import linkedin from "@/svgs/linkedin.svg?raw";
 import terminal from "@/svgs/terminal.svg?raw";
+import sun from "@/svgs/sun.svg?raw";
+import moon from "@/svgs/moon.svg?raw";
 
 const sections = [
   { label: "Articles", href: "/#articles", color: "var(--orange)" },
@@ -42,9 +43,12 @@ const sections = [
 
   <hr class="mobile-sidebar-divider" />
 
-  <div class="mobile-sidebar-theme">
-    <ThemeToggle />
-    <span>Thème</span>
+  <div class="mobile-sidebar-links">
+    <a href="#" data-theme-row>
+      <span class="link-icon theme-icon-sun" set:html={sun} />
+      <span class="link-icon theme-icon-moon" set:html={moon} />
+      Thème
+    </a>
   </div>
 
   <hr class="mobile-sidebar-divider" />
@@ -76,6 +80,34 @@ const sections = [
     </a>
   </div>
 </div>
+
+<script>
+  import { getTheme, toggleTheme } from "@/lib/theme";
+
+  function syncThemeIcons(row: HTMLElement) {
+    const isDark = getTheme() === "dark";
+    const sun = row.querySelector<HTMLElement>(".theme-icon-sun");
+    const moon = row.querySelector<HTMLElement>(".theme-icon-moon");
+    if (sun) sun.style.display = isDark ? "none" : "flex";
+    if (moon) moon.style.display = isDark ? "flex" : "none";
+  }
+
+  function initThemeRow() {
+    document.querySelectorAll<HTMLElement>("[data-theme-row]").forEach((row) => {
+      if (row.dataset.bound) return;
+      row.dataset.bound = "true";
+      syncThemeIcons(row);
+      row.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleTheme();
+        syncThemeIcons(row);
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initThemeRow);
+  initThemeRow();
+</script>
 
 <style lang="scss">
   .mobile-sidebar {
@@ -197,16 +229,6 @@ const sections = [
         color: var(--accent-color);
       }
     }
-  }
-
-  .mobile-sidebar-theme {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--color);
   }
 
   .link-icon {

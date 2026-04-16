@@ -1,31 +1,66 @@
 ---
+import sun from "@/svgs/sun.svg?raw";
+import moon from "@/svgs/moon.svg?raw";
 ---
 
 <button class="theme-toggle" aria-label="Changer de thème">
-  <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="5" />
-    <line x1="12" y1="1" x2="12" y2="3" />
-    <line x1="12" y1="21" x2="12" y2="23" />
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-    <line x1="1" y1="12" x2="3" y2="12" />
-    <line x1="21" y1="12" x2="23" y2="12" />
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-  </svg>
-  <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-  </svg>
+  <span class="theme-icon icon-sun" set:html={sun} />
+  <span class="theme-icon icon-moon" set:html={moon} />
 </button>
 
 <script>
-  import { toggleTheme } from "@/lib/theme";
+  import { animate } from "animejs";
+  import { getTheme, toggleTheme } from "@/lib/theme";
+
+  function animateToggle(btn: HTMLButtonElement) {
+    const isDark = getTheme() === "dark";
+    const outgoing = btn.querySelector<HTMLElement>(isDark ? ".icon-moon" : ".icon-sun");
+    const incoming = btn.querySelector<HTMLElement>(isDark ? ".icon-sun" : ".icon-moon");
+    if (!outgoing || !incoming) return;
+
+    btn.style.pointerEvents = "none";
+
+    animate(outgoing, {
+      translateX: [0, 12],
+      translateY: [0, 10],
+      rotate: [0, 120],
+      opacity: [1, 0],
+      scale: [1, 0.6],
+      duration: 250,
+      ease: "inQuad",
+      onComplete() {
+        outgoing.style.display = "none";
+        toggleTheme();
+
+        incoming.style.display = "flex";
+        animate(incoming, {
+          translateX: [-12, 0],
+          translateY: [10, 0],
+          rotate: [-120, 0],
+          opacity: [0, 1],
+          scale: [0.6, 1],
+          duration: 500,
+          ease: "outElastic(1, 0.6)",
+          onComplete() {
+            btn.style.pointerEvents = "";
+          },
+        });
+      },
+    });
+  }
 
   function initToggle() {
     document.querySelectorAll<HTMLButtonElement>(".theme-toggle").forEach((btn) => {
       if (btn.dataset.bound) return;
       btn.dataset.bound = "true";
-      btn.addEventListener("click", toggleTheme);
+
+      const isDark = getTheme() === "dark";
+      const sun = btn.querySelector<HTMLElement>(".icon-sun");
+      const moon = btn.querySelector<HTMLElement>(".icon-moon");
+      if (sun) sun.style.display = isDark ? "none" : "flex";
+      if (moon) moon.style.display = isDark ? "flex" : "none";
+
+      btn.addEventListener("click", () => animateToggle(btn));
     });
   }
 
@@ -35,6 +70,7 @@
 
 <style lang="scss">
   .theme-toggle {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,8 +78,9 @@
     height: 22px;
     color: var(--color);
     opacity: var(--opacity-muted);
-    transition: all var(--transition-base);
+    transition: opacity var(--transition-base), color var(--transition-base);
     cursor: pointer;
+    overflow: hidden;
 
     &:hover {
       opacity: 1;
@@ -51,17 +88,14 @@
     }
   }
 
-  .icon-sun,
-  .icon-moon {
-    display: none;
-  }
+  .theme-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  :global(html[data-theme="dark"]) .icon-sun,
-  :global(html:not([data-theme="light"])) .icon-sun {
-    display: block;
-  }
-
-  :global(html[data-theme="light"]) .icon-moon {
-    display: block;
+    :global(svg) {
+      width: 20px;
+      height: 20px;
+    }
   }
 </style>
