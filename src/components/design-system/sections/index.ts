@@ -111,7 +111,6 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "Header", href: "#header", framework: "astro" },
       { label: "HeaderMenu", href: "#headermenu", framework: "astro" },
-      { label: "HeaderLink", href: "#headerlink", framework: "astro" },
       { label: "NavBar", href: "#navbar", framework: "astro" },
     ],
   },
