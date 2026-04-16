@@ -4,9 +4,6 @@ import DSLayout from "@/components/design-system/DSLayout.astro";
 import Sidebar from "@/components/sidebar/Sidebar.tsx";
 import NavCard from "@/components/shared/atoms/NavCard.astro";
 import { sidebarSections, DS_BASE } from "@/components/design-system/sections/index";
-import NavBar from "@/components/header/NavBar.astro";
-import HeaderMenu from "@/components/header/HeaderMenu.astro";
-import MobileMenu from "@/components/header/MobileMenu.astro";
 
 const isDev = import.meta.env.DEV;
 const visibleSections = sidebarSections.filter((s) => isDev || !s.devOnly);
@@ -17,9 +14,6 @@ const visibleSections = sidebarSections.filter((s) => isDev || !s.devOnly);
   description="Components library for kinoo.dev"
 >
   <meta slot="head" name="robots" content="noindex, nofollow" />
-  <NavBar slot="header-nav" />
-  <HeaderMenu slot="header-menu" />
-  <MobileMenu slot="header-menu" />
   <Sidebar sections={visibleSections} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load transition:persist="ds-mobile-sidebar" />
 
   <DSLayout

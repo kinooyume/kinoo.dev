@@ -1,5 +1,8 @@
 ---
 import Header from "@/components/header/Header.astro";
+import NavBar from "@/components/header/NavBar.astro";
+import HeaderMenu from "@/components/header/HeaderMenu.astro";
+import MobileMenu from "@/components/header/MobileMenu.astro";
 import Footer from "@/components/footer/Footer.astro";
 import MobileDrawer from "@/components/shared/organisms/MobileDrawer.astro";
 import MobileSidebar from "@/components/header/MobileSidebar.astro";
@@ -102,8 +105,13 @@ const {
   <body>
     <a href="#main-content" class="skip-link">Aller au contenu</a>
     <Header>
-      <slot name="header-nav" slot="nav" />
-      <slot name="header-menu" />
+      <slot name="header-nav" slot="nav">
+        <NavBar />
+      </slot>
+      <slot name="header-menu">
+        <HeaderMenu />
+        <MobileMenu />
+      </slot>
     </Header>
     <div class="page-content">
       <slot />

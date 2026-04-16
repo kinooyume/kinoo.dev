@@ -1,9 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import NavBar from "@/components/header/NavBar.astro";
-import HeaderMenu from "@/components/header/HeaderMenu.astro";
-import MobileMenu from "@/components/header/MobileMenu.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 
 const articles = import.meta.env.DEV
@@ -19,11 +16,6 @@ const articles = import.meta.env.DEV
       title="Articles (drafts) · Martin Kinoo"
       description="Draft articles."
     >
-      <NavBar
-        slot="header-nav"
-      />
-      <HeaderMenu slot="header-menu" />
-      <MobileMenu slot="header-menu" />
 
       <script>
         import { spotlight } from "@/lib/dom/spotlight";
