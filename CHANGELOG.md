@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.38.0 - 2026-04-16
+#### Features
+- (**atoms**) add IconLink component and sun/moon SVGs - (a85d874) - Martin Kinoo
+- (**theme**) animate toggle with animejs, inline mobile sidebar theme row - (70e7a96) - Martin Kinoo
+- (**theme**) adapt components for light theme support - (c6883da) - Martin Kinoo
+- (**theme**) add light/dark theme toggle with icy-blue palette - (812ebb5) - Martin Kinoo
+#### Bug Fixes
+- (**animations**) polish hero timing, fix reveal offset and SVG color tokens - (70a2b64) - Martin Kinoo
+- (**slider**) make children prop optional for DS compatibility - (baabba8) - Martin Kinoo
+#### Refactoring
+- (**header**) move social links to hero, remove HeaderLink - (4471c38) - Martin Kinoo
+
+- - -
+
 ## v0.37.1 - 2026-04-15
 #### Bug Fixes
 - (**ios**) restore visibility after iPad orientation change - (92b48d6) - Martin Kinoo
