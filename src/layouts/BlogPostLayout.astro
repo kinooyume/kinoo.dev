@@ -1,8 +1,5 @@
 ---
 import Layout from "./Layout.astro";
-import NavBar from "@/components/header/NavBar.astro";
-import HeaderMenu from "@/components/header/HeaderMenu.astro";
-import MobileMenu from "@/components/header/MobileMenu.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import ArrowLink from "@/components/shared/atoms/ArrowLink.astro";
@@ -47,9 +44,6 @@ const blogPostingJsonLd = {
 ---
 
 <Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" ogImage={ogImage} jsonLd={blogPostingJsonLd}>
-  <NavBar slot="header-nav" />
-  <HeaderMenu slot="header-menu" />
-  <MobileMenu slot="header-menu" />
 
   <Fragment slot="head">
     <meta property="article:published_time" content={date.toISOString()} />
