@@ -15,4 +15,9 @@ export default defineConfig({
       theme: 'github-dark',
     },
   },
+  vite: {
+    resolve: {
+      preserveSymlinks: true,
+    },
+  },
 });
