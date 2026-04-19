@@ -51,6 +51,8 @@ $colors: (
 
   --card-surface-darker: #1f2233;
 
+  --code-surface: var(--background-color);
+
   --border-color: rgba(255, 255, 255, 0.1);
   --border-hover-color: rgba(255, 255, 255, 0.2);
   --border-ghost-color: rgba(255, 255, 255, 0.3);

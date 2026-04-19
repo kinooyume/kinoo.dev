@@ -2,6 +2,8 @@ import { defineConfig } from 'astro/config';
 import solidJs from "@astrojs/solid-js";
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import shikiDark from './src/styles/shiki-dark.json';
+import shikiLight from './src/styles/shiki-light.json';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +14,11 @@ export default defineConfig({
   integrations: [solidJs(), sitemap({ filter: (page) => !page.includes('articles-draft') }), mdx()],
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
+      themes: {
+        dark: shikiDark,
+        light: shikiLight,
+      },
+      defaultColor: 'dark',
     },
   },
   vite: {

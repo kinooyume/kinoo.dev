@@ -101,15 +101,17 @@
     }
 
     pre {
-      background: var(--card-surface);
+      background: var(--code-surface) !important;
       border: 1px solid var(--border-color);
       border-top: 2px solid var(--accent-color);
       border-radius: 12px;
       padding: 1.25em;
       overflow-x: auto;
       margin: 1.5em 0;
-      font-size: 0.9em;
-      line-height: 1.6;
+      font-size: 0.85em;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+      font-weight: 400;
 
       html[data-theme="light"] & {
         border-top-color: var(--accent-bright);
@@ -118,9 +120,11 @@
 
     :not(pre) > code {
       background: var(--card-surface-raised);
-      padding: 0.2em 0.4em;
-      border-radius: 4px;
-      font-size: 0.9em;
+      padding: 0.15em 0.4em;
+      border-radius: 5px;
+      font-size: 0.85em;
+      font-weight: 450;
+      letter-spacing: -0.02em;
     }
 
     img {
