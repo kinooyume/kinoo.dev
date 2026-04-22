@@ -27,6 +27,7 @@ $colors: (
   --accent-bright: #f6b17a;
   --accent-tint: var(--orange-tint);
   --accent-cool-shift: var(--orange-cool-shift);
+  --accent-readable: var(--orange-readable);
 
   @each $name, $shades in $colors {
     $base: map.get($shades, base);
@@ -42,6 +43,7 @@ $colors: (
     --#{$name}-border: #{rgba($base, 0.35)};
     --#{$name}-cool-shift: #{map.get($shades, cool-shift)};
     --#{$name}-desaturated: #{map.get($shades, desaturated)};
+    --#{$name}-readable: #{map.get($shades, light)};
   }
 
   --card-surface-raised: #2d2d3b;
@@ -130,5 +132,6 @@ html[data-theme="light"] {
     --#{$name}-border: #{rgba($dark, 0.3)};
     --#{$name}-cool-shift: #edf0f8;
     --#{$name}-desaturated: #e4e7f0;
+    --#{$name}-readable: #{map.get($shades, darker)};
   }
 }
