@@ -9,6 +9,7 @@ type ListEntry = {
     subtitle?: string;
     date: Date;
     tags: string[];
+    category?: string;
   };
 };
 
@@ -45,6 +46,7 @@ const pageTitle = `${heading}${badge ? ` (${badge})` : ""} · Martin Kinoo`;
           subtitle={article.data.subtitle}
           date={article.data.date}
           tags={article.data.tags}
+          category={article.data.category}
           href={`${hrefBase}/${article.id}`}
         />
       ))}
