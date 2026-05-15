@@ -1,20 +1,28 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+const baseArticleSchema = z.object({
+  title: z.string(),
+  subtitle: z.string().optional(),
+  description: z.string(),
+  date: z.coerce.date(),
+  category: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+  links: z
+    .array(z.object({ text: z.string(), href: z.string() }))
+    .default([]),
+});
+
 const articles = defineCollection({
   loader: glob({ pattern: "**/*.mdx", base: "./src/content/articles" }),
-  schema: z.object({
-    title: z.string(),
-    subtitle: z.string().optional(),
-    description: z.string(),
-    date: z.coerce.date(),
-    category: z.string().optional(),
-    tags: z.array(z.string()).default([]),
-    links: z
-      .array(z.object({ text: z.string(), href: z.string() }))
-      .default([]),
+  schema: baseArticleSchema.extend({
     draft: z.boolean().default(false),
   }),
+});
+
+const reflexion = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/reflexion" }),
+  schema: baseArticleSchema,
 });
 
 const experiences = defineCollection({
@@ -69,6 +77,7 @@ const realisations = defineCollection({
 
 export const collections = {
   articles,
+  reflexion,
   experiences,
   formations,
   realisations,

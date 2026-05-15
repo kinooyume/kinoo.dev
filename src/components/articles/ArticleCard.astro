@@ -6,6 +6,7 @@ import CardDescription from "@/components/shared/molecules/Card/CardDescription.
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import arrowRight from "@/svgs/arrow.svg?raw";
+import { accentInlineStyle } from "@/lib/categoryColors";
 
 interface Props {
   title: string;
@@ -13,9 +14,10 @@ interface Props {
   date: Date;
   tags: string[];
   href: string;
+  category?: string;
 }
 
-const { title, subtitle, date, tags, href } = Astro.props;
+const { title, subtitle, date, tags, href, category } = Astro.props;
 
 const formattedDate = date.toLocaleDateString("fr-FR", {
   year: "numeric",
@@ -24,7 +26,7 @@ const formattedDate = date.toLocaleDateString("fr-FR", {
 });
 ---
 
-<a href={href} class="article-card-link" aria-label={title}>
+<a href={href} class="article-card-link" aria-label={title} style={accentInlineStyle(category)}>
   <Spotlight color="var(--accent-color)">
     <Card>
       <CardContent>
