@@ -4,7 +4,7 @@ import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { categoryColors, defaultAccent } from "@/lib/categoryColors";
+import { getAccent } from "@/lib/categoryColors";
 
 const outfitThin = readFileSync(
   join(process.cwd(), "public/fonts/Outfit/Outfit-Thin.ttf"),
@@ -32,8 +32,7 @@ function resolveColor(cssVar: string): string {
 }
 
 function getAccentColor(category?: string): string {
-  const accent = (category && categoryColors[category]) || defaultAccent;
-  return resolveColor(accent.bright);
+  return resolveColor(getAccent(category).bright);
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

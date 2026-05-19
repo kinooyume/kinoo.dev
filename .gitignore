@@ -32,3 +32,9 @@ pnpm-debug.log*
 
 
 .unlighthouse
+.superpowers/
+
+# private reflexion content + page (sourced from kinoo-reflexion repo)
+/src/content/reflexion/
+/src/pages/reflexion.astro
+/src/pages/reflexion/

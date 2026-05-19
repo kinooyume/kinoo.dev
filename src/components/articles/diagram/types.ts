@@ -45,7 +45,7 @@ export type DiagramCycleStep = {
 };
 
 export function colorStyle(color: DiagramColor) {
-  return `--cell-bg: var(--${color}-tint); --cell-border: var(--${color}-border); --cell-text: var(--${color}-light);`;
+  return `--cell-bg: var(--${color}-tint); --cell-border: var(--${color}-border); --cell-text: var(--${color}-readable);`;
 }
 
 export function badgeStyle(color: DiagramColor) {
@@ -53,7 +53,7 @@ export function badgeStyle(color: DiagramColor) {
 }
 
 export function mutedStyle(color: DiagramColor) {
-  return `--cell-bg: var(--${color}-bg); --cell-border: var(--${color}-border); --cell-text: var(--${color}-lightest);`;
+  return `--cell-bg: var(--${color}-bg); --cell-border: var(--${color}-border); --cell-text: var(--${color}-readable);`;
 }
 
 export type FlowSplitBranch = {

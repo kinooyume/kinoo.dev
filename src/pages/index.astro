@@ -1,8 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import NavBar from "@/components/header/NavBar.astro";
-import HeaderMenu from "@/components/header/HeaderMenu.astro";
-import MobileMenu from "@/components/header/MobileMenu.astro";
 import Hero from "@/components/hero/Hero.astro";
 import Experiences from "@/components/sections/Experiences.astro";
 import Contact from "@/components/contact/Contact.astro";
@@ -13,9 +10,6 @@ import FloatingContact from "@/components/contact/FloatingContact.astro";
 ---
 
 <Layout title="Martin Kinoo · Développeur Front-end freelance">
-  <NavBar slot="header-nav" />
-  <HeaderMenu slot="header-menu" />
-  <MobileMenu slot="header-menu" />
   <script>
     import { hasPlayed, markPlayed } from "@/lib/animations/sessionTracker";
     import { playHeroAnimation, showHeroImmediate } from "@/lib/animations/heroAnime";
