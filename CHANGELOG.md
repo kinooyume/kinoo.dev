@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.39.0 - 2026-05-19
+#### Features
+- (**articles**) per-article category accent on ArticleCard - (ca983f0) - Martin Kinoo
+- (**articles**) readable accent text in light mode - (13befa2) - Martin Kinoo
+- (**home**) homepage sections expose --accent-readable - (4503e7b) - Martin Kinoo
+- (**reflexion**) dev-only /reflexion private workspace - (93a1b1b) - Martin Kinoo
+- (**theme**) --accent-readable token and one-source-of-truth helpers - (4c955ba) - Martin Kinoo
+#### Bug Fixes
+- (**articles**) distinct code-block surface + shiki bg override - (30f501a) - Martin Kinoo
+- (**layout**) default header nav in Layout - (5dfb5c7) - Martin Kinoo
+
+- - -
+
 ## v0.38.0 - 2026-04-16
 #### Features
 - (**atoms**) add IconLink component and sun/moon SVGs - (a85d874) - Martin Kinoo
