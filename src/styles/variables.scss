@@ -21,6 +21,9 @@ $colors: (
   --light-color: #f6f5f7;
   --extra-light-color: #f6f5f7;
   --text-muted: #7b8fad;
+  --text-secondary: #4a5b75;
+  --text-secondary-2: #5d7090;
+  --text-secondary-3: #6d80a3;
 
   --accent-color: #f8ba88;
   --secondary-accent-color: #c9a88d;
@@ -52,6 +55,11 @@ $colors: (
   --card-surface-input: #1a2232;
 
   --card-surface-darker: #1f2233;
+
+  --surface-deeper: #13141e;
+  --surface-statusline: #1a2030;
+  --surface-line: #252a3a;
+  --surface-lifted: #3a4660;
 
   --code-surface: var(--background-color);
 
@@ -103,6 +111,9 @@ html[data-theme="light"] {
   --light-color: #141c28;
   --extra-light-color: #141c28;
   --text-muted: #64748b;
+  --text-secondary: #45556b;
+  --text-secondary-2: #55657b;
+  --text-secondary-3: #7c8a9e;
 
   --accent-color: var(--orange-dark);
   --accent-bright: #e8952e;
@@ -113,6 +124,11 @@ html[data-theme="light"] {
   --card-surface-hover: #e5ecf8;
   --card-surface-input: #f3f7ff;
   --card-surface-darker: #e0e8f5;
+
+  --surface-deeper: #e6ebf3;
+  --surface-statusline: #e8eef8;
+  --surface-line: #d5dde9;
+  --surface-lifted: #cdd6e3;
 
   --border-color: rgba(60, 80, 130, 0.12);
   --border-hover-color: rgba(60, 80, 130, 0.22);
