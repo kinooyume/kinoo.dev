@@ -11,7 +11,7 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: "hover",
   },
-  integrations: [solidJs(), sitemap({ filter: (page) => !page.includes('articles-draft') }), mdx()],
+  integrations: [solidJs(), sitemap(), mdx()],
   markdown: {
     shikiConfig: {
       themes: {
