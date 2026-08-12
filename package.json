@@ -6,6 +6,7 @@
     "dev": "astro dev --bun",
     "build": "astro build --bun",
     "preview": "astro preview --bun",
+    "article:new": "bun scripts/new-article.ts",
     "astro:check": "astro check",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",

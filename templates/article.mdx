@@ -1,0 +1,57 @@
+---
+title: "{{title}}"
+subtitle: "Une phrase qui donne envie de lire. Optionnel."
+description: "Résumé pour le SEO et les cartes. Obligatoire."
+date: {{date}}
+tags: ["tag-1", "tag-2"]
+# Accent de l'article. Effet visuel seulement si la valeur est enregistrée
+# dans src/lib/categoryColors.ts (vide aujourd'hui, donc tout retombe sur orange).
+category: ""
+links:
+  - text: "Lien"
+    href: "https://example.com"
+draft: true
+---
+
+import Diagram from "@/components/articles/Diagram.astro";
+import ChromaticSection from "@/components/articles/ChromaticSection.astro";
+
+Le premier paragraphe sert d'accroche. Pas de titre `##` avant lui.
+
+## Une section
+
+Du texte. `Diagram` accepte une seule de ces formes à la fois :
+
+<Diagram
+  flow={[
+    { label: "Étape", detail: "précision", color: "blue" },
+    { label: "Étape", detail: "précision", color: "teal" },
+  ]}
+  caption="Légende optionnelle"
+/>
+
+{/*
+  Les autres formes de Diagram, à copier au besoin :
+
+  rows={[{ label, detail?, badge?, color, href? }]}
+  arrow={{ from: { label, detail?, color }, to: {...}, label? }}
+  flowSplit={{ ... }}
+  tree={[{ label, color, children? }]}
+  compare={[{ title, color, items: [] }]}
+  cycle={[{ label, detail?, color }]}
+  pagemap={[{ ... }]}
+
+  color ∈ purple | orange | red | green | pink | blue | cyan | teal | yellow | indigo
+  Les types font foi : src/components/articles/diagram/types.ts
+*/}
+
+<ChromaticSection color="green">
+
+Un bloc qui repeint ses accents. Utile pour marquer une phase, une alternative,
+un avant/après. Laisser les lignes vides autour, sinon le MDX ne rend pas le markdown.
+
+</ChromaticSection>
+
+## Une autre section
+
+La conclusion n'a pas besoin d'être annoncée comme telle.
