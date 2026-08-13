@@ -24,6 +24,12 @@ Already cloned? Pull the submodule:
 git submodule update --init
 ```
 
+No access to the articles repo? The site builds without it, just empty. Get a starting
+article instead:
+```bash
+bun run article:new
+```
+
 ### With Nix (recommended)
 
 ```bash
@@ -57,6 +63,7 @@ bunx lefthook install
 | `bun run lint` | ESLint |
 | `bun run lint:fix` | Fix lint issues |
 | `bunx astro check` | Type check |
+| `bun run article:new [name] [folder]` | New article from `templates/article.mdx` |
 
 
 ## About
@@ -165,7 +172,42 @@ Lefthook runs ESLint on pre-commit and validates commit messages.
 
 Articles live in a [private repo](https://github.com/kinooyume/articles) mounted as a submodule at `src/content/articles/`. MDX files, processed by Astro content collections.
 
-Pushing to `main` on the articles repo fires a `repository_dispatch` to this repo, which triggers a build + deploy automatically. No need to touch kinoo.dev to publish an article.
+### Writing one
+
+```bash
+bun run article:new                        # src/content/articles/helloworld.mdx
+bun run article:new my-article             # src/content/articles/my-article.mdx
+bun run article:new my-article notes       # src/content/notes/my-article.mdx
+```
+
+The name is slugified and `.mdx` appended; the folder is created if missing; an existing
+file is never overwritten. Content comes from `templates/article.mdx` — edit that file to
+change what every new article starts with. It carries the full frontmatter plus a skeleton
+using `Diagram` and `ChromaticSection`, the two components articles actually use.
+
+A folder other than `articles` only shows up on the site if it also gets a collection in
+`src/content.config.ts` and a route.
+
+### Drafts
+
+`draft: true` means local-only. Draft articles are not built in production: no page, no OG
+image, no sitemap entry, no RSS item, nothing in `dist/`. They exist only in `bun run dev`,
+where the home page hides them unless you ask for them:
+
+```
+http://localhost:4321/?drafts
+```
+
+New articles start as `draft: true`. Flip it to `false` to publish.
+
+### Publishing
+
+Pushing to `main` on the articles repo fires a `repository_dispatch` to this repo, which
+triggers a build + deploy automatically. No need to touch kinoo.dev to publish an article.
+
+The dispatch is skipped when a push only touches drafts — a draft-only change produces a
+byte-identical site, so there is nothing to deploy. It fires when an article is published,
+edited, unpublished, or deleted.
 
 
 ## License
