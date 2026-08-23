@@ -36,9 +36,7 @@ function getAccentColor(category?: string): string {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await getCollection("articles", ({ data }) =>
-    import.meta.env.DEV ? true : !data.draft,
-  );
+  const articles = await getCollection("articles");
   return articles.map((article) => ({
     params: { slug: article.id },
     props: { article },

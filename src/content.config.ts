@@ -1,5 +1,20 @@
 import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { glob, type Loader } from "astro/loaders";
+
+const includeDrafts = process.env.DRAFTS === "1";
+
+function withoutDrafts(loader: Loader): Loader {
+  return {
+    ...loader,
+    load: async (context) => {
+      await loader.load(context);
+      if (includeDrafts) return;
+      for (const [id, entry] of context.store.entries()) {
+        if (entry.data.draft) context.store.delete(id);
+      }
+    },
+  };
+}
 
 const baseArticleSchema = z.object({
   title: z.string(),
@@ -14,7 +29,9 @@ const baseArticleSchema = z.object({
 });
 
 const articles = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/content/articles" }),
+  loader: withoutDrafts(
+    glob({ pattern: "**/*.mdx", base: "./src/content/articles" }),
+  ),
   schema: baseArticleSchema.extend({
     draft: z.boolean().default(false),
   }),

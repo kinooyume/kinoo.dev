@@ -15,10 +15,9 @@ interface Props {
   tags: string[];
   href: string;
   category?: string;
-  draft?: boolean;
 }
 
-const { title, subtitle, date, tags, href, category, draft } = Astro.props;
+const { title, subtitle, date, tags, href, category } = Astro.props;
 
 const formattedDate = date.toLocaleDateString("fr-FR", {
   year: "numeric",
@@ -27,13 +26,7 @@ const formattedDate = date.toLocaleDateString("fr-FR", {
 });
 ---
 
-<a
-  href={href}
-  class="article-card-link"
-  aria-label={title}
-  style={accentInlineStyle(category)}
-  data-draft={draft ? "" : undefined}
->
+<a href={href} class="article-card-link" aria-label={title} style={accentInlineStyle(category)}>
   <Spotlight color="var(--accent-color)">
     <Card>
       <CardContent>
