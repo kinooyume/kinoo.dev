@@ -58,6 +58,7 @@ bunx lefthook install
 | Command | Action |
 |---------|--------|
 | `bun run dev` | Dev server at localhost:4321 |
+| `bun run dev:drafts` | Dev server with draft articles loaded |
 | `bun run build` | Production build to `dist/` |
 | `bun run preview` | Preview build |
 | `bun run lint` | ESLint |
@@ -153,7 +154,7 @@ Follows standard **Gitflow**: feature branches merge into `develop`, `develop` m
 - **develop → main**: merge commit (preserves shared history between branches)
 - After release, CI merges `main` back into `develop` to sync the version bump
 
-> **TODO**: set GitHub repo merge strategy — enable "Allow merge commits" for develop → main PRs (Settings → General → Pull Requests)
+> **TODO**: set GitHub repo merge strategy: enable "Allow merge commits" for develop → main PRs (Settings → General → Pull Requests)
 
 PRs to `develop` run lint + build. PRs to `main` create a GitHub release and deploy to Netlify.
 
@@ -181,7 +182,7 @@ bun run article:new my-article notes       # src/content/notes/my-article.mdx
 ```
 
 The name is slugified and `.mdx` appended; the folder is created if missing; an existing
-file is never overwritten. Content comes from `templates/article.mdx` — edit that file to
+file is never overwritten. Content comes from `templates/article.mdx`. Edit that file to
 change what every new article starts with. It carries the full frontmatter plus a skeleton
 using `Diagram` and `ChromaticSection`, the two components articles actually use.
 
@@ -190,12 +191,14 @@ A folder other than `articles` only shows up on the site if it also gets a colle
 
 ### Drafts
 
-`draft: true` means local-only. Draft articles are not built in production: no page, no OG
-image, no sitemap entry, no RSS item, nothing in `dist/`. They exist only in `bun run dev`,
-where the home page hides them unless you ask for them:
+`draft: true` means local-only. A wrapped `glob()` loader in `src/content.config.ts` drops
+draft entries from the collection unless `DRAFTS=1` is set, so nothing downstream has to
+remember to filter them: no page, no OG image, no sitemap entry, no RSS item, nothing in
+`dist/`.
 
-```
-http://localhost:4321/?drafts
+```bash
+bun run dev          # published articles only
+bun run dev:drafts   # drafts loaded too, everywhere
 ```
 
 New articles start as `draft: true`. Flip it to `false` to publish.
@@ -205,7 +208,7 @@ New articles start as `draft: true`. Flip it to `false` to publish.
 Pushing to `main` on the articles repo fires a `repository_dispatch` to this repo, which
 triggers a build + deploy automatically. No need to touch kinoo.dev to publish an article.
 
-The dispatch is skipped when a push only touches drafts — a draft-only change produces a
+The dispatch is skipped when a push only touches drafts. A draft-only change produces a
 byte-identical site, so there is nothing to deploy. It fires when an article is published,
 edited, unpublished, or deleted.
 
