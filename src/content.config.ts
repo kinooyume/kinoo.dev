@@ -16,30 +16,22 @@ function withoutDrafts(loader: Loader): Loader {
   };
 }
 
-const baseArticleSchema = z.object({
-  title: z.string(),
-  subtitle: z.string().optional(),
-  description: z.string(),
-  date: z.coerce.date(),
-  category: z.string().optional(),
-  tags: z.array(z.string()).default([]),
-  links: z
-    .array(z.object({ text: z.string(), href: z.string() }))
-    .default([]),
-});
-
 const articles = defineCollection({
   loader: withoutDrafts(
     glob({ pattern: "**/*.mdx", base: "./src/content/articles" }),
   ),
-  schema: baseArticleSchema.extend({
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    description: z.string(),
+    date: z.coerce.date(),
+    category: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    links: z
+      .array(z.object({ text: z.string(), href: z.string() }))
+      .default([]),
     draft: z.boolean().default(false),
   }),
-});
-
-const reflexion = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/content/reflexion" }),
-  schema: baseArticleSchema,
 });
 
 const experiences = defineCollection({
@@ -94,7 +86,6 @@ const realisations = defineCollection({
 
 export const collections = {
   articles,
-  reflexion,
   experiences,
   formations,
   realisations,
