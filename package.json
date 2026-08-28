@@ -4,7 +4,8 @@
   "version": "0.2.0",
   "scripts": {
     "dev": "astro dev --bun",
-    "dev:drafts": "DRAFTS=1 astro dev --bun",
+    "dev:drafts": "CONTENT=draft astro dev --bun",
+    "dev:all": "CONTENT=note astro dev --bun",
     "build": "astro build --bun",
     "preview": "astro preview --bun",
     "article:new": "bun scripts/new-article.ts",

@@ -58,7 +58,8 @@ bunx lefthook install
 | Command | Action |
 |---------|--------|
 | `bun run dev` | Dev server at localhost:4321 |
-| `bun run dev:drafts` | Dev server with draft articles loaded |
+| `bun run dev:drafts` | Dev server with drafts loaded too |
+| `bun run dev:all` | Dev server with notes and drafts loaded too |
 | `bun run build` | Production build to `dist/` |
 | `bun run preview` | Preview build |
 | `bun run lint` | ESLint |
@@ -189,28 +190,39 @@ using `Diagram` and `ChromaticSection`, the two components articles actually use
 A folder other than `articles` only shows up on the site if it also gets a collection in
 `src/content.config.ts` and a route.
 
-### Drafts
+### Status
 
-`draft: true` means local-only. A wrapped `glob()` loader in `src/content.config.ts` drops
-draft entries from the collection unless `DRAFTS=1` is set, so nothing downstream has to
-remember to filter them: no page, no OG image, no sitemap entry, no RSS item, nothing in
-`dist/`.
+Every article carries one of three states, ordered from private to public:
+
+| `status` | Meaning |
+|----------|---------|
+| `note` | Thinking out loud. Never leaves the machine. |
+| `draft` | Nearly there. Worth rereading in the real layout. |
+| `ready` | Published. |
+
+A wrapped `glob()` loader in `src/content.config.ts` drops every entry below the level asked
+for, so nothing downstream has to remember to filter: no page, no OG image, no sitemap entry,
+no RSS item, nothing in `dist/`. The level comes from `CONTENT`, and defaults to `ready`,
+which is what production builds with.
 
 ```bash
-bun run dev          # published articles only
-bun run dev:drafts   # drafts loaded too, everywhere
+bun run dev          # ready
+bun run dev:drafts   # draft + ready
+bun run dev:all      # everything
 ```
 
-New articles start as `draft: true`. Flip it to `false` to publish.
+`status` defaults to `note` when the field is missing, so an unfinished frontmatter stays
+private instead of leaking. An unknown `CONTENT` value fails the build rather than falling
+back to something permissive.
 
 ### Publishing
 
 Pushing to `main` on the articles repo fires a `repository_dispatch` to this repo, which
 triggers a build + deploy automatically. No need to touch kinoo.dev to publish an article.
 
-The dispatch is skipped when a push only touches drafts. A draft-only change produces a
-byte-identical site, so there is nothing to deploy. It fires when an article is published,
-edited, unpublished, or deleted.
+The dispatch is skipped unless the push touches something `ready`. A change confined to
+notes and drafts produces a byte-identical site, so there is nothing to deploy. It fires when
+an article is published, edited while ready, unpublished, or deleted.
 
 
 ## License

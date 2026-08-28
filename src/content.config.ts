@@ -1,23 +1,32 @@
 import { defineCollection, z } from "astro:content";
 import { glob, type Loader } from "astro/loaders";
 
-const includeDrafts = process.env.DRAFTS === "1";
+const RANK = { note: 0, draft: 1, ready: 2 };
+type Status = keyof typeof RANK;
 
-function withoutDrafts(loader: Loader): Loader {
+const level = process.env.CONTENT ?? "ready";
+if (!(level in RANK)) {
+  throw new Error(
+    `CONTENT must be note, draft or ready (got "${level}")`,
+  );
+}
+const threshold = RANK[level as Status];
+
+function atLeastThreshold(loader: Loader): Loader {
   return {
     ...loader,
     load: async (context) => {
       await loader.load(context);
-      if (includeDrafts) return;
       for (const [id, entry] of context.store.entries()) {
-        if (entry.data.draft) context.store.delete(id);
+        const status = entry.data.status as Status;
+        if (RANK[status] < threshold) context.store.delete(id);
       }
     },
   };
 }
 
 const articles = defineCollection({
-  loader: withoutDrafts(
+  loader: atLeastThreshold(
     glob({ pattern: "**/*.mdx", base: "./src/content/articles" }),
   ),
   schema: z.object({
@@ -30,7 +39,7 @@ const articles = defineCollection({
     links: z
       .array(z.object({ text: z.string(), href: z.string() }))
       .default([]),
-    draft: z.boolean().default(false),
+    status: z.enum(["note", "draft", "ready"]).default("note"),
   }),
 });
 
