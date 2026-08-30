@@ -38,7 +38,8 @@ nix develop
 
 Gives you bun, cog, git. Auto-runs `bun install`.
 
-For auto-activate, use direnv:
+For auto-activate, use direnv. Make sure the shell hook is installed first
+(e.g. for fish, `direnv hook fish | source` in `~/.config/fish/config.fish`), then:
 ```bash
 direnv allow
 ```
@@ -172,7 +173,7 @@ Lefthook runs ESLint on pre-commit and validates commit messages.
 
 ## Articles
 
-Articles live in a [private repo](https://github.com/kinooyume/articles) mounted as a submodule at `src/content/articles/`. MDX files, processed by Astro content collections.
+Articles live in a private repo mounted as a submodule at `src/content/articles/`. MDX files, processed by Astro content collections.
 
 ### Writing one
 
