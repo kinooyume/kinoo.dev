@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "kinoo.dev",
@@ -541,7 +542,7 @@
 
     "baseline-browser-mapping": ["baseline-browser-mapping@2.9.19", "", { "bin": { "baseline-browser-mapping": "dist/cli.js" } }, "sha512-ipDqC8FrAl/76p2SSWKSI+H9tFwm7vYqXQrItCuiVPt26Km0jS+NzSsBWAaBusvSbQcfJG+JitdMm+wZAgTYqg=="],
 
-    "blaze-slider": ["blaze-slider-js@github:kiuKisas/blaze-slider#9429df3", {}, "kinooyume-blaze-slider-9429df3"],
+    "blaze-slider": ["blaze-slider-js@github:kiuKisas/blaze-slider#9429df3", {}, "kinooyume-blaze-slider-9429df3", "sha512-5zPiLUKoop0EIee3rtbOHSqfNbxXT/pKNi3SB/paoEODv2R6BkJFDVYGBiZYmZqK98p6Uf9TD8eJ6YdOeEMeOw=="],
 
     "boolbase": ["boolbase@1.0.0", "", {}, "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww=="],
 

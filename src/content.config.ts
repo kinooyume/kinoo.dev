@@ -1,28 +1,46 @@
 import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { glob, type Loader } from "astro/loaders";
 
-const baseArticleSchema = z.object({
-  title: z.string(),
-  subtitle: z.string().optional(),
-  description: z.string(),
-  date: z.coerce.date(),
-  category: z.string().optional(),
-  tags: z.array(z.string()).default([]),
-  links: z
-    .array(z.object({ text: z.string(), href: z.string() }))
-    .default([]),
-});
+const RANK = { note: 0, draft: 1, ready: 2 };
+type Status = keyof typeof RANK;
+
+const level = process.env.CONTENT ?? "ready";
+if (!(level in RANK)) {
+  throw new Error(
+    `CONTENT must be note, draft or ready (got "${level}")`,
+  );
+}
+const threshold = RANK[level as Status];
+
+function atLeastThreshold(loader: Loader): Loader {
+  return {
+    ...loader,
+    load: async (context) => {
+      await loader.load(context);
+      for (const [id, entry] of context.store.entries()) {
+        const status = entry.data.status as Status;
+        if (RANK[status] < threshold) context.store.delete(id);
+      }
+    },
+  };
+}
 
 const articles = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/content/articles" }),
-  schema: baseArticleSchema.extend({
-    draft: z.boolean().default(false),
+  loader: atLeastThreshold(
+    glob({ pattern: "**/*.mdx", base: "./src/content/articles" }),
+  ),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    description: z.string(),
+    date: z.coerce.date(),
+    category: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    links: z
+      .array(z.object({ text: z.string(), href: z.string() }))
+      .default([]),
+    status: z.enum(["note", "draft", "ready"]).default("note"),
   }),
-});
-
-const reflexion = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/content/reflexion" }),
-  schema: baseArticleSchema,
 });
 
 const experiences = defineCollection({
@@ -77,7 +95,6 @@ const realisations = defineCollection({
 
 export const collections = {
   articles,
-  reflexion,
   experiences,
   formations,
   realisations,

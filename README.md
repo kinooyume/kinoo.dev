@@ -24,6 +24,12 @@ Already cloned? Pull the submodule:
 git submodule update --init
 ```
 
+No access to the articles repo? The site builds without it, just empty. Get a starting
+article instead:
+```bash
+bun run article:new
+```
+
 ### With Nix (recommended)
 
 ```bash
@@ -32,7 +38,8 @@ nix develop
 
 Gives you bun, cog, git. Auto-runs `bun install`.
 
-For auto-activate, use direnv:
+For auto-activate, use direnv. Make sure the shell hook is installed first
+(e.g. for fish, `direnv hook fish | source` in `~/.config/fish/config.fish`), then:
 ```bash
 direnv allow
 ```
@@ -52,11 +59,14 @@ bunx lefthook install
 | Command | Action |
 |---------|--------|
 | `bun run dev` | Dev server at localhost:4321 |
+| `bun run dev:drafts` | Dev server with drafts loaded too |
+| `bun run dev:all` | Dev server with notes and drafts loaded too |
 | `bun run build` | Production build to `dist/` |
 | `bun run preview` | Preview build |
 | `bun run lint` | ESLint |
 | `bun run lint:fix` | Fix lint issues |
 | `bunx astro check` | Type check |
+| `bun run article:new [name] [folder]` | New article from `templates/article.mdx` |
 
 
 ## About
@@ -146,7 +156,7 @@ Follows standard **Gitflow**: feature branches merge into `develop`, `develop` m
 - **develop → main**: merge commit (preserves shared history between branches)
 - After release, CI merges `main` back into `develop` to sync the version bump
 
-> **TODO**: set GitHub repo merge strategy — enable "Allow merge commits" for develop → main PRs (Settings → General → Pull Requests)
+> **TODO**: set GitHub repo merge strategy: enable "Allow merge commits" for develop → main PRs (Settings → General → Pull Requests)
 
 PRs to `develop` run lint + build. PRs to `main` create a GitHub release and deploy to Netlify.
 
@@ -163,9 +173,57 @@ Lefthook runs ESLint on pre-commit and validates commit messages.
 
 ## Articles
 
-Articles live in a [private repo](https://github.com/kinooyume/articles) mounted as a submodule at `src/content/articles/`. MDX files, processed by Astro content collections.
+Articles live in a private repo mounted as a submodule at `src/content/articles/`. MDX files, processed by Astro content collections.
 
-Pushing to `main` on the articles repo fires a `repository_dispatch` to this repo, which triggers a build + deploy automatically. No need to touch kinoo.dev to publish an article.
+### Writing one
+
+```bash
+bun run article:new                        # src/content/articles/helloworld.mdx
+bun run article:new my-article             # src/content/articles/my-article.mdx
+bun run article:new my-article notes       # src/content/notes/my-article.mdx
+```
+
+The name is slugified and `.mdx` appended; the folder is created if missing; an existing
+file is never overwritten. Content comes from `templates/article.mdx`. Edit that file to
+change what every new article starts with. It carries the full frontmatter plus a skeleton
+using `Diagram` and `ChromaticSection`, the two components articles actually use.
+
+A folder other than `articles` only shows up on the site if it also gets a collection in
+`src/content.config.ts` and a route.
+
+### Status
+
+Every article carries one of three states, ordered from private to public:
+
+| `status` | Meaning |
+|----------|---------|
+| `note` | Thinking out loud. Never leaves the machine. |
+| `draft` | Nearly there. Worth rereading in the real layout. |
+| `ready` | Published. |
+
+A wrapped `glob()` loader in `src/content.config.ts` drops every entry below the level asked
+for, so nothing downstream has to remember to filter: no page, no OG image, no sitemap entry,
+no RSS item, nothing in `dist/`. The level comes from `CONTENT`, and defaults to `ready`,
+which is what production builds with.
+
+```bash
+bun run dev          # ready
+bun run dev:drafts   # draft + ready
+bun run dev:all      # everything
+```
+
+`status` defaults to `note` when the field is missing, so an unfinished frontmatter stays
+private instead of leaking. An unknown `CONTENT` value fails the build rather than falling
+back to something permissive.
+
+### Publishing
+
+Pushing to `main` on the articles repo fires a `repository_dispatch` to this repo, which
+triggers a build + deploy automatically. No need to touch kinoo.dev to publish an article.
+
+The dispatch is skipped unless the push touches something `ready`. A change confined to
+notes and drafts produces a byte-identical site, so there is nothing to deploy. It fires when
+an article is published, edited while ready, unpublished, or deleted.
 
 
 ## License

@@ -39,7 +39,6 @@ const inlineStyle = [`--spotlight-color: ${color}`, style].filter(Boolean).join(
       pointer-events: none;
       transition: opacity 500ms;
       transform: translateX(var(--mouse-x, 0px)) translateY(var(--mouse-y, 0px));
-      will-change: transform;
     }
 
     &::before {
