@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.40.0 - 2026-08-30
+#### Features
+- (**articles**) three-state content status behind CONTENT - (e0fc9eb) - Martin Kinoo
+- (**articles**) add article:new command and template - (7827ade) - Martin Kinoo
+- (**styles**) add secondary text and surface tokens - (44a64b9) - Martin Kinoo
+#### Bug Fixes
+- (**articles**) keep drafts out of the production build - (25928c6) - Martin Kinoo
+#### Performance Improvements
+- (**spotlight**) drop will-change on the spotlight layer - (0f5ae59) - Martin Kinoo
+#### Documentation
+- (**readme**) add more info on nix and direnv - (12bdeac) - Martin Kinoo
+- (**readme**) document the DRAFTS flag - (c2c2cd6) - Martin Kinoo
+- (**readme**) document article:new, drafts and deploy trigger - (9ecc600) - Martin Kinoo
+#### Refactoring
+- (**articles**) filter drafts in the collection loader behind DRAFTS - (0d35dd3) - Martin Kinoo
+- (**content**) drop the reflexion collection and its pages - (8038b52) - Martin Kinoo
+#### Miscellaneous Chores
+- (**deps**) refresh bun.lock - (d531920) - Martin Kinoo
+- (**fonts**) add GeistMono variable font - (71712a5) - Martin Kinoo
+
+- - -
+
 ## v0.39.0 - 2026-05-19
 #### Features
 - (**articles**) per-article category accent on ArticleCard - (ca983f0) - Martin Kinoo
