@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 import solidJs from "@astrojs/solid-js";
 import sitemap from '@astrojs/sitemap';
@@ -24,6 +25,9 @@ export default defineConfig({
   vite: {
     resolve: {
       preserveSymlinks: true,
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
     },
   },
 });
