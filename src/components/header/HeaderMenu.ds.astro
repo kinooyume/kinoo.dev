@@ -14,7 +14,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
   <DSBlock title="Preview">
     <DSPreview>
       <div class="demo-wrapper">
-        <HeaderMenuComponent />
+        <HeaderMenuComponent lang="fr" />
       </div>
     </DSPreview>
     <DSNote>The menu appears with opacity animation on page load.</DSNote>
@@ -22,9 +22,11 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Contents">
     <DSPropsTable
-      headers={["Link", "Component", "Destination"]}
+      headers={["Item", "Component", "Destination"]}
       rows={[
-        ["Discutons ensemble", "Button primary", "Internal - Contact section"],
+        ["EN / FR", "LangToggle", "Same page in the other language"],
+        ["Sun / moon", "ThemeToggle", "Toggles the colour theme"],
+        ["Contact CTA", "Button primary", "Internal - Contact section"],
       ]}
     />
   </DSBlock>
@@ -33,6 +35,8 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
     <DSStructure
       rows={[
         { code: ".header-menu", description: "Flex container" },
+        { code: "LangToggle", description: "Locale switch, hidden on DS pages", indent: 1 },
+        { code: "ThemeToggle", description: "Light / dark switch", indent: 1 },
         { code: "Button primary", description: "Contact CTA", indent: 1 },
       ]}
     />
@@ -40,8 +44,8 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Responsive">
     <DSNote>
-      On mobile (&lt;600px), the "Me contacter" button is hidden and gap is
-      reduced to 20px.
+      On mobile (&lt;600px), the contact button is hidden and gap is reduced to
+      20px.
     </DSNote>
   </DSBlock>
 </section>

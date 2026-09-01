@@ -3,27 +3,31 @@ import ContactForm from "./ContactForm.tsx";
 import RevealText from "@/components/shared/atoms/RevealText/RevealText.astro";
 import Button from "@/components/shared/atoms/Button";
 import linkedin from "@/svgs/linkedin.svg?raw";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="contact" data-animate-section>
-  <RevealText text="Parlons de" as="span" class="subtitle" trigger="reveal:section:contact" />
-  <RevealText text="Votre projet" as="h2" class="display-heading" trigger="reveal:section:contact" />
+  <RevealText text={t.contact.subtitle} as="span" class="subtitle" trigger="reveal:section:contact" />
+  <RevealText text={t.contact.title} as="h2" class="display-heading" trigger="reveal:section:contact" />
   <div class="contact-content">
     <div class="contact-description">
-      <p>
-        Vous cherchez un développeur frontend freelance expérimenté pour lancer
-        un produit, faire évoluer une application ou renforcer votre équipe ?
-      </p>
+      <p>{t.contact.intro}</p>
       <br />
-      <p>
-        Décrivez votre contexte et vos objectifs. Je vous recontacte rapidement
-        pour vous proposer des solutions claires, adaptées et pragmatiques.
-      </p>
-      <Button href="https://www.linkedin.com/in/martin-kinoo/" variant="tint" icon={linkedin} external client:load>Me retrouver sur LinkedIn</Button>
+      <p>{t.contact.outro}</p>
+      <Button href="https://www.linkedin.com/in/martin-kinoo/" variant="tint" icon={linkedin} external client:load>{t.contact.linkedin}</Button>
     </div>
     <ContactForm
       client:load
       accessToken={import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY}
+      labels={t.contact.form}
+      toasts={t.contact.toast}
     />
   </div>
 </section>

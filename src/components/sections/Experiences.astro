@@ -12,8 +12,18 @@ import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Button from "@/components/shared/atoms/Button";
 import cv from "@/svgs/cv.svg?raw";
+import { useTranslations, type Locale } from "@/i18n";
 
-const entries = await getCollection("experiences");
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const entries = await getCollection("experiences", (e) =>
+  e.id.startsWith(`${lang}/`),
+);
 const experiences = entries.sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(
   experiences.map(async (entry) => ({
@@ -23,7 +33,7 @@ const rendered = await Promise.all(
 );
 ---
 
-<Section id="experiences" subtitle="Mes" title="Expériences">
+<Section id="experiences" subtitle={t.sections.experiences.subtitle} title={t.sections.experiences.title}>
   <div class="grid" id="experiences-grid" data-spotlight>
     {
       rendered.map(({ data, Content }) => (
@@ -59,7 +69,7 @@ const rendered = await Promise.all(
     }
   </div>
   <div class="cta">
-    <Button href="/MartinKinooCV.pdf" variant="tint" icon={cv} client:load>Voir mon CV</Button>
+    <Button href="/MartinKinooCV.pdf" variant="tint" icon={cv} client:load>{t.sections.experiencesCta}</Button>
   </div>
 </Section>
 

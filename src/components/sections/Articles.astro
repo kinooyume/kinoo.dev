@@ -3,11 +3,19 @@ import { getCollection } from "astro:content";
 
 import Section from "@/components/shared/organisms/Section.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 
 const articles = (await getCollection("articles")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Section id="articles" subtitle="Mes" title="Articles">
+<Section id="articles" subtitle={t.sections.articles.subtitle} title={t.sections.articles.title}>
   <div class="grid" id="articles-grid" data-spotlight>
     {
       articles.map((article) => (
@@ -17,6 +25,7 @@ const articles = (await getCollection("articles")).sort((a, b) => b.data.date.ge
           date={article.data.date}
           tags={article.data.tags}
           href={`/articles/${article.id}`}
+          lang={lang}
         />
       ))
     }

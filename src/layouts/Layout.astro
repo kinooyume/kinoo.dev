@@ -7,23 +7,41 @@ import Footer from "@/components/footer/Footer.astro";
 import MobileDrawer from "@/components/shared/organisms/MobileDrawer.astro";
 import MobileSidebar from "@/components/header/MobileSidebar.astro";
 import { ClientRouter } from "astro:transitions";
+import {
+  alternatePath,
+  htmlLang,
+  localeFromPath,
+  ogLocale,
+  useTranslations,
+  type Locale,
+} from "@/i18n";
 import "@/styles/variables.scss";
 import "@/styles/global.scss";
 import "@/styles/animations.scss";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   ogType?: string;
   ogImage?: string;
   jsonLd?: Record<string, unknown>;
+  lang?: Locale;
+  alternates?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
+const { lang = localeFromPath(Astro.url.pathname), alternates = true } =
+  Astro.props;
+const t = useTranslations(lang);
+
+const otherLang: Locale = lang === "fr" ? "en" : "fr";
+const frURL = new URL(alternatePath(Astro.url.pathname, "fr"), Astro.site).href;
+const enURL = new URL(alternatePath(Astro.url.pathname, "en"), Astro.site).href;
+
 const {
-  title,
-  description = "Développeur front-end freelance basé à Paris. Spécialisé en TypeScript, Svelte et Astro. Création de sites web performants et accessibles.",
+  title = t.meta.title,
+  description = t.meta.description,
   ogType = "website",
   ogImage = "https://kinoo.dev/og.jpg",
   jsonLd = {
@@ -32,6 +50,7 @@ const {
     name: "Martin Kinoo",
     url: "https://kinoo.dev",
     description,
+    inLanguage: htmlLang[lang],
     image: "https://kinoo.dev/og.jpg",
     areaServed: {
       "@type": "City",
@@ -50,7 +69,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={htmlLang[lang]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -71,6 +90,15 @@ const {
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Martin Kinoo" href="/rss.xml" />
     <link rel="canonical" href={canonicalURL} />
+    {
+      alternates && (
+        <>
+          <link rel="alternate" hreflang="fr" href={frURL} />
+          <link rel="alternate" hreflang="en" href={enURL} />
+          <link rel="alternate" hreflang="x-default" href={frURL} />
+        </>
+      )
+    }
     <meta name="generator" content={Astro.generator} />
 
     <!-- Open Graph -->
@@ -81,7 +109,8 @@ const {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {alternates && <meta property="og:locale:alternate" content={ogLocale[otherLang]} />}
     <meta property="og:site_name" content="Martin Kinoo" />
 
     <!-- Twitter -->
@@ -103,25 +132,25 @@ const {
     <slot name="head" />
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Aller au contenu</a>
-    <Header>
+    <a href="#main-content" class="skip-link">{t.meta.skipLink}</a>
+    <Header lang={lang}>
       <slot name="header-nav" slot="nav">
-        <NavBar />
+        <NavBar lang={lang} />
       </slot>
       <slot name="header-menu">
-        <HeaderMenu />
+        <HeaderMenu lang={lang} />
         <MobileMenu />
       </slot>
     </Header>
     <div class="page-content">
       <slot />
-      <Footer />
+      <Footer lang={lang} />
     </div>
 
     <div class="mobile-menu-drawer">
       <MobileDrawer id="mobile-menu" triggerId="mobile-menu-trigger">
         <slot name="mobile-sidebar">
-          <MobileSidebar />
+          <MobileSidebar lang={lang} />
         </slot>
       </MobileDrawer>
     </div>

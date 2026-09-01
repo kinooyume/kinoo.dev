@@ -1,6 +1,7 @@
 import { createSignal, createSelector, For, onCleanup, onMount, type Accessor } from "solid-js";
 import BlazeSlider from "blaze-slider/blaze-slider/src/index.ts";
 import "blaze-slider/blaze-slider/src/blaze.css";
+import type { Dictionary } from "@/i18n";
 import "./Slider.scss";
 
 type PaginationProps = {
@@ -35,6 +36,7 @@ const SliderPagination = (props: Readonly<PaginationProps>) => {
 
 type SliderProps = {
   pictures: string[];
+  labels: Dictionary["a11y"];
   children?: HTMLElement;
 };
 
@@ -88,13 +90,13 @@ const Slider = (props: Readonly<SliderProps>) => {
         </div>
 
         <div class="blaze-navigation">
-          <button class="blaze-prev" aria-label="Slide précédent">{props.children}</button>
+          <button class="blaze-prev" aria-label={props.labels.sliderPrev}>{props.children}</button>
           <SliderPagination
             pictures={props.pictures}
             index={currentIndex}
             moveTo={moveTo}
           />
-          <button class="blaze-next" aria-label="Slide suivant">{props.children}</button>
+          <button class="blaze-next" aria-label={props.labels.sliderNext}>{props.children}</button>
         </div>
       </div>
     </div>

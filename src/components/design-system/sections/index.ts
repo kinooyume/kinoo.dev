@@ -112,6 +112,7 @@ export const sidebarSections: SidebarSection[] = [
       { label: "Header", href: "#header", framework: "astro" },
       { label: "HeaderMenu", href: "#headermenu", framework: "astro" },
       { label: "NavBar", href: "#navbar", framework: "astro" },
+      { label: "LangToggle", href: "#langtoggle", framework: "astro" },
     ],
   },
   {

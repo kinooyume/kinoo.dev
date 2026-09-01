@@ -6,6 +6,7 @@ import ArrowLink from "@/components/shared/atoms/ArrowLink.astro";
 import Prose from "@/components/articles/Prose.astro";
 import BadgeLink from "@/components/shared/atoms/BadgeLink.astro";
 import { accentInlineStyle } from "@/lib/categoryColors";
+import { formatDate, useTranslations, type Locale } from "@/i18n";
 
 interface Props {
   title: string;
@@ -16,22 +17,21 @@ interface Props {
   tags: string[];
   links?: { text: string; href: string }[];
   ogImage?: string;
+  lang?: Locale;
 }
 
-const { title, subtitle, description, date, category, tags, links = [], ogImage } = Astro.props;
+const { title, subtitle, description, date, category, tags, links = [], ogImage, lang = "fr" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const t = useTranslations(lang);
 
-const formattedDate = date.toLocaleDateString("fr-FR", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const formattedDate = formatDate(date, lang);
 
 const blogPostingJsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: title,
   description,
+  inLanguage: lang,
   datePublished: date.toISOString(),
   author: {
     "@type": "Person",
@@ -42,7 +42,7 @@ const blogPostingJsonLd = {
 };
 ---
 
-<Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" ogImage={ogImage} jsonLd={blogPostingJsonLd}>
+<Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" ogImage={ogImage} jsonLd={blogPostingJsonLd} lang={lang} alternates={false}>
 
   <Fragment slot="head">
     <meta property="article:published_time" content={date.toISOString()} />
@@ -52,7 +52,7 @@ const blogPostingJsonLd = {
   <main>
     <article style={accentInlineStyle(category)}>
       <header class="article-header">
-        <ArrowLink href="/#articles" text="Portfolio" direction="back" />
+        <ArrowLink href="/#articles" text={t.article.back} direction="back" />
         <h1>{title}</h1>
         {subtitle && <p class="subtitle">{subtitle}</p>}
         <div class="article-meta">

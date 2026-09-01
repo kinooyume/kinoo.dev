@@ -1,0 +1,90 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/hero/Hero.astro";
+import Experiences from "@/components/sections/Experiences.astro";
+import Contact from "@/components/contact/Contact.astro";
+import Formations from "@/components/sections/Formations.astro";
+import Realisations from "@/components/sections/Realisations.astro";
+import Articles from "@/components/sections/Articles.astro";
+import FloatingContact from "@/components/contact/FloatingContact.astro";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout title={t.meta.title} lang={lang}>
+  <script>
+    import { hasPlayed, markPlayed } from "@/lib/animations/sessionTracker";
+    import { playHeroAnimation, showHeroImmediate } from "@/lib/animations/heroAnime";
+    import { revealSections } from "@/lib/animations/revealSection";
+    import { revealCards } from "@/lib/animations/revealCard";
+    import { smoothHashLinks } from "@/lib/dom/smoothHashLinks";
+    import { dispose as disposeMousePosition } from "@/lib/dom/mousePosition";
+
+    let cleanupSections: (() => void) | null = null;
+    let cleanupCards: (() => void) | null = null;
+    let lastInit = "";
+
+    function initIndex() {
+      if (!document.getElementById("hero")) return;
+      const key = location.pathname + location.search;
+      if (key === lastInit) return;
+      lastInit = key;
+
+      if (hasPlayed("hero")) {
+        showHeroImmediate();
+      } else {
+        markPlayed("hero");
+        playHeroAnimation();
+      }
+
+      cleanupSections = revealSections();
+      cleanupCards = revealCards();
+      smoothHashLinks();
+    }
+
+    document.addEventListener("astro:before-swap", () => {
+      cleanupSections?.();
+      cleanupCards?.();
+      cleanupSections = null;
+      cleanupCards = null;
+      lastInit = "";
+      document.body.removeAttribute("data-animations-done");
+      disposeMousePosition();
+    });
+
+    document.addEventListener("astro:page-load", initIndex);
+
+    // Initial load: run directly in case astro:page-load already fired
+    initIndex();
+  </script>
+  <main id="main-content">
+    <Hero lang={lang} />
+    <Articles lang={lang} />
+    <Realisations lang={lang} />
+    <Experiences lang={lang} />
+    <Formations lang={lang} />
+    <Contact lang={lang} />
+    <FloatingContact lang={lang} />
+  </main>
+</Layout>
+
+<style lang="scss">
+  @use "@/styles/breakpoints" as *;
+
+  main {
+    margin: auto;
+    padding: 1rem 32px;
+    max-width: 1368px;
+    line-height: 1.6;
+
+    @include tablet {
+      padding: 1rem 16px;
+    }
+  }
+</style>

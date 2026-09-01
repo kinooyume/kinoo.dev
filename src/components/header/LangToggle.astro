@@ -1,0 +1,39 @@
+---
+import { alternatePath, useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const target: Locale = lang === "fr" ? "en" : "fr";
+const href = alternatePath(Astro.url.pathname, target);
+---
+
+<a class="lang-toggle" href={href} hreflang={target} lang={target} aria-label={t.a11y.langToggle}>
+  {target.toUpperCase()}
+</a>
+
+<style lang="scss">
+  .lang-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    color: var(--color);
+    opacity: var(--opacity-muted);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: opacity var(--transition-base), color var(--transition-base);
+
+    &:hover {
+      opacity: 1;
+      color: var(--accent-color);
+    }
+  }
+</style>

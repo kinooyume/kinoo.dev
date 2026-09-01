@@ -1,12 +1,20 @@
 ---
 import IconButton from "@/components/shared/atoms/IconButton.astro";
 import message from "@/svgs/message.svg?raw";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <IconButton
   id="floating-contact"
   href="#contact"
-  label="Me contacter"
+  label={t.a11y.floatingContact}
   size="small"
   class="floating-contact"
 >

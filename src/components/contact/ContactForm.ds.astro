@@ -4,6 +4,9 @@ import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import { useTranslations } from "@/i18n";
+
+const t = useTranslations("fr");
 ---
 
 <section id="contactform">
@@ -12,7 +15,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Preview">
     <div class="contactform-demo" id="contactform-demo">
-      <ContactFormComponent client:load accessToken="" />
+      <ContactFormComponent client:load accessToken="" labels={t.contact.form} toasts={t.contact.toast} />
     </div>
     <DSNote>Demo mode — form submission is disabled.</DSNote>
   </DSBlock>

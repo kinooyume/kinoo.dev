@@ -12,6 +12,7 @@ import Button from "@/components/shared/atoms/Button";
 import Input from "@/components/shared/atoms/Input/Input";
 import Textarea from "@/components/shared/atoms/Textarea/Textarea";
 import FormField from "@/components/shared/molecules/FormField/FormField";
+import type { Dictionary } from "@/i18n";
 import styles from "./ContactForm.module.scss";
 
 type ContactFormType = {
@@ -29,6 +30,8 @@ enum FormState {
 
 type Props = {
   accessToken: string;
+  labels: Dictionary["contact"]["form"];
+  toasts: Dictionary["contact"]["toast"];
 };
 const ContactForm = (props: Readonly<Props>) => {
   const [formState, setFormState] = createSignal<FormState>(FormState.unsend);
@@ -86,21 +89,13 @@ const ContactForm = (props: Readonly<Props>) => {
     on(formState, () => {
       switch (formState()) {
         case FormState.sending:
-          setToastId(toast.loading("Envoi en cours..."));
+          setToastId(toast.loading(props.toasts.sending));
           break;
         case FormState.sended:
-          toast.success(
-            "Votre message a bien été envoyé. Je vous répondrai dans les plus brefs.",
-            { id: toastId() },
-          );
+          toast.success(props.toasts.success, { id: toastId() });
           break;
         case FormState.error:
-          toast.error(
-            "Une erreur est survenue. Veuillez réessayer plus tard.",
-            {
-              id: toastId(),
-            },
-          );
+          toast.error(props.toasts.error, { id: toastId() });
           break;
       }
     }),
@@ -129,15 +124,15 @@ const ContactForm = (props: Readonly<Props>) => {
       <Form onSubmit={submitHandler} class={styles.form} onInput={handleInput}>
         <input type="checkbox" name="botcheck" class={styles.honeypot} aria-hidden="true" tabindex={-1} />
         <div class={styles.meta}>
-          <Field name="name" validate={[required("Name is required")]}>
-            {(field, props) => (
-              <FormField label="Votre nom" for="name">
+          <Field name="name" validate={[required(props.labels.nameRequired)]}>
+            {(field, fieldProps) => (
+              <FormField label={props.labels.nameLabel} for="name">
                 <Input
                   id="name"
                   disabled={inputsDisabled()}
                   invalid={field.error.length > 0}
-                  placeholder="Claude Monet"
-                  {...props}
+                  placeholder={props.labels.namePlaceholder}
+                  {...fieldProps}
                   type="text"
                 />
               </FormField>
@@ -146,32 +141,32 @@ const ContactForm = (props: Readonly<Props>) => {
           <Field
             name="email"
             validate={[
-              required("Please enter your email."),
-              email("The email address is badly formatted."),
+              required(props.labels.emailRequired),
+              email(props.labels.emailInvalid),
             ]}
           >
-            {(field, props) => (
-              <FormField label="Votre email" for="email">
+            {(field, fieldProps) => (
+              <FormField label={props.labels.emailLabel} for="email">
                 <Input
                   id="email"
                   disabled={inputsDisabled()}
                   invalid={field.error.length > 0}
-                  placeholder="claude@giverny.fr"
-                  {...props}
+                  placeholder={props.labels.emailPlaceholder}
+                  {...fieldProps}
                   type="email"
                 />
               </FormField>
             )}
           </Field>
-          <Field name="message" validate={[required("Message is required")]}>
-            {(field, props) => (
-              <FormField label="Votre projet" for="message">
+          <Field name="message" validate={[required(props.labels.messageRequired)]}>
+            {(field, fieldProps) => (
+              <FormField label={props.labels.messageLabel} for="message">
                 <Textarea
                   id="message"
                   disabled={inputsDisabled()}
                   invalid={field.error.length > 0}
-                  placeholder="Décrivez votre contexte, vos objectifs et les enjeux techniques. (Produit à lancer, refonte, renfort d'équipe…)"
-                  {...props}
+                  placeholder={props.labels.messagePlaceholder}
+                  {...fieldProps}
                 />
               </FormField>
             )}
@@ -187,12 +182,12 @@ const ContactForm = (props: Readonly<Props>) => {
               aria-busy={formState() === FormState.sending}
             >
               {formState() === FormState.sending
-                ? "Envoi…"
+                ? props.labels.submitSending
                 : formState() === FormState.sended
-                  ? "Message envoyé \u2713"
-                  : "Discutons-en !"}
+                  ? props.labels.submitSent
+                  : props.labels.submitIdle}
             </Button>
-            <span class={styles.hint}>Réponse sous 24–48h.</span>
+            <span class={styles.hint}>{props.labels.hint}</span>
           </div>
         </div>
       </Form>

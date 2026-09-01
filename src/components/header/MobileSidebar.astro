@@ -5,20 +5,36 @@ import linkedin from "@/svgs/linkedin.svg?raw";
 import terminal from "@/svgs/terminal.svg?raw";
 import sun from "@/svgs/sun.svg?raw";
 import moon from "@/svgs/moon.svg?raw";
+import {
+  alternatePath,
+  localizePath,
+  useTranslations,
+  type Locale,
+} from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const home = localizePath("/", lang);
 
 const sections = [
-  { label: "Articles", href: "/#articles", color: "var(--orange)" },
-  { label: "Réalisations", href: "/#realisations", color: "var(--green)" },
-  { label: "Expériences", href: "/#experiences", color: "var(--pink)" },
-  { label: "Formations", href: "/#formations", color: "var(--purple)" },
-  { label: "Contact", href: "/#contact", color: "var(--accent-color)" },
+  { label: t.nav.articles, href: `${home}#articles`, color: "var(--orange)" },
+  { label: t.nav.realisations, href: `${home}#realisations`, color: "var(--green)" },
+  { label: t.nav.experiences, href: `${home}#experiences`, color: "var(--pink)" },
+  { label: t.nav.formations, href: `${home}#formations`, color: "var(--purple)" },
+  { label: t.nav.contact, href: `${home}#contact`, color: "var(--accent-color)" },
 ];
 
+const otherLang: Locale = lang === "fr" ? "en" : "fr";
+const langHref = alternatePath(Astro.url.pathname, otherLang);
 ---
 
 <div class="mobile-sidebar">
   <div class="mobile-sidebar-header">
-    <a href="/" class="mobile-sidebar-logo">
+    <a href={home} class="mobile-sidebar-logo">
       <span class="mobile-sidebar-logo-icon" set:html={terminal} />
       Martin Kinoo
     </a>
@@ -38,7 +54,7 @@ const sections = [
   <hr class="mobile-sidebar-divider" />
 
   <div class="mobile-sidebar-links">
-    <a href="/design-system">Design System</a>
+    <a href="/design-system">{t.nav.designSystem}</a>
   </div>
 
   <hr class="mobile-sidebar-divider" />
@@ -47,7 +63,11 @@ const sections = [
     <a href="#" data-theme-row>
       <span class="link-icon theme-icon-sun" set:html={sun} />
       <span class="link-icon theme-icon-moon" set:html={moon} />
-      Thème
+      {t.nav.theme}
+    </a>
+    <a href={langHref} hreflang={otherLang} lang={otherLang}>
+      <span class="link-icon link-code">{otherLang.toUpperCase()}</span>
+      {t.a11y.langToggle}
     </a>
   </div>
 
@@ -229,6 +249,14 @@ const sections = [
         color: var(--accent-color);
       }
     }
+  }
+
+  .link-code {
+    justify-content: center;
+    width: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
   }
 
   .link-icon {

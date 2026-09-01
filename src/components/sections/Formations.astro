@@ -10,8 +10,18 @@ import Spotlight from "@/components/shared/molecules/Spotlight.astro";
 import LogoBox from "@/components/shared/atoms/LogoBox.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
+import { useTranslations, type Locale } from "@/i18n";
 
-const entries = await getCollection("formations");
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const entries = await getCollection("formations", (e) =>
+  e.id.startsWith(`${lang}/`),
+);
 const formations = entries.sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(
   formations.map(async (entry) => ({
@@ -21,7 +31,7 @@ const rendered = await Promise.all(
 );
 ---
 
-<Section id="formations" subtitle="Mes" title="Formations">
+<Section id="formations" subtitle={t.sections.formations.subtitle} title={t.sections.formations.title}>
   <div class="grid" id="formations-grid" data-spotlight>
     {rendered.map(({ data, Content }) => (
       <Spotlight color="var(--purple)" style={`grid-area: ${data.gridArea}`}>

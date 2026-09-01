@@ -63,12 +63,14 @@ const SectionComponent = sectionComponents[slug!];
 ---
 
 <Layout
+  lang="fr"
+  alternates={false}
   title={`${title} · Design System · kinoo.dev`}
   description={`${title} — Design System kinoo.dev`}
 >
   <meta slot="head" name="robots" content="noindex, nofollow" />
-  <NavBar slot="header-nav" />
-  <HeaderMenu slot="header-menu" />
+  <NavBar slot="header-nav" lang="fr" />
+  <HeaderMenu slot="header-menu" lang="fr" />
   <MobileMenu slot="header-menu" />
   <Sidebar sections={visibleSections} currentSlug={slug} showColorSwitcher title="Design System" slot="mobile-sidebar" client:load transition:persist="ds-mobile-sidebar" />
 

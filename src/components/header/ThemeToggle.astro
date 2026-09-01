@@ -1,9 +1,17 @@
 ---
 import sun from "@/svgs/sun.svg?raw";
 import moon from "@/svgs/moon.svg?raw";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<button class="theme-toggle" aria-label="Changer de thème">
+<button class="theme-toggle" aria-label={t.a11y.themeToggle}>
   <span class="theme-icon icon-sun" set:html={sun} />
   <span class="theme-icon icon-moon" set:html={moon} />
 </button>

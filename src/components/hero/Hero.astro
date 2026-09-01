@@ -12,6 +12,14 @@ import IconLink from "@/components/shared/atoms/IconLink.astro";
 import cv from "@/svgs/cv.svg?raw";
 import github from "@/svgs/github.svg?raw";
 import linkedin from "@/svgs/linkedin.svg?raw";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 
 type TagProps = {
   title: string;
@@ -27,7 +35,7 @@ const techs: TagProps[] = [
   { title: "React.js", icon: React, highlight: true },
   { title: "Rescript", icon: Rescript, highlight: true },
   { title: "Golang", icon: Go, highlight: true },
-  { title: "Votre stack ?" },
+  { title: t.hero.yourStack },
 ];
 ---
 
@@ -35,20 +43,13 @@ const techs: TagProps[] = [
   <div class="main">
     <div class="content">
       <div class="title">
-        <HeroSubtitle subtitle="Développeur Frontend Freelance" />
+        <HeroSubtitle subtitle={t.hero.subtitle} />
         <h1><span>Martin</span> <span>Kinoo</span></h1>
       </div>
       <div class="description">
-        <h2 class="punchline">Du frontend bien pensé, tout simplement.</h2>
-        <p class="catchphrase">
-          Applications web claires, modulaires et évolutives, sans complexité
-          inutile.
-        </p>
-        <p>
-          Je simplifie les choix techniques et je sécurise l'architecture pour
-          que les projets avancent de façon prévisible. Peu importe le
-          framework, la rigueur et l'architecture restent les mêmes.
-        </p>
+        <h2 class="punchline">{t.hero.punchline}</h2>
+        <p class="catchphrase">{t.hero.catchphrase}</p>
+        <p>{t.hero.intro}</p>
       </div>
       <ul>
         {
@@ -70,7 +71,7 @@ const techs: TagProps[] = [
         loading="eager"
         class="image hero-image"
         src="/images/profil.png"
-        alt="Photo de Martin Kinoo"
+        alt={t.hero.photoAlt}
       />
       <div class="hero-socials">
         <IconLink href="MartinKinooCV.pdf" label="CV" external>

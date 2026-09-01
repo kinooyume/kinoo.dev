@@ -12,7 +12,24 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: "hover",
   },
-  integrations: [solidJs(), sitemap(), mdx()],
+  i18n: {
+    locales: ["fr", "en"],
+    defaultLocale: "fr",
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+  integrations: [
+    solidJs(),
+    sitemap({
+      i18n: {
+        defaultLocale: "fr",
+        locales: { fr: "fr-FR", en: "en-US" },
+      },
+      filter: (page) => !page.includes("/design-system"),
+    }),
+    mdx(),
+  ],
   markdown: {
     shikiConfig: {
       themes: {

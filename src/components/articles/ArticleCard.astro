@@ -7,6 +7,7 @@ import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import arrowRight from "@/svgs/arrow.svg?raw";
 import { accentInlineStyle } from "@/lib/categoryColors";
+import { formatDate, type Locale } from "@/i18n";
 
 interface Props {
   title: string;
@@ -15,15 +16,12 @@ interface Props {
   tags: string[];
   href: string;
   category?: string;
+  lang?: Locale;
 }
 
-const { title, subtitle, date, tags, href, category } = Astro.props;
+const { title, subtitle, date, tags, href, category, lang = "fr" } = Astro.props;
 
-const formattedDate = date.toLocaleDateString("fr-FR", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const formattedDate = formatDate(date, lang);
 ---
 
 <a href={href} class="article-card-link" aria-label={title} style={accentInlineStyle(category)}>

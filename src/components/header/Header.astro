@@ -1,12 +1,19 @@
 ---
 import terminal from "@/svgs/terminal.svg?raw";
+import { localizePath, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
 ---
 
 <header>
   <div class="header">
     <div class="header-left">
       <div class="title-wrapper">
-        <a href="/" class="title anime">
+        <a href={localizePath("/", lang)} class="title anime">
           <div class="terminal-wrapper" aria-hidden="true">
             <Fragment set:html={terminal} />
           </div>

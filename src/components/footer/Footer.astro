@@ -1,8 +1,19 @@
+---
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <footer>
   <p>
-    Design et Code par <b>Martin Kinoo</b> · Réalisé avec <a
+    {t.footer.by} <b>Martin Kinoo</b> · {t.footer.builtWith} <a
       href="https://astro.build">Astro</a
-    >, <a href="https://www.solidjs.com">SolidJS</a> et <a
+    >, <a href="https://www.solidjs.com">SolidJS</a> {t.footer.and} <a
       href="https://animejs.com">Anime.js</a
     >.
   </p>

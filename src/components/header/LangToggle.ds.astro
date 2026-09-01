@@ -1,0 +1,50 @@
+---
+import LangToggleComponent from "./LangToggle.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="langtoggle">
+  <DSSectionHeader title="LangToggle" atomic="Atom" framework="astro" />
+  <p>Link to the current page in the other language. Shows the target locale code.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <div class="demo-wrapper">
+        <LangToggleComponent lang="fr" />
+        <LangToggleComponent lang="en" />
+      </div>
+    </DSPreview>
+    <DSCode inline>&lt;LangToggle lang="fr" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["lang", "\"fr\" | \"en\"", "Current locale. The toggle targets the other one."],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Behaviour">
+    <DSNote>
+      A real anchor, not a button: it works without JavaScript and is crawlable.
+      The target URL is derived from the current pathname, so the toggle keeps
+      the visitor on the same page. Hidden on design system pages, which have no
+      English counterpart.
+    </DSNote>
+  </DSBlock>
+</section>
+
+<style lang="scss">
+  .demo-wrapper {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+</style>

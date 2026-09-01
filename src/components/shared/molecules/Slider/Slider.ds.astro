@@ -4,6 +4,9 @@ import DSBlock from "@/components/design-system/DSBlock.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+import { useTranslations } from "@/i18n";
+
+const t = useTranslations("fr");
 ---
 
 <section id="slider">
@@ -19,6 +22,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
           "ekeynox/02.webp",
           "ekeynox/03.webp",
         ]}
+        labels={t.a11y}
       />
     </div>
   </DSBlock>

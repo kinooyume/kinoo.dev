@@ -15,8 +15,18 @@ import Tag from "@/components/shared/atoms/Tag.astro";
 import TagRow from "@/components/shared/atoms/TagRow.astro";
 import arrow from "@/svgs/arrow.svg?raw";
 import github from "@/svgs/github.svg?raw";
+import { useTranslations, type Locale } from "@/i18n";
 
-const entries = await getCollection("realisations");
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const entries = await getCollection("realisations", (e) =>
+  e.id.startsWith(`${lang}/`),
+);
 const realisations = entries.sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(
   realisations.map(async (entry) => ({
@@ -26,7 +36,7 @@ const rendered = await Promise.all(
 );
 ---
 
-<Section id="realisations" subtitle="Mes" title="Réalisations">
+<Section id="realisations" subtitle={t.sections.realisations.subtitle} title={t.sections.realisations.title}>
   <div class="grid" id="realisations-grid" data-spotlight>
     {rendered.map(({ data, Content }) => (
       <Spotlight color="var(--green)" style={`grid-area: ${data.gridArea}`}>
@@ -63,7 +73,7 @@ const rendered = await Promise.all(
                 </TagRow>
               )}
             </CardDescription>
-            <Slider slot="aside" client:load pictures={data.pictures}>
+            <Slider slot="aside" client:load pictures={data.pictures} labels={t.a11y}>
               <Fragment set:html={arrow} />
             </Slider>
           </CardSplit>
@@ -72,7 +82,7 @@ const rendered = await Promise.all(
     ))}
   </div>
   <div class="cta">
-    <Button href="https://github.com/KinooYume" variant="tint" icon={github} external client:load>Voir plus sur GitHub</Button>
+    <Button href="https://github.com/KinooYume" variant="tint" icon={github} external client:load>{t.sections.realisationsCta}</Button>
   </div>
 </Section>
 

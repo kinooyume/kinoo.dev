@@ -1,14 +1,17 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import type { APIContext } from "astro";
+import { useTranslations } from "@/i18n";
 
 export async function GET(context: APIContext) {
   const articles = (await getCollection("articles"))
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
+  const t = useTranslations("fr");
+
   return rss({
-    title: "Martin Kinoo",
-    description: "Articles sur le développement front-end, l'architecture et les outils.",
+    title: t.rss.title,
+    description: t.rss.description,
     site: context.site ?? new URL("https://kinoo.dev"),
     items: articles.map((article) => ({
       title: article.data.title,
