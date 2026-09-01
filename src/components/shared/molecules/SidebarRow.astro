@@ -1,0 +1,60 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  /** Etat courant, aligne a droite. Absent pour une simple destination. */
+  value?: string;
+  external?: boolean;
+  [key: string]: unknown;
+}
+
+const { href, label, value, external, ...rest } = Astro.props;
+
+const externalProps = external
+  ? { target: "_blank", rel: "noreferrer nofollow noopener" }
+  : {};
+---
+
+<a class="sidebar-row" href={href} {...externalProps} {...rest}>
+  <slot name="icon" />
+  <span class="sidebar-row-label">{label}</span>
+  {value && <span class="sidebar-row-value" aria-hidden="true">{value}</span>}
+</a>
+
+<style lang="scss">
+  .sidebar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: var(--border-color);
+      color: var(--accent-color);
+    }
+  }
+
+  .sidebar-row-value {
+    margin-left: auto;
+    color: var(--text-muted);
+  }
+
+  /* Le contenu du slot vient du parent, il ne porte pas le scope de ce
+     composant : la regle entiere doit rester globale, svg compris. */
+  .sidebar-row :global(.sidebar-row-icon) {
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+  }
+
+  .sidebar-row :global(.sidebar-row-icon svg) {
+    width: 16px;
+    height: 16px;
+  }
+</style>

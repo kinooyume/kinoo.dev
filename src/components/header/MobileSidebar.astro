@@ -6,6 +6,7 @@ import terminal from "@/svgs/terminal.svg?raw";
 import sun from "@/svgs/sun.svg?raw";
 import moon from "@/svgs/moon.svg?raw";
 import globe from "@/svgs/globe.svg?raw";
+import SidebarRow from "@/components/shared/molecules/SidebarRow.astro";
 import {
   alternatePath,
   localizePath,
@@ -56,73 +57,76 @@ const langHref = alternateHref ?? alternatePath(Astro.url.pathname, otherLang);
   <hr class="mobile-sidebar-divider" />
 
   <div class="mobile-sidebar-links">
-    <a href="/design-system">{t.nav.designSystem}</a>
+    <SidebarRow href="/design-system" label={t.nav.designSystem} />
   </div>
 
   <hr class="mobile-sidebar-divider" />
 
   <div class="mobile-sidebar-links">
-    <a href="#" data-theme-row>
-      <span class="link-icon theme-icon-sun" set:html={sun} />
-      <span class="link-icon theme-icon-moon" set:html={moon} />
-      {t.nav.theme}
-    </a>
-    <a href={langHref} hreflang={otherLang} aria-label={t.a11y.langToggle}>
-      <span class="link-icon" aria-hidden="true" set:html={globe} />
-      {t.nav.language}
-    </a>
+    <SidebarRow
+      href="#"
+      label={t.nav.theme}
+      value={t.nav.themeDark}
+      aria-label={t.a11y.themeToggle}
+      data-theme-row
+      data-label-dark={t.nav.themeDark}
+      data-label-light={t.nav.themeLight}
+    >
+      <Fragment slot="icon">
+        <span class="sidebar-row-icon theme-icon-sun" set:html={sun} />
+        <span class="sidebar-row-icon theme-icon-moon" set:html={moon} />
+      </Fragment>
+    </SidebarRow>
+    <SidebarRow
+      href={langHref}
+      label={t.nav.language}
+      value={t.nav.languageName}
+      hreflang={otherLang}
+      aria-label={t.a11y.langToggle}
+    >
+      <span slot="icon" class="sidebar-row-icon" set:html={globe} />
+    </SidebarRow>
   </div>
 
   <hr class="mobile-sidebar-divider" />
 
   <div class="mobile-sidebar-links">
-    <a
-      href="/MartinKinooCV.pdf"
-      target="_blank"
-      rel="noreferrer nofollow noopener"
-    >
-      <span class="link-icon" set:html={cv} />
-      CV
-    </a>
-    <a
-      href="https://github.com/KinooYume"
-      target="_blank"
-      rel="noreferrer nofollow noopener"
-    >
-      <span class="link-icon" set:html={github} />
-      GitHub
-    </a>
-    <a
-      href="https://www.linkedin.com/in/martin-kinoo/"
-      target="_blank"
-      rel="noreferrer nofollow noopener"
-    >
-      <span class="link-icon" set:html={linkedin} />
-      LinkedIn
-    </a>
+    <SidebarRow href="/MartinKinooCV.pdf" label="CV" external>
+      <span slot="icon" class="sidebar-row-icon" set:html={cv} />
+    </SidebarRow>
+    <SidebarRow href="https://github.com/KinooYume" label="GitHub" external>
+      <span slot="icon" class="sidebar-row-icon" set:html={github} />
+    </SidebarRow>
+    <SidebarRow href="https://www.linkedin.com/in/martin-kinoo/" label="LinkedIn" external>
+      <span slot="icon" class="sidebar-row-icon" set:html={linkedin} />
+    </SidebarRow>
   </div>
 </div>
 
 <script>
   import { getTheme, toggleTheme } from "@/lib/theme";
 
-  function syncThemeIcons(row: HTMLElement) {
+  function syncThemeRow(row: HTMLElement) {
     const isDark = getTheme() === "dark";
     const sun = row.querySelector<HTMLElement>(".theme-icon-sun");
     const moon = row.querySelector<HTMLElement>(".theme-icon-moon");
     if (sun) sun.style.display = isDark ? "none" : "flex";
     if (moon) moon.style.display = isDark ? "flex" : "none";
+
+    const value = row.querySelector<HTMLElement>(".sidebar-row-value");
+    const label = isDark ? row.dataset.labelDark : row.dataset.labelLight;
+    if (value && label) value.textContent = label;
   }
 
   function initThemeRow() {
     document.querySelectorAll<HTMLElement>("[data-theme-row]").forEach((row) => {
       if (row.dataset.bound) return;
       row.dataset.bound = "true";
-      syncThemeIcons(row);
+      syncThemeRow(row);
       row.addEventListener("click", (e) => {
         e.preventDefault();
         toggleTheme();
-        syncThemeIcons(row);
+        syncThemeRow(row);
       });
     });
   }
@@ -233,34 +237,6 @@ const langHref = alternateHref ?? alternatePath(Astro.url.pathname, otherLang);
     display: flex;
     flex-direction: column;
     gap: 4px;
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--color);
-      text-decoration: none;
-      transition: all 0.2s ease;
-
-      &:hover {
-        background-color: var(--border-color);
-        color: var(--accent-color);
-      }
-    }
   }
 
-  .link-icon {
-    display: flex;
-    align-items: center;
-    opacity: 0.7;
-
-    :global(svg) {
-      width: 16px;
-      height: 16px;
-    }
-  }
 </style>

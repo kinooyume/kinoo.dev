@@ -12,8 +12,11 @@ export const fr = {
     formations: "Formations",
     contact: "Contact",
     designSystem: "Design System",
-    language: "Français",
+    language: "Langue",
+    languageName: "Français",
     theme: "Thème",
+    themeDark: "Sombre",
+    themeLight: "Clair",
     cta: "Discutons ensemble",
   },
   hero: {

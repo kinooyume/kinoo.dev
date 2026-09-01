@@ -14,8 +14,11 @@ export const en = {
     formations: "Education",
     contact: "Contact",
     designSystem: "Design System",
-    language: "English",
+    language: "Language",
+    languageName: "English",
     theme: "Theme",
+    themeDark: "Dark",
+    themeLight: "Light",
     cta: "Let's work together",
   },
   hero: {

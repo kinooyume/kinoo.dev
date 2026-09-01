@@ -122,6 +122,7 @@ export const sidebarSections: SidebarSection[] = [
       { label: "BurgerIcon", href: "#burgericon", framework: "astro" },
       { label: "Sidebar", href: "#sidebar", framework: "solid" },
       { label: "ColorSwitcher", href: "#colorswitcher", framework: "solid" },
+      { label: "SidebarRow", href: "#sidebarrow", framework: "astro" },
     ],
   },
   {
