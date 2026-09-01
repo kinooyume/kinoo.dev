@@ -20,6 +20,18 @@ export default defineConfig({
     },
   },
   integrations: [
+    // Astro exclut du routing tout chemin commencant par "_", d'ou la route injectee.
+    {
+      name: "article-redirects",
+      hooks: {
+        "astro:config:setup": ({ injectRoute }) => {
+          injectRoute({
+            pattern: "/_redirects",
+            entrypoint: "./src/routes/netlifyRedirects.ts",
+          });
+        },
+      },
+    },
     solidJs(),
     sitemap({
       i18n: {

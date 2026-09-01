@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import { defaultLocale, isLocale, type Locale } from "@/i18n";
+import { defaultLocale, isLocale, locales, type Locale } from "@/i18n";
 
 type Entry = CollectionEntry<"articles">;
 
@@ -78,4 +78,28 @@ export async function resolveArticles(lang: Locale): Promise<ResolvedArticle[]> 
   return resolved.sort(
     (a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime(),
   );
+}
+
+/**
+ * Redirections des URLs derivees de la cle vers celles derivees d'un urlSlug.
+ * Sans elles, localiser le slug d'un article deja publie ferait disparaitre son
+ * ancienne URL.
+ */
+export async function articleRedirects(): Promise<
+  { from: string; to: string }[]
+> {
+  const redirects: { from: string; to: string }[] = [];
+
+  for (const group of await groupByKey()) {
+    for (const lang of locales) {
+      const slug = group[lang]?.data.urlSlug;
+      if (!slug || slug === group.key) continue;
+      redirects.push({
+        from: articleUrl(lang, group.key),
+        to: articleUrl(lang, slug),
+      });
+    }
+  }
+
+  return redirects;
 }
