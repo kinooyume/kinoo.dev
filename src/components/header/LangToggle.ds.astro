@@ -10,7 +10,7 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
 <section id="langtoggle">
   <DSSectionHeader title="LangToggle" atomic="Atom" framework="astro" />
-  <p>Link to the current page in the other language. Shows the target locale code.</p>
+  <p>Language switch. Shows the locale currently being read, next to a globe, and links to the same page in the other language.</p>
 
   <DSBlock title="Preview">
     <DSPreview>
@@ -33,10 +33,21 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 
   <DSBlock title="Behaviour">
     <DSNote>
+      The code shows the current locale, not the target one. A lone target code
+      reads both ways: on a French page, "EN" can mean "you are reading English"
+      as easily as "go to English". The globe carries the switching intent, the
+      code carries the state.
+    </DSNote>
+    <DSNote>
+      Both spans are aria-hidden and the anchor carries a label naming the
+      current locale and the action, so the ambiguity a sighted reader resolves
+      through the globe is spelled out for screen readers.
+    </DSNote>
+    <DSNote>
       A real anchor, not a button: it works without JavaScript and is crawlable.
-      The target URL is derived from the current pathname, so the toggle keeps
-      the visitor on the same page. Hidden on design system pages, which have no
-      English counterpart.
+      The target URL is derived from the current pathname unless href is given,
+      which article pages do since their slug differs per language. Hidden on
+      design system pages, which have no English counterpart.
     </DSNote>
   </DSBlock>
 </section>

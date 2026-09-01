@@ -12,6 +12,7 @@ export const fr = {
     formations: "Formations",
     contact: "Contact",
     designSystem: "Design System",
+    language: "Français",
     theme: "Thème",
     cta: "Discutons ensemble",
   },
@@ -80,7 +81,7 @@ rapidement pour vous proposer des solutions claires, adaptées et pragmatiques.`
   },
   a11y: {
     themeToggle: "Changer de thème",
-    langToggle: "Switch to English",
+    langToggle: "Langue : français. Passer en anglais.",
     sliderPrev: "Slide précédent",
     floatingContact: "Me contacter",
     sliderNext: "Slide suivant",
