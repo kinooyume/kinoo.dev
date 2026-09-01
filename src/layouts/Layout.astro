@@ -26,18 +26,30 @@ interface Props {
   ogImage?: string;
   jsonLd?: Record<string, unknown>;
   lang?: Locale;
+  canonical?: string;
+  /** URLs de cette page dans chaque langue. Par defaut deduites du pathname. */
+  localeUrls?: { fr: string; en: string };
+  /** false pour n'emettre aucun hreflang. Le toggle reste servi par localeUrls. */
   alternates?: boolean;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { lang = localeFromPath(Astro.url.pathname), alternates = true } =
-  Astro.props;
+const {
+  lang = localeFromPath(Astro.url.pathname),
+  canonical,
+  localeUrls,
+  alternates = true,
+} = Astro.props;
 const t = useTranslations(lang);
 
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, Astro.site);
+
 const otherLang: Locale = lang === "fr" ? "en" : "fr";
-const frURL = new URL(alternatePath(Astro.url.pathname, "fr"), Astro.site).href;
-const enURL = new URL(alternatePath(Astro.url.pathname, "en"), Astro.site).href;
+const pair = localeUrls ?? {
+  fr: alternatePath(Astro.url.pathname, "fr"),
+  en: alternatePath(Astro.url.pathname, "en"),
+};
+const frURL = new URL(pair.fr, Astro.site).href;
+const enURL = new URL(pair.en, Astro.site).href;
 
 const {
   title = t.meta.title,
@@ -138,7 +150,7 @@ const {
         <NavBar lang={lang} />
       </slot>
       <slot name="header-menu">
-        <HeaderMenu lang={lang} />
+        <HeaderMenu lang={lang} alternateHref={pair[otherLang]} />
         <MobileMenu />
       </slot>
     </Header>
@@ -150,7 +162,7 @@ const {
     <div class="mobile-menu-drawer">
       <MobileDrawer id="mobile-menu" triggerId="mobile-menu-trigger">
         <slot name="mobile-sidebar">
-          <MobileSidebar lang={lang} />
+          <MobileSidebar lang={lang} alternateHref={pair[otherLang]} />
         </slot>
       </MobileDrawer>
     </div>

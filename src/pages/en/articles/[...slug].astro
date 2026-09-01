@@ -4,9 +4,9 @@ import BlogPostLayout from "@/layouts/BlogPostLayout.astro";
 import { resolveArticles } from "@/lib/articles";
 
 export async function getStaticPaths() {
-  const articles = await resolveArticles("fr");
+  const articles = await resolveArticles("en");
   return articles.map((article) => ({
-    params: { slug: article.url.replace("/articles/", "") },
+    params: { slug: article.url.replace("/en/articles/", "") },
     props: { article },
   }));
 }
@@ -26,10 +26,10 @@ const ogImage = new URL(`/og/${entry.id}.png`, Astro.site).href;
   tags={entry.data.tags}
   links={entry.data.links}
   ogImage={ogImage}
-  lang="fr"
+  lang="en"
   contentLang={contentLang}
   canonical={isFallback ? sourceUrl : article.url}
-  localeUrls={{ fr: article.url, en: otherUrl }}
+  localeUrls={{ fr: otherUrl, en: article.url }}
   alternates={alternateUrl !== null}
 >
   <Content />

@@ -1,8 +1,7 @@
 ---
-import { getCollection } from "astro:content";
-
 import Section from "@/components/shared/organisms/Section.astro";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
+import { resolveArticles } from "@/lib/articles";
 import { useTranslations, type Locale } from "@/i18n";
 
 interface Props {
@@ -12,7 +11,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const articles = (await getCollection("articles")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const articles = await resolveArticles(lang);
 ---
 
 <Section id="articles" subtitle={t.sections.articles.subtitle} title={t.sections.articles.title}>
@@ -20,12 +19,14 @@ const articles = (await getCollection("articles")).sort((a, b) => b.data.date.ge
     {
       articles.map((article) => (
         <ArticleCard
-          title={article.data.title}
-          subtitle={article.data.subtitle}
-          date={article.data.date}
-          tags={article.data.tags}
-          href={`/articles/${article.id}`}
+          title={article.entry.data.title}
+          subtitle={article.entry.data.subtitle}
+          date={article.entry.data.date}
+          tags={article.entry.data.tags}
+          href={article.url}
           lang={lang}
+          contentLang={article.contentLang}
+          isFallback={article.isFallback}
         />
       ))
     }

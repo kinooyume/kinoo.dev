@@ -4,8 +4,8 @@ import { useTranslations } from "@/i18n";
 import { resolveArticles } from "@/lib/articles";
 
 export async function GET(context: APIContext) {
-  const t = useTranslations("fr");
-  const articles = await resolveArticles("fr");
+  const t = useTranslations("en");
+  const articles = await resolveArticles("en");
 
   return rss({
     title: t.rss.title,

@@ -7,7 +7,7 @@ import TagRow from "@/components/shared/atoms/TagRow.astro";
 import Tag from "@/components/shared/atoms/Tag.astro";
 import arrowRight from "@/svgs/arrow.svg?raw";
 import { accentInlineStyle } from "@/lib/categoryColors";
-import { formatDate, type Locale } from "@/i18n";
+import { formatDate, useTranslations, type Locale } from "@/i18n";
 
 interface Props {
   title: string;
@@ -17,20 +17,37 @@ interface Props {
   href: string;
   category?: string;
   lang?: Locale;
+  contentLang?: Locale;
+  isFallback?: boolean;
 }
 
-const { title, subtitle, date, tags, href, category, lang = "fr" } = Astro.props;
+const {
+  title,
+  subtitle,
+  date,
+  tags,
+  href,
+  category,
+  lang = "fr",
+  contentLang = lang,
+  isFallback = false,
+} = Astro.props;
 
+const t = useTranslations(lang);
 const formattedDate = formatDate(date, lang);
+const label = isFallback ? `${title} (${t.article.inOtherLanguage})` : title;
 ---
 
-<a href={href} class="article-card-link" aria-label={title} style={accentInlineStyle(category)}>
+<a href={href} class="article-card-link" aria-label={label} style={accentInlineStyle(category)}>
   <Spotlight color="var(--accent-color)">
     <Card>
       <CardContent>
         <div slot="title" class="article-title">
           <time datetime={date.toISOString()}>{formattedDate}</time>
           <h3>{title}<span class="arrow" aria-hidden="true" set:html={arrowRight} /></h3>
+          {isFallback && (
+            <Tag title={contentLang.toUpperCase()} size="small" outline />
+          )}
         </div>
         {subtitle && (
           <CardDescription>

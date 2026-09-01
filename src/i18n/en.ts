@@ -69,6 +69,10 @@ with clear, pragmatic solutions that fit.`,
   },
   article: {
     back: "Portfolio",
+    fallbackNotice:
+      "This article is not available in English yet. The text below is in French.",
+    fallbackLink: "View the French page",
+    inOtherLanguage: "in French",
   },
   footer: {
     by: "Designed and coded by",

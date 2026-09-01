@@ -6,6 +6,7 @@ import ArrowLink from "@/components/shared/atoms/ArrowLink.astro";
 import Prose from "@/components/articles/Prose.astro";
 import BadgeLink from "@/components/shared/atoms/BadgeLink.astro";
 import { accentInlineStyle } from "@/lib/categoryColors";
+import ArticleLanguageNotice from "@/components/articles/ArticleLanguageNotice.astro";
 import { formatDate, useTranslations, type Locale } from "@/i18n";
 
 interface Props {
@@ -18,11 +19,30 @@ interface Props {
   links?: { text: string; href: string }[];
   ogImage?: string;
   lang?: Locale;
+  contentLang?: Locale;
+  canonical?: string;
+  localeUrls?: { fr: string; en: string };
+  alternates?: boolean;
 }
 
-const { title, subtitle, description, date, category, tags, links = [], ogImage, lang = "fr" } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const {
+  title,
+  subtitle,
+  description,
+  date,
+  category,
+  tags,
+  links = [],
+  ogImage,
+  lang = "fr",
+  contentLang = lang,
+  canonical,
+  localeUrls,
+  alternates,
+} = Astro.props;
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, Astro.site);
 const t = useTranslations(lang);
+const isFallback = contentLang !== lang;
 
 const formattedDate = formatDate(date, lang);
 
@@ -31,7 +51,7 @@ const blogPostingJsonLd = {
   "@type": "BlogPosting",
   headline: title,
   description,
-  inLanguage: lang,
+  inLanguage: contentLang,
   datePublished: date.toISOString(),
   author: {
     "@type": "Person",
@@ -42,7 +62,7 @@ const blogPostingJsonLd = {
 };
 ---
 
-<Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" ogImage={ogImage} jsonLd={blogPostingJsonLd} lang={lang} alternates={false}>
+<Layout title={`${title} · Martin Kinoo`} description={description} ogType="article" ogImage={ogImage} jsonLd={blogPostingJsonLd} lang={lang} canonical={canonical} localeUrls={localeUrls} alternates={alternates}>
 
   <Fragment slot="head">
     <meta property="article:published_time" content={date.toISOString()} />
@@ -50,9 +70,9 @@ const blogPostingJsonLd = {
   </Fragment>
 
   <main>
-    <article style={accentInlineStyle(category)}>
+    <article lang={contentLang} style={accentInlineStyle(category)}>
       <header class="article-header">
-        <ArrowLink href="/#articles" text={t.article.back} direction="back" />
+        <ArrowLink href={lang === "fr" ? "/#articles" : "/en/#articles"} text={t.article.back} direction="back" />
         <h1>{title}</h1>
         {subtitle && <p class="subtitle">{subtitle}</p>}
         <div class="article-meta">
@@ -71,6 +91,9 @@ const blogPostingJsonLd = {
           </TagRow>
         )}
       </header>
+      {isFallback && (
+        <ArticleLanguageNotice lang={lang} contentLang={contentLang} href={canonical ?? "/"} />
+      )}
       <Prose>
         <slot />
       </Prose>

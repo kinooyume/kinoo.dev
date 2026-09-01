@@ -1,0 +1,43 @@
+---
+import ArticleLanguageNoticeComponent from "./ArticleLanguageNotice.astro";
+import DSBlock from "@/components/design-system/DSBlock.astro";
+import DSPreview from "@/components/design-system/DSPreview.astro";
+import DSCode from "@/components/design-system/DSCode.astro";
+import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
+import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
+---
+
+<section id="articlelanguagenotice">
+  <DSSectionHeader title="ArticleLanguageNotice" atomic="Molecule" framework="astro" />
+  <p>Shown on an article served in the other language, when no translation exists yet.</p>
+
+  <DSBlock title="Preview">
+    <DSPreview>
+      <ArticleLanguageNoticeComponent lang="fr" contentLang="en" href="/en/articles/rendering-large-lists" />
+      <ArticleLanguageNoticeComponent lang="en" contentLang="fr" href="/articles/rendering-large-lists" />
+    </DSPreview>
+    <DSCode inline>&lt;ArticleLanguageNotice lang="fr" contentLang="en" href="/en/articles/x" /&gt;</DSCode>
+  </DSBlock>
+
+  <DSBlock title="Props">
+    <DSPropsTable
+      headers={["Prop", "Type", "Description"]}
+      rows={[
+        ["lang", "\"fr\" | \"en\"", "Locale of the page, and of the notice wording"],
+        ["contentLang", "\"fr\" | \"en\"", "Locale the article body is actually written in"],
+        ["href", "string", "Source page in contentLang, also the canonical target"],
+      ]}
+    />
+  </DSBlock>
+
+  <DSBlock title="Behaviour">
+    <DSNote>
+      Rendered by BlogPostLayout only when contentLang differs from the page
+      locale. The same page sets lang on the article element, so screen readers
+      switch voice on the body while the chrome stays in the page locale. The
+      href always points at the canonical URL, so following it leaves the
+      fallback route behind.
+    </DSNote>
+  </DSBlock>
+</section>

@@ -68,6 +68,10 @@ rapidement pour vous proposer des solutions claires, adaptées et pragmatiques.`
   },
   article: {
     back: "Portfolio",
+    fallbackNotice:
+      "Cet article n'est pas encore traduit en français. Le texte ci-dessous est en anglais.",
+    fallbackLink: "Voir la page anglaise",
+    inOtherLanguage: "en anglais",
   },
   footer: {
     by: "Design et Code par",

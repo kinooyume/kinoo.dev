@@ -4,6 +4,7 @@ import DSPreview from "@/components/design-system/DSPreview.astro";
 import DSCode from "@/components/design-system/DSCode.astro";
 import DSPropsTable from "@/components/design-system/DSPropsTable.astro";
 import DSStructure from "@/components/design-system/DSStructure.astro";
+import DSNote from "@/components/design-system/DSNote.astro";
 import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
 import ArticleCardComponent from "./ArticleCard.astro";
 ---
@@ -27,6 +28,28 @@ import ArticleCardComponent from "./ArticleCard.astro";
     <DSCode inline>&lt;ArticleCard title="…" subtitle="…" date={new Date()} tags={["tag"]} href="/articles/slug" /&gt;</DSCode>
   </DSBlock>
 
+  <DSBlock title="Untranslated article">
+    <DSPreview>
+      <div data-spotlight style="max-width: 720px;">
+        <ArticleCardComponent
+          title="Rendering large lists"
+          subtitle="Virtualisation, windowing, and when neither is worth the complexity."
+          date={new Date("2025-03-02")}
+          tags={["performance"]}
+          href="#"
+          lang="fr"
+          contentLang="en"
+          isFallback
+        />
+      </div>
+    </DSPreview>
+    <DSNote>
+      The language tag marks a card whose article is served in the other
+      language. The locale is also appended to the link aria-label, so the
+      information reaches screen readers and not only sighted users.
+    </DSNote>
+  </DSBlock>
+
   <DSBlock title="Structure">
     <DSStructure
       rows={[
@@ -35,6 +58,7 @@ import ArticleCardComponent from "./ArticleCard.astro";
         { code: "Card", description: "Shared card shell (.text-sm)", indent: 2 },
         { code: "CardContent", description: "Title + body layout", indent: 3 },
         { code: "slot=\"title\"", description: "Date + h3 with hover arrow", indent: 4 },
+        { code: "Tag", description: "Language marker, fallback only", indent: 5 },
         { code: "CardDescription", description: "Subtitle text (shared styles)", indent: 4 },
         { code: "TagRow", description: "Tag list", indent: 4 },
       ]}
@@ -50,6 +74,9 @@ import ArticleCardComponent from "./ArticleCard.astro";
         ["date", { code: "Date" }, "Publication date"],
         ["tags", { code: "string[]" }, "Tag labels"],
         ["href", { code: "string" }, "Link to the article"],
+        ["lang", { code: "Locale?" }, "Page locale. Drives date formatting. Defaults to fr"],
+        ["contentLang", { code: "Locale?" }, "Locale the article is written in. Defaults to lang"],
+        ["isFallback", { code: "boolean?" }, "Shows the language tag and extends the aria-label"],
       ]}
     />
   </DSBlock>

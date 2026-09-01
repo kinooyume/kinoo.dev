@@ -3,13 +3,15 @@ import { alternatePath, useTranslations, type Locale } from "@/i18n";
 
 interface Props {
   lang: Locale;
+  /** Cible explicite quand l'URL de l'autre langue ne se deduit pas du pathname. */
+  href?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, href: explicitHref } = Astro.props;
 const t = useTranslations(lang);
 
 const target: Locale = lang === "fr" ? "en" : "fr";
-const href = alternatePath(Astro.url.pathname, target);
+const href = explicitHref ?? alternatePath(Astro.url.pathname, target);
 ---
 
 <a class="lang-toggle" href={href} hreflang={target} lang={target} aria-label={t.a11y.langToggle}>

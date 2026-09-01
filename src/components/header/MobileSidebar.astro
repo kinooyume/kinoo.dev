@@ -14,9 +14,10 @@ import {
 
 interface Props {
   lang: Locale;
+  alternateHref?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, alternateHref } = Astro.props;
 const t = useTranslations(lang);
 const home = localizePath("/", lang);
 
@@ -29,7 +30,7 @@ const sections = [
 ];
 
 const otherLang: Locale = lang === "fr" ? "en" : "fr";
-const langHref = alternatePath(Astro.url.pathname, otherLang);
+const langHref = alternateHref ?? alternatePath(Astro.url.pathname, otherLang);
 ---
 
 <div class="mobile-sidebar">

@@ -146,6 +146,7 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       { label: "Prose", href: "#prose" },
       { label: "ArticleCard", href: "#articlecard", framework: "astro" },
+      { label: "ArticleLanguageNotice", href: "#articlelanguagenotice", framework: "astro" },
     ],
   },
   {
