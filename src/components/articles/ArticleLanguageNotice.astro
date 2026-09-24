@@ -26,8 +26,8 @@ const t = useTranslations(lang);
     padding: 12px 16px;
     border: 1px solid var(--border-color);
     border-left: 2px solid var(--accent-color);
-    /* Les coins carres du cote de la barre la gardent droite d'un bout a
-       l'autre, comme le blockquote des articles. */
+    /* Square corners on the bar's own side keep the line straight end to end,
+       the same treatment as the article blockquote. */
     border-radius: 0 8px 8px 0;
     background-color: var(--card-surface);
   }
@@ -42,15 +42,15 @@ const t = useTranslations(lang);
   .code {
     display: inline-block;
     vertical-align: middle;
-    /* Correction optique : moitie de l'ecart de hauteur de capitale entre le
-       label de 11px et le texte de 15px a cote. Sans elle le label partage la
-       ligne de base du voisin et sa masse visuelle tombe trop bas. */
+    /* Optical correction: half the cap height difference between the 11px label
+       and the 15px text beside it. Without it the label shares its neighbour's
+       baseline and its visual mass falls too low. */
     position: relative;
     top: -1.5px;
     margin-right: 6px;
     padding: 2px 6px;
-    /* Sans ca, .code herite du line-height 1.5 du paragraphe : la boite fait
-       18px pour un texte de 11px, et ce demi-interligne la decale vers le haut. */
+    /* Without this, .code inherits the paragraph's 1.5 line-height: an 18px box
+       around 11px text, and that half leading pushes it up. */
     line-height: 1;
     border-radius: 4px;
     background-color: var(--accent-tint);

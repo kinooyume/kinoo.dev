@@ -20,7 +20,7 @@ export default defineConfig({
     },
   },
   integrations: [
-    // Astro exclut du routing tout chemin commencant par "_", d'ou la route injectee.
+    // Astro keeps any path starting with "_" out of routing, hence the injected route.
     {
       name: "article-redirects",
       hooks: {
@@ -34,6 +34,11 @@ export default defineConfig({
     },
     solidJs(),
     sitemap({
+      // This only pairs URLs that match each other bar the locale prefix, so it
+      // covers / and /en/ but not articles, whose slug is localized per language.
+      // Their hreflang lives in the page head, which is enough: Google treats
+      // link elements and sitemap alternates as interchangeable. Do not mirror it
+      // here from a second source, a contradictory pair voids the whole cluster.
       i18n: {
         defaultLocale: "fr",
         locales: { fr: "fr-FR", en: "en-US" },

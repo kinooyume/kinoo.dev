@@ -2,7 +2,7 @@
 interface Props {
   href: string;
   label: string;
-  /** Etat courant, aligne a droite. Absent pour une simple destination. */
+  /** Current state, right aligned. Omit for a plain destination. */
   value?: string;
   external?: boolean;
   [key: string]: unknown;
@@ -45,8 +45,8 @@ const externalProps = external
     color: var(--text-muted);
   }
 
-  /* Le contenu du slot vient du parent, il ne porte pas le scope de ce
-     composant : la regle entiere doit rester globale, svg compris. */
+  /* Slotted content comes from the parent and carries none of this component's
+     scope, so the whole rule has to stay global, svg included. */
   .sidebar-row :global(.sidebar-row-icon) {
     display: flex;
     align-items: center;

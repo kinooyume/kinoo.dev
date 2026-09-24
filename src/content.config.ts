@@ -33,8 +33,8 @@ const articles = defineCollection({
     title: z.string(),
     subtitle: z.string().optional(),
     description: z.string(),
-    // "slug" est reserve par Astro, qui s'en sert pour generer l'id de l'entree
-    // et ferait disparaitre le prefixe de langue du chemin.
+    // "slug" is reserved by Astro, which uses it to generate the entry id and
+    // would strip the language prefix from the path.
     urlSlug: z.string().optional(),
     date: z.coerce.date(),
     category: z.string().optional(),

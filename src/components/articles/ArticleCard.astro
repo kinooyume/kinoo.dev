@@ -83,24 +83,24 @@ const label = isFallback ? `${title} (${t.article.inOtherLanguage})` : title;
     gap: 8px;
   }
 
-  /* Tag n'expose pas de prop de classe, le marqueur se regle donc depuis ici.
-     Le selecteur doit rester global sur toute sa profondeur : le span est rendu
-     par Tag et ne porte pas le scope de ce composant. */
+  /* Tag takes no class prop, so the marker is sized from here. The selector has
+     to stay global all the way down: the span is rendered by Tag and carries
+     none of this component's scope. */
   .article-title-meta :global(.tag) {
     padding: 2px 6px;
-    /* Correction optique : moitie de l'ecart de hauteur de capitale entre le
-       label de 11px et le texte de 15px a cote. Sans elle le label partage la
-       ligne de base du voisin et sa masse visuelle tombe trop bas. */
+    /* Optical correction: half the cap height difference between the 11px label
+       and the 15px text beside it. Without it the label shares its neighbour's
+       baseline and its visual mass falls too low. */
     position: relative;
     top: -1.5px;
   }
 
-  /* .small est indispensable ici : sans lui, la regle de Tag
-     (div[cid].small span[cid]) est plus specifique et l'emporte. */
+  /* .small is required here: without it Tag's own rule
+     (div[cid].small span[cid]) is more specific and wins. */
   .article-title-meta :global(.tag.small span) {
     font-size: var(--font-size-4xs);
-    /* Sans ca le span herite de l'interligne de la carte et la pastille fait le
-       double de la hauteur du texte de la date. */
+    /* Without this the span inherits the card's leading and the chip grows to
+       twice the height of the date beside it. */
     line-height: 1;
   }
 

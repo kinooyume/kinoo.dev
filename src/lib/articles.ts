@@ -9,11 +9,11 @@ export type ResolvedArticle = {
   contentLang: Locale;
   isFallback: boolean;
   url: string;
-  /** Page servant le contenu dans sa langue d'origine. Cible du canonique. */
+  /** The page serving the content in its own language. Canonical target. */
   sourceUrl: string;
-  /** Page de cette entree dans l'autre langue. Existe toujours, fallback compris. */
+  /** This entry's page in the other language. Always exists, fallback included. */
   otherUrl: string;
-  /** Renseigne uniquement quand les deux langues existent. Cible du hreflang. */
+  /** Set only when both languages exist. hreflang target. */
   alternateUrl: string | null;
 };
 
@@ -81,9 +81,8 @@ export async function resolveArticles(lang: Locale): Promise<ResolvedArticle[]> 
 }
 
 /**
- * Redirections des URLs derivees de la cle vers celles derivees d'un urlSlug.
- * Sans elles, localiser le slug d'un article deja publie ferait disparaitre son
- * ancienne URL.
+ * Redirects from key derived URLs to urlSlug derived ones. Without them,
+ * localizing the slug of an already published article would drop its old URL.
  */
 export async function articleRedirects(): Promise<
   { from: string; to: string }[]
