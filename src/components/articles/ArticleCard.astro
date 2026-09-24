@@ -43,11 +43,13 @@ const label = isFallback ? `${title} (${t.article.inOtherLanguage})` : title;
     <Card>
       <CardContent>
         <div slot="title" class="article-title">
-          <time datetime={date.toISOString()}>{formattedDate}</time>
+          <div class="article-title-meta">
+            <time datetime={date.toISOString()}>{formattedDate}</time>
+            {isFallback && (
+              <Tag title={contentLang.toUpperCase()} size="small" outline />
+            )}
+          </div>
           <h3>{title}<span class="arrow" aria-hidden="true" set:html={arrowRight} /></h3>
-          {isFallback && (
-            <Tag title={contentLang.toUpperCase()} size="small" outline />
-          )}
         </div>
         {subtitle && (
           <CardDescription>
@@ -73,6 +75,33 @@ const label = isFallback ? `${title} (${t.article.inOtherLanguage})` : title;
   time {
     font-size: var(--font-size-xs);
     color: var(--text-muted);
+  }
+
+  .article-title-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  /* Tag n'expose pas de prop de classe, le marqueur se regle donc depuis ici.
+     Le selecteur doit rester global sur toute sa profondeur : le span est rendu
+     par Tag et ne porte pas le scope de ce composant. */
+  .article-title-meta :global(.tag) {
+    padding: 2px 6px;
+    /* Correction optique : moitie de l'ecart de hauteur de capitale entre le
+       label de 11px et le texte de 15px a cote. Sans elle le label partage la
+       ligne de base du voisin et sa masse visuelle tombe trop bas. */
+    position: relative;
+    top: -1.5px;
+  }
+
+  /* .small est indispensable ici : sans lui, la regle de Tag
+     (div[cid].small span[cid]) est plus specifique et l'emporte. */
+  .article-title-meta :global(.tag.small span) {
+    font-size: var(--font-size-4xs);
+    /* Sans ca le span herite de l'interligne de la carte et la pastille fait le
+       double de la hauteur du texte de la date. */
+    line-height: 1;
   }
 
   .article-card-tags {

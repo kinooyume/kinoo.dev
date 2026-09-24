@@ -48,6 +48,19 @@ import ArticleCardComponent from "./ArticleCard.astro";
       language. The locale is also appended to the link aria-label, so the
       information reaches screen readers and not only sighted users.
     </DSNote>
+    <DSNote>
+      The row aligns on the baseline, not on centre. Centring puts the chip on
+      the middle of the date's line box, which reserves descender space no digit
+      uses, so the chip ended up sitting above the date. The chip also resets
+      line-height, or it inherits the card's and grows to twice the height of
+      the text it sits next to.
+    </DSNote>
+    <DSNote>
+      A 1.5px optical raise sits on top of that. Sharing a baseline is not the
+      same as looking aligned: an 11px label has a shorter cap height than the
+      15px text beside it, so its visual mass falls low. The correction is half
+      that difference, measured on the rendered page.
+    </DSNote>
   </DSBlock>
 
   <DSBlock title="Structure">
@@ -57,8 +70,9 @@ import ArticleCardComponent from "./ArticleCard.astro";
         { code: "Spotlight", description: "Hover glow effect", indent: 1 },
         { code: "Card", description: "Shared card shell (.text-sm)", indent: 2 },
         { code: "CardContent", description: "Title + body layout", indent: 3 },
-        { code: "slot=\"title\"", description: "Date + h3 with hover arrow", indent: 4 },
-        { code: "Tag", description: "Language marker, fallback only", indent: 5 },
+        { code: "slot=\"title\"", description: "Meta row + h3 with hover arrow", indent: 4 },
+        { code: ".article-title-meta", description: "Date and language marker, side by side", indent: 5 },
+        { code: "Tag", description: "Language marker, fallback only", indent: 6 },
         { code: "CardDescription", description: "Subtitle text (shared styles)", indent: 4 },
         { code: "TagRow", description: "Tag list", indent: 4 },
       ]}

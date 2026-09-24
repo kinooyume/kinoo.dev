@@ -39,5 +39,28 @@ import DSSectionHeader from "@/components/design-system/DSSectionHeader.astro";
       href always points at the canonical URL, so following it leaves the
       fallback route behind.
     </DSNote>
+    <DSNote>
+      The locale code sits inline in the sentence rather than in a flex column,
+      so it aligns with the text at any type size and wraps with it. It is
+      aria-hidden: the sentence already names the language, and an inline span
+      with no surrounding whitespace would otherwise be read as one word with
+      the first one.
+    </DSNote>
+    <DSNote>
+      It resets line-height. Inheriting the paragraph's 1.5 makes an 18px box
+      around 11px text, and that half leading pushes the box above the sentence
+      once vertical-align middle measures from the x-height.
+    </DSNote>
+    <DSNote>
+      A 1.5px optical raise sits on top of that. Sharing a baseline is not the
+      same as looking aligned: an 11px label has a shorter cap height than the
+      15px text beside it, so its visual mass falls low. The correction is half
+      that difference, measured on the rendered page.
+    </DSNote>
+    <DSNote>
+      The bar squares off its own side with a border-radius of 0 8px 8px 0,
+      the same treatment as the article blockquote. A uniform radius curves the
+      accent border at both ends and reads as a generic callout.
+    </DSNote>
   </DSBlock>
 </section>
