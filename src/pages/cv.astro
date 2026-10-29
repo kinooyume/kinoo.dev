@@ -1,0 +1,656 @@
+---
+import { parse } from "yaml";
+import source from "@/data/cv.yml?raw";
+import "@/styles/variables.scss";
+import "@/styles/global.scss";
+
+interface CVLink {
+  text: string;
+  href: string;
+  icon: string;
+}
+
+interface Experience {
+  company: string;
+  href: string;
+  logo: string;
+  role: string;
+  kind: string;
+  date: string;
+  location: string;
+  headline: string;
+  context?: string;
+  bullets: { icon: string; text: string }[];
+}
+
+interface Project {
+  name: string;
+  logo: string;
+  description: string;
+  links: CVLink[];
+}
+
+interface CV {
+  name: string;
+  title: string;
+  photo: string;
+  summary: string;
+  status: { icon: string; text: string }[];
+  contact: CVLink[];
+  skills: { title: string; icon: string; items: string[] }[];
+  education: { name: string; detail: string; logo: string }[];
+  languages: string;
+  experiences: Experience[];
+  projects: Project[];
+}
+
+const cv = parse(source) as CV;
+
+const svgs = import.meta.glob<string>("../svgs/*.svg", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+const icon = (name: string) => svgs[`../svgs/${name}.svg`] ?? "";
+
+const skillIcons: Record<string, string> = {
+  Svelte: "svelte",
+  React: "react",
+  "Vue 3": "vue",
+  TypeScript: "ts",
+  Astro: "astro",
+  Rescript: "rescript",
+  "Node.js": "node",
+  Go: "go",
+  "Micro-frontends": "puzzle",
+  "API-first": "plug",
+  Migrations: "refresh-cw",
+  Monorepo: "folder-tree",
+  ADR: "file-check",
+  Vitest: "vitest",
+  Playwright: "drama",
+  "Feature flags": "flag",
+  Datadog: "activity",
+  Sentry: "bug",
+  "Claude Code": "claude",
+  Plugins: "package",
+  Skills: "sparkles",
+  Agents: "network",
+  MCP: "link",
+  Copilot: "copilot",
+  SQL: "database",
+};
+
+const escape = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const md = (s: string) =>
+  escape(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <title>{cv.name} · CV</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="intro">
+        <img class="photo" src={cv.photo} alt={cv.name} />
+        <div class="heading">
+          <p class="title">{cv.title}</p>
+          <h1>{cv.name}</h1>
+          <p class="summary">{cv.summary}</p>
+          <p class="status">
+            {
+              cv.status.map((s) => (
+                <span class="with-icon">
+                  <span class="icon" set:html={icon(s.icon)} />
+                  {s.text}
+                </span>
+              ))
+            }
+          </p>
+        </div>
+        <div class="identity">
+          <ul class="contact">
+            {
+              cv.contact.map((c) => (
+                <li class="with-icon">
+                  <span class="icon" set:html={icon(c.icon)} />
+                  <a href={c.href}>{c.text}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </header>
+
+      <section class="band">
+        <dl class="skills">
+          {
+            cv.skills.map((g) => (
+              <>
+                <dt class="with-icon">
+                  <span class="icon" set:html={icon(g.icon)} />
+                  {g.title}
+                </dt>
+                <dd>
+                  {g.items.map((item) => (
+                    <span class="with-icon">
+                      {skillIcons[item] && <span class="icon tech" set:html={icon(skillIcons[item])} />}
+                      {item}
+                    </span>
+                  ))}
+                </dd>
+              </>
+            ))
+          }
+        </dl>
+        <div class="school">
+          <h2 class="with-icon">
+            <span class="icon" set:html={icon("graduation-cap")} />Formation
+          </h2>
+          {
+            cv.education.map((e) => (
+              <div class="school-item">
+                <img src={e.logo} alt={e.name} />
+                <div>
+                  <p class="strong">{e.name}</p>
+                  <p class="muted">{e.detail}</p>
+                </div>
+              </div>
+            ))
+          }
+          <h2 class="with-icon">
+            <span class="icon" set:html={icon("languages")} />Langues
+          </h2>
+          <p>{cv.languages}</p>
+        </div>
+      </section>
+
+      <section class="experiences">
+        <div class="xp-grid">
+          {
+            cv.experiences.map((e) => (
+              <>
+                <div class="rail">
+                  <a class="company" href={e.href}>
+                    <img src={e.logo} alt={e.company} />
+                    {e.company}
+                  </a>
+                  <p class="with-icon muted">
+                    <span class="icon" set:html={icon("file-text")} />
+                    {e.kind}
+                  </p>
+                  <p class="when muted">
+                    <span class="with-icon">
+                      <span class="icon" set:html={icon("calendar")} />
+                      {e.date}
+                    </span>
+                    <span class="with-icon">
+                      <span class="icon" set:html={icon("map-pin")} />
+                      {e.location}
+                    </span>
+                  </p>
+                </div>
+                <article class="xp">
+                  <p class="role-title">{e.role}</p>
+                  <h3>{e.headline}</h3>
+                  {e.context && <p class="context" set:html={md(e.context)} />}
+                  <ul>
+                    {e.bullets.map((b) => (
+                      <li>
+                        <span class="icon" set:html={icon(b.icon)} />
+                        <span set:html={md(b.text)} />
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="projects">
+        <h2 class="section green">Projets perso</h2>
+        <div class="project-grid">
+          {
+            cv.projects.map((p) => (
+              <article class="project">
+                <span class="project-logo">
+                  <img src={p.logo} alt={p.name} />
+                </span>
+                <div>
+                  <div class="project-head">
+                    <h3>{p.name}</h3>
+                    <p class="links">
+                      {p.links.map((l) => (
+                        <a class="with-icon" href={l.href}>
+                          <span class="icon" set:html={icon(l.icon)} />
+                          {l.text}
+                        </a>
+                      ))}
+                    </p>
+                  </div>
+                  <p set:html={md(p.description)} />
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style lang="scss">
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  :global(html),
+  :global(body) {
+    margin: 0;
+    background: var(--background-color);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .page {
+    --card-surface-input: #1a2232;
+
+    box-sizing: border-box;
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 28px 34px 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.36;
+    color: var(--color);
+    background: var(--background-color);
+  }
+
+  @media screen {
+    .page {
+      margin-block: 24px;
+      overflow: visible;
+      box-shadow: 0 0 0 1px var(--border-color);
+    }
+  }
+
+  p,
+  li,
+  dt,
+  dd {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: inherit;
+    color: inherit;
+    hyphens: manual;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2.5px;
+    text-decoration-color: var(--link-accent, var(--orange));
+  }
+
+  :global(strong) {
+    font-weight: 600;
+    color: var(--light-color);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .muted {
+    color: var(--text-muted);
+  }
+
+  .strong {
+    color: var(--light-color);
+  }
+
+  .with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+
+    :global(svg) {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.tech {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .section {
+    margin: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--light-color);
+
+    &.green {
+      border-color: var(--green);
+    }
+  }
+
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--orange);
+  }
+
+  h1 {
+    margin: -6px 0 0;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--light-color);
+  }
+
+  .summary {
+    font-size: 11.5px;
+    color: var(--light-color);
+  }
+
+  .status {
+    display: flex;
+    gap: 14px;
+    color: var(--orange);
+  }
+
+  .identity {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .photo {
+    width: 88px;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--light-color);
+  }
+
+  .band {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 20px;
+    padding: 10px 0;
+    border-block: 1px solid var(--border-color);
+  }
+
+  .skills {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 5px 10px;
+    font-size: 12px;
+
+    dt {
+      color: var(--text-muted);
+    }
+
+    dd {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px 9px;
+    }
+  }
+
+  .school {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding-left: 16px;
+    border-left: 1px solid var(--border-color);
+    font-size: 11.5px;
+
+    h2 {
+      margin: 0;
+      font-size: 10.5px;
+      font-weight: 400;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--purple-light);
+    }
+
+    h2 + p {
+      margin-top: -3px;
+    }
+  }
+
+  .school-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: 5px;
+      background: var(--light-color);
+    }
+  }
+
+  .experiences {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .xp-grid {
+    display: grid;
+    grid-template-columns: 138px 1fr;
+    row-gap: 4px;
+
+    > :nth-child(odd) {
+      padding-right: 16px;
+    }
+
+    > :nth-child(n + 3) {
+      padding-top: 5px;
+      border-top: 1px solid var(--border-color);
+    }
+  }
+
+  .rail {
+    --link-accent: var(--pink);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    font-size: 10.5px;
+    line-height: 1.35;
+  }
+
+  .role-title {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--light-color);
+  }
+
+  .when {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px 6px;
+  }
+
+  .company {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 2px;
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--light-color);
+
+    img {
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      border-radius: 5px;
+      background: var(--light-color);
+    }
+  }
+
+  .xp {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    h3 {
+      margin: 0;
+      font-size: 12.5px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--pink);
+    }
+
+    ul {
+      margin-top: 2px;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    li .icon {
+      margin-top: calc((1lh - 11px) / 2);
+      color: var(--pink);
+    }
+  }
+
+  .context {
+    color: var(--light-color);
+  }
+
+  .projects {
+    --link-accent: var(--green);
+
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: auto;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 12px;
+  }
+
+  .project {
+    display: flex;
+    gap: 10px;
+
+    h3 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--green);
+    }
+  }
+
+  .project-logo {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--card-surface-darker);
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+  }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .links {
+    display: flex;
+    gap: 10px;
+    color: var(--light-color);
+
+    .icon {
+      width: 10px;
+      height: 10px;
+    }
+  }
+</style>

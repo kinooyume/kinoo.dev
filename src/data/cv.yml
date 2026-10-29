@@ -1,0 +1,159 @@
+name: Martin Kinoo
+title: Développeur Frontend Senior
+photo: /images/profil.png
+summary: "Développeur depuis 2018 : architecture frontend, API-first, migrations progressives, outillage IA."
+
+status:
+  - icon: briefcase
+    text: Freelance
+  - icon: map-pin
+    text: Paris, hybride ou remote
+  - icon: calendar
+    text: Dispo Décembre 2026
+
+contact:
+  - text: martin@kinoo.dev
+    href: mailto:martin@kinoo.dev
+    icon: mail
+  - text: kinoo.dev
+    href: https://kinoo.dev
+    icon: globe
+  - text: KinooYume
+    href: https://github.com/KinooYume
+    icon: github
+  - text: linkedin
+    href: https://www.linkedin.com/in/martin-kinoo/
+    icon: linkedin
+
+skills:
+  - title: Frontend
+    icon: code
+    items: [Svelte, React, Vue 3, TypeScript, Astro, Rescript]
+  - title: Architecture
+    icon: layers
+    items: [Micro-frontends, Migrations, Monorepo, API-first, ADR]
+  - title: Qualité
+    icon: shield-check
+    items: [Vitest, Playwright, Feature flags, Datadog, Sentry]
+  - title: IA
+    icon: bot
+    items: [Claude Code, Plugins, Skills, Agents, MCP, Copilot]
+  - title: Backend
+    icon: server
+    items: [Node.js, Go, SQL]
+
+education:
+  - name: Master Epitech
+    detail: "2018"
+    logo: /images/epitech.png
+  - name: Manipal Institute of Technology
+    detail: Inde
+    logo: /images/manipal.png
+
+languages: Français, anglais courant
+
+experiences:
+  - company: Believe
+    href: https://www.believe.com/
+    logo: /images/believe.png
+    role: Développeur frontend
+    kind: Freelance
+    date: "2026"
+    location: Paris, hybride
+    headline: Micro-frontends Svelte et React, spec-driven development
+    context: >-
+      Plateforme de distribution musicale pour artistes et labels indépendants,
+      dont le front coexiste en trois générations : **PHP, Svelte, React**.
+    bullets:
+      - icon: refresh-cw
+        text: "Application **Svelte** de saisie des métadonnées : je continue de la faire évoluer en Svelte tout en menant sa **migration vers React**, cadrée par un **bilan d'architecture** (réactivité, routing, tests)."
+      - icon: layers
+        text: "Étude pour servir une même **micro-app dans deux hôtes** aux authentifications différentes : **POC, ADR**, grille de décision, qui a orienté le choix d'un repo dédié."
+      - icon: bot
+        text: "**Spec-driven development** avec **Claude Code**. **Plugin** qui part d'une maquette pour établir le **contrat de données** (sources, faisabilité, questions par équipe), **diffusé dans l'entreprise**."
+      - icon: flag
+        text: "**Livraison continue** derrière **feature flags**, du portail PHP au **monorepo React** (Nx)."
+
+  - company: Adeo
+    href: https://www.adeo.com/
+    logo: /images/adeo.png
+    role: Développeur frontend
+    kind: Freelance
+    date: 2025-2026
+    location: Lille
+    headline: Migration Vue 3 outillée par l'IA, micro-frontend Svelte
+    context: >-
+      Plateforme data d'un groupe international (**40+ enseignes**). Une app Vue 2 de 2018
+      redevenue centrale, à moderniser sans arrêter les livraisons.
+    bullets:
+      - icon: component
+        text: "**Micro-frontend Svelte** dans l'écosystème DataHub et composants de sa **librairie Svelte**."
+      - icon: bot
+        text: "**Agents Copilot** au cœur de la **migration par vagues** vers **Vue 3, TypeScript et Pinia** : renfort des agents services et Pinia, **cartographie des dépendances** pour découper chaque vague."
+      - icon: shield-check
+        text: Filet de tests **Playwright** et **agent Copilot** dédié pour les écrire. **Cité par le lead parmi les trois contributeurs clés.**
+
+  - company: Verty
+    href: https://verty.eu/
+    logo: /images/verty.webp
+    role: Développeur backend
+    kind: Freelance
+    date: "2025"
+    location: Remote
+    headline: Synchronisation e-commerce en Go
+    bullets:
+      - icon: arrow-left-right
+        text: "Développement, maintenance et suivi de **services Go** qui synchronisent **produits, prix et disponibilités** entre plusieurs boutiques en ligne (Scaleway, monitoring **Grafana**, tests automatisés)."
+
+  - company: Impact Horizon
+    href: https://impacthorizongroup.com/
+    logo: /images/impacthorizon.webp
+    role: Développeur frontend
+    kind: Freelance
+    date: 2024-2025
+    location: Remote
+    headline: Générateur de sites web piloté par l'API
+    bullets:
+      - icon: layout-template
+        text: "Démarche **API-first** : **contrat d'API** conçu en amont avec l'équipe back, puis une **architecture de composants React** où chaque page se compose à partir de l'API."
+
+  - company: Oeil pour Oeil
+    href: https://oeilpouroeilcreations.fr
+    logo: /images/opo.png
+    role: Lead développeur fullstack
+    kind: CDI
+    date: 2018-2022
+    location: Lille
+    headline: Lead technique et référent fonctionnel de la plateforme
+    context: "Plateforme de formations gamifiées en conformité : **3M+ utilisateurs, 300+ entreprises, 30+ langues**."
+    bullets:
+      - icon: users
+        text: "**Besoins clients** traduits en **formations sur mesure**, livrées en **SCORM** ou via le SaaS interne."
+      - icon: refresh-cw
+        text: "Catalogue **data-driven** (headless, **GraphQL**) **migré de React vers Svelte**, mainteneur d'**Elder.js**."
+      - icon: hexagon
+        text: "Logique métier en **Rescript**, **indépendante du framework** et partagée entre les projets."
+      - icon: server
+        text: "**SaaS métier** en **Go, Vue.js et PostgreSQL** : suivi des parcours et restitution des scores."
+
+projects:
+  - name: Arteflix
+    logo: /images/arteflix/logo.webp
+    description: L'API d'ARTE reconstruite en API-first. React, Rescript, Next.js.
+    links:
+      - text: Visiter
+        href: https://arteflix.kinoo.dev
+        icon: globe
+      - text: Code
+        href: https://github.com/kinooyume/arteflix
+        icon: github
+  - name: Ekeynox
+    logo: /images/ekeynox.svg
+    description: Jeu de dactylographie temps réel. SolidJS, SolidStart.
+    links:
+      - text: Visiter
+        href: https://ekeynox.kinoo.dev
+        icon: globe
+      - text: Code
+        href: https://github.com/kinooyume/ekeynox
+        icon: github
