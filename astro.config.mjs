@@ -13,7 +13,7 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: "hover",
   },
-  integrations: [solidJs(), sitemap(), mdx(), cvPdf()],
+  integrations: [solidJs(), sitemap(), mdx(), cvPdf({ out: "MartinKinooCV.pdf" })],
   markdown: {
     shikiConfig: {
       themes: {
