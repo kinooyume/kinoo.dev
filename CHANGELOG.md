@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.41.0 - 2026-10-30
+#### Features
+- (**cv**) generate the CV as a PDF at build time from cv.yml - (0d79fc1) - Martin Kinoo
+- (**experiences**) add Believe and refocus mission texts on architecture and AI - (ca6eed5) - Martin Kinoo
+- (**hero**) end the intro on predictable delivery - (a8dd04e) - Martin Kinoo
+- (**site**) serve the generated CV at the existing URL and align hero and meta with the new positioning - (d330ab6) - Martin Kinoo
+#### Bug Fixes
+- (**transitions**) hide incoming page before swap to avoid Firefox flash - (abbe42a) - Martin Kinoo
+#### Miscellaneous Chores
+- (**deps**) upgrade Astro ecosystem, TypeScript, ESLint and tooling to latest - (8030ab6) - Martin Kinoo
+- (**nix**) update nixpkgs pin (bun 1.3.13, cocogitto 7.0.0) - (fea25af) - Martin Kinoo
+
+- - -
+
 ## v0.40.0 - 2026-08-30
 #### Features
 - (**articles**) three-state content status behind CONTENT - (e0fc9eb) - Martin Kinoo
