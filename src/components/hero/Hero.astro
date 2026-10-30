@@ -4,9 +4,8 @@ import HeroSubtitle from "./HeroSubtitle.astro";
 import AstroIcon from "@/svgs/astro.svg?raw";
 import React from "@/svgs/react.svg?raw";
 import Svelte from "@/svgs/svelte.svg?raw";
-import Rescript from "@/svgs/rescript.svg?raw";
+import Claude from "@/svgs/claude.svg?raw";
 import Ts from "@/svgs/ts.svg?raw";
-import Go from "@/svgs/go.svg?raw";
 import Vue from "@/svgs/vue.svg?raw";
 import IconLink from "@/components/shared/atoms/IconLink.astro";
 import cv from "@/svgs/cv.svg?raw";
@@ -20,13 +19,12 @@ type TagProps = {
 };
 
 const techs: TagProps[] = [
-  { title: "Typescript", icon: Ts, highlight: true },
-  { title: "Astro", icon: AstroIcon, highlight: true },
   { title: "Svelte", icon: Svelte, highlight: true },
-  { title: "Vue.js", icon: Vue, highlight: true },
-  { title: "React.js", icon: React, highlight: true },
-  { title: "Rescript", icon: Rescript, highlight: true },
-  { title: "Golang", icon: Go, highlight: true },
+  { title: "React", icon: React, highlight: true },
+  { title: "Vue 3", icon: Vue, highlight: true },
+  { title: "TypeScript", icon: Ts, highlight: true },
+  { title: "Astro", icon: AstroIcon, highlight: true },
+  { title: "Claude Code", icon: Claude, highlight: true },
   { title: "Votre stack ?" },
 ];
 ---
@@ -45,9 +43,11 @@ const techs: TagProps[] = [
           inutile.
         </p>
         <p>
-          Je simplifie les choix techniques et je sécurise l'architecture pour
-          que les projets avancent de façon prévisible. Peu importe le
-          framework, la rigueur et l'architecture restent les mêmes.
+          Développeur depuis 2018, je fais évoluer des applications en
+          production : architecture frontend, API-first, migrations
+          progressives sans geler les livraisons, et l'IA intégrée au
+          workflow. Des choix techniques clairs, pour que les projets avancent
+          de façon prévisible.
         </p>
       </div>
       <ul>

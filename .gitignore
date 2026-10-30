@@ -38,3 +38,4 @@ pnpm-debug.log*
 /src/content/reflexion/
 /src/pages/reflexion.astro
 /src/pages/reflexion/
+cv-preview.pdf

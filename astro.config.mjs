@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import solidJs from "@astrojs/solid-js";
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import cvPdf from './integrations/cv-pdf';
 import shikiDark from './src/styles/shiki-dark.json';
 import shikiLight from './src/styles/shiki-light.json';
 
@@ -12,7 +13,7 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: "hover",
   },
-  integrations: [solidJs(), sitemap(), mdx()],
+  integrations: [solidJs(), sitemap(), mdx(), cvPdf({ out: "MartinKinooCV.pdf" })],
   markdown: {
     shikiConfig: {
       themes: {
