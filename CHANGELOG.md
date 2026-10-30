@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.41.1 - 2026-10-30
+#### Bug Fixes
+- (**articles**) pin the submodule to the published articles - (beafb65) - Martin Kinoo
+
+- - -
+
 ## v0.41.0 - 2026-10-30
 #### Features
 - (**cv**) generate the CV as a PDF at build time from cv.yml - (0d79fc1) - Martin Kinoo
